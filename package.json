@@ -23,5 +23,9 @@
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0"
+    },
+    "dependencies": {
+        "@material-ui/core": "^4.11.2",
+        "@material-ui/icons": "^4.11.2"
     }
 }
