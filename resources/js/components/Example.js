@@ -1,18 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Navigation from "./Navigation";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import AppBar from "./Navbar"
+
+
 
 
 function Example() {
     return (
-        <div>
-            <Navigation />
-        </div>
+        <Router>
+            <>
+            <div>
+                
+                    <AppBar />
+                
+
+            </div>
+            </>
+        </Router>
     );
 }
 
 export default Example;
 
 if (document.getElementById('example')) {
+    
     ReactDOM.render(<Example />, document.getElementById('example'));
 }
