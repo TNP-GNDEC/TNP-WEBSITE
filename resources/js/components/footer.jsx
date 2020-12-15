@@ -20,6 +20,15 @@ const useStyles = makeStyles({
     padding: "10px",
     height: "55px",
   },
+  tag:{
+    textDecoration: "none",
+    color : "#ffffff",
+   '&:hover':{
+      color:"#ffffff",
+    },
+    
+  },
+
 });
 
 export default function SimpleBottomNavigation() {
@@ -33,7 +42,7 @@ export default function SimpleBottomNavigation() {
     <BottomNavigation color="primary">
     
       <div className={classes.foot}>
-      <p> Developed with ❤️ by Genconians  | ©️ {year} <a  href="https://gndec.ac.in/"> GNDEC,ldh</a></p>
+      <p> Developed with ❤️ by Genconians  | ©️ {year} <a className={classes.tag} href="https://gndec.ac.in/"> GNDEC,ldh</a></p>
       </div>
     </BottomNavigation>
     
