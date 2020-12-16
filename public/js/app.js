@@ -81932,14 +81932,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Navigation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Navigation */ "./resources/js/components/Navigation.jsx");
-/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Footer */ "./resources/js/components/Footer.jsx");
+/* harmony import */ var _Theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Theme */ "./resources/js/components/Theme.js");
+/* harmony import */ var _Theme__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Theme__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Footer */ "./resources/js/components/Footer.jsx");
+
 
 
 
 
 
 function Example() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Navigation__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Navigation__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Footer__WEBPACK_IMPORTED_MODULE_5__["default"], null));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Example);
@@ -82045,6 +82048,17 @@ function Navigation() {
 
 /***/ }),
 
+/***/ "./resources/js/components/Theme.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Theme.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -82063,8 +82077,8 @@ function Navigation() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/mahinmittal/TNP-WEBSITE/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/mahinmittal/TNP-WEBSITE/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/sanchit/FinalWebsite/TNP-WEBSITE/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/sanchit/FinalWebsite/TNP-WEBSITE/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
