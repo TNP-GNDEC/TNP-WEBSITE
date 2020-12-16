@@ -3,7 +3,7 @@ TNP WEBSITE
 
 # Installation
 
-### Quick install on Debian/Ubuntu
+### Quick install
 ```
 git clone https://github.com/TNP-GNDEC/TNP-WEBSITE.git
 ```
