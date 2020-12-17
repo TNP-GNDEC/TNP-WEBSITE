@@ -21,11 +21,10 @@ import Logo from "../../logo.png";
 
 
 
-
-
-
-
 const useStyles = makeStyles((theme) => ({
+  customColor: {
+    background: "#3490dc",
+  },
   grow: {
     flexGrow: 1,
   },
@@ -176,7 +175,7 @@ export default function PrimarySearchAppBar() {
   return (
     <div className={classes.grow}>
       
-      <AppBar position="static">
+      <AppBar position="static" className={classes.customColor}>
         <Toolbar>
           <IconButton
             edge="start"

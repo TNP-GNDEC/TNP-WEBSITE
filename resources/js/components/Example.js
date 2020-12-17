@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Navigation from "./Navigation";
 import { Theme } from './Theme'
 import Footer from "./Footer";
 import Cards from './PostCards';
@@ -19,7 +18,6 @@ function Example() {
             </div>
             </>
             </Router>
-                <Navigation />
                 <Cards />
                 <Footer />
         </div>
