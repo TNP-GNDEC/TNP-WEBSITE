@@ -1,3 +1,5 @@
+// Connected Cards Component
+
 import React, { useState } from "react";
 
 // import Grid from '@material-ui/core/Grid';
@@ -16,24 +18,22 @@ import { blue, red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 
-// import { makeStyles } from '@material-ui/core/styles';
-// import Avatar from '@material-ui/core/Avatar';
+import { Button } from "@material-ui/core";
+import Link from '@material-ui/core/Link';
+
 import Chip from '@material-ui/core/Chip';
-// import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 
 
-// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-// import MoreVertIcon from "@material-ui/icons/MoreVert";
 
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 //Importing material-ui icons
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import { Directions } from "@material-ui/icons";
+import AddIcon from '@material-ui/icons/Add';
+import FlagIcon from '@material-ui/icons/Flag';
 
 
 //Styles
@@ -88,7 +88,22 @@ const useStyles = makeStyles(theme => ({
         paddingRight:"10px"
     },
 
-    cardTitle:{ paddingTop: "10px" },
+    cardTitle:{ 
+                paddingTop: "10px",
+                 fontWeight: "400",
+                textDecoration: "none",
+                '& :hover':{
+                    color:"#038ed4",
+                    textDecoration:"none !important"
+                } 
+              },
+
+    cardTitleLink:{
+
+            textDecoration:"none", 
+            color:"#333"
+
+    },
 
     cardHeader:{ borderBottom:"1px solid #E8E8E8" },
 
@@ -100,14 +115,12 @@ const useStyles = makeStyles(theme => ({
     
 }));
 
+
+//Main FUnctional components
 export default function RecipeReviewCard() {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-
-    const [date , setDate] = useState("December 20, 2020");
-    const [postType , setPostType] = useState("Announcement");
-    const [postDesc , setPostDesc] = useState("This is to inform that Happy Forgings Ltd, Ludhiana is looking forward to hire trainees from students of B.tech (Production) 2020 passing out batch.The details for the same are as follows:Interested student can register by 16 Dec.2020 till 2:00p.m. Link for the Same is : https://forms.gle/wBXcPkDPUShefQJp8  About the company: Happy Forgings Limited is a leading and technologically advanced auto component manufacturer serving the forging industry for the last 3 decades. It is one of the largest full service company supplying forged engine and drive-line components. Also, it has been continuously taking pains to reach the highest quality by hiring highly qualified technically competent professionals. Happy Forgings Limited has established itself as one of the most prominent and reliable players in the auto component business since 1979.");
-
+  
     const [posts, setPosts] = useState([
         { id:0,  title:" Registrations for Happy Forgings ", type:"Announcement", date:"Decemeber 20, 2020" , description:"This is to inform that Happy Forgings Ltd, Ludhiana is looking forward to hire trainees from students of B.tech (Production) 2020 passing out batch.The details for the same are as follows:Interested student can register by 16 Dec.2020 till 2:00p.m. Link for the Same is : https://forms.gle/wBXcPkDPUShefQJp8  About the company: Happy Forgings Limited is a leading and technologically advanced auto component manufacturer serving the forging industry for the last 3 decades. It is one of the largest full service company supplying forged engine and drive-line components. Also, it has been continuously taking pains to reach the highest quality by hiring highly qualified technically competent professionals. Happy Forgings Limited has established itself as one of the most prominent and reliable players in the auto component business since 1979."  },
         { id:1,  title:" Registrations for Happy Forgings ", type:"Announcement", date:"Decemeber 20, 2020" , description:"This is to inform that Happy Forgings Ltd, Ludhiana is looking forward to hire trainees from students of B.tech (Production) 2020 passing out batch.The details for the same are as follows:Interested student can register by 16 Dec.2020 till 2:00p.m. Link for the Same is : https://forms.gle/wBXcPkDPUShefQJp8  About the company: Happy Forgings Limited is a leading and technologically advanced auto component manufacturer serving the forging industry for the last 3 decades. It is one of the largest full service company supplying forged engine and drive-line components. Also, it has been continuously taking pains to reach the highest quality by hiring highly qualified technically competent professionals. Happy Forgings Limited has established itself as one of the most prominent and reliable players in the auto component business since 1979."  }])
@@ -116,6 +129,7 @@ export default function RecipeReviewCard() {
         setExpanded(!expanded);
     }
 
+    //Function to render Cards by taking post content from posts(useState hook).
     function renderCards(){
         return(  
             <>          
@@ -124,6 +138,7 @@ export default function RecipeReviewCard() {
 
                     <Grid item  key={post.id} xs={12} sm={8} md={6} className={classes.gridTopMargin} >
                     <Card >
+                    
                         <CardHeader className={classes.cardHeader}
                             avatar={
                                 <Avatar aria-label="logo" className={classes.avatar}>
@@ -135,10 +150,7 @@ export default function RecipeReviewCard() {
                                 <h2 className={classes.cardTitle} >
                                     <a
                                         href="#"
-                                        style={{
-                                            textDecoration: "none",
-                                            fontWeight: "400"
-                                        }}
+                                        className={ classes.cardTitleLink }
                                     >
                                        {post.title}
                                     </a>
@@ -150,8 +162,8 @@ export default function RecipeReviewCard() {
                                         {post.date}
                                     </Grid>
             
-                                    <Grid item xs={6} className={classes.textRight}   >
-                                        {post.type}
+                                    <Grid item xs={6} className={classes.textRight}   >  <FlagIcon fontSize='small' /> 
+                                         <Link underline='none' href="#"> {post.type}</Link>
                                     </Grid>
                                 </Grid>
                             }
@@ -161,6 +173,7 @@ export default function RecipeReviewCard() {
             
                                 {post.description}
                             </Typography>
+                            <Button fullWidth>Read More <AddIcon fontSize='small'/> </Button>
                         </CardContent>
                         <CardActions disableSpacing  className={classes.cardFooter}> 
             
@@ -205,12 +218,12 @@ export default function RecipeReviewCard() {
         )
     }
 
+
     return (
         <div>
         <Grid container justify="center" className={classes.root} >
-            {renderCards()}
+            {renderCards()} {/*Cards will be rendered here by renderCards function Above\ */}
         </Grid>
         </div>
     );
 }
-
