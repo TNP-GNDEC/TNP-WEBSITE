@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-// import Grid from '@material-ui/core/Grid';
+// imports from material ui;
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -10,22 +10,13 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-// import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { blue, red } from "@material-ui/core/colors";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-
 import { Button } from "@material-ui/core";
 import Link from '@material-ui/core/Link';
-
 import Chip from '@material-ui/core/Chip';
-import DoneIcon from '@material-ui/icons/Done';
-
-
-
 import Grid from '@material-ui/core/Grid';
 
 //Importing material-ui icons
@@ -34,6 +25,8 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import AddIcon from '@material-ui/icons/Add';
 import FlagIcon from '@material-ui/icons/Flag';
+import DoneIcon from '@material-ui/icons/Done';
+
 
 
 //Styles
@@ -122,8 +115,8 @@ export default function RecipeReviewCard() {
     const [expanded, setExpanded] = React.useState(false);
   
     const [posts, setPosts] = useState([
-        { id:0,  title:" Registrations for Happy Forgings ", type:"Announcement", date:"Decemeber 20, 2020" , description:"This is to inform that Happy Forgings Ltd, Ludhiana is looking forward to hire trainees from students of B.tech (Production) 2020 passing out batch.The details for the same are as follows:Interested student can register by 16 Dec.2020 till 2:00p.m. Link for the Same is : https://forms.gle/wBXcPkDPUShefQJp8  About the company: Happy Forgings Limited is a leading and technologically advanced auto component manufacturer serving the forging industry for the last 3 decades. It is one of the largest full service company supplying forged engine and drive-line components. Also, it has been continuously taking pains to reach the highest quality by hiring highly qualified technically competent professionals. Happy Forgings Limited has established itself as one of the most prominent and reliable players in the auto component business since 1979."  },
-        { id:1,  title:" Registrations for Happy Forgings ", type:"Announcement", date:"Decemeber 20, 2020" , description:"This is to inform that Happy Forgings Ltd, Ludhiana is looking forward to hire trainees from students of B.tech (Production) 2020 passing out batch.The details for the same are as follows:Interested student can register by 16 Dec.2020 till 2:00p.m. Link for the Same is : https://forms.gle/wBXcPkDPUShefQJp8  About the company: Happy Forgings Limited is a leading and technologically advanced auto component manufacturer serving the forging industry for the last 3 decades. It is one of the largest full service company supplying forged engine and drive-line components. Also, it has been continuously taking pains to reach the highest quality by hiring highly qualified technically competent professionals. Happy Forgings Limited has established itself as one of the most prominent and reliable players in the auto component business since 1979."  }])
+        { id:0,  title:" Registrations for Happy Forgings ", type:"Announcement", date:"Decemeber 20, 2020 04:10 pm" , description:"This is to inform that Happy Forgings Ltd, Ludhiana is looking forward to hire trainees from students of B.tech (Production) 2020 passing out batch.The details for the same are as follows:Interested student can register by 16 Dec.2020 till 2:00p.m. Link for the Same is : https://forms.gle/wBXcPkDPUShefQJp8  About the company: Happy Forgings Limited is a leading and technologically advanced auto component manufacturer serving the forging industry for the last 3 decades. It is one of the largest full service company supplying forged engine and drive-line components. Also, it has been continuously taking pains to reach the highest quality by hiring highly qualified technically competent professionals. Happy Forgings Limited has established itself as one of the most prominent and reliable players in the auto component business since 1979."  },
+        { id:1,  title:" Registrations for Happy Forgings ", type:"Announcement", date:"Decemeber 20, 2020 04:10 pm" , description:"This is to inform that Happy Forgings Ltd, Ludhiana is looking forward to hire trainees from students of B.tech (Production) 2020 passing out batch.The details for the same are as follows:Interested student can register by 16 Dec.2020 till 2:00p.m. Link for the Same is : https://forms.gle/wBXcPkDPUShefQJp8  About the company: Happy Forgings Limited is a leading and technologically advanced auto component manufacturer serving the forging industry for the last 3 decades. It is one of the largest full service company supplying forged engine and drive-line components. Also, it has been continuously taking pains to reach the highest quality by hiring highly qualified technically competent professionals. Happy Forgings Limited has established itself as one of the most prominent and reliable players in the auto component business since 1979."  }])
 
     function handleExpandClick() {
         setExpanded(!expanded);
@@ -173,6 +166,7 @@ export default function RecipeReviewCard() {
             
                                 {post.description}
                             </Typography>
+                            <br/>
                             <Button fullWidth>Read More <AddIcon fontSize='small'/> </Button>
                         </CardContent>
                         <CardActions disableSpacing  className={classes.cardFooter}> 
