@@ -52,6 +52,9 @@ Route::get('/editLinks/:id', function () {
 Route::get('/coordinator', function () {
     return view('welcome');
 });
+Route::get('/stuRedirect', function () {
+    return view('welcome');
+});
 
 Route::resource('/addPost', "postController");
 Route::resource('/addConnectItems', "ConnectController");
