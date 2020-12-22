@@ -30,8 +30,9 @@ const useStyles = makeStyles((theme) => ({
     img: {
         width: '70px',
         height: 'auto',
+        // display:"flex",
         padding: '10px',
-        marginRight: '45px',
+        marginRight: '40px',
     },
   root: {
     display: 'flex',
@@ -92,6 +93,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  sidebarProfileName:{
+      marginRight:"40px"
+
+  }
 }));
 
 export default function MiniDrawer() {
