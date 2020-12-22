@@ -16,3 +16,41 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/addPosts', function () {
+    return view('welcome');
+});
+Route::get('/addConnect', function () {
+    return view('welcome');
+});
+Route::get('/addExplore', function () {
+    return view('welcome');
+});
+Route::get('/addDownloads', function () {
+    return view('welcome');
+});
+Route::get('/addLinks', function () {
+    return view('welcome');
+});
+
+Route::get('/edit/:id', function () {
+    return view('welcome');
+});
+Route::get('/editConnect/:id', function () {
+    return view('welcome');
+});
+Route::get('/editExplore/:id', function () {
+    return view('welcome');
+});
+Route::get('/editDownloads/:id', function () {
+    return view('welcome');
+});
+Route::get('/editLinks/:id', function () {
+    return view('welcome');
+});
+
+Route::resource('/addPost', "postController");
+Route::resource('/addConnectItems', "ConnectController");
+Route::resource('/addExploreItems', "ExploreController");
+Route::resource('/addDownloadsItems', "DownloadsController");
+Route::resource('/addLinksItems', "LinksController");
