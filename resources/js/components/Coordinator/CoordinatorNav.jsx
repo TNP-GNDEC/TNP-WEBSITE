@@ -18,15 +18,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import DescriptionIcon from '@material-ui/icons/Description';
+import Menu from "./Menu";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+  inlinea: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
     img: {
         width: '70px',
         height: 'auto',
         padding: '10px',
-        margin: 'auto',
+        marginRight: '45px',
     },
   root: {
     display: 'flex',
@@ -107,11 +112,12 @@ export default function MiniDrawer() {
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={clsx(classes.appBar, {
+        className={classes.inlinea,clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
-      >
-        <Toolbar>
+     >
+       <div className={classes.inlinea}>
+       <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -127,6 +133,8 @@ export default function MiniDrawer() {
             Training and Placement
           </Typography>
         </Toolbar>
+        <Menu />
+        </div>
       </AppBar>
       <Drawer
         variant="permanent"

@@ -32,6 +32,9 @@ import FlagIcon from '@material-ui/icons/Flag';
 import DoneIcon from '@material-ui/icons/Done';
 
 const useStyles = theme => ({
+    cardmar: {
+        marginTop: "15px",
+    },
     root: {
       width: "100%",
       padding: "10px",
@@ -329,7 +332,7 @@ class Data extends React.Component {
             
             // </Card>
             
-            <Card >
+            <Card className={classes.cardmar}>
                     
             <CardHeader className={classes.cardHeader}
                 avatar={
