@@ -16,11 +16,12 @@ import EditExplore from "./Edit/EditExplore";
 import EditDownloads from "./Edit/EditDownloads";
 import EditLinks from "./Edit/EditLinks";
 
+import Coordinator from "./Coordinator/Coordinator";
+
 function App(){
     return(
         <Router>
             <>
-                <Navbar />
                 <Switch>
                     <Route path="/" exact component={Home}/>
 
@@ -37,6 +38,9 @@ function App(){
                     <Route path="/editExplore/:id" exact component={EditExplore} />
                     <Route path="/editDownloads/:id" exact component={EditDownloads} />
                     <Route path="/editLinks/:id" exact component={EditLinks} />
+
+                    {/*Coodinator routes*/}
+                    <Route path="/coordinator" exact component={Coordinator} />
 
                 </Switch>
             </>
