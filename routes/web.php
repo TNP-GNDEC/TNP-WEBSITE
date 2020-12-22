@@ -49,6 +49,10 @@ Route::get('/editLinks/:id', function () {
     return view('welcome');
 });
 
+Route::get('/stuRedirect', function () {
+    return view('welcome');
+});
+
 Route::resource('/addPost', "postController");
 Route::resource('/addConnectItems', "ConnectController");
 Route::resource('/addExploreItems', "ExploreController");
