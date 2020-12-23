@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Posts from "./PostComponents/Posts";
 import RightBar from "./RightBar/RightBar";
 import LeftBar from "./LeftBar/LeftBar";
+import Scroll from "./scroll";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -29,6 +30,7 @@ export default function Home() {
   return (
     <div className={classes.body}>
       <div className={classes.root}>
+        <Scroll showBelow={250} />
         <Grid container spacing={3}>
           <Grid item xs={3}>
             <Paper className={classes.paper}>
