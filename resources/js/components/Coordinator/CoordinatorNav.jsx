@@ -9,7 +9,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
@@ -19,6 +18,10 @@ import HomeIcon from '@material-ui/icons/Home';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import DescriptionIcon from '@material-ui/icons/Description';
 import Menu from "./Menu";
+import avatar from "../../../images/avatar11.jpeg";
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+import Fab from '@material-ui/core/Fab';
 
 const drawerWidth = 240;
 
@@ -30,8 +33,9 @@ const useStyles = makeStyles((theme) => ({
     img: {
         width: '70px',
         height: 'auto',
+        // display:"flex",
         padding: '10px',
-        marginRight: '45px',
+        marginRight: '40px',
     },
   root: {
     display: 'flex',
@@ -83,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
@@ -92,6 +96,23 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  sidebarProfileGrids:{
+      display:"flex",
+      justifyContent:"center",
+      alignItems:"center",
+      textAlign:"center",
+      paddingTop:"15px"
+
+  },
+
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center"
+
+  }
 }));
 
 export default function MiniDrawer() {
@@ -150,12 +171,29 @@ export default function MiniDrawer() {
         }}
       >
         <div className={classes.toolbar}>
+            <Grid container spacing={8}>
+
+            <Grid item xs={12} className={classes.sidebarProfileGrids}> 
+                  <IconButton onClick={handleDrawerClose}>
+                    {theme.direction === 'rtl' ? <ChevronRightIcon /> : <Fab variant="extended"> <ChevronLeftIcon /> </Fab>}
+                  </IconButton>
+              </Grid>
+
+              <Grid item xs={12}>
+                  <Grid container spacing={0}>
+                    <Grid item className={classes.sidebarProfileGrids} xs={12}>
+                      <Avatar alt="avatar" src={avatar} className={classes.large} style={{borderRadius:"50%"}}/>
+                    </Grid>
+                    <Grid className={classes.sidebarProfileGrids} item xs={12}> 
+                        <h6>Admin</h6>
+                    </Grid>
+                  </Grid>
+              </Grid>
+        
+            </Grid>
             <div>
-                <img src= "https://www.tnpgndec.com/images/icons/512x512.png" className={classes.img}/>
             </div>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
+
         </div>
         <Divider />
         <List>
