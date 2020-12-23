@@ -122,11 +122,17 @@ export default function MiniDrawer() {
 
   const handleDrawerOpen = () => {
     setOpen(true);
+    
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const showCloseButton=() => {
+      return open ? <IconButton color="inherit" aria-label="close drawer" onClick={handleDrawerClose} edge="start" className={classes.menuButton}><ChevronLeftIcon /> </IconButton>   : <span/>
+
+  }
 
   return (
     <div className={classes.root}>
@@ -154,6 +160,7 @@ export default function MiniDrawer() {
             Training and Placement
           </Typography>
         </Toolbar>
+        {showCloseButton()}
         <Menu />
         </div>
       </AppBar>
@@ -174,8 +181,11 @@ export default function MiniDrawer() {
             <Grid container spacing={8}>
 
             <Grid item xs={12} className={classes.sidebarProfileGrids}> 
-                  <IconButton onClick={handleDrawerClose}>
-                    {theme.direction === 'rtl' ? <ChevronRightIcon /> : <Fab variant="extended"> <ChevronLeftIcon /> </Fab>}
+                  <IconButton >
+
+
+
+
                   </IconButton>
               </Grid>
 
