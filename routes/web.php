@@ -48,6 +48,9 @@ Route::get('/editDownloads/:id', function () {
 Route::get('/editLinks/:id', function () {
     return view('welcome');
 });
+Route::get('/login', function () {
+    return view('welcome');
+});
 
 Route::resource('/addPost', "postController");
 Route::resource('/addConnectItems', "ConnectController");

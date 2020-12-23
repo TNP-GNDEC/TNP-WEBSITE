@@ -1,20 +1,24 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-/* this import will later be removed */
+async function doUserLogin(credentials) {
+  try {
+    const response = await axios.post("http://localhost:8000/api/login", credentials);
+    return response.data;
+  } catch (error) {
+    console.error("Error", error.response);
+    return false;
+  }
+}
 
-import { Theme } from './Theme';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: Theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -33,23 +37,61 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    color: Theme.palette.secondary.main,
-    backgroundColor: Theme.palette.primary.main,
+    color: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   notchedOutline: {
-    borderColor: Theme.palette.primary.main
+    borderColor: theme.palette.primary.main
   },
   focused: {
-    borderColor: Theme.palette.secondary.main,
+    borderColor: theme.palette.secondary.main,
   },
   
   link: {
-    color: Theme.palette.primary.main,
+    color: theme.palette.primary.main,
   }
 }));
 
 export default function SignIn() {
   const classes = useStyles();
+  const [state , setState] = useState({
+    username : "",
+    password : ""
+})
+
+const handlenameChange = (e) => {
+  const name= e.target.name
+  const value= e.target.value   
+  setState(prevState => ({
+      ...prevState,
+      [name] : value
+  }))
+}
+
+const handlepasswordChange = (e) => {
+  const name= e.target.name
+  const value= e.target.value   
+  setState(prevState => ({
+      ...prevState,
+      [name] : value
+  }))
+
+}
+
+const handleFormSubmit= async (event)=>{
+    event.preventDefault();
+    const postData = {
+      username: state.username,
+      password: state.password,
+    };
+    const data = await doUserLogin(postData);
+    if (data) {
+      alert(data.role)
+    } 
+    else {
+      alert("Please check your credentials and try agian");
+    }
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -60,7 +102,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={(event) => handleFormSubmit(event)} className={classes.form} noValidate>
           <TextField    
             variant="outlined"
             InputProps={{
@@ -72,11 +114,11 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            label="username"
+            name="username"
             autoFocus
+            defaultValue={state.username}
+            onChange={handlenameChange} 
           />
           <TextField
             variant="outlined"
@@ -94,11 +136,13 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            defaultValue={state.password}
+            onChange={handlepasswordChange} 
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
@@ -109,15 +153,15 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link className={classes.link} href="#" variant="body2">
+              {/* <Link className={classes.link} href="#" variant="body2">
                 Forgot password?
-              </Link>
+              </Link> */}
             </Grid>
-            <Grid item>
+            {/* <Grid item>
               <Link className={classes.link} href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
-            </Grid>
+            </Grid> */}
           </Grid>
         </form>
       </div>

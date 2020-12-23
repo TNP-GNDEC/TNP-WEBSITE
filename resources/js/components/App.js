@@ -9,7 +9,7 @@ import createConnect from "./Create/createConnect";
 import createExplore from "./Create/createExplore";
 import createDownloads from "./Create/createDownloads";
 import createLinks from "./Create/createLinks";
-
+import login from "./Login";
 import EditPosts from "./Edit/EditPosts";
 import EditConnect from "./Edit/EditConnect";
 import EditExplore from "./Edit/EditExplore";
@@ -30,7 +30,8 @@ function App(){
                     <Route path="/addExplore" exact component={createExplore} />
                     <Route path="/addDownloads" exact component={createDownloads} />
                     <Route path="/addLinks" exact component={createLinks} />
-
+                    {/* login page */}
+                    <Route path="/login" exact component={login}/>
                     {/* Edit Routes */}
                     <Route path="/edit/:id" exact component={EditPosts} />
                     <Route path="/editConnect/:id" exact component={EditConnect} />
