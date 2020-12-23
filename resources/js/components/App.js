@@ -10,17 +10,20 @@ import createExplore from "./Create/createExplore";
 import createDownloads from "./Create/createDownloads";
 import createLinks from "./Create/createLinks";
 import login from "./Login";
+import studentredirect from "./StudentRedirect/Student";
+
 import EditPosts from "./Edit/EditPosts";
 import EditConnect from "./Edit/EditConnect";
 import EditExplore from "./Edit/EditExplore";
 import EditDownloads from "./Edit/EditDownloads";
 import EditLinks from "./Edit/EditLinks";
 
+import Coordinator from "./Coordinator/Coordinator";
+
 function App(){
     return(
         <Router>
             <>
-                <Navbar />
                 <Switch>
                     <Route path="/" exact component={Home}/>
 
@@ -32,12 +35,18 @@ function App(){
                     <Route path="/addLinks" exact component={createLinks} />
                     {/* login page */}
                     <Route path="/login" exact component={login}/>
+                    <Route path="/stuRedirect" exact component={studentredirect} />
+
+
                     {/* Edit Routes */}
                     <Route path="/edit/:id" exact component={EditPosts} />
                     <Route path="/editConnect/:id" exact component={EditConnect} />
                     <Route path="/editExplore/:id" exact component={EditExplore} />
                     <Route path="/editDownloads/:id" exact component={EditDownloads} />
                     <Route path="/editLinks/:id" exact component={EditLinks} />
+
+                    {/*Coodinator routes*/}
+                    <Route path="/coordinator" exact component={Coordinator} />
 
                 </Switch>
             </>

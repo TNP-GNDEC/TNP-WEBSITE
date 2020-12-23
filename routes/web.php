@@ -52,6 +52,13 @@ Route::get('/login', function () {
     return view('welcome');
 });
 
+Route::get('/coordinator', function () {
+    return view('welcome');
+});
+Route::get('/stuRedirect', function () {
+    return view('welcome');
+});
+
 Route::resource('/addPost', "postController");
 Route::resource('/addConnectItems', "ConnectController");
 Route::resource('/addExploreItems', "ExploreController");
