@@ -160,8 +160,10 @@ export default function MiniDrawer() {
             Training and Placement
           </Typography>
         </Toolbar>
-        {showCloseButton()}
-        <Menu />
+        <div className={classes.inlinea}>
+          {showCloseButton()}
+          <Menu />
+        </div>
         </div>
       </AppBar>
       <Drawer
@@ -178,9 +180,9 @@ export default function MiniDrawer() {
         }}
       >
         <div className={classes.toolbar}>
-            <Grid container spacing={8}>
+            <Grid container spacing={0} className={classes.draw}>
 
-            <Grid item xs={12} className={classes.sidebarProfileGrids}> 
+            <Grid item xs={12} className={classes.sidebarProfileGrids} > 
                   <IconButton >
 
 
@@ -191,6 +193,7 @@ export default function MiniDrawer() {
 
               <Grid item xs={12}>
                   <Grid container spacing={0}>
+                  <Grid item className={classes.sidebarProfileGrids} xs={12} style={{ padding: 20 }} />
                     <Grid item className={classes.sidebarProfileGrids} xs={12}>
                       <Avatar alt="avatar" src={avatar} className={classes.large} style={{borderRadius:"50%"}}/>
                     </Grid>

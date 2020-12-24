@@ -15,6 +15,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
 
 const useStyles = makeStyles((theme) => ({
+  
   whit: {
     color: 'White',
   },
@@ -96,7 +97,7 @@ export default function MenuListComposition() {
           <SettingsIcon fontSize='large' className={classes.Icons} />
         </Button>
 
-        <h6 className={classes.heading}>Admin</h6>
+        <h6 className={classes.heading}>Settings</h6>
         <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
