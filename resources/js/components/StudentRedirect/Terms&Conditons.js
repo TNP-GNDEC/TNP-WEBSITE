@@ -11,44 +11,42 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { blue, red } from '@material-ui/core/colors';
 const useStyles = makeStyles({
   root: {
-    minWidth: 500,
-    fontSize:20,
+    minWidth: 'auto',
+    fontSize:25,
     border:'none',
     boxShadow:'none',
+    background:'#E8E8E8',
+    
   },
   
   title: {
     fontSize: 2,
     color:'#038ed4',
     textAlign:'center',
-
-    
-    
-  },
+},
  
-  checkbox:{
-      display:'flex',
-      paddingLeft:'5px',
-      fontSize:'20px'
+ Checkbox:{
       
+      margin:'27px 10px 20px 20px',
+      paddingTop:'0px',
      
-      
-  },
+},
   para:{
- padding:'5px 0px 0px 5px',
+padding:'0px 10px 0px 0px',
+paddingTop:'0px',
+display:'inline-block',
+ 
   },
 button:{
    
-    padding: '8px 30px 8px 30px',
-    fontsize: '30px',
-    margin: '0px 0px 0px 800px',
-    borderRadius:'30px',
-    color:'#ffffff',
+    padding: '10px 50px 10px 50px',
+    fontsize:30,
+    margin: '200px 0px 100px 350px',
     background:'#038ed4',
-    '&:hover':{
-        color:"#ffffff",
-      },
+    
+    
 },
+
 
 });
 
@@ -69,9 +67,9 @@ export default function SimpleCard() {
                 <li>
                     Please clear your browser cache before filling form.<br></br>
                     </li>
-                   For Desktop Browsers Press ctrl + f5 or clear browser History<br></br>
-                   For Mobile Browsers Press  clear browser History<br></br>
-                   For TNP Homescreen App Delete App and  clear browser History<br></br>
+                   For Desktop Browsers Press :<code><b>ctrl + f5 or clear browser History.</b></code><br></br>
+                   For Mobile Browsers : <code><b>clear browser History.</b></code><br></br>
+                   For TNP Homescreen App : <code><b>Delete App and  clear browser History.</b></code><br></br>
                    <li>
                        Students must fill details accurately.
                    </li>
@@ -99,16 +97,8 @@ export default function SimpleCard() {
                 <li>
                     The validity of category  certificate must be checked before filling.
                 </li>
-                <li>
-                    Then year gap should be mentioned properly.For eg if you have dropped one year after your 12th of Diploma then year gap is '1'.
-                </li>
-                <li>
-                    Students should fill their active and passive Bacllogs correctly.
-                </li>
-                <li>
-                    For active Backlogs put SGPA as 0.
-            
-                </li>
+              
+                
                 <li>
                     Students must fill their 10th CGPA or percentage depending upon their examination boards.
                 </li>
@@ -117,15 +107,22 @@ export default function SimpleCard() {
                 </li>
             </ol>
         </div>
-        <div className={classes.checkbox}>
+        
+    
+        <Checkbox className={classes.Checkbox}
+        
+        color="primary"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+      />
+
        
-  <input type="checkbox" /><b>
-      <div className={classes.para} ><p>I Agree to the terms and conditions given</p>
-      </div></b>
-</div>
-<div >
-<button type="button" className={classes.button}><b>I Agree</b></button> 
-</div>
+           <div className={classes.para} ><b><p>I Agree to the terms and conditions given above. </p></b>
+      </div>
+
+      <Button  className={classes.button} variant="contained" color="primary">
+  I Agree
+</Button>
+
       </CardContent>
       
       
