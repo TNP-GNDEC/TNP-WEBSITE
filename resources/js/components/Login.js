@@ -8,24 +8,19 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-async function doUserLogin(credentials) {
-  try {
-    const response = await axios.post("http://localhost:8000/api/login", credentials);
-    return response.data;
-  } catch (error) {
-    console.error("Error", error.response);
-    return false;
-  }
-}
-
+import { shadows } from '@material-ui/system';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
+  box: {
+    marginTop: theme.spacing(4)
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    backgroundColor: theme.palette.secondary.main,
   },
   avatar: {
     margin: theme.spacing(1),
@@ -33,12 +28,17 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    margin: theme.spacing(2),
+    padding: theme.spacing(4),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
     color: theme.palette.secondary.main,
+    '&:hover': {
+      color: theme.palette.primary.main,
+    },
     backgroundColor: theme.palette.primary.main,
+    
   },
   notchedOutline: {
     borderColor: theme.palette.primary.main
@@ -80,27 +80,30 @@ const handlepasswordChange = (e) => {
 
 const handleFormSubmit= async (event)=>{
     event.preventDefault();
-    const postData = {
+    
+    axios.post('/api/login', {
       username: state.username,
       password: state.password,
-    };
-    const data = await doUserLogin(postData);
-    if (data) {
-      alert(data.role)
-    } 
-    else {
-      alert("Please check your credentials and try agian");
-    }
+  })
+  .then((response) => {
+      const token = response.data.token;
+      console.log(token);
+  })
+  .catch((error) => {
+      console.log(error);
+  });
   };
   return (
-    <Container component="main" maxWidth="xs">
+    <Container className={classes.container} component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <Box boxShadow={2} className={classes.paper}>
+        <div className={classes.box}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
+        </div>
+        <Typography component="h2" variant="h4">
+          Sign In
         </Typography>
         <form onSubmit={(event) => handleFormSubmit(event)} className={classes.form} noValidate>
           <TextField    
@@ -114,7 +117,7 @@ const handleFormSubmit= async (event)=>{
             margin="normal"
             required
             fullWidth
-            label="username"
+            label="Username"
             name="username"
             autoFocus
             defaultValue={state.username}
@@ -164,7 +167,7 @@ const handleFormSubmit= async (event)=>{
             </Grid> */}
           </Grid>
         </form>
-      </div>
+      </Box>
     </Container>
   );
 }

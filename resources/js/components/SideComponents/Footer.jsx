@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     textAlign: "center" ,
     padding: "10px",
     height: "55px",
+    zIndex: "100"
   },
   tag:{
     textDecoration: "none",
