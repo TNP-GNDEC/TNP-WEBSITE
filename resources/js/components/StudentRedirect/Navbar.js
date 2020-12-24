@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Logo from "../../../images/logo.png";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -31,6 +32,14 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     width: "auto"
   } ,
+  btncolor:{
+    color:"white",
+    '&:hover':{
+      color:"#ffffff",
+    },
+
+  },
+
 }));
 
 export default function ButtonAppBar() {
@@ -49,8 +58,8 @@ export default function ButtonAppBar() {
           <Typography variant="h5" className={classes.title}>
             Training & Placement Cell
           </Typography>
-          <Button a href="./" color="inherit">Back</Button>
-          <Button color="inherit">Logout</Button>
+          <Button href="./" className={classes.btncolor} color="inherit" >Back</Button>
+          <Button className={classes.btncolor} color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
     </div>
