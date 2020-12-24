@@ -122,11 +122,17 @@ export default function MiniDrawer() {
 
   const handleDrawerOpen = () => {
     setOpen(true);
+    
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const showCloseButton=() => {
+      return open ? <IconButton color="inherit" aria-label="close drawer" onClick={handleDrawerClose} edge="start" className={classes.menuButton}><ChevronLeftIcon /> </IconButton>   : <span/>
+
+  }
 
   return (
     <div className={classes.root}>
@@ -154,7 +160,10 @@ export default function MiniDrawer() {
             Training and Placement
           </Typography>
         </Toolbar>
-        <Menu />
+        <div className={classes.inlinea}>
+          {showCloseButton()}
+          <Menu />
+        </div>
         </div>
       </AppBar>
       <Drawer
@@ -171,16 +180,20 @@ export default function MiniDrawer() {
         }}
       >
         <div className={classes.toolbar}>
-            <Grid container spacing={8}>
+            <Grid container spacing={0} className={classes.draw}>
 
-            <Grid item xs={12} className={classes.sidebarProfileGrids}> 
-                  <IconButton onClick={handleDrawerClose}>
-                    {theme.direction === 'rtl' ? <ChevronRightIcon /> : <Fab variant="extended"> <ChevronLeftIcon /> </Fab>}
+            <Grid item xs={12} className={classes.sidebarProfileGrids} > 
+                  <IconButton >
+
+
+
+
                   </IconButton>
               </Grid>
 
               <Grid item xs={12}>
                   <Grid container spacing={0}>
+                  <Grid item className={classes.sidebarProfileGrids} xs={12} style={{ padding: 20 }} />
                     <Grid item className={classes.sidebarProfileGrids} xs={12}>
                       <Avatar alt="avatar" src={avatar} className={classes.large} style={{borderRadius:"50%"}}/>
                     </Grid>

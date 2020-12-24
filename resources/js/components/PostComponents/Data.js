@@ -217,6 +217,18 @@ const useStyles = theme => ({
         justifyContent:'flex-end', 
         alignItems:'center', 
         paddingRight:'20px !important'
+    },
+    linkedIcon:{
+        color:"#0e76a8",
+        fontSize:"28px"
+    },
+    facebookIcon:{
+        color:"#4267B2",
+        fontSize:"28px"
+    },    
+    twitterIcon:{
+        color:"#1DA1F2",
+        fontSize:"28px"
     }
 });
 
@@ -276,62 +288,6 @@ class Data extends React.Component {
             )
         }
         return(
-            // <Card className={classes.root}>
-            
-            //         <div className={classes.header}>
-            //             <div>
-            //                 <img src={logo} className={classes.image}/>
-            //             </div>
-            //             <div className={classes.header2}>
-            //                 <Typography variant="h4" component="h1" className={classes.title}>
-            //                     {posts.title}
-            //                 </Typography>
-            //                 <div className={classes.subheader}>
-            //                     <Typography variant="h5" component="h2" className={classes.subheading}>
-            //                         <Calender className={classes.icon}/>
-            //                         {moment(posts.updated_at).format('LLL')}
-            //                     </Typography>
-            //                     <Typography variant="h5" component="h2" className={classes.subheading}>
-            //                         <Flag className={classes.icon}/>
-            //                         {posts.type}
-            //                     </Typography>
-            //                 </div>
-            //             </div>
-            //         </div>
-            //         <hr />
-            //         <div className={classes.body}>
-            //             <Typography variant="h5" component="h2" className={classes.subheading2}>
-            //                 {posts.description}
-            //             </Typography>
-            //             <div className={classes.read}>
-            //                 <Typography variant="h5" component="h2" className={classes.subheading4}>
-            //                     READ MORE
-            //                 </Typography>
-            //             </div>
-            //         </div>
-            //         <hr />
-            //         <div className={classes.body2}>
-            //             <div className={classes.socialIcons}>
-            //                 <div className={classes.socialIcon}>
-            //                    <Facebook />
-            //                 </div>
-            //                 <div className={classes.socialIcon2}>
-            //                    <Linkedin />
-            //                 </div>
-            //                 <div className={classes.socialIcon3}>
-            //                    <Twitter />
-            //                 </div>
-            //             </div>
-            //             <div className={classes.Tags}>
-            //                 <LocalOffer />
-            //                 <Typography variant="h5" component="h1" className={classes.subheading3}>
-            //                      GNDEC TNP
-            //                 </Typography>
-            //             </div>
-            //         </div>
-            
-            // </Card>
-            
             <Card className={classes.cardmar}>
                     
             <CardHeader className={classes.cardHeader}
@@ -378,15 +334,15 @@ class Data extends React.Component {
             <Grid container spacing={3}>
                 <Grid item xs={6} style={{}} className={classes.leftFooter} > 
                 <IconButton aria-label="facebook">
-                    <FacebookIcon />
+                    <FacebookIcon className={classes.facebookIcon} />
+                </IconButton>
+
+                <IconButton aria-label="linkedIn" >
+                    <LinkedInIcon className={classes.linkedIcon}  />
                 </IconButton>
 
                 <IconButton aria-label="linkedIn">
-                    <LinkedInIcon />
-                </IconButton>
-
-                <IconButton aria-label="linkedIn">
-                    <TwitterIcon />
+                    <TwitterIcon className={classes.twitterIcon} />
                 </IconButton>
                 </Grid>
                 <Grid item xs={6} className={classes.rightFooter} >
