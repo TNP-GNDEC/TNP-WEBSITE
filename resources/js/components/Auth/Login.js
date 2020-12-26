@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    borderRadius: "50px",
+    boxShadow: "0px 15px 25px #038ed433",
     color: theme.palette.secondary.main,
     '&:hover': {
       color: theme.palette.primary.main,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandLessIcon from '@material-ui/icons/ArrowUpward';
 import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
@@ -8,12 +8,13 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 2,
         position: 'fixed',
         bottom: '2vh',
-        backgroundColor: '#DCDCDC',
-        color: 'black',
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.secondary.main,
+        boxShadow: "0px 15px 25px #038ed433",
         "&:hover, &.Mui-focusVisible": {
             transition: '0.3s',
-            color: '#397BA6',
-            backgroundColor: '#DCDCDC',
+            backgroundColor: theme.palette.primary.main,
+            boxShadow: "5px 20px 25px #038ed466",
         },
         right: '5%',
     }

@@ -96,15 +96,16 @@ icon:{
       height: "500px"
   },
   intro:{
-      padding: "100px 0 0 50px"
+      padding: "100px 0px 0px 50px"
   },
   heading:{
       fontSize: "55px",
       color: theme.palette.primary.dark
   },
   introbox:{
-      marginLeft: "100px",
-      padding: "50px 0px 0 0px",
+      marginRight: "50px",
+      float: "right",
+      padding: "50px 0px 0px 0px",
       width: "530px",
   },
   hero:{
@@ -251,7 +252,7 @@ box5:{
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      transform: "translate(185%,0)"
+      transform: "translate(190%,0)"
   },
   image4:{
       width: "200px"

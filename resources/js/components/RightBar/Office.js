@@ -11,7 +11,8 @@ import office from "../../../images/office.jpg";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    padding: "10px"
+    padding: "10px",
+    boxShadow: "0px 15px 25px #00000033",
   },
   header:{
       display: "flex",
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.dark,
       color: theme.palette.secondary.main,
       borderRadius: "5px",
+      boxShadow: "0px 15px 25px #193b6833",
       marginRight: "10px",
       height: "30px",
       width: "30px",

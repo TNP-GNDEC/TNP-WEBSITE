@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       padding: "10px",
       marginTop: "30px",
-      backgroundColor: theme.palette.secondary.light
+      backgroundColor: theme.palette.secondary.light,
+      boxShadow: "0px 15px 25px #00000033",
     },
 }));
   

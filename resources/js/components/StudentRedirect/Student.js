@@ -8,7 +8,7 @@ function Student() {
     return (
         <div>
       <Navbar />
-      <Terms />
+        <Terms />
       <Footer />
       </div>
 

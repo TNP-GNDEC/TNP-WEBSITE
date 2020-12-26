@@ -7,7 +7,7 @@ import Navbar from "../SideComponents/Navbar";
 import Posts from "../PostComponents/Posts";
 import RightBar from "../RightBar/RightBar";
 import LeftBar from "../LeftBar/LeftBar";
-import Scroll from "../scroll";
+import Scroll from "../SideComponents/scroll";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "transparent",
     boxShadow: "none"
   },
+  
 }));
 
 export default function Home() {
@@ -34,17 +35,17 @@ export default function Home() {
       <div className={classes.root}>
         <Scroll showBelow={250} />
         <Grid container spacing={3}>
-          <Grid item xs={3}>
+          <Grid item md={3}>
             <Paper className={classes.paper}>
               <LeftBar />
             </Paper>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item md={6}>
             <Paper className={classes.paper}>
               <Posts />
             </Paper>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item md={3} className={classes.right}>
             <Paper className={classes.paper}>
               <RightBar />
             </Paper>

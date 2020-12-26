@@ -11,13 +11,15 @@ const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
       padding: "10px",
-      marginTop: "20px"
+      marginTop: "20px",
+      boxShadow: "0px 15px 25px #00000033",
     },
     header:{
         display: "flex",
     },
     icon:{
       backgroundColor: theme.palette.primary.dark,
+      boxShadow: "0px 15px 25px #193b6833",
       color: theme.palette.secondary.main,
       borderRadius: "5px",
       marginRight: "10px",

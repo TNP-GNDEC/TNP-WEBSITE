@@ -14,6 +14,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import About from '@material-ui/icons/info';
+import Login from '@material-ui/icons/ExitToApp';
 
 import Logo from "../../../images/logo.png";
 
@@ -23,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   grow: {
     flexGrow: 1,
+    boxShadow: "0px 15px 25px #00000033",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -50,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     borderRadius: "50px",
     backgroundColor: theme.palette.secondary.main,
+    boxShadow: "0px 15px 25px #ffffff33",
     marginRight: theme.spacing(2),
     marginLeft: 0,
     color: theme.palette.primary.main,
@@ -93,6 +97,24 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  box:{
+    width: "100px",
+    height: "35px",
+    borderRadius: "5px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#ffffff66",
+    boxShadow: "0px 15px 25px #ffffff33",
+  },
+  link:{
+    color: theme.palette.secondary.main,
+    paddingTop: "8px",
+    "&:hover":{
+      textDecoration: "none",
+      color: theme.palette.secondary.main,
+    }
   },
 }));
 
@@ -215,14 +237,16 @@ export default function PrimarySearchAppBar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton color="inherit">
-              <Badge color="secondary">
-                <a><h5>About</h5></a>
-              </Badge>
+                <div className={classes.box}>
+                  <About />
+                  <a href="/about" className={classes.link}><h5>About</h5></a>
+                </div>
             </IconButton>
             <IconButton color="inherit">
-              <Badge color="secondary">
-                <a><h5>Login</h5></a>
-              </Badge>
+              <div className={classes.box}>
+                <Login />
+                <a href="/login" className={classes.link}><h5>Login</h5></a>
+              </div>
             </IconButton>
             {/* <IconButton
               edge="end"
