@@ -9,8 +9,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -21,7 +19,11 @@ import Menu from "./Menu";
 import avatar from "../../../../images/avatar11.jpeg";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
-import Fab from '@material-ui/core/Fab';
+import MenuIcon from '@material-ui/icons/Menu';
+import ClearIcon from '@material-ui/icons/Clear';
+import Logo from "../../../../images/logo.png";
+
+import Sidebar from './Sidebar';
 
 const drawerWidth = 240;
 
@@ -112,6 +114,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent:"center",
     alignItems:"center"
 
+  },
+
+  avatar:{
+    marginRight : "20px"
+  },
+  drawerCloseButton:{
+    display:"flex",
+    justifyContent:"end",
   }
 }));
 
@@ -128,11 +138,6 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
-  const showCloseButton=() => {
-      return open ? <IconButton color="inherit" aria-label="close drawer" onClick={handleDrawerClose} edge="start" className={classes.menuButton}><ChevronLeftIcon /> </IconButton>   : <span/>
-
-  }
 
   return (
     <div className={classes.root}>
@@ -154,78 +159,21 @@ export default function MiniDrawer() {
               [classes.hide]: open,
             })}
           >
-            <ChevronRightIcon />
+            <MenuIcon />
           </IconButton>
+          <Avatar aria-label="logo" className={classes.avatar }>
+              <img src={Logo} alt="logo" />
+          </Avatar>          
           <Typography variant="h6" noWrap>
-            Training and Placement
+            Training and Placement Cell
           </Typography>
         </Toolbar>
         <div className={classes.inlinea}>
-          {showCloseButton()}
           <Menu />
         </div>
         </div>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-            <Grid container spacing={0} className={classes.draw}>
-
-            <Grid item xs={12} className={classes.sidebarProfileGrids} > 
-                  <IconButton >
-
-
-
-
-                  </IconButton>
-              </Grid>
-
-              <Grid item xs={12}>
-                  <Grid container spacing={0}>
-                  <Grid item className={classes.sidebarProfileGrids} xs={12} style={{ padding: 20 }} />
-                    <Grid item className={classes.sidebarProfileGrids} xs={12}>
-                      <Avatar alt="avatar" src={avatar} className={classes.large} style={{borderRadius:"50%"}}/>
-                    </Grid>
-                    <Grid className={classes.sidebarProfileGrids} item xs={12}> 
-                        <h6>Admin</h6>
-                    </Grid>
-                  </Grid>
-              </Grid>
-        
-            </Grid>
-            <div>
-            </div>
-
-        </div>
-        <Divider />
-        <List>
-          {['Home', 'Data using Excel', 'Student', 'Company','Pages','Posts','Notice Maker'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                    {index === 0 && <HomeIcon/>}
-                    {index === 1 && <HomeIcon/>}
-                    {index === 2 && <DescriptionIcon />}
-                    {index === 3 && <DescriptionIcon />}
-                    {index === 4 && <DescriptionIcon />}
-                    {index === 5 && <DescriptionIcon />}
-                    {index === 6 && <PostAddIcon />}
-                </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
+      <Sidebar isOpen={open}  handleClose={  handleDrawerClose }/>
       <main className={classes.content}>
         <div className={classes.toolbar} />
         
