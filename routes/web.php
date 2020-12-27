@@ -48,11 +48,17 @@ Route::get('/editDownloads/:id', function () {
 Route::get('/editLinks/:id', function () {
     return view('welcome');
 });
+Route::get('/login', function () {
+    return view('welcome');
+});
 
 Route::get('/coordinator', function () {
     return view('welcome');
 });
-Route::get('/stuRedirect', function () {
+Route::get('/student', function () {
+    return view('welcome');
+});
+Route::get('/about', function () {
     return view('welcome');
 });
 
