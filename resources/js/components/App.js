@@ -6,20 +6,20 @@ import About from "./Pages/About";
 
 import login from "./Auth/Login";
 
-import createPosts from "./Create/createPosts";
-import createConnect from "./Create/createConnect";
-import createExplore from "./Create/createExplore";
-import createDownloads from "./Create/createDownloads";
-import createLinks from "./Create/createLinks";
+import createPosts from "./HardCoded/Create/createPosts";
+import createConnect from "./HardCoded/Create/createConnect";
+import createExplore from "./HardCoded/Create/createExplore";
+import createDownloads from "./HardCoded/Create/createDownloads";
+import createLinks from "./HardCoded/Create/createLinks";
 
-import EditPosts from "./Edit/EditPosts";
-import EditConnect from "./Edit/EditConnect";
-import EditExplore from "./Edit/EditExplore";
-import EditDownloads from "./Edit/EditDownloads";
-import EditLinks from "./Edit/EditLinks";
+import EditPosts from "./HardCoded/Edit/EditPosts";
+import EditConnect from "./HardCoded/Edit/EditConnect";
+import EditExplore from "./HardCoded/Edit/EditExplore";
+import EditDownloads from "./HardCoded/Edit/EditDownloads";
+import EditLinks from "./HardCoded/Edit/EditLinks";
 
-import Coordinator from "./Coordinator/Coordinator";
-import studentredirect from "./StudentRedirect/Student";
+import Coordinator from "./RedirectPages/Coordinator/Coordinator";
+import studentredirect from "./RedirectPages/Student/Student";
 
 function App(){
     return(

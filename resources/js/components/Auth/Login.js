@@ -1,10 +1,11 @@
 import React,{useState} from 'react';
+import Header from "./Header";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import LockOutlinedIcon from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -12,10 +13,14 @@ import { shadows } from '@material-ui/system';
 import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
+  root:{
+    background: theme.palette.secondary.main
+  },
   box: {
-    marginTop: theme.spacing(4)
+    marginTop: theme.spacing(0)
   },
   paper: {
+    boxShadow: "none",
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
@@ -24,20 +29,29 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
+    width: "100px",
+    height: "100px",
     backgroundColor: theme.palette.primary.main,
+  },
+  icon:{
+    fontSize: "90px",
+  },
+  heading:{
+    color: "#193b68",
   },
   form: {
     width: '100%', // Fix IE 11 issue.
     margin: theme.spacing(2),
-    padding: theme.spacing(4),
+    padding: theme.spacing(2),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    borderRadius: "50px",
+    height: "50px",
+    borderRadius: "5px",
     boxShadow: "0px 15px 25px #038ed433",
     color: theme.palette.secondary.main,
     '&:hover': {
-      color: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.main,
     },
     backgroundColor: theme.palette.primary.main,
     
@@ -96,15 +110,17 @@ const handleFormSubmit= async (event)=>{
   });
   };
   return (
+    <div className={classes.root}>
+    <Header />
     <Container className={classes.container} component="main" maxWidth="xs">
       <CssBaseline />
       <Box boxShadow={2} className={classes.paper}>
         <div className={classes.box}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <LockOutlinedIcon className={classes.icon}/>
         </Avatar>
         </div>
-        <Typography component="h2" variant="h4">
+        <Typography component="h2" variant="h4" className={classes.heading}>
           Sign In
         </Typography>
         <form onSubmit={(event) => handleFormSubmit(event)} className={classes.form} noValidate>
@@ -171,5 +187,6 @@ const handleFormSubmit= async (event)=>{
         </form>
       </Box>
     </Container>
+    </div>
   );
 }

@@ -3,11 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-import Navbar from "../SideComponents/Navbar";
-import Posts from "../PostComponents/Posts";
-import RightBar from "../RightBar/RightBar";
-import LeftBar from "../LeftBar/LeftBar";
-import Scroll from "../SideComponents/scroll";
+import Navbar from "../HomeComponent/SideComponents/Navbar";
+import Posts from "../HomeComponent/PostComponents/Posts";
+import RightBar from "../HomeComponent/RightBar/RightBar";
+import LeftBar from "../HomeComponent/LeftBar/LeftBar";
+import Scroll from "../HomeComponent/SideComponents/scroll";
 
 const useStyles = makeStyles((theme) => ({
   body: {
