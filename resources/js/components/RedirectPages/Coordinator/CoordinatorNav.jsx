@@ -39,6 +39,12 @@ const useStyles = makeStyles(theme => ({
         padding: "10px",
         marginRight: "40px"
     },
+    imgl: {
+        width: "70px",
+        height: "auto",
+        // display:"flex",
+        padding: "10px",
+    },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(["width", "margin"], {
@@ -112,7 +118,7 @@ export default function MiniDrawer() {
                             <MenuIcon />
                         </IconButton>
                         <Avatar aria-label="logo" className={classes.avatar}>
-                            <img src={Logo} alt="logo" />
+                            <img className={classes.imgl}  src={Logo} alt="logo" />
                         </Avatar>
                         <Typography variant="h6" noWrap>
                             Training and Placement Cell
