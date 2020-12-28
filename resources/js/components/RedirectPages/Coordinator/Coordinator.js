@@ -26,13 +26,11 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         padding: theme.spacing(3)
     },
-    z1: {
-        // for navbar
-        zIndex: "10"
-    },
-    z2: {
-        // for drawer
-        zIndex: "-10"
+    foot: {
+        position: "fixed",
+        bottom: "3px",
+        width: "100%",
+        textAlign: "center",
     }
 }));
 
@@ -41,10 +39,12 @@ export default function Coordinator() {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <Navbar className={classes.z1} />
+            <Navbar />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <Footer className={classes.z2} />
+                <div className={classes.foot}>
+                <Footer />
+                </div>
             </main>
         </div>
     );
