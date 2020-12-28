@@ -25,7 +25,8 @@ import infosys from "../../../images/infosys.png";
 const useStyles = makeStyles((theme) => ({
   body: {
     backgroundColor: theme.palette.secondary.main,
-    margin: "0px"
+    margin: "0px",
+    width: "100%"
   },
   navbar:{
       width: "100%",
@@ -51,6 +52,9 @@ navItems:{
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
+    ['@media (max-width:550px)']: {
+        width: "30%",
+    }
 },
 back:{
     paddingRight: "20px",
@@ -68,7 +72,10 @@ login: {
     color: theme.palette.secondary.main,
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    ['@media (max-width:550px)']: {
+        display: "none"
+    }
 },
 subheading: {
     fontSize: "16px",
@@ -93,10 +100,20 @@ icon:{
   },
   landing1:{
       margin: "0px",
-      height: "500px"
+      width: "100%",
+      height: "500px",
+      ['@media (max-width:960px)']: {
+        height: "350px"
+      }
+  },
+  landing2:{
+      width: "100%"
   },
   intro:{
-      padding: "100px 0px 0px 50px"
+      padding: "100px 0px 0px 50px",
+      ['@media (max-width:960px)']: {
+        padding: "10% 0px 0px 10%",
+      }
   },
   heading:{
       fontSize: "55px",
@@ -107,6 +124,14 @@ icon:{
       float: "right",
       padding: "50px 0px 0px 0px",
       width: "530px",
+      ['@media (max-width:1050px)']: {
+        width: '480px'
+      },
+      ['@media (max-width:960px)']: {
+        width: '80%',
+        marginRight: "10%",
+        padding: "50px 0px 150px 0px"
+      }
   },
   hero:{
       width: "100%",
@@ -120,26 +145,48 @@ icon:{
     paddingTop: "25px"
 },
   section1:{
+      width: "100%",
       height:"500px",
       backgroundImage: `url(${pattern})`,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      ['@media (max-width:1150px)']: {
+        height: "620px"
+      },
+      ['@media (max-width:960px)']: {
+        height: "550px"
+      }
   },
   image:{
-      transform: "translate(55%,30%)",
-      opacity: "1"
+    width: "50%",
   },
   section2:{
-      padding: "20px"
+      width: "100%",
+      padding: "20px",
+      ['@media (max-width:1150px)']: {
+        height: "620px"
+      },
+      ['@media (max-width:960px)']: {
+        height: "400px"
+      }
   },
   section2_1:{
       width: "100%",
       backgroundColor: theme.palette.secondary.main,
       display: "flex",
-      justifyContent: "space-evenly"
+      justifyContent: "space-evenly",
+      ['@media (max-width:1020px)']: {
+        display: "block",
+      }
   },
   section3_1:{
       width: "100%",
       display: "flex",
-      justifyContent: "space-evenly"
+      justifyContent: "space-evenly",
+      ['@media (max-width:1120px)']: {
+        display: "block",
+    }
   },
   box:{
       width: "330px",
@@ -151,6 +198,12 @@ icon:{
       margin: "60px 0 40px 0",
       textAlign: "center",
       padding: "20px 15px",
+      ['@media (max-width:1020px)']: {
+          width: "60%",
+          height: "auto",
+          marginRight: "auto",
+          marginLeft: "auto",
+      }
   },
   box2:{
     width: "330px",
@@ -161,6 +214,12 @@ icon:{
     margin: "40px 0 40px 0",
     textAlign: "center",
     padding: "20px 15px",
+    ['@media (max-width:1120px)']: {
+        width: "75%",
+        height: "auto",
+        marginRight: "auto",
+        marginLeft: "auto",
+    }
 },
 box3:{
     width: "330px",
@@ -171,7 +230,13 @@ box3:{
     boxShadow: "0px 15px 25px #038ed466",
     margin: "40px 0 40px 0",
     textAlign: "center",
-    padding: "20px 15px"
+    padding: "20px 15px",
+    ['@media (max-width:1020px)']: {
+        width: "50%",
+        height: "auto",
+        marginRight: "auto",
+        marginLeft: "auto",
+    }
 },
 box4:{
     width: "460px",
@@ -180,17 +245,30 @@ box4:{
     borderRadius: "10px",
     boxShadow: "0px 15px 25px #038ed466",
     margin: "40px 0 0px 0",
-    padding: "20px"
+    padding: "20px",
+    ['@media (max-width:1080px)']: {
+        width: "80%",
+        height: "auto",
+        marginRight: "auto",
+        marginLeft: "auto",
+    }
 },
 box5:{
     width: "800px",
     height: "450px",
     backgroundColor: theme.palette.secondary.main,
     borderRadius: "10px",
+    border: "2px solid #038ed4",
     boxShadow: "0px 15px 25px #00000066",
     margin: "40px 0 40px 0",
     textAlign: "center",
-    padding: "20px 15px"
+    padding: "20px 15px",
+    ['@media (max-width:1080px)']: {
+        width: "80%",
+        height: "auto",
+        marginRight: "auto",
+        marginLeft: "auto",
+    }
 },
   icon2:{
       fontSize: "60px",
@@ -222,7 +300,10 @@ box5:{
       display: "flex",
       justifyContent: "space-evenly",
       padding: "20px",
-      textAlign: "left"
+      textAlign: "left",
+      ['@media (max-width:1080px)']: {
+        display: "block"
+    }
   },
   subbox:{
       width: "60px",
@@ -252,10 +333,25 @@ box5:{
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      transform: "translate(190%,0)"
+      marginLeft: "auto",
+      marginRight: "auto"
   },
   image4:{
-      width: "200px"
+      width: "200px",
+      ['@media (max-width:1080px)']: {
+        width: "25%",
+        height: "auto",
+        display: "flex",
+        padding: "0 auto 0 auto",
+        marginRight: "auto",
+        marginLeft: "auto",
+    },
+    ['@media (max-width:900px)']: {
+        width: "40%",
+    },
+    ['@media (max-width:700px)']: {
+        width: "60%",
+    }
   },
   footer: {
     width: "100%",
