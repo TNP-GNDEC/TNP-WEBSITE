@@ -20,7 +20,7 @@ import EditLinks from "./HardCoded/Edit/EditLinks";
 
 import Coordinator from "./RedirectPages/Coordinator/Coordinator";
 import studentredirect from "./RedirectPages/Student/Student";
-
+import emailverification from "./emailverification";
 function App(){
     return(
         <Router>
@@ -49,6 +49,7 @@ function App(){
                     {/*Redirect Routes*/}
                     <Route path="/coordinator" exact component={Coordinator} />
                     <Route path="/student" exact component={studentredirect} />
+                    <Route path="/email" exact component={emailverification} />
 
                 </Switch>
             </>
