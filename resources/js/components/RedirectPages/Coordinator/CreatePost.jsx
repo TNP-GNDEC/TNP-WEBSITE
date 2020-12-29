@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Editor from "./Editor";
+import Create from './Create';
 
 function CreatePost() {
     return (
         <>
-            <h2>create post content here</h2>
+            <Create />
         </>
     )
 }
