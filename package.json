@@ -26,6 +26,12 @@
     },
     "dependencies": {
         "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "@ckeditor/ckeditor5-basic-styles": "^24.0.0",
+        "@ckeditor/ckeditor5-build-classic": "^24.0.0",
+        "@ckeditor/ckeditor5-editor-classic": "^24.0.0",
+        "@ckeditor/ckeditor5-essentials": "^24.0.0",
+        "@ckeditor/ckeditor5-paragraph": "^24.0.0",
+        "@ckeditor/ckeditor5-react": "^3.0.0",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-brands-svg-icons": "^5.15.1",
         "@material-ui/core": "^4.11.2",

@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import { head } from "lodash";
 import CreatePost from "./CreatePost";
 import ManagePost from './ManagePost';
+import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,7 +43,7 @@ export default function FullWidthTabs() {
     }
 
     return (
-        <div className={classes.root}>
+        <Container className={classes.root} maxWidth="sm">
             <h2 className={classes.heading}>{heading}</h2>
             <ButtonGroup
                 size="large"
@@ -53,6 +54,6 @@ export default function FullWidthTabs() {
                 <Button onClick={() => {setHeading("MANAGE POSTS")}}>MANAGE POSTS</Button>
             </ButtonGroup>
             {renderTab()}
-        </div>
+        </Container>
     );
 }
