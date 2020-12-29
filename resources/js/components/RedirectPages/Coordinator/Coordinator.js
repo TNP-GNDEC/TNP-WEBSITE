@@ -3,9 +3,7 @@ import Footer from "../../HomeComponent/SideComponents/Footer";
 import Navbar from "./CoordinatorNav";
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
-
-
-import Sidebar from "./Sidebar";
+import MainContent from "./MainContent";
 
 const drawerWidth = 240;
 
@@ -41,7 +39,8 @@ export default function Coordinator() {
             <CssBaseline />
             <Navbar />
             <main className={classes.content}>
-                <div className={classes.toolbar} />
+                <div className={classes.toolbar} />               
+                <MainContent/>
                 <div className={classes.foot}>
                 <Footer />
                 </div>
