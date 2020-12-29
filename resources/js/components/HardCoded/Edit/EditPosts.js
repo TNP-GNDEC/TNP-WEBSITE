@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import Editor from "../../RedirectPages/Coordinator/Editor"
 
 
 class EditPosts extends React.Component {
@@ -56,6 +57,7 @@ class EditPosts extends React.Component {
                             </div>
                             <div className="form-group">
                                 <label>Description:</label>
+                            
                                 <textarea type="text" name="description" className="form-control highlight"
                                 value={this.state.description} onChange={this.handleInput} 
                                 placeholder="Write the Description" required/>

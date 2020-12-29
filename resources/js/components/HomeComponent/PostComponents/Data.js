@@ -141,7 +141,7 @@ class Data extends React.Component {
     render(){
         const {posts} = this.props;
         const {classes} = this.props;
-        if(window.location.href === window.origin + "/addPosts"){
+        if(window.location.href === window.origin + "/coordinator"){
             return(
                 <Card className={classes.root}>
                 
