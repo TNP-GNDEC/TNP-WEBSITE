@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
   const [state , setState] = useState({
     username : "",
@@ -102,8 +102,14 @@ const handleFormSubmit= async (event)=>{
       password: state.password,
   })
   .then((response) => {
-      const token = response.data.token;
-      console.log(token);
+    var user=response.data.current_user
+    var JWTtoken=response.data.access_token
+    localStorage.setItem('token', JWTtoken);
+      if(user.role_id===1){
+      props.history.push("/student")
+      }
+      if(user.role_id===2)
+      props.history.push("/coordinator")
   })
   .catch((error) => {
       console.log(error);

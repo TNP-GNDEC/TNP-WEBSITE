@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MenuListComposition() {
+export default function MenuListComposition(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -59,6 +59,12 @@ export default function MenuListComposition() {
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
+
+  const handleLogout = () =>{
+    localStorage.removeItem('token')
+    props.history.push('/')
+   
+  }
 
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
@@ -109,7 +115,7 @@ export default function MenuListComposition() {
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     <MenuItem onClick={handleClose}> < SettingsIcon   className={classes.menuIcons}  /> Profile</MenuItem>
                     <MenuItem onClick={handleClose}> < AccountBoxIcon  className={classes.menuIcons}  /> My account</MenuItem>
-                    <MenuItem onClick={handleClose}> <ExitToAppIcon  className={classes.menuIcons}  /> Logout</MenuItem>
+                    <MenuItem onClick={handleLogout}> <ExitToAppIcon  className={classes.menuIcons}  /> Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
