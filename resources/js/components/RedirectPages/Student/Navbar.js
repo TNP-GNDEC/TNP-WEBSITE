@@ -33,7 +33,13 @@ const useStyles = makeStyles((theme) => ({
   } ,
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
+
+  const handleLogout = () =>{
+    localStorage.removeItem('token')
+    props.history.push('/')
+   
+  }
   const classes = useStyles();
 
   return (
@@ -50,7 +56,7 @@ export default function ButtonAppBar() {
             Training & Placement Cell
           </Typography>
           <Button a href="./" color="inherit">Back</Button>
-          <Button color="inherit">Logout</Button>
+          <Button onClick={handleLogout} color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
     </div>
