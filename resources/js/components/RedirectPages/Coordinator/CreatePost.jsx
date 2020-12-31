@@ -1,6 +1,5 @@
 import React from 'react';
-import Editor from "./Editor";
-import Create from './Create';
+import Create from '../../HardCoded/Create/CreatePosts';
 
 function CreatePost() {
     return (
