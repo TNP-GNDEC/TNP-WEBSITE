@@ -1,7 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import axios from "axios";
-import Editor from "../../RedirectPages/Coordinator/Editor"
 
 
 class EditPosts extends React.Component {
