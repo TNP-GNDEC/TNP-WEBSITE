@@ -10,7 +10,7 @@ import Linkedin from '@material-ui/icons/LinkedIn';
 import Twitter from '@material-ui/icons/Twitter';
 import Calender from '@material-ui/icons/EventAvailable';
 import Flag from '@material-ui/icons/Flag';
-
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import logo from "../../../../images/logo.png";
 
 const useStyles = theme => ({
@@ -141,6 +141,7 @@ class Data extends React.Component {
     render(){
         const {posts} = this.props;
         const {classes} = this.props;
+        const html = posts.description;
         if(window.location.href === window.origin + "/coordinator"){
             return(
                 <Card className={classes.root}>
@@ -168,7 +169,7 @@ class Data extends React.Component {
                         <hr />
                         <div className={classes.body}>
                             <Typography variant="h5" component="h2" className={classes.subheading2}>
-                                {posts.description}
+                                { ReactHtmlParser(html) }
                             </Typography>
                             <div className={classes.read}>
                                 <Typography variant="h5" component="h2" className={classes.subheading4}>
@@ -213,7 +214,7 @@ class Data extends React.Component {
                     <hr />
                     <div className={classes.body}>
                         <Typography variant="h5" component="h2" className={classes.subheading2}>
-                            {posts.description}
+                            { ReactHtmlParser(html) }
                         </Typography>
                         <div className={classes.read}>
                             <Typography variant="h5" component="h2" className={classes.subheading4}>
