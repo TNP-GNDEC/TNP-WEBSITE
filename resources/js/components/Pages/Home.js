@@ -17,13 +17,32 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     margin: "15px",
+    marginTop: "40px",
+    paddingTop: "20px",
   },
   paper: {
     padding: theme.spacing(1),
     backgroundColor: "transparent",
     boxShadow: "none"
   },
-  
+  left:{
+    marginTop: "40px",
+    width: "100%",
+    ['@media (max-width:960px)']: {
+      display: "none",
+   }
+  },
+  center:{
+    marginTop: "40px",
+    
+  },
+  right:{
+    marginTop: "40px",
+    width: "100%",
+    ['@media (max-width:960px)']: {
+       display: "none",
+    }
+  }
 }));
 
 export default function Home() {
@@ -35,17 +54,17 @@ export default function Home() {
       <div className={classes.root}>
         <Scroll showBelow={250} />
         <Grid container spacing={3}>
-          <Grid item md={3}>
+          <Grid item md={3} className={classes.left}>
             <Paper className={classes.paper}>
               <LeftBar />
             </Paper>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} className={classes.center}>
             <Paper className={classes.paper}>
               <Posts />
             </Paper>
           </Grid>
-          <Grid item md={3} className={classes.right}>
+          <Grid item md={3} className={classes.right} display={{ xs: 'none', md: 'block' }}>
             <Paper className={classes.paper}>
               <RightBar />
             </Paper>

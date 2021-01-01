@@ -5,6 +5,8 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 
 import login from "./Auth/Login";
+import { PrivateRoute } from "./Auth/PrivateRoute";
+import Email from "./EmailVer";
 
 import createPosts from "./HardCoded/Create/createPosts";
 import createConnect from "./HardCoded/Create/createConnect";
@@ -47,9 +49,11 @@ function App(){
                     <Route path="/editLinks/:id" exact component={EditLinks} />
 
                     {/*Redirect Routes*/}
-                    <Route path="/coordinator" exact component={Coordinator} />
-                    <Route path="/student" exact component={studentredirect} />
+                    <PrivateRoute path="/coordinator" exact component={Coordinator} />
+                    <PrivateRoute path="/student" exact component={studentredirect} />
 
+                    {/*Redirect Routes*/}
+                    <Route path="/email" exact component={Email} />
                 </Switch>
             </>
         </Router>

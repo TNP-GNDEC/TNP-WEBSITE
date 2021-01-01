@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import Person from '@material-ui/icons/PersonAdd';
+import Loading from "../SideComponents/LoadingCard";
 
 const useStyles = theme => ({
     root: {
@@ -40,11 +41,13 @@ const useStyles = theme => ({
 class Connect extends React.Component {
     state = {
         data: [],
+        loading: true
     }
     fetchData = async () => {
         const res = await Axios.get("/addConnectItems");
         if(res.data.status === 200){
             this.setState({data: res.data.data});
+            this.setState({loading: false});
         }
     }
     componentDidMount(){
@@ -59,6 +62,9 @@ class Connect extends React.Component {
     }
 
     render(){
+        if(this.state.loading){
+            return <Loading />
+        }
         if(Object.keys(this.state.data).length == 0){
             return <div></div>
         }

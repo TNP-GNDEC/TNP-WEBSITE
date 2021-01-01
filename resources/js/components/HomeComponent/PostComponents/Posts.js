@@ -1,6 +1,7 @@
 import React from "react";
 import Axios from "axios";
 import Data from "./Data";
+import Loading from "../SideComponents/LoadingPost";
 
 class Posts extends React.Component {
     state = {
@@ -27,7 +28,7 @@ class Posts extends React.Component {
 
     render(){
         if(this.state.loading){
-            return <h1>Loading....</h1>
+            return <Loading />
         }
         return(
             <div>

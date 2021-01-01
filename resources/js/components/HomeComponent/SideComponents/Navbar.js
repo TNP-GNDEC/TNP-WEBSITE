@@ -22,6 +22,10 @@ import Logo from "../../../../images/logo.png";
 const useStyles = makeStyles((theme) => ({
   customColor: {
     background: theme.palette.primary.main,
+    width: "100%",
+    position: "fixed",
+    margin: "0px",
+    top: "0"
   },
   grow: {
     flexGrow: 1,

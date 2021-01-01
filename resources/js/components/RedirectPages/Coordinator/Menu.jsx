@@ -61,9 +61,8 @@ export default function MenuListComposition(props) {
   };
 
   const handleLogout = () =>{
-    localStorage.removeItem('token')
-    props.history.push('/')
-   
+    localStorage.removeItem('token');
+    window.location.href = window.origin+ "/login";
   }
 
   const handleClose = (event) => {

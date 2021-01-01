@@ -106,7 +106,11 @@ const handleFormSubmit= async (event)=>{
     var JWTtoken=response.data.access_token
     localStorage.setItem('token', JWTtoken);
       if(user.role_id===1){
-      props.history.push("/student")
+        if(user.verified_at === null){
+          props.history.push("/email");
+        }else{
+          props.history.push("/student");
+        }
       }
       if(user.role_id===2)
       props.history.push("/coordinator")

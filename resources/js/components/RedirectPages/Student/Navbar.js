@@ -33,12 +33,11 @@ const useStyles = makeStyles((theme) => ({
   } ,
 }));
 
-export default function ButtonAppBar(props) {
+export default function ButtonAppBar() {
 
   const handleLogout = () =>{
-    localStorage.removeItem('token')
-    props.history.push('/')
-   
+    localStorage.removeItem('token');
+    window.location.href = window.origin+ "/login";
   }
   const classes = useStyles();
 

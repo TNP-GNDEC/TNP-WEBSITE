@@ -61,6 +61,9 @@ Route::get('/student', function () {
 Route::get('/about', function () {
     return view('welcome');
 });
+Route::get('/email', function () {
+    return view('welcome');
+});
 
 Route::resource('/addPost', "postController");
 Route::resource('/addConnectItems', "ConnectController");

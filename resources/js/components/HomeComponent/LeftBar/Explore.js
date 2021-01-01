@@ -5,6 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import Explore from '@material-ui/icons/Explore';
+import Loading from "../SideComponents/LoadingCard";
+import { TrainRounded } from "@material-ui/icons";
 
 const useStyles = theme => ({
     root: {
@@ -40,11 +42,13 @@ const useStyles = theme => ({
 class Explores extends React.Component {
     state = {
         data: [],
+        loading: true
     }
     fetchData = async () => {
         const res = await Axios.get("/addExploreItems");
         if(res.data.status === 200){
             this.setState({data: res.data.data});
+            this.setState({loading: false});
         }
     }
     componentDidMount(){
@@ -59,6 +63,9 @@ class Explores extends React.Component {
     }
 
     render(){
+        if(this.state.loading){
+            return <Loading />
+        }
         if(Object.keys(this.state.data).length == 0){
             return <div></div>
         }

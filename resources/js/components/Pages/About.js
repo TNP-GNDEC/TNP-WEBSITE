@@ -32,10 +32,11 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       margin: "0px",
       display: "flex",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
+      backgroundColor: theme.palette.primary.main
   },
   titleBox:{
-      width: "100px",
+      width: "400px",
       padding: "10px 0 0 10px"
   },
   brand:{
@@ -44,10 +45,10 @@ const useStyles = makeStyles((theme) => ({
 },
 title:{
     fontSize: "20px",
-    color: theme.palette.primary.main
+    color: theme.palette.secondary.main
 },
 navItems:{
-    width: "320px",
+    width: "220px",
     margin: "0px 40px 0px 0px",
     display: "flex",
     justifyContent: "space-evenly",
@@ -57,26 +58,13 @@ navItems:{
     }
 },
 back:{
+    color: theme.palette.secondary.main,
     paddingRight: "20px",
     width: "100px",
     display: "flex",
     justifyContent: "space-evenly"
 },
 
-login: {
-    background: theme.palette.primary.main,
-    borderRadius: "5px",
-    width: "100px",
-    height: "40px",
-    boxShadow: "0px 15px 25px #038ed41a",
-    color: theme.palette.secondary.main,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    ['@media (max-width:550px)']: {
-        display: "none"
-    }
-},
 subheading: {
     fontSize: "16px",
     color: theme.palette.secondary.main,
@@ -85,13 +73,16 @@ subheading2: {
     fontSize: "16px",
     color: theme.palette.primary.main,
 },
+subheading6: {
+    fontSize: "16px",
+},
 subheading3: {
     fontSize: "25px",
     color: theme.palette.secondary.contrastText,
 },
 icon:{
     paddingBottom: "2px",
-    color: theme.palette.primary.main
+    color: theme.palette.secondary.main
 },
   root: {
     flexGrow: 1,
@@ -147,7 +138,6 @@ icon:{
   section1:{
       width: "100%",
       height:"500px",
-      backgroundImage: `url(${pattern})`,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -357,8 +347,11 @@ box5:{
     width: "100%",
     padding: "10px",
     textAlign: "center",
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.primary.main
   },
+  tag:{
+      color: theme.palette.secondary.main
+  }
 }));
 
 export default function Home() {
@@ -371,11 +364,11 @@ export default function Home() {
         <div className={classes.navbar}>
             <div className={classes.brand}>
                 <div>
-                    <img src={logo} width="50px" height="50px" />
+                    <img src={logo2} width="50px" height="50px" />
                 </div>
                 <div className={classes.titleBox}>
                     <Typography variant="h5" component="h2" className={classes.title}>
-                        T&P Cell
+                        Training and Placement Cell
                     </Typography>
                 </div>
             </div>
@@ -383,26 +376,19 @@ export default function Home() {
                 <Link to="/">
                 <div className={classes.back}>
                     <Back className={classes.icon}/>
-                    <Typography variant="h5" component="h2" className={classes.subheading2}>
+                    <Typography variant="h5" component="h2" className={classes.subheading6}>
                         Back
                     </Typography>
                 </div>
                 </Link>
                 <div className={classes.back}>
-                    <Typography variant="h5" component="h2" className={classes.subheading2}>
+                    <Typography variant="h5" component="h2" className={classes.subheading6}>
                         More
                     </Typography>
                     <More className={classes.icon}/>
                 </div>
               
-                <Link to="/login">
-                <div className={classes.login}>
-                    <Login />
-                    <Typography variant="h5" component="h2" className={classes.subheading}>
-                        Login
-                    </Typography>
-                </div>
-                </Link>
+            
             </div>
         </div>
         <div className={classes.root}>
