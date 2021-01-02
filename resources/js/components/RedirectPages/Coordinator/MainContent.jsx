@@ -7,19 +7,23 @@ import { head } from "lodash";
 import CreatePost from "./CreatePost";
 import ManagePost from './ManagePost';
 import { Container } from '@material-ui/core';
+import Posts from '../../HomeComponent/PostComponents/Posts'
+import Create from '../../HardCoded/Create/CreatePosts';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.background.paper,
-        width: 500
+        width: "100%"
     },
     heading:{
         padding:"20px 0px",
         letterSpacing:"0.6px",
-        wordSpacing:"8px"
+        wordSpacing:"8px",
+        color: theme.palette.primary.dark
     },
     tabBody:{
-        marginTop:"30px"
+        marginTop:"40px"
     }
 }));
 
@@ -30,14 +34,16 @@ export default function FullWidthTabs() {
     const renderTab = ()=>{
         if(heading == "CREATE POSTS"){
             return(
-                <CreatePost className={classes.tabBody} />
+                // <CreatePost  />
+                < Create />
             )
             
         }
         else if(heading == "MANAGE POSTS") {
 
             return(
-                <ManagePost className={classes.tabBody} />
+                // <ManagePost className={classes.tabBody} />
+                <Posts />
             )
         }
     }

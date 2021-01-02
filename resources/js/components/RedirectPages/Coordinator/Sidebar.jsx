@@ -86,9 +86,55 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+const listItems = [
+    { id: 1, name: "Home", iconName: <HomeIcon />  , onCLickAction:""},
+    { id: 2, name: "Data Using Excel", iconName: <DescriptionIcon />  , onCLickAction:""},
+    { id: 3, name: "Companies", iconName: <DescriptionIcon />  , onCLickAction:""},
+    { id: 4, name: "Pages", iconName: <DescriptionIcon />  , onCLickAction:""},
+    { id: 5, name: "Posts", iconName: <DescriptionIcon />  , onCLickAction:""},
+    { id: 6, name: "Notice Maker", iconName: <PostAddIcon />  , onCLickAction:""},
+];
+
+
 function Sidebar(props) {
     const classes = useStyles();
     const theme = useTheme();
+
+    // const RenderSideBarLinks = () => (
+        
+    //     <List>
+    //                     {listItems.map((text, index) => <ListItem button key={text}>
+    //                             <ListItemIcon>
+    //                                 {index === 0 && <HomeIcon />}
+    //                                 {index === 1 && <HomeIcon />}
+    //                                 {index === 2 && <DescriptionIcon />}
+    //                                 {index === 3 && <DescriptionIcon />}
+    //                                 {index === 4 && <DescriptionIcon />}
+    //                                 {index === 5 && <DescriptionIcon />}
+    //                                 {index === 6 && < />}
+    //                             </ListItemIcon>
+    //                             <ListItemText primary={text} />
+    //                         </ListItem>)}
+    //                 </List>                                                      onClick={}
+    // );
+
+
+    const renderListItem = () => {
+		return listItems.map((item) => {
+			return (
+				<>
+					<ListItem button >
+						<ListItemIcon>{item.iconName}</ListItemIcon>
+						<ListItemText
+							primary={item.name}
+							className={classes.buttonFontSize}
+						/>
+					</ListItem>
+				</>
+			);
+		});
+    };
+    
     return (
         <>
             <Drawer
@@ -150,28 +196,7 @@ function Sidebar(props) {
                 </div>
                 <Divider />
                 <List>
-                    {[
-                        "Home",
-                        "Data using Excel",
-                        "Student",
-                        "Company",
-                        "Pages",
-                        "Posts",
-                        "Notice Maker"
-                    ].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index === 0 && <HomeIcon />}
-                                {index === 1 && <HomeIcon />}
-                                {index === 2 && <DescriptionIcon />}
-                                {index === 3 && <DescriptionIcon />}
-                                {index === 4 && <DescriptionIcon />}
-                                {index === 5 && <DescriptionIcon />}
-                                {index === 6 && <PostAddIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    {renderListItem()}
                 </List>
             </Drawer>
         </>

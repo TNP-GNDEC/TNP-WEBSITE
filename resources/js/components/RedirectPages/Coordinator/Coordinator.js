@@ -17,19 +17,27 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         justifyContent: "center",
         padding: theme.spacing(0, 1),
+        marginTop:"10px",
         // necessary for content to be below app bar
         ...theme.mixins.toolbar
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3)
+        padding: theme.spacing(3),
     },
+    
+    mainContent:{
+        marginTop:"20px",
+        paddingTop:"200px"
+    },
+
     foot: {
         position: "fixed",
         bottom: "3px",
         width: "100%",
         textAlign: "center",
     }
+
 }));
 
 export default function Coordinator() {
@@ -40,7 +48,7 @@ export default function Coordinator() {
             <Navbar />
             <main className={classes.content}>
                 <div className={classes.toolbar} />               
-                <MainContent/>
+                <MainContent style={{ marginTop:"200px",paddingTop:"200px"  }} className={classes.mainContent} />
                 <div className={classes.foot}>
                 <Footer />
                 </div>
