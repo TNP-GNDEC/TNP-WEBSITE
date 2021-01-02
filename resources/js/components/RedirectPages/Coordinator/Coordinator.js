@@ -4,8 +4,7 @@ import Navbar from "./CoordinatorNav";
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import MainContent from "./MainContent";
-
-const drawerWidth = 240;
+import Sidebar from './Sidebar';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,13 +41,26 @@ const useStyles = makeStyles(theme => ({
 
 export default function Coordinator() {
     const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+
+    //Sidebar Utility Functions for open and close
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
+
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <Navbar />
+            <Navbar isOpen={open} handleOpen={handleDrawerOpen} />
+            <Sidebar isOpen={open} handleClose={handleDrawerClose} />
+
             <main className={classes.content}>
                 <div className={classes.toolbar} />               
-                <MainContent style={{ marginTop:"200px",paddingTop:"200px"  }} className={classes.mainContent} />
+                <MainContent style={{ marginTop:"200px",paddingTop:"200px"}} className={classes.mainContent} />
                 <div className={classes.foot}>
                 <Footer />
                 </div>

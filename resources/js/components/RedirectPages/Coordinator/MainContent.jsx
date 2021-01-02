@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
-import { head } from "lodash";
-import CreatePost from "./CreatePost";
-import ManagePost from './ManagePost';
 import { Container } from '@material-ui/core';
 import Posts from '../../HomeComponent/PostComponents/Posts'
 import Create from '../../HardCoded/Create/CreatePosts';
@@ -31,10 +27,10 @@ export default function FullWidthTabs() {
     const classes = useStyles();
     const [heading, setHeading] = useState("CREATE POSTS");
 
+    // conditionally rendering the tabs create posts and manage posts
     const renderTab = ()=>{
         if(heading == "CREATE POSTS"){
             return(
-                // <CreatePost  />
                 < Create />
             )
             
@@ -42,7 +38,6 @@ export default function FullWidthTabs() {
         else if(heading == "MANAGE POSTS") {
 
             return(
-                // <ManagePost className={classes.tabBody} />
                 <Posts />
             )
         }

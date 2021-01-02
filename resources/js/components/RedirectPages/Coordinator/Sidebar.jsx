@@ -16,7 +16,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import ClearIcon from "@material-ui/icons/Clear";
 
-// import Sidebar from './Sidebar';
 
 const drawerWidth = 240;
 
@@ -99,26 +98,6 @@ const listItems = [
 function Sidebar(props) {
     const classes = useStyles();
     const theme = useTheme();
-
-    // const RenderSideBarLinks = () => (
-        
-    //     <List>
-    //                     {listItems.map((text, index) => <ListItem button key={text}>
-    //                             <ListItemIcon>
-    //                                 {index === 0 && <HomeIcon />}
-    //                                 {index === 1 && <HomeIcon />}
-    //                                 {index === 2 && <DescriptionIcon />}
-    //                                 {index === 3 && <DescriptionIcon />}
-    //                                 {index === 4 && <DescriptionIcon />}
-    //                                 {index === 5 && <DescriptionIcon />}
-    //                                 {index === 6 && < />}
-    //                             </ListItemIcon>
-    //                             <ListItemText primary={text} />
-    //                         </ListItem>)}
-    //                 </List>                                                      onClick={}
-    // );
-
-
     const renderListItem = () => {
 		return listItems.map((item) => {
 			return (
