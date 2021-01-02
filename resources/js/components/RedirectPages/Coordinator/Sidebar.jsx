@@ -87,11 +87,11 @@ const useStyles = makeStyles(theme => ({
 
 const listItems = [
     { id: 1, name: "Home", iconName: <HomeIcon />  , onCLickAction:""},
-    { id: 2, name: "Data Using Excel", iconName: <DescriptionIcon />  , onCLickAction:""},
-    { id: 3, name: "Companies", iconName: <DescriptionIcon />  , onCLickAction:""},
-    { id: 4, name: "Pages", iconName: <DescriptionIcon />  , onCLickAction:""},
-    { id: 5, name: "Posts", iconName: <DescriptionIcon />  , onCLickAction:""},
-    { id: 6, name: "Notice Maker", iconName: <PostAddIcon />  , onCLickAction:""},
+    { id: 2, name: "Data Using Excel", iconName: <DescriptionIcon /> },
+    { id: 3, name: "Companies", iconName: <DescriptionIcon /> },
+    { id: 4, name: "Pages", iconName: <DescriptionIcon /> },
+    { id: 5, name: "Posts", iconName: <DescriptionIcon /> },
+    { id: 6, name: "Notice Maker", iconName: <PostAddIcon /> },
 ];
 
 
@@ -102,7 +102,7 @@ function Sidebar(props) {
 		return listItems.map((item) => {
 			return (
 				<>
-					<ListItem button >
+					<ListItem key={item.id} button onClick={ () => { props.changeMainContent(item.id) } } >
 						<ListItemIcon>{item.iconName}</ListItemIcon>
 						<ListItemText
 							primary={item.name}

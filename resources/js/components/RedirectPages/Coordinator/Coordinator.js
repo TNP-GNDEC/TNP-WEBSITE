@@ -42,6 +42,7 @@ const useStyles = makeStyles(theme => ({
 export default function Coordinator() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [activeContentID, setId] = React.useState(1);
 
     //Sidebar Utility Functions for open and close
     const handleDrawerOpen = () => {
@@ -52,15 +53,19 @@ export default function Coordinator() {
         setOpen(false);
     };
 
+    const changeActiveId = (id) =>{
+        setId(id);
+    }
+
     return (
         <div className={classes.root}>
             <CssBaseline />
             <Navbar isOpen={open} handleOpen={handleDrawerOpen} />
-            <Sidebar isOpen={open} handleClose={handleDrawerClose} />
+            <Sidebar isOpen={open} handleClose={handleDrawerClose} changeMainContent={changeActiveId} />
 
             <main className={classes.content}>
                 <div className={classes.toolbar} />               
-                <MainContent style={{ marginTop:"200px",paddingTop:"200px"}} className={classes.mainContent} />
+                <MainContent activeId={activeContentID} className={classes.mainContent} />
                 <div className={classes.foot}>
                 <Footer />
                 </div>
