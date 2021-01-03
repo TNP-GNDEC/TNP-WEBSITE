@@ -1,29 +1,15 @@
 import React from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import HomeIcon from "@material-ui/icons/Home";
-import PostAddIcon from "@material-ui/icons/PostAdd";
-import DescriptionIcon from "@material-ui/icons/Description";
 import Menu from "./Menu";
-import avatar from "../../../../images/avatar11.jpeg";
 import Avatar from "@material-ui/core/Avatar";
-import Grid from "@material-ui/core/Grid";
 import MenuIcon from "@material-ui/icons/Menu";
-import ClearIcon from "@material-ui/icons/Clear";
 import Logo from "../../../../images/logo.png";
-
-import Sidebar from "./Sidebar";
 
 const drawerWidth = 240;
 
@@ -35,14 +21,12 @@ const useStyles = makeStyles(theme => ({
     img: {
         width: "70px",
         height: "auto",
-        // display:"flex",
         padding: "10px",
         marginRight: "40px"
     },
     imgl: {
         width: "70px",
         height: "auto",
-        // display:"flex",
         padding: "10px",
     },
     appBar: {
@@ -79,18 +63,9 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function MiniDrawer() {
+export default function MiniDrawer(props) {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
 
     return (
         <>
@@ -100,7 +75,7 @@ export default function MiniDrawer() {
                 className={
                     (classes.inlinea,
                     clsx(classes.appBar, {
-                        [classes.appBarShift]: open
+                        [classes.appBarShift]: props.isOpen
                     }))
                 }
             >
@@ -109,10 +84,10 @@ export default function MiniDrawer() {
                         <IconButton
                             color="inherit"
                             aria-label="open drawer"
-                            onClick={handleDrawerOpen}
+                            onClick={props.handleOpen}
                             edge="start"
                             className={clsx(classes.menuButton, {
-                                [classes.hide]: open
+                                [classes.hide]: props.isOpen
                             })}
                         >
                             <MenuIcon />
@@ -130,7 +105,6 @@ export default function MiniDrawer() {
                 </div>
             </AppBar>
 
-            <Sidebar isOpen={open} handleClose={handleDrawerClose} />
         </>
     );
 }

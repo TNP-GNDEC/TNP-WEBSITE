@@ -1,7 +1,9 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import axios from "axios";
 import Posts from "../../HomeComponent/PostComponents/Posts";
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 class createPosts extends React.Component {
     state = {
         title: '',
@@ -12,6 +14,7 @@ class createPosts extends React.Component {
     handleInput = (e) => {
         this.setState({[e.target.name]: e.target.value});
     }
+
     savePost = async (e) => {
         e.preventDefault();
         const res = await axios.post("/addPost", this.state);
@@ -56,6 +59,9 @@ class createPosts extends React.Component {
                                     
                                     Add Post
                                 </button>
+                                {/* <Button variant="contained" color="primary">
+                                  Add Post
+                                </Button> */}
                             </div>
                         </form>
                     </div>
