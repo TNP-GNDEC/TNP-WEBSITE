@@ -65,6 +65,13 @@ Route::get('/email', function () {
     return view('welcome');
 });
 
+Route::get('/resetPass', function () {
+    return view('welcome');
+});
+Route::get('/forgetPass', function () {
+    return view('welcome');
+});
+
 Route::resource('/addPost', "postController");
 Route::resource('/addConnectItems', "ConnectController");
 Route::resource('/addExploreItems', "ExploreController");
