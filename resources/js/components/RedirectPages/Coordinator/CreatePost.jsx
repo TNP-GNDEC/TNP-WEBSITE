@@ -1,5 +1,5 @@
 import React from 'react';
-import Create from '../../HardCoded/Create/CreatePosts';
+import Create from '../../HardCoded/Create/createPosts';
 
 function CreatePost() {
     return (

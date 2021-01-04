@@ -8,7 +8,6 @@ import login from "./Auth/Login";
 import { PrivateRoute } from "./Auth/PrivateRoute";
 import Email from "./EmailVer";
 
-import createPosts from "./HardCoded/Create/createPosts";
 import createConnect from "./HardCoded/Create/createConnect";
 import createExplore from "./HardCoded/Create/createExplore";
 import createDownloads from "./HardCoded/Create/createDownloads";
@@ -35,7 +34,6 @@ function App(){
                     <Route path="/login" exact component={login}/>
 
                     {/* Create Routes */}
-                    <Route path="/addPosts" exact component={createPosts} />
                     <Route path="/addConnect" exact component={createConnect} />
                     <Route path="/addExplore" exact component={createExplore} />
                     <Route path="/addDownloads" exact component={createDownloads} />

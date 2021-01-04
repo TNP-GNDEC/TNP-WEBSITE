@@ -10,7 +10,7 @@ import { red } from '@material-ui/core/colors';
 const useStyles = makeStyles({
   foot: {
     width: "100%",
-    background: "#ffffff",
+    background: "#038ed4",
     color: "#000000",
     textAlign: "center" ,
     padding: "10px",
@@ -18,9 +18,9 @@ const useStyles = makeStyles({
   },
   tag:{
     textDecoration: "none",
-    color : "#038ed4",
+    color : "#ffffff",
    '&:hover':{
-      color:"#038ed4",
+      color:"#ffffff",
     },
     
   },
