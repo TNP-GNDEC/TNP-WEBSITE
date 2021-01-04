@@ -169,7 +169,7 @@ const handleFormSubmit= async (event)=>{
           />
           <Grid container>
             <Grid item xs>
-              <Link className={classes.link} to="/forgot" variant="body2">
+              <Link className={classes.link} to="/forgetPassword" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
@@ -196,7 +196,7 @@ const handleFormSubmit= async (event)=>{
       </Box>
     </Container>
     </div>
-    <Footer />
+
     </div>
 
   );

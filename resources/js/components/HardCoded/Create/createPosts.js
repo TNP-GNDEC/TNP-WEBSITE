@@ -1,17 +1,9 @@
 import React from "react";
 import axios from "axios";
-<<<<<<< HEAD
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 class CreatePosts extends React.Component {
-=======
-import Posts from "../../HomeComponent/PostComponents/Posts";
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-
-class createPosts extends React.Component {
->>>>>>> c1c986f40eedf14809b0601cbe0018c4085274eb
     state = {
         title: '',
         type: '',
@@ -23,7 +15,6 @@ class createPosts extends React.Component {
             [e.target.name]: e.target.value,
         });
     }
-<<<<<<< HEAD
     handleEditorInput =  ( event, editor ) => {
         const data = editor.getData();
         console.log( { event, editor, data } );
@@ -31,15 +22,12 @@ class createPosts extends React.Component {
             description: data,
         });
     } 
-=======
-
->>>>>>> c1c986f40eedf14809b0601cbe0018c4085274eb
     savePost = async (e) => {
         e.preventDefault();
         const res = await axios.post("/addPost", this.state);
         if(res.data.status === 200){
-            alert("Added Successfully");
             window.location.reload();
+            alert("Added Successfully");
         }
     }
 

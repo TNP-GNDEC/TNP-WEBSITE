@@ -57,8 +57,8 @@ function App(){
                     <Route path="/email" exact component={Email} />
 
                     {/* Reset Password */}
-                    <Route path="/forgetPass" exact component={ForgetPass} />
-                    <Route path="/resetPass" exact component={ResetPass} />
+                    <Route path="/forgetPassword" exact component={ForgetPass} />
+                    <Route path="/resetPassword" exact component={ResetPass} />
                     
                 </Switch>
             </>
