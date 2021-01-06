@@ -47,6 +47,7 @@ class AuthController extends Controller
     }
 
     $currentUser = Auth::user();
+
     return $this->respondWithToken($token,$currentUser);    
     
 }

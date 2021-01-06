@@ -105,6 +105,7 @@ const handleFormSubmit= async (event)=>{
     var user=response.data.current_user
     var JWTtoken=response.data.access_token
     localStorage.setItem('token', JWTtoken);
+    localStorage.setItem('userid', user.id);
       if(user.role_id===1){
         if(user.verified_at === null){
           props.history.push("/email");
