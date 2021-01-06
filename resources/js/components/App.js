@@ -8,7 +8,6 @@ import login from "./Auth/Login";
 import { PrivateRoute } from "./Auth/PrivateRoute";
 import Email from "./EmailVer";
 
-import createPosts from "./HardCoded/Create/createPosts";
 import createConnect from "./HardCoded/Create/createConnect";
 import createExplore from "./HardCoded/Create/createExplore";
 import createDownloads from "./HardCoded/Create/createDownloads";
@@ -23,6 +22,9 @@ import EditLinks from "./HardCoded/Edit/EditLinks";
 import Coordinator from "./RedirectPages/Coordinator/Coordinator";
 import studentredirect from "./RedirectPages/Student/Student";
 
+import ForgetPass from "./RedirectPages/ForgetPass/Email";
+import ResetPass from "./RedirectPages/ForgetPass/ResetPass";
+
 function App(){
     return(
         <Router>
@@ -35,7 +37,6 @@ function App(){
                     <Route path="/login" exact component={login}/>
 
                     {/* Create Routes */}
-                    <Route path="/addPosts" exact component={createPosts} />
                     <Route path="/addConnect" exact component={createConnect} />
                     <Route path="/addExplore" exact component={createExplore} />
                     <Route path="/addDownloads" exact component={createDownloads} />
@@ -54,6 +55,11 @@ function App(){
 
                     {/*Redirect Routes*/}
                     <Route path="/email" exact component={Email} />
+
+                    {/* Reset Password */}
+                    <Route path="/forgetPassword" exact component={ForgetPass} />
+                    <Route path="/resetPassword" exact component={ResetPass} />
+                    
                 </Switch>
             </>
         </Router>

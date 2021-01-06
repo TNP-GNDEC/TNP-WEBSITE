@@ -16,7 +16,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import ClearIcon from "@material-ui/icons/Clear";
 
-// import Sidebar from './Sidebar';
 
 const drawerWidth = 240;
 
@@ -86,9 +85,35 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+const listItems = [
+    { id: 1, name: "Home", iconName: <HomeIcon />  , onCLickAction:""},
+    { id: 2, name: "Data Using Excel", iconName: <DescriptionIcon /> },
+    { id: 3, name: "Companies", iconName: <DescriptionIcon /> },
+    { id: 4, name: "Pages", iconName: <DescriptionIcon /> },
+    { id: 5, name: "Posts", iconName: <DescriptionIcon /> },
+    { id: 6, name: "Notice Maker", iconName: <PostAddIcon /> },
+];
+
+
 function Sidebar(props) {
     const classes = useStyles();
     const theme = useTheme();
+    const renderListItem = () => {
+		return listItems.map((item) => {
+			return (
+				<>
+					<ListItem key={item.id} button onClick={ () => { props.changeMainContent(item.id) } } >
+						<ListItemIcon>{item.iconName}</ListItemIcon>
+						<ListItemText
+							primary={item.name}
+							className={classes.buttonFontSize}
+						/>
+					</ListItem>
+				</>
+			);
+		});
+    };
+    
     return (
         <>
             <Drawer
@@ -150,28 +175,7 @@ function Sidebar(props) {
                 </div>
                 <Divider />
                 <List>
-                    {[
-                        "Home",
-                        "Data using Excel",
-                        "Student",
-                        "Company",
-                        "Pages",
-                        "Posts",
-                        "Notice Maker"
-                    ].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index === 0 && <HomeIcon />}
-                                {index === 1 && <HomeIcon />}
-                                {index === 2 && <DescriptionIcon />}
-                                {index === 3 && <DescriptionIcon />}
-                                {index === 4 && <DescriptionIcon />}
-                                {index === 5 && <DescriptionIcon />}
-                                {index === 6 && <PostAddIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    {renderListItem()}
                 </List>
             </Drawer>
         </>

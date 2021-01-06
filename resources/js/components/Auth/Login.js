@@ -1,5 +1,7 @@
 import React,{useState} from 'react';
+import {Link} from 'react-router-dom';
 import Header from "./Header";
+import Footer from "../HomeComponent/SideComponents/Footer";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -123,14 +125,10 @@ const handleFormSubmit= async (event)=>{
   return (
     <div className={classes.root}>
     <Header />
+    <div className={classes.card}>
     <Container className={classes.container} component="main" maxWidth="xs">
       <CssBaseline />
       <Box boxShadow={2} className={classes.paper}>
-        <div className={classes.box}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon className={classes.icon}/>
-        </Avatar>
-        </div>
         <Typography component="h2" variant="h4" className={classes.heading}>
           Sign In
         </Typography>
@@ -148,7 +146,6 @@ const handleFormSubmit= async (event)=>{
             fullWidth
             label="Username"
             name="username"
-            autoFocus
             defaultValue={state.username}
             onChange={handlenameChange} 
           />
@@ -171,6 +168,18 @@ const handleFormSubmit= async (event)=>{
             defaultValue={state.password}
             onChange={handlepasswordChange} 
           />
+          <Grid container>
+            <Grid item xs>
+              <Link className={classes.link} to="/forgetPassword" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            {/* <Grid item>
+              <Link className={classes.link} href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid> */}
+          </Grid>
           {/* <FormControlLabel
             control={<Checkbox value="remember" />}
             label="Remember me"
@@ -183,21 +192,13 @@ const handleFormSubmit= async (event)=>{
           >
             Sign In
           </Button>
-          <Grid container>
-            <Grid item xs>
-              {/* <Link className={classes.link} href="#" variant="body2">
-                Forgot password?
-              </Link> */}
-            </Grid>
-            {/* <Grid item>
-              <Link className={classes.link} href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid> */}
-          </Grid>
+          
         </form>
       </Box>
     </Container>
     </div>
+
+    </div>
+
   );
 }

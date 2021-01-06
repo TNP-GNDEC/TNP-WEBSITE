@@ -65,8 +65,21 @@ Route::get('/email', function () {
     return view('welcome');
 });
 
+Route::get('/resetPassword', function () {
+    return view('welcome');
+});
+Route::get('/forgetPassword', function () {
+    return view('welcome');
+});
+
 Route::resource('/addPost', "postController");
 Route::resource('/addConnectItems', "ConnectController");
 Route::resource('/addExploreItems', "ExploreController");
 Route::resource('/addDownloadsItems', "DownloadsController");
 Route::resource('/addLinksItems', "LinksController");
+
+Route::get('/forgetPassword', 'ForgotPasswordController@getEmail');
+Route::post('/forgetPassword', 'ForgotPasswordController@postEmail');
+
+Route::get('/resetPassword/{token}', 'ResetPasswordController@getPassword');
+Route::post('/resetPassword', 'ResetPasswordController@updatePassword');

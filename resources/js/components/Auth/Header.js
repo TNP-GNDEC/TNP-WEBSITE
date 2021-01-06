@@ -12,10 +12,11 @@ const useStyle = makeStyles((theme) => ({
         width: "100%",
         margin: "0px",
         display: "flex",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        backgroundColor: "#038ed4"
     },
     titleBox:{
-        width: "100px",
+        width: "400px",
         padding: "10px 0 0 10px"
     },
     brand:{
@@ -24,7 +25,7 @@ const useStyle = makeStyles((theme) => ({
   },
   title:{
       fontSize: "20px",
-      color: theme.palette.primary.main
+      color: theme.palette.secondary.main
   },
   navItems:{
       width: "220px",
@@ -37,7 +38,8 @@ const useStyle = makeStyles((theme) => ({
       paddingRight: "20px",
       width: "100px",
       display: "flex",
-      justifyContent: "space-evenly"
+      justifyContent: "space-evenly",
+      color: "#ffffff"
   },
   
   login: {
@@ -57,7 +59,7 @@ const useStyle = makeStyles((theme) => ({
   },
   subheading2: {
       fontSize: "16px",
-      color: theme.palette.primary.main,
+      color: theme.palette.secondary.main,
   },
   subheading3: {
       fontSize: "25px",
@@ -65,7 +67,10 @@ const useStyle = makeStyles((theme) => ({
   },
   icon:{
       paddingBottom: "2px",
-      color: theme.palette.primary.main
+      color: theme.palette.secondary.main
+  },
+  image:{
+    borderRadius:"50%"
   },
 }));
 
@@ -77,11 +82,11 @@ export default function header(){
         <div className={classes.navbar}>
             <div className={classes.brand}>
                 <div>
-                    <img src={logo} width="50px" height="50px" />
+                    <img src={logo} width="50px" height="50px" className={classes.image}/>
                 </div>
                 <div className={classes.titleBox}>
                     <Typography variant="h5" component="h2" className={classes.title}>
-                        T&P Cell
+                        Training and Placement Cell
                     </Typography>
                 </div>
             </div>

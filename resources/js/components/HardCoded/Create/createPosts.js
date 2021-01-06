@@ -1,8 +1,9 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import axios from "axios";
-import Posts from "../../HomeComponent/PostComponents/Posts";
-class createPosts extends React.Component {
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+class CreatePosts extends React.Component {
     state = {
         title: '',
         type: '',
@@ -10,13 +11,23 @@ class createPosts extends React.Component {
     }
 
     handleInput = (e) => {
-        this.setState({[e.target.name]: e.target.value});
+        this.setState({
+            [e.target.name]: e.target.value,
+        });
     }
+    handleEditorInput =  ( event, editor ) => {
+        const data = editor.getData();
+        console.log( { event, editor, data } );
+        this.setState({
+            description: data,
+        });
+    } 
     savePost = async (e) => {
         e.preventDefault();
         const res = await axios.post("/addPost", this.state);
         if(res.data.status === 200){
-            this.props.history.push("/");
+            window.location.reload();
+            alert("Added Successfully");
         }
     }
 
@@ -47,23 +58,38 @@ class createPosts extends React.Component {
                             </div>
                             <div className="form-group">
                                 <label>Description:</label>
-                                <textarea type="text" name="description" className="form-control highlight"
-                                value={this.state.description} onChange={this.handleInput} 
-                                placeholder="Write the Description" required/>
+                                <div className="App">
+                                    <CKEditor
+                                        editor={ ClassicEditor }
+                                        data=""
+                                        onReady={ editor => {
+                                            // You can store the "editor" and use when it is needed.
+                                            console.log( 'Editor is ready to use!', editor );
+                                        } }
+                                        onChange={this.handleEditorInput}                                        
+                                        onBlur={ ( event, editor ) => {
+                                            console.log( 'Blur.', editor );
+                                        } }
+                                        onFocus={ ( event, editor ) => {
+                                            console.log( 'Focus.', editor );
+                                        } }
+                                    />
+                                </div>
                             </div>
                             <div className="form-group">
                                 <button type="submit" className="primary">
-                                    
                                     Add Post
                                 </button>
+                                {/* <Button variant="contained" color="primary">
+                                  Add Post
+                                </Button> */}
                             </div>
                         </form>
                     </div>
                 </div>
-                <Posts />
             </div>
         )
     }
 }
 
-export default createPosts;
+export default CreatePosts;
