@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ApiCode;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Notifications\EmailVerification;
 
 class VerificationController extends Controller {
 
@@ -20,15 +21,12 @@ class VerificationController extends Controller {
      * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function verify($user_id, Request $request) {
-        // if (! $request->hasValidSignature()) {
-        //     return $this->respondUnAuthorizedRequest(ApiCode::INVALID_EMAIL_VERIFICATION_URL);
-        // }
 
-        $user = User::findOrFail($user_id);
+        $user = User::findOrFail($request->id);
         $user->email = $request->email;
 
         if (!$user->hasVerifiedEmail()) {
-            $user->sendEmailVerificationNotification();
+            $user->sendEmailVerificationNotification(new EmailVerification);
             $user->markEmailAsVerified();
             return response()->json(["msg" => "Email verification link sent on your email id"]);
         }

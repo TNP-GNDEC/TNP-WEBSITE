@@ -138,16 +138,16 @@ export default function HorizontalNonLinearStepper() {
     const email= e.target.value   
     setEmail(email)
     console.log(email)
-    //console.log(user)
-    console.log(localStorage.getItem("userid"))
   }
 
   const handleFormSubmit = (e) => {
     event.preventDefault();
-    //console.log(localStorage.userid)
+    var uuid= localStorage.getItem("useruuid")
     var id= localStorage.getItem("userid")
-    axios.post(`/api/email/verify/${id}`, {
+    axios.post(`/api/email/verify/${uuid}`, {
       email: email,
+      id: id
+
   })
   .then((response) => {
     var user=response.data
