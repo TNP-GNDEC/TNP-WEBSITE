@@ -4,7 +4,8 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { Container } from "@material-ui/core";
 import Posts from "../../HomeComponent/PostComponents/Posts";
-import Create from "../../HardCoded/Create/CreatePosts";
+// import Create from "../../HardCoded/Create/CreatePosts";
+import Create from '../../HardCoded/Create/createPosts'
 
 const useStyles = makeStyles(theme => ({
     root: {
