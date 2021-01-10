@@ -21,9 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
     otp: {
         padding: "8px 70px 8px 70px",
-        // margin: "0px  0px 0px  1290px ",
-        margin:"0 auto",
-        // display: "flex"
+        margin: "0 auto"
     },
     box: {
         margin: "0 auto",
@@ -50,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         // marginRight: theme.spacing(1)
-        margin:"0 auto"
+        margin: "0 auto"
     },
     spacer: {
         flex: "1 1 auto"
@@ -71,36 +69,43 @@ export default function StepOne() {
     const classes = useStyles();
     return (
         <Card className={classes.box}>
-                    <div className={classes.heading}>
-                        <b>
-                            <h1>Email verification</h1>
-                        </b>
-                        <b>
-                            <p>
-                                Kindly enter your personal email id instead your
-                                college mail id
-                            </p>
-                        </b>
-                        <div>
-                            <form
-                                className={classes.field}
-                                noValidate
-                                autoComplete="off"
-                            >
-                                <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
-                                    <label for="email"></label>
-                                    <input
-                                        className={classes.input}
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        placeholder="Email"
-                                    />
-                                </div>
-                                <CusButton label="Send OTP"/>
-                            </form>
+            <div className={classes.heading}>
+                <b>
+                    <h1>Email verification</h1>
+                </b>
+                <b>
+                    <p>
+                        Kindly enter your personal email id instead your college
+                        mail id
+                    </p>
+                </b>
+                <div>
+                    <form
+                        className={classes.field}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                flexDirection:"column"
+                            }}
+                        >
+                            <label for="email"></label>
+                            <input
+                                className={classes.input}
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Email"
+                            />
+                            <CusButton label="Send OTP" />
                         </div>
-                    </div>
+                    </form>
+                </div>
+            </div>
         </Card>
     );
 }
