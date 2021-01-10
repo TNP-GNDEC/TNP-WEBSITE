@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useState} from 'react';
+import axios from 'axios';
 import Header from "../../Auth/Header";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -68,7 +69,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Email() {
   const classes = useStyles();
+  const [state , setState] = useState({
+    email: ""
+})
 
+const handleEmailChange = (e) => {
+  const name= e.target.name
+  const value= e.target.value   
+  setState(prevState => ({
+      ...prevState,
+      [name] : value
+  }))
+}
+
+const handleFormSubmit= async (event)=>{
+    event.preventDefault();
+    
+    axios.post('/forget-password', {
+      email: state.email,
+  })
+  .then((response) => {
+    var user=response.data.email
+    console.log(user);
+  })
+  .catch((error) => {
+      console.log(error);
+  });
+  };
   return (
     <div className={classes.root}>
     <Header />
@@ -83,7 +110,7 @@ export default function Email() {
         <Typography component="h2" variant="h4" className={classes.heading}>
           Forget Password
         </Typography>
-        <form className={classes.form}>
+        <form onSubmit={(event) => handleFormSubmit(event)} className={classes.form}>
           <TextField    
             variant="outlined"
             InputProps={{
@@ -95,8 +122,10 @@ export default function Email() {
             margin="normal"
             required
             fullWidth
-            label="Username"
-            autoFocus
+            label="Email"
+            name="email"
+            defaultValue={state.email}
+            onChange={handleEmailChange}
           />
           <Button
             type="submit"
