@@ -12,6 +12,8 @@ import Calender from '@material-ui/icons/EventAvailable';
 import Flag from '@material-ui/icons/Flag';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import logo from "../../../../images/logo.png";
+import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
 
 const useStyles = theme => ({
     root: {
@@ -26,7 +28,7 @@ const useStyles = theme => ({
     },
     header2: {
         width: "100%",
-        padding: "0 10px"
+        padding: "0px 10px 10px 10px"
     },
     image: {
         width: "50px",
@@ -40,17 +42,21 @@ const useStyles = theme => ({
     },
     subheader: {
         display: "flex",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        padding:"10px 20px 0px 0px"
     },
     subheading: {
         fontSize: "14px"
     },
     icon:{
-        fontSize: "14px"
+        fontSize: "18px"
     },
     subheading2: {
         fontSize: "18px",
         color: "#00000099",
+        padding:"10px 20px",
+        textAlign: "justify",
+        // textJustify: "inter-word"
     },
     subheading3: {
         fontSize: "16px",
@@ -61,43 +67,46 @@ const useStyles = theme => ({
     },
     read:{
         borderRadius: "5px",
-        width: "100%",
+        width: "95%",
+        margin:"8px auto",
         height: "40px",
         marginTop: "5px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: theme.palette.secondary.light,
-        border: "1px solid #038ed4",
-        color: theme.palette.primary.main,
-        boxShadow: "0px 15px 25px #038ed433"
+        padding:"30px 0px 30px 0px"
+    },
+    readButton:{
+        backgroundColor: "#0077b51a",
+        padding:"10px 0px",
+
+        "&:hover":{
+            backgroundColor:theme.palette.primary.light
+        }
     },
     body2:{
         display: "flex",
         justifyContent: "space-between"
     },
     Tags: {
-        backgroundColor: theme.palette.primary.light,
+        backgroundColor: "#3b59981a",
         color: theme.palette.primary.dark,
         width: "40%",
         height: "40px",
-        border: "1px solid #193b68",
         borderRadius: "5px",
         display: "flex",
         padding : "0 10px",
         alignItems: "center",
-        boxShadow: "0px 15px 25px #193b6833"
     },
     socialIcons: {
         display:"flex",
+        padding:"0px 20px"
     },
     socialIcon: {
         borderRadius: "5px",
         backgroundColor: "#3b59981a",
-        border: "1px solid #3b5598",
-        boxShadow: "0px 15px 25px #3b59981a",
         color: "#3b5998",
-        marginRight: "5px",
+        marginRight: "8px",
         width: "40px",
         height: "40px",
         display: "flex",
@@ -106,11 +115,11 @@ const useStyles = theme => ({
     },
     socialIcon2: {
         borderRadius: "5px",
-        backgroundColor: "#0077b51a",
-        border: "1px solid #0077b5",
-        boxShadow: "0px 15px 25px #0077b51a",
+        backgroundColor: "#3b59981a ",
+        // border: "1px solid #0077b5",
+        // boxShadow: "0px 15px 25px #0077b51a",
         color: "#0077b5",
-        marginRight: "5px",
+        marginRight: "8px",
         width: "40px",
         height: "40px",
         display: "flex",
@@ -119,16 +128,18 @@ const useStyles = theme => ({
     },
     socialIcon3: {
         borderRadius: "5px",
-        backgroundColor: "#00acee1a",
-        border: "1px solid #00acee",
-        boxShadow: "0px 15px 25px #00acee1a",
-        color: "#00acee",
-        marginRight: "5px",
+        backgroundColor: "#3b59981a",
+        color: "#00acee ",
+        marginRight: "8px",
         width: "40px",
         height: "40px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center"
+    },
+    iconLinks:{
+        textDecoration:"none",
+        color:"#fff",        
     }
 });
 
@@ -173,7 +184,7 @@ class Data extends React.Component {
                             </Typography>
                             <div className={classes.read}>
                                 <Typography variant="h5" component="h2" className={classes.subheading4}>
-                                    READ MORE
+                                    READ MORE <AddIcon/>
                                 </Typography>
                             </div>
                         </div>
@@ -206,7 +217,7 @@ class Data extends React.Component {
                                 </Typography>
                                 <Typography variant="h5" component="h2" className={classes.subheading}>
                                     <Flag className={classes.icon}/>
-                                    {posts.type}
+                                    {posts.type} 
                                 </Typography>
                             </div>
                         </div>
@@ -217,22 +228,20 @@ class Data extends React.Component {
                             { ReactHtmlParser(html) }
                         </Typography>
                         <div className={classes.read}>
-                            <Typography variant="h5" component="h2" className={classes.subheading4}>
-                                READ MORE
-                            </Typography>
+                            <Button  color="primary" className={classes.readButton} fullWidth>READ MORE <AddIcon/></Button>
                         </div>
                     </div>
                     <hr />
                     <div className={classes.body2}>
                         <div className={classes.socialIcons}>
                             <div className={classes.socialIcon}>
-                               <Facebook />
+                              <a classes={classes.iconLinks} href="#"> <Facebook fontSize="large" /> </a>
                             </div>
                             <div className={classes.socialIcon2}>
-                               <Linkedin />
+                              <a classes={classes.iconLinks} href="#"> <Linkedin fontSize="large" /> </a>
                             </div>
                             <div className={classes.socialIcon3}>
-                               <Twitter />
+                             <a classes={classes.iconLinks} href="#">  <Twitter fontSize="large" /> </a>
                             </div>
                         </div>
                         <div className={classes.Tags}>
