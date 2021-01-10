@@ -66,9 +66,46 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Email() {
+export default function ResetPass() {
   const classes = useStyles();
+  const [state , setState] = useState({
+    password: "",
+    confirmPasswrd: ""
+})
 
+const handlepasswordChange = (e) => {
+  const name= e.target.name
+  const value= e.target.value   
+  setState(prevState => ({
+      ...prevState,
+      [name] : value
+  }))
+}
+
+const handleConPasswordChange = (e) => {
+  const name= e.target.name
+  const value= e.target.value   
+  setState(prevState => ({
+      ...prevState,
+      [name] : value
+  }))
+}
+
+const handleFormSubmit= async (event)=>{
+    event.preventDefault();
+    
+    axios.post('/reset-password', {
+      password: state.password,
+      confirmPassword: state.confirmPassword,
+  })
+  .then((response) => {
+    var user=response.data.msg
+    console.log(user);
+  })
+  .catch((error) => {
+      console.log(error);
+  });
+  };
   return (
     <div className={classes.root}>
     <Header />
@@ -83,7 +120,7 @@ export default function Email() {
         <Typography component="h2" variant="h4" className={classes.heading}>
           Enter New Password
         </Typography>
-        <form className={classes.form}>
+        <form onSubmit={(event) => handleFormSubmit(event)} className={classes.form}>
         <TextField
             variant="outlined"
             InputProps={{
@@ -99,6 +136,8 @@ export default function Email() {
             label="Password"
             type="password"
             id="password"
+            defaultValue={state.password}
+            onChange={handlepasswordChange}
           />
           <TextField
             variant="outlined"
@@ -111,10 +150,12 @@ export default function Email() {
             margin="normal"
             required
             fullWidth
-            name="password"
+            name="confirmPassword"
             label="Confirm-Password"
             type="password"
             id="password"
+            defaultValue={state.confirmPasswrd}
+            onChange={handleConPasswordChange}
           />
           <Button
             type="submit"
