@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     otp: {
         padding: "8px 70px 8px 70px",
         // margin: "0px  0px 0px  1290px ",
-        margin:"0 auto",
+        margin: "0 auto"
         // display: "flex"
     },
     box: {
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         // marginRight: theme.spacing(1)
-        margin:"0 auto"
+        margin: "0 auto"
     },
     spacer: {
         flex: "1 1 auto"
@@ -165,7 +165,14 @@ export default function HorizontalNonLinearStepper() {
                                 noValidate
                                 autoComplete="off"
                             >
-                                <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        flexDirection:"column"
+                                    }}
+                                >
                                     <label for="email"></label>
                                     <input
                                         className={classes.input}
@@ -174,19 +181,34 @@ export default function HorizontalNonLinearStepper() {
                                         name="email"
                                         placeholder="Email"
                                     />
+                                    <Button
+                                        className={classes.otp}
+                                        variant="contained"
+                                        color="primary"
+                                    >
+                                        SEND OTP
+                                    </Button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </Card>
-                <div className={classes.buttonDiv} style={{display:"flex", alignItems:"center", justifyContent:"center" , paddingTop:"30px" }}>
-                    <Button
+                <div
+                    className={classes.buttonDiv}
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        paddingTop: "30px"
+                    }}
+                >
+                    {/* <Button
                         className={classes.otp}
                         variant="contained"
                         color="primary"
                     >
                         SEND OTP
-                    </Button>
+                    </Button> */}
                 </div>
                 <div>
                     {allStepsCompleted() ? (

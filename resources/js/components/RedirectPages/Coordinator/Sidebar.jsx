@@ -89,7 +89,7 @@ const listItems = [
     { id: 1, name: "Home", iconName: <HomeIcon />  , onCLickAction:""},
     { id: 2, name: "Data Using Excel", iconName: <DescriptionIcon /> },
     { id: 3, name: "Companies", iconName: <DescriptionIcon /> },
-    { id: 4, name: "Pages", iconName: <DescriptionIcon /> },
+    { id: 4, name: "Users", iconName: <DescriptionIcon /> },
     { id: 5, name: "Posts", iconName: <DescriptionIcon /> },
     { id: 6, name: "Notice Maker", iconName: <PostAddIcon /> },
 ];
