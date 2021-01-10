@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Personal Details', 'Matriculation', '12th or Diploma','Verify'];
+  return ['Email Verification','Personal Details', 'Matriculation','12 or Diploma','Verify'];
 }
 
 function getStepContent(step) {
