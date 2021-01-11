@@ -22,8 +22,8 @@ import EditLinks from "./HardCoded/Edit/EditLinks";
 import Coordinator from "./RedirectPages/Coordinator/Coordinator";
 import studentredirect from "./RedirectPages/Student/Student";
 
-import ForgetPass from "./RedirectPages/ForgetPass/Email";
-import ResetPass from "./RedirectPages/ForgetPass/ResetPass";
+import ForgetPass from "./Auth/ForgotPassword";
+import ResetPass from "./Auth/ResetPass";
 
 function App(){
     return(

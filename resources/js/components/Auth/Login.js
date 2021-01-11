@@ -14,26 +14,53 @@ import Container from '@material-ui/core/Container';
 import { shadows } from '@material-ui/system';
 import Box from '@material-ui/core/Box';
 
+import intro from '../../../images/2.jpg';
+
 const useStyles = makeStyles((theme) => ({
   root:{
-    background: theme.palette.secondary.main
+    background: theme.palette.primary.light,
+    minHeight: "100vh",
   },
   box: {
     marginTop: theme.spacing(0)
   },
+  container:{
+    width: "100%"
+  },
+  loginCard:{
+    width: "75%",
+    margin: "auto",
+    marginTop: "50px",
+    borderRadius: "10px",
+    boxShadow: "0px 15px 25px #00000033",
+    background: theme.palette.secondary.main,
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
+  hero:{
+    width: "50%",
+    marginTop: "20px",
+    marginBottom: "20px",
+    ['@media (max-width:960px)']: {
+      display: "none",
+  },
+  },
+  pic:{
+    width: "100%",
+    borderRadius: "3%",
+  },
   paper: {
+    width: "40%",
     boxShadow: "none",
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: theme.palette.secondary.main,
+    ['@media (max-width:960px)']: {
+      width: "100%",
   },
-  avatar: {
-    margin: theme.spacing(1),
-    width: "100px",
-    height: "100px",
-    backgroundColor: theme.palette.primary.main,
   },
   icon:{
     fontSize: "90px",
@@ -59,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     
   },
   notchedOutline: {
-    borderColor: theme.palette.primary.main
+    borderColor: "#757575",
   },
   focused: {
     borderColor: theme.palette.secondary.main,
@@ -130,8 +157,12 @@ const handleFormSubmit= async (event)=>{
     <div className={classes.root}>
     <Header />
     <div className={classes.card}>
-    <Container className={classes.container} component="main" maxWidth="xs">
+    <div className={classes.container}>
       <CssBaseline />
+      <div className={classes.loginCard}>
+        <div className={classes.hero}>
+          <img src={intro} className={classes.pic} />
+        </div>
       <Box boxShadow={2} className={classes.paper}>
         <Typography component="h2" variant="h4" className={classes.heading}>
           Sign In
@@ -139,6 +170,7 @@ const handleFormSubmit= async (event)=>{
         <form onSubmit={(event) => handleFormSubmit(event)} className={classes.form} noValidate>
           <TextField    
             variant="outlined"
+            className={classes.input}
             InputProps={{
               classes: {
                 notchedOutline: classes.notchedOutline,
@@ -155,6 +187,7 @@ const handleFormSubmit= async (event)=>{
           />
           <TextField
             variant="outlined"
+            className={classes.input}
             InputProps={{
               classes: {
                 notchedOutline: classes.notchedOutline,
@@ -199,9 +232,10 @@ const handleFormSubmit= async (event)=>{
           
         </form>
       </Box>
-    </Container>
+      </div>
     </div>
-
+    </div>
+     <Footer />
     </div>
 
   );

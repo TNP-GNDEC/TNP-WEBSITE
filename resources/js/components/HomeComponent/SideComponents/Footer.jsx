@@ -10,11 +10,13 @@ import { red } from '@material-ui/core/colors';
 const useStyles = makeStyles({
   foot: {
     width: "100%",
+    height: "35px",
+    position: "fixed",
+    bottom: "0",
     background: "#038ed4",
     color: "#000000",
     textAlign: "center" ,
     padding: "10px",
-    height: "55px",
   },
   tag:{
     textDecoration: "none",

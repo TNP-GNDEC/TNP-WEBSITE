@@ -17,7 +17,10 @@ const useStyle = makeStyles((theme) => ({
     },
     titleBox:{
         width: "400px",
-        padding: "10px 0 0 10px"
+        padding: "10px 0 0 10px",
+        ['@media (max-width:715px)']: {
+            display: "none",
+        },
     },
     brand:{
       margin: "10px 0 10px 40px",
@@ -25,7 +28,7 @@ const useStyle = makeStyles((theme) => ({
   },
   title:{
       fontSize: "20px",
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.main,
   },
   navItems:{
       width: "220px",
