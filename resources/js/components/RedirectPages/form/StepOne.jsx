@@ -66,6 +66,34 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 export default function StepOne() {
+    const [email, setEmail] = React.useState("");
+    const handleChange = (e) => {
+        const email= e.target.value   
+        setEmail(email)
+        console.log(email)
+
+      }
+    
+      const handleFormSubmit = (e) => {
+        event.preventDefault();
+        var uuid= localStorage.getItem("useruuid")
+        var id= localStorage.getItem("userid")
+        console.log(uuid)
+        axios.post(`/api/email/verify/${uuid}`, {
+          email: email,
+          id: id
+    
+      })
+      .then((response) => {
+        var user=response.data
+        console.log(response.data)
+          
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+      }
+    
     const classes = useStyles();
     return (
         <Card className={classes.box}>
@@ -84,6 +112,7 @@ export default function StepOne() {
                         className={classes.field}
                         noValidate
                         autoComplete="off"
+                        onSubmit={(event) => handleFormSubmit(event)}
                     >
                         <div
                             style={{
@@ -100,8 +129,12 @@ export default function StepOne() {
                                 id="email"
                                 name="email"
                                 placeholder="Email"
+                                defaultValue={email}
+                                onChange={handleChange}
                             />
-                            <CusButton label="Send OTP" />
+                            <button 
+                            type="submit" 
+                            label="Send OTP">send otp</button> 
                         </div>
                     </form>
                 </div>

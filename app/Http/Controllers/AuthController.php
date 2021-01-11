@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\FormStatus;
+use Illuminate\Support\Str;
 use Tymon\JWTAuth\Providers\JWTAuthServiceProvider;
 use JWTAuth;
 class AuthController extends Controller
@@ -22,8 +23,9 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
             'email' => $request->email,
             'role_id'=>$request->role_id,
-            'remember_token' => 21,
-            'uuid' => 12,
+            //'remember_token' => ,
+            'uuid' => (string) Str::uuid()
+
         ]);
         if($request->role_id=="1"){
             if($user)
@@ -47,6 +49,7 @@ class AuthController extends Controller
     }
 
     $currentUser = Auth::user();
+
     return $this->respondWithToken($token,$currentUser);    
     
 }

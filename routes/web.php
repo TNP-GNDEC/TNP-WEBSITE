@@ -82,3 +82,4 @@ Route::post('/forget-password', 'ForgotPasswordController@postEmail');
 
 Route::get('/resetPassword/{token}', 'ForgotPasswordController@getPassword');
 Route::post('/reset-password', 'ForgotPasswordController@resetPassword');
+
