@@ -6,7 +6,7 @@ import About from "./Pages/About";
 
 import login from "./Auth/Login";
 import { PrivateRoute } from "./Auth/PrivateRoute";
-import Email from "./RedirectPages/form/EmailVer";
+import Email from "./EmailVer";
 
 import createConnect from "./HardCoded/Create/createConnect";
 import createExplore from "./HardCoded/Create/createExplore";
