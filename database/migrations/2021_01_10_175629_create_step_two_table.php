@@ -17,7 +17,7 @@ class CreateStepTwoTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('pincode');
             $table->string('first_name');
-            $table->string('last_name');
+            $table->string('last_name')->nullable();
             $table->string('height');
             $table->string('weight');
             $table->string('gender');
@@ -30,6 +30,7 @@ class CreateStepTwoTable extends Migration
             $table->string('father_name');
             $table->bigInteger('father_mobile');
             $table->string('mother_name');
+            $table->bigInteger('mother_mobile');
             $table->string('stream');
             $table->string('blood_group');
             $table->string('branch_type');
@@ -41,10 +42,8 @@ class CreateStepTwoTable extends Migration
             $table->boolean('farming_background');
             $table->boolean('hostler');
             $table->boolean('disability');
-            $table->bigInteger('mother_mobile');
-            $table->bigInteger('adhaar');
+            $table->bigInteger('aadhar');
             $table->date('dob');
-
             $table->foreign('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade')

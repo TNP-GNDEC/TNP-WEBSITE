@@ -18,9 +18,10 @@ use App\Http\Controllers\VerificationController;
 */
   
 Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class,'login']);
+Route::post('login', [AuthController::class,'login'])->name('login');
 Route::post('logout', [AuthController::class,'logout']);
 
-// step 2 personal details form post request
-Route::post('personaldetails', 'SteptwoController@getFormData');
 Route::post('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
+
+// step 2 personal details form post request
+Route::post('personaldetails/{id}', 'SteptwoController@getFormData');

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\ApiCode;
 use App\Models\User;
+use App\Models\FormStatus;
 use Illuminate\Http\Request;
 use App\Notifications\EmailVerification;
+use Illuminate\Support\Facades\DB;
 
 class VerificationController extends Controller {
 
@@ -28,6 +30,9 @@ class VerificationController extends Controller {
         if (!$user->hasVerifiedEmail()) {
             $user->sendEmailVerificationNotification(new EmailVerification);
             $user->markEmailAsVerified();
+            $form_step_change= DB::table('form_statuses')
+            ->where('user_id', $user->id)
+            ->update(['form_step' => 1]);
             return response()->json(["msg" => "Email verification link sent on your email id"]);
         }
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class StepTwo extends Model
 {
+    protected $table = "step_two";
     use HasFactory;
     protected $fillable = [
      "user_id",
@@ -15,9 +16,9 @@ class StepTwo extends Model
      "mobile", 
      "whatsapp", 
      "father_name", 
-     "father_contact", 
+     "father_mobile", 
      "mother_name", 
-     "mother_contact", 
+     "mother_mobile", 
      "dob", 
      "height", 
      "weight", 
