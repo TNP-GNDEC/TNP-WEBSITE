@@ -13,7 +13,6 @@ class ForgotPasswordController extends Controller
 {
   public function getEmail()
   {
-
      return view('customauth.passwords.email');
   }
 
