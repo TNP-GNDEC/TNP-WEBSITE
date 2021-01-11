@@ -6,7 +6,7 @@ import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import StepOne from "../components/RedirectPages/form/StepOne";
-import StepTwo from "../components/RedirectPages/form/StepTwo";
+import StepTwo from "./RedirectPages/form/steptwo/StepTwo";
 import StepThree from "../components/RedirectPages/form/StepThree";
 import StepFour from "../components/RedirectPages/form/StepFour";
 
@@ -24,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(1),
     },
+    body:{
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+      background: theme.palette.primary.light
+    }
   }));
   
   function getSteps() {
@@ -33,9 +38,9 @@ const useStyles = makeStyles((theme) => ({
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <StepOne />;
+        return <StepOne/>;
       case 1:
-        return <StepTwo />;
+        return < StepTwo/> ;
       case 2:
         return <StepThree />;
       case 3:
@@ -118,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
             </div>
           ) : (
             <div>
-              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+              <Typography className={classes.body}>{getStepContent(activeStep)}</Typography>
               <div>
                 <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                   Back
