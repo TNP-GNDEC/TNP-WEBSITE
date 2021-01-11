@@ -4,7 +4,8 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { Container } from "@material-ui/core";
 import Posts from "../../HomeComponent/PostComponents/Posts";
-import Create from "../../HardCoded/Create/createPosts";
+import Create from "../../RedirectPages/Coordinator/CreatePost";
+import Users from './Users'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -57,7 +58,7 @@ export default function FullWidthTabs(props) {
         } else if (props.activeId === 4) {
             return (
                 <>
-                    <h2> Pages </h2>
+                   <Users/>
                 </>
             );
         } else if (props.activeId === 5) {
