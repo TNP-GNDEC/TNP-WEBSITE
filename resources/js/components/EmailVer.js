@@ -86,6 +86,7 @@ export default function HorizontalNonLinearStepper() {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState({});
+    const [email, setEmail] = React.useState("");
 
     const totalSteps = () => {
         return steps.length;
@@ -133,6 +134,30 @@ export default function HorizontalNonLinearStepper() {
         setCompleted({});
     };
 
+  const handleChange = (e) => {
+    const email= e.target.value   
+    setEmail(email)
+    console.log(email)
+  }
+
+  const handleFormSubmit = (e) => {
+    event.preventDefault();
+    var uuid= localStorage.getItem("useruuid")
+    var id= localStorage.getItem("userid")
+    axios.post(`/api/email/verify/${uuid}`, {
+      email: email,
+      id: id
+
+  })
+  .then((response) => {
+    var user=response.data
+    console.log(response.data)
+      
+  })
+  .catch((error) => {
+      console.log(error);
+  });
+  }
     return (
         <Card className={classes.outter}>
             <div className={classes.root}>
@@ -164,6 +189,7 @@ export default function HorizontalNonLinearStepper() {
                                 className={classes.field}
                                 noValidate
                                 autoComplete="off"
+                                onSubmit={(event) => handleFormSubmit(event)}
                             >
                                 <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
                                     <label for="email"></label>
@@ -173,20 +199,22 @@ export default function HorizontalNonLinearStepper() {
                                         id="email"
                                         name="email"
                                         placeholder="Email"
+                                        defaultValue={email}
+                                        onChange={handleChange} 
+                            
                                     />
                                 </div>
+                                <Button
+                                  className={classes.otp}
+                                  variant="contained"
+                                  color="primary"
+                                  type="submit">SEND OTP</Button>
                             </form>
                         </div>
                     </div>
                 </Card>
                 <div className={classes.buttonDiv} style={{display:"flex", alignItems:"center", justifyContent:"center" , paddingTop:"30px" }}>
-                    <Button
-                        className={classes.otp}
-                        variant="contained"
-                        color="primary"
-                    >
-                        SEND OTP
-                    </Button>
+                    
                 </div>
                 <div>
                     {allStepsCompleted() ? (
@@ -244,4 +272,4 @@ export default function HorizontalNonLinearStepper() {
             </div>
         </Card>
     );
-}
+                                            }
