@@ -38,9 +38,9 @@ const useStyles = makeStyles((theme) => ({
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <StepTwo />;
+        return <StepOne/>;
       case 1:
-        return <StepOne /> ;
+        return < StepTwo/> ;
       case 2:
         return <StepThree />;
       case 3:

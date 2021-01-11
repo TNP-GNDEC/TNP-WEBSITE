@@ -3,9 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-
+import ProfileDetails from './ProfileDetails'
+import ParentDetails from './ParentsDetails'
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -59,8 +58,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function StepTwo() {
     const classes = useStyles();
-    const [age, setAge] = React.useState("");
-    const [open, setOpen] = React.useState(false);
+
     const [profile, setProfile] = React.useState({
         first_name: "",
         last_name: "",
@@ -70,7 +68,16 @@ export default function StepTwo() {
         blood_group: ""
     });
 
-    const handleChangeInput = (e, id) => {
+    const [parent, setParent] = React.useState({
+        father_name: "",
+        father_phone: "",
+        father_occupation: "",
+        mother_name: "",
+        mother_phone: "",
+        mother_occupation: ""
+    });
+
+    const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
         const value = e.target.value;
         switch (id) {
@@ -98,67 +105,40 @@ export default function StepTwo() {
         }
     };
 
+    const handleParentChangeInput = (e, id) => {
+        console.log("I am called for parent");
+        const value = e.target.value;
+        switch (id) {
+            case 1:
+                setParent({ ...parent, father_name: value });
+                break;
+            case 2:
+                setParent({ ...parent, father_phone: value });
+                break;
+            case 3:
+                setParent({ ...parent, father_occupation: value });
+                break;
+            case 4:
+                setParent({ ...parent, mother_name: value });
+                break;
+            case 5:
+                setParent({ ...parent, mother_phone: value });
+                break;
+            case 6:
+                setParent({ ...parent, mother_occupation: value });
+                break;
+
+            default:
+                break;
+        }
+    };
+
+    React.useEffect(() => {
+        console.log("Do something after profile has changed", parent);
+    }, [parent]);
     React.useEffect(() => {
         console.log("Do something after profile has changed", profile);
     }, [profile]);
-
-    const fields = [
-        {
-            label: "FIRST NAME",
-            type: "text",
-            id: 1,
-            name: "first_name",
-            placeholder: "firstName",
-            value: profile.first_name,
-            change: handleChangeInput
-        },
-        {
-            label: "LAST NAME",
-            type: "text",
-            id: 2,
-            name: "first_name",
-            placeholder: "firstName",
-            value: profile.last_name,
-            change: handleChangeInput
-        },
-        {
-            label: "DATE OF BIRTH",
-            type: "text",
-            id: 3,
-            name: "first_name",
-            placeholder: "firstName",
-            value: profile.dob,
-            change: handleChangeInput
-        },
-        {
-            label: "HEIGHT (in cm)",
-            type: "number",
-            id: 4,
-            name: "first_name",
-            placeholder: "firstName",
-            value: profile.height,
-            change: handleChangeInput
-        },
-        {
-            label: "WEIGHT (in kg)",
-            type: "number",
-            id: 5,
-            name: "first_name",
-            placeholder: "firstName",
-            value: profile.weight,
-            change: handleChangeInput
-        },
-        {
-            label: "BLOOD GROUP",
-            type: "text",
-            id: 6,
-            name: "first_name",
-            placeholder: "firstName",
-            value: profile.blood_group,
-            change: handleChangeInput
-        }
-    ];
-
     const renderPersonalFields = () =>
         fields.map(field => (
             <>
@@ -189,29 +169,18 @@ export default function StepTwo() {
             <Grid container className={classes.container}>
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
-                        <Typography
-                            variant="h4"
-                            className={classes.cardHeading}
-                        >
-                            PROFILE DETAILS
-                        </Typography>
-                        <CardContent>
-                            <Grid container>{renderPersonalFields()}</Grid>
-                        </CardContent>
+                        <ProfileDetails Profile={profile} handleInputChange={handleProfileChangeInput}/>
                     </Card>
                 </Grid>
 
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
-                        <Typography
-                            variant="h4"
-                            className={classes.cardHeading}
-                        >
-                            PARENTS DETAILS
-                        </Typography>
-                        <CardContent>
-                            <Grid container>{renderPersonalFields()}</Grid>
-                        </CardContent>
+                        <ParentDetails parent={parent} handleInputChange={handleParentChangeInput}/>
+                    </Card>
+                </Grid>
+
+                <Grid item xs={10} className={classes.Cardcontainers}>
+                    <Card className={classes.cardStyles}>
                     </Card>
                 </Grid>
             </Grid>
