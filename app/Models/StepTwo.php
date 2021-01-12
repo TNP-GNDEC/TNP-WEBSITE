@@ -11,6 +11,8 @@ class StepTwo extends Model
     use HasFactory;
     protected $fillable = [
      "user_id",
+     "urn",
+     "crn",
      "first_name",
      "last_name", 
      "mobile", 
