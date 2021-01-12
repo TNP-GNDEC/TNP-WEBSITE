@@ -96,6 +96,7 @@ export default function StepOne() {
     
     const classes = useStyles();
     return (
+        
         <Card className={classes.box}>
             <div className={classes.heading}>
                 <b>
