@@ -3,8 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import ProfileDetails from './ProfileDetails'
-import ParentDetails from './ParentsDetails'
+import ProfileDetails from "./ProfileDetails";
+import ParentDetails from "./ParentsDetails";
+import AcademicDetails from "./AcademicDetails";
+
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -77,6 +79,17 @@ export default function StepTwo() {
         mother_occupation: ""
     });
 
+    const [academics, setAcademics] = React.useState({
+        univ_roll: "",
+        college_roll: "",
+        category: "",
+        batch: "",
+        course: "",
+        stream: "",
+        section: "",
+        shift: "",
+        training_sem: ""
+    });
     const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
         const value = e.target.value;
@@ -125,17 +138,52 @@ export default function StepTwo() {
                 setParent({ ...parent, mother_phone: value });
                 break;
             case 6:
-                setParent({ ...parent, mother_occupation: value });
+                setParent({ ...academics, mother_occupation: value });
                 break;
 
             default:
                 break;
         }
     };
+    const handleAcademicsChangeInput = (e, id) => {
+        console.log("I am called for academics");
+        const value = e.target.value;
+        switch (id) {
+            case 1:
+                setAcademics({ ...academics, univ_roll: value });
+                break;
+            case 2:
+                setAcademics({ ...academics, college_roll: value });
+                break;
+            case 3:
+                setAcademics({ ...academics, category: value });
+                break;
+            case 4:
+                setAcademics({ ...academics, batch: value });
+                break;
+            case 5:
+                setAcademics({ ...academics, course: value });
+                break;
+            case 6:
+                setacademics({ ...academics, stream: value });
+                break;
+            case 7:
+                setacademics({ ...academics, section: value });
+                break;
+            case 8:
+                setacademics({ ...academics, shift: value });
+                break;
+            case 9:
+                setacademics({ ...academics, training_sem: value });
+                break;
+            default:
+                break;
+        }
+    };
 
     React.useEffect(() => {
-        console.log("Do something after profile has changed", parent);
-    }, [parent]);
+        console.log("Do something after profile has changed", academics);
+    }, [academics]);
     React.useEffect(() => {
         console.log("Do something after profile has changed", profile);
     }, [profile]);
@@ -169,18 +217,28 @@ export default function StepTwo() {
             <Grid container className={classes.container}>
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
-                        <ProfileDetails Profile={profile} handleInputChange={handleProfileChangeInput}/>
+                        <ProfileDetails
+                            Profile={profile}
+                            handleInputChange={handleProfileChangeInput}
+                        />
                     </Card>
                 </Grid>
 
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
-                        <ParentDetails parent={parent} handleInputChange={handleParentChangeInput}/>
+                        <ParentDetails
+                            parent={parent}
+                            handleInputChange={handleParentChangeInput}
+                        />
                     </Card>
                 </Grid>
 
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
+                        <AcademicDetails
+                            academics={academics}
+                            handleInputChange={handleAcademicsChangeInput}
+                        />
                     </Card>
                 </Grid>
             </Grid>
