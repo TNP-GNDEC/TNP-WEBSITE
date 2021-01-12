@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\FormStatus;
+use App\Models\StepTwo;
 use Illuminate\Support\Str;
 use Tymon\JWTAuth\Providers\JWTAuthServiceProvider;
 use JWTAuth;
+
 class AuthController extends Controller
 {
     public function register(Request $request)
@@ -23,16 +25,21 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
             'email' => $request->email,
             'role_id'=>$request->role_id,
-            //'remember_token' => ,
             'uuid' => (string) Str::uuid()
 
         ]);
         if($request->role_id=="1"){
-            if($user)
+            if($user){
             $form_user= formStatus::create([
                 'user_id' => $user->id
                 
             ]);
+            $form_step_two = StepTwo::create([
+                'user_id' => $user->id,
+                'urn' => $request->username,
+                'crn' => $request->password
+            ]);
+            }
         }
         return response()->json($user);
     }

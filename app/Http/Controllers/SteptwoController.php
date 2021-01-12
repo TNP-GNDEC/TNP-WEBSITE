@@ -33,7 +33,9 @@ class SteptwoController extends Controller
                     ->where('user_id', $user->id)
                     ->value('form_step');
   if($current_step==1){
-  $details = StepTwo::create([
+  $details = DB::table('step_two')
+  ->where('user_id', $user->id)
+  ->update([
       'first_name' => $request->first_name, 
       'last_name' => $request->last_name,
       'user_id' => $request->id,
