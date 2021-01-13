@@ -58,7 +58,7 @@ function App(){
 
                     {/* Reset Password */}
                     <Route path="/forgetPassword" exact component={ForgetPass} />
-                    <Route path="/resetPassword" exact component={ResetPass} />
+                    <Route path="/resetPassword/:token" exact component={ResetPass} />
                     
                 </Switch>
             </>

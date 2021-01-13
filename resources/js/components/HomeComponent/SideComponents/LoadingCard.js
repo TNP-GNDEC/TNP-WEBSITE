@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
+import {Skeleton} from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) =>({
   card:{
@@ -92,20 +92,20 @@ export default function LoadingCard() {
     
       <div className={classes.card}>
         <div className={classes.header}>
-            <div className={classes.image}></div>
+            <Skeleton className={classes.image}></Skeleton>
             <div className={classes.details}>
-                <span className={classes.name}></span>
+                <Skeleton className={classes.name}></Skeleton>
             </div>
         </div>
         <hr />
         <div className={classes.description}>
-                <div className={classes.line}></div>
+                <Skeleton className={classes.line}></Skeleton>
                 <hr />
-                <div className={classes.line}></div>
+                <Skeleton className={classes.line}></Skeleton>
                 <hr />
-                <div className={classes.line}></div>
+                <Skeleton className={classes.line}></Skeleton>
                 <hr />
-                <div className={classes.line}></div>
+                <Skeleton className={classes.line}></Skeleton>
         </div>
       </div>
     

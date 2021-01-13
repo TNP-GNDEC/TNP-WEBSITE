@@ -26,7 +26,7 @@ class ForgotPasswordController extends Controller
 
     	if (!$userEmail) {
 
-    		return response()->json(['email'=> 'Invalid Email!']);
+    		return response()->json(['alert'=> 'Invalid Email!']);
     	}
 
     	$token = Str::random(60);
@@ -44,10 +44,10 @@ class ForgotPasswordController extends Controller
 
     			Mail::to($tokenData->email)->send(new PasswordResetEmail($tokenData));
 
-    			return response()->json(['email' => 'A Reset Link has been sent to your Mail!']);
+    			return response()->json(['msg' => 'A Reset Link has been sent to your Mail!']);
     		}
     		else{
-    			return response()->json(['email' => 'Sorry we could not send a link, try again later!']);
+    			return response()->json(['alert' => 'Sorry we could not send a link, try again later!']);
     		}
 	}
 	public function getpassword($token)

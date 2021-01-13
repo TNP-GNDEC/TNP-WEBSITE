@@ -2,16 +2,13 @@ import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
 import Header from "./Header";
 import Footer from "../HomeComponent/SideComponents/Footer";
-import Avatar from '@material-ui/core/Avatar';
+import Notisfication from './Notisfication';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { shadows } from '@material-ui/system';
 import Box from '@material-ui/core/Box';
 
 import intro from '../../../images/2.jpg';
@@ -30,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   loginCard:{
     width: "75%",
     margin: "auto",
-    marginTop: "50px",
+    marginTop: "45px",
     borderRadius: "10px",
     boxShadow: "0px 15px 25px #00000033",
     background: theme.palette.secondary.main,
@@ -70,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    margin: theme.spacing(2),
+    margin: theme.spacing(0),
     padding: theme.spacing(2),
   },
   submit: {
@@ -103,7 +100,19 @@ export default function SignIn(props) {
     username : "",
     password : ""
 })
+  const [errors, setErrors] = useState({});
+  const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
 
+const validate = () => {
+  let temp = {}
+  temp.username = state.username ? "": "This field is required."
+  temp.password = state.password.length>5 ? "": "Min 6 char required."
+  setErrors({
+    ...temp
+  })
+
+  return true
+}
 const handlenameChange = (e) => {
   const name= e.target.name
   const value= e.target.value   
@@ -125,12 +134,16 @@ const handlepasswordChange = (e) => {
 
 const handleFormSubmit= async (event)=>{
     event.preventDefault();
-    
+    if(validate()){}
     axios.post('/api/login', {
       username: state.username,
       password: state.password,
   })
   .then((response) => {
+    console.log(response.data.message);
+    if(response.data.alert){
+      setNotify({isOpen:true, message:response.data.alert, type:'error'})
+    }
     var user=response.data.current_user
     var JWTtoken=response.data.access_token
     localStorage.setItem('token', JWTtoken);
@@ -146,8 +159,10 @@ const handleFormSubmit= async (event)=>{
           props.history.push("/student");
         }
       }
-      if(user.role_id===2)
-      props.history.push("/coordinator")
+      if(user.role_id===2){
+        props.history.push("/coordinator")
+      }
+        
   })
   .catch((error) => {
       console.log(error);
@@ -167,7 +182,8 @@ const handleFormSubmit= async (event)=>{
         <Typography component="h2" variant="h4" className={classes.heading}>
           Sign In
         </Typography>
-        <form onSubmit={(event) => handleFormSubmit(event)} className={classes.form} noValidate>
+        <form onSubmit={(event) => handleFormSubmit(event)} className={classes.form}>
+          <Notisfication notify={notify} setNotify={setNotify} />
           <TextField    
             variant="outlined"
             className={classes.input}
@@ -178,12 +194,12 @@ const handleFormSubmit= async (event)=>{
               }
             }}
             margin="normal"
-            required
             fullWidth
             label="Username"
             name="username"
             defaultValue={state.username}
             onChange={handlenameChange} 
+            {...(errors.username && {error:true, helperText:errors.username})}
           />
           <TextField
             variant="outlined"
@@ -195,7 +211,6 @@ const handleFormSubmit= async (event)=>{
               }
             }}
             margin="normal"
-            required
             fullWidth
             name="password"
             label="Password"
@@ -204,6 +219,7 @@ const handleFormSubmit= async (event)=>{
             autoComplete="current-password"
             defaultValue={state.password}
             onChange={handlepasswordChange} 
+            {...(errors.password && {error:true, helperText:errors.password})}
           />
           <Grid container>
             <Grid item xs>
