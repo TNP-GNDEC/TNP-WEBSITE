@@ -140,6 +140,10 @@ const useStyles = theme => ({
     iconLinks:{
         textDecoration:"none",
         color:"#fff",        
+    },
+    body3:{
+        maxHeight: "150px",
+        overflow: "Hidden",
     }
 });
 
@@ -179,14 +183,16 @@ class Data extends React.Component {
                         </div>
                         <hr />
                         <div className={classes.body}>
-                            <Typography variant="h5" component="h2" className={classes.subheading2}>
-                                { ReactHtmlParser(html) }
-                            </Typography>
-                            <div className={classes.read}>
-                                <Typography variant="h5" component="h2" className={classes.subheading4}>
-                                    READ MORE <AddIcon/>
-                                </Typography>
-                            </div>
+                        <div className = {classes.body3}>
+                        <Typography variant="h5" component="h2" className={classes.subheading2}>
+                            { ReactHtmlParser(html) }
+                        </Typography>
+                        </div>
+                        <div className={classes.read}>
+                        <Link to={`/showPost/${posts.id}`}>
+                            <Button  color="primary" className={classes.readButton} fullWidth>READ MORE <AddIcon/></Button>
+                        </Link>
+                        </div>
                         </div>
                         <hr />
                         <div className={classes.body2}>
@@ -197,6 +203,60 @@ class Data extends React.Component {
                         </div>
                 
                 </Card>
+            )
+        }
+        if(window.location.href === window.origin + `/showPost/${posts.id}`){
+            return (
+                <Card className={classes.root}>
+            
+                    <div className={classes.header}>
+                        <div>
+                            <img src={logo} className={classes.image}/>
+                        </div>
+                        <div className={classes.header2}>
+                            <Typography variant="h4" component="h1" className={classes.title}>
+                                {posts.title}
+                            </Typography>
+                            <div className={classes.subheader}>
+                                <Typography variant="h5" component="h2" className={classes.subheading}>
+                                    <Calender className={classes.icon}/>
+                                    {moment(posts.updated_at).format('LLL')}
+                                </Typography>
+                                <Typography variant="h5" component="h2" className={classes.subheading}>
+                                    <Flag className={classes.icon}/>
+                                    {posts.type} 
+                                </Typography>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div className={classes.body}>
+                        <Typography variant="h5" component="h2" className={classes.subheading2}>
+                            { ReactHtmlParser(html) }
+                        </Typography>
+                    </div>
+                    <hr />
+                    <div className={classes.body2}>
+                        <div className={classes.socialIcons}>
+                            <div className={classes.socialIcon}>
+                              <a classes={classes.iconLinks} href="#"> <Facebook fontSize="large" /> </a>
+                            </div>
+                            <div className={classes.socialIcon2}>
+                              <a classes={classes.iconLinks} href="#"> <Linkedin fontSize="large" /> </a>
+                            </div>
+                            <div className={classes.socialIcon3}>
+                             <a classes={classes.iconLinks} href="#">  <Twitter fontSize="large" /> </a>
+                            </div>
+                        </div>
+                        <div className={classes.Tags}>
+                            <LocalOffer />
+                            <Typography variant="h5" component="h1" className={classes.subheading3}>
+                                 GNDEC TNP
+                            </Typography>
+                        </div>
+                    </div>
+            
+            </Card>
             )
         }
         return(
@@ -224,11 +284,15 @@ class Data extends React.Component {
                     </div>
                     <hr />
                     <div className={classes.body}>
+                        <div className = {classes.body3}>
                         <Typography variant="h5" component="h2" className={classes.subheading2}>
                             { ReactHtmlParser(html) }
                         </Typography>
+                        </div>
                         <div className={classes.read}>
+                        <Link to={`/showPost/${posts.id}`}>
                             <Button  color="primary" className={classes.readButton} fullWidth>READ MORE <AddIcon/></Button>
+                        </Link>
                         </div>
                     </div>
                     <hr />
