@@ -2,10 +2,10 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import ProfileDetails from "./ProfileDetails";
 import ParentDetails from "./ParentsDetails";
 import AcademicDetails from "./AcademicDetails";
+import ContactDetails from "./ContactDetails";
 
 const useStyles = makeStyles(theme => ({
     head: {
@@ -61,6 +61,7 @@ const useStyles = makeStyles(theme => ({
 export default function StepTwo() {
     const classes = useStyles();
 
+    // state for holding inputs from profile form imported as ProfileDetails
     const [profile, setProfile] = React.useState({
         first_name: "",
         last_name: "",
@@ -70,6 +71,7 @@ export default function StepTwo() {
         blood_group: ""
     });
 
+    // state for holding inputs from parent form imported as ParenteDetails
     const [parent, setParent] = React.useState({
         father_name: "",
         father_phone: "",
@@ -79,6 +81,7 @@ export default function StepTwo() {
         mother_occupation: ""
     });
 
+    // state for holding inputs from academics form imported as AcademicDetails
     const [academics, setAcademics] = React.useState({
         univ_roll: "",
         college_roll: "",
@@ -90,6 +93,15 @@ export default function StepTwo() {
         shift: "",
         training_sem: ""
     });
+
+    // state for holding inputs from contact form imported as ContactDetails
+    const [contact, setContact] = React.useState({
+        whatsapp_contact: "",
+        contact: "",
+        re_enter_contact:""
+    });
+
+    // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
         const value = e.target.value;
@@ -118,6 +130,7 @@ export default function StepTwo() {
         }
     };
 
+    // State setter function of parent form sent as props to ParentDetails forms
     const handleParentChangeInput = (e, id) => {
         console.log("I am called for parent");
         const value = e.target.value;
@@ -145,6 +158,8 @@ export default function StepTwo() {
                 break;
         }
     };
+
+    // State setter function of academics form sent as props to AcademicDetails forms
     const handleAcademicsChangeInput = (e, id) => {
         console.log("I am called for academics");
         const value = e.target.value;
@@ -165,16 +180,35 @@ export default function StepTwo() {
                 setAcademics({ ...academics, course: value });
                 break;
             case 6:
-                setacademics({ ...academics, stream: value });
+                setAcademics({ ...academics, stream: value });
                 break;
             case 7:
-                setacademics({ ...academics, section: value });
+                setAcademics({ ...academics, section: value });
                 break;
             case 8:
-                setacademics({ ...academics, shift: value });
+                setAcademics({ ...academics, shift: value });
                 break;
             case 9:
-                setacademics({ ...academics, training_sem: value });
+                setAcademics({ ...academics, training_sem: value });
+                break;
+            default:
+                break;
+        }
+    };
+
+    // State setter function of contact form sent as props to ContactDetails forms
+    const handleContactChangeInput = (e, id) => {
+        console.log("I am called for contact");
+        const value = e.target.value;
+        switch (id) {
+            case 1:
+                setContact({ ...contact, whatsapp_contact: value });
+                break;
+            case 2:
+                setContact({ ...contact, contact : value });
+                break;
+            case 3:
+                setContact({ ...contact, re_enter_contact: value });
                 break;
             default:
                 break;
@@ -187,31 +221,11 @@ export default function StepTwo() {
     React.useEffect(() => {
         console.log("Do something after profile has changed", profile);
     }, [profile]);
-    const renderPersonalFields = () =>
-        fields.map(field => (
-            <>
-                <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    lg={4}
-                    className={classes.textFieldContainer}
-                >
-                    <TextField
-                        className={classes.input}
-                        type={field.type}
-                        id="outlined-basic"
-                        name={field.name}
-                        variant="outlined"
-                        label={field.label}
-                        value={field.value}
-                        onChange={e => {
-                            field.change(e, field.id);
-                        }}
-                    />
-                </Grid>
-            </>
-        ));
+    React.useEffect(() => {
+        console.log("Do something after contact has changed", contact);
+    }, [contact]);
+ 
+
     return (
         <div>
             <Grid container className={classes.container}>
@@ -233,7 +247,7 @@ export default function StepTwo() {
                     </Card>
                 </Grid>
 
-                <Grid item xs={10} className={classes.Cardcontainers}>
+                <Grid item xs={10}  className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
                         <AcademicDetails
                             academics={academics}
@@ -241,6 +255,17 @@ export default function StepTwo() {
                         />
                     </Card>
                 </Grid>
+
+
+                <Grid item xs={10} lg={10} className={classes.Cardcontainers}>
+                    <Card className={classes.cardStyles}>
+                        <ContactDetails
+                            contact={contact}
+                            handleInputChange={handleContactChangeInput}
+                        />
+                    </Card>
+                </Grid>
+
             </Grid>
         </div>
     );
