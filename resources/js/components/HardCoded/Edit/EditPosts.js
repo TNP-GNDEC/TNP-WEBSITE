@@ -63,7 +63,6 @@ class EditPosts extends React.Component {
                             </div>
                             <div className="form-group">
                                 <button type="submit" className="primary">
-                                  
                                     Edit Post
                                 </button>
                             </div>

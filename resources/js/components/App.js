@@ -25,6 +25,8 @@ import studentredirect from "./RedirectPages/Student/Student";
 import ForgetPass from "./Auth/ForgotPassword";
 import ResetPass from "./Auth/ResetPass";
 
+import ShowPost from "./HardCoded/view/ShowPost";
+
 function App(){
     return(
         <Router>
@@ -59,6 +61,9 @@ function App(){
                     {/* Reset Password */}
                     <Route path="/forgetPassword" exact component={ForgetPass} />
                     <Route path="/resetPassword/:token" exact component={ResetPass} />
+
+                    {/* viewing Post after Read more */}
+                    <Route path="/showPost/:id" exact component={ShowPost}></Route>
                     
                 </Switch>
             </>
