@@ -15,7 +15,7 @@ import avatar from "../../../../images/avatar11.jpeg";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import ClearIcon from "@material-ui/icons/Clear";
-
+import Uploadcsv from './Uploadcsv';
 
 const drawerWidth = 240;
 
@@ -143,7 +143,7 @@ function Sidebar(props) {
 
                         <Grid item xs={12}>
                             <Grid container spacing={0}>
-                                <Grid
+                            <Grid
                                     item
                                     className={classes.sidebarProfileGrids}
                                     xs={12}
@@ -167,13 +167,18 @@ function Sidebar(props) {
                                     xs={12}
                                 >
                                     <h6>Admin</h6>
+                                    
                                 </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
-                    <div></div>
+                    <div>
+                    </div>
                 </div>
                 <Divider />
+                <div>
+                <Uploadcsv/>
+            </div>
                 <List>
                     {renderListItem()}
                 </List>
