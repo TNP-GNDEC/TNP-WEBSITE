@@ -65,7 +65,7 @@ Route::get('/email', function () {
     return view('welcome');
 });
 
-// Route::get('/resetPassword', function () {
+// Route::get('/resetPassword/:token', function () {
 //     return view('welcome');
 // });
 Route::get('/forgetPassword', function () {

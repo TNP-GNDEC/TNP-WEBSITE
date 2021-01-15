@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Navbar from "../HomeComponent/SideComponents/Navbar";
 import Posts from "../HomeComponent/PostComponents/Posts";
 import RightBar from "../HomeComponent/RightBar/RightBar";
+import RightBarSticky from "../HomeComponent/RightBar/RightBarSticky";
 import LeftBar from "../HomeComponent/LeftBar/LeftBar";
 import Scroll from "../HomeComponent/SideComponents/scroll";
 
@@ -24,6 +25,13 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     backgroundColor: "transparent",
     boxShadow: "none"
+  },
+  paper2: {
+    padding: theme.spacing(1),
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    position: "sticky",
+    top: "60px"
   },
   left:{
     marginTop: "40px",
@@ -67,6 +75,9 @@ export default function Home() {
           <Grid item md={3} className={classes.right} display={{ xs: 'none', md: 'block' }}>
             <Paper className={classes.paper}>
               <RightBar />
+            </Paper>
+            <Paper className={classes.paper2}>
+              <RightBarSticky />
             </Paper>
           </Grid>
         </Grid>

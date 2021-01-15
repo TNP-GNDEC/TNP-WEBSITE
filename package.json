@@ -38,6 +38,7 @@
         "@material-ui/icons": "^4.11.2",
         "@material-ui/lab": "^4.0.0-alpha.57",
         "moment": "^2.29.1",
+        "papaparse": "^5.3.0",
         "react-html-parser": "^2.0.2",
         "react-papaparse": "^3.11.1",
         "react-router-dom": "^5.2.0",
