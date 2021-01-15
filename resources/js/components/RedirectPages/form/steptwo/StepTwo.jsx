@@ -76,7 +76,6 @@ export default function StepTwo() {
     const [parent, setParent] = React.useState({
         father_name: "",
         father_phone: "",
-        father_occupation: "",
         mother_name: "",
         mother_phone: "",
         mother_occupation: ""
@@ -216,6 +215,25 @@ export default function StepTwo() {
         }
     };
 
+    const handleFormSubmit = (e) => {
+        event.preventDefault();        
+        const id=localStorage.getItem("userid")
+        axios.post(`/api/personaldetails/${id}`, {
+          profile: profile,
+          academics: academics,
+          contact: contact,
+    
+      })
+      .then((response) => {
+        var user=response.data
+        console.log(response.data)
+          
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+      }
+
     React.useEffect(() => {
         console.log("Do something after profile has changed", academics);
     }, [academics]);
@@ -228,7 +246,8 @@ export default function StepTwo() {
 
     return (
         <div>
-            <form>
+            <form
+            onSubmit={(event) => handleFormSubmit(event)}>
                 <Grid container className={classes.container}>
                     <Grid item xs={10} className={classes.Cardcontainers}>
                         <Card className={classes.cardStyles}>
@@ -260,7 +279,7 @@ export default function StepTwo() {
                     <Grid
                         item
                         xs={10}
-                        lg={10}
+                        
                         className={classes.Cardcontainers}
                     >
                         <Card className={classes.cardStyles}>
@@ -271,7 +290,7 @@ export default function StepTwo() {
                         </Card>
                     </Grid>
                 </Grid>
-                <Button variant="contained" color="primary">
+                <Button type="submit" variant="contained" color="primary">
                     SUBMIT
                 </Button>
             </form>
