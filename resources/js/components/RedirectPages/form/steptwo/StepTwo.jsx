@@ -98,7 +98,7 @@ export default function StepTwo() {
     const [contact, setContact] = React.useState({
         whatsapp_contact: "",
         contact: "",
-        re_enter_contact:""
+        re_enter_contact: ""
     });
 
     // State setter function of Profile form sent as props to ProfileDetails forms
@@ -205,7 +205,7 @@ export default function StepTwo() {
                 setContact({ ...contact, whatsapp_contact: value });
                 break;
             case 2:
-                setContact({ ...contact, contact : value });
+                setContact({ ...contact, contact: value });
                 break;
             case 3:
                 setContact({ ...contact, re_enter_contact: value });
@@ -224,49 +224,56 @@ export default function StepTwo() {
     React.useEffect(() => {
         console.log("Do something after contact has changed", contact);
     }, [contact]);
- 
 
     return (
         <div>
-            <Grid container className={classes.container}>
-                <Grid item xs={10} className={classes.Cardcontainers}>
-                    <Card className={classes.cardStyles}>
-                        <ProfileDetails
-                            Profile={profile}
-                            handleInputChange={handleProfileChangeInput}
-                        />
-                    </Card>
+            <form>
+                <Grid container className={classes.container}>
+                    <Grid item xs={10} className={classes.Cardcontainers}>
+                        <Card className={classes.cardStyles}>
+                            <ProfileDetails
+                                Profile={profile}
+                                handleInputChange={handleProfileChangeInput}
+                            />
+                        </Card>
+                    </Grid>
+
+                    <Grid item xs={10} className={classes.Cardcontainers}>
+                        <Card className={classes.cardStyles}>
+                            <ParentDetails
+                                parent={parent}
+                                handleInputChange={handleParentChangeInput}
+                            />
+                        </Card>
+                    </Grid>
+
+                    <Grid item xs={10} className={classes.Cardcontainers}>
+                        <Card className={classes.cardStyles}>
+                            <AcademicDetails
+                                academics={academics}
+                                handleInputChange={handleAcademicsChangeInput}
+                            />
+                        </Card>
+                    </Grid>
+
+                    <Grid
+                        item
+                        xs={10}
+                        lg={10}
+                        className={classes.Cardcontainers}
+                    >
+                        <Card className={classes.cardStyles}>
+                            <ContactDetails
+                                contact={contact}
+                                handleInputChange={handleContactChangeInput}
+                            />
+                        </Card>
+                    </Grid>
                 </Grid>
-
-                <Grid item xs={10} className={classes.Cardcontainers}>
-                    <Card className={classes.cardStyles}>
-                        <ParentDetails
-                            parent={parent}
-                            handleInputChange={handleParentChangeInput}
-                        />
-                    </Card>
-                </Grid>
-
-                <Grid item xs={10}  className={classes.Cardcontainers}>
-                    <Card className={classes.cardStyles}>
-                        <AcademicDetails
-                            academics={academics}
-                            handleInputChange={handleAcademicsChangeInput}
-                        />
-                    </Card>
-                </Grid>
-
-
-                <Grid item xs={10} lg={10} className={classes.Cardcontainers}>
-                    <Card className={classes.cardStyles}>
-                        <ContactDetails
-                            contact={contact}
-                            handleInputChange={handleContactChangeInput}
-                        />
-                    </Card>
-                </Grid>
-
-            </Grid>
+                <Button variant="contained" color="primary">
+                    SUBMIT
+                </Button>
+            </form>
         </div>
     );
 }

@@ -199,25 +199,20 @@ export default function Details(props) {
             value: props.academics.training_sem,
             select: "true",
             options: [
+
                 {
-                    value: "USD",
-                    label: "one"
+                    value: "7",
+                    label: "SEVEN"
                 },
                 {
-                    value: "EUR",
-                    label: "two"
+                    value: "8",
+                    label: "EIGHT"
                 },
-                {
-                    value: "BTC",
-                    label: "three"
-                },
-                {
-                    value: "JPY",
-                    label: "four"
-                }
+
             ]
         }
     ];
+    
     // Rendering the Input fields
     const renderFields = () =>
         fields.map(field => (
