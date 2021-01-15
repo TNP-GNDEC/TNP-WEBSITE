@@ -31,7 +31,7 @@ class Posts extends React.Component {
             return <Loading />
         }
         return(
-            <div>
+                <div>
                     {this.state.posts.map(posts => (
                         <Data posts = {posts} key={posts.id} deletePost = {this.deletePost}/>
                     ))}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import {Skeleton} from '@material-ui/lab';
 
 
 const useStyles = makeStyles((theme) =>({
@@ -17,19 +18,6 @@ const useStyles = makeStyles((theme) =>({
       width: "50px",
       height: "50px",
       background: "#656871",
-      borderRadius: "50%",
-      position: "relative",
-      overflow: "hidden",
-      '&::before':{
-          position: "absolute",
-          height: "100%",
-          width: "100%",
-          content: "",
-          backgroundImage: "linear-gradient(to-right,#656871 0%,#888b94 20%,#656871 40%,#656871 100%)",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "650px 600px",
-          animation: "shimmer 1s linear infinite",
-      }
   },
   details:{
       marginLeft: "20px",
@@ -41,16 +29,6 @@ const useStyles = makeStyles((theme) =>({
       overflow: "hidden",
       width: "500px",
       height: "24px",
-      '&::before':{
-        position: "absolute",
-        height: "100%",
-        width: "100%",
-        content: "",
-        backgroundImage: "linear-gradient(to-right,#656871 0%,#888b94 20%,#656871 40%,#656871 100%)",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "450px 400px",
-        animation: "shimmer 1s linear infinite",
-    }
   },
   about:{
     background: "#656871",
@@ -60,16 +38,6 @@ const useStyles = makeStyles((theme) =>({
       width: "500px",
       height: "12px",
       marginTop: "10px",
-      '&::before':{
-        position: "absolute",
-        height: "100%",
-        width: "100%",
-        content: "",
-        backgroundImage: "linear-gradient(to-right,#656871 0%,#888b94 20%,#656871 40%,#656871 100%)",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "450px 400px",
-        animation: "shimmer 1s linear infinite",
-    }
 },
 description:{
     margin: "25px 0",
@@ -81,16 +49,6 @@ line:{
     width: "100%",
     height: "14px",
     margin: "10px 0",
-    '&::before':{
-        position: "absolute",
-        height: "100%",
-        width: "100%",
-        content: "",
-        backgroundImage: "linear-gradient(to-right,#656871 0%,#888b94 20%,#656871 40%,#656871 100%)",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "450px 400px",
-        animation: "shimmer 1s linear infinite",
-    }
 },
 line2:{
     background: "#656871",
@@ -110,16 +68,6 @@ btn1:{
     width: "200px",
     height: "35px",
     marginLeft: "0px",
-    '&::before':{
-        position: "absolute",
-        height: "100%",
-        width: "100%",
-        content: "",
-        backgroundImage: "linear-gradient(to-right,#656871 0%,#888b94 20%,#656871 40%,#656871 100%)",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "450px 400px",
-        animation: "shimmer 1s linear infinite",
-    }
 },
 btn2:{
     background: "#656871",
@@ -128,16 +76,6 @@ btn2:{
     width: "200px",
     height: "35px",
     marginLeft: "150px",
-},
-"@global": {
-    "@keyframes shimmer":{
-        "0%":{
-            backgroundPosition: "-450px 0",
-        },
-        "100%":{
-            backgroundPosition: "450px 0",
-        }
-    }
 },
 
 }));
@@ -148,26 +86,26 @@ export default function LoadingPost() {
     
       <div className={classes.card}>
         <div className={classes.header}>
-            <div className={classes.image}></div>
+            <Skeleton variant="circle" className={classes.image}></Skeleton>
             <div className={classes.details}>
-                <span className={classes.name}></span>
-                <span className={classes.about}></span>
+                <Skeleton className={classes.name}></Skeleton>
+                <Skeleton className={classes.about}></Skeleton>
             </div>
         </div>
         <hr />
         <div className={classes.description}>
-                <div className={classes.line}></div>
-                <div className={classes.line}></div>
-                <div className={classes.line}></div>
-                <div className={classes.line}></div>
-                <div className={classes.line}></div>
-                <div className={classes.line}></div>
-                <div className={classes.line2}></div>
+                <Skeleton className={classes.line}></Skeleton>
+                <Skeleton className={classes.line}></Skeleton>
+                <Skeleton className={classes.line}></Skeleton>
+                <Skeleton className={classes.line}></Skeleton>
+                <Skeleton className={classes.line}></Skeleton>
+                <Skeleton className={classes.line}></Skeleton>
+                <Skeleton className={classes.line2}></Skeleton>
         </div>
         <hr />
         <div className={classes.footer}>
-                <div className={classes.btn1}></div>
-                <div className={classes.btn2}></div>
+                <Skeleton className={classes.btn1}></Skeleton>
+                <Skeleton className={classes.btn2}></Skeleton>
         </div>
       </div>
     

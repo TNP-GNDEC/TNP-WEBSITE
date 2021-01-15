@@ -9,6 +9,7 @@ import StepOne from "../components/RedirectPages/form/StepOne";
 import StepTwo from "./RedirectPages/form/steptwo/StepTwo";
 import StepThree from "../components/RedirectPages/form/StepThree";
 import StepFour from "../components/RedirectPages/form/StepFour";
+import Header from "../components/RedirectPages/form/Header"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -103,7 +104,9 @@ const useStyles = makeStyles((theme) => ({
     };
   
     return (
+      
       <div className={classes.root}>
+        <Header />
         <Stepper nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label}>
