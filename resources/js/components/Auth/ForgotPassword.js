@@ -1,7 +1,8 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import Header from "./Header";
-import Avatar from '@material-ui/core/Avatar';
+import Footer from '../HomeComponent/SideComponents/Footer';
+import Notisfication from './Notisfication';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -11,26 +12,53 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 
+import intro from '../../../images/3.jpg';
+
 const useStyles = makeStyles((theme) => ({
   root:{
-    background: theme.palette.secondary.main
+    background: theme.palette.primary.light,
+    minHeight: "100vh",
   },
   box: {
     marginTop: theme.spacing(0)
   },
+  container:{
+    width: "100%"
+  },
+  loginCard:{
+    width: "75%",
+    margin: "auto",
+    marginTop: "45px",
+    borderRadius: "10px",
+    boxShadow: "0px 15px 25px #00000033",
+    background: theme.palette.secondary.main,
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
+  hero:{
+    width: "50%",
+    marginTop: "20px",
+    marginBottom: "20px",
+    ['@media (max-width:960px)']: {
+      display: "none",
+  },
+  },
+  pic:{
+    width: "100%",
+    borderRadius: "3%",
+  },
   paper: {
+    width: "40%",
     boxShadow: "none",
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: theme.palette.secondary.main,
+    ['@media (max-width:960px)']: {
+      width: "100%",
   },
-  avatar: {
-    margin: theme.spacing(1),
-    width: "100px",
-    height: "100px",
-    backgroundColor: theme.palette.primary.main,
   },
   icon:{
     fontSize: "90px",
@@ -40,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    margin: theme.spacing(2),
+    margin: theme.spacing(0),
     padding: theme.spacing(2),
   },
   submit: {
@@ -56,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
     
   },
   notchedOutline: {
-    borderColor: theme.palette.primary.main
+    borderColor: "#757575",
   },
   focused: {
     borderColor: theme.palette.secondary.main,
@@ -72,6 +100,18 @@ export default function Email() {
   const [state , setState] = useState({
     email: ""
 })
+const [errors, setErrors] = useState({});
+  const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
+
+const validate = () => {
+  let temp = {}
+  temp.email = state.email ? "": "This field is required."
+  setErrors({
+    ...temp
+  })
+
+  return true
+}
 
 const handleEmailChange = (e) => {
   const name= e.target.name
@@ -84,13 +124,17 @@ const handleEmailChange = (e) => {
 
 const handleFormSubmit= async (event)=>{
     event.preventDefault();
-    
+    if(validate()){}
     axios.post('/forget-password', {
       email: state.email,
   })
   .then((response) => {
-    var user=response.data.email
-    console.log(user);
+    if(response.data.alert){
+      setNotify({isOpen:true, message:response.data.alert, type:'error'})
+    }
+    if(response.data.msg){
+      setNotify({isOpen:true, message:response.data.msg, type:'success'})
+    }
   })
   .catch((error) => {
       console.log(error);
@@ -99,18 +143,18 @@ const handleFormSubmit= async (event)=>{
   return (
     <div className={classes.root}>
     <Header />
-    <Container className={classes.container} component="main" maxWidth="xs">
+    <Container className={classes.container}>
       <CssBaseline />
-      <Box boxShadow={2} className={classes.paper}>
-        <div className={classes.box}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon className={classes.icon}/>
-        </Avatar>
+      <div className={classes.loginCard}>
+        <div className={classes.hero}>
+          <img src={intro} className={classes.pic} />
         </div>
+      <Box boxShadow={2} className={classes.paper}>
         <Typography component="h2" variant="h4" className={classes.heading}>
           Forget Password
         </Typography>
         <form onSubmit={(event) => handleFormSubmit(event)} className={classes.form}>
+        <Notisfication notify={notify} setNotify={setNotify} />
           <TextField    
             variant="outlined"
             InputProps={{
@@ -120,12 +164,12 @@ const handleFormSubmit= async (event)=>{
               }
             }}
             margin="normal"
-            required
             fullWidth
             label="Email"
             name="email"
             defaultValue={state.email}
             onChange={handleEmailChange}
+            {...(errors.email && {error:true, helperText:errors.email})}
           />
           <Button
             type="submit"
@@ -137,7 +181,9 @@ const handleFormSubmit= async (event)=>{
           </Button>
         </form>
       </Box>
+      </div>
     </Container>
+    <Footer />
     </div>
   );
 }

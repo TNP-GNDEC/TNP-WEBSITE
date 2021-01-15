@@ -83,3 +83,6 @@ Route::post('/forget-password', 'ForgotPasswordController@postEmail');
 Route::get('/resetPassword/{token}', 'ForgotPasswordController@getPassword');
 Route::post('/reset-password', 'ForgotPasswordController@resetPassword');
 
+Route::get('/showPost/:id', function () {
+    return view('welcome');
+});
