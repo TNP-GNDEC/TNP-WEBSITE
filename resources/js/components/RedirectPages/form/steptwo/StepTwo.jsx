@@ -6,6 +6,7 @@ import ProfileDetails from "./ProfileDetails";
 import ParentDetails from "./ParentsDetails";
 import AcademicDetails from "./AcademicDetails";
 import ContactDetails from "./ContactDetails";
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
     head: {

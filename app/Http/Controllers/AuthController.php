@@ -13,52 +13,62 @@ use JWTAuth;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function registerStudent(Request $request)
     {
-        $request->validate([
-            'username' => 'required', 
-            'password' => 'required|min:6'
-        ]);
+        $users= $request->data;
+        $data=[];
+        foreach($users["data"] as $user){
+            $user['uuid']=(string) Str::uuid();
+            $user['role_id']=1;
+            $user['email']="";
+            $user['username']=$user['urn'];
+            $user['password']=bcrypt($user['crn']);
+            $newUser = User::create($user);
+            if($newUser){ 
+                $form_user= formStatus::create([
+                'user_id' => $newUser->id
 
-        $user = User::create([
-            'username' => $request->username, 
+                ]);
+                $form_step_two = StepTwo::create([
+                    'user_id' => $newUser->id,
+                    'urn' => $user['urn'],
+                    'crn' => $user['crn']
+                ]);
+                }
+
+            }
+        
+        return response()->json(["message"=>"data added successfully"]);
+    }
+
+    public function registerAdmin(Request $request){
+
+        $user=$request->data;
+        $newAdmin=User::create([
+            'role_id'=> 2,
+            'username'=> $request->username,
             'password' => bcrypt($request->password),
             'email' => $request->email,
-            'role_id'=>$request->role_id,
-            'uuid' => (string) Str::uuid()
-
+            'uuid' => (String) Str::uuid()
         ]);
-        if($request->role_id=="1"){
-            if($user){
-            $form_user= formStatus::create([
-                'user_id' => $user->id
-                
-            ]);
-            $form_step_two = StepTwo::create([
-                'user_id' => $user->id,
-                'urn' => $request->username,
-                'crn' => $request->password
-            ]);
-            }
-        }
-        return response()->json($user);
+        return response()->json(["message"=>"admin added successfully"]);
     }
 
     public function login(Request $request){
     $request->validate([
-        'username' => 'required', 
+        'username' => 'required',
         'password' => 'required'
     ]);
     $token = JWTAuth::attempt(['username'=>$request->username, 'password'=>$request->password]);
 
     if (! $token ) {
-        return response()->json(['error' => 'invalid_credentials'], 401);
+        return response()->json(['alert' => 'invalid credentials']);
     }
 
     $currentUser = Auth::user();
 
-    return $this->respondWithToken($token,$currentUser);    
-    
+    return $this->respondWithToken($token,$currentUser);
+
 }
 public function logout()
 {
