@@ -6,7 +6,7 @@ import Academic from "./Academic";
 import Student from "./Student";
 
 export default function RightBar(){
-    const classes = useStyles();
+    
     return(
         <div>
             <Office />
