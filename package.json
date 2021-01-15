@@ -38,6 +38,7 @@
         "@material-ui/icons": "^4.11.2",
         "moment": "^2.29.1",
         "react-html-parser": "^2.0.2",
+        "react-papaparse": "^3.11.1",
         "react-router-dom": "^5.2.0",
         "react-swipeable-views": "^0.13.9"
     }
