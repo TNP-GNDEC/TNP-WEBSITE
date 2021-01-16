@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -179,29 +180,17 @@ export default function PrimarySearchAppBar() {
       <MenuItem>
         <IconButton color="inherit">
           <Badge badgeContent color="secondary">
-            <a>Login</a>
+            <Link to="/about">About</Link>
           </Badge>
         </IconButton>
         
       </MenuItem>
       <MenuItem>
         <IconButton  color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <a>About</a>
+          <Badge color="secondary">
+            <Link to="/login">Login</Link>
           </Badge>
         </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Login</p>
       </MenuItem>
     </Menu>
   );
@@ -241,16 +230,20 @@ export default function PrimarySearchAppBar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton color="inherit">
+              <Link to="/about"  style={{textDecoration: 'none', color: '#ffffff'}}>
                 <div className={classes.box}>
                   <About />
-                  <a href="/about" className={classes.link}><h5>About</h5></a>
+                  <h5 className={classes.link}>About</h5>
                 </div>
+                </Link>
             </IconButton>
             <IconButton color="inherit">
+              <Link to="/login" style={{textDecoration: 'none', color: '#ffffff'}}>
               <div className={classes.box}>
                 <Login />
-                <a href="/login" className={classes.link}><h5>Login</h5></a>
+                <h5 className={classes.link}>Login</h5>
               </div>
+              </Link>
             </IconButton>
             {/* <IconButton
               edge="end"

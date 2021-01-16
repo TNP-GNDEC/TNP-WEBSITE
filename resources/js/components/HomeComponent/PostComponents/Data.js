@@ -37,8 +37,11 @@ const useStyles = theme => ({
     title: {
         fontSize: "26px",
         textTransform: "uppercase",
-        wordBreak: "break-all",
-        color: theme.palette.primary.dark
+        wordWarp: "word-break",
+        color: theme.palette.primary.dark,
+        '&:hover':{
+            color: theme.palette.primary.main
+        }
     },
     subheader: {
         display: "flex",
@@ -76,12 +79,19 @@ const useStyles = theme => ({
         alignItems: "center",
         padding:"30px 0px 30px 0px"
     },
+    readLink:{
+        width: "100%",
+        textDecoration: "none"
+    },
     readButton:{
-        backgroundColor: "#0077b51a",
+        backgroundColor: "#7575751a",
         padding:"10px 0px",
-
+        fontSize: "16px",
+        color: "#757575",
+        textDecoration: "none",
         "&:hover":{
-            backgroundColor:theme.palette.primary.light
+            backgroundColor: theme.palette.primary.light,
+            color: theme.palette.primary.main
         }
     },
     body2:{
@@ -115,7 +125,7 @@ const useStyles = theme => ({
     },
     socialIcon2: {
         borderRadius: "5px",
-        backgroundColor: "#3b59981a ",
+        backgroundColor: "#0077b51a ",
         // border: "1px solid #0077b5",
         // boxShadow: "0px 15px 25px #0077b51a",
         color: "#0077b5",
@@ -128,7 +138,7 @@ const useStyles = theme => ({
     },
     socialIcon3: {
         borderRadius: "5px",
-        backgroundColor: "#3b59981a",
+        backgroundColor: "#00acee1a",
         color: "#00acee ",
         marginRight: "8px",
         width: "40px",
@@ -144,7 +154,7 @@ const useStyles = theme => ({
     body3:{
         maxHeight: "150px",
         overflow: "Hidden",
-    }
+    },
 });
 
 
@@ -167,7 +177,7 @@ class Data extends React.Component {
                             </div>
                             <div className={classes.header2}>
                                 <Typography variant="h4" component="h1" className={classes.title}>
-                                    {posts.title}
+                                   <Link to={`/showPost/${posts.id}`} style={{textDecoration: 'none'}}>{posts.title}</Link>
                                 </Typography>
                                 <div className={classes.subheader}>
                                     <Typography variant="h5" component="h2" className={classes.subheading}>
@@ -189,8 +199,8 @@ class Data extends React.Component {
                         </Typography>
                         </div>
                         <div className={classes.read}>
-                        <Link to={`/showPost/${posts.id}`}>
-                            <Button  color="primary" className={classes.readButton} fullWidth>READ MORE <AddIcon/></Button>
+                        <Link to={`/showPost/${posts.id}`} style={{textDecoration: 'none'}} className={classes.readLink}>
+                            <Button className={classes.readButton} fullWidth>READ MORE <AddIcon/></Button>
                         </Link>
                         </div>
                         </div>
@@ -239,13 +249,13 @@ class Data extends React.Component {
                     <div className={classes.body2}>
                         <div className={classes.socialIcons}>
                             <div className={classes.socialIcon}>
-                              <a classes={classes.iconLinks} href="#"> <Facebook fontSize="large" /> </a>
+                              <a classes={classes.iconLinks} href="#"> <Facebook fontSize="medium" /> </a>
                             </div>
                             <div className={classes.socialIcon2}>
-                              <a classes={classes.iconLinks} href="#"> <Linkedin fontSize="large" /> </a>
+                              <a classes={classes.iconLinks} href="#"> <Linkedin fontSize="medium" /> </a>
                             </div>
                             <div className={classes.socialIcon3}>
-                             <a classes={classes.iconLinks} href="#">  <Twitter fontSize="large" /> </a>
+                             <a classes={classes.iconLinks} href="#">  <Twitter fontSize="medium" /> </a>
                             </div>
                         </div>
                         <div className={classes.Tags}>
@@ -268,7 +278,7 @@ class Data extends React.Component {
                         </div>
                         <div className={classes.header2}>
                             <Typography variant="h4" component="h1" className={classes.title}>
-                                {posts.title}
+                               <Link to={`/showPost/${posts.id}`} style={{textDecoration: 'none', color: "#193b68"}}>{posts.title}</Link>
                             </Typography>
                             <div className={classes.subheader}>
                                 <Typography variant="h5" component="h2" className={classes.subheading}>
@@ -290,8 +300,8 @@ class Data extends React.Component {
                         </Typography>
                         </div>
                         <div className={classes.read}>
-                        <Link to={`/showPost/${posts.id}`}>
-                            <Button  color="primary" className={classes.readButton} fullWidth>READ MORE <AddIcon/></Button>
+                        <Link to={`/showPost/${posts.id}`} style={{textDecoration: 'none'}} className={classes.readLink}>
+                            <Button className={classes.readButton} fullWidth>READ MORE <AddIcon/></Button>
                         </Link>
                         </div>
                     </div>
@@ -299,13 +309,13 @@ class Data extends React.Component {
                     <div className={classes.body2}>
                         <div className={classes.socialIcons}>
                             <div className={classes.socialIcon}>
-                              <a classes={classes.iconLinks} href="#"> <Facebook fontSize="large" /> </a>
+                              <a classes={classes.iconLinks} href="#"> <Facebook fontSize="medium" /> </a>
                             </div>
                             <div className={classes.socialIcon2}>
-                              <a classes={classes.iconLinks} href="#"> <Linkedin fontSize="large" /> </a>
+                              <a classes={classes.iconLinks} href="#"> <Linkedin fontSize="medium" /> </a>
                             </div>
                             <div className={classes.socialIcon3}>
-                             <a classes={classes.iconLinks} href="#">  <Twitter fontSize="large" /> </a>
+                             <a classes={classes.iconLinks} href="#">  <Twitter fontSize="medium" /> </a>
                             </div>
                         </div>
                         <div className={classes.Tags}>

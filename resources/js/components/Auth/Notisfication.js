@@ -15,11 +15,13 @@ export default function Notisfication(props){
     const handleClose = (event, reason) =>{
         setNotify({
             ...notify,
-            isOpen:false})
+            isOpen:false,
+            type: ""
+        })
     }
 
     return (
-            <Alert severity={notify.type} open={notify.isOpen} autoHideDuration={3000}>
+            <Alert severity={notify.type} open={notify.isOpen} autohideduration={3000}>
                 {notify.message}
                 <div className={classes.close} onClose={handleClose}></div>
             </Alert>

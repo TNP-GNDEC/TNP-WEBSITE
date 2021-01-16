@@ -140,7 +140,6 @@ const handleFormSubmit= async (event)=>{
       password: state.password,
   })
   .then((response) => {
-    console.log(response.data.message);
     if(response.data.alert){
       setNotify({isOpen:true, message:response.data.alert, type:'error'})
     }
