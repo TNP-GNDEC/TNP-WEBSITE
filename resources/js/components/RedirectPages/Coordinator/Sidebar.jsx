@@ -15,7 +15,7 @@ import avatar from "../../../../images/avatar11.jpeg";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import ClearIcon from "@material-ui/icons/Clear";
-import Uploadcsv from './Uploadcsv';
+import AddIcon from '@material-ui/icons/Add';
 
 const drawerWidth = 240;
 
@@ -92,6 +92,7 @@ const listItems = [
     { id: 4, name: "Users", iconName: <DescriptionIcon /> },
     { id: 5, name: "Posts", iconName: <DescriptionIcon /> },
     { id: 6, name: "Notice Maker", iconName: <PostAddIcon /> },
+    { id: 7, name: "Upload CSV", iconName: <AddIcon /> },
 ];
 
 
@@ -177,7 +178,6 @@ function Sidebar(props) {
                 </div>
                 <Divider />
                 <div>
-                <Uploadcsv/>
             </div>
                 <List>
                     {renderListItem()}
