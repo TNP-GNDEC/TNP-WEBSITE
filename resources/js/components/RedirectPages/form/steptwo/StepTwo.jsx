@@ -2,9 +2,12 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import ProfileDetails from './ProfileDetails'
-import ParentDetails from './ParentsDetails'
+import ProfileDetails from "./ProfileDetails";
+import ParentDetails from "./ParentsDetails";
+import AcademicDetails from "./AcademicDetails";
+import ContactDetails from "./ContactDetails";
+import Button from '@material-ui/core/Button';
+
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -59,6 +62,7 @@ const useStyles = makeStyles(theme => ({
 export default function StepTwo() {
     const classes = useStyles();
 
+    // state for holding inputs from profile form imported as ProfileDetails
     const [profile, setProfile] = React.useState({
         first_name: "",
         last_name: "",
@@ -68,15 +72,36 @@ export default function StepTwo() {
         blood_group: ""
     });
 
+    // state for holding inputs from parent form imported as ParenteDetails
     const [parent, setParent] = React.useState({
         father_name: "",
         father_phone: "",
-        father_occupation: "",
         mother_name: "",
         mother_phone: "",
         mother_occupation: ""
     });
 
+    // state for holding inputs from academics form imported as AcademicDetails
+    const [academics, setAcademics] = React.useState({
+        univ_roll: "",
+        college_roll: "",
+        category: "",
+        batch: "",
+        course: "",
+        stream: "",
+        section: "",
+        shift: "",
+        training_sem: ""
+    });
+
+    // state for holding inputs from contact form imported as ContactDetails
+    const [contact, setContact] = React.useState({
+        whatsapp_contact: "",
+        contact: "",
+        re_enter_contact: ""
+    });
+
+    // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
         const value = e.target.value;
@@ -105,6 +130,7 @@ export default function StepTwo() {
         }
     };
 
+    // State setter function of parent form sent as props to ParentDetails forms
     const handleParentChangeInput = (e, id) => {
         console.log("I am called for parent");
         const value = e.target.value;
@@ -125,7 +151,7 @@ export default function StepTwo() {
                 setParent({ ...parent, mother_phone: value });
                 break;
             case 6:
-                setParent({ ...parent, mother_occupation: value });
+                setParent({ ...academics, mother_occupation: value });
                 break;
 
             default:
@@ -133,57 +159,141 @@ export default function StepTwo() {
         }
     };
 
+    // State setter function of academics form sent as props to AcademicDetails forms
+    const handleAcademicsChangeInput = (e, id) => {
+        console.log("I am called for academics");
+        const value = e.target.value;
+        switch (id) {
+            case 1:
+                setAcademics({ ...academics, univ_roll: value });
+                break;
+            case 2:
+                setAcademics({ ...academics, college_roll: value });
+                break;
+            case 3:
+                setAcademics({ ...academics, category: value });
+                break;
+            case 4:
+                setAcademics({ ...academics, batch: value });
+                break;
+            case 5:
+                setAcademics({ ...academics, course: value });
+                break;
+            case 6:
+                setAcademics({ ...academics, stream: value });
+                break;
+            case 7:
+                setAcademics({ ...academics, section: value });
+                break;
+            case 8:
+                setAcademics({ ...academics, shift: value });
+                break;
+            case 9:
+                setAcademics({ ...academics, training_sem: value });
+                break;
+            default:
+                break;
+        }
+    };
+
+    // State setter function of contact form sent as props to ContactDetails forms
+    const handleContactChangeInput = (e, id) => {
+        console.log("I am called for contact");
+        const value = e.target.value;
+        switch (id) {
+            case 1:
+                setContact({ ...contact, whatsapp_contact: value });
+                break;
+            case 2:
+                setContact({ ...contact, contact: value });
+                break;
+            case 3:
+                setContact({ ...contact, re_enter_contact: value });
+                break;
+            default:
+                break;
+        }
+    };
+
+    const handleFormSubmit = (e) => {
+        event.preventDefault();        
+        const id=localStorage.getItem("userid")
+        axios.post(`/api/personaldetails/${id}`, {
+          profile: profile,
+          academics: academics,
+          contact: contact,
+    
+      })
+      .then((response) => {
+        var user=response.data
+        console.log(response.data)
+          
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+      }
+
     React.useEffect(() => {
-        console.log("Do something after profile has changed", parent);
-    }, [parent]);
+        console.log("Do something after profile has changed", academics);
+    }, [academics]);
     React.useEffect(() => {
         console.log("Do something after profile has changed", profile);
     }, [profile]);
-    const renderPersonalFields = () =>
-        fields.map(field => (
-            <>
-                <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    lg={4}
-                    className={classes.textFieldContainer}
-                >
-                    <TextField
-                        className={classes.input}
-                        type={field.type}
-                        id="outlined-basic"
-                        name={field.name}
-                        variant="outlined"
-                        label={field.label}
-                        value={field.value}
-                        onChange={e => {
-                            field.change(e, field.id);
-                        }}
-                    />
-                </Grid>
-            </>
-        ));
+    React.useEffect(() => {
+        console.log("Do something after contact has changed", contact);
+    }, [contact]);
+
     return (
         <div>
-            <Grid container className={classes.container}>
-                <Grid item xs={10} className={classes.Cardcontainers}>
-                    <Card className={classes.cardStyles}>
-                        <ProfileDetails Profile={profile} handleInputChange={handleProfileChangeInput}/>
-                    </Card>
-                </Grid>
+            <form
+            onSubmit={(event) => handleFormSubmit(event)}>
+                <Grid container className={classes.container}>
+                    <Grid item xs={10} className={classes.Cardcontainers}>
+                        <Card className={classes.cardStyles}>
+                            <ProfileDetails
+                                Profile={profile}
+                                handleInputChange={handleProfileChangeInput}
+                            />
+                        </Card>
+                    </Grid>
 
-                <Grid item xs={10} className={classes.Cardcontainers}>
-                    <Card className={classes.cardStyles}>
-                        <ParentDetails parent={parent} handleInputChange={handleParentChangeInput}/>
-                    </Card>
-                </Grid>
+                    <Grid item xs={10} className={classes.Cardcontainers}>
+                        <Card className={classes.cardStyles}>
+                            <ParentDetails
+                                parent={parent}
+                                handleInputChange={handleParentChangeInput}
+                            />
+                        </Card>
+                    </Grid>
 
-                <Grid item xs={10} className={classes.Cardcontainers}>
-                    <Card className={classes.cardStyles}>
-                    </Card>
+                    <Grid item xs={10} className={classes.Cardcontainers}>
+                        <Card className={classes.cardStyles}>
+                            <AcademicDetails
+                                academics={academics}
+                                handleInputChange={handleAcademicsChangeInput}
+                            />
+                        </Card>
+                    </Grid>
+
+                    <Grid
+                        item
+                        xs={10}
+                        
+                        className={classes.Cardcontainers}
+                    >
+                        <Card className={classes.cardStyles}>
+                            <ContactDetails
+                                contact={contact}
+                                handleInputChange={handleContactChangeInput}
+                            />
+                        </Card>
+                    </Grid>
                 </Grid>
-            </Grid>
+                <Button type="submit" variant="contained" color="primary">
+                    SUBMIT
+                </Button>
+            </form>
         </div>
     );
 }

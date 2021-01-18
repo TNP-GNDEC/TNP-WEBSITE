@@ -37,8 +37,11 @@ const useStyles = theme => ({
     title: {
         fontSize: "26px",
         textTransform: "uppercase",
-        wordBreak: "break-all",
-        color: theme.palette.primary.dark
+        wordWarp: "word-break",
+        color: theme.palette.primary.dark,
+        '&:hover':{
+            color: theme.palette.primary.main
+        }
     },
     subheader: {
         display: "flex",
@@ -76,12 +79,19 @@ const useStyles = theme => ({
         alignItems: "center",
         padding:"30px 0px 30px 0px"
     },
+    readLink:{
+        width: "100%",
+        textDecoration: "none"
+    },
     readButton:{
-        backgroundColor: "#0077b51a",
+        backgroundColor: "#7575751a",
         padding:"10px 0px",
-
+        fontSize: "16px",
+        color: "#757575",
+        textDecoration: "none",
         "&:hover":{
-            backgroundColor:theme.palette.primary.light
+            backgroundColor: theme.palette.primary.light,
+            color: theme.palette.primary.main
         }
     },
     body2:{
@@ -115,7 +125,7 @@ const useStyles = theme => ({
     },
     socialIcon2: {
         borderRadius: "5px",
-        backgroundColor: "#3b59981a ",
+        backgroundColor: "#0077b51a ",
         // border: "1px solid #0077b5",
         // boxShadow: "0px 15px 25px #0077b51a",
         color: "#0077b5",
@@ -128,7 +138,7 @@ const useStyles = theme => ({
     },
     socialIcon3: {
         borderRadius: "5px",
-        backgroundColor: "#3b59981a",
+        backgroundColor: "#00acee1a",
         color: "#00acee ",
         marginRight: "8px",
         width: "40px",
@@ -140,7 +150,11 @@ const useStyles = theme => ({
     iconLinks:{
         textDecoration:"none",
         color:"#fff",        
-    }
+    },
+    body3:{
+        maxHeight: "150px",
+        overflow: "Hidden",
+    },
 });
 
 
@@ -163,7 +177,7 @@ class Data extends React.Component {
                             </div>
                             <div className={classes.header2}>
                                 <Typography variant="h4" component="h1" className={classes.title}>
-                                    {posts.title}
+                                   <Link to={`/showPost/${posts.id}`} style={{textDecoration: 'none'}}>{posts.title}</Link>
                                 </Typography>
                                 <div className={classes.subheader}>
                                     <Typography variant="h5" component="h2" className={classes.subheading}>
@@ -179,14 +193,16 @@ class Data extends React.Component {
                         </div>
                         <hr />
                         <div className={classes.body}>
-                            <Typography variant="h5" component="h2" className={classes.subheading2}>
-                                { ReactHtmlParser(html) }
-                            </Typography>
-                            <div className={classes.read}>
-                                <Typography variant="h5" component="h2" className={classes.subheading4}>
-                                    READ MORE <AddIcon/>
-                                </Typography>
-                            </div>
+                        <div className = {classes.body3}>
+                        <Typography variant="h5" component="h2" className={classes.subheading2}>
+                            { ReactHtmlParser(html) }
+                        </Typography>
+                        </div>
+                        <div className={classes.read}>
+                        <Link to={`/showPost/${posts.id}`} style={{textDecoration: 'none'}} className={classes.readLink}>
+                            <Button className={classes.readButton} fullWidth>READ MORE <AddIcon/></Button>
+                        </Link>
+                        </div>
                         </div>
                         <hr />
                         <div className={classes.body2}>
@@ -199,8 +215,9 @@ class Data extends React.Component {
                 </Card>
             )
         }
-        return(
-            <Card className={classes.root}>
+        if(window.location.href === window.origin + `/showPost/${posts.id}`){
+            return (
+                <Card className={classes.root}>
             
                     <div className={classes.header}>
                         <div>
@@ -227,21 +244,78 @@ class Data extends React.Component {
                         <Typography variant="h5" component="h2" className={classes.subheading2}>
                             { ReactHtmlParser(html) }
                         </Typography>
+                    </div>
+                    <hr />
+                    <div className={classes.body2}>
+                        <div className={classes.socialIcons}>
+                            <div className={classes.socialIcon}>
+                              <a classes={classes.iconLinks} href="#"> <Facebook fontSize="medium" /> </a>
+                            </div>
+                            <div className={classes.socialIcon2}>
+                              <a classes={classes.iconLinks} href="#"> <Linkedin fontSize="medium" /> </a>
+                            </div>
+                            <div className={classes.socialIcon3}>
+                             <a classes={classes.iconLinks} href="#">  <Twitter fontSize="medium" /> </a>
+                            </div>
+                        </div>
+                        <div className={classes.Tags}>
+                            <LocalOffer />
+                            <Typography variant="h5" component="h1" className={classes.subheading3}>
+                                 GNDEC TNP
+                            </Typography>
+                        </div>
+                    </div>
+            
+            </Card>
+            )
+        }
+        return(
+            <Card className={classes.root}>
+            
+                    <div className={classes.header}>
+                        <div>
+                            <img src={logo} className={classes.image}/>
+                        </div>
+                        <div className={classes.header2}>
+                            <Typography variant="h4" component="h1" className={classes.title}>
+                               <Link to={`/showPost/${posts.id}`} style={{textDecoration: 'none', color: "#193b68"}}>{posts.title}</Link>
+                            </Typography>
+                            <div className={classes.subheader}>
+                                <Typography variant="h5" component="h2" className={classes.subheading}>
+                                    <Calender className={classes.icon}/>
+                                    {moment(posts.updated_at).format('LLL')}
+                                </Typography>
+                                <Typography variant="h5" component="h2" className={classes.subheading}>
+                                    <Flag className={classes.icon}/>
+                                    {posts.type} 
+                                </Typography>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div className={classes.body}>
+                        <div className = {classes.body3}>
+                        <Typography variant="h5" component="h2" className={classes.subheading2}>
+                            { ReactHtmlParser(html) }
+                        </Typography>
+                        </div>
                         <div className={classes.read}>
-                            <Button  color="primary" className={classes.readButton} fullWidth>READ MORE <AddIcon/></Button>
+                        <Link to={`/showPost/${posts.id}`} style={{textDecoration: 'none'}} className={classes.readLink}>
+                            <Button className={classes.readButton} fullWidth>READ MORE <AddIcon/></Button>
+                        </Link>
                         </div>
                     </div>
                     <hr />
                     <div className={classes.body2}>
                         <div className={classes.socialIcons}>
                             <div className={classes.socialIcon}>
-                              <a classes={classes.iconLinks} href="#"> <Facebook fontSize="large" /> </a>
+                              <a classes={classes.iconLinks} href="#"> <Facebook fontSize="medium" /> </a>
                             </div>
                             <div className={classes.socialIcon2}>
-                              <a classes={classes.iconLinks} href="#"> <Linkedin fontSize="large" /> </a>
+                              <a classes={classes.iconLinks} href="#"> <Linkedin fontSize="medium" /> </a>
                             </div>
                             <div className={classes.socialIcon3}>
-                             <a classes={classes.iconLinks} href="#">  <Twitter fontSize="large" /> </a>
+                             <a classes={classes.iconLinks} href="#">  <Twitter fontSize="medium" /> </a>
                             </div>
                         </div>
                         <div className={classes.Tags}>

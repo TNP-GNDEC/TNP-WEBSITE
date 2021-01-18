@@ -50,15 +50,10 @@ class ForgotPasswordController extends Controller
     			return response()->json(['alert' => 'Sorry we could not send a link, try again later!']);
     		}
 	}
-	public function getpassword($token)
-    {
-
-    	return view('resetpassword')->with('token', $token);
-    }
 	
 	public function resetPassword(Request $request)
     {
-        $request->validate(['email'=>'required|email', 'password'=>'required|min:6|confirmed']);
+        $request->validate(['email'=>'required|email', 'password'=>'required|min:6', 'confirmPassword'=>'required|same:password']);
       
     	$email = $request->email;
 
@@ -66,7 +61,7 @@ class ForgotPasswordController extends Controller
 
     	if (!$user) {
 
-    		return back()->with('errors', 'Invalid Mail!');		
+    		return response()->json(['msg'=> 'Invalid Mail!']);		
     	}
     	$tokenData = PasswordReset::where('token', $request->token)->first();
 
@@ -81,7 +76,7 @@ class ForgotPasswordController extends Controller
      	 $token = PasswordReset::where('email', $user->email)->delete();
    
   
-    	return redirect('/login')->with('success', 'Password Changed Successfully');		
+    	return response()->json(['status' => 200, 'msg'=> 'Password Changed Successfully']);		
 
     	
     }

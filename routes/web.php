@@ -65,7 +65,7 @@ Route::get('/email', function () {
     return view('welcome');
 });
 
-// Route::get('/resetPassword', function () {
+// Route::get('/resetPassword/:token', function () {
 //     return view('welcome');
 // });
 Route::get('/forgetPassword', function () {
@@ -80,6 +80,11 @@ Route::resource('/addLinksItems', "LinksController");
 
 Route::post('/forget-password', 'ForgotPasswordController@postEmail');
 
-Route::get('/resetPassword/{token}', 'ForgotPasswordController@getPassword');
+Route::get('/resetPassword/{token}', function () {
+    return view('welcome');
+})-> name('example');
 Route::post('/reset-password', 'ForgotPasswordController@resetPassword');
 
+Route::get('/showPost/:id', function () {
+    return view('welcome');
+});
