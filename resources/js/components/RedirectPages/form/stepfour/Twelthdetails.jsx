@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import MenuItem from "@material-ui/core/MenuItem";
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(theme => ({
 
@@ -172,7 +173,9 @@ export default function TwelthDetails(props) {
             </Typography>
             <CardContent>
                 <Grid container>{renderTwelthFields()}
-               
+                <Paper variant="outlined" elevation={3} className={classes.note}>
+                            <code>Note : Upload Scanned copies of your 12th certificates. </code>
+                        </Paper>           
                 </Grid>
             </CardContent>
         </>
