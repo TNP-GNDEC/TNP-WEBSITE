@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
-        padding: "20px 0px"
+        padding: "20px 63px"
     }
 }));
 
@@ -29,43 +29,25 @@ export default function ParentDetails(props) {
             label: "FATHER NAME",
             type: "text",
             id: 1,
-            // name: "first_name",
             value: props.parent.father_name
         },
         {
             label: "FATHER PHONE NO.",
             type: "text",
             id: 2,
-            // name: "first_name",
             value: props.parent.father_phone
-        },
-        {
-            label: "FATHER OCCUPATION",
-            type: "text",
-            id: 3,
-            // name: "first_name",
-            value: props.parent.father_occupation
         },
         {
             label: "MOTHER NAME",
             type: "text",
-            id: 4,
-            // name: "first_name",
+            id: 3,
             value: props.parent.mother_name
         },
         {
             label: "MOTHER PHONE NO.",
             type: "text",
-            id: 5,
-            // name: "first_name",
+            id: 4,
             value: props.parent.mother_phone
-        },
-        {
-            label: "MOTHER OCCUPATION",
-            type: "text",
-            id: 6,
-            // name: "first_name",
-            value: props.parent.mother_occupation
         }
     ];
 
@@ -86,10 +68,12 @@ export default function ParentDetails(props) {
                         variant="outlined"
                         label={field.label}
                         value={field.value}
+                        style={{ minWidth:"230px"}}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
                     />
+
                 </Grid>
             </>
         ));

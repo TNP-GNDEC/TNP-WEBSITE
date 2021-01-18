@@ -4,9 +4,9 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles(theme => ({
-
     cardHeading: {
         color: "#fff",
         display: "flex",
@@ -20,9 +20,9 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
         alignContent: "center",
         padding: "20px 0px"
-    },
-
+    }
 }));
+
 
 export default function ProfileDetails(props) {
     const classes = useStyles();
@@ -31,44 +31,106 @@ export default function ProfileDetails(props) {
             label: "FIRST NAME",
             type: "text",
             id: 1,
-            // name: "first_name",
+            select: "",
             value: props.Profile.first_name,
+            options: []
         },
         {
             label: "LAST NAME",
             type: "text",
             id: 2,
-            // name: "first_name",
+            select: "",
             value: props.Profile.last_name,
+            options: []
         },
         {
             label: "DATE OF BIRTH",
             type: "text",
             id: 3,
-            // name: "first_name",
+            select: "",
             value: props.Profile.dob,
+            options: []
         },
         {
-            label: "HEIGHT (in cm)",
-            type: "number",
+            label: "ADHAAR NO.",
+            type: "text",
             id: 4,
-            // name: "first_name",
+            select: "",
+            value: props.Profile.adhaar,
+            options: []
+        },
+        
+        {
+            label: "HEIGHT (in cm)",
+            type: "text",
+            id: 5,
+            select: "",
             value: props.Profile.height,
+            options: []
         },
         {
             label: "WEIGHT (in kg)",
-            type: "number",
-            id: 5,
-            // name: "first_name",
+            type: "text",
+            id: 6,
+            select: "",
             value: props.Profile.weight,
+            options: []
         },
         {
             label: "BLOOD GROUP",
             type: "text",
-            id: 6,
-            // name: "first_name",
+            id: 7,
+            select: "",
             value: props.Profile.blood_group,
-        }
+            options: []
+        },
+        {
+            label: "GENDER",
+            type: "text",
+            id: 8,
+            select: "true",
+            value: props.Profile.gender,
+            options: [
+                { value:"male", label: "MALE" },
+                { value: "female", label: "FEMALE" }
+            ]
+        },
+        {
+            label: "MARITAL STATUS",
+            type: "text",
+            id:9,
+            select: "True",
+            value: props.Profile.marital_status,
+            options: [
+                { value: "married", label: "MARRIED" },
+                { value: "unmarried", label: "UNMARRIED" }
+            ]
+        },
+
+        {
+            label: "farming_background",
+            type: "text",
+            id: 10,
+            select: "True",
+            value: props.Profile.farming_background,
+            options: [
+                { value: "1", label: "YES" },
+                { value: "0", label: "NO" }
+            ]
+        },
+
+        {
+            label: "DISABILITY",
+            type: "text",
+            id: 11,
+            select: "True",
+            value: props.Profile.disability,
+            options: [
+                { value:"yes", label: "YES" },
+                { value:"no", label: "NO" }
+            ]
+        },
+
     ];
 
     const renderPersonalFields = () =>
@@ -84,14 +146,27 @@ export default function ProfileDetails(props) {
                     <TextField
                         type={field.type}
                         id="outlined-basic"
-                        name={field.name}
                         variant="outlined"
                         label={field.label}
                         value={field.value}
+                        select={field.select}
+                        style={{ minWidth: "230px" }}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
-                    />
+                    >{
+                        field.options.map(option => {
+                                return (
+                                    <MenuItem
+                                        key={option.value}
+                                        value={option.value}
+                                    >
+                                        {option.label}
+                                    </MenuItem>
+                                );
+                            })
+                        }
+                    </TextField>
                 </Grid>
             </>
         ));
@@ -106,4 +181,3 @@ export default function ProfileDetails(props) {
         </>
     );
 }
-

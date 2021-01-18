@@ -45,51 +45,9 @@ export default function Details(props) {
             options: []
         },
         {
-            label: "Category",
-            type: "text",
-            id: 3,
-            value: props.academics.category,
-            select: "TRUE",
-            options: [
-                {
-                    value: "Day scholar",
-                    label: "DAY-SCHOLAR"
-                },
-                {
-                    value: "Hostler",
-                    label: "HOSTLER"
-                }
-            ]
-        },
-        {
-            label: "BATCH",
-            type: "text",
-            id: 4,
-            value: props.academics.batch,
-            select: "true",
-            options: [
-                {
-                    value: "USD",
-                    label: "one"
-                },
-                {
-                    value: "EUR",
-                    label: "two"
-                },
-                {
-                    value: "BTC",
-                    label: "three"
-                },
-                {
-                    value: "JPY",
-                    label: "four"
-                }
-            ]
-        },
-        {
             label: "COURSE",
             type: "text",
-            id: 5,
+            id: 3,
             value: props.academics.course,
             select: "true",
             options: [
@@ -110,7 +68,7 @@ export default function Details(props) {
         {
             label: "STREAM",
             type: "text",
-            id: 6,
+            id: 4,
             value: props.academics.stream,
             select: "true",
             options: [
@@ -140,6 +98,69 @@ export default function Details(props) {
                 }
             ],
 
+            // optionsMtech: [
+            //     {
+            //         value: "production(full time)",
+            //         label: "PRODUCTION(Full Time)"
+            //     },
+            //     {
+            //         value: "industrial(full time)",
+            //         label: "INDUSTRIAL(Full Time)"
+            //     },
+            //     {
+            //         value: "power(full time)",
+            //         label: "POWER(Full Time)"
+            //     },
+            //     {
+            //         value: "structural(full time)",
+            //         label: "STRUCTURAL(Full Time)"
+            //     },
+            //     {
+            //         value: "geo-technical(full time)",
+            //         label: "GEO-TECHNICAL(Full Time) "
+            //     },
+            //     {
+            //         value: "computer science (full time)",
+            //         label: "Computer Sci(Full Time)"
+            //     },
+            //     {
+            //         value: "computer science (part time)",
+            //         label: "Computer Sci(Part Time)"
+            //     },
+            //     {
+            //         value: "production",
+            //         label: "Production(Part Time )"
+            //     },
+            //     {
+            //         value: "electronics(part time)",
+            //         label: "Electronics(Part Time)"
+            //     },
+
+            //     {
+            //         value: "electronics(full time)",
+            //         label: "Electronics(Full Time)"
+            //     },
+            //     {
+            //         value: "soil mechanism & foundation(part time)",
+            //         label: "Soil Mechanics & Foundation(Part Time)"
+            //     },
+            //     {
+            //         value: "electrical(part time)",
+            //         label: "Electrical (Part Time)"
+            //     },
+            //     {
+            //         value: "industrial(part time)",
+            //         label: "INDUSTRIAL(Part Time)"
+            //     },
+            //     {
+            //         value: "business administration(full time)",
+            //         label: "Business Administration(Full Time)"
+            //     },
+            //     {
+            //         value: "environmental science",
+            //         label: "Environmental Science"
+            //     }
+            // ]
             optionsMtech: [
                 {
                     value: "cse",
@@ -167,18 +188,11 @@ export default function Details(props) {
                 }
             ]
         },
-        {
-            label: "SECTION",
-            type: "text",
-            id: 7,
-            value: props.academics.section,
-            select: "",
-            options: []
-        },
+
         {
             label: "SHIFT",
             type: "text",
-            id: 8,
+            id: 5,
             value: props.academics.shift,
             select: "true",
             options: [
@@ -193,13 +207,55 @@ export default function Details(props) {
             ]
         },
         {
+            label: "SECTION",
+            type: "text",
+            id: 6,
+            value: props.academics.section,
+            select: "",
+            options: []
+        },
+        {
+            label: "LEET",
+            type: "text",
+            id: 7,
+            value: props.academics.leet,
+            select: "true",
+            options: [
+                {
+                    value: "yes",
+                    label: "YES"
+                },
+                {
+                    value: "no",
+                    label: "NO"
+                }
+            ]
+        },
+        {
+            label: "HOSTLER",
+            type: "text",
+            id: 8,
+            value: props.academics.hostler,
+            select: "true",
+            options: [
+                {
+                    value: "yes",
+                    label: "YES"
+                },
+                {
+                    value: "no",
+                    label: "NO"
+                }
+            ]
+        },
+
+        {
             label: "TRAINING SEM",
             type: "text",
             id: 9,
             value: props.academics.training_sem,
             select: "true",
             options: [
-
                 {
                     value: "7",
                     label: "SEVEN"
@@ -207,12 +263,11 @@ export default function Details(props) {
                 {
                     value: "8",
                     label: "EIGHT"
-                },
-
+                }
             ]
         }
     ];
-    
+
     // Rendering the Input fields
     const renderFields = () =>
         fields.map(field => (
@@ -238,19 +293,22 @@ export default function Details(props) {
                             props.handleInputChange(e, field.id);
                         }}
                     >
-                        {/* if the course will not be selected it will show no options in select of its preceeding Textfields */}
-                        {(field.id == 6 ||
-                            field.id == 7 ||
-                            field.id == 8 ||
-                            field.id == 9) &&
-                        props.academics.course == "" ? (
+                        {
+                        /* if the course will not be selected it will show no options in select of its preceeding Textfields */}
+                        {/* {field.id == 4 ||
+                        field.id == 5 ||
+                        field.id == 8 ||
+                        field.id == 7 ||
+                        (field.id == 9 && props.academics.course == "") ? (
                             <MenuItem> Please select course first</MenuItem>
                         ) : (
-                            (field.id === 6 &&
+                            (field.id === 4 &&
                             props.academics.course == "M.Tech"
                                 ? field.optionsMtech
-                                :(props.academics.course=="MCA" ?[{value:"computers", label:"COMPUTERS"}]:field.options)
-                            ).map(option => {
+                                : props.academics.course == "MCA"
+                                ? [{ value: "computers", label: "COMPUTERS" }]
+                                : field.options)  */}
+                               { field.options.map(option => {
                                 return (
                                     <MenuItem
                                         key={option.value}
@@ -260,7 +318,7 @@ export default function Details(props) {
                                     </MenuItem>
                                 );
                             })
-                        )}
+                        }
                     </TextField>
                 </Grid>
             </>

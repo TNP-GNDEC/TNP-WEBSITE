@@ -6,8 +6,9 @@ import ProfileDetails from "./ProfileDetails";
 import ParentDetails from "./ParentsDetails";
 import AcademicDetails from "./AcademicDetails";
 import ContactDetails from "./ContactDetails";
-import Button from '@material-ui/core/Button';
-
+import Button from "@material-ui/core/Button";
+import { concat } from "lodash";
+import AddressDetails from './AddressDetails'
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -22,8 +23,8 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(2),
         minWidth: 120,
 
-        width: "400px",
-        height: "70px"
+        // width: "400px",
+        // height: "70px"
     },
     hr: {
         color: "#038ed4",
@@ -73,12 +74,11 @@ export default function StepTwo() {
         height: "",
         weight: "",
         blood_group: "",
-        gender:"",
-        marital_status:"",
-        disability:"",
-        adhaar:"",
-        farming_background:""
-
+        gender: "",
+        marital_status: "",
+        disability: "",
+        adhaar: "",
+        farming_background: ""
     });
 
     // state for holding inputs from parent form imported as ParenteDetails
@@ -86,21 +86,21 @@ export default function StepTwo() {
         father_name: "",
         father_phone: "",
         mother_name: "",
-        mother_phone: "",
-        });
+        mother_phone: ""
+    });
 
     // state for holding inputs from academics form imported as AcademicDetails
     const [academics, setAcademics] = React.useState({
         univ_roll: "",
         college_roll: "",
         course: "",
-        branch:"",
+        branch: "",
         // stream: "",
         section: "",
         shift: "",
         training_sem: "",
-        leet:"",
-        hostler:""
+        leet: "",
+        hostler: ""
     });
 
     // state for holding inputs from contact form imported as ContactDetails
@@ -111,13 +111,13 @@ export default function StepTwo() {
     });
 
     const [address, setAddress] = React.useState({
-        address:"",
+        address: "",
         pincode: "",
         district: "",
         city: "",
-        state:"",
-
+        state: ""
     });
+
 
     // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
@@ -134,15 +134,29 @@ export default function StepTwo() {
                 setProfile({ ...profile, dob: value });
                 break;
             case 4:
-                setProfile({ ...profile, height: value });
+                setProfile({ ...profile, adhaar: value });
                 break;
             case 5:
-                setProfile({ ...profile, weight: value });
+                setProfile({ ...profile, height: value });
                 break;
             case 6:
+                setProfile({ ...profile, weight: value });
+                break;
+            case 7:
                 setProfile({ ...profile, blood_group: value });
                 break;
-
+            case 8:
+                setProfile({ ...profile, gender: value });
+                break;
+            case 9:
+                setProfile({ ...profile, marital_status: value });
+                break;
+            case 10:
+                setProfile({ ...profile, farming_background: value });
+                break;
+            case 11:
+                setProfile({ ...profile, disability: value });
+                break;
             default:
                 break;
         }
@@ -160,18 +174,11 @@ export default function StepTwo() {
                 setParent({ ...parent, father_phone: value });
                 break;
             case 3:
-                setParent({ ...parent, father_occupation: value });
-                break;
-            case 4:
                 setParent({ ...parent, mother_name: value });
                 break;
-            case 5:
+            case 4:
                 setParent({ ...parent, mother_phone: value });
                 break;
-            case 6:
-                setParent({ ...academics, mother_occupation: value });
-                break;
-
             default:
                 break;
         }
@@ -189,22 +196,22 @@ export default function StepTwo() {
                 setAcademics({ ...academics, college_roll: value });
                 break;
             case 3:
-                setAcademics({ ...academics, category: value });
-                break;
-            case 4:
-                setAcademics({ ...academics, batch: value });
-                break;
-            case 5:
                 setAcademics({ ...academics, course: value });
                 break;
-            case 6:
+            case 4:
                 setAcademics({ ...academics, stream: value });
                 break;
-            case 7:
+            case 5:
+                setAcademics({ ...academics, shift: value });
+                break;
+            case 6:
                 setAcademics({ ...academics, section: value });
                 break;
+            case 7:
+                setAcademics({ ...academics, leet: value });
+                break;
             case 8:
-                setAcademics({ ...academics, shift: value });
+                setAcademics({ ...academics, hostler: value });
                 break;
             case 9:
                 setAcademics({ ...academics, training_sem: value });
@@ -233,24 +240,48 @@ export default function StepTwo() {
         }
     };
 
-    const handleFormSubmit = (e) => {
-        event.preventDefault();        
-        const id=localStorage.getItem("userid")
-        axios.post(`/api/personaldetails/${id}`, {
-          profile: profile,
-          academics: academics,
-          contact: contact,
-    
-      })
-      .then((response) => {
-        var user=response.data
-        console.log(response.data)
-          
-      })
-      .catch((error) => {
-          console.log(error);
-      });
-      }
+    const handleAddresssChangeInput = (e, id) => {
+        console.log("I am called for contact");
+        const value = e.target.value;
+        switch (id) {
+            case 1:
+                setAddress({ ...address, address: value });
+                break;
+            case 2:
+                setAddress({ ...address, city: value });
+                break;
+            case 3:
+                setAddress({ ...address, district: value });
+                break;
+                case 4:
+                    setAddress({ ...address, pincode: value });
+                    break;
+                    case 5:
+                        setAddress({ ...address, state: value });
+                        break;
+            default:
+                break;
+        }
+    };
+
+    const handleFormSubmit = e => {
+        event.preventDefault();
+        const id = localStorage.getItem("userid");
+        axios
+            .post(`/api/personaldetails/${id}`, {
+                profile: profile,
+                academics: academics,
+                contact: contact,
+                address:address
+            })
+            .then(response => {
+                var user = response.data;
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
     React.useEffect(() => {
         console.log("Do something after profile has changed", academics);
@@ -259,14 +290,20 @@ export default function StepTwo() {
         console.log("Do something after profile has changed", profile);
     }, [profile]);
     React.useEffect(() => {
+        console.log("Do something after contact has changed", parent);
+    }, [parent]);
+    React.useEffect(() => {
         console.log("Do something after contact has changed", contact);
     }, [contact]);
+    React.useEffect(() => {
+        console.log("Do something after contact has changed", address);
+    }, [address]);
 
     return (
         <div>
-            <form
-            onSubmit={(event) => handleFormSubmit(event)}>
+            <form onSubmit={event => handleFormSubmit(event)}>
                 <Grid container className={classes.container}>
+
                     <Grid item xs={10} className={classes.Cardcontainers}>
                         <Card className={classes.cardStyles}>
                             <ProfileDetails
@@ -302,10 +339,25 @@ export default function StepTwo() {
                             />
                         </Card>
                     </Grid>
-                </Grid>
-                <Button className={classes.pos} type="submit" variant="contained" color="primary">
-                    SUBMIT
 
+                    <Grid item xs={10} className={classes.Cardcontainers}>
+                        <Card className={classes.cardStyles}>
+                            <AddressDetails
+                                address={address}
+                                handleInputChange={handleAddresssChangeInput}
+                            />
+                        </Card>
+                    </Grid>
+                    
+                </Grid>
+                <Button
+                    className={classes.pos}
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    onClick={handleFormSubmit}
+                >
+                    SUBMIT
                 </Button>
             </form>
         </div>
