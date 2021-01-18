@@ -60,6 +60,9 @@ const useStyles = makeStyles(theme => ({
     },
     cardStyles: {
         paddding: "18px 20px"
+    },
+    pos: {
+        float: "right"
     }
 }));
 
@@ -227,7 +230,7 @@ export default function StepTwo() {
                     </Card>
                 </Grid>
             </Grid>
-            <Button type="submit">
+            <Button className={classes.pos} type="submit" variant="contained" color="primary">
                 Submit
             </Button>
             </form>
