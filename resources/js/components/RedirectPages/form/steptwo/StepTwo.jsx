@@ -75,7 +75,7 @@ export default function StepTwo() {
         blood_group: ""
     });
 
-    // state for holding inputs from parent form imported as ParenteDetails
+    // state for holding inputs from parent form imported as ParentsDetails
     const [parent, setParent] = React.useState({
         father_name: "",
         father_phone: "",

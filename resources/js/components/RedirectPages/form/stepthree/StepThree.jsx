@@ -82,12 +82,12 @@ export default function StepThree() {
     const classes = useStyles();
 
     const [matriculation, setmatric] = React.useState({
-        BOARD: "",
-        INSTITUTION_NAME: "",
-         YEAR_OF_PASSING:"",
-        MARKS_TYPE:"",
-        OBTAINED_MARKS: "",
-        MAXIMUM_MARKS: "",
+        board: "",
+        institution_name: "",
+        year_of_passing:"",
+        marks_type:"",
+        obtained_marks: "",
+        maximum_marks: "",
         file: "",
     });
 
@@ -103,32 +103,32 @@ export default function StepThree() {
         const value = e.target.value;
         switch (id) {
             case 1:
-                setmatric({ ...matriculation,  BOARD:value });
+                setmatric({ ...matriculation,  board:value });
                 break;
             case 2:
-                setmatric({ ...matriculation, INSTITUTION_NAME:value });
+                setmatric({ ...matriculation, institution_name:value });
                 break;
                 case 3:
-                    setmatric({ ...matriculation, CITY_OF_INSTITUTION: value });
+                    setmatric({ ...matriculation, city: value });
                     break;
                     case 4:
-                        setmatric({ ...matriculation, STATE_OF_INSTITUTION: value });
+                        setmatric({ ...matriculation, state: value });
                         break;
             case 5:
-                setmatric({ ...matriculation, YEAR_OF_PASSING:value });
+                setmatric({ ...matriculation, year_of_passing:value });
                 break;
                 
             case 6:
-                setmatric({ ...matriculation, MARKS_TYPE: value });
+                setmatric({ ...matriculation, marks_type: value });
                 break;
             case 7:
-                setmatric({ ...matriculation, OBTAINED_MARKS:  value });
+                setmatric({ ...matriculation, obtained_marks:  value });
                 break;
             case 8:
-                setmatric({ ...matriculation,  MAXIMUM_MARKS:value });
+                setmatric({ ...matriculation,  maximum_marks:value });
                 break;
                 case 9:
-                   setmatric({ ...matriculation,  FILE:value });
+                   setmatric({ ...matriculation,  file:value });
                    break;
             default:
                 break;
