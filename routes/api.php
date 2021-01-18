@@ -26,3 +26,11 @@ Route::post('email/verify/{id}', [VerificationController::class, 'verify'])->nam
 
 // step 2 personal details form post request
 Route::post('personaldetails/{id}', 'SteptwoController@getFormData');
+
+// step 3  details form post request
+// Route::post('matriculation/{id}', '');
+
+
+
+// step 4 Diploma or 12th details form post request
+// Route::post('api/diplomaortwelth/${id}', '');

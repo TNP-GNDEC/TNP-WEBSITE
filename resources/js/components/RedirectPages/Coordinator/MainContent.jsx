@@ -5,7 +5,8 @@ import Button from "@material-ui/core/Button";
 import { Container } from "@material-ui/core";
 import Posts from "../../HomeComponent/PostComponents/Posts";
 import Create from "../../RedirectPages/Coordinator/CreatePost";
-import Users from './Users'
+import Users from './Users';
+import Uploadcsv from './Uploadcsv';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -92,6 +93,12 @@ export default function FullWidthTabs(props) {
             return (
                 <>
                     <h2> Notice Maker </h2>
+                </>
+            );
+        }else if (props.activeId === 7) {
+            return (
+                <>
+                    <Uploadcsv />
                 </>
             );
         }

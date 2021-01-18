@@ -7,8 +7,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import StepOne from "../components/RedirectPages/form/StepOne";
 import StepTwo from "./RedirectPages/form/steptwo/StepTwo";
-import StepThree from "../components/RedirectPages/form/StepThree";
-import StepFour from "../components/RedirectPages/form/StepFour";
+import StepThree from "./RedirectPages/form/stepthree/StepThree";
+import StepFour from "./RedirectPages/form/stepfour/StepFour";
+import StepFive from "./RedirectPages/form/Stepfive";
 import Header from "../components/RedirectPages/form/Header"
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
         return <StepThree />;
       case 3:
         return <StepFour />;
+        case 4:
+        return <StepFive />;
       default:
         return 'Unknown step';
     }
