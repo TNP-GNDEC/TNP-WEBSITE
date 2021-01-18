@@ -15,6 +15,7 @@ import Header from "../components/RedirectPages/form/Header"
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
+      marginTop: '80px',
     },
     button: {
       marginRight: theme.spacing(1),
@@ -30,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(1),
       background: theme.palette.primary.light
+    },
+    stepper:{
+      position: "relative",
     }
   }));
   
@@ -109,8 +113,10 @@ const useStyles = makeStyles((theme) => ({
     return (
       
       <div className={classes.root}>
+        <div>
         <Header />
-        <Stepper nonLinear activeStep={activeStep}>
+        </div>
+        <Stepper className={classes.stepper} nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label}>
               <StepButton onClick={handleStep(index)} completed={completed[index]}>
