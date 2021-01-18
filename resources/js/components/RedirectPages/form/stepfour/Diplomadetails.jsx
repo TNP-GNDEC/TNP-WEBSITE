@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(theme => ({
     cardHeading: {
@@ -171,6 +171,9 @@ export default function DiplomaDetails(props) {
             </Typography>
             <CardContent>
                 <Grid container>{renderDiplomaFields()}
+                <Paper variant="outlined" elevation={3} className={classes.note}>
+                            <code>Note : Upload Scanned copies of your diploma certificates. </code>
+                        </Paper>
                </Grid>
             </CardContent>
            

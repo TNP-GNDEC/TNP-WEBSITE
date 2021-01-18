@@ -121,7 +121,7 @@ export default function MatriculationDetails(props) {
             value: props.Matriculation.MAXIMUM_MARKS,
         },
         {
-          label:"",
+           label:"",
            type: "FILE" ,
            id: 9,
            accept:"application/pdf" ,

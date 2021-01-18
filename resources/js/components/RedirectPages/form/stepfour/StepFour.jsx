@@ -6,6 +6,8 @@ import TextField from "@material-ui/core/TextField";
 import TwelthDetails from './Twelthdetails'
 import DiplomaDetails from './Diplomadetails'
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -87,6 +89,14 @@ export default function StepTwo() {
         STREAM_OF_DIPLOMA:"",
         UPLOAD:"(UPLAOD SCANNED CERTIFICATE)"
     });
+
+    const handleFormSubmit = (event) => {
+        event.preventDefault();        
+        const id=localStorage.getItem("userid")
+        axios.post(`/api/diplomaortwelth/${id}`, {
+            diploma: diploma,
+            twelth: twelth,    
+      })}
 
     const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
@@ -196,6 +206,7 @@ export default function StepTwo() {
         ));
     return (
         <div>
+            <form onSubmit={handleFormSubmit}>
             <Grid container className={classes.container}>
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
@@ -216,6 +227,10 @@ export default function StepTwo() {
                     </Card>
                 </Grid>
             </Grid>
+            <Button type="submit">
+                Submit
+            </Button>
+            </form>
         </div>
     );
 }
