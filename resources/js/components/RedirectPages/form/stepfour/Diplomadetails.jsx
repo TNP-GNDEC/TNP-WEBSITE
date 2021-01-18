@@ -23,12 +23,8 @@ const useStyles = makeStyles(theme => ({
         alignContent: "center",
         padding: "20px 0px"
     },
-    bottomline:{
-        padding:"0px 0px 0px 1000px",
-    },
-    upload:{
-        padding:"0px 0px 0px 235px",
-    },
+   
+   
 }));
 
 export default function DiplomaDetails(props) {
@@ -149,7 +145,7 @@ export default function DiplomaDetails(props) {
                         label={field.label}
                         value={field.value}
                         select={field.select}
-                        style={{ minWidth: "230px" }}
+                        style={{ minWidth: "230px" ,maxWidth:"230px"}}
                         disabled={field.disabled}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
@@ -175,9 +171,7 @@ export default function DiplomaDetails(props) {
             </Typography>
             <CardContent>
                 <Grid container>{renderDiplomaFields()}
-                <div className={classes.bottomline}>
-                <p>(UPLOAD SCANNED CERTIFICATE)</p>
-                </div></Grid>
+               </Grid>
             </CardContent>
            
         </>

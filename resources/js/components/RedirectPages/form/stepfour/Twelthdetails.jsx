@@ -23,12 +23,7 @@ const useStyles = makeStyles(theme => ({
         alignContent: "center",
         padding: "20px 0px"
     },
-    upload:{
-        padding:"0px 0px 0px 235px",
-    },
-    bottomline:{
-        padding:"0px 0px 0px 1000px",
-    },
+  
 }));
 
 export default function TwelthDetails(props) {
@@ -149,7 +144,7 @@ export default function TwelthDetails(props) {
                         variant="outlined"
                         label={field.label}
                         select={field.select}
-                        style={{ minWidth: "230px" }}
+                        style={{ minWidth: "230px" ,maxWidth:"230px" }}
                         disabled={field.disabled}
                         value={field.value}
                        
@@ -177,12 +172,7 @@ export default function TwelthDetails(props) {
             </Typography>
             <CardContent>
                 <Grid container>{renderTwelthFields()}
-                <div className={classes.bottomline}>
-             
-                <p>(UPLOAD SCANNED CERTIFICATE)</p>
-            
-                
-                </div>
+               
                 </Grid>
             </CardContent>
         </>

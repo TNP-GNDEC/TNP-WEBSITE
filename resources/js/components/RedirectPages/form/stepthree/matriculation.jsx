@@ -21,19 +21,12 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
-        padding: "20px 0px"
+        padding: "20px 0px",
+        mixWidth:"230px",
+        
+
     },
-    bottomline:{
-        padding:"0px 0px 0px 1000px",
-    },
-   
-    uploadfield:{
-        display: "flex",
-        justifyContent: "center",
-        alignContent: "center",
-        padding: "20px 0px"
-    },
-    
+  
 
 }));
 
@@ -131,6 +124,8 @@ export default function MatriculationDetails(props) {
           label:"",
            type: "FILE" ,
            id: 9,
+           accept:"application/pdf" ,
+           
            
             
             
@@ -143,13 +138,16 @@ export default function MatriculationDetails(props) {
     const renderMatriculationFields = () =>
         fields.map(field => (
             <>
-                <Grid container 
-                    item
-                    xs={12}
-                    sm={6}
-                    lg={4}
+                 <Grid container   
+           
+           item
+           xs={12}
+           sm={6}
+           lg={4}
                     className={classes.textFieldContainer}
                 >
+                     
+                    
                     <TextField
                         type={field.type}
                         id="outlined-basic"
@@ -159,7 +157,8 @@ export default function MatriculationDetails(props) {
                         label={field.label}
                         value={field.value}
                         select={field.select}
-                        style={{ minWidth: "230px" }}
+                        style={{ minWidth: "230px" ,maxWidth:"230px"}}
+                        
                         disabled={field.disabled}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
@@ -174,7 +173,12 @@ export default function MatriculationDetails(props) {
               
 
                     </TextField>
-                </Grid>
+                    </Grid>
+                    
+                  
+
+                    
+                
             </>
         ));
     return (
@@ -184,12 +188,7 @@ export default function MatriculationDetails(props) {
             </Typography>
             <CardContent>
                 <Grid container>{renderMatriculationFields()}
-                <div className={classes.bottomline}>
-             
-             <p>(UPLOAD SCANNED CERTIFICATE)</p>
-         
-             
-             </div>
+               
                 
                 </Grid>
             </CardContent>

@@ -4,6 +4,7 @@ import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import MatriculationDetails from './matriculation';
+import FormRow from '@material-ui/core/Grid';
 
 import Paper from '@material-ui/core/Paper';
 
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.text.primary,
         background:"#F0F0F0 ",
         margin:"20px",
-       
+        
        
     },
   
@@ -56,6 +57,21 @@ const useStyles = makeStyles(theme => ({
         paddding:"10px 20px ",
         
       },
+      uploadbox:{
+       backgroundColor:"#F0F0F0 ",
+       borderRadius:"8px",
+     alignContent:"center",
+     width:"230px",
+     height:"70px",
+     display:"block",
+paddding:"40px 0px 0px 400px"
+    },
+    line:{
+
+       color:"038ed4",
+       fontsize:"6px",
+    }
+   
 }));
 
 export default function StepThree() {
@@ -147,7 +163,12 @@ export default function StepThree() {
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
                         <MatriculationDetails Matriculation={matriculation} handleInputChange={handleMatriculationChangeInput}/>
+                     
                       
+                    
+    
+                    
+   
                       
                    
                     
