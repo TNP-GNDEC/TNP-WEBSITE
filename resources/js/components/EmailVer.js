@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
       case 0:
         return <StepOne/>;
       case 1:
-        return < StepTwo/> ;
+        return <StepTwo /> ;
       case 2:
         return <StepThree />;
       case 3:
@@ -135,7 +135,8 @@ const useStyles = makeStyles((theme) => ({
             </div>
           ) : (
             <div>
-              <Typography className={classes.body}>{getStepContent(activeStep)}</Typography>
+              {/* <Typography className={classes.body}>{getStepContent(activeStep)}</Typography> */}
+              {getStepContent(activeStep)}
               <div>
                 <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                   Back

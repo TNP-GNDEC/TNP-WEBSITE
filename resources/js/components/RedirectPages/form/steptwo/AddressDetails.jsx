@@ -19,31 +19,47 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
-        padding: "20px 120px"
+        padding: "20px 60px"
     },
 
 }));
 
-export default function ContactDetails(props) {
+export default function AddressDetails(props) {
     const classes = useStyles();
     const fields = [
         {
-            label: " WHATSAPP CONTACT NO.",
+            label: "STREET",
             type: "text",
             id: 1,
-            value: props.contact.whatsapp_contact,
+            value: props.address.address,
         },
         {
-            label: "CONTACT NO.",
+            label: "CITY/VILLAGE",
             type: "text",
             id: 2,
-            value: props.contact.contact,
+            value: props.address.city,
         },
         {
-            label: "RE-ENTER CONTACT NO.",
+            label: "DISTRICT",
             type: "text",
             id: 3,
-            value: props.contact.re_enter_contact,
+            value: props.address.district,
+
+        },
+        {
+            label: "PINCODE",
+            type: "text",
+            id: 4,
+            value: props.address.pincode,
+
+        },
+
+        {
+            label: "STATE",
+            type: "text",
+            id: 5,
+            value: props.address.state,
+            
         },
 
     ];
@@ -63,8 +79,8 @@ export default function ContactDetails(props) {
                         name={field.name}
                         variant="outlined"
                         label={field.label}
+                        style={{ minWidth:"260px"}}
                         value={field.value}
-                        style={{ minWidth:"230px"}}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
@@ -74,7 +90,7 @@ export default function ContactDetails(props) {
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-                CONTACT DETAILS
+                ADDRESS DETAILS
             </Typography>
             <CardContent>
                 <Grid container>{renderFields()}</Grid>
