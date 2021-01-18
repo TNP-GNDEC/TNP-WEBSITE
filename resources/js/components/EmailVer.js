@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
     return (
       
       <div className={classes.root}>
-        <Header />
+        {/* <Header /> */}
         <Stepper nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label}>

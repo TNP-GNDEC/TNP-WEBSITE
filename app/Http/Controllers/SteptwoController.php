@@ -52,8 +52,8 @@ class SteptwoController extends Controller
       
       'shift' => $request->academics->shift,
       'stream' => $request->academics->stream,
-      'category' => $request->academics->category,
-      'branch_type' => $request->academics->branch_type,
+      'category' => $request->academics->course,
+      'branch_type' => $request->academics->branch,
       'training_sem' => $request->academics->training_sem,
       'hostler' => $request->academics->hostler,
       'leet' => $request->academics->leet,

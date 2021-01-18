@@ -69,7 +69,13 @@ export default function StepTwo() {
         dob: "",
         height: "",
         weight: "",
-        blood_group: ""
+        blood_group: "",
+        gender:"",
+        marital_status:"",
+        disability:"",
+        adhaar:"",
+        farming_background:""
+
     });
 
     // state for holding inputs from parent form imported as ParenteDetails
@@ -78,20 +84,20 @@ export default function StepTwo() {
         father_phone: "",
         mother_name: "",
         mother_phone: "",
-        mother_occupation: ""
-    });
+        });
 
     // state for holding inputs from academics form imported as AcademicDetails
     const [academics, setAcademics] = React.useState({
         univ_roll: "",
         college_roll: "",
-        category: "",
-        batch: "",
         course: "",
-        stream: "",
+        branch:"",
+        // stream: "",
         section: "",
         shift: "",
-        training_sem: ""
+        training_sem: "",
+        leet:"",
+        hostler:""
     });
 
     // state for holding inputs from contact form imported as ContactDetails
@@ -99,6 +105,15 @@ export default function StepTwo() {
         whatsapp_contact: "",
         contact: "",
         re_enter_contact: ""
+    });
+
+    const [address, setAddress] = React.useState({
+        address:"",
+        pincode: "",
+        district: "",
+        city: "",
+        state:"",
+
     });
 
     // State setter function of Profile form sent as props to ProfileDetails forms
@@ -290,9 +305,9 @@ export default function StepTwo() {
                         </Card>
                     </Grid>
                 </Grid>
-                <Button type="submit" variant="contained" color="primary">
+                {/* <Button type="submit" variant="contained" color="primary">
                     SUBMIT
-                </Button>
+                </Button> */}
             </form>
         </div>
     );
