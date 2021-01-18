@@ -70,7 +70,10 @@ paddding:"40px 0px 0px 400px"
     },
    note:{
     justifyContent: "center",
-   }
+   },
+   pos: {
+    float: "right"
+}
 }));
 
 export default function StepThree() {
@@ -179,7 +182,7 @@ export default function StepThree() {
                 </Grid>
                
             </Grid>
-            <Button type="submit">
+            <Button className={classes.pos} type="submit" variant="contained" color="primary" >
                 Submit
             </Button>
             </form>
