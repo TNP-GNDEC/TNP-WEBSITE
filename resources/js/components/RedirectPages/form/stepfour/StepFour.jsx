@@ -159,16 +159,16 @@ export default function StepTwo() {
             case 6:
                 setParent({ ...diploma, OBTAINED_MARKS: value });
                 break;
-                case 7:
-                    setParent({ ...diploma, MAXIMUM_MARKS: value });
-                    break;
+            case 7:
+                setParent({ ...diploma, MAXIMUM_MARKS: value });
+                break;
 
-                    case 8:
-                    setParent({ ...diploma, STREAM_OF_DIPLOMA: value });
-                    break;
-                    case 9:
-                    setParent({ ...diploma, });
-                    break;
+            case 8:
+                setParent({ ...diploma, STREAM_OF_DIPLOMA: value });
+                break;
+            case 9:
+                setParent({ ...diploma, });
+                break;
                     
             default:
                 break;

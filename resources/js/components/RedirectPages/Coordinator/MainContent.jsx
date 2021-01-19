@@ -21,6 +21,10 @@ const useStyles = makeStyles(theme => ({
     },
     tabBody: {
         marginTop: "40px"
+    },
+    BG: {
+        paddingBottom: "15px",
+        paddingTop: "15px",
     }
 }));
 
@@ -65,11 +69,12 @@ export default function FullWidthTabs(props) {
         } else if (props.activeId === 5) {
             return (
                 <>
-                    <h2 className={classes.heading}>{heading}</h2>
+                    {/* <h2 className={classes.heading}>{heading}</h2> */}
                     <ButtonGroup
                         size="large"
                         color="primary"
                         aria-label="large outlined primary button group"
+                        className={classes.BG}
                     >
                         <Button
                             onClick={() => {
@@ -105,7 +110,7 @@ export default function FullWidthTabs(props) {
     };
 
     return (
-        <Container className={classes.root} maxWidth="sm">
+        <Container className={classes.root} maxWidth="xl">
             {renderContent()}
         </Container>
     );
