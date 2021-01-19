@@ -52,11 +52,11 @@ export default function ProfileDetails(props) {
             options: []
         },
         {
-            label: "ADHAAR NO.",
+            label: "AADHAR NO.",
             type: "text",
             id: 4,
             select: "",
-            value: props.Profile.adhaar,
+            value: props.Profile.aadhar,
             options: []
         },
         

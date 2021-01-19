@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function registerStudent(Request $request)
     {
         $users= $request->data;
-        $data=[];
+        $data=0;
         foreach($users["data"] as $user){
             $user['uuid']=(string) Str::uuid();
             $user['role_id']=1;
@@ -44,7 +44,7 @@ class AuthController extends Controller
 
             }
         
-        return response()->json(["message"=>"data added successfully"]);
+        return response()->json(["message"=>"data added successfully","daata"=>$users["data"]]);
     }
 
     public function registerAdmin(Request $request){

@@ -15,7 +15,7 @@ class CreateStepTwoTable extends Migration
         Schema::create('step_two', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('urn')->unsigned();
+            $table->bigInteger('urn')->unsigned()->unique();
             $table->bigInteger('crn')->unsigned();
             $table->bigInteger('pincode')->nullable();
             $table->string('first_name')->nullable();
