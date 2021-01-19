@@ -76,7 +76,7 @@ export default function StepTwo() {
         blood_group: "",
         gender: "",
         marital_status: "",
-        disability: "",
+        disability: "" ,
         adhaar: "",
         farming_background: ""
     });
@@ -149,12 +149,15 @@ export default function StepTwo() {
                 setProfile({ ...profile, gender: value });
                 break;
             case 9:
+                // value = parseInt(value)
                 setProfile({ ...profile, marital_status: value });
                 break;
             case 10:
+                // value = parseInt(value)
                 setProfile({ ...profile, farming_background: value });
                 break;
             case 11:
+                // value = parseInt(value)
                 setProfile({ ...profile, disability: value });
                 break;
             default:
