@@ -108,7 +108,7 @@ export default function ProfileDetails(props) {
         },
 
         {
-            label: "farming_background",
+            label: "FARMING BACKGROUND",
             type: "text",
             id: 10,
             select: "True",

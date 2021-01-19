@@ -63,7 +63,10 @@ const useStyles = makeStyles(theme => ({
     },
     pos: {
         float: "right"
-    }
+    },
+    note:{
+        justifyContent: "center",
+       },
 }));
 
 export default function StepTwo() {
@@ -90,7 +93,7 @@ export default function StepTwo() {
         OBTAINED_MARKS:"",
         MAXIMUM_MARKS: "",
         STREAM_OF_DIPLOMA:"",
-        UPLOAD:"(UPLAOD SCANNED CERTIFICATE)"
+      
     });
 
     const handleFormSubmit = (event) => {
@@ -214,14 +217,18 @@ export default function StepTwo() {
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
                         <TwelthDetails Twelth={twelth} handleInputChange={handleProfileChangeInput}/>
-                        
+                        <Paper variant="outlined" elevation={3} className={classes.note}>
+                            <code>Note : Upload Scanned copies of your Twelth certificates. </code>
+                        </Paper>
                     </Card>
                 </Grid>
 
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
                         {<DiplomaDetails Diploma={diploma} handleInputChange={handleParentChangeInput}/> }
-                        
+                        <Paper variant="outlined" elevation={3} className={classes.note}>
+                            <code>Note : Upload Scanned copies of your Diploma certificates. </code>
+                        </Paper>
                     </Card>
                 </Grid>
 
