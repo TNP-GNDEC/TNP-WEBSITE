@@ -76,13 +76,8 @@ export default function StepTwo() {
         blood_group: "",
         gender: "",
         marital_status: "",
-        disability: "",
-        aadhar: "",
-        farming_background: ""
-    });
 
     // state for holding inputs from parent form imported as ParentsDetails
-    const [parent, setParent] = React.useState({
         father_name: "",
         father_phone: "",
         mother_name: "",
@@ -149,12 +144,15 @@ export default function StepTwo() {
                 setProfile({ ...profile, gender: value });
                 break;
             case 9:
+                // value = parseInt(value)
                 setProfile({ ...profile, marital_status: value });
                 break;
             case 10:
+                // value = parseInt(value)
                 setProfile({ ...profile, farming_background: value });
                 break;
             case 11:
+                // value = parseInt(value)
                 setProfile({ ...profile, disability: value });
                 break;
             default:
@@ -242,7 +240,7 @@ export default function StepTwo() {
 
     const handleAddresssChangeInput = (e, id) => {
         console.log("I am called for contact");
-        const value = e.target.value;
+        const value = e.target.value;https://www.google.com/
         switch (id) {
             case 1:
                 setAddress({ ...address, address: value });

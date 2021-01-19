@@ -179,7 +179,7 @@ export default function Details(props) {
                     label: "CIVIL"
                 },
                 {
-                    value: "mech",
+                    value: "mechanical",
                     label: "MECHANICAL"
                 },
                 {
@@ -308,7 +308,9 @@ export default function Details(props) {
                                 : props.academics.course == "MCA"
                                 ? [{ value: "computers", label: "COMPUTERS" }]
                                 : field.options)  */}
-                               { field.options.map(option => {
+                               {
+                               
+                               (field.id>3 && props.academics.course=="" ? [ {label:"CHOOSE COURSE FIRST" , value:"" }] : field.options  ).map(option => {
                                 return (
                                     <MenuItem
                                         key={option.value}
