@@ -45,7 +45,7 @@ export default function ProfileDetails(props) {
         },
         {
             label: "DATE OF BIRTH",
-            type: "text",
+            type: "date",
             id: 3,
             select: "",
             value: props.Profile.dob,

@@ -8,7 +8,7 @@ import AcademicDetails from "./AcademicDetails";
 import ContactDetails from "./ContactDetails";
 import Button from "@material-ui/core/Button";
 import { concat } from "lodash";
-import AddressDetails from './AddressDetails'
+import AddressDetails from "./AddressDetails";
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
     formControl: {
         margin: theme.spacing(2),
-        minWidth: 120,
+        minWidth: 120
 
         // width: "400px",
         // height: "70px"
@@ -77,7 +77,7 @@ export default function StepTwo() {
         gender: "",
         marital_status: "",
 
-    // state for holding inputs from parent form imported as ParentsDetails
+        // state for holding inputs from parent form imported as ParentsDetails
         father_name: "",
         father_phone: "",
         mother_name: "",
@@ -114,10 +114,33 @@ export default function StepTwo() {
     });
 
 
+    const [parent, setParent] = React.useState({
+        father_name: "",
+        father_phone: "",
+        mother_name: "",
+        mother_phone: "",
+    });
+
+// Utility Function
+const  toCamelCase =  (str) => {
+    var strInCamelCase = "";
+    var splittedStr = str.split(" ");
+  
+    for (var i = 0; i < splittedStr.length; i++) {
+      var word = splittedStr[i];
+      strInCamelCase = strInCamelCase.concat( word[0].toUpperCase() + word.substr(1, word.length) );
+    }
+  
+    return strInCamelCase ;
+  }
+  
+      
+      
+
     // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
-        const value = e.target.value;
+        const value = toCamelCase( e.target.value );
         switch (id) {
             case 1:
                 setProfile({ ...profile, first_name: value });
@@ -163,7 +186,7 @@ export default function StepTwo() {
     // State setter function of parent form sent as props to ParentDetails forms
     const handleParentChangeInput = (e, id) => {
         console.log("I am called for parent");
-        const value = e.target.value;
+        const value = toCamelCase( e.target.value );
         switch (id) {
             case 1:
                 setParent({ ...parent, father_name: value });
@@ -185,7 +208,7 @@ export default function StepTwo() {
     // State setter function of academics form sent as props to AcademicDetails forms
     const handleAcademicsChangeInput = (e, id) => {
         console.log("I am called for academics");
-        const value = e.target.value;
+        const value = toCamelCase( e.target.value );
         switch (id) {
             case 1:
                 setAcademics({ ...academics, univ_roll: value });
@@ -222,7 +245,7 @@ export default function StepTwo() {
     // State setter function of contact form sent as props to ContactDetails forms
     const handleContactChangeInput = (e, id) => {
         console.log("I am called for contact");
-        const value = e.target.value;
+        const value = toCamelCase( e.target.value );
         switch (id) {
             case 1:
                 setContact({ ...contact, whatsapp_contact: value });
@@ -240,7 +263,7 @@ export default function StepTwo() {
 
     const handleAddresssChangeInput = (e, id) => {
         console.log("I am called for contact");
-        const value = e.target.value;https://www.google.com/
+        const value = toCamelCase( e.target.value );
         switch (id) {
             case 1:
                 setAddress({ ...address, address: value });
@@ -251,12 +274,12 @@ export default function StepTwo() {
             case 3:
                 setAddress({ ...address, district: value });
                 break;
-                case 4:
-                    setAddress({ ...address, pincode: value });
-                    break;
-                    case 5:
-                        setAddress({ ...address, state: value });
-                        break;
+            case 4:
+                setAddress({ ...address, pincode: value });
+                break;
+            case 5:
+                setAddress({ ...address, state: value });
+                break;
             default:
                 break;
         }
@@ -272,7 +295,7 @@ export default function StepTwo() {
                 academics: academics,
                 parent: parent,
                 contact: contact,
-                address:address
+                address: address
             })
             .then(response => {
                 var user = response.data;
@@ -303,7 +326,6 @@ export default function StepTwo() {
         <div>
             <form onSubmit={event => handleFormSubmit(event)}>
                 <Grid container className={classes.container}>
-
                     <Grid item xs={10} className={classes.Cardcontainers}>
                         <Card className={classes.cardStyles}>
                             <ProfileDetails
@@ -348,7 +370,6 @@ export default function StepTwo() {
                             />
                         </Card>
                     </Grid>
-                    
                 </Grid>
                 <Button
                     className={classes.pos}
