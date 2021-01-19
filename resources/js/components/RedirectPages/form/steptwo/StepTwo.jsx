@@ -77,7 +77,7 @@ export default function StepTwo() {
         gender: "",
         marital_status: "",
         disability: "",
-        adhaar: "",
+        aadhar: "",
         farming_background: ""
     });
 
@@ -95,7 +95,7 @@ export default function StepTwo() {
         college_roll: "",
         course: "",
         branch: "",
-        // stream: "",
+        stream: "",
         section: "",
         shift: "",
         training_sem: "",
@@ -134,7 +134,7 @@ export default function StepTwo() {
                 setProfile({ ...profile, dob: value });
                 break;
             case 4:
-                setProfile({ ...profile, adhaar: value });
+                setProfile({ ...profile, aadhar: value });
                 break;
             case 5:
                 setProfile({ ...profile, height: value });
@@ -267,10 +267,12 @@ export default function StepTwo() {
     const handleFormSubmit = e => {
         event.preventDefault();
         const id = localStorage.getItem("userid");
+        console.log(parent);
         axios
             .post(`/api/personaldetails/${id}`, {
                 profile: profile,
                 academics: academics,
+                parent: parent,
                 contact: contact,
                 address:address
             })
