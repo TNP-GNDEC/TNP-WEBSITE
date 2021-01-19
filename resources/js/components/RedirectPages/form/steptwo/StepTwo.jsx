@@ -76,13 +76,8 @@ export default function StepTwo() {
         blood_group: "",
         gender: "",
         marital_status: "",
-        disability: "" ,
-        adhaar: "",
-        farming_background: ""
-    });
 
     // state for holding inputs from parent form imported as ParentsDetails
-    const [parent, setParent] = React.useState({
         father_name: "",
         father_phone: "",
         mother_name: "",
@@ -95,7 +90,7 @@ export default function StepTwo() {
         college_roll: "",
         course: "",
         branch: "",
-        // stream: "",
+        stream: "",
         section: "",
         shift: "",
         training_sem: "",
@@ -134,7 +129,7 @@ export default function StepTwo() {
                 setProfile({ ...profile, dob: value });
                 break;
             case 4:
-                setProfile({ ...profile, adhaar: value });
+                setProfile({ ...profile, aadhar: value });
                 break;
             case 5:
                 setProfile({ ...profile, height: value });
@@ -245,7 +240,7 @@ export default function StepTwo() {
 
     const handleAddresssChangeInput = (e, id) => {
         console.log("I am called for contact");
-        const value = e.target.value;
+        const value = e.target.value;https://www.google.com/
         switch (id) {
             case 1:
                 setAddress({ ...address, address: value });
@@ -270,10 +265,12 @@ export default function StepTwo() {
     const handleFormSubmit = e => {
         event.preventDefault();
         const id = localStorage.getItem("userid");
+        console.log(parent);
         axios
             .post(`/api/personaldetails/${id}`, {
                 profile: profile,
                 academics: academics,
+                parent: parent,
                 contact: contact,
                 address:address
             })

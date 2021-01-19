@@ -17,7 +17,7 @@ class CreateStepThreeTable extends Migration
         Schema::create('step_three', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('urn')->unsigned();
+            $table->bigInteger('urn')->unsigned()->unique();
             $table->bigInteger('crn')->unsigned();
             $table->string('institution_name')->nullable();
             $table->string('marks_type')->nullable();

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class StepThree extends Model
 {
-    protected $table = "step_two";
+    protected $table = "step_three";
     use HasFactory;
     protected $fillable = [
      "user_id",
