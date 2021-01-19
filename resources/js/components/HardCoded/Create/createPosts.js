@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import '../../../../css/app.css';
 
 class CreatePosts extends React.Component {
     state = {
@@ -31,6 +32,7 @@ class CreatePosts extends React.Component {
         }
     }
 
+    
     render(){
         return(
             <div className="layout">
@@ -58,10 +60,13 @@ class CreatePosts extends React.Component {
                             </div>
                             <div className="form-group">
                                 <label>Description:</label>
-                                <div className="App">
+                                <div className="App" >
                                     <CKEditor
                                         editor={ ClassicEditor }
                                         data=""
+                                        config={{         
+                                            toolbar: ["undo", "redo", "bold", "italic", "blockQuote", "ckfinder", "imageTextAlternative", "imageUpload", "heading", "imageStyle:full", "imageStyle:side", "link", "numberedList", "bulletedList", "mediaEmbed", "insertTable", "tableColumn", "tableRow", "mergeTableCells"]
+                                          }}
                                         onReady={ editor => {
                                             // You can store the "editor" and use when it is needed.
                                             console.log( 'Editor is ready to use!', editor );
@@ -73,6 +78,7 @@ class CreatePosts extends React.Component {
                                         onFocus={ ( event, editor ) => {
                                             console.log( 'Focus.', editor );
                                         } }
+                                        
                                     />
                                 </div>
                             </div>
