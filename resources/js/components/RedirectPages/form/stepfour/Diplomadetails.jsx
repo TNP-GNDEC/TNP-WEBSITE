@@ -145,6 +145,7 @@ export default function DiplomaDetails(props) {
                         label={field.label}
                         value={field.value}
                         select={field.select}
+                        inputProps={{ accept: '.pdf' }}
                         style={{ minWidth: "230px" ,maxWidth:"230px"}}
                         disabled={field.disabled}
                         onChange={e => {
@@ -171,9 +172,7 @@ export default function DiplomaDetails(props) {
             </Typography>
             <CardContent>
                 <Grid container>{renderDiplomaFields()}
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload Scanned copies of your diploma certificates. </code>
-                        </Paper>
+               
                </Grid>
             </CardContent>
            

@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import CusButton from "./CusButton";
+ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
     heading: {
@@ -133,9 +134,9 @@ export default function StepOne() {
                                 defaultValue={email}
                                 onChange={handleChange}
                             />
-                            <button 
+                            <Button 
                             type="submit" 
-                            label="Send OTP">send otp</button> 
+                              variant="contained" color="primary">SEND OTP</Button> 
                         </div>
                     </form>
                 </div>

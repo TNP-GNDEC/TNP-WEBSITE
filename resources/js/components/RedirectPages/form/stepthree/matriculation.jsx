@@ -57,7 +57,7 @@ export default function MatriculationDetails(props) {
             id: 1,  
    
             // name: "board",
-            value: props.Matriculation.board,
+            value: props.Matriculation.BOARD,
             select: "true",
            
             
@@ -69,14 +69,14 @@ export default function MatriculationDetails(props) {
             type: "text",
             id: 2,
             // name: "Institution",
-            value: props.Matriculation.institution_name,
+            value: props.Matriculation.INSTITUTION_NAME,
         },
         {
             label: "CITY OF INSTITUTION",
             type: "text",
             id: 3,
             // name: "Institution",
-            value: props.Matriculation.city,
+            value: props.Matriculation.CITY_OF_INSTITUTION,
         },
         {
 
@@ -84,14 +84,14 @@ export default function MatriculationDetails(props) {
             type: "text",
             id: 4,
             // name: "Institution",
-            value: props.Matriculation.state,
+            value: props.Matriculation.STATE_OF_INSTITUTION,
         },
         {
             label: "YEAR OF PASSING",
             type: "text",
             id: 5,
             // name: "Year_of_passing",
-            value: props.Matriculation.year_of_passing,
+            value: props.Matriculation.YEAR_OF_PASSING,
         },
         {
             label: "MARKS TYPE",
@@ -100,7 +100,7 @@ export default function MatriculationDetails(props) {
             
             
             // name: "Marks_type",
-            value: props.Matriculation.marks_type,
+            value: props.Matriculation.MARKS_TYPE,
            
             
            
@@ -110,7 +110,7 @@ export default function MatriculationDetails(props) {
             type: "text",
             id: 7,
             // name: "Obtained_marks",
-            value: props.Matriculation.obtained_marks,
+            value: props.Matriculation.OBTAINED_MARKS,
 
         },
         {
@@ -118,10 +118,10 @@ export default function MatriculationDetails(props) {
             type: "text",
             id: 8,
             // name: "maximum_marks",
-            value: props.Matriculation.maximum_marks,
+            value: props.Matriculation.MAXIMUM_MARKS,
         },
         {
-           label:"",
+          label:"",
            type: "FILE" ,
            id: 9,
            accept:"application/pdf" ,
@@ -129,7 +129,7 @@ export default function MatriculationDetails(props) {
            
             
             
-            value: props.Matriculation.file,
+            value: props.Matriculation.FILE,
 
         
         }
@@ -152,7 +152,7 @@ export default function MatriculationDetails(props) {
                         type={field.type}
                         id="outlined-basic"
                         name={field.name}
-                     
+                        inputProps={{ accept: '.pdf' }}
                         variant="outlined"
                         label={field.label}
                         value={field.value}

@@ -145,6 +145,7 @@ export default function TwelthDetails(props) {
                         variant="outlined"
                         label={field.label}
                         select={field.select}
+                        inputProps={{ accept: '.pdf' }}
                         style={{ minWidth: "230px" ,maxWidth:"230px" }}
                         disabled={field.disabled}
                         value={field.value}
@@ -173,9 +174,7 @@ export default function TwelthDetails(props) {
             </Typography>
             <CardContent>
                 <Grid container>{renderTwelthFields()}
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload Scanned copies of your 12th certificates. </code>
-                        </Paper>           
+                
                 </Grid>
             </CardContent>
         </>
