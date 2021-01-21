@@ -74,7 +74,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function StepThree() {
     const classes = useStyles();
-
     const [matriculation, setmatric] = React.useState({
         board: "",
         institution_name: "",
@@ -116,9 +115,18 @@ export default function StepThree() {
             console.log(error);
         });
     };
+
+    const readFile=(file)=>{
+    console.log(file)
+    let formData = new FormData();
+    formData.append("file", file);
+    return formData;
+    }
+
     const handleMatriculationChangeInput = (e, id) => {
         console.log("I am called");
         const value = e.target.value;
+
         switch (id) {
             case 1:
                 setmatric({ ...matriculation, board: value });
@@ -146,7 +154,8 @@ export default function StepThree() {
                 setmatric({ ...matriculation, maximum_marks: value });
                 break;
             case 9:
-                setmatric({ ...matriculation, file: e.target.files });
+
+                setmatric({ ...matriculation, file: readFile(e.target.value) });
                 break;
             default:
                 break;
@@ -163,7 +172,7 @@ export default function StepThree() {
                     <Grid item xs={10} className={classes.Cardcontainers}>
                         <Card className={classes.cardStyles}>
                             <MatriculationDetails
-                                Matriculation={matriculation}
+                                matriculation={matriculation}
                                 handleInputChange={
                                     handleMatriculationChangeInput
                                 }

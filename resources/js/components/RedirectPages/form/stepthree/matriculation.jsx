@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function MatriculationDetails(props) {
+export default function matriculationDetails(props) {
     const classes = useStyles();
 
     const currencies = [
@@ -48,7 +48,7 @@ export default function MatriculationDetails(props) {
             type: "text",
             id: 1,
             name: "board",
-            value: props.Matriculation.BOARD,
+            value: props.matriculation.board,
             select: "true"
         },
 
@@ -57,61 +57,61 @@ export default function MatriculationDetails(props) {
             type: "text",
             id: 2,
             name: "institution_name",
-            value: props.Matriculation.INSTITUTION_NAME
+            value: props.matriculation.institution_name
         },
         {
             label: "CITY OF INSTITUTION",
             type: "text",
             id: 3,
             name: "city_of_institution",
-            value: props.Matriculation.CITY_OF_INSTITUTION
+            value: props.matriculation.city_of_institution
         },
         {
             label: "STATE OF INSTITUTION",
             type: "text",
             id: 4,
             name: "state_of_institution",
-            value: props.Matriculation.STATE_OF_INSTITUTION
+            value: props.matriculation.state_of_institution
         },
         {
             label: "YEAR OF PASSING",
             type: "text",
             id: 5,
             name: "year_of_passing",
-            value: props.Matriculation.YEAR_OF_PASSING
+            value: props.matriculation.year_of_passing
         },
         {
             label: "MARKS TYPE",
             type: "text",
             id: 6,
             name: "marks_type",
-            value: props.Matriculation.MARKS_TYPE
+            value: props.matriculation.marks_type
         },
         {
             label: "OBTAINED MARKS",
             type: "text",
             id: 7,
             name: "obtained_marks",
-            value: props.Matriculation.OBTAINED_MARKS
+            value: props.matriculation.obtained_marks
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
             id: 8,
             name: "maximum_marks",
-            value: props.Matriculation.MAXIMUM_MARKS
+            value: props.matriculation.maximum_marks
         },
         {
             label: "",
-            type: "FILE",
+            type: "file",
             id: 9,
             accept: "application/pdf",
             name: "file",
-            value: props.Matriculation.FILE
+            defaultValue: props.matriculation.file
         }
     ];
 
-    const renderMatriculationFields = () =>
+    const rendermatriculationFields = () =>
         fields.map(field => (
             <>
                 <Grid
@@ -151,10 +151,10 @@ export default function MatriculationDetails(props) {
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-                MATRICULATION DETAILS
+                matriculation DETAILS
             </Typography>
             <CardContent>
-                <Grid container>{renderMatriculationFields()}</Grid>
+                <Grid container>{rendermatriculationFields()}</Grid>
             </CardContent>
         </>
     );

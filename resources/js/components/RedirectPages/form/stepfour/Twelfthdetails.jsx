@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   
 }));
 
-export default function TwelthDetails(props) {
+export default function TwelfthDetails(props) {
     const classes = useStyles();
     const currencies = [
         {
@@ -49,7 +49,7 @@ export default function TwelthDetails(props) {
             type: "text",
             id: 1,
             // name: "first_name",
-            value: props.Twelth.BOARD,
+            value: props.twelfth.board,
             select: "true",
             options: [
                 
@@ -72,63 +72,63 @@ export default function TwelthDetails(props) {
             type: "text",
             id: 2,
           
-            value: props.Twelth.INSTITUTION_NAME,
+            value: props.twelfth.institution_name,
         },
         {
             label: "JEE RANK * FILL NA IF NOT APPERRED",
             type: "text",
             id: 3,
            
-            value: props.Twelth.JEE_RANK,
+            value: props.twelfth.jee_rank,
         },
         {
             label: "CITY OF INSTITUTION",
             type: "text",
             id: 4,
             
-            value: props.Twelth.CITY_OF_INSTITUTION,
+            value: props.twelfth.city_of_institution,
         },
         {
             label: "STATE OF INSTITUTION",
             type: "text",
             id: 5,
          
-            value: props.Twelth.STATE_OF_INSTITUTION,
+            value: props.twelfth.state_of_institution,
         },
         {
             label: "YEAR OF PASSING",
             type: "text",
             id: 6,
            
-            value: props.Twelth.YEAR_OF_PASSING,
+            value: props.tweflth.year_of_passing,
         },
         {
             label: "OBTAINED MARKS",
             type: "text",
             id: 7,
     
-            value: props.Twelth.OBTAINED_MARKS,
+            value: props.tweflth.obtained_marks,
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
             id: 8,
           
-            value: props.Twelth.MAXIMUM_MARKS,
+            value: props.tweflth.maximum_marks,
         },
         {
             label:"",
             type: "file",
             id: 9,
             inputid:"pdf-file",
-        
+            value: props.twelfth.file,
             
           
             
         }
     ];
 
-    const renderTwelthFields = () =>
+    const rendertwelfthFields = () =>
         fields.map(field => (
             <>
                 <Grid
@@ -173,7 +173,7 @@ export default function TwelthDetails(props) {
                 XII DETAILS
             </Typography>
             <CardContent>
-                <Grid container>{renderTwelthFields()}
+                <Grid container>{rendertwelfthFields()}
                 
                 </Grid>
             </CardContent>
