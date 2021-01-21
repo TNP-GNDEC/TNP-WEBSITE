@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -78,21 +78,44 @@ export default function StepThree() {
     const [matriculation, setmatric] = React.useState({
         board: "",
         institution_name: "",
+        state_of_institution: "",
+        city_of_institution: "",
         year_of_passing: "",
         marks_type: "",
         obtained_marks: "",
         maximum_marks: "",
         file: ""
     });
+    const [errors, setErrors] = useState({});
+
+    const validate = () => {
+        let temp = {}
+        temp.board = matriculation.board ? "": "This field is required."
+        temp.institution_name = matriculation.institution_name? "": "This field is required."
+        temp.year_of_passing = matriculation.year_of_passing ? "": "This field is required."
+        temp.marks_type = matriculation.marks_type ? "": "This field is required."
+        temp.state_of_institution = matriculation.obtained_marks ? "": "This field is required."
+        temp.city_of_institution = matriculation.maximum_marks ? "": "This field is required."
+        temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
+        temp.maximum_marks = matriculation.maximum_marks ? "": "This field is required."
+        setErrors({
+          ...temp
+        })
+        console.log(errors);
+        return true
+      }
 
     const handleFormSubmit = event => {
         event.preventDefault();
+        if(validate()){}
         const id = localStorage.getItem("userid");
         axios.post(`/api/matriculation/${id}`, {
             matriculation: matriculation
+        })
+        .catch((error) => {
+            console.log(error);
         });
     };
-
     const handleMatriculationChangeInput = (e, id) => {
         console.log("I am called");
         const value = e.target.value;
@@ -133,32 +156,6 @@ export default function StepThree() {
     React.useEffect(() => {
         console.log("Do something after matric has changed", matriculation);
     }, [matriculation]);
-    const renderMatricFields = () => {
-        fields.map(field => (
-            <>
-                <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    lg={4}
-                    className={classes.textFieldContainer}
-                >
-                    <TextField
-                        className={classes.input}
-                        type={field.type}
-                        id="outlined-basic"
-                        name={field.name}
-                        variant="outlined"
-                        label={field.label}
-                        value={field.value}
-                        onChange={e => {
-                            field.change(e, field.id);
-                        }}
-                    />
-                </Grid>
-            </>
-        ));
-    };
     return (
         <div>
             <form onSubmit={handleFormSubmit}>
@@ -170,6 +167,7 @@ export default function StepThree() {
                                 handleInputChange={
                                     handleMatriculationChangeInput
                                 }
+                                Errors= {errors}
                             />
                             <Paper
                                 variant="outlined"

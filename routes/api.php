@@ -26,7 +26,7 @@ Route::post('email/verify/{id}', [VerificationController::class, 'verify'])->nam
 
 // step 2 personal details form post request
 Route::post('personaldetails/{id}', 'SteptwoController@getFormData');
-Route::post('matriculation/{id}', 'StepthreeController@getFormData');
+Route::post('matriculation/{id}', 'StepthreeController@getFormData3');
 
 // step 3  details form post request
 // Route::post('matriculation/{id}', '');

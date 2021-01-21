@@ -10,7 +10,7 @@ use App\Models\StepThree;
 use App\Models\FormStatus;
 use Illuminate\Support\Facades\DB;
 
-class SteptwoController extends Controller
+class StepthreeController extends Controller
 {
   public function __construct()
     {
@@ -22,7 +22,7 @@ class SteptwoController extends Controller
         });
     }
 
- public function getFormData(Request $request)
+ public function getFormData3(Request $request)
   {
     $user = User::findOrFail($request->id);
   $current_step= DB::table('form_statuses')
@@ -33,8 +33,8 @@ class SteptwoController extends Controller
   ->where('user_id', $user->id)
   ->update([
       'pincode' => $request->matriculation->pincode,
-      'city' => $request->matriculation->city,
-      'state' => $request->matriculation->state,
+      'city' => $request->matriculation->city_of_institution,
+      'state' => $request->matriculation->state_of_institution,
       'marks_type' => $request->matriculation->marks_type,
       'maximum_marks' => $request->matriculation->maximum_marks,
       'obtained_marks' => $request->matriculation->obtained_marks,
