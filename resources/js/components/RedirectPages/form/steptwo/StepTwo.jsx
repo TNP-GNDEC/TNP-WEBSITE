@@ -262,7 +262,7 @@ export default function StepTwo() {
         }
     };
 
-    const handleFormSubmit = e => {
+    const handleFormSubmit = event => {
         event.preventDefault();
         const id = localStorage.getItem("userid");
         console.log(parent);

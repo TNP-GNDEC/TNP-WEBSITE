@@ -42,14 +42,12 @@ export default function MatriculationDetails(props) {
             label: "PSEB"
         }
     ];
-
     const fields = [
         {
             label: "BOARD",
             type: "text",
             id: 1,
-
-            // name: "board",
+            name: "board",
             value: props.Matriculation.BOARD,
             select: "true"
         },
@@ -58,50 +56,49 @@ export default function MatriculationDetails(props) {
             label: "INSTITUTION NAME",
             type: "text",
             id: 2,
-            // name: "Institution",
+            name: "institution_name",
             value: props.Matriculation.INSTITUTION_NAME
         },
         {
             label: "CITY OF INSTITUTION",
             type: "text",
             id: 3,
-            // name: "Institution",
+            name: "city_of_institution",
             value: props.Matriculation.CITY_OF_INSTITUTION
         },
         {
             label: "STATE OF INSTITUTION",
             type: "text",
             id: 4,
-            // name: "Institution",
+            name: "state_of_institution",
             value: props.Matriculation.STATE_OF_INSTITUTION
         },
         {
             label: "YEAR OF PASSING",
             type: "text",
             id: 5,
-            // name: "Year_of_passing",
+            name: "year_of_passing",
             value: props.Matriculation.YEAR_OF_PASSING
         },
         {
             label: "MARKS TYPE",
             type: "text",
             id: 6,
-
-            // name: "Marks_type",
+            name: "marks_type",
             value: props.Matriculation.MARKS_TYPE
         },
         {
             label: "OBTAINED MARKS",
             type: "text",
             id: 7,
-            // name: "Obtained_marks",
+            name: "obtained_marks",
             value: props.Matriculation.OBTAINED_MARKS
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
             id: 8,
-            // name: "maximum_marks",
+            name: "maximum_marks",
             value: props.Matriculation.MAXIMUM_MARKS
         },
         {
@@ -109,6 +106,7 @@ export default function MatriculationDetails(props) {
             type: "FILE",
             id: 9,
             accept: "application/pdf",
+            name: "file",
             value: props.Matriculation.FILE
         }
     ];
@@ -138,12 +136,14 @@ export default function MatriculationDetails(props) {
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
+                        {...(props.Errors[0] && {error:true, helperText:props.Errors[0]})}
                     >
                         {currencies.map(option => (
                             <MenuItem key={option.value} value={option.value}>
                                 {option.label}
                             </MenuItem>
                         ))}
+                        
                     </TextField>
                 </Grid>
             </>
