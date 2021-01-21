@@ -7,6 +7,7 @@ import TwelthDetails from './Twelthdetails'
 import DiplomaDetails from './Diplomadetails'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 const useStyles = makeStyles(theme => ({
     head: {
@@ -67,6 +68,7 @@ const useStyles = makeStyles(theme => ({
     note:{
         justifyContent: "center",
        },
+       
 }));
 
 export default function StepTwo() {
@@ -124,16 +126,19 @@ export default function StepTwo() {
                 setProfile({ ...twelth,  STATE_OF_INSTITUTE:value });
                 break;
             case 6:
+                setProfile({ ...twelth,  PINCODE_OF_INSTITUTION:value });
+                break;
+            case 7:
                 setProfile({ ...twelth,  YEAR_OF_PASSING:value });
                 break;
-                case 7:
+                case 8:
                     setProfile({ ...twelth,    OBTAINED_MARKS:value });
                     break;
-                    case 8:
+            case 9:
                 setProfile({ ...twelth,  MAXIMUM_MARKS:value });
                 break;
-                case 9:
-                setProfile({ ...twelth, });
+            case 10:
+                setProfile({ ...twelth, file:value});
                 break;
             default:
                 break;
@@ -157,20 +162,23 @@ export default function StepTwo() {
                 setParent({ ...diploma,    STATE_OF_INSTITUTE:value });
                 break;
             case 5:
+                    setParent({ ...diploma, PINCODE_OF_INSTITUTION: value });
+                    break;
+            case 6:
                 setParent({ ...diploma, YEAR_OF_PASSING: value });
                 break;
-            case 6:
+            case 7:
                 setParent({ ...diploma, OBTAINED_MARKS: value });
                 break;
-                case 7:
+            case 8:
                     setParent({ ...diploma, MAXIMUM_MARKS: value });
                     break;
 
-                    case 8:
+            case 9:
                     setParent({ ...diploma, STREAM_OF_DIPLOMA: value });
                     break;
-                    case 9:
-                    setParent({ ...diploma, });
+            case 10:
+                    setParent({ ...diploma,file:value });
                     break;
                     
             default:
@@ -218,7 +226,7 @@ export default function StepTwo() {
                     <Card className={classes.cardStyles}>
                         <TwelthDetails Twelth={twelth} handleInputChange={handleProfileChangeInput}/>
                         <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload Scanned copies of your Twelth certificates. </code>
+                            <code>Note : Upload <CloudUploadIcon />  Scanned copies of your Twelth certificates. </code>
                         </Paper>
                     </Card>
                 </Grid>
@@ -227,7 +235,7 @@ export default function StepTwo() {
                     <Card className={classes.cardStyles}>
                         {<DiplomaDetails Diploma={diploma} handleInputChange={handleParentChangeInput}/> }
                         <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload Scanned copies of your Diploma certificates. </code>
+                            <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
                         </Paper>
                     </Card>
                 </Grid>

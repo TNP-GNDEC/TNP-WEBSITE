@@ -4,8 +4,9 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+
 import MenuItem from "@material-ui/core/MenuItem";
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -47,7 +48,20 @@ export default function MatriculationDetails(props) {
             label:'PSEB',
         }
       ];
-     
+      const marks_type = [
+        {
+            value:'1',
+            label:'CBSE',
+        },
+        {
+            value:'2',
+            label:'ICSE',
+        },
+        {
+            value:'2',
+            label:'PSEB',
+        }
+      ];
     const fields = [
         
         {
@@ -87,20 +101,27 @@ export default function MatriculationDetails(props) {
             value: props.Matriculation.STATE_OF_INSTITUTION,
         },
         {
-            label: "YEAR OF PASSING",
+            label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 5,
+            // name: "Year_of_passing",
+            value: props.Matriculation.PINCODE_OF_INSTITUTION,
+        },
+        {
+            label: "YEAR OF PASSING",
+            type: "text",
+            id: 6,
             // name: "Year_of_passing",
             value: props.Matriculation.YEAR_OF_PASSING,
         },
         {
             label: "MARKS TYPE",
             type: "text",
-            id: 6,
             
+            id: 7,
+             value: props.Matriculation.MARKS_TYPE,
             
-            // name: "Marks_type",
-            value: props.Matriculation.MARKS_TYPE,
+           
            
             
            
@@ -108,7 +129,7 @@ export default function MatriculationDetails(props) {
         {
             label: "OBTAINED MARKS",
             type: "text",
-            id: 7,
+            id: 8,
             // name: "Obtained_marks",
             value: props.Matriculation.OBTAINED_MARKS,
 
@@ -116,14 +137,14 @@ export default function MatriculationDetails(props) {
         {
             label: "MAXIMUM MARKS",
             type: "text",
-            id: 8,
+            id: 9,
             // name: "maximum_marks",
             value: props.Matriculation.MAXIMUM_MARKS,
         },
         {
           label:"",
            type: "FILE" ,
-           id: 9,
+           id: 10,
            accept:"application/pdf" ,
            
            
@@ -157,6 +178,7 @@ export default function MatriculationDetails(props) {
                         label={field.label}
                         value={field.value}
                         select={field.select}
+                        
                         style={{ minWidth: "230px" ,maxWidth:"230px"}}
                         
                         disabled={field.disabled}
@@ -165,10 +187,13 @@ export default function MatriculationDetails(props) {
                         }}
 
                     >
+
 {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
+              
             </MenuItem>
+
           ))}
               
 
