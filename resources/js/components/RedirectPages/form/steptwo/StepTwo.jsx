@@ -7,7 +7,6 @@ import ParentDetails from "./ParentsDetails";
 import AcademicDetails from "./AcademicDetails";
 import ContactDetails from "./ContactDetails";
 import Button from "@material-ui/core/Button";
-import { concat } from "lodash";
 import AddressDetails from "./AddressDetails";
 const useStyles = makeStyles(theme => ({
     head: {
@@ -22,9 +21,6 @@ const useStyles = makeStyles(theme => ({
     formControl: {
         margin: theme.spacing(2),
         minWidth: 120
-
-        // width: "400px",
-        // height: "70px"
     },
     hr: {
         color: "#038ed4",
@@ -113,34 +109,38 @@ export default function StepTwo() {
         state: ""
     });
 
-
     const [parent, setParent] = React.useState({
         father_name: "",
         father_phone: "",
         mother_name: "",
-        mother_phone: "",
+        mother_phone: ""
     });
 
-// Utility Function
-const  toCamelCase =  (str) => {
-    var strInCamelCase = "";
-    var splittedStr = str.split(" ");
-  
-    for (var i = 0; i < splittedStr.length; i++) {
-      var word = splittedStr[i];
-      strInCamelCase = strInCamelCase.concat( word[0].toUpperCase() + word.substr(1, word.length) );
-    }
-  
-    return strInCamelCase ;
-  }
-  
-      
-      
+    // Utility Function
+    const toCamelCase = str => {
+        if (typeof str == "string") {
+            var splittedStr = [];
+            var strInCamelCase = "";
+            splittedStr = str.split(" ");
+
+            for (var i = 0; i < splittedStr.length; i++) {
+                var word = splittedStr[i];
+                if (word.length > 0) {
+                    strInCamelCase = strInCamelCase.concat(
+                        word[0].toUpperCase() + word.substr(1, word.length)
+                    );
+                }
+            }
+            return strInCamelCase;
+        } else {
+            return str;
+        }
+    };
 
     // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
-        const value = toCamelCase( e.target.value );
+        const value = e.target.value;
         switch (id) {
             case 1:
                 setProfile({ ...profile, first_name: value });
@@ -186,7 +186,7 @@ const  toCamelCase =  (str) => {
     // State setter function of parent form sent as props to ParentDetails forms
     const handleParentChangeInput = (e, id) => {
         console.log("I am called for parent");
-        const value = toCamelCase( e.target.value );
+        const value = e.target.value;
         switch (id) {
             case 1:
                 setParent({ ...parent, father_name: value });
@@ -208,7 +208,7 @@ const  toCamelCase =  (str) => {
     // State setter function of academics form sent as props to AcademicDetails forms
     const handleAcademicsChangeInput = (e, id) => {
         console.log("I am called for academics");
-        const value = toCamelCase( e.target.value );
+        const value = e.target.value;
         switch (id) {
             case 1:
                 setAcademics({ ...academics, univ_roll: value });
@@ -245,7 +245,7 @@ const  toCamelCase =  (str) => {
     // State setter function of contact form sent as props to ContactDetails forms
     const handleContactChangeInput = (e, id) => {
         console.log("I am called for contact");
-        const value = toCamelCase( e.target.value );
+        const value = e.target.value;
         switch (id) {
             case 1:
                 setContact({ ...contact, whatsapp_contact: value });
@@ -261,9 +261,9 @@ const  toCamelCase =  (str) => {
         }
     };
 
-    const handleAddresssChangeInput = (e, id) => {
-        console.log("I am called for contact");
-        const value = toCamelCase( e.target.value );
+    const handleAddresssChangeInput = (e, id, toCamel = 0) => {
+        console.log("I am called for address");
+        const value = e.target.value;
         switch (id) {
             case 1:
                 setAddress({ ...address, address: value });
@@ -285,10 +285,38 @@ const  toCamelCase =  (str) => {
         }
     };
 
-    const handleFormSubmit = e => {
-        event.preventDefault();
+    const makeOjectsReady = async () => {
+        [profile, address, contact, parent, academics].map(state => {
+            const temp = state;
+            Object.keys(state).forEach(key => {
+                temp[key] = toCamelCase(temp[key]);
+            });
+
+            if (state == "profile") {
+                setProfile({ ...temp });
+            }
+            if (state == "academics") {
+                setAcademics({ ...temp });
+            }
+            if (state == "parent") {
+                setParent({ ...temp });
+            }
+            if (state == "contact") {
+                setContact({ ...temp });
+            }
+            if (state == "address") {
+                setAddress({ ...temp });
+            }
+        });
+
+
+    };
+
+    const handleFormSubmit = async e => {
+        e.preventDefault();
+
+        await makeOjectsReady();
         const id = localStorage.getItem("userid");
-        console.log(parent);
         axios
             .post(`/api/personaldetails/${id}`, {
                 profile: profile,
@@ -316,7 +344,7 @@ const  toCamelCase =  (str) => {
         console.log("Do something after contact has changed", parent);
     }, [parent]);
     React.useEffect(() => {
-        console.log("Do something after contact has changed", contact);
+        console.log("Do something after ready has changed", contact);
     }, [contact]);
     React.useEffect(() => {
         console.log("Do something after contact has changed", address);
@@ -376,7 +404,7 @@ const  toCamelCase =  (str) => {
                     type="submit"
                     variant="contained"
                     color="primary"
-                    onClick={handleFormSubmit}
+                    // onClick={handleFormSubmit}
                 >
                     SUBMIT
                 </Button>

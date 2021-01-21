@@ -114,9 +114,10 @@ export default function ProfileDetails(props) {
             select: "True",
             value: props.Profile.farming_background,
             options: [
-                { value: "1", label: "YES" },
-                { value: "0", label: "NO" }
+                { value: "yes", label: "YES" },
+                { value: "no", label: "NO" }
             ]
+    
         },
 
         {

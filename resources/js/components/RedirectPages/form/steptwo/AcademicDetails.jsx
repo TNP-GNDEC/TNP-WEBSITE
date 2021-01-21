@@ -284,6 +284,7 @@ export default function Details(props) {
                         id="outlined-basic"
                         name={field.name}
                         variant="outlined"
+                        error={false}
                         label={field.label}
                         value={field.value}
                         select={field.select}

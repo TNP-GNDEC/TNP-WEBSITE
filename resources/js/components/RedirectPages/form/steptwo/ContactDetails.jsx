@@ -63,6 +63,7 @@ export default function ContactDetails(props) {
                         name={field.name}
                         variant="outlined"
                         label={field.label}
+                        error={false}
                         value={field.value}
                         style={{ minWidth:"230px"}}
                         onChange={e => {
