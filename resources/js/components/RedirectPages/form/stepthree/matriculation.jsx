@@ -74,6 +74,13 @@ export default function matriculationDetails(props) {
             value: props.matriculation.state_of_institution
         },
         {
+            label: "PINCODE OF INSTITUTION",
+            type: "text",
+            id: 5,
+            name: "pincode_of_institution",
+            value: props.Matriculation.PINCODE_OF_INSTITUTION
+        },
+        {
             label: "YEAR OF PASSING",
             type: "text",
             id: 5,

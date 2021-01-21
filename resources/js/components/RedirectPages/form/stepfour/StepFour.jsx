@@ -7,6 +7,7 @@ import TwelfthDetails from './Twelfthdetails'
 import DiplomaDetails from './Diplomadetails'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 const useStyles = makeStyles(theme => ({
     head: {
@@ -158,20 +159,22 @@ export default function StepTwo() {
                 setParent({ ...diploma,    state_of_institute:value });
                 break;
             case 5:
-                setParent({ ...diploma, year_of_passing: value });
+                setParent({ ...diploma, pincode_of_institution: value });
                 break;
             case 6:
-                setParent({ ...diploma, obtained_marks: value });
+                setParent({ ...diploma, year_of_passing: value });
                 break;
             case 7:
+                setParent({ ...diploma, obtained_marks: value });
+                break;
+            case 8:
                 setParent({ ...diploma, maximum_marks: value });
                 break;
-
-            case 8:
+            case 9:
                 setParent({ ...diploma, stream: value });
                 break;
-            case 9:
-                setParent({ ...diploma, });
+            case 10:
+                setParent({ ...diploma});
                 break;
                     
             default:
@@ -228,7 +231,7 @@ export default function StepTwo() {
                     <Card className={classes.cardStyles}>
                         {<DiplomaDetails Diploma={diploma} handleInputChange={handleParentChangeInput}/> }
                         <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload Scanned copies of your Diploma certificates. </code>
+                            <code>Note : Upload <CloudUploadIcon />Scanned copies of your Diploma certificates. </code>
                         </Paper>
                     </Card>
                 </Grid>

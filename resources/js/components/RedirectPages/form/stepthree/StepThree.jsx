@@ -7,6 +7,7 @@ import MatriculationDetails from "./matriculation";
 import FormRow from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 const useStyles = makeStyles(theme => ({
     head: {
@@ -140,22 +141,24 @@ export default function StepThree() {
             case 4:
                 setmatric({ ...matriculation, state: value });
                 break;
-            case 5:
+                case 5:
+                setmatric({ ...matriculation, PINCODE_OF_INSTITUTION: value });
+                break;
+            case 6:
                 setmatric({ ...matriculation, year_of_passing: value });
                 break;
 
-            case 6:
+            case 7:
                 setmatric({ ...matriculation, marks_type: value });
                 break;
-            case 7:
+            case 8:
                 setmatric({ ...matriculation, obtained_marks: value });
                 break;
-            case 8:
+            case 9:
                 setmatric({ ...matriculation, maximum_marks: value });
                 break;
-            case 9:
-
-                setmatric({ ...matriculation, file: readFile(e.target.value) });
+            case 10:
+                setmatric({ ...matriculation, file: e.target.files });
                 break;
             default:
                 break;
@@ -184,7 +187,7 @@ export default function StepThree() {
                                 className={classes.note}
                             >
                                 <code>
-                                    Note : Upload Scanned copies of your
+                                    Note : Upload <CloudUploadIcon/> Scanned copies of your
                                     matriculation certificates.{" "}
                                 </code>
                             </Paper>

@@ -96,30 +96,41 @@ export default function TwelfthDetails(props) {
             value: props.twelfth.state_of_institution,
         },
         {
-            label: "YEAR OF PASSING",
+            label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 6,
            
+<<<<<<< HEAD:resources/js/components/RedirectPages/form/stepfour/Twelfthdetails.jsx
             value: props.tweflth.year_of_passing,
+=======
+            value: props.Twelth.PINCODE_OF_INSTITUTION,
+        },
+        {
+            label: "YEAR OF PASSING",
+            type: "text",
+            id: 7,
+           
+            value: props.Twelth.YEAR_OF_PASSING,
+>>>>>>> 17454666e5cd8c1490095a1ea64c3c7f914be314:resources/js/components/RedirectPages/form/stepfour/Twelthdetails.jsx
         },
         {
             label: "OBTAINED MARKS",
             type: "text",
-            id: 7,
+            id: 8,
     
             value: props.tweflth.obtained_marks,
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
-            id: 8,
+            id: 9,
           
             value: props.tweflth.maximum_marks,
         },
         {
             label:"",
             type: "file",
-            id: 9,
+            id: 10,
             inputid:"pdf-file",
             value: props.twelfth.file,
             
