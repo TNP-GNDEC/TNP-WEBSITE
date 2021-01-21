@@ -90,37 +90,44 @@ export default function DiplomaDetails(props) {
             value: props.Diploma.STATE_OF_INSTITITE
         },
         {
-            label: "YEAR OF PASSING",
+            label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 5,
+            // name: "first_name",
+            value: props.Diploma.PINCODE_OF_INSTITUTION
+        },
+        {
+            label: "YEAR OF PASSING",
+            type: "text",
+            id: 6,
             // name: "first_name",
             value: props.Diploma.YEAR_OF_PASSING
         },
         {
             label: "OBTAINED MARKS",
             type: "text",
-            id: 6,
+            id: 7,
             // name: "first_name",
             value: props.Diploma.OBTAINED_MARKS
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
-            id: 7,
+            id: 8,
             // name: "first_name",
             value: props.Diploma.MAXIMUM_MARKS
         },
         {
             label: "STREAM OF DIPLOMA",
             type: "text",
-            id: 8,
+            id: 9,
             // name: "first_name",
             value: props.Diploma.STREAM_OF_DIPLOMA
         },
         {
             label:"",
             type: "file",
-            id: 9,
+            id: 10,
             // name: "first_name",
             inputid:"pdf-file",
             
