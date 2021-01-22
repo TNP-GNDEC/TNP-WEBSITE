@@ -222,11 +222,11 @@ export default function Details(props) {
             select: "true",
             options: [
                 {
-                    value: "yes",
+                    value: true,
                     label: "YES"
                 },
                 {
-                    value: "no",
+                    value: false,
                     label: "NO"
                 }
             ]
@@ -239,11 +239,11 @@ export default function Details(props) {
             select: "true",
             options: [
                 {
-                    value: "yes",
+                    value: true,
                     label: "YES"
                 },
                 {
-                    value: "no",
+                    value: false,
                     label: "NO"
                 }
             ]

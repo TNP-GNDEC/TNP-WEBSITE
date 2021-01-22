@@ -70,10 +70,10 @@ export default function ProfileDetails(props) {
         },
         {
             label: "WEIGHT (in kg)",
-            type: "text",
+            type: "tel",
             id: 6,
             select: "",
-            value: props.Profile.weight,
+            value:props.Profile.weight,
             options: []
         },
         {
@@ -114,8 +114,8 @@ export default function ProfileDetails(props) {
             select: "True",
             value: props.Profile.farming_background,
             options: [
-                { value: "yes", label: "YES" },
-                { value: "no", label: "NO" }
+                { value:true, label: "YES" },
+                { value: false, label: "NO" }
             ]
     
         },
@@ -127,8 +127,8 @@ export default function ProfileDetails(props) {
             select: "True",
             value: props.Profile.disability,
             options: [
-                { value:"yes", label: "YES" },
-                { value:"no", label: "NO" }
+                { value:true, label: "YES" },
+                { value:false, label: "NO" }
             ]
         },
 

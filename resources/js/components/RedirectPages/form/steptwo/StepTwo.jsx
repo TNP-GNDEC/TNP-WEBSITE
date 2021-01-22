@@ -72,14 +72,12 @@ export default function StepTwo() {
         blood_group: "",
         gender: "",
         marital_status: "",
+        farming_background: "",
+        disability: ""
     });
 
-<<<<<<< HEAD
-        // state for holding inputs from parent form imported as ParentsDetails
-=======
     // state for holding inputs from parent form imported as ParentsDetails
     const [parent, setParent] = React.useState({
->>>>>>> ab5cd219d7f0e5fd193f0be9659248d29113c0e7
         father_name: "",
         father_phone: "",
         mother_name: "",
@@ -115,15 +113,9 @@ export default function StepTwo() {
         state: ""
     });
 
-    const [parent, setParent] = React.useState({
-        father_name: "",
-        father_phone: "",
-        mother_name: "",
-        mother_phone: ""
-    });
-
     // Utility Function
     const toCamelCase = str => {
+        
         if (typeof str == "string") {
             var splittedStr = [];
             var strInCamelCase = "";
@@ -142,18 +134,30 @@ export default function StepTwo() {
             return str;
         }
     };
+    // function camelize(str) {
+    //     return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+    //       return index === 0 ? word.toLowerCase() : word.toUpperCase();
+    //     }).replace(/\s+/g, '');
+    //   }
+    // function camelize(str) {
+    //     return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
+    //       if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+    //       return index === 0 ? match.toLowerCase() : match.toUpperCase();
+    //     });
+    //   }
+      
+
     function camelize(str) {
-        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-          return index === 0 ? word.toLowerCase() : word.toUpperCase();
-        }).replace(/\s+/g, '');
+        return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
+          if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+          return index === 0 ? match.toLowerCase() : match.toUpperCase();
+        });
       }
-      
-      
 
     // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
-        const value = camelize (e.target.value);
+        const value =  (e.target.value);
         switch (id) {
             case 1:
                 setProfile({ ...profile, first_name: value });
@@ -162,16 +166,19 @@ export default function StepTwo() {
                 setProfile({ ...profile, last_name: value });
                 break;
             case 3:
-                setProfile({ ...profile, dob: value });
+                setProfile({ ...profile, dob: Date(value) });
                 break;
             case 4:
-                setProfile({ ...profile, aadhar: value });
+                setProfile({ ...profile, aadhar: parseInt(value) });
                 break;
             case 5:
-                setProfile({ ...profile, height: value });
+                setProfile({ ...profile, height: parseFloat(value) });
                 break;
             case 6:
-                setProfile({ ...profile, weight: value });
+
+                // Edited here
+
+                 setProfile({ ...profile, weight:( parseFloat(value) ?  parseFloat(value): "") });
                 break;
             case 7:
                 setProfile({ ...profile, blood_group: value });
@@ -185,11 +192,11 @@ export default function StepTwo() {
                 break;
             case 10:
                 // value = parseInt(value)
-                setProfile({ ...profile, farming_background: value });
+                setProfile({ ...profile, farming_background: Boolean(value) });
                 break;
             case 11:
                 // value = parseInt(value)
-                setProfile({ ...profile, disability: value });
+                setProfile({ ...profile, disability: Boolean (value) });
                 break;
             default:
                 break;
@@ -205,13 +212,13 @@ export default function StepTwo() {
                 setParent({ ...parent, father_name: value });
                 break;
             case 2:
-                setParent({ ...parent, father_phone: value });
+                setParent({ ...parent, father_phone: Number(value) });
                 break;
             case 3:
                 setParent({ ...parent, mother_name: value });
                 break;
             case 4:
-                setParent({ ...parent, mother_phone: value });
+                setParent({ ...parent, mother_phone: Number(value) });
                 break;
             default:
                 break;
@@ -223,12 +230,12 @@ export default function StepTwo() {
         console.log("I am called for academics");
         const value = e.target.value;
         switch (id) {
-            case 1:
-                setAcademics({ ...academics, univ_roll: value });
-                break;
-            case 2:
-                setAcademics({ ...academics, college_roll: value });
-                break;
+            // case 1:
+            //     setAcademics({ ...academics, univ_roll: value });
+            //     break;
+            // case 2:
+            //     setAcademics({ ...academics, college_roll: value });
+            //     break;
             case 3:
                 setAcademics({ ...academics, course: value });
                 break;
@@ -242,13 +249,13 @@ export default function StepTwo() {
                 setAcademics({ ...academics, section: value });
                 break;
             case 7:
-                setAcademics({ ...academics, leet: value });
+                setAcademics({ ...academics, leet: Boolean(value) });
                 break;
             case 8:
-                setAcademics({ ...academics, hostler: value });
+                setAcademics({ ...academics, hostler: Boolean(value) });
                 break;
             case 9:
-                setAcademics({ ...academics, training_sem: value });
+                setAcademics({ ...academics, training_sem: parseInt(value) });
                 break;
             default:
                 break;
@@ -298,58 +305,16 @@ export default function StepTwo() {
         }
     };
 
-<<<<<<< HEAD
-    // const makeOjectsReady = async () => {
-    //     [profile, address, contact, parent, academics].map(state => {
-    //         const temp = state;
-    //         Object.keys(temp).forEach(key => {
-    //             temp[key] = toCamelCase(temp[key]);
-    //         });
+    const makeOjectsReady = () =>{
 
-    //         if (state == "profile") {
-    //             setProfile({ ...temp });
-    //             console.log("profile me")
-    //         }
-    //         if (state == "academics") {
-    //             setAcademics({ ...temp });
-    //             console.log("academics me")
+    }
 
-    //         }
-    //         if (state == "parent") {
-    //             setParent({ ...temp });
-    //             console.log("parent me")
-
-    //         }
-    //         if (state == "contact") {
-    //             setContact({ ...temp });
-    //             console.log("contact me")
-
-    //         }
-    //         if (state == "address") {
-    //             setAddress({ ...temp });
-    //             console.log("address me")
-
-    //         }
-    //     });
-    // };
-
-    const makeOjectsReady = async () => {
-        const temp = profile;
-        Object.keys(temp).forEach(key => {
-            temp[key] = toCamelCase(temp[key]);
-        });
-        setProfile({...temp})
-
-        temp = parent;
-        Object.keys(temp).forEach(key => {
-            temp[key] = toCamelCase(temp[key]);
-        });
-        setParent({...temp})
-=======
     const handleFormSubmit = event => {
         event.preventDefault();
         const id = localStorage.getItem("userid");
         console.log(parent);
+
+
         axios
             .post(`/api/personaldetails/${id}`, {
                 profile: profile,
@@ -365,7 +330,6 @@ export default function StepTwo() {
             .catch(error => {
                 console.log(error);
             });
->>>>>>> ab5cd219d7f0e5fd193f0be9659248d29113c0e7
     };
 
     React.useEffect(() => {
@@ -384,27 +348,27 @@ export default function StepTwo() {
         console.log("Do something after contact has changed", address);
     }, [address]);
 
-    const handleFormSubmit = async e => {
-        e.preventDefault();
+    // const handleFormSubmit = async e => {
+    //     e.preventDefault();
 
-        await makeOjectsReady();
-        const id = localStorage.getItem("userid");
-        axios
-            .post(`/api/personaldetails/${id}`, {
-                profile: profile,
-                academics: academics,
-                parent: parent,
-                contact: contact,
-                address: address
-            })
-            .then(response => {
-                var user = response.data;
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
+    //     await makeOjectsReady();
+    //     const id = localStorage.getItem("userid");
+    //     axios
+    //         .post(`/api/personaldetails/${id}`, {
+    //             profile: profile,
+    //             academics: academics,
+    //             parent: parent,
+    //             contact: contact,
+    //             address: address
+    //         })
+    //         .then(response => {
+    //             var user = response.data;
+    //             console.log(response.data);
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // };
     return (
         <div>
             <form onSubmit={event => handleFormSubmit(event)}>
