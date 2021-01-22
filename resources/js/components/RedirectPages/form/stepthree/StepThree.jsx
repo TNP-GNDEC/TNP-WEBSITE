@@ -142,12 +142,11 @@ export default function StepThree() {
                 setmatric({ ...matriculation, state: value });
                 break;
                 case 5:
-                setmatric({ ...matriculation, PINCODE_OF_INSTITUTION: value });
+                setmatric({ ...matriculation, pincode: value });
                 break;
             case 6:
                 setmatric({ ...matriculation, year_of_passing: value });
                 break;
-
             case 7:
                 setmatric({ ...matriculation, marks_type: value });
                 break;

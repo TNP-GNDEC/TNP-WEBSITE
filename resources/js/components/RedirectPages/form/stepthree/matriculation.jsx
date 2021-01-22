@@ -77,41 +77,41 @@ export default function matriculationDetails(props) {
             label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 5,
-            name: "pincode_of_institution",
-            value: props.Matriculation.PINCODE_OF_INSTITUTION
+            name: "pincode",
+            value: props.matriculation.pincode
         },
         {
             label: "YEAR OF PASSING",
             type: "text",
-            id: 5,
+            id: 6,
             name: "year_of_passing",
             value: props.matriculation.year_of_passing
         },
         {
             label: "MARKS TYPE",
             type: "text",
-            id: 6,
+            id: 7,
             name: "marks_type",
             value: props.matriculation.marks_type
         },
         {
             label: "OBTAINED MARKS",
             type: "text",
-            id: 7,
+            id: 8,
             name: "obtained_marks",
             value: props.matriculation.obtained_marks
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
-            id: 8,
+            id: 9,
             name: "maximum_marks",
             value: props.matriculation.maximum_marks
         },
         {
             label: "",
             type: "file",
-            id: 9,
+            id: 10,
             accept: "application/pdf",
             name: "file",
             defaultValue: props.matriculation.file
