@@ -136,11 +136,18 @@ export default function StepTwo() {
             return str;
         }
     };
+    function camelize(str) {
+        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+          return index === 0 ? word.toLowerCase() : word.toUpperCase();
+        }).replace(/\s+/g, '');
+      }
+      
+      
 
     // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
-        const value = e.target.value;
+        const value = camelize (e.target.value);
         switch (id) {
             case 1:
                 setProfile({ ...profile, first_name: value });
@@ -285,32 +292,69 @@ export default function StepTwo() {
         }
     };
 
+    // const makeOjectsReady = async () => {
+    //     [profile, address, contact, parent, academics].map(state => {
+    //         const temp = state;
+    //         Object.keys(temp).forEach(key => {
+    //             temp[key] = toCamelCase(temp[key]);
+    //         });
+
+    //         if (state == "profile") {
+    //             setProfile({ ...temp });
+    //             console.log("profile me")
+    //         }
+    //         if (state == "academics") {
+    //             setAcademics({ ...temp });
+    //             console.log("academics me")
+
+    //         }
+    //         if (state == "parent") {
+    //             setParent({ ...temp });
+    //             console.log("parent me")
+
+    //         }
+    //         if (state == "contact") {
+    //             setContact({ ...temp });
+    //             console.log("contact me")
+
+    //         }
+    //         if (state == "address") {
+    //             setAddress({ ...temp });
+    //             console.log("address me")
+
+    //         }
+    //     });
+    // };
+
     const makeOjectsReady = async () => {
-        [profile, address, contact, parent, academics].map(state => {
-            const temp = state;
-            Object.keys(state).forEach(key => {
-                temp[key] = toCamelCase(temp[key]);
-            });
-
-            if (state == "profile") {
-                setProfile({ ...temp });
-            }
-            if (state == "academics") {
-                setAcademics({ ...temp });
-            }
-            if (state == "parent") {
-                setParent({ ...temp });
-            }
-            if (state == "contact") {
-                setContact({ ...temp });
-            }
-            if (state == "address") {
-                setAddress({ ...temp });
-            }
+        const temp = profile;
+        Object.keys(temp).forEach(key => {
+            temp[key] = toCamelCase(temp[key]);
         });
+        setProfile({...temp})
 
-
+        temp = parent;
+        Object.keys(temp).forEach(key => {
+            temp[key] = toCamelCase(temp[key]);
+        });
+        setParent({...temp})
     };
+
+    React.useEffect(() => {
+        console.log("Do something after profile has changed", academics);
+    }, [academics]);
+    React.useEffect(() => {
+        console.log("Do something after profile has changed", profile);
+    }, [profile]);
+    React.useEffect(() => {
+        console.log("Do something after contact has changed", parent);
+    }, [parent]);
+    React.useEffect(() => {
+        console.log("Do something after ready has changed", contact);
+    }, [contact]);
+    React.useEffect(() => {
+        console.log("Do something after contact has changed", address);
+    }, [address]);
 
     const handleFormSubmit = async e => {
         e.preventDefault();
@@ -333,23 +377,6 @@ export default function StepTwo() {
                 console.log(error);
             });
     };
-
-    React.useEffect(() => {
-        console.log("Do something after profile has changed", academics);
-    }, [academics]);
-    React.useEffect(() => {
-        console.log("Do something after profile has changed", profile);
-    }, [profile]);
-    React.useEffect(() => {
-        console.log("Do something after contact has changed", parent);
-    }, [parent]);
-    React.useEffect(() => {
-        console.log("Do something after ready has changed", contact);
-    }, [contact]);
-    React.useEffect(() => {
-        console.log("Do something after contact has changed", address);
-    }, [address]);
-
     return (
         <div>
             <form onSubmit={event => handleFormSubmit(event)}>
