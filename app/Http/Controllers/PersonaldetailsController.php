@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
-use App\Models\StepTwo;
+use App\Models\PersonalDetails;
 use App\Models\FormStatus;
 use Illuminate\Support\Facades\DB;
 
-class SteptwoController extends Controller
+class PersonaldetailsController extends Controller
 {
   public function __construct()
     {
@@ -29,7 +29,7 @@ class SteptwoController extends Controller
                     ->where('user_id', $user->id)
                     ->value('form_step');
   if($current_step==1){
-    $details = DB::table('step_two')
+    $details = DB::table('personalDetails')
     ->where('user_id', $user->id)
     ->update([
         'first_name' => $request->profile["first_name"], 

@@ -72,8 +72,14 @@ export default function StepTwo() {
         blood_group: "",
         gender: "",
         marital_status: "",
+    });
 
+<<<<<<< HEAD
         // state for holding inputs from parent form imported as ParentsDetails
+=======
+    // state for holding inputs from parent form imported as ParentsDetails
+    const [parent, setParent] = React.useState({
+>>>>>>> ab5cd219d7f0e5fd193f0be9659248d29113c0e7
         father_name: "",
         father_phone: "",
         mother_name: "",
@@ -268,8 +274,8 @@ export default function StepTwo() {
         }
     };
 
-    const handleAddresssChangeInput = (e, id, toCamel = 0) => {
-        console.log("I am called for address");
+    const handleAddresssChangeInput = (e, id) => {
+        console.log("I am called for contact");
         const value = e.target.value;
         switch (id) {
             case 1:
@@ -292,6 +298,7 @@ export default function StepTwo() {
         }
     };
 
+<<<<<<< HEAD
     // const makeOjectsReady = async () => {
     //     [profile, address, contact, parent, academics].map(state => {
     //         const temp = state;
@@ -338,6 +345,27 @@ export default function StepTwo() {
             temp[key] = toCamelCase(temp[key]);
         });
         setParent({...temp})
+=======
+    const handleFormSubmit = event => {
+        event.preventDefault();
+        const id = localStorage.getItem("userid");
+        console.log(parent);
+        axios
+            .post(`/api/personaldetails/${id}`, {
+                profile: profile,
+                academics: academics,
+                parent: parent,
+                contact: contact,
+                address:address
+            })
+            .then(response => {
+                
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+>>>>>>> ab5cd219d7f0e5fd193f0be9659248d29113c0e7
     };
 
     React.useEffect(() => {

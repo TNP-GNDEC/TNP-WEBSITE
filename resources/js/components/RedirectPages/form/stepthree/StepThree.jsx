@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -7,6 +7,7 @@ import MatriculationDetails from "./matriculation";
 import FormRow from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 const useStyles = makeStyles(theme => ({
     head: {
@@ -74,28 +75,59 @@ const useStyles = makeStyles(theme => ({
 
 export default function StepThree() {
     const classes = useStyles();
-
     const [matriculation, setmatric] = React.useState({
         board: "",
         institution_name: "",
+        state_of_institution: "",
+        city_of_institution: "",
         year_of_passing: "",
         marks_type: "",
         obtained_marks: "",
         maximum_marks: "",
         file: ""
     });
+    const [errors, setErrors] = useState({});
+
+    const validate = () => {
+        let temp = {}
+        temp.board = matriculation.board ? "": "This field is required."
+        temp.institution_name = matriculation.institution_name? "": "This field is required."
+        temp.year_of_passing = matriculation.year_of_passing ? "": "This field is required."
+        temp.marks_type = matriculation.marks_type ? "": "This field is required."
+        temp.state_of_institution = matriculation.obtained_marks ? "": "This field is required."
+        temp.city_of_institution = matriculation.maximum_marks ? "": "This field is required."
+        temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
+        temp.maximum_marks = matriculation.maximum_marks ? "": "This field is required."
+        setErrors({
+          ...temp
+        })
+        console.log(errors);
+        return true
+      }
 
     const handleFormSubmit = event => {
         event.preventDefault();
+        if(validate()){}
         const id = localStorage.getItem("userid");
         axios.post(`/api/matriculation/${id}`, {
             matriculation: matriculation
+        })
+        .catch((error) => {
+            console.log(error);
         });
     };
+
+    const readFile=(file)=>{
+    console.log(file)
+    let formData = new FormData();
+    formData.append("file", file);
+    return formData;
+    }
 
     const handleMatriculationChangeInput = (e, id) => {
         console.log("I am called");
         const value = e.target.value;
+
         switch (id) {
             case 1:
                 setmatric({ ...matriculation, board: value });
@@ -109,20 +141,22 @@ export default function StepThree() {
             case 4:
                 setmatric({ ...matriculation, state: value });
                 break;
-            case 5:
+                case 5:
+                setmatric({ ...matriculation, pincode: value });
+                break;
+            case 6:
                 setmatric({ ...matriculation, year_of_passing: value });
                 break;
-
-            case 6:
+            case 7:
                 setmatric({ ...matriculation, marks_type: value });
                 break;
-            case 7:
+            case 8:
                 setmatric({ ...matriculation, obtained_marks: value });
                 break;
-            case 8:
+            case 9:
                 setmatric({ ...matriculation, maximum_marks: value });
                 break;
-            case 9:
+            case 10:
                 setmatric({ ...matriculation, file: e.target.files });
                 break;
             default:
@@ -133,32 +167,6 @@ export default function StepThree() {
     React.useEffect(() => {
         console.log("Do something after matric has changed", matriculation);
     }, [matriculation]);
-    const renderMatricFields = () => {
-        fields.map(field => (
-            <>
-                <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    lg={4}
-                    className={classes.textFieldContainer}
-                >
-                    <TextField
-                        className={classes.input}
-                        type={field.type}
-                        id="outlined-basic"
-                        name={field.name}
-                        variant="outlined"
-                        label={field.label}
-                        value={field.value}
-                        onChange={e => {
-                            field.change(e, field.id);
-                        }}
-                    />
-                </Grid>
-            </>
-        ));
-    };
     return (
         <div>
             <form onSubmit={handleFormSubmit}>
@@ -166,10 +174,11 @@ export default function StepThree() {
                     <Grid item xs={10} className={classes.Cardcontainers}>
                         <Card className={classes.cardStyles}>
                             <MatriculationDetails
-                                Matriculation={matriculation}
+                                matriculation={matriculation}
                                 handleInputChange={
                                     handleMatriculationChangeInput
                                 }
+                                Errors= {errors}
                             />
                             <Paper
                                 variant="outlined"
@@ -177,7 +186,7 @@ export default function StepThree() {
                                 className={classes.note}
                             >
                                 <code>
-                                    Note : Upload Scanned copies of your
+                                    Note : Upload <CloudUploadIcon/> Scanned copies of your
                                     matriculation certificates.{" "}
                                 </code>
                             </Paper>

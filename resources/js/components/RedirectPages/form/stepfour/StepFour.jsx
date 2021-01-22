@@ -3,10 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import TwelthDetails from './Twelthdetails'
+import TwelfthDetails from './Twelfthdetails'
 import DiplomaDetails from './Diplomadetails'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 const useStyles = makeStyles(theme => ({
     head: {
@@ -72,36 +73,37 @@ const useStyles = makeStyles(theme => ({
 export default function StepTwo() {
     const classes = useStyles();
 
-    const [twelth, setProfile] = React.useState({
-        BOARD: "",
-        INSTITUTION_NAME:"",
-        JEE_RANK :"",
-        CITY_OF_INSTITUTE:"",
-        STATE_OF_INSTITUTE:"",
-        YEAR_OF_PASSING: "",
-        OBTAINED_MARKS:"",
-        MAXIMUM_MARKS:"",
-        UPLOAD:"(UPLAOD SCANNED CERTIFICATE)",
+    const [twelfth, setProfile] = React.useState({
+        board: "",
+        institution_name:"",
+        jee_rank :"",
+        city_of_institute:"",
+        state_of_institute:"",
+        year_of_passing: "",
+        obtained_marks:"",
+        maximum_marks:"",
+        file:"(upload scanned certificate)",
     });
 
     const [diploma, setParent] = React.useState({
-        BOARD:"",
-        INSTITUTION_NAME:"",
-        CITY_OF_INSTITUTE:"",
-        STATE_OF_INSTITUTE:"",
-        YEAR_OF_PASSING:"",
-        OBTAINED_MARKS:"",
-        MAXIMUM_MARKS: "",
-        STREAM_OF_DIPLOMA:"",
+        board:"",
+        institution_name:"",
+        city_of_institute:"",
+        state_of_institute:"",
+        year_of_passing:"",
+        obtained_marks:"",
+        maximum_marks: "",
+        stream:"",
+        file:"(upload scanned certificate)",
       
     });
 
     const handleFormSubmit = (event) => {
         event.preventDefault();        
         const id=localStorage.getItem("userid")
-        axios.post(`/api/diplomaortwelth/${id}`, {
+        axios.post(`/api/diplomaortwelfth/${id}`, {
             diploma: diploma,
-            twelth: twelth,    
+            twelfth: twelfth,    
       })}
 
     const handleProfileChangeInput = (e, id) => {
@@ -109,31 +111,31 @@ export default function StepTwo() {
         const value = e.target.value;
         switch (id) {
             case 1:
-                setProfile({ ...twelth,  BOARD: value });
+                setProfile({ ...twelfth,  board: value });
                 break;
             case 2:
-                setProfile({ ...twelth,  INSTITUTION_NAME: value });
+                setProfile({ ...twelfth,  institution_name: value });
                 break;
             case 3:
-                setProfile({ ...twelth, JEE_RANK : value });
+                setProfile({ ...twelfth, jee_rank : value });
                 break;
             case 4:
-                setProfile({ ...twelth, CITY_OF_INSTITUTE:value });
+                setProfile({ ...twelfth, city_of_institute:value });
                 break;
             case 5:
-                setProfile({ ...twelth,  STATE_OF_INSTITUTE:value });
+                setProfile({ ...twelfth,  state_of_institute:value });
                 break;
             case 6:
-                setProfile({ ...twelth,  YEAR_OF_PASSING:value });
+                setProfile({ ...twelfth,  year_of_passing:value });
                 break;
                 case 7:
-                    setProfile({ ...twelth,    OBTAINED_MARKS:value });
+                    setProfile({ ...twelfth,    obtained_marks:value });
                     break;
                     case 8:
-                setProfile({ ...twelth,  MAXIMUM_MARKS:value });
+                setProfile({ ...twelfth,  maximum_marks:value });
                 break;
                 case 9:
-                setProfile({ ...twelth, });
+                setProfile({ ...twelfth, });
                 break;
             default:
                 break;
@@ -145,32 +147,34 @@ export default function StepTwo() {
         const value = e.target.value;
         switch (id) {
             case 1:
-                setParent({ ...diploma, BOARD: value });
+                setParent({ ...diploma, board: value });
                 break;
             case 2:
-                setParent({ ...diploma, INSTITUTION_NAME: value });
+                setParent({ ...diploma, institution_name: value });
                 break;
             case 3:
-                setParent({ ...diploma,  CITY_OF_INSTITUTE:value });
+                setParent({ ...diploma,  city_of_institute:value });
                 break;
             case 4:
-                setParent({ ...diploma,    STATE_OF_INSTITUTE:value });
+                setParent({ ...diploma,    state_of_institute:value });
                 break;
             case 5:
-                setParent({ ...diploma, YEAR_OF_PASSING: value });
+                setParent({ ...diploma, pincode_of_institution: value });
                 break;
             case 6:
-                setParent({ ...diploma, OBTAINED_MARKS: value });
+                setParent({ ...diploma, year_of_passing: value });
                 break;
             case 7:
-                setParent({ ...diploma, MAXIMUM_MARKS: value });
+                setParent({ ...diploma, obtained_marks: value });
                 break;
-
             case 8:
-                setParent({ ...diploma, STREAM_OF_DIPLOMA: value });
+                setParent({ ...diploma, maximum_marks: value });
                 break;
             case 9:
-                setParent({ ...diploma, });
+                setParent({ ...diploma, stream: value });
+                break;
+            case 10:
+                setParent({ ...diploma});
                 break;
                     
             default:
@@ -182,8 +186,8 @@ export default function StepTwo() {
         console.log("Do something after profile has changed", diploma);
     }, [diploma]);
     React.useEffect(() => {
-        console.log("Do something after profile has changed", twelth);
-    }, [twelth]);
+        console.log("Do something after profile has changed", twelfth);
+    }, [twelfth]);
     const renderPersonalFields = () =>
         fields.map(field => (
             <>
@@ -216,9 +220,9 @@ export default function StepTwo() {
             <Grid container className={classes.container}>
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
-                        <TwelthDetails Twelth={twelth} handleInputChange={handleProfileChangeInput}/>
+                        <TwelfthDetails twelfth={twelfth} handleInputChange={handleProfileChangeInput}/>
                         <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload Scanned copies of your Twelth certificates. </code>
+                            <code>Note : Upload Scanned copies of your twelfth certificates. </code>
                         </Paper>
                     </Card>
                 </Grid>
@@ -227,7 +231,7 @@ export default function StepTwo() {
                     <Card className={classes.cardStyles}>
                         {<DiplomaDetails Diploma={diploma} handleInputChange={handleParentChangeInput}/> }
                         <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload Scanned copies of your Diploma certificates. </code>
+                            <code>Note : Upload <CloudUploadIcon />Scanned copies of your Diploma certificates. </code>
                         </Paper>
                     </Card>
                 </Grid>

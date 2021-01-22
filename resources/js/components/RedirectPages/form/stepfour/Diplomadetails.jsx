@@ -49,7 +49,7 @@ export default function DiplomaDetails(props) {
             type: "text",
             id: 1,
             // name: "first_name",
-            value: props.Diploma.BOARD,
+            value: props.Diploma.board,
             
             select: "true",
             options: [
@@ -73,57 +73,64 @@ export default function DiplomaDetails(props) {
             type: "text",
             id: 2,
             // name: "first_name",
-            value: props.Diploma.INSTITUTION_NAME
+            value: props.Diploma.institution_name
         },
         {
             label: "CITY OF INSTITUTE",
             type: "text",
             id: 3,
             // name: "first_name",
-            value: props.Diploma.CITY_OF_INSTITUTE
+            value: props.Diploma.city_of_institute
         },
         {
             label: "STATE OF INSTITUTE",
             type: "text",
             id: 4,
             // name: "first_name",
-            value: props.Diploma.STATE_OF_INSTITITE
+            value: props.Diploma.state_of_institite
+        },
+        {
+            label: "PINCODE OF INSTITUTION",
+            type: "text",
+            id: 5,
+            // name: "first_name",
+            value: props.Diploma.pincode
         },
         {
             label: "YEAR OF PASSING",
             type: "text",
-            id: 5,
+            id: 6,
             // name: "first_name",
-            value: props.Diploma.YEAR_OF_PASSING
+            value: props.Diploma.year_of_passing
         },
         {
             label: "OBTAINED MARKS",
             type: "text",
-            id: 6,
+            id: 7,
             // name: "first_name",
-            value: props.Diploma.OBTAINED_MARKS
+            value: props.Diploma.obtained_marks
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
-            id: 7,
+            id: 8,
             // name: "first_name",
-            value: props.Diploma.MAXIMUM_MARKS
+            value: props.Diploma.maximum_marks
         },
         {
             label: "STREAM OF DIPLOMA",
             type: "text",
-            id: 8,
+            id: 9,
             // name: "first_name",
-            value: props.Diploma.STREAM_OF_DIPLOMA
+            value: props.Diploma.stream
         },
         {
             label:"",
             type: "file",
-            id: 9,
+            id: 10,
             // name: "first_name",
             inputid:"pdf-file",
-            
+            value: props.Diploma.file,
         }
     ];
 

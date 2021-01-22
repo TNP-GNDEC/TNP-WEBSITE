@@ -22,15 +22,14 @@ Route::post('registeradmin', [AuthController::class, 'registerAdmin']);
 Route::post('login', [AuthController::class,'login'])->name('login');
 Route::post('logout', [AuthController::class,'logout']);
 
+// step 1 email verification
 Route::post('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
 
 // step 2 personal details form post request
-Route::post('personaldetails/{id}', 'SteptwoController@getFormData');
-Route::post('matriculation/{id}', 'StepthreeController@getFormData');
+Route::post('personaldetails/{id}', 'PersonaldetailsController@getFormData');
 
 // step 3  details form post request
-// Route::post('matriculation/{id}', '');
-
+Route::post('matriculation/{id}', 'MatriculationController@getFormData');
 
 
 // step 4 Diploma or 12th details form post request

@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function MatriculationDetails(props) {
+export default function matriculationDetails(props) {
     const classes = useStyles();
 
     const currencies = [
@@ -42,15 +42,13 @@ export default function MatriculationDetails(props) {
             label: "PSEB"
         }
     ];
-
     const fields = [
         {
             label: "BOARD",
             type: "text",
             id: 1,
-
-            // name: "board",
-            value: props.Matriculation.BOARD,
+            name: "board",
+            value: props.matriculation.board,
             select: "true"
         },
 
@@ -58,62 +56,69 @@ export default function MatriculationDetails(props) {
             label: "INSTITUTION NAME",
             type: "text",
             id: 2,
-            // name: "Institution",
-            value: props.Matriculation.INSTITUTION_NAME
+            name: "institution_name",
+            value: props.matriculation.institution_name
         },
         {
             label: "CITY OF INSTITUTION",
             type: "text",
             id: 3,
-            // name: "Institution",
-            value: props.Matriculation.CITY_OF_INSTITUTION
+            name: "city_of_institution",
+            value: props.matriculation.city_of_institution
         },
         {
             label: "STATE OF INSTITUTION",
             type: "text",
             id: 4,
-            // name: "Institution",
-            value: props.Matriculation.STATE_OF_INSTITUTION
+            name: "state_of_institution",
+            value: props.matriculation.state_of_institution
+        },
+        {
+            label: "PINCODE OF INSTITUTION",
+            type: "text",
+            id: 5,
+            name: "pincode",
+            value: props.matriculation.pincode
         },
         {
             label: "YEAR OF PASSING",
             type: "text",
-            id: 5,
-            // name: "Year_of_passing",
-            value: props.Matriculation.YEAR_OF_PASSING
+            id: 6,
+            name: "year_of_passing",
+            value: props.matriculation.year_of_passing
         },
         {
             label: "MARKS TYPE",
             type: "text",
-            id: 6,
-
-            // name: "Marks_type",
-            value: props.Matriculation.MARKS_TYPE
+            id: 7,
+            name: "marks_type",
+            value: props.matriculation.marks_type
         },
         {
             label: "OBTAINED MARKS",
             type: "text",
-            id: 7,
-            // name: "Obtained_marks",
-            value: props.Matriculation.OBTAINED_MARKS
+            id: 8,
+            name: "obtained_marks",
+            value: props.matriculation.obtained_marks
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
-            id: 8,
-            // name: "maximum_marks",
-            value: props.Matriculation.MAXIMUM_MARKS
+            id: 9,
+            name: "maximum_marks",
+            value: props.matriculation.maximum_marks
         },
         {
             label: "",
-            type: "FILE",
-            id: 9,
+            type: "file",
+            id: 10,
             accept: "application/pdf",
-            value: props.Matriculation.FILE
+            name: "file",
+            defaultValue: props.matriculation.file
         }
     ];
 
-    const renderMatriculationFields = () =>
+    const rendermatriculationFields = () =>
         fields.map(field => (
             <>
                 <Grid
@@ -138,12 +143,14 @@ export default function MatriculationDetails(props) {
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
+                        {...(props.Errors[0] && {error:true, helperText:props.Errors[0]})}
                     >
                         {currencies.map(option => (
                             <MenuItem key={option.value} value={option.value}>
                                 {option.label}
                             </MenuItem>
                         ))}
+                        
                     </TextField>
                 </Grid>
             </>
@@ -151,10 +158,10 @@ export default function MatriculationDetails(props) {
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-                MATRICULATION DETAILS
+                matriculation DETAILS
             </Typography>
             <CardContent>
-                <Grid container>{renderMatriculationFields()}</Grid>
+                <Grid container>{rendermatriculationFields()}</Grid>
             </CardContent>
         </>
     );
