@@ -240,7 +240,7 @@ export default function StepTwo() {
 
     const handleAddresssChangeInput = (e, id) => {
         console.log("I am called for contact");
-        const value = e.target.value;https://www.google.com/
+        const value = e.target.value;
         switch (id) {
             case 1:
                 setAddress({ ...address, address: value });
