@@ -100,9 +100,6 @@ export default function TwelfthDetails(props) {
             type: "text",
             id: 6,
            
-<<<<<<< HEAD:resources/js/components/RedirectPages/form/stepfour/Twelfthdetails.jsx
-            value: props.tweflth.year_of_passing,
-=======
             value: props.Twelth.PINCODE_OF_INSTITUTION,
         },
         {
@@ -111,7 +108,6 @@ export default function TwelfthDetails(props) {
             id: 7,
            
             value: props.Twelth.YEAR_OF_PASSING,
->>>>>>> 17454666e5cd8c1490095a1ea64c3c7f914be314:resources/js/components/RedirectPages/form/stepfour/Twelthdetails.jsx
         },
         {
             label: "OBTAINED MARKS",
@@ -132,10 +128,7 @@ export default function TwelfthDetails(props) {
             type: "file",
             id: 10,
             inputid:"pdf-file",
-            value: props.twelfth.file,
-            
-          
-            
+            value: props.twelfth.file,  
         }
     ];
 
@@ -160,8 +153,6 @@ export default function TwelfthDetails(props) {
                         style={{ minWidth: "230px" ,maxWidth:"230px" }}
                         disabled={field.disabled}
                         value={field.value}
-                       
-                       
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}

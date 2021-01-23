@@ -8,7 +8,7 @@ import AcademicDetails from "./AcademicDetails";
 import ContactDetails from "./ContactDetails";
 import Button from "@material-ui/core/Button";
 import { concat } from "lodash";
-import AddressDetails from './AddressDetails'
+import AddressDetails from './AddressDetails';
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -76,8 +76,9 @@ export default function StepTwo() {
         blood_group: "",
         gender: "",
         marital_status: "",
-
+    });
     // state for holding inputs from parent form imported as ParentsDetails
+    const [parent, setParent] = React.useState({
         father_name: "",
         father_phone: "",
         mother_name: "",
@@ -167,6 +168,7 @@ export default function StepTwo() {
         switch (id) {
             case 1:
                 setParent({ ...parent, father_name: value });
+                console.log(parent.father_name);
                 break;
             case 2:
                 setParent({ ...parent, father_phone: value });
@@ -240,7 +242,7 @@ export default function StepTwo() {
 
     const handleAddresssChangeInput = (e, id) => {
         console.log("I am called for contact");
-        const value = e.target.value;https://www.google.com/
+        const value = e.target.value;
         switch (id) {
             case 1:
                 setAddress({ ...address, address: value });
@@ -265,9 +267,7 @@ export default function StepTwo() {
     const handleFormSubmit = event => {
         event.preventDefault();
         const id = localStorage.getItem("userid");
-        console.log(parent);
-        axios
-            .post(`/api/personaldetails/${id}`, {
+        axios.post(`/api/personaldetails/${id}`, {
                 profile: profile,
                 academics: academics,
                 parent: parent,
@@ -351,11 +351,9 @@ export default function StepTwo() {
                     
                 </Grid>
                 <Button
-                    className={classes.pos}
                     type="submit"
                     variant="contained"
                     color="primary"
-                    onClick={handleFormSubmit}
                 >
                     SUBMIT
                 </Button>

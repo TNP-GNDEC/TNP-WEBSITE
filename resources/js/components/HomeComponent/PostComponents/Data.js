@@ -155,6 +155,11 @@ const useStyles = theme => ({
         maxHeight: "150px",
         overflow: "Hidden",
     },
+    pdfs:{
+        width: "70%",
+        height: "500px",
+        margin: "auto",
+    },
 });
 
 

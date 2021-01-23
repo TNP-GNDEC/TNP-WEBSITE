@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string("title")->length(100);
             $table->string("type")->length(20);
-            $table->longText("description")->length(2000);
+            $table->longText("description")->length(20000);
             $table->timestamps();
         });
     }
