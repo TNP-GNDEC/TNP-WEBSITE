@@ -278,7 +278,8 @@ export default function StepTwo() {
                 break;
         }
     };
-
+    
+    // function for setting  address object 
     const handleAddresssChangeInput = (e, id) => {
         console.log("I am called for contact");
         const value = e.target.value;
@@ -303,6 +304,7 @@ export default function StepTwo() {
         }
     };
 
+    // function for making objects ready by converting values into camelCase;
     const makeOjectsReady = () => {};
 
     const handleFormSubmit = event => {
@@ -323,6 +325,7 @@ export default function StepTwo() {
             });
     };
 
+    //useEffect hooks to call after state change {just for debugging the inputs will be removed when it will be finalised}
     React.useEffect(() => {
         console.log("Do something after profile has changed", academics);
     }, [academics]);
@@ -339,27 +342,6 @@ export default function StepTwo() {
         console.log("Do something after contact has changed", address);
     }, [address]);
 
-    // const handleFormSubmit = async e => {
-    //     e.preventDefault();
-
-    //     await makeOjectsReady();
-    //     const id = localStorage.getItem("userid");
-    //     axios
-    //         .post(`/api/personaldetails/${id}`, {
-    //             profile: profile,
-    //             academics: academics,
-    //             parent: parent,
-    //             contact: contact,
-    //             address: address
-    //         })
-    //         .then(response => {
-    //             var user = response.data;
-    //             console.log(response.data);
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // };
     return (
         <div>
             <form onSubmit={event => handleFormSubmit(event)}>
