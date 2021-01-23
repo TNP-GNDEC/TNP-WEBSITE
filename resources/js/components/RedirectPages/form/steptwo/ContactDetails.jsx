@@ -51,6 +51,7 @@ export default function ContactDetails(props) {
     const renderFields = () =>
         fields.map(field => (
                 <Grid
+                    key={field.label}
                     item
                     xs={12}
                     sm={6}
@@ -63,6 +64,7 @@ export default function ContactDetails(props) {
                         name={field.name}
                         variant="outlined"
                         label={field.label}
+                        error={false}
                         value={field.value}
                         style={{ minWidth:"230px"}}
                         onChange={e => {
