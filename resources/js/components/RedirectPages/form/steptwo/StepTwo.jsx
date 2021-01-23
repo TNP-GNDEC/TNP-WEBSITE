@@ -7,7 +7,8 @@ import ParentDetails from "./ParentsDetails";
 import AcademicDetails from "./AcademicDetails";
 import ContactDetails from "./ContactDetails";
 import Button from "@material-ui/core/Button";
-import AddressDetails from "./AddressDetails";
+import { concat } from "lodash";
+import AddressDetails from './AddressDetails';
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -75,7 +76,6 @@ export default function StepTwo() {
         farming_background: "",
         disability: ""
     });
-
     // state for holding inputs from parent form imported as ParentsDetails
     const [parent, setParent] = React.useState({
         father_name: "",
@@ -207,6 +207,7 @@ export default function StepTwo() {
         switch (id) {
             case 1:
                 setParent({ ...parent, father_name: value });
+                console.log(parent.father_name);
                 break;
             case 2:
                 setParent({ ...parent, father_phone: Number(value) });
@@ -307,10 +308,7 @@ export default function StepTwo() {
     const handleFormSubmit = event => {
         event.preventDefault();
         const id = localStorage.getItem("userid");
-        console.log(parent);
-
-        axios
-            .post(`/api/personaldetails/${id}`, {
+        axios.post(`/api/personaldetails/${id}`, {
                 profile: profile,
                 academics: academics,
                 parent: parent,
@@ -412,11 +410,9 @@ export default function StepTwo() {
                     </Grid>
                 </Grid>
                 <Button
-                    className={classes.pos}
                     type="submit"
                     variant="contained"
                     color="primary"
-                    // onClick={handleFormSubmit}
                 >
                     SUBMIT
                 </Button>

@@ -28,12 +28,16 @@ const useStyles = makeStyles((theme) => ({
     width: "75%",
     margin: "auto",
     marginTop: "45px",
+    marginBottom: "55px",
     borderRadius: "10px",
     boxShadow: "0px 15px 25px #00000033",
     background: theme.palette.secondary.main,
     display: "flex",
     justifyContent: "space-around",
-    alignItems: "center"
+    alignItems: "center",
+    ['@media (max-height:585px)']: {
+      marginTop: "25px"
+  },
   },
   hero:{
     width: "50%",
@@ -57,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
     ['@media (max-width:960px)']: {
       width: "100%",
-  },
+    },
   },
   icon:{
     fontSize: "90px",

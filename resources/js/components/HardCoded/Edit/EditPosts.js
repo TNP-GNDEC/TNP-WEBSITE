@@ -1,27 +1,37 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import axios from "axios";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import { EditorState, convertToRaw, ContentState, createWithContent } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 class EditPosts extends React.Component {
     state = {
         title: '',
         type: '',
-        description: ''
+        description: '',
+        editorState: EditorState.createEmpty(),
     }
 
     handleInput = (e) => {
         this.setState({[e.target.name]: e.target.value});
     }
-    handleEditorInput =  ( event, editor ) => {
-        const data = editor.getData();
-        console.log( { event, editor, data } );
+    onEditorStateChange = (editorState) => {
         this.setState({
-            description: data,
+          editorState,
         });
-    } 
+        const html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+        this.saveEditorContent(html);
+      };
+    
+    saveEditorContent(data){
+        this.setState({description: data});
+    }
+    getSavedEditorData(data){
+        this.setState({editorState: EditorState.createWithContent(data)});
+    }
+
     updatePost = async (e) => {
         e.preventDefault();
         const id = this.props.match.params.id;
@@ -36,6 +46,12 @@ class EditPosts extends React.Component {
         this.setState({title: res.data.posts.title});
         this.setState({type: res.data.posts.type});
         this.setState({description: res.data.posts.description});
+        const descript = res.data.posts.description;
+        const blocksFromHtml = htmlToDraft(descript);
+        const { contentBlocks, entityMap } = blocksFromHtml;
+        const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+        this.setState({editorState: EditorState.createWithContent(contentState)});
+        
     }
 
     render(){
@@ -66,21 +82,12 @@ class EditPosts extends React.Component {
                             <div className="form-group">
                                 <label>Description:</label>
                                 <div className="App">
-                                    <CKEditor
-                                        editor={ ClassicEditor }
-                                        data={this.state.description}
-                                        onReady={ editor => {
-                                            // You can store the "editor" and use when it is needed.
-                                            console.log( 'Editor is ready to use!', editor );
-                                        } }
-                                        onChange={this.handleEditorInput}                                        
-                                        onBlur={ ( event, editor ) => {
-                                            console.log( 'Blur.', editor );
-                                        } }
-                                        onFocus={ ( event, editor ) => {
-                                            console.log( 'Focus.', editor );
-                                        } }
-                                    />
+                                    <Editor
+                                            editorState={this.state.editorState}
+                                            wrapperClassName="demo-wrapper"
+                                            editorClassName="demo-editor"
+                                            onEditorStateChange={this.onEditorStateChange}
+                                     />
                                 </div>
                             
                                 {/* <textarea type="text" name="description" className="form-control highlight"

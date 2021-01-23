@@ -35,7 +35,7 @@ Route::get('/addLinks', function () {
 
 Route::get('/edit/:id', function () {
     return view('welcome');
-});
+})-> name('example');
 Route::get('/editConnect/:id', function () {
     return view('welcome');
 });

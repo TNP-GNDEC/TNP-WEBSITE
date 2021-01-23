@@ -21,12 +21,14 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
         alignContent: "center",
         padding: "20px 0px",
-        mixWidth: "230px"
+        mixWidth: "230px",
     }
 }));
 
 export default function matriculationDetails(props) {
     const classes = useStyles();
+
+    
 
     const currencies = [
         {
@@ -129,7 +131,8 @@ export default function matriculationDetails(props) {
                     lg={4}
                     className={classes.textFieldContainer}
                 >
-                    <TextField
+                    <TextField 
+                        required
                         type={field.type}
                         id="outlined-basic"
                         name={field.name}
