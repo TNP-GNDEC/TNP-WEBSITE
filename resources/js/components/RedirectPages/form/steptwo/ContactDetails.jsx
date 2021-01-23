@@ -51,6 +51,7 @@ export default function ContactDetails(props) {
     const renderFields = () =>
         fields.map(field => (
                 <Grid
+                    key={field.label}
                     item
                     xs={12}
                     sm={6}

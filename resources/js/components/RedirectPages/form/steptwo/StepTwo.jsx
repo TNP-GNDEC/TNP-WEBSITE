@@ -107,7 +107,7 @@ export default function StepTwo() {
 
     const [address, setAddress] = React.useState({
         address: "",
-        pincode: "",
+        // pincode: "",
         district: "",
         city: "",
         state: ""
@@ -115,7 +115,6 @@ export default function StepTwo() {
 
     // Utility Function
     const toCamelCase = str => {
-        
         if (typeof str == "string") {
             var splittedStr = [];
             var strInCamelCase = "";
@@ -134,52 +133,50 @@ export default function StepTwo() {
             return str;
         }
     };
-    // function camelize(str) {
-    //     return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-    //       return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    //     }).replace(/\s+/g, '');
-    //   }
-    // function camelize(str) {
-    //     return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
-    //       if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
-    //       return index === 0 ? match.toLowerCase() : match.toUpperCase();
-    //     });
-    //   }
-      
 
-    function camelize(str) {
+    function camelize() {
         return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
-          if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
-          return index === 0 ? match.toLowerCase() : match.toUpperCase();
+            if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+            return index === 0 ? match.toLowerCase() : match.toUpperCase();
         });
-      }
+    }
 
     // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
-        const value =  (e.target.value);
+        const value = e.target.value;
         switch (id) {
             case 1:
                 setProfile({ ...profile, first_name: value });
+                // setProfile({ ...profile, [e.target.id]: value });
+
                 break;
             case 2:
                 setProfile({ ...profile, last_name: value });
                 break;
             case 3:
-                setProfile({ ...profile, dob: Date(value) });
+                setProfile({ ...profile, dob: value });
                 break;
             case 4:
-                setProfile({ ...profile, aadhar: parseInt(value) });
+                setProfile({
+                    ...profile,
+                    aadhar: parseInt(value) ? parseInt(value) : ""
+                });
                 break;
             case 5:
-                setProfile({ ...profile, height: parseFloat(value) });
+                setProfile({
+                    ...profile,
+                    // height: parseFloat(value) ? parseFloat(value) : ""
+                    height: value
+                });
                 break;
             case 6:
-
-                // Edited here
-
-                 setProfile({ ...profile, weight:( parseFloat(value) ?  parseFloat(value): "") });
-                break;
+                setProfile({
+                    ...profile,
+                    // weight: parseFloat(value) ? parseFloat(value) : ""
+                    weight: value
+                });
+               break;
             case 7:
                 setProfile({ ...profile, blood_group: value });
                 break;
@@ -196,7 +193,7 @@ export default function StepTwo() {
                 break;
             case 11:
                 // value = parseInt(value)
-                setProfile({ ...profile, disability: Boolean (value) });
+                setProfile({ ...profile, disability: Boolean(value) });
                 break;
             default:
                 break;
@@ -255,7 +252,7 @@ export default function StepTwo() {
                 setAcademics({ ...academics, hostler: Boolean(value) });
                 break;
             case 9:
-                setAcademics({ ...academics, training_sem: parseInt(value) });
+                setAcademics({ ...academics, training_sem: value });
                 break;
             default:
                 break;
@@ -268,13 +265,13 @@ export default function StepTwo() {
         const value = e.target.value;
         switch (id) {
             case 1:
-                setContact({ ...contact, whatsapp_contact: value });
+                setContact({ ...contact, whatsapp_contact: parseInt(value)?parseInt(value):"" });
                 break;
             case 2:
-                setContact({ ...contact, contact: value });
+                setContact({ ...contact, contact: parseInt(value)?parseInt(value):"" });
                 break;
             case 3:
-                setContact({ ...contact, re_enter_contact: value });
+                setContact({ ...contact, re_enter_contact: parseInt(value)?parseInt(value):"" });
                 break;
             default:
                 break;
@@ -295,7 +292,7 @@ export default function StepTwo() {
                 setAddress({ ...address, district: value });
                 break;
             case 4:
-                setAddress({ ...address, pincode: value });
+                setAddress({ ...address, pincode: parseInt(value)?parseInt(value):"" });
                 break;
             case 5:
                 setAddress({ ...address, state: value });
@@ -305,15 +302,12 @@ export default function StepTwo() {
         }
     };
 
-    const makeOjectsReady = () =>{
-
-    }
+    const makeOjectsReady = () => {};
 
     const handleFormSubmit = event => {
         event.preventDefault();
         const id = localStorage.getItem("userid");
         console.log(parent);
-
 
         axios
             .post(`/api/personaldetails/${id}`, {
@@ -321,10 +315,9 @@ export default function StepTwo() {
                 academics: academics,
                 parent: parent,
                 contact: contact,
-                address:address
+                address: address
             })
             .then(response => {
-                
                 console.log(response);
             })
             .catch(error => {

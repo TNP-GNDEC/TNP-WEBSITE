@@ -273,6 +273,7 @@ export default function Details(props) {
         fields.map(field => (
             <>
                 <Grid
+                    key={field.label}
                     item
                     xs={12}
                     sm={6}
