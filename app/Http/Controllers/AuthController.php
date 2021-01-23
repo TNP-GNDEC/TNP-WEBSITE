@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\FormStatus;
-use App\Models\StepTwo;
-use App\Models\StepThree;
+use App\Models\PersonalDetails;
+use App\Models\Matriculation;
 use Illuminate\Support\Str;
 use Tymon\JWTAuth\Providers\JWTAuthServiceProvider;
 use JWTAuth;
@@ -30,12 +30,12 @@ class AuthController extends Controller
                 'user_id' => $newUser->id
 
                 ]);
-                $form_step_two = StepTwo::create([
+                $form_step_two = PersonalDetails::create([
                     'user_id' => $newUser->id,
                     'urn' => $user['urn'],
                     'crn' => $user['crn']
                 ]);
-                $form_step_three = StepThree::create([
+                $form_step_three = Matriculation::create([
                     'user_id' => $newUser->id,
                     'urn' => $user['urn'],
                     'crn' => $user['crn']

@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../../HomeComponent/SideComponents/Footer";
+import Footer from "./Footer";
 import Navbar from "./CoordinatorNav";
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";

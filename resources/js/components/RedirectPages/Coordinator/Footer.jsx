@@ -11,7 +11,8 @@ const useStyles = makeStyles({
     color: "#000000",
     textAlign: "center" ,
     paddingTop: "10px",
-    margin: "0",
+    marginLeft: "-80px",
+    zIndex: "100"
   },
   tag:{
     textDecoration: "none",

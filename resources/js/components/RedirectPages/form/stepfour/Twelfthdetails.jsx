@@ -101,16 +101,23 @@ export default function TwelfthDetails(props) {
             id: 6,
            
 
+
             value: props.tweflth.year_of_passing,
 
             value: props.Twelth.PINCODE_OF_INSTITUTION,
+
+            value: props.twelfth.pincode,
+
         },
         {
             label: "YEAR OF PASSING",
             type: "text",
             id: 7,
            
+
             value: props.Twelth.YEAR_OF_PASSING,
+
+            value: props.twelfth.year_of_passing,
 
         },
         {
@@ -132,10 +139,7 @@ export default function TwelfthDetails(props) {
             type: "file",
             id: 10,
             inputid:"pdf-file",
-            value: props.twelfth.file,
-            
-          
-            
+            value: props.twelfth.file,  
         }
     ];
 
@@ -160,8 +164,6 @@ export default function TwelfthDetails(props) {
                         style={{ minWidth: "230px" ,maxWidth:"230px" }}
                         disabled={field.disabled}
                         value={field.value}
-                       
-                       
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
