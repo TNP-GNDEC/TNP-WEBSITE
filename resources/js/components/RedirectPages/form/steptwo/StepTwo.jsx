@@ -74,7 +74,8 @@ export default function StepTwo() {
         gender: "",
         marital_status: "",
         farming_background: "",
-        disability: ""
+        disability: "",
+        aadhar:""
     });
     // state for holding inputs from parent form imported as ParentsDetails
     const [parent, setParent] = React.useState({
@@ -107,7 +108,7 @@ export default function StepTwo() {
 
     const [address, setAddress] = React.useState({
         address: "",
-        // pincode: "",
+        pincode: "",
         district: "",
         city: "",
         state: ""
