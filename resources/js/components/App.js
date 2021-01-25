@@ -25,11 +25,15 @@ import studentredirect from "./RedirectPages/Student/Student";
 import ForgetPass from "./Auth/ForgotPassword";
 import ResetPass from "./Auth/ResetPass";
 
+
 import ShowPost from "./HardCoded/view/ShowPost";
 
 
 function App(){ 
+    
     return(
+        
+            
         <Router>
             <>
                 <Switch>
@@ -68,7 +72,9 @@ function App(){
                     
                 </Switch>
             </>
+            
         </Router>
+        
     );
 }
 
