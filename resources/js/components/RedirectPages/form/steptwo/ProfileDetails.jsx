@@ -114,8 +114,8 @@ export default function ProfileDetails(props) {
             select: "True",
             value: props.Profile.farming_background,
             options: [
-                { value:true, label: "YES" },
-                { value: false, label: "NO" }
+                { value:1, label: "YES" },
+                { value: 0, label: "NO" }
             ]
     
         },
@@ -127,8 +127,8 @@ export default function ProfileDetails(props) {
             select: "True",
             value: props.Profile.disability,
             options: [
-                { value:true, label: "YES" },
-                { value:false, label: "NO" }
+                { value:1, label: "YES" },
+                { value:0, label: "NO" }
             ]
         },
 
