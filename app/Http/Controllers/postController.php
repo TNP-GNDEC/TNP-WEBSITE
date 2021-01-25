@@ -39,7 +39,7 @@ class postController extends Controller
         $newPost = Post::create([
             'title' => $request->title,
             'type' => $request->type,
-            'description' => $request->description
+            'description' => $request->description,
         ]);
         if($newPost){
             return response()->json(["status" => 200]);

@@ -24,121 +24,96 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function ProfileDetails(props) {
+export default function Postgraduation(props) {
     const classes = useStyles();
     const fields = [
         {
-            label: "FIRST NAME",
+            label: "USER ID",
             type: "text",
             id: 1,
             select: "",
-            value: props.Profile.first_name,
+            value: props.Post.user_id,
             options: []
         },
         {
-            label: "LAST NAME",
+            label: "INSTITUTION NAME",
             type: "text",
             id: 2,
             select: "",
-            value: props.Profile.last_name,
+            value: props.Post.institution_name,
             options: []
         },
         {
-            label: "DATE OF BIRTH",
-            type: "date",
+            label: "CITY OF INSTITUTION",
+            type: "text",
             id: 3,
             select: "",
-            value: props.Profile.dob,
+            value: props.Post.city_of_institution,
             options: []
         },
         {
-            label: "AADHAR NO.",
+            label: "STATE OF INSTITUTION ",
             type: "text",
             id: 4,
             select: "",
-            value: props.Profile.aadhar,
+            value: props.Post.state_of_institution,
             options: []
         },
         
         {
-            label: "HEIGHT (in cm)",
+            label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 5,
             select: "",
-            value: props.Profile.height,
+            value: props.Post.pincode_of_institution,
             options: []
         },
         {
-            label: "WEIGHT (in kg)",
-            type: "tel",
+            label: "MARKS TYPE",
+            type: "text",
             id: 6,
-            select: "",
-            value:props.Profile.weight,
-            options: []
+            select: "true",
+            value: props.Post.marks_type,
+            options: [
+                { value:"cgpa", label: "CGPA" },
+                { value: "percentage", label: "PERCENTAGE" }
+            ]
         },
         {
-            label: "BLOOD GROUP",
+            label: "OBTAINED MARKS",
             type: "text",
             id: 7,
             select: "",
-            value: props.Profile.blood_group,
+            value: props.Post.obtained_marks,
             options: []
         },
         {
-            label: "GENDER",
+            label: "MAXIMUM MARKS",
             type: "text",
             id: 8,
-            select: "true",
-            value: props.Profile.gender,
-            options: [
-                { value:"male", label: "MALE" },
-                { value: "female", label: "FEMALE" }
-            ]
+            select: "",
+            value: props.Post.maximum_marks,
+            options: []
         },
         {
-            label: "MARITAL STATUS",
-            type: "text",
+            label: "",
+            type: "file",
             id:9,
-            select: "True",
-            value: props.Profile.marital_status,
+            select: "",
+            value: props.Post   .dmc,
             options: [
-                { value: "married", label: "MARRIED" },
-                { value: "unmarried", label: "UNMARRIED" }
+             
             ]
         },
 
-        {
-            label: "FARMING BACKGROUND",
-            type: "text",
-            id: 10,
-            select: "True",
-            value: props.Profile.farming_background,
-            options: [
-                { value:true, label: "YES" },
-                { value: false, label: "NO" }
-            ]
-    
-        },
-
-        {
-            label: "DISABILITY",
-            type: "text",
-            id: 11,
-            select: "True",
-            value: props.Profile.disability,
-            options: [
-                { value:true, label: "YES" },
-                { value:false, label: "NO" }
-            ]
-        },
+       
 
     ];
 
-    const renderPersonalFields = () =>
+    const renderPostFields = () =>
         fields.map(field => (
             <>
                 <Grid
-                    key={field.label}
                     item
                     xs={12}
                     sm={6}
@@ -152,7 +127,8 @@ export default function ProfileDetails(props) {
                         label={field.label}
                         value={field.value}
                         select={field.select}
-                        style={{ minWidth: "230px" }}
+                        inputProps={{ accept: ".pdf" }}
+                        style={{ minWidth: "230px" ,maxWidth:"230px"}}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
@@ -175,10 +151,10 @@ export default function ProfileDetails(props) {
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-                PROFILE DETAILS
+            🎓 POSTGRADUATION DETAILS
             </Typography>
             <CardContent>
-                <Grid container>{renderPersonalFields()}</Grid>
+                <Grid container>{renderPostFields()}</Grid>
             </CardContent>
         </>
     );

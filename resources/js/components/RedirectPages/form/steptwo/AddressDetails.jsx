@@ -67,6 +67,7 @@ export default function AddressDetails(props) {
     const renderFields = () =>
         fields.map(field => (
                 <Grid
+                    key={field.label}
                     item
                     xs={12}
                     sm={6}

@@ -222,11 +222,11 @@ export default function Details(props) {
             select: "true",
             options: [
                 {
-                    value: "yes",
+                    value: true,
                     label: "YES"
                 },
                 {
-                    value: "no",
+                    value: false,
                     label: "NO"
                 }
             ]
@@ -239,11 +239,11 @@ export default function Details(props) {
             select: "true",
             options: [
                 {
-                    value: "yes",
+                    value: true,
                     label: "YES"
                 },
                 {
-                    value: "no",
+                    value: false,
                     label: "NO"
                 }
             ]
@@ -273,6 +273,7 @@ export default function Details(props) {
         fields.map(field => (
             <>
                 <Grid
+                    key={field.label}
                     item
                     xs={12}
                     sm={6}
@@ -284,6 +285,7 @@ export default function Details(props) {
                         id="outlined-basic"
                         name={field.name}
                         variant="outlined"
+                        error={false}
                         label={field.label}
                         value={field.value}
                         select={field.select}

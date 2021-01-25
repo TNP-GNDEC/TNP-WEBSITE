@@ -1,14 +1,23 @@
 import React from "react";
 import axios from "axios";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import '../../../../css/app.css';
+import { withStyles } from '@material-ui/core/styles';
+import { EditorState, convertToRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
+const useStyles = theme => ({
+    description:{
+        
+    }
+});
 
 class CreatePosts extends React.Component {
     state = {
         title: '',
         type: '',
-        description: ''
+        description: '',
+        editorState: EditorState.createEmpty(),
     }
 
     handleInput = (e) => {
@@ -16,24 +25,29 @@ class CreatePosts extends React.Component {
             [e.target.name]: e.target.value,
         });
     }
-    handleEditorInput =  ( event, editor ) => {
-        const data = editor.getData();
-        console.log( { event, editor, data } );
+    onEditorStateChange = (editorState) => {
         this.setState({
-            description: data,
+          editorState,
         });
-    } 
+        const html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+        this.saveEditorContent(html);
+      };
+    
+    saveEditorContent(data){
+        this.setState({description: data});
+    }
     savePost = async (e) => {
         e.preventDefault();
         const res = await axios.post("/addPost", this.state);
         if(res.data.status === 200){
-            window.location.reload();
             alert("Added Successfully");
         }
     }
 
     
     render(){
+        const { editorState } = this.state;
+        const {classes} = this.props;
         return(
             <div className="layout">
                 <div className="actionDiv">
@@ -50,7 +64,7 @@ class CreatePosts extends React.Component {
                                 <select name="type" className="form-control highlight" 
                                 value={this.state.type} onChange={this.handleInput}
                                 required>
-                                    <option value="none" selected disabled hidden>Select</option>
+                                    <option value="" selected>Select the Type</option>
                                     <option value="Announcement">Announcement</option>
                                     <option value="Selection">Selection</option>
                                     <option value="Placement">Placement</option>
@@ -60,25 +74,13 @@ class CreatePosts extends React.Component {
                             </div>
                             <div className="form-group">
                                 <label>Description:</label>
-                                <div className="App" >
-                                    <CKEditor
-                                        editor={ ClassicEditor }
-                                        data=""
-                                        config={{         
-                                            toolbar: ["undo", "redo", "bold", "italic", "blockQuote", "ckfinder", "imageTextAlternative", "imageUpload", "heading", "imageStyle:full", "imageStyle:side", "link", "numberedList", "bulletedList", "mediaEmbed", "insertTable", "tableColumn", "tableRow", "mergeTableCells"]
-                                          }}
-                                        onReady={ editor => {
-                                            // You can store the "editor" and use when it is needed.
-                                            console.log( 'Editor is ready to use!', editor );
-                                        } }
-                                        onChange={this.handleEditorInput}                                        
-                                        onBlur={ ( event, editor ) => {
-                                            console.log( 'Blur.', editor );
-                                        } }
-                                        onFocus={ ( event, editor ) => {
-                                            console.log( 'Focus.', editor );
-                                        } }
-                                        
+                                <div className={classes.description} >
+                                    <Editor
+                                        editorState={editorState}
+                                        wrapperClassName="demo-wrapper"
+                                        editorClassName="demo-editor"
+                                        placeholder="Write you description here...."
+                                        onEditorStateChange={this.onEditorStateChange}
                                     />
                                 </div>
                             </div>
@@ -98,4 +100,4 @@ class CreatePosts extends React.Component {
     }
 }
 
-export default CreatePosts;
+export default withStyles(useStyles)(CreatePosts);

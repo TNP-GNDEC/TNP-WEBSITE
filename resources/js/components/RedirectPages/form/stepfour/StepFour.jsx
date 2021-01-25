@@ -222,7 +222,7 @@ export default function StepTwo() {
                     <Card className={classes.cardStyles}>
                         <TwelfthDetails twelfth={twelfth} handleInputChange={handleProfileChangeInput}/>
                         <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload Scanned copies of your twelfth certificates. </code>
+                            <code>Note : Upload<CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
                         </Paper>
                     </Card>
                 </Grid>
