@@ -151,7 +151,7 @@ export default function Postgraduation(props) {
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-                POSTGRADUATION DETAILS
+            🎓 POSTGRADUATION DETAILS
             </Typography>
             <CardContent>
                 <Grid container>{renderPostFields()}</Grid>
