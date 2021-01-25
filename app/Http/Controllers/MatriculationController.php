@@ -28,7 +28,7 @@ class MatriculationController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-  //if($current_step==2){
+  if($current_step==2){
     $file = $request->matriculation["file"];
     $filename  = $file->getClientOriginalName();
     $extension = $file->getClientOriginalExtension();
@@ -52,7 +52,7 @@ class MatriculationController extends Controller
       ->where('user_id', $user->id)
       ->update(['form_step' => 3]);
       return response()->json(["details"=> $details, "pic"=>$picture, "form_status"=> $form_step_change]);
-    //}
-    //else return response()->json(["details"=> "first complete personal details"]);
+    }
+    else return response()->json(["details"=> "first complete personal details"]);
   }
 }
