@@ -190,11 +190,11 @@ export default function StepTwo() {
                 break;
             case 10:
                 // value = parseInt(value)
-                setProfile({ ...profile, farming_background: Boolean(value) });
+                setProfile({ ...profile, farming_background: (value) });
                 break;
             case 11:
                 // value = parseInt(value)
-                setProfile({ ...profile, disability: Boolean(value) });
+                setProfile({ ...profile, disability: (value) });
                 break;
             default:
                 break;
@@ -248,10 +248,10 @@ export default function StepTwo() {
                 setAcademics({ ...academics, section: value });
                 break;
             case 7:
-                setAcademics({ ...academics, leet: Boolean(value) });
+                setAcademics({ ...academics, leet: (value) });
                 break;
             case 8:
-                setAcademics({ ...academics, hostler: Boolean(value) });
+                setAcademics({ ...academics, hostler: (value) });
                 break;
             case 9:
                 setAcademics({ ...academics, training_sem: value });
