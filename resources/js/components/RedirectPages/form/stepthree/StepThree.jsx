@@ -83,6 +83,7 @@ export default function StepThree() {
         city_of_institution: "o",
         year_of_passing: "",
         marks_type: "",
+        pincode:"",
         obtained_marks: "",
         maximum_marks: "",
         // file: ""
@@ -96,8 +97,9 @@ export default function StepThree() {
         temp.year_of_passing = matriculation.year_of_passing ? "": "This field is required."
         temp.marks_type = matriculation.marks_type ? "": "This field is required."
         temp.state_of_institution = matriculation.obtained_marks ? "": "This field is required."
-        temp.city_of_institution = matriculation.maximum_marks ? "": "This field is required."
+        temp.city_of_institution = matriculation.city_of_institution ? "": "This field is required."
         temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
+        temp.pincode = matriculation.pincode ? "": "This field is required."
         temp.maximum_marks = matriculation.maximum_marks ? "": "This field is required."
         setErrors({
           ...temp
@@ -111,7 +113,7 @@ export default function StepThree() {
         if(validate()){}
         const id = localStorage.getItem("userid");
         const fd = new FormData();
-        fd.append('file', file);
+        fd.append('file', document.getElementById('file').files[0]);
         console.log(fd)
         axios.post(`/api/matriculation/${id}`, 
             fd,{matriculation:matriculation}
@@ -120,7 +122,7 @@ export default function StepThree() {
             console.log(error);
         });
     };
-
+    // validation
     const handleChange = (f) =>{
         console.log(f)
         setfile({ file: f[0] });
@@ -184,7 +186,7 @@ export default function StepThree() {
                                 Errors= {errors}
                             />
         <label for="file">File Upload:</label>
-        <input onChange={ (e) => handleChange(e.target.files) } name="file" type="file" />
+        <input onChange={ (e) => handleChange(e.target.files) } id="file" type="file" />
                             <Paper
                                 variant="outlined"
                                 elevation={3}
