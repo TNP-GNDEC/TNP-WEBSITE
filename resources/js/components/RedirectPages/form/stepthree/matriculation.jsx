@@ -18,10 +18,17 @@ const useStyles = makeStyles(theme => ({
     },
     textFieldContainer: {
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignContent: "center",
         padding: "20px 0px",
-        mixWidth: "230px",
+        width: "100%",
+    },
+    inputs:{
+        display: "flex",
+        justifyContent: "space-evenly",
+        alignContent: "center",
+        padding: "20px 0px",
+        width: "100%",
     }
 }));
 
@@ -44,6 +51,18 @@ export default function matriculationDetails(props) {
             label: "PSEB"
         }
     ];
+    const currency2 = [
+        {
+            value: "1",
+            label: "cgpa"
+        },
+        {
+            value: "2",
+            label: "percentage"
+        }
+
+    ];
+
     const fields = [
         {
             label: "BOARD",
@@ -110,43 +129,45 @@ export default function matriculationDetails(props) {
             name: "maximum_marks",
             value: props.matriculation.maximum_marks
         },
-        {
-            label: "",
-            type: "file",
-            id: 10,
-            accept: "application/pdf",
-            name: "file",
-            defaultValue: props.matriculation.file
-        }
+        // {
+        //     label: "",
+        //     type: "file",
+        //     id: 10,
+        //     accept: "application/pdf",
+        //     name: "file",
+        //     defaultValue: props.matriculation.file
+        // }
     ];
 
-    const rendermatriculationFields = () =>
-        fields.map(field => (
-            <>
-                <Grid
+
+    const rendermatriculationFields = (
+        // fields.map(field => (
+        //     <>
+  <Grid
+                    
                     container
-                    item
-                    xs={12}
-                    sm={6}
-                    lg={4}
+                
                     className={classes.textFieldContainer}
                 >
+                    <div className={classes.inputs}>
                     <TextField 
-                        required
-                        type={field.type}
-                        id="outlined-basic"
-                        name={field.name}
-                        inputProps={{ accept: ".pdf" }}
+                        
+                        label= "BOARD"
+                        type="text"
+                        id= "1"
+                        name= "board"
+                        value= {props.matriculation.board}
+                        select= "true"
+                        
+                        
                         variant="outlined"
-                        label={field.label}
-                        value={field.value}
-                        select={field.select}
+                        
                         style={{ minWidth: "230px", maxWidth: "230px" }}
-                        disabled={field.disabled}
-                        onChange={e => {
-                            props.handleInputChange(e, field.id);
-                        }}
-                        {...(props.Errors[0] && {error:true, helperText:props.Errors[0]})}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.board && {error:true, helperText:props.Errors.board})}
                     >
                         {currencies.map(option => (
                             <MenuItem key={option.value} value={option.value}>
@@ -155,16 +176,222 @@ export default function matriculationDetails(props) {
                         ))}
                         
                     </TextField>
+                    <TextField 
+                        
+                        label= "INSTITUTION NAME"
+                        type= "text"
+                        id= "2"
+                        name= "institution_name"
+                        value= {props.matriculation.institution_name}
+                        
+                        
+                        variant="outlined"
+                        
+                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.institution_name && {error:true, helperText:props.Errors.institution_name})}
+                    >
+                        
+                    </TextField>
+                    <TextField 
+                        
+                        label= "CITY OF INSTITUTION"
+                        type= "text"
+                        id= "3"
+                        name= "city_of_institution"
+                        value= {props.matriculation.city_of_institution}
+                        
+                        
+                        variant="outlined"
+                        
+                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.city_of_institution && {error:true, helperText:props.Errors.city_of_institution})}
+                    >
+                        
+                    </TextField>
+                    </div>
+                        
+                    <div className={classes.inputs}>
+                    <TextField 
+                        
+                        label= "STATE OF INSTITUTION"
+                        type= "text"
+                        id= "4"
+                        name= "state_of_institution"
+                        value= {props.matriculation.state_of_institution}
+                        
+                        
+                        
+                        variant="outlined"
+                        
+                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.state_of_institution && {error:true, helperText:props.Errors.state_of_institution})}
+                    >
+                        
+                    </TextField>
+
+                    <TextField 
+                        
+                        label= "PINCODE OF INSTITUTION"
+                        type= "text"
+                        id= "5"
+                        name= "pincode"
+                        value= {props.matriculation.pincode}
+                        
+                        
+                        variant="outlined"
+                        
+                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.pincode && {error:true, helperText:props.Errors.pincode})}
+                    >
+                        
+                    </TextField>
+
+                    <TextField 
+                        
+                        label= "YEAR OF PASSING"
+                        type= "text"
+                        id= "6"
+                        name= "year_of_passing"
+                        value= {props.matriculation.year_of_passing}
+                        
+                        
+                        variant="outlined"
+                        
+                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.year_of_passing && {error:true, helperText:props.Errors.year_of_passing})}
+                    >
+                        
+                    </TextField>
+                    </div>
+                    <div className={classes.inputs}>
+                    <TextField 
+                        
+                        label= "MARKS TYPE"
+                        type= "text"
+                        id= "7"
+                        name= "marks_type"
+                        value= {props.matriculation.marks_type}
+                        select="true"
+                        
+                        
+                        variant="outlined"
+                        
+                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.marks_type && {error:true, helperText:props.Errors.marks_type})}
+                        >
+                        {currency2.map(option => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
+
+                        
+                    
+                        
+                    </TextField>
+
+                    <TextField 
+                        
+                        label= "OBTAINED MARKS"
+                        type= "text"
+                        id= "8"
+                        name= "obtained_marks"
+                        value= {props.matriculation.obtained_marks}
+                        
+                        
+                        variant="outlined"
+                        
+                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.obtained_marks && {error:true, helperText:props.Errors.obtained_marks})}
+                    >
+                        
+                    </TextField>
+
+                    <TextField 
+                        
+                        label= "MAXIMUM MARKS"
+                        type= "text"
+                        id= "9"
+                        name= "maximum_marks"
+                        value= {props.matriculation.maximum_marks}
+                        
+                        
+                        variant="outlined"
+                        
+                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.maximum_marks && {error:true, helperText:props.Errors.maximum_marks})}
+                    >
+                        
+                    </TextField>
+                    </div>
+                    <div className={classes.inputs}>
+
+                    <TextField 
+                        
+                        label= ""
+                        type= "file"
+                        id= "10"
+                        accept= "application/pdf"
+                        name= "file"
+                        defaultValue= {props.matriculation.file}
+                        inputProps={{ accept: ".pdf" }}
+                        
+                        variant="outlined"
+                        
+                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.city_of_institution && {error:true, helperText:props.Errors.city_of_institution})}
+                    >
+                        
+                    </TextField>
+                    </div>
                 </Grid>
-            </>
-        ));
+            
+        )
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-                matriculation DETAILS
+                Matriculation Details
             </Typography>
             <CardContent>
-                <Grid container>{rendermatriculationFields()}</Grid>
+
+                <Grid container>{rendermatriculationFields}</Grid>
+
             </CardContent>
         </>
     );
