@@ -1,0 +1,18 @@
+div.DraftEditor-root {
+    height: 500px;
+    width: auto;
+  }
+  div.DraftEditor-editorContainer,
+  div.public-DraftEditor-content {
+    height: 100%;
+    padding-top: 1px;
+    padding-left: 3px;
+    padding-bottom: 1px;
+    padding-right: 3px;
+  }
+  .rdw-editor-wrapper {
+    border: ridge;
+}
+.rdw-editor-toolbar {
+    border-bottom: ridge;
+}
