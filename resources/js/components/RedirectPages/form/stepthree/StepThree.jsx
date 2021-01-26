@@ -79,8 +79,8 @@ export default function StepThree() {
     const [matriculation, setmatric] = React.useState({
         board: "",
         institution_name: "",
-        state_of_institution: "j",
-        city_of_institution: "o",
+        state_of_institution: "",
+        city_of_institution: "",
         year_of_passing: "",
         marks_type: "",
         pincode: "",
