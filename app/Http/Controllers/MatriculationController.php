@@ -25,15 +25,16 @@ class MatriculationController extends Controller
  public function getFormData(Request $request)
   {
     $user = User::findOrFail($request->id);
-  $current_step= DB::table('form_statuses')
+    $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
   if($current_step==2){
-    $file = $request->matriculation["file"];
+    
+    $file = $request->file('file');
     $filename  = $file->getClientOriginalName();
     $extension = $file->getClientOriginalExtension();
-    $picture   = $user->username._.'matriculation';
-    $file->move(public_path('img/matriculation'), $picture);
+    $matriculation_file   = $user->username.'_matriculation.'.$extension;
+    $file->move(public_path('documents/matriculation'), $matriculation_file);
     $details = DB::table('matriculation')
     ->where('user_id', $user->id)
     ->update([
@@ -45,13 +46,14 @@ class MatriculationController extends Controller
         'obtained_marks' => $request->matriculation["obtained_marks"],
         'institution_name' => $request->matriculation["institution_name"],
         'board' => $request->matriculation["board"],
-        'year_of_passing' => $request->matriculation["year_of_passing"]
+        'year_of_passing' => $request->matriculation["year_of_passing"],
+        'file' => $matriculation_file
 
     ]);
       $form_step_change= DB::table('form_statuses')
       ->where('user_id', $user->id)
       ->update(['form_step' => 3]);
-      return response()->json(["details"=> $details, "pic"=>$picture, "form_status"=> $form_step_change]);
+      return response()->json(["pic"=>$matriculation_file]);
     }
     else return response()->json(["details"=> "first complete personal details"]);
   }

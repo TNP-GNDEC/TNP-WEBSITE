@@ -75,16 +75,17 @@ const useStyles = makeStyles(theme => ({
 
 export default function StepThree() {
     const classes = useStyles();
+    const [file, setfile] = React.useState("");
     const [matriculation, setmatric] = React.useState({
         board: "",
         institution_name: "",
-        state_of_institution: "",
-        city_of_institution: "",
+        state_of_institution: "j",
+        city_of_institution: "o",
         year_of_passing: "",
         marks_type: "",
         obtained_marks: "",
         maximum_marks: "",
-        file: ""
+        // file: ""
     });
     const [errors, setErrors] = useState({});
 
@@ -109,20 +110,22 @@ export default function StepThree() {
         event.preventDefault();
         if(validate()){}
         const id = localStorage.getItem("userid");
-        axios.post(`/api/matriculation/${id}`, {
-            matriculation: matriculation
-        })
+        const fd = new FormData();
+        fd.append('file', file);
+        console.log(fd)
+        axios.post(`/api/matriculation/${id}`, 
+            fd,{matriculation:matriculation}
+        )
         .catch((error) => {
             console.log(error);
         });
     };
 
-    const readFile=(file)=>{
-    console.log(file)
-    let formData = new FormData();
-    formData.append("file", file);
-    return formData;
+    const handleChange = (f) =>{
+        console.log(f)
+        setfile({ file: f[0] });
     }
+
 
     const handleMatriculationChangeInput = (e, id) => {
         console.log("I am called");
@@ -156,9 +159,9 @@ export default function StepThree() {
             case 9:
                 setmatric({ ...matriculation, maximum_marks: value });
                 break;
-            case 10:
-                setmatric({ ...matriculation, file: e.target.files });
-                break;
+            // case 10:
+            //     setmatric({ ...matriculation, file: e.target.files });
+            //     break;
             default:
                 break;
         }
@@ -180,6 +183,8 @@ export default function StepThree() {
                                 }
                                 Errors= {errors}
                             />
+        <label for="file">File Upload:</label>
+        <input onChange={ (e) => handleChange(e.target.files) } name="file" type="file" />
                             <Paper
                                 variant="outlined"
                                 elevation={3}
