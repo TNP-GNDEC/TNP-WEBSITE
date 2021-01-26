@@ -291,6 +291,7 @@ export default function Details(props) {
                         select={field.select}
                         style={{ minWidth: "230px" }}
                         disabled={field.disabled}
+                        required={true}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
