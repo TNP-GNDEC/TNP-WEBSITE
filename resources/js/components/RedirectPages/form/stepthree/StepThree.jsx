@@ -114,20 +114,19 @@ export default function StepThree() {
         if(validate()){}
         const id = localStorage.getItem("userid");
         const fd = new FormData();
+        Object.keys(matriculation).forEach(function (key){         
+            fd.append(key, matriculation[key]);
+    })
         fd.append('file', document.getElementById('file').files[0]);
-        console.log(fd)
         axios.post(`/api/matriculation/${id}`, 
-            fd,{matriculation:matriculation}
-        )
+            fd
+        ).then(function (response) {
+            console.log(response);
+        })
         .catch((error) => {
             console.log(error);
         });
     };
-    // validation
-    const handleChange = (f) =>{
-        console.log(f)
-        setfile({ file: f[0] });
-    }
 
 
     const handleMatriculationChangeInput = (e, id) => {
@@ -159,8 +158,8 @@ export default function StepThree() {
                                 }
                                 Errors= {errors}
                             />
-        <label for="file">File Upload:</label>
-        <input onChange={ (e) => handleChange(e.target.files) } id="file" type="file" />
+                        <label for="file">File Upload:</label>
+                        <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" />
                             <Paper
                                 variant="outlined"
                                 elevation={3}
