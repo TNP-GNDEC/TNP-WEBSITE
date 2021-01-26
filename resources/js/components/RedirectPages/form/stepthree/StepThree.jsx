@@ -82,6 +82,7 @@ export default function StepThree() {
         city_of_institution: "",
         year_of_passing: "",
         marks_type: "",
+        pincode: "",
         obtained_marks: "",
         maximum_marks: "",
         file: ""
@@ -94,10 +95,11 @@ export default function StepThree() {
         temp.institution_name = matriculation.institution_name? "": "This field is required."
         temp.year_of_passing = matriculation.year_of_passing ? "": "This field is required."
         temp.marks_type = matriculation.marks_type ? "": "This field is required."
-        temp.state_of_institution = matriculation.obtained_marks ? "": "This field is required."
-        temp.city_of_institution = matriculation.maximum_marks ? "": "This field is required."
+        temp.state_of_institution = matriculation.state_of_institution ? "": "This field is required."
+        temp.city_of_institution = matriculation.city_of_institution ? "": "This field is required."
         temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
         temp.maximum_marks = matriculation.maximum_marks ? "": "This field is required."
+        temp.pincode = matriculation.pincode ? "": "This field is required."
         setErrors({
           ...temp
         })
@@ -126,42 +128,48 @@ export default function StepThree() {
 
     const handleMatriculationChangeInput = (e, id) => {
         console.log("I am called");
-        const value = e.target.value;
+        
+        const name= e.target.name
+        const value= e.target.value   
+        setmatric(prevState => ({
+            ...prevState,
+            [name] : value
+        }))
 
-        switch (id) {
-            case 1:
-                setmatric({ ...matriculation, board: value });
-                break;
-            case 2:
-                setmatric({ ...matriculation, institution_name: value });
-                break;
-            case 3:
-                setmatric({ ...matriculation, city: value });
-                break;
-            case 4:
-                setmatric({ ...matriculation, state: value });
-                break;
-                case 5:
-                setmatric({ ...matriculation, pincode: value });
-                break;
-            case 6:
-                setmatric({ ...matriculation, year_of_passing: value });
-                break;
-            case 7:
-                setmatric({ ...matriculation, marks_type: value });
-                break;
-            case 8:
-                setmatric({ ...matriculation, obtained_marks: value });
-                break;
-            case 9:
-                setmatric({ ...matriculation, maximum_marks: value });
-                break;
-            case 10:
-                setmatric({ ...matriculation, file: e.target.files });
-                break;
-            default:
-                break;
-        }
+    //     switch (id) {
+    //         case 1:
+    //             setmatric({ ...matriculation, board: value });
+    //             break;
+    //         case 2:
+    //             setmatric({ ...matriculation, institution_name: value });
+    //             break;
+    //         case 3:
+    //             setmatric({ ...matriculation, city: value });
+    //             break;
+    //         case 4:
+    //             setmatric({ ...matriculation, state: value });
+    //             break;
+    //             case 5:
+    //             setmatric({ ...matriculation, pincode: value });
+    //             break;
+    //         case 6:
+    //             setmatric({ ...matriculation, year_of_passing: value });
+    //             break;
+    //         case 7:
+    //             setmatric({ ...matriculation, marks_type: value });
+    //             break;
+    //         case 8:
+    //             setmatric({ ...matriculation, obtained_marks: value });
+    //             break;
+    //         case 9:
+    //             setmatric({ ...matriculation, maximum_marks: value });
+    //             break;
+    //         case 10:
+    //             setmatric({ ...matriculation, file: e.target.files });
+    //             break;
+    //         default:
+    //             break;
+    //     }
     };
 
     React.useEffect(() => {
