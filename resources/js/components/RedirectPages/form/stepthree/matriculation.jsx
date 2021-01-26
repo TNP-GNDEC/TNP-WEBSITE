@@ -129,20 +129,21 @@ export default function matriculationDetails(props) {
             name: "maximum_marks",
             value: props.matriculation.maximum_marks
         },
-        {
-            label: "",
-            type: "file",
-            id: 10,
-            accept: "application/pdf",
-            name: "file",
-            defaultValue: props.matriculation.file
-        }
+        // {
+        //     label: "",
+        //     type: "file",
+        //     id: 10,
+        //     accept: "application/pdf",
+        //     name: "file",
+        //     defaultValue: props.matriculation.file
+        // }
     ];
+
 
     const rendermatriculationFields = (
         // fields.map(field => (
         //     <>
-                <Grid
+  <Grid
                     
                     container
                 
@@ -388,7 +389,9 @@ export default function matriculationDetails(props) {
                 Matriculation Details
             </Typography>
             <CardContent>
+
                 <Grid container>{rendermatriculationFields}</Grid>
+
             </CardContent>
         </>
     );
