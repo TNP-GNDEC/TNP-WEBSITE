@@ -23,7 +23,6 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-
 export default function ProfileDetails(props) {
     const classes = useStyles();
     const fields = [
@@ -31,58 +30,74 @@ export default function ProfileDetails(props) {
             label: "FIRST NAME",
             type: "text",
             id: 1,
-            select: "",
+            select: false,
             value: props.Profile.first_name,
-            options: []
+            options: [],
+            required: true
         },
         {
             label: "LAST NAME",
             type: "text",
             id: 2,
-            select: "",
+            select: false,
             value: props.Profile.last_name,
-            options: []
+            options: [],
+            required: false
         },
         {
             label: "DATE OF BIRTH",
             type: "date",
             id: 3,
-            select: "",
+            select: false,
             value: props.Profile.dob,
-            options: []
+            options: [],
+            required: true
         },
         {
             label: "AADHAR NO.",
             type: "text",
             id: 4,
-            select: "",
+            select: false,
             value: props.Profile.aadhar,
-            options: []
+            options: [],
+            required: true
         },
-        
+
         {
             label: "HEIGHT (in cm)",
             type: "text",
             id: 5,
-            select: "",
+            select:false,
             value: props.Profile.height,
-            options: []
+            options: [],
+            required: true
         },
         {
             label: "WEIGHT (in kg)",
             type: "tel",
             id: 6,
-            select: "",
-            value:props.Profile.weight,
-            options: []
+            select: false,
+            value: props.Profile.weight,
+            options: [],
+            required: true
         },
         {
             label: "BLOOD GROUP",
             type: "text",
             id: 7,
-            select: "",
+            select: true,
             value: props.Profile.blood_group,
-            options: []
+            options: [
+                { label: "A+", value: "A+" },
+                { label: "A-", value: "A-" },
+                { label: "B+", value: "B+" },
+                { label: "B-", value: "B-" },
+                { label: "O+", value: "O+" },
+                { label: "O-", value: "O-" },
+                { label:"AB+", value:"AB+" },
+                { label:"AB-", value:"AB-" }
+            ],
+            required: true
         },
         {
             label: "GENDER",
@@ -91,20 +106,22 @@ export default function ProfileDetails(props) {
             select: "true",
             value: props.Profile.gender,
             options: [
-                { value:"male", label: "MALE" },
+                { value: "male", label: "MALE" },
                 { value: "female", label: "FEMALE" }
-            ]
+            ],
+            required: true
         },
         {
             label: "MARITAL STATUS",
             type: "text",
-            id:9,
+            id: 9,
             select: "True",
             value: props.Profile.marital_status,
             options: [
                 { value: "married", label: "MARRIED" },
                 { value: "unmarried", label: "UNMARRIED" }
-            ]
+            ],
+            required: true
         },
 
         {
@@ -114,10 +131,10 @@ export default function ProfileDetails(props) {
             select: "True",
             value: props.Profile.farming_background,
             options: [
-                { value:1, label: "YES" },
+                { value: 1, label: "YES" },
                 { value: 0, label: "NO" }
-            ]
-    
+            ],
+            required: true
         },
 
         {
@@ -127,11 +144,11 @@ export default function ProfileDetails(props) {
             select: "True",
             value: props.Profile.disability,
             options: [
-                { value:1, label: "YES" },
-                { value:0, label: "NO" }
-            ]
-        },
-
+                { value: 1, label: "YES" },
+                { value: 0, label: "NO" }
+            ],
+            required: true
+        }
     ];
 
     const renderPersonalFields = () =>
@@ -153,21 +170,21 @@ export default function ProfileDetails(props) {
                         value={field.value}
                         select={field.select}
                         style={{ minWidth: "230px" }}
+                        required={field.required}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
-                    >{
-                        field.options.map(option => {
-                                return (
-                                    <MenuItem
-                                        key={option.value}
-                                        value={option.value}
-                                    >
-                                        {option.label}
-                                    </MenuItem>
-                                );
-                            })
-                        }
+                    >
+                        {field.options.map(option => {
+                            return (
+                                <MenuItem
+                                    key={option.value}
+                                    value={option.value}
+                                >
+                                    {option.label}
+                                </MenuItem>
+                            );
+                        })}
                     </TextField>
                 </Grid>
             </>

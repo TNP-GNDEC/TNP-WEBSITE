@@ -67,6 +67,7 @@ export default function ContactDetails(props) {
                         error={false}
                         value={field.value}
                         style={{ minWidth:"230px"}}
+                        required={true}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
