@@ -101,7 +101,7 @@ export default function StepTwo() {
     const handleFormSubmit = (event) => {
         event.preventDefault();        
         const id=localStorage.getItem("userid")
-        axios.post(`/api/diplomaortwelfth/${id}`, {
+        axios.post(`/api/diplomatwelfth/${id}`, {
             diploma: diploma,
             twelfth: twelfth,    
       })}
@@ -220,7 +220,10 @@ export default function StepTwo() {
             <Grid container className={classes.container}>
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
-                        <TwelfthDetails twelfth={twelfth} handleInputChange={handleProfileChangeInput}/>
+                        <TwelfthDetails 
+                        twelfth={twelfth} 
+                        handleInputChange={handleProfileChangeInput}
+                        />
                         <Paper variant="outlined" elevation={3} className={classes.note}>
                             <code>Note : Upload<CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
                         </Paper>
@@ -229,7 +232,10 @@ export default function StepTwo() {
 
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
-                        {<DiplomaDetails Diploma={diploma} handleInputChange={handleParentChangeInput}/> }
+                        <DiplomaDetails 
+                        diploma={diploma} 
+                        handleInputChange={handleParentChangeInput}
+                        /> 
                         <Paper variant="outlined" elevation={3} className={classes.note}>
                             <code>Note : Upload <CloudUploadIcon />Scanned copies of your Diploma certificates. </code>
                         </Paper>

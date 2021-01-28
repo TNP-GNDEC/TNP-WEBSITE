@@ -156,7 +156,7 @@ export default function matriculationDetails(props) {
                         type="text"
                         id= "1"
                         name= "board"
-                        value= {props.matriculation.board}
+                        defaultValue= {props.matriculation.board}
                         select= "true"
                         
                         
@@ -182,7 +182,7 @@ export default function matriculationDetails(props) {
                         type= "text"
                         id= "2"
                         name= "institution_name"
-                        value= {props.matriculation.institution_name}
+                        defaultValue= {props.matriculation.institution_name}
                         
                         
                         variant="outlined"
@@ -202,7 +202,7 @@ export default function matriculationDetails(props) {
                         type= "text"
                         id= "3"
                         name= "city_of_institution"
-                        value= {props.matriculation.city_of_institution}
+                        defaultValue= {props.matriculation.city_of_institution}
                         
                         
                         variant="outlined"
@@ -225,7 +225,7 @@ export default function matriculationDetails(props) {
                         type= "text"
                         id= "4"
                         name= "state_of_institution"
-                        value= {props.matriculation.state_of_institution}
+                        defaultValue= {props.matriculation.state_of_institution}
                         
                         
                         
@@ -247,7 +247,7 @@ export default function matriculationDetails(props) {
                         type= "text"
                         id= "5"
                         name= "pincode"
-                        value= {props.matriculation.pincode}
+                        defaultValue= {props.matriculation.pincode}
                         
                         
                         variant="outlined"
@@ -268,7 +268,7 @@ export default function matriculationDetails(props) {
                         type= "text"
                         id= "6"
                         name= "year_of_passing"
-                        value= {props.matriculation.year_of_passing}
+                        defaultValue= {props.matriculation.year_of_passing}
                         
                         
                         variant="outlined"
@@ -290,7 +290,7 @@ export default function matriculationDetails(props) {
                         type= "text"
                         id= "7"
                         name= "marks_type"
-                        value= {props.matriculation.marks_type}
+                        defaultValue= {props.matriculation.marks_type}
                         select="true"
                         
                         
@@ -320,7 +320,7 @@ export default function matriculationDetails(props) {
                         type= "text"
                         id= "8"
                         name= "obtained_marks"
-                        value= {props.matriculation.obtained_marks}
+                        defaultValue= {props.matriculation.obtained_marks}
                         
                         
                         variant="outlined"
@@ -341,7 +341,7 @@ export default function matriculationDetails(props) {
                         type= "text"
                         id= "9"
                         name= "maximum_marks"
-                        value= {props.matriculation.maximum_marks}
+                        defaultValue= {props.matriculation.maximum_marks}
                         
                         
                         variant="outlined"

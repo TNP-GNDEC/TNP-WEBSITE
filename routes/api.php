@@ -31,6 +31,5 @@ Route::post('personaldetails/{id}', 'PersonaldetailsController@getFormData');
 // step 3  details form post request
 Route::post('matriculation/{id}', 'MatriculationController@getFormData');
 
-
 // step 4 Diploma or 12th details form post request
-// Route::post('api/diplomaortwelth/${id}', '');
+Route::post('diplomatwelfth/{id}', 'TwelfthdiplomaController@getFormData');
