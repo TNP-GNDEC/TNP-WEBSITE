@@ -42,7 +42,7 @@ class TwelfthdiplomaController extends Controller
     $diploma_filename  = $diploma_file->getClientOriginalName();
     $diploma_extension = $diploma_file->getClientOriginalExtension();
     $diploma_file_url   = $user->username._.'diploma.'.$diploma_extension;
-    $diploma_path = public_path('documents/twelfth');
+    $diploma_path = public_path('documents/diploma');
     $diploma_file->move(public_path('documents/diploma'), $diploma_file_url);
 
     $twelfth_details = DB::table('twelfth')
@@ -79,7 +79,7 @@ class TwelfthdiplomaController extends Controller
 
       $form_step_change= DB::table('form_statuses')
       ->where('user_id', $user->id)
-      ->update(['form_step' => 3]);
+      ->update(['form_step' => 4]);
       return response()->json(["details"=> $details, "form_status"=> $form_step_change]);
     }
     else return response()->json(["details"=> "first complete matriculation details"]);

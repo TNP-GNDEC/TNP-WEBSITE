@@ -40,7 +40,7 @@ export default function Degree(props) {
             type: "text",
             id: 2,
             select: "",
-            value: props.Degree.sgpa_in_1st_sem,
+            value: props.Degree.sgpa_sem1,
             options: []
         },
         {
@@ -48,7 +48,7 @@ export default function Degree(props) {
             type: "text",
             id: 3,
             select: "",
-            value: props.Degree.credits_in_1st_sem,
+            value: props.Degree.credits_sem1,
             options: []
         },
         {
@@ -56,7 +56,7 @@ export default function Degree(props) {
             type: "text",
             id: 4,
             select: "",
-            value: props.Degree.sgpa_in_2nd_sem,
+            value: props.Degree.sgpa_sem2,
             options: []
         },
         
@@ -65,7 +65,7 @@ export default function Degree(props) {
             type: "text",
             id: 5,
             select: "",
-            value: props.Degree.credits_in_2nd_sem,
+            value: props.Degree.credits_sem2,
             options: []
         },
         {
@@ -73,7 +73,7 @@ export default function Degree(props) {
             type: "text",
             id: 6,
             select: "",
-            value: props.Degree.sgpa_in_3rd_sem,
+            value: props.Degree.sgpa_sem3,
             options: [
 
             ]
@@ -83,7 +83,7 @@ export default function Degree(props) {
             type: "text",
             id: 7,
             select: "",
-            value: props.Degree.credits_in_3rd_sem,
+            value: props.Degree.credits_sem3,
             options: []
         },
         {
@@ -91,7 +91,7 @@ export default function Degree(props) {
             type: "text",
             id: 8,
             select: "",
-            value: props.Degree.sgpa_in_4th_sem,
+            value: props.Degree.sgpa_sem4,
             options: []
         },
         {
@@ -99,7 +99,7 @@ export default function Degree(props) {
             type: "text",
             id:9,
             select: "",
-            value: props.Degree.credits_in_4th_sem,
+            value: props.Degree.credits_sem4,
             options: [
              
             ]
@@ -109,7 +109,7 @@ export default function Degree(props) {
             type: "text",
             id: 10,
             select: "",
-            value: props.Degree.sgpa_in_5th_sem,
+            value: props.Degree.sgpa_sem5,
             options: []
         },
         {
@@ -117,7 +117,7 @@ export default function Degree(props) {
             type: "text",
             id: 11,
             select: "",
-            value: props.Degree.credits_in_5th_sem,
+            value: props.Degree.credits_sem5,
             options: []
         },
         {
@@ -125,7 +125,7 @@ export default function Degree(props) {
             type: "text",
             id: 12,
             select: "",
-            value: props.Degree.sgpa_in_6th_sem,
+            value: props.Degree.sgpa_sem6,
             options: []
         },
         
@@ -134,7 +134,7 @@ export default function Degree(props) {
             type: "text",
             id: 13,
             select: "",
-            value: props.Degree.credits_in_6th_sem,
+            value: props.Degree.credits_sem6,
             options: []
         },
         {
@@ -142,7 +142,7 @@ export default function Degree(props) {
             type: "text",
             id: 14,
             select: "",
-            value: props.Degree.sgpa_in_7th_sem,
+            value: props.Degree.sgpa_sem7,
             options: [
 
             ]
@@ -152,7 +152,7 @@ export default function Degree(props) {
             type: "text",
             id: 15,
             select: "",
-            value: props.Degree.credits_in_7th_sem,
+            value: props.Degree.credits_sem7,
             options: []
         },
         {
@@ -160,7 +160,7 @@ export default function Degree(props) {
             type: "text",
             id: 16,
             select: "",
-            value: props.Degree.sgpa_in_8th_sem,
+            value: props.Degree.sgpa_sem8,
             options: []
         },
         {
@@ -168,7 +168,7 @@ export default function Degree(props) {
             type: "text",
             id:17,
             select: "",
-            value: props.Degree.credits_in_8th_sem,
+            value: props.Degree.credits_sem8,
             options: [
              
             ]
@@ -199,7 +199,7 @@ export default function Degree(props) {
             type: "text",
             id:20,
             select: "",
-            value: props.Degree  .aggregate_percentage,
+            value: props.Degree.aggregate_percentage,
             options: [
              
             ]
@@ -210,7 +210,7 @@ export default function Degree(props) {
             type: "file",
             id:21,
             select: "",
-            value: props.Degree .dmc,
+            value: props.Degree.dmc,
             options: [
              
             ]
