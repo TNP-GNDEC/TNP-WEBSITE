@@ -12,6 +12,7 @@ class Twelfth extends Model
         "board",
         "institution_name",
         "jee_rank",
+        "marks_type",
         "city_of_institute",
         "state_of_institute",
         "year_of_passing",
