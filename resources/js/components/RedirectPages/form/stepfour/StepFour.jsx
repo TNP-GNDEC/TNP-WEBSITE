@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card } from "@material-ui/core";
+import { Card, FormGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import TwelfthDetails from './Twelfthdetails'
@@ -8,7 +8,11 @@ import DiplomaDetails from './Diplomadetails'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormLabel from '@material-ui/core/FormLabel';    
 
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -219,13 +223,40 @@ export default function StepTwo() {
             <form onSubmit={handleFormSubmit}>
             <Grid container className={classes.container}>
                 <Grid item xs={10} className={classes.Cardcontainers}>
+                    
                     <Card className={classes.cardStyles}>
+                 <Card>
+       <FormControl component="fieldset">
+           
+           
+       
+      <FormGroup aria-label="position" row>
+        <FormControlLabel
+          value="top"
+          control={<Checkbox color="primary" />}
+          label="XII"
+          labelPlacement="start"
+        />
+        <FormControlLabel
+          value="start"
+          control={<Checkbox color="primary" />}
+          label="Diploma"
+          labelPlacement="start"
+        />
+   
+       <FormLabel component="legend"><code>  * please select XII or Diploma under which categorie you fall *  </code></FormLabel>
+     
+        
+      </FormGroup>
+    </FormControl>
+    </Card>
+        
                         <TwelfthDetails 
                         twelfth={twelfth} 
                         handleInputChange={handleProfileChangeInput}
                         />
                         <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload<CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
+                            <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
                         </Paper>
                     </Card>
                 </Grid>
@@ -237,7 +268,7 @@ export default function StepTwo() {
                         handleInputChange={handleParentChangeInput}
                         /> 
                         <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload <CloudUploadIcon />Scanned copies of your Diploma certificates. </code>
+                            <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
                         </Paper>
                     </Card>
                 </Grid>
