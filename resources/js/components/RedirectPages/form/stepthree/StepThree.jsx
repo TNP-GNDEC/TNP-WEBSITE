@@ -158,8 +158,8 @@ export default function StepThree() {
                                 }
                                 Errors= {errors}
                             />
-                        <label for="file">File Upload:</label>
-                        <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" />
+                         <label htmlFor="file">File Upload:</label>
+                        <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" /> 
                             <Paper
                                 variant="outlined"
                                 elevation={3}
