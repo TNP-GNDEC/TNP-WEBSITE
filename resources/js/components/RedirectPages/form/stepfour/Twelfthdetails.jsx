@@ -100,22 +100,14 @@ export default function TwelfthDetails(props) {
             type: "text",
             id: 6,
            
-<<<<<<< HEAD
-            value: props.Twelth.PINCODE_OF_INSTITUTION,
-=======
             value: props.twelfth.pincode,
->>>>>>> ab5cd219d7f0e5fd193f0be9659248d29113c0e7
         },
         {
             label: "YEAR OF PASSING",
             type: "text",
             id: 7,
            
-<<<<<<< HEAD
-            value: props.Twelth.YEAR_OF_PASSING,
-=======
             value: props.twelfth.year_of_passing,
->>>>>>> ab5cd219d7f0e5fd193f0be9659248d29113c0e7
         },
         {
             label: "OBTAINED MARKS",
@@ -136,7 +128,7 @@ export default function TwelfthDetails(props) {
             type: "file",
             id: 10,
             inputid:"pdf-file",
-            value: props.twelfth.file,  
+            daefaultValue: props.twelfth.file,  
         }
     ];
 

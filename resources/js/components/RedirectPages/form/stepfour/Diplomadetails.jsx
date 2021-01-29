@@ -130,7 +130,7 @@ export default function DiplomaDetails(props) {
             id: 10,
             // name: "first_name",
             inputid:"pdf-file",
-            value: props.Diploma.file,
+            defaultValue: props.Diploma.file,
         }
     ];
 

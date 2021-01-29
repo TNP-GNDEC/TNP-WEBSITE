@@ -135,7 +135,7 @@ export default function StepTwo() {
                 setProfile({ ...twelfth,  maximum_marks:value });
                 break;
                 case 9:
-                setProfile({ ...twelfth, });
+                setProfile({ ...twelfth, file: e.target.files});
                 break;
             default:
                 break;
@@ -174,7 +174,7 @@ export default function StepTwo() {
                 setParent({ ...diploma, stream: value });
                 break;
             case 10:
-                setParent({ ...diploma});
+                setParent({ ...diploma, file: e.target.files});
                 break;
                     
             default:
