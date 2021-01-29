@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card } from "@material-ui/core";
+import { Card, FormGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import TwelfthDetails from './Twelfthdetails'
@@ -8,7 +8,11 @@ import DiplomaDetails from './Diplomadetails'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormLabel from '@material-ui/core/FormLabel';    
 
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -101,9 +105,19 @@ export default function StepTwo() {
     const handleFormSubmit = (event) => {
         event.preventDefault();        
         const id=localStorage.getItem("userid")
-        axios.post(`/api/diplomaortwelfth/${id}`, {
-            diploma: diploma,
-            twelfth: twelfth,    
+        const fdTwelfth = new FormData();
+        Object.keys(twelfth).forEach(function (key){         
+            fdTwelfth.append(key, twelfth[key]);
+        })
+        fdTwelfth.append('file', document.getElementById('twelfthfile').files[0]);
+        const fdDiploma = new FormData();
+        Object.keys(diploma).forEach(function (key){         
+            fdDiploma.append(key, diploma[key]);
+        })
+        fdDiploma.append('file', document.getElementById('dimplomafile').files[0]);
+        axios.post(`/api/diplomatwelfth/${id}`, {
+            diploma: fdDiploma,
+            twelfth: fdTwelfth,    
       })}
 
     const handleProfileChangeInput = (e, id) => {
@@ -219,19 +233,56 @@ export default function StepTwo() {
             <form onSubmit={handleFormSubmit}>
             <Grid container className={classes.container}>
                 <Grid item xs={10} className={classes.Cardcontainers}>
+                    
                     <Card className={classes.cardStyles}>
-                        <TwelfthDetails twelfth={twelfth} handleInputChange={handleProfileChangeInput}/>
+                 <Card>
+       <FormControl component="fieldset">
+           
+           
+       
+      <FormGroup aria-label="position" row>
+        <FormControlLabel
+          value="top"
+          control={<Checkbox color="primary" />}
+          label="XII"
+          labelPlacement="start"
+        />
+        <FormControlLabel
+          value="start"
+          control={<Checkbox color="primary" />}
+          label="Diploma"
+          labelPlacement="start"
+        />
+   
+       <FormLabel component="legend"><code>  * please select XII or Diploma under which categorie you fall *  </code></FormLabel>
+     
+        
+      </FormGroup>
+    </FormControl>
+    </Card>
+        
+                        <TwelfthDetails 
+                        twelfth={twelfth} 
+                        handleInputChange={handleProfileChangeInput}
+                        />
+                        <label htmlFor="file">File Upload:</label>
+                        <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
                         <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload Scanned copies of your twelfth certificates. </code>
+                            <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
                         </Paper>
                     </Card>
                 </Grid>
 
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
-                        {<DiplomaDetails Diploma={diploma} handleInputChange={handleParentChangeInput}/> }
+                        <DiplomaDetails 
+                        diploma={diploma} 
+                        handleInputChange={handleParentChangeInput}
+                        /> 
+                        <label htmlFor="file">File Upload:</label>
+                        <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
                         <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload <CloudUploadIcon />Scanned copies of your Diploma certificates. </code>
+                            <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
                         </Paper>
                     </Card>
                 </Grid>

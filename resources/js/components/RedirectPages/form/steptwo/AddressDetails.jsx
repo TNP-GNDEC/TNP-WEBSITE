@@ -67,6 +67,7 @@ export default function AddressDetails(props) {
     const renderFields = () =>
         fields.map(field => (
                 <Grid
+                    key={field.label}
                     item
                     xs={12}
                     sm={6}
@@ -81,6 +82,7 @@ export default function AddressDetails(props) {
                         label={field.label}
                         style={{ minWidth:"260px"}}
                         value={field.value}
+                        required={true}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}

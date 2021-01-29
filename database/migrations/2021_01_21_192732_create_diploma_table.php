@@ -21,6 +21,7 @@ class CreateDiplomaTable extends Migration
             $table->bigInteger('urn')->unsigned()->unique();
             $table->bigInteger('crn')->unsigned();
             $table->string('institution_name')->nullable();
+            $table->string('marks_type')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->year('year_of_passing')->nullable();
