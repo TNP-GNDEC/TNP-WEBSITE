@@ -30,28 +30,32 @@ export default function ParentDetails(props) {
             type: "text",
             id: 1,
             value: props.parent.father_name,
-            required:true
+            required:true,
+            maxLength:80
         },
         {
             label: "FATHER PHONE NO.",
             type: "text",
             id: 2,
             value: props.parent.father_phone,
-            required:true
+            required:true,
+            maxLength:10
         },
         {
             label: "MOTHER NAME",
             type: "text",
             id: 3,
             value: props.parent.mother_name,
-            required:true
+            required:true,
+            maxLength:80
         },
         {
             label: "MOTHER PHONE NO.",
             type: "text",
             id: 4,
             value: props.parent.mother_phone,
-            required:true
+            required:true,
+            maxLength:10
         }
     ];
 
@@ -72,6 +76,7 @@ export default function ParentDetails(props) {
                         name={field.name}
                         variant="outlined"
                         label={field.label}
+                        inputProps={{maxLength:field.maxLength}}
                         value={field.value}
                         style={{ minWidth:"230px"}}
                         required={field.required}

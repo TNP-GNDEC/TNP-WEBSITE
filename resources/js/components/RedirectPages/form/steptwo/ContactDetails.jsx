@@ -68,13 +68,14 @@ export default function ContactDetails(props) {
                         value={field.value}
                         style={{ minWidth:"230px"}}
                         required={true}
+                        inputProps={{maxLength:10}}
                         onChange={e => {
-                            props.handleInputChange(e, field.id);
+                        props.handleInputChange(e, field.id) 
                         }}
                     />
                 </Grid>
         ));
-    return (
+    return ( 
         <>
             <Typography variant="h4" className={classes.cardHeading}>
                 CONTACT DETAILS
