@@ -211,13 +211,13 @@ export default function StepTwo() {
                 console.log(parent.father_name);
                 break;
             case 2:
-                setParent({ ...parent, father_phone: Number(value) });
+                setParent({ ...parent, father_phone: parseInt(value)?parseInt(value):"" });
                 break;
             case 3:
                 setParent({ ...parent, mother_name: value });
                 break;
             case 4:
-                setParent({ ...parent, mother_phone: Number(value) });
+                setParent({ ...parent, mother_phone:parseInt(value)?parseInt(value):"" });
                 break;
             default:
                 break;
@@ -263,14 +263,16 @@ export default function StepTwo() {
 
     // State setter function of contact form sent as props to ContactDetails forms
     const handleContactChangeInput = (e, id) => {
-        console.log("I am called for contact");
-        const value = e.target.value;
+        console.log("I am called for contact : ",e.target);
+        let value = e.target.value 
         switch (id) {
             case 1:
+                // value = contact.whatsapp_contact.toString().length+1 <= 10 ? value : contact.whatsapp_contact.toString()
                 setContact({ ...contact, whatsapp_contact: parseInt(value)?parseInt(value):"" });
+                console.log(contact.whatsapp_contact.toString().length)
                 break;
             case 2:
-                setContact({ ...contact, contact: parseInt(value)?parseInt(value):"" });
+                setContact({ ...contact, contact: parseInt(value) ? parseInt(value):"" }) ; 
                 break;
             case 3:
                 setContact({ ...contact, re_enter_contact: parseInt(value)?parseInt(value):"" });

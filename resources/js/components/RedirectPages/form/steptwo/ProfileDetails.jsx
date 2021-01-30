@@ -25,6 +25,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function ProfileDetails(props) {
     const classes = useStyles();
+    // As Input type of DOB input field is date so the placeholder of input field(Enter DATE OF BIRTH) and of calender(yyyy-mm-dd) are overlapping
+    // to avoid that placeholder will be rendered dynamically by using onBlur and onFocus function inside TextField;
+    const [DateLabel, setDateLabel] = React.useState("");
+
     const fields = [
         {
             label: "FIRST NAME",
@@ -45,8 +49,8 @@ export default function ProfileDetails(props) {
             required: false
         },
         {
-            label: "DATE OF BIRTH",
-            type: "date",
+            label: "DATE OF BIRTH (yyyy-mm-dd)",
+            type: "text",
             id: 3,
             select: false,
             value: props.Profile.dob,
@@ -67,7 +71,7 @@ export default function ProfileDetails(props) {
             label: "HEIGHT (in cm)",
             type: "text",
             id: 5,
-            select:false,
+            select: false,
             value: props.Profile.height,
             options: [],
             required: true
@@ -94,8 +98,8 @@ export default function ProfileDetails(props) {
                 { label: "B-", value: "B-" },
                 { label: "O+", value: "O+" },
                 { label: "O-", value: "O-" },
-                { label:"AB+", value:"AB+" },
-                { label:"AB-", value:"AB-" }
+                { label: "AB+", value: "AB+" },
+                { label: "AB-", value: "AB-" }
             ],
             required: true
         },
@@ -171,6 +175,14 @@ export default function ProfileDetails(props) {
                         select={field.select}
                         style={{ minWidth: "230px" }}
                         required={field.required}
+                        // onBlur={() => {
+                        //     console.log(`I am blurred and ready to process`);
+                        //     field.id==3 && setDateLabel("");
+                        // }}
+                        // onClick={() => {
+                        //     console.log("Onfocus Call me ");
+                        //     field.id==3 && setDateLabel("DATE OF BIRTH");
+                        // }}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
