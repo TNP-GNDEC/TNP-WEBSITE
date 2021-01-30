@@ -6,7 +6,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import '../../../../css/app.css';
-
+import CreateTag from './CreateTag';
 const useStyles = theme => ({
     description:{
         
@@ -84,6 +84,7 @@ class CreatePosts extends React.Component {
                                     />
                                 </div>
                             </div>
+                            <CreateTag />
                             <div className="form-group">
                                 <button type="submit" className="primary">
                                     Add Post
