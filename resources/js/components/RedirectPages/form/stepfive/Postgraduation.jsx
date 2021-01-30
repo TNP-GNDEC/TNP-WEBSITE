@@ -100,7 +100,7 @@ export default function Postgraduation(props) {
             type: "file",
             id:9,
             select: "",
-            value: props.Post   .dmc,
+            value: props.Post.dmc,
             options: [
              
             ]

@@ -5,6 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Back from '@material-ui/icons/KeyboardBackspace';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuIcon from '@material-ui/icons/Menu';
 import Logo from "../../../../images/logo.png";
 
@@ -31,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     width: "auto"
   } ,
+  back: {
+    '&:hover':{
+      color:"#ffffff",
+    },
+  }
 }));
 
 export default function ButtonAppBar() {
@@ -54,7 +61,9 @@ export default function ButtonAppBar() {
           <Typography variant="h5" className={classes.title}>
             Training & Placement Cell
           </Typography>
-          <Button a href="./" color="inherit">Back</Button>
+          <Back />
+          <Button a href="./" className={classes.back} color="inherit">Back</Button>
+          < ExitToAppIcon />
           <Button onClick={handleLogout} color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>

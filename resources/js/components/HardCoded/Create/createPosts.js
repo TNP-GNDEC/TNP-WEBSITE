@@ -5,7 +5,8 @@ import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
+import '../../../../css/app.css';
+import CreateTag from './CreateTag';
 const useStyles = theme => ({
     description:{
         
@@ -79,11 +80,11 @@ class CreatePosts extends React.Component {
                                         editorState={editorState}
                                         wrapperClassName="demo-wrapper"
                                         editorClassName="demo-editor"
-                                        placeholder="Write you description here...."
                                         onEditorStateChange={this.onEditorStateChange}
                                     />
                                 </div>
                             </div>
+                            <CreateTag />
                             <div className="form-group">
                                 <button type="submit" className="primary">
                                     Add Post

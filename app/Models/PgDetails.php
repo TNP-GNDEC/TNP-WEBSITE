@@ -5,21 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Diploma extends Model
+class PgDetails extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        "board",
         "institution_name",
-        "city_of_institute",
-        "state_of_institute",
+        "city",
+        "state",
         "year_of_passing",
         "obtained_marks",
-        "maximum_marks ",
-        "stream",
-        "file",
+        "maximum_marks",
         "marks_type",
+        "file",
+        "pincode",
         "user_id"
     ];
 }

@@ -142,65 +142,65 @@ export default function StepTwo() {
                 
                 break;
                 case 2:
-                    setDegree({ ...degree, sgpa_of_1st_sem: value });
+                    setDegree({ ...degree, sgpa_sem1st_sem: value });
                     break;
                 case 3:
-                    setDegree({ ...degree, credits_of_1st_sem: value });
+                    setDegree({ ...degree, credits_sem1st_sem: value });
                     break;
                 case 4:
-                    setDegree({ ...degree, sgpa_of_2nd_sem: value });
+                    setDegree({ ...degree, sgpa_sem2nd_sem: value });
                     break;
                 case 5:
-                    setDegree({ ...degree, credits_of_2nd_sem: value });
+                    setDegree({ ...degree, credits_sem2nd_sem: value });
                     break;
                 case 6:
-                    setDegree({ ...degree, sgpa_of_3rd_sem:value });
+                    setDegree({ ...degree, sgpa_sem3rd_sem:value });
                     break;
                 case 7:
-                    setDegree({ ...degree, credits_of_3rd_sem: value });
+                    setDegree({ ...degree, credits_sem3rd_sem: value });
                     break;
                 case 8:
-                    setDegree({ ...degree, sgpa_of_4th_sem: value });
+                    setDegree({ ...degree, sgpa_sem4_sem: value });
                     break;
                 case 9:
                     
-                    setDegree({ ...degree, credits_of_4th_sem: value });
+                    setDegree({ ...degree, credits_sem4: value });
                     break;
                     case 10:
-                    setDegree({ ...degree, sgpa_of_5th_sem: value });
+                    setDegree({ ...degree, sgpa_sem5: value });
                     break;
                 case 11:
-                    setDegree({ ...degree, credits_of_5th_sem: value });
+                    setDegree({ ...degree, credits_sem5: value });
                     break;
                 case 12:
-                    setDegree({ ...degree, sgpa_of_6th_sem: value });
+                    setDegree({ ...degree, sgpa_sem6: value });
                     break;
                 case 13:
-                    setDegree({ ...degree, credits_of_6th_sem: value });
+                    setDegree({ ...degree, credits_sem6: value });
                     break;
                 case 14:
-                    setDegree({ ...degree, sgpa_of_7th_sem:value });
+                    setDegree({ ...degree, sgpa_sem6:value });
                     break;
                 case 15:
-                    setDegree({ ...degree, credits_of_7th_sem: value });
+                    setDegree({ ...degree, credits_sem7: value });
                     break;
                 case 16:
-                    setDegree({ ...degree, sgpa_of_8th_sem: value });
+                    setDegree({ ...degree, sgpa_sem8: value });
                     break;
                 case 17:
-                    setDegree({ ...degree, credits_of_8th_sem: value });
+                    setDegree({ ...degree, credits_sem8: value });
                     break;
                 case 18:
                     
-                    setDegree({ ...degree, aggregate_of_sgpa: value });
+                    setDegree({ ...degree, aggregate_sgpa: value });
                     break;
                 case 19:
                     
-                    setDegree({ ...degree, aggregate_of_credits: value });
+                    setDegree({ ...degree, aggregate_credits: value });
                     break;
                 case 20:
                     
-                    setDegree({ ...degree, aggregate_of_percentage: value });
+                    setDegree({ ...degree, aggregate_percentage: value });
                     break;
                     case 20:
                     

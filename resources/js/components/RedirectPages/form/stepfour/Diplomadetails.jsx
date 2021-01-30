@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -49,7 +49,7 @@ export default function DiplomaDetails(props) {
             type: "text",
             id: 1,
             // name: "first_name",
-            value: props.Diploma.board,
+            value: props.diploma.board,
             
             select: "true",
             options: [
@@ -73,56 +73,56 @@ export default function DiplomaDetails(props) {
             type: "text",
             id: 2,
             // name: "first_name",
-            value: props.Diploma.institution_name
+            value: props.diploma.institution_name
         },
         {
             label: "CITY OF INSTITUTE",
             type: "text",
             id: 3,
             // name: "first_name",
-            value: props.Diploma.city_of_institute
+            value: props.diploma.city_of_institute
         },
         {
             label: "STATE OF INSTITUTE",
             type: "text",
             id: 4,
             // name: "first_name",
-            value: props.Diploma.state_of_institite
+            value: props.diploma.state_of_institite
         },
         {
             label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 5,
             // name: "first_name",
-            value: props.Diploma.pincode
+            value: props.diploma.pincode
         },
         {
             label: "YEAR OF PASSING",
             type: "text",
             id: 6,
             // name: "first_name",
-            value: props.Diploma.year_of_passing
+            value: props.diploma.year_of_passing
         },
         {
             label: "OBTAINED MARKS",
             type: "text",
             id: 7,
             // name: "first_name",
-            value: props.Diploma.obtained_marks
+            value: props.diploma.obtained_marks
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
             id: 8,
             // name: "first_name",
-            value: props.Diploma.maximum_marks
+            value: props.diploma.maximum_marks
         },
         {
             label: "STREAM OF DIPLOMA",
             type: "text",
             id: 9,
             // name: "first_name",
-            value: props.Diploma.stream
+            value: props.diploma.stream
         },
         {
             label:"",
@@ -130,7 +130,7 @@ export default function DiplomaDetails(props) {
             id: 10,
             // name: "first_name",
             inputid:"pdf-file",
-            value: props.Diploma.file,
+            defaultValue: props.Diploma.file,
         }
     ];
 
@@ -150,9 +150,8 @@ export default function DiplomaDetails(props) {
                         name={field.name}
                         variant="outlined"
                         label={field.label}
-                        value={field.value}
+                        defaultValue={field.value}
                         select={field.select}
-                        inputProps={{ accept: '.pdf' }}
                         style={{ minWidth: "230px" ,maxWidth:"230px"}}
                         disabled={field.disabled}
                         onChange={e => {

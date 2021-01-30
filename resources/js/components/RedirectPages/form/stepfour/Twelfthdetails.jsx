@@ -71,41 +71,30 @@ export default function TwelfthDetails(props) {
             label: "INSTITUTION NAME",
             type: "text",
             id: 2,
-          
             value: props.twelfth.institution_name,
         },
         {
             label: "JEE RANK * FILL NA IF NOT APPERRED",
             type: "text",
             id: 3,
-           
             value: props.twelfth.jee_rank,
         },
         {
             label: "CITY OF INSTITUTION",
             type: "text",
             id: 4,
-            
             value: props.twelfth.city_of_institution,
         },
         {
             label: "STATE OF INSTITUTION",
             type: "text",
             id: 5,
-         
             value: props.twelfth.state_of_institution,
         },
         {
             label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 6,
-           
-
-
-            value: props.tweflth.year_of_passing,
-
-            value: props.Twelth.PINCODE_OF_INSTITUTION,
-
             value: props.twelfth.pincode,
 
         },
@@ -113,10 +102,6 @@ export default function TwelfthDetails(props) {
             label: "YEAR OF PASSING",
             type: "text",
             id: 7,
-           
-
-            value: props.Twelth.YEAR_OF_PASSING,
-
             value: props.twelfth.year_of_passing,
 
         },
@@ -124,22 +109,21 @@ export default function TwelfthDetails(props) {
             label: "OBTAINED MARKS",
             type: "text",
             id: 8,
-    
-            value: props.tweflth.obtained_marks,
+            value: props.twelfth.obtained_marks,
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
             id: 9,
           
-            value: props.tweflth.maximum_marks,
+            value: props.twelfth.maximum_marks,
         },
         {
             label:"",
             type: "file",
             id: 10,
             inputid:"pdf-file",
-            value: props.twelfth.file,  
+            defaultValue: props.twelfth.file,  
         }
     ];
 
@@ -163,7 +147,7 @@ export default function TwelfthDetails(props) {
                         inputProps={{ accept: '.pdf' }}
                         style={{ minWidth: "230px" ,maxWidth:"230px" }}
                         disabled={field.disabled}
-                        value={field.value}
+                        value={field.defaultValue}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}

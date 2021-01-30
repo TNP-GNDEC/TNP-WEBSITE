@@ -31,19 +31,19 @@ class TwelfthdiplomaController extends Controller
                     ->value('form_step');
   if($current_step==3){
     //condition will be checked -> if user has done 12th that file will be requested and stored or otherwise
-    
-    $twelfth_file = $request->twelfth["file"];
+    $twelfth_file = $request->file('file');
     $twelfth_filename  = $file->getClientOriginalName();
     $twelfth_extension = $file->getClientOriginalExtension();
-    $twelfth_file_url  = $user->username._.'twelfth.pdf'; 
+    $twelfth_file_url  = $user->username.'_twelfth.'.$twelfth_extension;
+    $twelfth_path = public_path('documents/twelfth');
+    $twelfth_file->move(public_path('documents/twelfth'), $twelfth_file_url);
     
-    $diploma_file = $request->twelfth["file"];
-    $diploma_filename  = $file->getClientOriginalName();
-    $diploma_extension = $file->getClientOriginalExtension();
-    $diploma_file_url   = $user->username._.'diploma.pdf';
-
-    $twelfth_file->move(public_path('img/twelfth'), $twelfth_file_url);
-    $diploma_file->move(public_path('img/diploma'), $diploma_file_url);
+    $diploma_file = $request->file('file');
+    $diploma_filename  = $diploma_file->getClientOriginalName();
+    $diploma_extension = $diploma_file->getClientOriginalExtension();
+    $diploma_file_url   = $user->username._.'diploma.'.$diploma_extension;
+    $diploma_path = public_path('documents/diploma');
+    $diploma_file->move(public_path('documents/diploma'), $diploma_file_url);
 
     $twelfth_details = DB::table('twelfth')
     ->where('user_id', $user->id)
@@ -56,7 +56,8 @@ class TwelfthdiplomaController extends Controller
         'obtained_marks' => $request->twelfth["obtained_marks"],
         'institution_name' => $request->twelfth["institution_name"],
         'board' => $request->twelfth["board"],
-        'year_of_passing' => $request->twelfth["year_of_passing"]
+        'year_of_passing' => $request->twelfth["year_of_passing"],
+        'file' => $twelfth_file_url
 
     ]);
 
@@ -71,13 +72,14 @@ class TwelfthdiplomaController extends Controller
         'obtained_marks' => $request->diploma["obtained_marks"],
         'institution_name' => $request->diploma["institution_name"],
         'board' => $request->diploma["board"],
-        'year_of_passing' => $request->diploma["year_of_passing"]
+        'year_of_passing' => $request->diploma["year_of_passing"],
+        'file' => $diploma_file_url
 
     ]);
 
       $form_step_change= DB::table('form_statuses')
       ->where('user_id', $user->id)
-      ->update(['form_step' => 3]);
+      ->update(['form_step' => 4]);
       return response()->json(["details"=> $details, "form_status"=> $form_step_change]);
     }
     else return response()->json(["details"=> "first complete matriculation details"]);
