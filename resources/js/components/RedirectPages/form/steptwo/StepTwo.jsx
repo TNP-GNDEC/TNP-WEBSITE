@@ -116,10 +116,16 @@ export default function StepTwo() {
 
     const [eror, setEror] = React.useState(0);
 
-    const handleEror = (r) =>{
-        setEror(r);
-        return (r?true:false)
-    } 
+    const handleEror = (r, section) => {
+        if (section == "contact") {
+            setEror(r);
+            return r ? true : false;
+        }
+        if(section=="parent"){
+            setEror(r);
+            return r? true :false
+        }
+    };
     // Utility Function
     // const toCamelCase = str => {
     //     if (typeof str == "string") {
@@ -352,9 +358,8 @@ export default function StepTwo() {
                 .catch(error => {
                     console.log(error);
                 });
-        }
-        else{
-            window.alert("Please Remove Erors Before Submitting")
+        } else {
+            window.alert("Please Remove Erors Before Submitting");
         }
     };
 
@@ -377,7 +382,7 @@ export default function StepTwo() {
 
     const validate = () => {
         if (contact.contact != contact.re_enter_contact) {
-            setEror({ ...eror, contact:"Numbers Not Matched" });
+            setEror({ ...eror, contact: "Numbers Not Matched" });
             return false;
         }
     };
@@ -399,6 +404,7 @@ export default function StepTwo() {
                             <ParentDetails
                                 parent={parent}
                                 handleInputChange={handleParentChangeInput}
+                                handleEror={handleEror}
                             />
                         </Card>
                     </Grid>
@@ -418,7 +424,7 @@ export default function StepTwo() {
                                 contact={contact}
                                 eror={eror}
                                 handleInputChange={handleContactChangeInput}
-                                handleEror= {handleEror}
+                                handleEror={handleEror}
                             />
                         </Card>
                     </Grid>

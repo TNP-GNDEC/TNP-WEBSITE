@@ -69,23 +69,20 @@ export default function ContactDetails(props) {
                     style={{ minWidth: "230px" }}
                     required={true}
                     error={
-                        props.contact.contact ===
-                            props.contact.re_enter_contact
+                        props.contact.contact === props.contact.re_enter_contact
                             ? props.handleEror(false)
-                            : field.id === 3 
-                            ? props.handleEror(true)
+                            : field.id === 3
+                            ? props.handleEror(true,"contact")
                             : props.handleEror(false)
                     }
                     helperText={
-                        props.contact.contact ===
-                            props.contact.re_enter_contact
+                        props.contact.contact === props.contact.re_enter_contact
                             ? ""
                             : field.id === 3
                             ? "Numbers did'nt match"
                             : ""
                     }
-                    inputProps={{ maxLength: 10 , minLength:10 }}
-
+                    inputProps={{ maxLength: 10, minLength: 10 }}
                     onChange={e => {
                         props.handleInputChange(e, field.id);
                     }}
