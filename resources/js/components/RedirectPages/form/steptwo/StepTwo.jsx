@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 0px",
         fontWeight: "500",
         background: theme.palette.primary.main
-    },
+    },  
     container: {
         display: "flex",
         justifyContent: "center",

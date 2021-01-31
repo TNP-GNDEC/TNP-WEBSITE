@@ -6,7 +6,11 @@ import PostgraduationDetails from "./Postgraduation";
 import Paper from '@material-ui/core/Paper';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Degreedetails from "./Degree";
-
+import Checkbox from '@material-ui/core/Checkbox';
+import FormLabel from '@material-ui/core/FormLabel';    
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
 import Button from "@material-ui/core/Button";
 
 
@@ -251,6 +255,38 @@ export default function StepTwo() {
                     <Grid item xs={10} className={classes.Cardcontainers}>
                     
                         <Card className={classes.cardStyles}>
+                        <Card>
+       <FormControl component="fieldset">
+           
+           
+       
+      <FormGroup aria-label="position" row>
+        <FormControlLabel
+          value="top"
+          control={<Checkbox color="primary" />}
+          label="Postgraduation"
+          labelPlacement="start"
+        />
+        <FormControlLabel
+          value="start"
+          control={<Checkbox color="primary" />}
+          label="Degree"
+          labelPlacement="start"
+        />
+         <FormControlLabel
+          value="start"
+          control={<Checkbox color="primary" />}
+          label="Both "
+          labelPlacement="start"
+        />
+   
+       <FormLabel component="legend"><code>  * please select Postgraduation or Degree or Both under which categorie you fall *  </code></FormLabel>
+     
+        
+      </FormGroup>
+    </FormControl>
+    </Card>
+        
                             <PostgraduationDetails
                                 Post={post}
                                 handleInputChange={handlePostChangeInput}
