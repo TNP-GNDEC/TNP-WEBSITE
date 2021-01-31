@@ -354,7 +354,7 @@ export default function StepTwo() {
                 });
         }
         else{
-            console.log("Please Remove Erors Before Submitting")
+            window.alert("Please Remove Erors Before Submitting")
         }
     };
 

@@ -84,7 +84,7 @@ export default function ContactDetails(props) {
                             ? "Numbers did'nt match"
                             : ""
                     }
-                    inputProps={{ maxLength: 10 }}
+                    inputProps={{ maxLength: 10 , minLength:10 }}
 
                     onChange={e => {
                         props.handleInputChange(e, field.id);
