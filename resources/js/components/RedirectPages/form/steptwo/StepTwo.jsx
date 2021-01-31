@@ -8,7 +8,7 @@ import AcademicDetails from "./AcademicDetails";
 import ContactDetails from "./ContactDetails";
 import Button from "@material-ui/core/Button";
 import { concat } from "lodash";
-import AddressDetails from './AddressDetails';
+import AddressDetails from "./AddressDetails";
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -75,7 +75,7 @@ export default function StepTwo() {
         marital_status: "",
         farming_background: "",
         disability: "",
-        aadhar:""
+        aadhar: ""
     });
     // state for holding inputs from parent form imported as ParentsDetails
     const [parent, setParent] = React.useState({
@@ -114,26 +114,38 @@ export default function StepTwo() {
         state: ""
     });
 
-    // Utility Function
-    const toCamelCase = str => {
-        if (typeof str == "string") {
-            var splittedStr = [];
-            var strInCamelCase = "";
-            splittedStr = str.split(" ");
+    const [eror, setEror] = React.useState(0);
 
-            for (var i = 0; i < splittedStr.length; i++) {
-                var word = splittedStr[i];
-                if (word.length > 0) {
-                    strInCamelCase = strInCamelCase.concat(
-                        word[0].toUpperCase() + word.substr(1, word.length)
-                    );
-                }
-            }
-            return strInCamelCase;
-        } else {
-            return str;
+    const handleEror = (r, section) => {
+        if (section == "contact") {
+            setEror(r);
+            return r ? true : false;
+        }
+        if(section=="parent"){
+            setEror(r);
+            return r? true :false
         }
     };
+    // Utility Function
+    // const toCamelCase = str => {
+    //     if (typeof str == "string") {
+    //         var splittedStr = [];
+    //         var strInCamelCase = "";
+    //         splittedStr = str.split(8000" ");
+
+    //         for (var i = 0; i < splittedStr.length; i++) {
+    //             var word = splittedStr[i];
+    //             if (word.length > 0) {
+    //                 strInCamelCase = strInCamelCase.concat(
+    //                     word[0].toUpperCase() + word.substr(1, word.length)
+    //                 );
+    //             }
+    //         }
+    //         return strInCamelCase;
+    //     } else {
+    //         return str;
+    //     }
+    // };
 
     function camelize() {
         return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
@@ -177,7 +189,7 @@ export default function StepTwo() {
                     // weight: parseFloat(value) ? parseFloat(value) : ""
                     weight: value
                 });
-               break;
+                break;
             case 7:
                 setProfile({ ...profile, blood_group: value });
                 break;
@@ -190,11 +202,11 @@ export default function StepTwo() {
                 break;
             case 10:
                 // value = parseInt(value)
-                setProfile({ ...profile, farming_background: (value) });
+                setProfile({ ...profile, farming_background: value });
                 break;
             case 11:
                 // value = parseInt(value)
-                setProfile({ ...profile, disability: (value) });
+                setProfile({ ...profile, disability: value });
                 break;
             default:
                 break;
@@ -211,13 +223,19 @@ export default function StepTwo() {
                 console.log(parent.father_name);
                 break;
             case 2:
-                setParent({ ...parent, father_phone: parseInt(value)?parseInt(value):"" });
+                setParent({
+                    ...parent,
+                    father_phone: parseInt(value) ? parseInt(value) : ""
+                });
                 break;
             case 3:
                 setParent({ ...parent, mother_name: value });
                 break;
             case 4:
-                setParent({ ...parent, mother_phone:parseInt(value)?parseInt(value):"" });
+                setParent({
+                    ...parent,
+                    mother_phone: parseInt(value) ? parseInt(value) : ""
+                });
                 break;
             default:
                 break;
@@ -248,10 +266,10 @@ export default function StepTwo() {
                 setAcademics({ ...academics, section: value });
                 break;
             case 7:
-                setAcademics({ ...academics, leet: (value) });
+                setAcademics({ ...academics, leet: value });
                 break;
             case 8:
-                setAcademics({ ...academics, hostler: (value) });
+                setAcademics({ ...academics, hostler: value });
                 break;
             case 9:
                 setAcademics({ ...academics, training_sem: value });
@@ -263,26 +281,35 @@ export default function StepTwo() {
 
     // State setter function of contact form sent as props to ContactDetails forms
     const handleContactChangeInput = (e, id) => {
-        console.log("I am called for contact : ",e.target);
-        let value = e.target.value 
+        console.log("I am called for contact : ", e.target);
+        let value = e.target.value;
         switch (id) {
             case 1:
                 // value = contact.whatsapp_contact.toString().length+1 <= 10 ? value : contact.whatsapp_contact.toString()
-                setContact({ ...contact, whatsapp_contact: parseInt(value)?parseInt(value):"" });
-                console.log(contact.whatsapp_contact.toString().length)
+                setContact({
+                    ...contact,
+                    whatsapp_contact: parseInt(value) ? parseInt(value) : ""
+                });
+                console.log(contact.whatsapp_contact.toString().length);
                 break;
             case 2:
-                setContact({ ...contact, contact: parseInt(value) ? parseInt(value):"" }) ; 
+                setContact({
+                    ...contact,
+                    contact: parseInt(value) ? parseInt(value) : ""
+                });
                 break;
             case 3:
-                setContact({ ...contact, re_enter_contact: parseInt(value)?parseInt(value):"" });
+                setContact({
+                    ...contact,
+                    re_enter_contact: parseInt(value) ? parseInt(value) : ""
+                });
                 break;
             default:
                 break;
         }
     };
-    
-    // function for setting  address object 
+
+    // function for setting  address object
     const handleAddresssChangeInput = (e, id) => {
         console.log("I am called for contact");
         const value = e.target.value;
@@ -297,7 +324,10 @@ export default function StepTwo() {
                 setAddress({ ...address, district: value });
                 break;
             case 4:
-                setAddress({ ...address, pincode: parseInt(value)?parseInt(value):"" });
+                setAddress({
+                    ...address,
+                    pincode: parseInt(value) ? parseInt(value) : ""
+                });
                 break;
             case 5:
                 setAddress({ ...address, state: value });
@@ -313,19 +343,24 @@ export default function StepTwo() {
     const handleFormSubmit = event => {
         event.preventDefault();
         const id = localStorage.getItem("userid");
-        axios.post(`/api/personaldetails/${id}`, {
-                profile: profile,
-                academics: academics,
-                parent: parent,
-                contact: contact,
-                address: address
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        if (!eror) {
+            axios
+                .post(`/api/personaldetails/${id}`, {
+                    profile: profile,
+                    academics: academics,
+                    parent: parent,
+                    contact: contact,
+                    address: address
+                })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        } else {
+            window.alert("Please Remove Erors Before Submitting");
+        }
     };
 
     //useEffect hooks to call after state change {just for debugging the inputs will be removed when it will be finalised}
@@ -342,9 +377,15 @@ export default function StepTwo() {
         console.log("Do something after ready has changed", contact);
     }, [contact]);
     React.useEffect(() => {
-        console.log("Do something after contact has changed", address);
-    }, [address]);
+        console.log("...............................", eror);
+    }, [eror]);
 
+    const validate = () => {
+        if (contact.contact != contact.re_enter_contact) {
+            setEror({ ...eror, contact: "Numbers Not Matched" });
+            return false;
+        }
+    };
     return (
         <div>
             <form onSubmit={event => handleFormSubmit(event)}>
@@ -363,6 +404,7 @@ export default function StepTwo() {
                             <ParentDetails
                                 parent={parent}
                                 handleInputChange={handleParentChangeInput}
+                                handleEror={handleEror}
                             />
                         </Card>
                     </Grid>
@@ -380,7 +422,9 @@ export default function StepTwo() {
                         <Card className={classes.cardStyles}>
                             <ContactDetails
                                 contact={contact}
+                                eror={eror}
                                 handleInputChange={handleContactChangeInput}
+                                handleEror={handleEror}
                             />
                         </Card>
                     </Grid>
@@ -394,11 +438,7 @@ export default function StepTwo() {
                         </Card>
                     </Grid>
                 </Grid>
-                <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                >
+                <Button type="submit" variant="contained" color="primary">
                     SUBMIT
                 </Button>
             </form>
