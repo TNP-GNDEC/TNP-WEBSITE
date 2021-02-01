@@ -10,7 +10,8 @@ import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormLabel from '@material-ui/core/FormLabel';    
-
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 const useStyles = makeStyles(theme => ({
@@ -72,10 +73,16 @@ const useStyles = makeStyles(theme => ({
     note:{
         justifyContent: "center",
        },
+      
+    
 }));
 
 export default function StepTwo() {
     const classes = useStyles();
+    const [checkbox ,setCheckbox] = React.useState({
+        XII:"0",
+        diploma:"0",
+    })
 
     const [twelfth, setProfile] = React.useState({
         board: "",
@@ -195,6 +202,23 @@ export default function StepTwo() {
                 break;
         }
     };
+       
+const handelXIIclick = () => {
+    setCheckbox({
+        XII:"1",
+       diploma:"0",
+
+
+    })
+}
+const handeldiplomaclick = () => {
+    setCheckbox({
+        diploma:"1",
+        XII:"0",
+
+
+    })
+}
 
     React.useEffect(() => {
         console.log("Do something after profile has changed", diploma);
@@ -232,34 +256,74 @@ export default function StepTwo() {
         <div>
             <form onSubmit={handleFormSubmit}>
             <Grid container className={classes.container}>
-                <Grid item xs={10} className={classes.Cardcontainers}>
-                    
-                    <Card className={classes.cardStyles}>
-                 <Card>
+            <Grid item xs={12} className={classes.Cardcontainers}>
+            <Card>
        <FormControl component="fieldset">
            
            
        
-      <FormGroup aria-label="position" row>
-        <FormControlLabel
-          
-          control={<Checkbox color="primary" />}
+      <RadioGroup aria-label="position" row>
+        <FormControlLabel onClick ={handelXIIclick}
+          value="a"
+          control={<Radio color="primary" />}
           label="XII"
           labelPlacement="start"
         />
-        <FormControlLabel
-          
-          control={<Checkbox color="primary" />}
+        <FormControlLabel onClick ={handeldiplomaclick}
+          value="b"
+          control={<Radio color="primary" />}
           label="Diploma"
           labelPlacement="start"
         />
    
-       <FormLabel component="legend"><code>  * please select XII or Diploma under which categorie you fall *  </code></FormLabel>
+       <FormLabel component="legend" ><code>  * please select XII or Diploma under which categorie you fall *  </code> </FormLabel>
      
         
-      </FormGroup>
+      </RadioGroup>
     </FormControl>
     </Card>
+    </Grid>
+    {
+        checkbox.XII=== "1"  ? ( <Grid item xs={10} className={classes.Cardcontainers}>
+                    
+            <Card className={classes.cardStyles}>
+
+
+                <TwelfthDetails 
+                twelfth={twelfth} 
+                handleInputChange={handleProfileChangeInput}
+                />
+                <label htmlFor="file">File Upload:</label>
+                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
+                <Paper variant="outlined" elevation={3} className={classes.note}>
+                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
+                </Paper>
+            </Card>
+        </Grid>) 
+        :(<div></div>) 
+    }
+{
+        checkbox.diploma ==="1" ? ( <Grid item xs={10} className={classes.Cardcontainers}>
+            <Card className={classes.cardStyles}>
+                <DiplomaDetails 
+                diploma={diploma} 
+                handleInputChange={handleParentChangeInput}
+                /> 
+                <label htmlFor="file">File Upload:</label>
+                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
+                <Paper variant="outlined" elevation={3} className={classes.note}>
+                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
+                </Paper>
+            </Card>
+        </Grid>) 
+        :(<div></div>) 
+    }
+
+        
+                {/* <Grid item xs={10} className={classes.Cardcontainers}>
+                    
+                    <Card className={classes.cardStyles}>
+      
         
                         <TwelfthDetails 
                         twelfth={twelfth} 
@@ -271,9 +335,9 @@ export default function StepTwo() {
                             <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
                         </Paper>
                     </Card>
-                </Grid>
+                </Grid> */}
 
-                <Grid item xs={10} className={classes.Cardcontainers}>
+                {/* <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
                         <DiplomaDetails 
                         diploma={diploma} 
@@ -285,7 +349,7 @@ export default function StepTwo() {
                             <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
                         </Paper>
                     </Card>
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>

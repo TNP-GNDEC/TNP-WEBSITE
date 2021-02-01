@@ -13,6 +13,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import Button from "@material-ui/core/Button";
 
+import Radio from '@material-ui/core/Radio';
+
 
 const useStyles = makeStyles(theme => ({
     head: {
@@ -65,6 +67,7 @@ const useStyles = makeStyles(theme => ({
         float: "right"
     }
 }));
+
 
 
 export default function StepTwo() {
@@ -247,6 +250,7 @@ const handelbothclick = () => {
     })
 }
 
+
     
     const handleFormSubmit = event => {
         event.preventDefault();
@@ -275,7 +279,7 @@ const handelbothclick = () => {
         console.log("Do something after  has changed", degree);
     }, [degree]);
    
-
+      
     return (
         <div>
             <form onSubmit={event => handleFormSubmit(event)}>
@@ -283,26 +287,28 @@ const handelbothclick = () => {
                 <Grid container className={classes.container}>
                 <Grid item xs={10} className={classes.Cardcontainers}>
                 <Card>
+                
        <FormControl component="fieldset">
            
            
        
-      <FormGroup aria-label="position" row>
-        <FormControlLabel onClick = {handelpostgraduationclick}
-          value="top"
-          control={<Checkbox color="primary" />}
+      <RadioGroup row aria-label="position" color="primary">
+        <FormControlLabel onClick = {handelpostgraduationclick} 
+        
+          value="a"
+          control={<Radio color="primary"  />}
           label="Postgraduation"
           labelPlacement="start"
         />
-        <FormControlLabel onClick ={handeldegreeclick}
-          value="start"
-          control={<Checkbox color="primary" />}
+        <FormControlLabel onClick ={handeldegreeclick} 
+          value="b"
+          control={<Radio color="primary" />}
           label="Degree"
           labelPlacement="start"
         />
-         <FormControlLabel onClick ={handelbothclick}
-          value="start"
-          control={<Checkbox color="primary" />}
+         <FormControlLabel onClick ={handelbothclick} 
+          value="c"
+          control={<Radio color="primary"   />}
           label="Both "
           labelPlacement="start"
         />
@@ -310,7 +316,7 @@ const handelbothclick = () => {
        <FormLabel component="legend"><code>  * please select Postgraduation or Degree or Both under which categorie you fall *  </code></FormLabel>
      
         
-      </FormGroup>
+      </RadioGroup>
     </FormControl>
     </Card>
     </Grid>

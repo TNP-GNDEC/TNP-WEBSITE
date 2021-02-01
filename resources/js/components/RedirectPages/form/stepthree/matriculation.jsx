@@ -358,7 +358,7 @@ export default function matriculationDetails(props) {
                     </div>
                     <div className={classes.inputs}>
 
-                    <TextField 
+                    {/* <TextField 
                         
                         label= ""
                         type= "file"
@@ -378,7 +378,7 @@ export default function matriculationDetails(props) {
                         {...(props.Errors.city_of_institution && {error:true, helperText:props.Errors.city_of_institution})}
                     >
                         
-                    </TextField>
+                    </TextField> */}
                     </div>
                 </Grid>
             
