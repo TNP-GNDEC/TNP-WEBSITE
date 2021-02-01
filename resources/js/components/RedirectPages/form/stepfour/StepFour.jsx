@@ -105,9 +105,19 @@ export default function StepTwo() {
     const handleFormSubmit = (event) => {
         event.preventDefault();        
         const id=localStorage.getItem("userid")
+        const fdTwelfth = new FormData();
+        Object.keys(twelfth).forEach(function (key){         
+            fdTwelfth.append(key, twelfth[key]);
+        })
+        fdTwelfth.append('file', document.getElementById('twelfthfile').files[0]);
+        const fdDiploma = new FormData();
+        Object.keys(diploma).forEach(function (key){         
+            fdDiploma.append(key, diploma[key]);
+        })
+        fdDiploma.append('file', document.getElementById('dimplomafile').files[0]);
         axios.post(`/api/diplomatwelfth/${id}`, {
-            diploma: diploma,
-            twelfth: twelfth,    
+            diploma: fdDiploma,
+            twelfth: fdTwelfth,    
       })}
 
     const handleProfileChangeInput = (e, id) => {
@@ -139,7 +149,7 @@ export default function StepTwo() {
                 setProfile({ ...twelfth,  maximum_marks:value });
                 break;
                 case 9:
-                setProfile({ ...twelfth, });
+                setProfile({ ...twelfth, file: e.target.files});
                 break;
             default:
                 break;
@@ -178,7 +188,7 @@ export default function StepTwo() {
                 setParent({ ...diploma, stream: value });
                 break;
             case 10:
-                setParent({ ...diploma});
+                setParent({ ...diploma, file: e.target.files});
                 break;
                     
             default:
@@ -209,7 +219,7 @@ export default function StepTwo() {
                         name={field.name}
                         variant="outlined"
                         label={field.label}
-                        value={field.value}
+                        defaultValue={field.value}
                         onChange={e => {
                             field.change(e, field.id);
                         }}
@@ -232,13 +242,13 @@ export default function StepTwo() {
        
       <FormGroup aria-label="position" row>
         <FormControlLabel
-          value="top"
+          
           control={<Checkbox color="primary" />}
           label="XII"
           labelPlacement="start"
         />
         <FormControlLabel
-          value="start"
+          
           control={<Checkbox color="primary" />}
           label="Diploma"
           labelPlacement="start"
@@ -255,6 +265,8 @@ export default function StepTwo() {
                         twelfth={twelfth} 
                         handleInputChange={handleProfileChangeInput}
                         />
+                        <label htmlFor="file">File Upload:</label>
+                        <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
                         <Paper variant="outlined" elevation={3} className={classes.note}>
                             <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
                         </Paper>
@@ -267,6 +279,8 @@ export default function StepTwo() {
                         diploma={diploma} 
                         handleInputChange={handleParentChangeInput}
                         /> 
+                        <label htmlFor="file">File Upload:</label>
+                        <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
                         <Paper variant="outlined" elevation={3} className={classes.note}>
                             <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
                         </Paper>

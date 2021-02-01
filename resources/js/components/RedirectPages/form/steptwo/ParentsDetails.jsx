@@ -30,30 +30,44 @@ export default function ParentDetails(props) {
             type: "text",
             id: 1,
             value: props.parent.father_name,
-            required:true
+            required:true,
+            maxLength:80,
+            minLength:0
         },
         {
             label: "FATHER PHONE NO.",
             type: "text",
             id: 2,
             value: props.parent.father_phone,
-            required:true
+            required:true,
+            maxLength:10,
+            minLength:10
         },
         {
             label: "MOTHER NAME",
             type: "text",
             id: 3,
             value: props.parent.mother_name,
-            required:true
+            required:true,
+            maxLength:80,
+            minLength:0
         },
         {
             label: "MOTHER PHONE NO.",
             type: "text",
             id: 4,
             value: props.parent.mother_phone,
-            required:true
+            required:true,
+            maxLength:10,
+            minLength:10
         }
     ];
+
+    const checkEror = (f)=>{
+        if(f.id === 2){
+           return props.parent.father_phone.toString().length != 10 ? props.handleEror(true) : props.handleEror(false)
+        }
+    }
 
     const renderParentFields = () =>
         fields.map(field => (
@@ -72,9 +86,11 @@ export default function ParentDetails(props) {
                         name={field.name}
                         variant="outlined"
                         label={field.label}
+                        inputProps={{maxLength:field.maxLength, minLength:field.minLength }}
                         value={field.value}
                         style={{ minWidth:"230px"}}
                         required={field.required}
+                        error={ checkEror(field) ? true : false }
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}

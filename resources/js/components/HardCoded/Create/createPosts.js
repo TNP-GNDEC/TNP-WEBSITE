@@ -6,7 +6,8 @@ import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import '../../../../css/app.css';
-
+import TagsInput from 'react-tagsinput'
+import 'react-tagsinput/react-tagsinput.css'
 const useStyles = theme => ({
     description:{
         
@@ -19,7 +20,11 @@ class CreatePosts extends React.Component {
         type: '',
         description: '',
         editorState: EditorState.createEmpty(),
+        tags: [],
     }
+    handleChange(tags) {
+        this.setState({tags})
+      }
 
     handleInput = (e) => {
         this.setState({
@@ -39,6 +44,9 @@ class CreatePosts extends React.Component {
     }
     savePost = async (e) => {
         e.preventDefault();
+        const myJsonString = JSON.stringify(this.state.tags);
+        this.setState({json : myJsonString});
+        console.log(myJsonString);
         const res = await axios.post("/addPost", this.state);
         if(res.data.status === 200){
             alert("Added Successfully");
@@ -84,6 +92,7 @@ class CreatePosts extends React.Component {
                                     />
                                 </div>
                             </div>
+                            <TagsInput value={this.state.tags} onChange={tags => this.handleChange(tags)} />
                             <div className="form-group">
                                 <button type="submit" className="primary">
                                     Add Post

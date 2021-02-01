@@ -16,3 +16,20 @@ div.DraftEditor-root {
 .rdw-editor-toolbar {
     border-bottom: ridge;
 }
+
+.react-tagsinput--focused {
+  border-color: #115293;
+}
+.react-tagsinput-tag {
+  background-color: #9fcaee;
+  border-radius: 2px;
+  border: 1px solid #115293;
+  color: #1976d2;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 5px;
+}
