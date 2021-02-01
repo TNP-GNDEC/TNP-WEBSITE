@@ -124,14 +124,14 @@ export default function DiplomaDetails(props) {
             // name: "first_name",
             value: props.diploma.stream
         },
-        {
-            label:"",
-            type: "file",
-            id: 10,
-            // name: "first_name",
-            inputid:"pdf-file",
-            defaultValue: props.Diploma.file,
-        }
+        // {
+        //     label:"",
+        //     type: "file",
+        //     id: 10,
+        //     // name: "first_name",
+        //     inputid:"pdf-file",
+        //     value: props.diploma.file,
+        // }
     ];
 
     const renderDiplomaFields = () =>

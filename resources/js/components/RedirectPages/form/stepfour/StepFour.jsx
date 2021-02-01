@@ -219,7 +219,7 @@ export default function StepTwo() {
                         name={field.name}
                         variant="outlined"
                         label={field.label}
-                        value={field.value}
+                        defaultValue={field.value}
                         onChange={e => {
                             field.change(e, field.id);
                         }}
@@ -242,13 +242,13 @@ export default function StepTwo() {
        
       <FormGroup aria-label="position" row>
         <FormControlLabel
-          value="top"
+          
           control={<Checkbox color="primary" />}
           label="XII"
           labelPlacement="start"
         />
         <FormControlLabel
-          value="start"
+          
           control={<Checkbox color="primary" />}
           label="Diploma"
           labelPlacement="start"
