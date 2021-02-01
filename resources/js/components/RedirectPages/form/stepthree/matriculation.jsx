@@ -386,7 +386,7 @@ export default function matriculationDetails(props) {
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-                Matriculation Details
+                MATRICULATION  DETAILS
             </Typography>
             <CardContent>
 
