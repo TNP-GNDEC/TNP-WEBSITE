@@ -40,6 +40,7 @@ class postController extends Controller
             'title' => $request->title,
             'type' => $request->type,
             'description' => $request->description,
+            'tags' => json_encode($request->tags),
         ]);
         if($newPost){
             return response()->json(["status" => 200]);

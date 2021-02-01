@@ -172,6 +172,8 @@ class Data extends React.Component {
         const {posts} = this.props;
         const {classes} = this.props;
         const html = posts.description;
+        const tagwa = JSON.parse(posts.tags);
+        console.log(tagwa);
         if(window.location.href === window.origin + "/coordinator"){
             return(
                 <Card className={classes.root}>
@@ -266,7 +268,14 @@ class Data extends React.Component {
                         <div className={classes.Tags}>
                             <LocalOffer />
                             <Typography variant="h5" component="h1" className={classes.subheading3}>
-                                 GNDEC TNP
+                            {tagwa.map((tag,i) => {
+                                     if(tagwa.length-1 === i){
+                                         return tag;
+                                     }
+                                     else{
+                                        return tag + ", ";
+                                     }
+                                 })}
                             </Typography>
                         </div>
                     </div>
@@ -326,7 +335,14 @@ class Data extends React.Component {
                         <div className={classes.Tags}>
                             <LocalOffer />
                             <Typography variant="h5" component="h1" className={classes.subheading3}>
-                                 GNDEC TNP
+                                 {tagwa.map((tag,i) => {
+                                     if(tagwa.length-1 === i){
+                                         return tag;
+                                     }
+                                     else{
+                                        return tag + ", ";
+                                     }
+                                 })}
                             </Typography>
                         </div>
                     </div>
