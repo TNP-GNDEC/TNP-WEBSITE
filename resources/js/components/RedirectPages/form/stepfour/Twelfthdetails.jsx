@@ -118,13 +118,13 @@ export default function TwelfthDetails(props) {
           
             value: props.twelfth.maximum_marks,
         },
-        {
-            label:"",
-            type: "file",
-            id: 10,
-            inputid:"pdf-file",
-            value: props.twelfth.file,  
-        }
+        // {
+        //     label:"",
+        //     type: "file",
+        //     id: 10,
+        //     inputid:"pdf-file",
+        //     value: props.twelfth.file,  
+        // }
     ];
 
     const rendertwelfthFields = () =>
