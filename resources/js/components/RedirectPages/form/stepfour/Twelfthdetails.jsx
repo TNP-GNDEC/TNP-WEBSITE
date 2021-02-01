@@ -123,7 +123,7 @@ export default function TwelfthDetails(props) {
             type: "file",
             id: 10,
             inputid:"pdf-file",
-            defaultValue: props.twelfth.file,  
+            value: props.twelfth.file,  
         }
     ];
 
@@ -177,4 +177,3 @@ export default function TwelfthDetails(props) {
         </>
     );
 }
-
