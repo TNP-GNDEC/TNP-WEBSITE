@@ -56,6 +56,7 @@ export default function TwelfthDetails(props) {
             id: 1,
             // name: "first_name",
             value: props.twelfth.board,
+            
             select: "true",
             options: [
                 

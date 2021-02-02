@@ -163,42 +163,54 @@ export default function StepTwo() {
         };
     
       
-
     const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
-        const value = e.target.value;
-        switch (id) {
-            case 1:
-                setProfile({ ...twelfth,  board: value });
-                break;
-            case 2:
-                setProfile({ ...twelfth,  institution_name: value });
-                break;
-            case 3:
-                setProfile({ ...twelfth, jee_rank : value });
-                break;
-            case 4:
-                setProfile({ ...twelfth, city_of_institute:value });
-                break;
-            case 5:
-                setProfile({ ...twelfth,  state_of_institute:value });
-                break;
-            case 6:
-                setProfile({ ...twelfth,  year_of_passing:value });
-                break;
-                case 7:
-                    setProfile({ ...twelfth,    obtained_marks:value });
-                    break;
-                    case 8:
-                setProfile({ ...twelfth,  maximum_marks:value });
-                break;
-                case 9:
-                setProfile({ ...twelfth, file: e.target.files});
-                break;
-            default:
-                break;
-        }
+        
+        const name= e.target.name
+        const value= e.target.value   
+        setProfile(prevState => ({
+            ...prevState,
+            [name] : value
+        }))
+
+
     };
+
+    // const handleProfileChangeInput = (e, id) => {
+    //     console.log("I am called");
+    //     const value = e.target.value;
+    //     switch (id) {
+    //         case 1:
+    //             setProfile({ ...twelfth,  board: value });
+    //             break;
+    //         case 2:
+    //             setProfile({ ...twelfth,  institution_name: value });
+    //             break;
+    //         case 3:
+    //             setProfile({ ...twelfth, jee_rank : value });
+    //             break;
+    //         case 4:
+    //             setProfile({ ...twelfth, city_of_institute:value });
+    //             break;
+    //         case 5:
+    //             setProfile({ ...twelfth,  state_of_institute:value });
+    //             break;
+    //         case 6:
+    //             setProfile({ ...twelfth,  year_of_passing:value });
+    //             break;
+    //             case 7:
+    //                 setProfile({ ...twelfth,    obtained_marks:value });
+    //                 break;
+    //                 case 8:
+    //             setProfile({ ...twelfth,  maximum_marks:value });
+    //             break;
+    //             case 9:
+    //             setProfile({ ...twelfth, file: e.target.files});
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // };
 
     const handleParentChangeInput = (e, id) => {
         console.log("I am called for parent");
