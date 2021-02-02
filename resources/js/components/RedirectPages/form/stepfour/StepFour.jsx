@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, FormGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -79,6 +79,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function StepTwo() {
     const classes = useStyles();
+    const [file, setfile] = React.useState("");
     const [checkbox ,setCheckbox] = React.useState({
         XII:"0",
         diploma:"0",
@@ -90,11 +91,37 @@ export default function StepTwo() {
         jee_rank :"",
         city_of_institute:"",
         state_of_institute:"",
+        pincode:"",
         year_of_passing: "",
         obtained_marks:"",
         maximum_marks:"",
-        file:"(upload scanned certificate)",
+        // file:"(upload scanned certificate)",
     });
+    const [errors, setErrors] = useState({});
+
+    const validate = () => {
+        let temp = {}
+        temp.board = twelfth.board ? "": "This field is required."
+        temp.institution_name = twelfth.institution_name? "": "This field is required."
+        temp.jee_rank = twelfth.jee_rank? "": "This field is required."
+        // temp.marks_type = twelfth.marks_type ? "": "This field is required."
+        
+        temp.year_of_passing = twelfth.year_of_passing ? "": "This field is required."
+        temp.institution_name = twelfth.institution_name? "": "This field is required."
+        
+        temp.city_of_institution = twelfth.city_of_institution ? "": "This field is required."
+        temp.state_of_institution = twelfth.state_of_institution ? "": "This field is required."
+        temp.pincode = twelfth.pincode ? "": "This field is required."
+        temp.obtained_marks = twelfth.obtained_marks ? "": "This field is required."
+        
+        temp.maximum_marks = twelfth.maximum_marks ? "": "This field is required."
+        
+        setErrors({
+          ...temp
+        })
+        console.log(errors);
+        return true
+      }
 
     const [diploma, setParent] = React.useState({
         board:"",
@@ -110,7 +137,9 @@ export default function StepTwo() {
     });
 
     const handleFormSubmit = (event) => {
-        event.preventDefault();        
+        event.preventDefault(); 
+        if(validate()){}
+             
         const id=localStorage.getItem("userid")
         const fdTwelfth = new FormData();
         Object.keys(twelfth).forEach(function (key){         
@@ -122,10 +151,18 @@ export default function StepTwo() {
             fdDiploma.append(key, diploma[key]);
         })
         fdDiploma.append('file', document.getElementById('dimplomafile').files[0]);
-        axios.post(`/api/diplomatwelfth/${id}`, {
-            diploma: fdDiploma,
-            twelfth: fdTwelfth,    
-      })}
+        axios.post(`/api/diplomatwelfth/${id}`, 
+            fdDiploma,
+            fdTwelfth,    
+            ).then(function (response) {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        };
+    
+      
 
     const handleProfileChangeInput = (e, id) => {
         console.log("I am called");
@@ -292,6 +329,7 @@ const handeldiplomaclick = () => {
                 <TwelfthDetails 
                 twelfth={twelfth} 
                 handleInputChange={handleProfileChangeInput}
+                Errors= {errors}
                 />
                 <label htmlFor="file">File Upload:</label>
                 <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
