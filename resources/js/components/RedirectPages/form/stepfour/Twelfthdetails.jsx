@@ -90,19 +90,19 @@ export default function TwelfthDetails(props) {
             label: "CITY OF INSTITUTION",
             type: "text",
             id: 4,
-            value: props.twelfth.city_of_institution,
+            value: props.twelfth.city,
         },
         {
             label: "STATE OF INSTITUTION",
             type: "text",
             id: 5,
-            value: props.twelfth.state_of_institution,
+            value: props.twelfth.state,
         },
         {
             label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 6,
-            value: props.twelfth.pincode,
+            value: props.twelfth.pincode_of_institute,
 
         },
         {
@@ -220,8 +220,8 @@ export default function TwelfthDetails(props) {
                         label= "CITY OF INSTITUTION"
                         type= "text"
                         id= "4"
-                        name= "city_of_institution"
-                        defaultValue= {props.twelfth.city_of_institution}
+                        name= "city"
+                        defaultValue= {props.twelfth.city}
                         
                         
                         
@@ -232,7 +232,7 @@ export default function TwelfthDetails(props) {
                         onChange={
                             props.handleInputChange
                         }
-                        {...(props.Errors.city_of_institution && {error:true, helperText:props.Errors.city_of_institution})}
+                        {...(props.Errors.city && {error:true, helperText:props.Errors.city})}
                     >
                         
                     </TextField>
@@ -241,8 +241,8 @@ export default function TwelfthDetails(props) {
                         label= "STATE OF INSTITUTION"
                         type= "text"
                         id= "5"
-                        name= "state_of_institution"
-                        defaultValue= {props.twelfth.state_of_institution}
+                        name= "state"
+                        defaultValue= {props.twelfth.state}
                         
                         
                         variant="outlined"
@@ -252,7 +252,7 @@ export default function TwelfthDetails(props) {
                         onChange={
                             props.handleInputChange
                         }
-                        {...(props.Errors.state_of_institution && {error:true, helperText:props.Errors.state_of_institution})}
+                        {...(props.Errors.state && {error:true, helperText:props.Errors.state})}
                     >
                         
                     </TextField>
@@ -262,7 +262,7 @@ export default function TwelfthDetails(props) {
                         type= "text"
                         id= "6"
                         name= "pincode"
-                        defaultValue= {props.twelfth.pincode}
+                        defaultValue= {props.twelfth.pincode_of_institute}
                         
                         
                         variant="outlined"
@@ -272,7 +272,7 @@ export default function TwelfthDetails(props) {
                         onChange={
                             props.handleInputChange
                         }
-                        {...(props.Errors.pincode && {error:true, helperText:props.Errors.pincode})}
+                        {...(props.Errors.pincode_of_institute && {error:true, helperText:props.Errors.pincode_of_institute})}
                     >
                         
                     </TextField>
@@ -321,9 +321,30 @@ export default function TwelfthDetails(props) {
                     </TextField>
                     <TextField 
                         
+                        label= "MARKS TYPE"
+                        type= "text"
+                        id= "9"
+                        name= "marks_type"
+                        defaultValue= {props.twelfth.marks_type}
+                        
+                        
+                        variant="outlined"
+                        
+                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.marks_type && {error:true, helperText:props.Errors.marks_type})}
+                    >
+                        
+                    </TextField>
+
+                    {/* <TextField 
+                        
                         label= ""
                         type= "file"
-                        id= "9"
+                        id= "10"
                         name= ""
                         defaultValue= {props.twelfth.file}
                         
@@ -338,7 +359,7 @@ export default function TwelfthDetails(props) {
                         {...(props.Errors.file&& {error:true, helperText:props.Errors.file})}
                     >
                         
-                    </TextField>
+                    </TextField> */}
                         </div>
                     {/* <TextField
                         type={field.type}

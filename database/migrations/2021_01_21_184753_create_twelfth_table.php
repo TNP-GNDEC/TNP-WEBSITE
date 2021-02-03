@@ -26,6 +26,7 @@ class CreateTwelfthTable extends Migration
             $table->string('board')->nullable();
             $table->string('maximum_marks')->nullable();
             $table->string('file')->nullable();
+            $table->bigInteger('pincode')->nullable();
             $table->year('year_of_passing')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();

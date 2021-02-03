@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 0px"
     },
     cardStyles: {
-        paddding: "18px 20px"
+        padding: "18px 20px"
     },
     pos: {
         float: "right"
@@ -79,22 +79,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function StepTwo() {
     const classes = useStyles();
-    const [file, setfile] = React.useState("");
     const [checkbox ,setCheckbox] = React.useState({
         XII:"0",
         diploma:"0",
+        both:"0"
     })
 
     const [twelfth, setProfile] = React.useState({
         board: "",
         institution_name:"",
         jee_rank :"",
-        city_of_institute:"",
-        state_of_institute:"",
+        city:"",
+        state:"",
         pincode:"",
         year_of_passing: "",
         obtained_marks:"",
         maximum_marks:"",
+        marks_type: ""
         // file:"(upload scanned certificate)",
     });
     const [errors, setErrors] = useState({});
@@ -104,13 +105,13 @@ export default function StepTwo() {
         temp.board = twelfth.board ? "": "This field is required."
         temp.institution_name = twelfth.institution_name? "": "This field is required."
         temp.jee_rank = twelfth.jee_rank? "": "This field is required."
-        // temp.marks_type = twelfth.marks_type ? "": "This field is required."
+        temp.marks_type = twelfth.marks_type ? "": "This field is required."
         
         temp.year_of_passing = twelfth.year_of_passing ? "": "This field is required."
         temp.institution_name = twelfth.institution_name? "": "This field is required."
         
-        temp.city_of_institution = twelfth.city_of_institution ? "": "This field is required."
-        temp.state_of_institution = twelfth.state_of_institution ? "": "This field is required."
+        temp.city = twelfth.city ? "": "This field is required."
+        temp.state = twelfth.state ? "": "This field is required."
         temp.pincode = twelfth.pincode ? "": "This field is required."
         temp.obtained_marks = twelfth.obtained_marks ? "": "This field is required."
         
@@ -124,10 +125,11 @@ export default function StepTwo() {
       }
 
     const [diploma, setParent] = React.useState({
-        board:"",
+        branch:"",
         institution_name:"",
-        city_of_institute:"",
-        state_of_institute:"",
+        pincode:"",
+        city:"",
+        state:"",
         year_of_passing:"",
         obtained_marks:"",
         maximum_marks: "",
@@ -141,21 +143,39 @@ export default function StepTwo() {
         if(validate()){}
              
         const id=localStorage.getItem("userid")
-        const fdTwelfth = new FormData();
+        const fd = new FormData();
+        Object.keys(checkbox).forEach(function (key){         
+            fd.append(key, checkbox[key]);
+        })
+        if(checkbox.both==="1"){
+        
         Object.keys(twelfth).forEach(function (key){         
-            fdTwelfth.append(key, twelfth[key]);
+            fd.append(key+"_12", twelfth[key]);
         })
-        fdTwelfth.append('file', document.getElementById('twelfthfile').files[0]);
-        const fdDiploma = new FormData();
+        fd.append('file_12', document.getElementById('twelfthfile').files[0]);
+
         Object.keys(diploma).forEach(function (key){         
-            fdDiploma.append(key, diploma[key]);
+            fd.append(key+"_diploma", diploma[key]);
         })
-        fdDiploma.append('file', document.getElementById('dimplomafile').files[0]);
-        axios.post(`/api/diplomatwelfth/${id}`, 
-            fdDiploma,
-            fdTwelfth,    
+        fd.append('file_diploma', document.getElementById('diplomafile').files[0]);
+    }
+    else if(checkbox.XII==="1")
+    {
+        Object.keys(twelfth).forEach(function (key){         
+            fd.append(key+"_12", twelfth[key]);
+        })
+        fd.append('file_12', document.getElementById('twelfthfile').files[0]);
+    }
+    else{
+        Object.keys(diploma).forEach(function (key){         
+            fd.append(key+"_diploma", diploma[key]);
+        })
+        fd.append('file_diploma', document.getElementById('diplomafile').files[0]);
+    }
+       axios.post(`/api/diplomatwelfth/${id}`, 
+            fd    
             ).then(function (response) {
-                console.log(response);
+                console.log(response.data);
             })
             .catch((error) => {
                 console.log(error);
@@ -164,8 +184,6 @@ export default function StepTwo() {
     
       
     const handleProfileChangeInput = (e, id) => {
-        console.log("I am called");
-        
         const name= e.target.name
         const value= e.target.value   
         setProfile(prevState => ({
@@ -176,60 +194,23 @@ export default function StepTwo() {
 
     };
 
-    // const handleProfileChangeInput = (e, id) => {
-    //     console.log("I am called");
-    //     const value = e.target.value;
-    //     switch (id) {
-    //         case 1:
-    //             setProfile({ ...twelfth,  board: value });
-    //             break;
-    //         case 2:
-    //             setProfile({ ...twelfth,  institution_name: value });
-    //             break;
-    //         case 3:
-    //             setProfile({ ...twelfth, jee_rank : value });
-    //             break;
-    //         case 4:
-    //             setProfile({ ...twelfth, city_of_institute:value });
-    //             break;
-    //         case 5:
-    //             setProfile({ ...twelfth,  state_of_institute:value });
-    //             break;
-    //         case 6:
-    //             setProfile({ ...twelfth,  year_of_passing:value });
-    //             break;
-    //             case 7:
-    //                 setProfile({ ...twelfth,    obtained_marks:value });
-    //                 break;
-    //                 case 8:
-    //             setProfile({ ...twelfth,  maximum_marks:value });
-    //             break;
-    //             case 9:
-    //             setProfile({ ...twelfth, file: e.target.files});
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // };
-
     const handleParentChangeInput = (e, id) => {
-        console.log("I am called for parent");
         const value = e.target.value;
         switch (id) {
             case 1:
-                setParent({ ...diploma, board: value });
+                setParent({ ...diploma, branch: value });
                 break;
             case 2:
                 setParent({ ...diploma, institution_name: value });
                 break;
             case 3:
-                setParent({ ...diploma,  city_of_institute:value });
+                setParent({ ...diploma, city:value });
                 break;
             case 4:
-                setParent({ ...diploma,    state_of_institute:value });
+                setParent({ ...diploma,    state:value });
                 break;
             case 5:
-                setParent({ ...diploma, pincode_of_institution: value });
+                setParent({ ...diploma, pincode: value });
                 break;
             case 6:
                 setParent({ ...diploma, year_of_passing: value });
@@ -252,22 +233,33 @@ export default function StepTwo() {
         }
     };
        
-const handelXIIclick = () => {
+const handleXIIClick = () => {
     setCheckbox({
         XII:"1",
        diploma:"0",
-
+    both:"0"
 
     })
 }
-const handeldiplomaclick = () => {
+
+const handleDiplomaClick = () => {
     setCheckbox({
         diploma:"1",
         XII:"0",
-
+        both:"0"
 
     })
 }
+
+const handleBothClick = () => {
+    setCheckbox({
+        both:"1",
+        XII:"0",
+        diploma: "0"
+
+    })
+}
+
 
     React.useEffect(() => {
         console.log("Do something after profile has changed", diploma);
@@ -312,20 +304,26 @@ const handeldiplomaclick = () => {
            
        
       <RadioGroup aria-label="position" row>
-        <FormControlLabel onClick ={handelXIIclick}
-          value="a"
+        <FormControlLabel onClick ={handleXIIClick}
+          value="0"
           control={<Radio color="primary" />}
           label="XII"
           labelPlacement="start"
         />
-        <FormControlLabel onClick ={handeldiplomaclick}
-          value="b"
+        <FormControlLabel onClick ={handleDiplomaClick}
+          value="1"
           control={<Radio color="primary" />}
           label="Diploma"
           labelPlacement="start"
         />
+        <FormControlLabel onClick ={handleBothClick}
+          value="2"
+          control={<Radio color="primary" />}
+          label="Both"
+          labelPlacement="start"
+        />
    
-       <FormLabel component="legend" ><code>  * please select XII or Diploma under which categorie you fall *  </code> </FormLabel>
+       <FormLabel component="legend" ><code>  * please select XII or Diploma or both under which category you fall *  </code> </FormLabel>
      
         
       </RadioGroup>
@@ -333,7 +331,7 @@ const handeldiplomaclick = () => {
     </Card>
     </Grid>
     {
-        checkbox.XII=== "1"  ? ( <Grid item xs={10} className={classes.Cardcontainers}>
+        checkbox.XII=== "1"  && <Grid item xs={10} className={classes.Cardcontainers}>
                     
             <Card className={classes.cardStyles}>
 
@@ -349,11 +347,10 @@ const handeldiplomaclick = () => {
                     <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
                 </Paper>
             </Card>
-        </Grid>) 
-        :(<div></div>) 
+        </Grid>
     }
 {
-        checkbox.diploma ==="1" ? ( <Grid item xs={10} className={classes.Cardcontainers}>
+        checkbox.diploma ==="1" &&  <Grid item xs={10} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>
                 <DiplomaDetails 
                 diploma={diploma} 
@@ -365,41 +362,45 @@ const handeldiplomaclick = () => {
                     <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
                 </Paper>
             </Card>
-        </Grid>) 
-        :(<div></div>) 
+        </Grid>
     }
 
-        
-                {/* <Grid item xs={10} className={classes.Cardcontainers}>
+    {
+        checkbox.both === "1" &&
+        <>
+        <Grid item xs={10} className={classes.Cardcontainers}>
+            <Card className={classes.cardStyles}>
+                <DiplomaDetails 
+                diploma={diploma} 
+                handleInputChange={handleParentChangeInput}
+                /> 
+                <label htmlFor="file">File Upload:</label>
+                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
+                <Paper variant="outlined" elevation={3} className={classes.note}>
+                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
+                </Paper>
+            </Card>
+        </Grid>
+        <Grid item xs={10} className={classes.Cardcontainers}>
                     
-                    <Card className={classes.cardStyles}>
-      
-        
-                        <TwelfthDetails 
-                        twelfth={twelfth} 
-                        handleInputChange={handleProfileChangeInput}
-                        />
-                        <label htmlFor="file">File Upload:</label>
-                        <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
-                        <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
-                        </Paper>
-                    </Card>
-                </Grid> */}
+            <Card className={classes.cardStyles}>
 
-                {/* <Grid item xs={10} className={classes.Cardcontainers}>
-                    <Card className={classes.cardStyles}>
-                        <DiplomaDetails 
-                        diploma={diploma} 
-                        handleInputChange={handleParentChangeInput}
-                        /> 
-                        <label htmlFor="file">File Upload:</label>
-                        <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
-                        <Paper variant="outlined" elevation={3} className={classes.note}>
-                            <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
-                        </Paper>
-                    </Card>
-                </Grid> */}
+
+                <TwelfthDetails 
+                twelfth={twelfth} 
+                handleInputChange={handleProfileChangeInput}
+                Errors= {errors}
+                />
+                <label htmlFor="file">File Upload:</label>
+                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
+                <Paper variant="outlined" elevation={3} className={classes.note}>
+                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
+                </Paper>
+            </Card>
+        </Grid>
+        </>
+    }
+
 
                 <Grid item xs={10} className={classes.Cardcontainers}>
                     <Card className={classes.cardStyles}>
