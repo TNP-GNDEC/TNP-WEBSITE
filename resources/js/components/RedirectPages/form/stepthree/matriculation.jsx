@@ -9,13 +9,12 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles(theme => ({
     cardHeading: {
-        color: "#fff",
+        color: theme.palette.primary.dark,
         display: "flex",
         justifyContent: "center",
         padding: "20px 0px",
         fontWeight: "500",
-        background: theme.palette.primary.main
-    },
+    }, 
     textFieldContainer: {
         display: "flex",
         justifyContent: "space-between",
@@ -27,9 +26,19 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "space-evenly",
         alignContent: "center",
-        padding: "20px 0px",
+        padding: "10px 0px",
         width: "100%",
-    }
+    },
+    fields:{
+        width: "25%"
+    },
+    notchedOutline: {
+        boxShadow: "0px 2px 6px #75757533",
+      },
+      focused: {
+        borderColor: theme.palette.secondary.main,
+        boxShadow: "0px 2px 6px #038ed433"
+      },
 }));
 
 export default function matriculationDetails(props) {
@@ -151,7 +160,13 @@ export default function matriculationDetails(props) {
                 >
                     <div className={classes.inputs}>
                     <TextField 
-                        
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
                         label= "BOARD"
                         type="text"
                         id= "1"
@@ -161,8 +176,6 @@ export default function matriculationDetails(props) {
                         
                         
                         variant="outlined"
-                        
-                        style={{ minWidth: "230px", maxWidth: "230px" }}
                         
                         onChange={
                             props.handleInputChange
@@ -177,7 +190,13 @@ export default function matriculationDetails(props) {
                         
                     </TextField>
                     <TextField 
-                        
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
                         label= "INSTITUTION NAME"
                         type= "text"
                         id= "2"
@@ -187,7 +206,6 @@ export default function matriculationDetails(props) {
                         
                         variant="outlined"
                         
-                        style={{ minWidth: "230px", maxWidth: "230px" }}
                         
                         onChange={
                             props.handleInputChange
@@ -197,7 +215,13 @@ export default function matriculationDetails(props) {
                         
                     </TextField>
                     <TextField 
-                        
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
                         label= "CITY OF INSTITUTION"
                         type= "text"
                         id= "3"
@@ -207,7 +231,7 @@ export default function matriculationDetails(props) {
                         
                         variant="outlined"
                         
-                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                       
                         
                         onChange={
                             props.handleInputChange
@@ -220,7 +244,13 @@ export default function matriculationDetails(props) {
                         
                     <div className={classes.inputs}>
                     <TextField 
-                        
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
                         label= "STATE OF INSTITUTION"
                         type= "text"
                         id= "4"
@@ -231,7 +261,7 @@ export default function matriculationDetails(props) {
                         
                         variant="outlined"
                         
-                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
                         
                         onChange={
                             props.handleInputChange
@@ -242,7 +272,13 @@ export default function matriculationDetails(props) {
                     </TextField>
 
                     <TextField 
-                        
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
                         label= "PINCODE OF INSTITUTION"
                         type= "text"
                         id= "5"
@@ -252,7 +288,7 @@ export default function matriculationDetails(props) {
                         
                         variant="outlined"
                         
-                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                       
                         
                         onChange={
                             props.handleInputChange
@@ -263,7 +299,13 @@ export default function matriculationDetails(props) {
                     </TextField>
 
                     <TextField 
-                        
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
                         label= "YEAR OF PASSING"
                         type= "text"
                         id= "6"
@@ -273,7 +315,7 @@ export default function matriculationDetails(props) {
                         
                         variant="outlined"
                         
-                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                      
                         
                         onChange={
                             props.handleInputChange
@@ -285,7 +327,13 @@ export default function matriculationDetails(props) {
                     </div>
                     <div className={classes.inputs}>
                     <TextField 
-                        
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
                         label= "MARKS TYPE"
                         type= "text"
                         id= "7"
@@ -296,7 +344,7 @@ export default function matriculationDetails(props) {
                         
                         variant="outlined"
                         
-                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                
                         
                         onChange={
                             props.handleInputChange
@@ -315,7 +363,13 @@ export default function matriculationDetails(props) {
                     </TextField>
 
                     <TextField 
-                        
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
                         label= "OBTAINED MARKS"
                         type= "text"
                         id= "8"
@@ -325,8 +379,7 @@ export default function matriculationDetails(props) {
                         
                         variant="outlined"
                         
-                        style={{ minWidth: "230px", maxWidth: "230px" }}
-                        
+                     
                         onChange={
                             props.handleInputChange
                         }
@@ -336,7 +389,13 @@ export default function matriculationDetails(props) {
                     </TextField>
 
                     <TextField 
-                        
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
                         label= "MAXIMUM MARKS"
                         type= "text"
                         id= "9"
@@ -346,7 +405,7 @@ export default function matriculationDetails(props) {
                         
                         variant="outlined"
                         
-                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                
                         
                         onChange={
                             props.handleInputChange
@@ -386,7 +445,7 @@ export default function matriculationDetails(props) {
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-                MATRICULATION  DETAILS
+                Matriculation  Details
             </Typography>
             <CardContent>
 

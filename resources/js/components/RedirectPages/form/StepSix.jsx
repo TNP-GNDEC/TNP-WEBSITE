@@ -7,38 +7,35 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
     heading: {
-        margin: "60px",
-        color: "#038ed4"
+        paddingTop: "20px"
+    },
+    para:{
+        color: "#000"
     },
     input: {
-        height: "50px",
+        height: "40px",
         width: "100%",
-        margin: "50px ",
         borderRadius: "20px",
-        textAlign: "Center"
+        "&:focus":{
+            outline: "none"
+        },
+        border: "1px solid #038ed4",
+        boxShadow: "0px 5px 15px #038ed433"
     },
     field: {
-        height: "200px",
-        background: "#DADADA"
-    },
-    otp: {
-        padding: "8px 70px 8px 70px",
-        margin: "0 auto"
+        width: "60%",
+        paddingTop: "40px",
+        margin: "auto"
     },
     box: {
-        margin: "0 auto",
-        width: "50%",
+        margin: "30px auto",
+        width: "60%",
         alignContent: "center",
-        background: "#DADADA	",
-        color: "BLUE ",
+        background: theme.palette.secondary.main,
+        color: theme.palette.primary.dark,
         textAlign: "center",
-        borderRadius: "20px",
-
-        ":hover": {
-            backgroundColor: "primary.main",
-
-            margin: "0px"
-        }
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033",
     },
     root: {
         width: "100%"
@@ -50,7 +47,17 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         // marginRight: theme.spacing(1)
-        margin: "0 auto"
+        margin: "40px auto",
+        border: "none",
+        textDecoration: "none",
+        padding: "10px 35px",
+        color: theme.palette.secondary.main,
+        background: theme.palette.primary.main,
+        borderRadius: "20px",
+        boxShadow: "0px 15px 25px #038ed433",
+        "&:focus":{
+            outline: "none"
+        },
     },
     spacer: {
         flex: "1 1 auto"
@@ -108,9 +115,9 @@ export default function StepOne() {
                 <SentimentSatisfiedRoundedIcon />
                </div>
                <div>
-               <Button  variant="contained" color="primary">
+               <button className={classes.button} variant="contained" color="primary">
   HOME
-</Button>
+</button>
 </div>          
                         </div>
                     
