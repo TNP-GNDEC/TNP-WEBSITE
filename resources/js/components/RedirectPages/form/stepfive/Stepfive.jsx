@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from '@material-ui/lab';
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, RadioGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -49,6 +50,7 @@ const useStyles = makeStyles(theme => ({
         alignContent: "center"
     },
     Cardcontainers: {
+        width: "100%",
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
@@ -61,7 +63,22 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 0px"
     },
     cardStyles: {
-        paddding: "18px 20px"
+        width: "90%",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033"
+    },
+    alert: {
+        margin: "auto",
+        width: "90%",
+      },
+    fileupload:{
+        width: "90%",
+        marginLeft: "60px",
+        padding: "20px 0"
+    },
+    radio:{
+        width: "100%",
+        padding: "10px",
     },
     pos: {
         float: "right"
@@ -285,14 +302,15 @@ const handelbothclick = () => {
             <form onSubmit={event => handleFormSubmit(event)}>
               
                 <Grid container className={classes.container}>
-                <Grid item xs={10} className={classes.Cardcontainers}>
-                <Card>
+                <Grid item xs={12} className={classes.Cardcontainers}>
+                <Card className={classes.cardStyles}>
                 
-       <FormControl component="fieldset">
+       <FormControl component="fieldset" className={classes.radio}>
            
            
        
       <RadioGroup row aria-label="position" color="primary">
+      <FormLabel component="legend" > Please select Postgraduation or Degree or Both under which categorie you fall </FormLabel>
         <FormControlLabel onClick = {handelpostgraduationclick} 
         
           value="a"
@@ -312,8 +330,6 @@ const handelbothclick = () => {
           label="Both "
           labelPlacement="start"
         />
-   
-       <FormLabel component="legend"><code>  * please select Postgraduation or Degree or Both under which categorie you fall *  </code></FormLabel>
      
         
       </RadioGroup>
@@ -321,7 +337,7 @@ const handelbothclick = () => {
     </Card>
     </Grid>
     {
-        checkbox.postgraduation=== "1" || checkbox.both ==="1" ? ( <Grid item xs={10} className={classes.Cardcontainers}>
+        checkbox.postgraduation=== "1" || checkbox.both ==="1" ? ( <Grid item xs={12} className={classes.Cardcontainers}>
                     
             <Card className={classes.cardStyles}>
            
@@ -330,24 +346,28 @@ const handelbothclick = () => {
                     Post={post}
                     handleInputChange={handlePostChangeInput}
                 />
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                <code> Note : Upload <CloudUploadIcon /> Scanned copies of your dmc. </code>
-            </Paper>
+                <hr />
+                <Alert severity="info" className={classes.alert}>
+                Note : Upload <CloudUploadIcon /> Scanned copies of your dmc. (PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="postfile" type="file" /> 
             </Card>
         </Grid>) 
         :(<div></div>) 
     }
     {
-        checkbox.degree=== "1" || checkbox.both ==="1" ? ( <Grid item xs={10} className={classes.Cardcontainers}>
+        checkbox.degree=== "1" || checkbox.both ==="1" ? ( <Grid item xs={12} className={classes.Cardcontainers}>
           
             <Card className={classes.cardStyles}>
                 <Degreedetails
                     Degree={degree}
                     handleInputChange={handleDegreeChangeInput}
                 />
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                <code> Note : Upload <CloudUploadIcon /> Scanned copies of your all 8 semester dmc's in one file. </code>
-            </Paper>
+                 <hr />
+                <Alert severity="info" className={classes.alert}>
+                Note : Upload <CloudUploadIcon /> Scanned copies of your all 8 semester dmc's in one file.(PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="degreefile" type="file" /> 
             </Card>
 
         </Grid>) 

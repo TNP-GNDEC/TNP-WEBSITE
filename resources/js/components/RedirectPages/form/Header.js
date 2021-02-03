@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
         width: "70px",
         height: "auto",
         padding: "10px",
+        borderRadius: "50%"
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -59,7 +60,8 @@ const useStyles = makeStyles(theme => ({
     },
 
     avatar: {
-        marginRight: "20px"
+        marginRight: "20px",
+        borderRadius: "50%",
     }
 }));
 
@@ -92,9 +94,9 @@ export default function MiniDrawer(props) {
                         >
                             <MenuIcon />
                         </IconButton> */}
-                        <Avatar aria-label="logo" className={classes.avatar}>
+                        <div className={classes.avatar}>
                             <img className={classes.imgl}  src={Logo} alt="logo" />
-                        </Avatar>
+                        </div>
                         <Typography variant="h6" noWrap>
                             Training and Placement Cell
                         </Typography>

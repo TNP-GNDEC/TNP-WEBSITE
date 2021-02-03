@@ -1,4 +1,5 @@
 import React,{ useState } from "react";
+import { Alert } from '@material-ui/lab';
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, FormGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -53,6 +54,7 @@ const useStyles = makeStyles(theme => ({
         alignContent: "center"
     },
     Cardcontainers: {
+        width: "100%",
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
@@ -65,7 +67,22 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 0px"
     },
     cardStyles: {
-        padding: "18px 20px"
+        width: "90%",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033"
+    },
+    alert: {
+        margin: "auto",
+        width: "90%",
+      },
+    fileupload:{
+        width: "90%",
+        marginLeft: "60px",
+        padding: "20px 0"
+    },
+    radio:{
+        width: "100%",
+        padding: "10px",
     },
     pos: {
         float: "right"
@@ -298,12 +315,13 @@ const handleBothClick = () => {
             <form onSubmit={handleFormSubmit}>
             <Grid container className={classes.container}>
             <Grid item xs={12} className={classes.Cardcontainers}>
-            <Card>
-       <FormControl component="fieldset">
+            <Card className={classes.cardStyles}>
+       <FormControl component="fieldset" className={classes.radio}>
            
            
        
-      <RadioGroup aria-label="position" row>
+      <RadioGroup aria-label="position" row className={classes.select}>
+      <FormLabel component="legend" > Please select XII or Diploma or both under which category you fall </FormLabel>
         <FormControlLabel onClick ={handleXIIClick}
           value="0"
           control={<Radio color="primary" />}
@@ -322,8 +340,6 @@ const handleBothClick = () => {
           label="Both"
           labelPlacement="start"
         />
-   
-       <FormLabel component="legend" ><code>  * please select XII or Diploma or both under which category you fall *  </code> </FormLabel>
      
         
       </RadioGroup>
@@ -331,7 +347,7 @@ const handleBothClick = () => {
     </Card>
     </Grid>
     {
-        checkbox.XII=== "1"  && <Grid item xs={10} className={classes.Cardcontainers}>
+        checkbox.XII=== "1"  && <Grid item xs={12} className={classes.Cardcontainers}>
                     
             <Card className={classes.cardStyles}>
 
@@ -341,26 +357,28 @@ const handleBothClick = () => {
                 handleInputChange={handleProfileChangeInput}
                 Errors= {errors}
                 />
-                <label htmlFor="file">File Upload:</label>
-                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
-                </Paper>
+                <hr />
+                <Alert severity="info" className={classes.alert}>
+                            Note : Upload <CloudUploadIcon/> Scanned copies of your
+                                    twelfth certificates.(PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
             </Card>
         </Grid>
     }
 {
-        checkbox.diploma ==="1" &&  <Grid item xs={10} className={classes.Cardcontainers}>
+        checkbox.diploma ==="1" &&  <Grid item xs={12} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>
                 <DiplomaDetails 
                 diploma={diploma} 
                 handleInputChange={handleParentChangeInput}
                 /> 
-                <label htmlFor="file">File Upload:</label>
-                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
-                </Paper>
+                <hr />
+                <Alert severity="info" className={classes.alert}>
+                            Note : Upload <CloudUploadIcon/> Scanned copies of your
+                                    Diploma certificates.(PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
             </Card>
         </Grid>
     }
@@ -368,20 +386,21 @@ const handleBothClick = () => {
     {
         checkbox.both === "1" &&
         <>
-        <Grid item xs={10} className={classes.Cardcontainers}>
+        <Grid item xs={12} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>
                 <DiplomaDetails 
                 diploma={diploma} 
                 handleInputChange={handleParentChangeInput}
                 /> 
-                <label htmlFor="file">File Upload:</label>
-                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
-                </Paper>
+                <hr />
+                <Alert severity="info" className={classes.alert}>
+                            Note : Upload <CloudUploadIcon/> Scanned copies of your
+                                    Diploma certificates.(PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
             </Card>
         </Grid>
-        <Grid item xs={10} className={classes.Cardcontainers}>
+        <Grid item xs={12} className={classes.Cardcontainers}>
                     
             <Card className={classes.cardStyles}>
 
@@ -391,21 +410,16 @@ const handleBothClick = () => {
                 handleInputChange={handleProfileChangeInput}
                 Errors= {errors}
                 />
-                <label htmlFor="file">File Upload:</label>
-                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
-                </Paper>
+                <hr />
+                <Alert severity="info" className={classes.alert}>
+                            Note : Upload <CloudUploadIcon/> Scanned copies of your
+                                    twelfth certificates.(PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
             </Card>
         </Grid>
         </>
     }
-
-
-                <Grid item xs={10} className={classes.Cardcontainers}>
-                    <Card className={classes.cardStyles}>
-                    </Card>
-                </Grid>
             </Grid>
             <Button className={classes.pos} type="submit" variant="contained" color="primary">
                 Submit
