@@ -16,9 +16,9 @@ class CreateTwelfthTable extends Migration
     {
         Schema::create('twelfth', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('urn')->unsigned()->unique();
-            $table->bigInteger('crn')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->default(0);
+            $table->bigInteger('urn')->unsigned()->unique()->default(0);
+            $table->bigInteger('crn')->unsigned()->default(0);
             $table->string('institution_name')->nullable();
             $table->bigInteger('jee_rank')->nullable();
             $table->string('marks_type')->nullable();
@@ -30,10 +30,10 @@ class CreateTwelfthTable extends Migration
             $table->year('year_of_passing')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
-            $table->foreign('user_id')
-            ->references('id')->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+            // $table->foreign('user_id')
+            // ->references('id')->on('users')
+            // ->onDelete('cascade')
+            // ->onUpdate('cascade');
 
             $table->timestamps();
         });
