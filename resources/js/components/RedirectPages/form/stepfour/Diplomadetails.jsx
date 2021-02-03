@@ -45,11 +45,11 @@ export default function DiplomaDetails(props) {
       ];
     const fields = [
         {
-            label: "BOARD",
+            label: "branch",
             type: "text",
             id: 1,
             // name: "first_name",
-            value: props.diploma.board,
+            value: props.diploma.branch,
             
             select: "true",
             options: [
@@ -87,14 +87,14 @@ export default function DiplomaDetails(props) {
             type: "text",
             id: 4,
             // name: "first_name",
-            value: props.diploma.state_of_institite
+            value: props.diploma.state_of_institute
         },
         {
             label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 5,
             // name: "first_name",
-            value: props.diploma.pincode
+            value: props.diploma.pincode_of_institute
         },
         {
             label: "YEAR OF PASSING",
