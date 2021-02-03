@@ -26,21 +26,15 @@ const useStyles = makeStyles(theme => ({
     hr: {
         color: "#038ed4",
         font: "2px"
-    },
-    cardHeading: {
-        color: "#fff",
-        display: "flex",
-        justifyContent: "center",
-        padding: "20px 0px",
-        fontWeight: "500",
-        background: theme.palette.primary.main
-    },  
+    }, 
     container: {
+        width: "100%",
         display: "flex",
         justifyContent: "center",
         alignContent: "center"
     },
     Cardcontainers: {
+        width: "100%",
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
@@ -53,7 +47,9 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 0px"
     },
     cardStyles: {
-        paddding: "18px 20px"
+        width: "90%",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033"
     },
     pos: {
         float: "right"
@@ -394,7 +390,7 @@ export default function StepTwo() {
         <div>
             <form onSubmit={event => handleFormSubmit(event)}>
                 <Grid container className={classes.container}>
-                    <Grid item xs={10} className={classes.Cardcontainers}>
+                    <Grid item xs={12} className={classes.Cardcontainers}>
                         <Card className={classes.cardStyles}>
                             <ProfileDetails
                                 Profile={profile}
@@ -403,7 +399,7 @@ export default function StepTwo() {
                         </Card>
                     </Grid>
 
-                    <Grid item xs={10} className={classes.Cardcontainers}>
+                    <Grid item xs={12} className={classes.Cardcontainers}>
                         <Card className={classes.cardStyles}>
                             <ParentDetails
                                 parent={parent}
@@ -413,7 +409,7 @@ export default function StepTwo() {
                         </Card>
                     </Grid>
 
-                    <Grid item xs={10} className={classes.Cardcontainers}>
+                    <Grid item xs={12} className={classes.Cardcontainers}>
                         <Card className={classes.cardStyles}>
                             <AcademicDetails
                                 academics={academics}
@@ -422,7 +418,7 @@ export default function StepTwo() {
                         </Card>
                     </Grid>
 
-                    <Grid item xs={10} className={classes.Cardcontainers}>
+                    <Grid item xs={12} className={classes.Cardcontainers}>
                         <Card className={classes.cardStyles}>
                             <ContactDetails
                                 contact={contact}
@@ -433,7 +429,7 @@ export default function StepTwo() {
                         </Card>
                     </Grid>
 
-                    <Grid item xs={10} className={classes.Cardcontainers}>
+                    <Grid item xs={12} className={classes.Cardcontainers}>
                         <Card className={classes.cardStyles}>
                             <AddressDetails
                                 address={address}

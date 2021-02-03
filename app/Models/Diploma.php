@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Diploma extends Model
 {
     use HasFactory;
-
+    protected $table = "diploma";
     protected $fillable = [
         "board",
+        "user_id",
+        "urn",
         "institution_name",
         "city_of_institute",
         "state_of_institute",

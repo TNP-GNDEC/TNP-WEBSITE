@@ -25,63 +25,69 @@ class TwelfthdiplomaController extends Controller
 
  public function getFormData(Request $request)
   {
-    $user = User::findOrFail($request->id);
+  $user = User::findOrFail($request->id);
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
   if($current_step==3){
-    //condition will be checked -> if user has done 12th that file will be requested and stored or otherwise
-    $twelfth_file = $request->file('file');
-    $twelfth_filename  = $file->getClientOriginalName();
-    $twelfth_extension = $file->getClientOriginalExtension();
+    if($request->XII=="1" || $request->both=="1"){
+    $twelfth_file = $request->file('file_12');
+    $twelfth_filename  = $twelfth_file->getClientOriginalName();
+    $twelfth_extension = $twelfth_file->getClientOriginalExtension();
     $twelfth_file_url  = $user->username.'_twelfth.'.$twelfth_extension;
     $twelfth_path = public_path('documents/twelfth');
     $twelfth_file->move(public_path('documents/twelfth'), $twelfth_file_url);
+
+    $twelfth_details = Twelfth::updateOrCreate(
+      ['user_id' => $user->id],
+      [
+        'urn' => $user->username,
+        'user_id' => $user->id,
+        'pincode' => $request->pincode_12,
+        'city' => $user->username,
+        'jee_rank' => $request->jee_rank_12,
+        'state' => $request->state_12,
+        'marks_type' => $request->marks_type_12,
+        'maximum_marks' => $request->maximum_marks_12,
+        'obtained_marks' => $request->obtained_marks_12,
+        'institution_name' => $request->institution_name_12,
+        'board' => $request->board_12,
+        'year_of_passing' => $request->year_of_passing_12,
+        'file' => $twelfth_file_url
+
+  ]);
+  
+        
+    }
     
-    $diploma_file = $request->file('file');
+    if($request->diploma=="1" || $request->both=="1"){
+    $diploma_file = $request->file('file_diploma');
     $diploma_filename  = $diploma_file->getClientOriginalName();
     $diploma_extension = $diploma_file->getClientOriginalExtension();
-    $diploma_file_url   = $user->username._.'diploma.'.$diploma_extension;
+    $diploma_file_url   = $user->username.'_diploma.'.$diploma_extension;
     $diploma_path = public_path('documents/diploma');
     $diploma_file->move(public_path('documents/diploma'), $diploma_file_url);
 
-    $twelfth_details = DB::table('twelfth')
-    ->where('user_id', $user->id)
-    ->update([
-        'pincode' => $request->twelfth["pincode"],
-        'city' => $request->twelfth["city_of_institution"],
-        'state' => $request->twelfth["state_of_institution"],
-        'marks_type' => $request->twelfth["marks_type"],
-        'maximum_marks' => $request->twelfth["maximum_marks"],
-        'obtained_marks' => $request->twelfth["obtained_marks"],
-        'institution_name' => $request->twelfth["institution_name"],
-        'board' => $request->twelfth["board"],
-        'year_of_passing' => $request->twelfth["year_of_passing"],
-        'file' => $twelfth_file_url
+    $diploma_details = Diploma::updateOrCreate(
+      ['user_id' => $user->id],
+      [ 'user_id' => $user->id,
+        'urn' => $user->username,
+      'pincode' => $request->pincode_diploma,
+      'city' => $request->city_diploma,
+      'state' => $request->state_diploma,
+      'marks_type' => $request->marks_type_diploma,
+      'maximum_marks' => $request->maximum_marks_diploma,
+      'obtained_marks' => $request->obtained_marks_diploma,
+      'institution_name' => $request->institution_name_diploma,
+      'branch' => $request->branch_diploma,
+      'year_of_passing' => $request->year_of_passing_diploma,
+      'file' => $diploma_file_url
+      ]
+  );
 
-    ]);
-
-    $diploma_details = DB::table('diploma')
-    ->where('user_id', $user->id)
-    ->update([
-        'pincode' => $request->diploma["pincode"],
-        'city' => $request->diploma["city_of_institution"],
-        'state' => $request->diploma["state_of_institution"],
-        'marks_type' => $request->diploma["marks_type"],
-        'maximum_marks' => $request->diploma["maximum_marks"],
-        'obtained_marks' => $request->diploma["obtained_marks"],
-        'institution_name' => $request->diploma["institution_name"],
-        'board' => $request->diploma["board"],
-        'year_of_passing' => $request->diploma["year_of_passing"],
-        'file' => $diploma_file_url
-
-    ]);
-
-      $form_step_change= DB::table('form_statuses')
-      ->where('user_id', $user->id)
-      ->update(['form_step' => 4]);
-      return response()->json(["details"=> $details, "form_status"=> $form_step_change]);
     }
-    else return response()->json(["details"=> "first complete matriculation details"]);
+    
+      }
+    else return response()->json(["message"=> "fill 10th details first"]);
   }
 }

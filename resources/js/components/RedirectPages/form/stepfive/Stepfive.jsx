@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from '@material-ui/lab';
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, RadioGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -12,6 +13,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import Button from "@material-ui/core/Button";
+
+import Radio from '@material-ui/core/Radio';
 
 
 const useStyles = makeStyles(theme => ({
@@ -47,6 +50,7 @@ const useStyles = makeStyles(theme => ({
         alignContent: "center"
     },
     Cardcontainers: {
+        width: "100%",
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
@@ -59,7 +63,22 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 0px"
     },
     cardStyles: {
-        paddding: "18px 20px"
+        width: "90%",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033"
+    },
+    alert: {
+        margin: "auto",
+        width: "90%",
+      },
+    fileupload:{
+        width: "90%",
+        marginLeft: "60px",
+        padding: "20px 0"
+    },
+    radio:{
+        width: "100%",
+        padding: "10px",
     },
     pos: {
         float: "right"
@@ -67,9 +86,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
+
 export default function StepTwo() {
     const classes = useStyles();
-    
+    const [checkbox ,setCheckbox] = React.useState({
+        degree:"0",
+        postgraduation:"0",
+        both:"0",
+    })
+
     const [post, setProfile] = React.useState({
         user_id: "",
         institution_name: "",
@@ -215,6 +240,32 @@ export default function StepTwo() {
         }
     };
    
+const handeldegreeclick = () => {
+    setCheckbox({
+        degree:"1",
+postgraduation:"0",
+both:"0",
+
+    })
+}
+const handelpostgraduationclick = () => {
+    setCheckbox({
+        postgraduation:"1",
+        degree:"0",
+
+
+    })
+}
+const handelbothclick = () => {
+    
+    setCheckbox({
+        both:"1",
+        degree:"0",
+        postgraduation:"0",
+
+
+    })
+}
 
 
     
@@ -245,47 +296,89 @@ export default function StepTwo() {
         console.log("Do something after  has changed", degree);
     }, [degree]);
    
-
+      
     return (
         <div>
             <form onSubmit={event => handleFormSubmit(event)}>
               
                 <Grid container className={classes.container}>
-           
-                    <Grid item xs={10} className={classes.Cardcontainers}>
-                    
-                        <Card className={classes.cardStyles}>
-                        <Card>
-       <FormControl component="fieldset">
+                <Grid item xs={12} className={classes.Cardcontainers}>
+                <Card className={classes.cardStyles}>
+                
+       <FormControl component="fieldset" className={classes.radio}>
            
            
        
-      <FormGroup aria-label="position" row>
-        <FormControlLabel
-          value="top"
-          control={<Checkbox color="primary" />}
+      <RadioGroup row aria-label="position" color="primary">
+      <FormLabel component="legend" > Please select Postgraduation or Degree or Both under which categorie you fall </FormLabel>
+        <FormControlLabel onClick = {handelpostgraduationclick} 
+        
+          value="a"
+          control={<Radio color="primary"  />}
           label="Postgraduation"
           labelPlacement="start"
         />
-        <FormControlLabel
-          value="start"
-          control={<Checkbox color="primary" />}
+        <FormControlLabel onClick ={handeldegreeclick} 
+          value="b"
+          control={<Radio color="primary" />}
           label="Degree"
           labelPlacement="start"
         />
-         <FormControlLabel
-          value="start"
-          control={<Checkbox color="primary" />}
+         <FormControlLabel onClick ={handelbothclick} 
+          value="c"
+          control={<Radio color="primary"   />}
           label="Both "
           labelPlacement="start"
         />
-   
-       <FormLabel component="legend"><code>  * please select Postgraduation or Degree or Both under which categorie you fall *  </code></FormLabel>
      
         
-      </FormGroup>
+      </RadioGroup>
     </FormControl>
     </Card>
+    </Grid>
+    {
+        checkbox.postgraduation=== "1" || checkbox.both ==="1" ? ( <Grid item xs={12} className={classes.Cardcontainers}>
+                    
+            <Card className={classes.cardStyles}>
+           
+
+                <PostgraduationDetails
+                    Post={post}
+                    handleInputChange={handlePostChangeInput}
+                />
+                <hr />
+                <Alert severity="info" className={classes.alert}>
+                Note : Upload <CloudUploadIcon /> Scanned copies of your dmc. (PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="postfile" type="file" /> 
+            </Card>
+        </Grid>) 
+        :(<div></div>) 
+    }
+    {
+        checkbox.degree=== "1" || checkbox.both ==="1" ? ( <Grid item xs={12} className={classes.Cardcontainers}>
+          
+            <Card className={classes.cardStyles}>
+                <Degreedetails
+                    Degree={degree}
+                    handleInputChange={handleDegreeChangeInput}
+                />
+                 <hr />
+                <Alert severity="info" className={classes.alert}>
+                Note : Upload <CloudUploadIcon /> Scanned copies of your all 8 semester dmc's in one file.(PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="degreefile" type="file" /> 
+            </Card>
+
+        </Grid>) 
+        :(<div></div>) 
+    }
+
+
+                    {/* <Grid item xs={10} className={classes.Cardcontainers}>
+                    
+                        <Card className={classes.cardStyles}>
+                       
         
                             <PostgraduationDetails
                                 Post={post}
@@ -295,9 +388,17 @@ export default function StepTwo() {
                             <code> Note : Upload <CloudUploadIcon /> Scanned copies of your dmc. </code>
                         </Paper>
                         </Card>
-                    </Grid>
-                    <Grid item xs={10} className={classes.Cardcontainers}>
-                    
+                    </Grid> */}
+                    {/* <Grid item xs={10} className={classes.Cardcontainers}>
+                    {
+                        checkbox.postgraduation
+                    }
+                                        {
+                        checkbox.degree
+                    }
+                                        {
+                        checkbox.both
+                    }
                     <Card className={classes.cardStyles}>
                         <Degreedetails
                             Degree={degree}
@@ -307,7 +408,8 @@ export default function StepTwo() {
                         <code> Note : Upload <CloudUploadIcon /> Scanned copies of your all 8 semester dmc's in one file. </code>
                     </Paper>
                     </Card>
-                </Grid>
+
+                </Grid> */}
                   
 
 

@@ -20,8 +20,8 @@ class CreateStepTwoTable extends Migration
             $table->bigInteger('pincode')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('height')->nullable();
-            $table->string('weight')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('weight')->nullable();
             $table->string('gender')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();

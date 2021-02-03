@@ -1,4 +1,6 @@
 import React,{ useState } from "react";
+import { Alert } from '@material-ui/lab';
+import '../../../../../css/app.css';
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -47,7 +49,18 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 0px"
     },
     cardStyles: {
-        paddding: "18px 20px"
+        width: "90%",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033"
+    },
+    alert: {
+        margin: "auto",
+        width: "90%",
+      },
+    fileupload:{
+        width: "90%",
+        marginLeft: "60px",
+        padding: "20px 0"
     },
     file: {
         paddding: "10px 20px "
@@ -149,7 +162,7 @@ export default function StepThree() {
         <div>
             <form onSubmit={handleFormSubmit}>
                 <Grid container className={classes.container}>
-                    <Grid item xs={10} className={classes.Cardcontainers}>
+                    <Grid item xs={12} className={classes.Cardcontainers}>
                         <Card className={classes.cardStyles}>
                             <MatriculationDetails
                                 matriculation={matriculation}
@@ -158,18 +171,12 @@ export default function StepThree() {
                                 }
                                 Errors= {errors}
                             />
-                         <label htmlFor="file">File Upload:</label>
-                        <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" /> 
-                            <Paper
-                                variant="outlined"
-                                elevation={3}
-                                className={classes.note}
-                            >
-                                <code>
-                                    Note : Upload <CloudUploadIcon/> Scanned copies of your
-                                    matriculation certificates.{" "}
-                                </code>
-                            </Paper>
+                            <hr />
+                            <Alert severity="info" className={classes.alert}>
+                            Note : Upload <CloudUploadIcon/> Scanned copies of your
+                                    matriculation certificates.(PDF Only)
+                            </Alert>
+                            <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" /> 
                         </Card>
                     </Grid>
                 </Grid>

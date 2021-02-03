@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -13,12 +14,15 @@ import StepFive from "./RedirectPages/form/stepfive/Stepfive.jsx";
 import StepSix from "./RedirectPages/form/StepSix";
 
 
-import Header from "../components/RedirectPages/form/Header"
+import Header from "../components/RedirectPages/form/Header";
+import Footer from "./HomeComponent/SideComponents/Footer";
 
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
-      marginTop: '80px',
+      paddingTop: '90px',
+      minHeight: "100vh",
+      background: theme.palette.primary.light
     },
     button: {
       marginRight: theme.spacing(1),
@@ -33,11 +37,32 @@ const useStyles = makeStyles((theme) => ({
     body:{
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(1),
-      background: theme.palette.primary.light
+    },
+    info: {
+      position: "relative",
+      width: "90%",
+      margin: "auto",
+      borderRadius: "10px",
+      boxShadow: "0px 12px 20px #00000033",
+      display: "block",
+      background: theme.palette.secondary.main,
+      paddingBottom: "10px"
+    },
+    alert: {
+      margin: "auto",
+      width: "95%",
     },
     stepper:{
       position: "relative",
-    }
+      width: "100%",
+      margin: "auto",
+      borderRadius: "10px",
+    },
+    step:{
+      "&:focus":{
+        outline: "none"
+      }
+    },
   }));
   
   function getSteps() {
@@ -121,15 +146,20 @@ const useStyles = makeStyles((theme) => ({
         <div>
         <Header />
         </div>
+        <div className={classes.info}>
         <Stepper className={classes.stepper} nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label}>
-              <StepButton onClick={handleStep(index)} completed={completed[index]}>
+              <StepButton onClick={handleStep(index)} completed={completed[index]} className={classes.step}>
                 {label}
               </StepButton>
             </Step>
           ))}
         </Stepper>
+          <Alert severity="info" className={classes.alert}>
+                You cannot edit the data after completing all the steps, Please fill the data carefully!!
+          </Alert>
+        </div>
         <div>
           {allStepsCompleted() ? (
             <div>
@@ -168,6 +198,7 @@ const useStyles = makeStyles((theme) => ({
             </div>
           )}
         </div>
+        <Footer />
       </div>
     );
   }

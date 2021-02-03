@@ -11,20 +11,36 @@ import Paper from '@material-ui/core/Paper';
 const useStyles = makeStyles(theme => ({
 
     cardHeading: {
-        color: "#fff",
+        color: theme.palette.primary.dark,
         display: "flex",
         justifyContent: "center",
         padding: "20px 0px",
         fontWeight: "500",
-        background: theme.palette.primary.main
-    },
+    }, 
     textFieldContainer: {
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignContent: "center",
-        padding: "20px 0px"
+        padding: "20px 0px",
+        width: "100%",
     },
-  
+    inputs:{
+        display: "flex",
+        justifyContent: "space-evenly",
+        alignContent: "center",
+        padding: "10px 0px",
+        width: "100%",
+    },
+    fields:{
+        width: "25%"
+    },
+    notchedOutline: {
+        boxShadow: "0px 2px 6px #75757533",
+      },
+      focused: {
+        borderColor: theme.palette.secondary.main,
+        boxShadow: "0px 2px 6px #038ed433"
+      },
 }));
 
 export default function TwelfthDetails(props) {
@@ -50,6 +66,7 @@ export default function TwelfthDetails(props) {
             id: 1,
             // name: "first_name",
             value: props.twelfth.board,
+            
             select: "true",
             options: [
                 
@@ -83,19 +100,19 @@ export default function TwelfthDetails(props) {
             label: "CITY OF INSTITUTION",
             type: "text",
             id: 4,
-            value: props.twelfth.city_of_institution,
+            value: props.twelfth.city,
         },
         {
             label: "STATE OF INSTITUTION",
             type: "text",
             id: 5,
-            value: props.twelfth.state_of_institution,
+            value: props.twelfth.state,
         },
         {
             label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 6,
-            value: props.twelfth.pincode,
+            value: props.twelfth.pincode_of_institute,
 
         },
         {
@@ -118,26 +135,290 @@ export default function TwelfthDetails(props) {
           
             value: props.twelfth.maximum_marks,
         },
-        {
-            label:"",
-            type: "file",
-            id: 10,
-            inputid:"pdf-file",
-            defaultValue: props.twelfth.file,  
-        }
+        // {
+        //     label:"",
+        //     type: "file",
+        //     id: 10,
+        //     inputid:"pdf-file",
+        //     value: props.twelfth.file,  
+        // }
     ];
 
-    const rendertwelfthFields = () =>
-        fields.map(field => (
-            <>
-                <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    lg={4}
+    const rendertwelfthFields  = (
+        // fields.map(field => (
+        //     <>
+                <Grid    container
+                
+                    // item
+                    // xs={12}
+                    // sm={6}
+                    // lg={4}
                     className={classes.textFieldContainer}
                 >
-                    <TextField
+                    <div className={classes.inputs}>
+                     <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "BOARD"
+                        type="text"
+                        id= "1"
+                        name= "board"
+                        defaultValue= {props.twelfth.board}
+                        select= "true"
+                        
+                        
+                        variant="outlined"
+                        
+
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.board && {error:true, helperText:props.Errors.board})}
+                    >
+                        {currencies.map(option => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
+                        
+                    </TextField>
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "INSTITUTION NAME"
+                        type= "text"
+                        id= "2"
+                        name= "institution_name"
+                        defaultValue= {props.twelfth.institution_name}
+                        
+                        
+                        variant="outlined"
+                        
+        
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.institution_name && {error:true, helperText:props.Errors.institution_name})}
+                    >
+                        
+                        
+                    </TextField>
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "JEE RANK * FILL NA IF NOT APPERRED"
+                        type= "text"
+                        id= "3"
+                        name= "jee_rank"
+                        defaultValue= {props.twelfth.jee_rank}
+                        
+                        
+                        variant="outlined"
+                        
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.jee_rank && {error:true, helperText:props.Errors.jee_rank})}
+                    >
+                        
+                    </TextField>
+                    </div>
+                    <div className={classes.inputs}>
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "CITY OF INSTITUTION"
+                        type= "text"
+                        id= "4"
+                        name= "city"
+                        defaultValue= {props.twelfth.city}
+                        
+                        
+                        
+                        variant="outlined"
+                        
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.city && {error:true, helperText:props.Errors.city})}
+                    >
+                        
+                    </TextField>
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "STATE OF INSTITUTION"
+                        type= "text"
+                        id= "5"
+                        name= "state"
+                        defaultValue= {props.twelfth.state}
+                        
+                        
+                        variant="outlined"
+                        
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.state && {error:true, helperText:props.Errors.state})}
+                    >
+                        
+                    </TextField>
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "PINCODE OF INSTITUTION"
+                        type= "text"
+                        id= "6"
+                        name= "pincode"
+                        defaultValue= {props.twelfth.pincode_of_institute}
+                        
+                        
+                        variant="outlined"
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.pincode && {error:true, helperText:props.Errors.pincode})}
+                    >
+                        
+                    </TextField>
+                    </div>
+                    <div className={classes.inputs}>
+    <TextField
+    className={classes.fields}
+    InputProps={{
+        classes: {
+          notchedOutline: classes.notchedOutline,
+          focused: classes.focused
+        }
+    }}
+                    label= "MAXIMUM MARKS"
+                        type= "text"
+                        id= "7"
+                        name= "maximum_marks"
+                        defaultValue= {props.twelfth.maximum_marks}
+                        
+                        
+                        variant="outlined"
+                        
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.maximum_marks && {error:true, helperText:props.Errors.maximum_marks})}
+                    >
+                        
+                    </TextField>
+                    
+                     
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "OBTAINED MARKS"
+                        type= "text"
+                        id= "8"
+                        name= "obtained_marks"
+                        defaultValue= {props.twelfth.obtained_marks}
+                        
+                        
+                        variant="outlined"
+                        
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.obtained_marks && {error:true, helperText:props.Errors.obtained_marks})}
+                    >
+                        
+                    </TextField>
+                    <TextField 
+                       className={classes.fields}
+                       InputProps={{
+                           classes: {
+                             notchedOutline: classes.notchedOutline,
+                             focused: classes.focused
+                           }
+                       }} 
+                        label= "MARKS TYPE"
+                        type= "text"
+                        id= "9"
+                        name= "marks_type"
+                        defaultValue= {props.twelfth.marks_type}
+                        
+                        
+                        variant="outlined"
+                        
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.marks_type && {error:true, helperText:props.Errors.marks_type})}
+                    >
+                        
+                    </TextField>
+
+                    {/* <TextField 
+                        
+                        label= ""
+                        type= "file"
+                        id= "10"
+                        name= ""
+                        defaultValue= {props.twelfth.file}
+                        
+                        
+                        variant="outlined"
+                        
+                        style={{ minWidth: "230px", maxWidth: "230px" }}
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.file&& {error:true, helperText:props.Errors.file})}
+                    >
+                        
+                    </TextField> */}
+                        </div>
+                    {/* <TextField
                         type={field.type}
                         id="outlined-basic"
                         name={field.name}
@@ -159,22 +440,21 @@ export default function TwelfthDetails(props) {
           ))}
                  
 
-                    </TextField> 
+                    </TextField>  */}
                      
                 </Grid>
-            </>
-        ));
+            // </>
+        )
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-                XII DETAILS
+                XII Details
             </Typography>
             <CardContent>
-                <Grid container>{rendertwelfthFields()}
+                <Grid container>{rendertwelfthFields}
                 
                 </Grid>
             </CardContent>
         </>
     );
 }
-
