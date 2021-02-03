@@ -83,6 +83,7 @@ class postController extends Controller
         $posts->title = $request->title;
         $posts->type = $request->type;
         $posts->description = $request->description;
+        $posts->tags = json_encode($request->tags);
         if($posts -> save()){
             return response()->json(["status" => 200]);
         }
