@@ -313,7 +313,7 @@ export default function TwelfthDetails(props) {
                         onChange={
                             props.handleInputChange
                         }
-                        {...(props.Errors.pincode_of_institute && {error:true, helperText:props.Errors.pincode_of_institute})}
+                        {...(props.Errors.pincode && {error:true, helperText:props.Errors.pincode})}
                     >
                         
                     </TextField>
