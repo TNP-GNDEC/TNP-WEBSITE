@@ -133,7 +133,22 @@ export default function StepTwo() {
         temp.obtained_marks = twelfth.obtained_marks ? "": "This field is required."
         
         temp.maximum_marks = twelfth.maximum_marks ? "": "This field is required."
+
+        temp.branch = diploma.branch ? "": "This field is required."
+        temp.institution_name = diploma.institution_name? "": "This field is required."
         
+        temp.marks_type = diploma.marks_type ? "": "This field is required."
+        
+        temp.year_of_passing = diploma.year_of_passing ? "": "This field is required."
+        temp.institution_name = diploma.institution_name? "": "This field is required."
+        
+        temp.city = diploma.city ? "": "This field is required."
+        temp.state = diploma.state ? "": "This field is required."
+        temp.pincode = diploma.pincode ? "": "This field is required."
+        temp.obtained_marks = diploma.obtained_marks ? "": "This field is required."
+        
+        temp.maximum_marks = diploma.maximum_marks ? "": "This field is required."
+        temp.stream = diploma.stream ? "": "This field is required."
         setErrors({
           ...temp
         })
@@ -210,45 +225,56 @@ export default function StepTwo() {
 
 
     };
-
+       
     const handleParentChangeInput = (e, id) => {
-        const value = e.target.value;
-        switch (id) {
-            case 1:
-                setParent({ ...diploma, branch: value });
-                break;
-            case 2:
-                setParent({ ...diploma, institution_name: value });
-                break;
-            case 3:
-                setParent({ ...diploma, city:value });
-                break;
-            case 4:
-                setParent({ ...diploma,    state:value });
-                break;
-            case 5:
-                setParent({ ...diploma, pincode: value });
-                break;
-            case 6:
-                setParent({ ...diploma, year_of_passing: value });
-                break;
-            case 7:
-                setParent({ ...diploma, obtained_marks: value });
-                break;
-            case 8:
-                setParent({ ...diploma, maximum_marks: value });
-                break;
-            case 9:
-                setParent({ ...diploma, stream: value });
-                break;
-            case 10:
-                setParent({ ...diploma, file: e.target.files});
-                break;
-                    
-            default:
-                break;
-        }
+        const name= e.target.name
+        const value= e.target.value   
+        setParent(prevState => ({
+            ...prevState,
+            [name] : value
+        }))
+
+
     };
+
+    // const handleParentChangeInput = (e, id) => {
+    //     const value = e.target.value;
+    //     switch (id) {
+    //         case 1:
+    //             setParent({ ...diploma, branch: value });
+    //             break;
+    //         case 2:
+    //             setParent({ ...diploma, institution_name: value });
+    //             break;
+    //         case 3:
+    //             setParent({ ...diploma, city:value });
+    //             break;
+    //         case 4:
+    //             setParent({ ...diploma,    state:value });
+    //             break;
+    //         case 5:
+    //             setParent({ ...diploma, pincode: value });
+    //             break;
+    //         case 6:
+    //             setParent({ ...diploma, year_of_passing: value });
+    //             break;
+    //         case 7:
+    //             setParent({ ...diploma, obtained_marks: value });
+    //             break;
+    //         case 8:
+    //             setParent({ ...diploma, maximum_marks: value });
+    //             break;
+    //         case 9:
+    //             setParent({ ...diploma, stream: value });
+    //             break;
+    //         case 10:
+    //             setParent({ ...diploma, file: e.target.files});
+    //             break;
+                    
+    //         default:
+    //             break;
+    //     }
+    // };
        
 const handleXIIClick = () => {
     setCheckbox({
@@ -372,6 +398,7 @@ const handleBothClick = () => {
                 <DiplomaDetails 
                 diploma={diploma} 
                 handleInputChange={handleParentChangeInput}
+                Errors= {errors}
                 /> 
                 <hr />
                 <Alert severity="info" className={classes.alert}>
@@ -391,6 +418,8 @@ const handleBothClick = () => {
                 <DiplomaDetails 
                 diploma={diploma} 
                 handleInputChange={handleParentChangeInput}
+               
+                Errors= {errors}
                 /> 
                 <hr />
                 <Alert severity="info" className={classes.alert}>
