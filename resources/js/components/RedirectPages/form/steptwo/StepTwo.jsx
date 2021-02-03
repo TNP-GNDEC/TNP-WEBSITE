@@ -125,6 +125,10 @@ export default function StepTwo() {
             setEror(r);
             return r? true :false
         }
+        else{
+            setEror(false)
+            console.log("Everthing is validated")
+        }
     };
     // Utility Function
     // const toCamelCase = str => {

@@ -49,13 +49,14 @@ export default function ProfileDetails(props) {
             required: false
         },
         {
-            label: "DATE OF BIRTH (yyyy-mm-dd)",
-            type: "text",
+            label: "DATE OF BIRTH",
+            type: "date",
             id: 3,
             select: false,
             value: props.Profile.dob,
             options: [],
-            required: true
+            required: true,
+        
         },
         {
             label: "AADHAR NO.",
@@ -171,10 +172,15 @@ export default function ProfileDetails(props) {
                         id="outlined-basic"
                         variant="outlined"
                         label={field.label}
+                        format={field.id==3?"yyyy/mm/dd":""}
                         value={field.value}
                         select={field.select}
-                        style={{ minWidth: "230px" }}
+                        style={{ minWidth: "230px", maxWidth:"230px" }}
                         required={field.required}
+                        InputLabelProps={ field.id==3? {
+                            shrink: true,
+                          } : {}}
+                        inputProps={ field.id==4? {maxLength:16, minLength:16} : {}}
                         // onBlur={() => {
                         //     console.log(`I am blurred and ready to process`);
                         //     field.id==3 && setDateLabel("");

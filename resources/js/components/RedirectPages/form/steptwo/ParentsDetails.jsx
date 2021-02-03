@@ -88,7 +88,7 @@ export default function ParentDetails(props) {
                         label={field.label}
                         inputProps={{maxLength:field.maxLength, minLength:field.minLength }}
                         value={field.value}
-                        style={{ minWidth:"230px"}}
+                        style={{ minWidth: "230px", maxWidth:"230px" }}
                         required={field.required}
                         error={ checkEror(field) ? true : false }
                         onChange={e => {

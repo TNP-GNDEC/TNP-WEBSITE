@@ -289,7 +289,7 @@ export default function Details(props) {
                         label={field.label}
                         value={field.value}
                         select={field.select}
-                        style={{ minWidth: "230px" }}
+                        style={{ minWidth: "230px", maxWidth:"230px" }}
                         disabled={field.disabled}
                         required={true}
                         onChange={e => {
