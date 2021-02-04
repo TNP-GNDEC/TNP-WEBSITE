@@ -1,29 +1,36 @@
 
 import { Alert } from '@material-ui/lab';
-import {makeStyles} from '@material-ui/core';
 import React from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import Collapse from '@material-ui/core/Collapse';
+import CloseIcon from '@material-ui/icons/Close';
 
 
-const useStyles = makeStyles((theme) => ({
-    close:{
-        marginRight: "5px"
-    }
-}));
 export default function Notisfication(props){
     const {notify, setNotify} = props;
-    const classes = useStyles();
-    const handleClose = (event, reason) =>{
-        setNotify({
-            ...notify,
-            isOpen:false,
-            type: ""
-        })
-    }
 
     return (
-            <Alert severity={notify.type} open={notify.isOpen} autohideduration={3000}>
+        <Collapse in={notify.isOpen}>
+            <Alert 
+                severity={notify.type}
+                action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={() => {
+                        setNotify({
+                            isOpen: false,
+                            type: ""
+                        });
+                      }}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                  }
+            >
                 {notify.message}
-                <div className={classes.close} onClose={handleClose}></div>
             </Alert>
+        </Collapse>
     )
 }

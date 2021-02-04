@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
         padding: "20px 0px",
         fontWeight: "500",
+        backgroundColor: "#038ed459",
     }, 
     textFieldContainer: {
         display: "flex",
@@ -31,8 +32,7 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
     },
     fields:{
-        width: "80%",
-        margin: "auto"
+        width: "25%",
     },
     notchedOutline: {
         boxShadow: "0px 2px 6px #75757533",

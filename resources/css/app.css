@@ -1,3 +1,6 @@
+body{
+  background-color: #193b681a;
+}
 div.DraftEditor-root {
     height: 500px;
     width: auto;

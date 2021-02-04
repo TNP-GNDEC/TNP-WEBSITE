@@ -10,6 +10,9 @@ import Button from "@material-ui/core/Button";
 import { concat } from "lodash";
 import AddressDetails from "./AddressDetails";
 const useStyles = makeStyles(theme => ({
+    root:{
+        background: theme.palette.primary.light
+    },
     head: {
         color: "#038ed4",
         padding: "20px "
@@ -53,7 +56,30 @@ const useStyles = makeStyles(theme => ({
     },
     pos: {
         float: "right"
-    }
+    },
+    btnBox:{
+        width: "90%",
+        margin: "20px auto",
+        paddingBottom: "50px",
+        textAlign: "right"
+    },
+    button: {
+        // marginRight: theme.spacing(1)
+        border: "none",
+        textDecoration: "none",
+        padding: "10px 35px",
+        color: theme.palette.secondary.main,
+        background: theme.palette.primary.main,
+        borderRadius: "20px",
+        boxShadow: "0px 15px 25px #038ed433",
+        "&:focus":{
+            outline: "none"
+        },
+        "&:hover":{
+            background: theme.palette.primary.main,
+            color: theme.palette.secondary.main,
+        },
+    },
 }));
 
 export default function StepTwo() {
@@ -383,7 +409,7 @@ export default function StepTwo() {
         }
     };
     return (
-        <div>
+        <div className={classes.root}>
             <form onSubmit={event => handleFormSubmit(event)}>
                 <Grid container className={classes.container}>
                     <Grid item xs={12} className={classes.Cardcontainers}>
@@ -434,9 +460,11 @@ export default function StepTwo() {
                         </Card>
                     </Grid>
                 </Grid>
-                <Button type="submit" variant="contained" color="primary">
-                    SUBMIT
-                </Button>
+                <div className={classes.btnBox}>
+                <button type="submit" className={classes.button}>
+                    Submit & Next
+                </button>
+                </div>
             </form>
         </div>
     );

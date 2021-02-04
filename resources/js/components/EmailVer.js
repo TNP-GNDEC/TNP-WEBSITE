@@ -172,7 +172,7 @@ const useStyles = makeStyles((theme) => ({
             <div>
               {/* <Typography className={classes.body}>{getStepContent(activeStep)}</Typography> */}
               <div className={classes.body}>  {getStepContent(activeStep) }</div>
-              <div>
+              {/* <div>
                 <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                   Back
                 </Button>
@@ -194,7 +194,7 @@ const useStyles = makeStyles((theme) => ({
                       {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Complete Step'}
                     </Button>
                   ))}
-              </div>
+              </div> */}
             </div>
           )}
         </div>

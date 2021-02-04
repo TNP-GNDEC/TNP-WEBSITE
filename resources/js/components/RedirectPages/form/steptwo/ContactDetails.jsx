@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
         padding: "20px 0px",
         fontWeight: "500",
+        backgroundColor: "#038ed459",
     }, 
     textFieldContainer: {
         display: "flex",

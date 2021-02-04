@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
         padding: "20px 0px",
         fontWeight: "500",
+        backgroundColor: "#038ed459",
     }, 
     textFieldContainer: {
         display: "flex",
@@ -113,16 +114,16 @@ export default function Postgraduation(props) {
             value: props.Post.maximum_marks,
             options: []
         },
-        {
-            label: "",
-            type: "file",
-            id:9,
-            select: "",
-            value: props.Post.dmc,
-            options: [
+        // {
+        //     label: "",
+        //     type: "file",
+        //     id:9,
+        //     select: "",
+        //     value: props.Post.dmc,
+        //     options: [
              
-            ]
-        },
+        //     ]
+        // },
 
        
 
@@ -175,7 +176,7 @@ export default function Postgraduation(props) {
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-            🎓 Postgraduation Details
+                Postgraduation Details
             </Typography>
             <CardContent>
                 <Grid container>{renderPostFields()}</Grid>

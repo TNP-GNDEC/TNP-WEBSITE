@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
         padding: "20px 0px",
         fontWeight: "500",
+        backgroundColor: "#038ed459",
     }, 
     textFieldContainer: {
         display: "flex",
@@ -223,16 +224,16 @@ export default function Degree(props) {
             ]
         },
 
-        {
-            label: "",
-            type: "file",
-            id:21,
-            select: "",
-            value: props.Degree.dmc,
-            options: [
+        // {
+        //     label: "",
+        //     type: "file",
+        //     id:21,
+        //     select: "",
+        //     value: props.Degree.dmc,
+        //     options: [
              
-            ]
-        },
+        //     ]
+        // },
 
        
 
@@ -286,7 +287,7 @@ export default function Degree(props) {
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-            🎓 Degree  Details
+                Degree  Details
             </Typography>
             <CardContent>
                 <Grid container>{renderDegreeFields()}</Grid>
