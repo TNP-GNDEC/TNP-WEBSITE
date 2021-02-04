@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\PasswordReset; 
 use App\Models\User;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class ForgotPasswordController extends Controller
 {
@@ -35,7 +36,7 @@ class ForgotPasswordController extends Controller
 
     		'email' => $email,
 
-    		'token' => $token,
+			'token' => $token,
     	]);
     		 
     	$tokenData = PasswordReset::where('email', $email)->first();
@@ -53,8 +54,10 @@ class ForgotPasswordController extends Controller
 	
 	public function resetPassword(Request $request)
     {
-        $request->validate(['email'=>'required|email', 'password'=>'required|min:6', 'confirmPassword'=>'required|same:password']);
-      
+        $request->validate(['email'=>'required|email', 'password'=>'required|min:6', 'confirmPassword'=>'required']);
+		if($request->confirmPassword != $request->password){
+			return response()->json(['msg'=> 'Enter the Same Password Twice!']);
+		}
     	$email = $request->email;
 
     	$user = User::where('email', $email)->first();
@@ -63,12 +66,12 @@ class ForgotPasswordController extends Controller
 
     		return response()->json(['msg'=> 'Invalid Mail!']);		
     	}
-    	$tokenData = PasswordReset::where('token', $request->token)->first();
-
+    	// $tokenData = PasswordReset::where('token', $request->token)->first();
+        $tokenData = PasswordReset::where('token','=',$request->token)
+			->where('created_at','>',Carbon::now()->subHours(1))
+			->first();
         if(!($request->has('token') && $tokenData)){
-
-            return response()->json(['msg' =>'Token not Found!']);      
-
+            return response()->json(['msg' =>'Token not Found or Expires!']);      
         }
 
          $user->fill(['password' => bcrypt($request->password)])->save();
