@@ -47,20 +47,35 @@ const useStyles = makeStyles(theme => ({
 
 export default function DiplomaDetails(props) {
     const classes = useStyles();
-    const currencies = [
-        {
-            value:'1',
-            label:'CBSE',
-        },
-        {
-            value:'2',
-            label:'ICSE',
-        },
-        {
-            value:'2',
-            label:'PSEB',
-        }
-      ];
+    
+        const currencies = [
+            {
+                value:"ONE",
+                label:"Computer Science And Engg"
+            },
+            {
+                value:"TWO",
+                label:"IT Engg"
+            },
+            {
+                value:"THREE",
+                label:"Mechenical Engg"
+            },
+            {
+                value:"FOUR",
+                label:"Eletrical Engg"
+            },
+            {
+                value:"FIVE",
+                label:"Civil Engg"
+            },
+            {
+                value:"SIX",
+                label:"Production Engg"
+            }
+          ];
+        
+      
     const fields = [
         {
             label: "branch",
@@ -171,7 +186,7 @@ export default function DiplomaDetails(props) {
                         label= "BRANCH"
                         type="text"
                         id= "1"
-                        name= "bRANCH"
+                        name= "branch"
                         defaultValue= {props.diploma.branch}
                         select= "true"
                         
