@@ -7,19 +7,29 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
     cardHeading: {
-        color: "#fff",
+        color: theme.palette.primary.dark,
         display: "flex",
         justifyContent: "center",
         padding: "20px 0px",
         fontWeight: "500",
-        background: theme.palette.primary.main
-    },
+        backgroundColor: "#038ed459",
+    }, 
     textFieldContainer: {
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
         padding: "20px 63px"
-    }
+    },
+    fields:{
+        width: "80%"
+    },
+    notchedOutline: {
+        boxShadow: "0px 2px 6px #75757533",
+      },
+      focused: {
+        borderColor: theme.palette.secondary.main,
+        boxShadow: "0px 2px 6px #038ed433"
+      },
 }));
 
 export default function ParentDetails(props) {
@@ -82,6 +92,13 @@ export default function ParentDetails(props) {
                 >
                     <TextField
                         type={field.type}
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
                         id="outlined-basic"
                         name={field.name}
                         variant="outlined"
@@ -102,7 +119,7 @@ export default function ParentDetails(props) {
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-                PARENTS DETAILS
+                Parents Details
             </Typography>
             <CardContent>
                 <Grid container>{renderParentFields()}</Grid>

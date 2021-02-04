@@ -8,8 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Twelfth extends Model
 {
     use HasFactory;
+    protected $table = "twelfth";
+
     protected $fillable = [
         "board",
+        "user_id",
+        "urn",
+        "crn",
         "institution_name",
         "jee_rank",
         "marks_type",

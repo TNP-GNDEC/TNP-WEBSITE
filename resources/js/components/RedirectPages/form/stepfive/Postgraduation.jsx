@@ -8,19 +8,38 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles(theme => ({
     cardHeading: {
-        color: "#fff",
+        color: theme.palette.primary.dark,
         display: "flex",
         justifyContent: "center",
         padding: "20px 0px",
         fontWeight: "500",
-        background: theme.palette.primary.main
-    },
+        backgroundColor: "#038ed459",
+    }, 
     textFieldContainer: {
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignContent: "center",
-        padding: "20px 0px"
-    }
+        padding: "20px 0px",
+        width: "100%",
+    },
+    inputs:{
+        display: "flex",
+        justifyContent: "space-evenly",
+        alignContent: "center",
+        padding: "10px 0px",
+        width: "100%",
+    },
+    fields:{
+        width: "80%",
+        margin: "auto"
+    },
+    notchedOutline: {
+        boxShadow: "0px 2px 6px #75757533",
+      },
+      focused: {
+        borderColor: theme.palette.secondary.main,
+        boxShadow: "0px 2px 6px #038ed433"
+      },
 }));
 
 
@@ -95,16 +114,16 @@ export default function Postgraduation(props) {
             value: props.Post.maximum_marks,
             options: []
         },
-        {
-            label: "",
-            type: "file",
-            id:9,
-            select: "",
-            value: props.Post.dmc,
-            options: [
+        // {
+        //     label: "",
+        //     type: "file",
+        //     id:9,
+        //     select: "",
+        //     value: props.Post.dmc,
+        //     options: [
              
-            ]
-        },
+        //     ]
+        // },
 
        
 
@@ -121,6 +140,13 @@ export default function Postgraduation(props) {
                     className={classes.textFieldContainer}
                 >
                     <TextField
+                    className={classes.fields}
+                    InputProps={{
+                        classes: {
+                          notchedOutline: classes.notchedOutline,
+                          focused: classes.focused
+                        }
+                    }}
                         type={field.type}
                         id="outlined-basic"
                         variant="outlined"
@@ -128,7 +154,6 @@ export default function Postgraduation(props) {
                         value={field.value}
                         select={field.select}
                         inputProps={{ accept: ".pdf" }}
-                        style={{ minWidth: "230px" ,maxWidth:"230px"}}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
@@ -151,7 +176,7 @@ export default function Postgraduation(props) {
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-            🎓 POSTGRADUATION DETAILS
+                Postgraduation Details
             </Typography>
             <CardContent>
                 <Grid container>{renderPostFields()}</Grid>

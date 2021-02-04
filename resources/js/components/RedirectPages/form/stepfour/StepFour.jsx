@@ -1,4 +1,5 @@
 import React,{ useState } from "react";
+import { Alert } from '@material-ui/lab';
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, FormGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -53,6 +54,7 @@ const useStyles = makeStyles(theme => ({
         alignContent: "center"
     },
     Cardcontainers: {
+        width: "100%",
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
@@ -65,7 +67,22 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 0px"
     },
     cardStyles: {
-        padding: "18px 20px"
+        width: "90%",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033"
+    },
+    alert: {
+        margin: "auto",
+        width: "90%",
+      },
+    fileupload:{
+        width: "90%",
+        marginLeft: "60px",
+        padding: "20px 0"
+    },
+    radio:{
+        width: "100%",
+        padding: "10px",
     },
     pos: {
         float: "right"
@@ -116,7 +133,22 @@ export default function StepTwo() {
         temp.obtained_marks = twelfth.obtained_marks ? "": "This field is required."
         
         temp.maximum_marks = twelfth.maximum_marks ? "": "This field is required."
+
+        temp.branch = diploma.branch ? "": "This field is required."
+        temp.institution_name = diploma.institution_name? "": "This field is required."
         
+        temp.marks_type = diploma.marks_type ? "": "This field is required."
+        
+        temp.year_of_passing = diploma.year_of_passing ? "": "This field is required."
+        temp.institution_name = diploma.institution_name? "": "This field is required."
+        
+        temp.city = diploma.city ? "": "This field is required."
+        temp.state = diploma.state ? "": "This field is required."
+        temp.pincode = diploma.pincode ? "": "This field is required."
+        temp.obtained_marks = diploma.obtained_marks ? "": "This field is required."
+        
+        temp.maximum_marks = diploma.maximum_marks ? "": "This field is required."
+        temp.stream = diploma.stream ? "": "This field is required."
         setErrors({
           ...temp
         })
@@ -193,45 +225,56 @@ export default function StepTwo() {
 
 
     };
-
+       
     const handleParentChangeInput = (e, id) => {
-        const value = e.target.value;
-        switch (id) {
-            case 1:
-                setParent({ ...diploma, branch: value });
-                break;
-            case 2:
-                setParent({ ...diploma, institution_name: value });
-                break;
-            case 3:
-                setParent({ ...diploma, city:value });
-                break;
-            case 4:
-                setParent({ ...diploma,    state:value });
-                break;
-            case 5:
-                setParent({ ...diploma, pincode: value });
-                break;
-            case 6:
-                setParent({ ...diploma, year_of_passing: value });
-                break;
-            case 7:
-                setParent({ ...diploma, obtained_marks: value });
-                break;
-            case 8:
-                setParent({ ...diploma, maximum_marks: value });
-                break;
-            case 9:
-                setParent({ ...diploma, stream: value });
-                break;
-            case 10:
-                setParent({ ...diploma, file: e.target.files});
-                break;
-                    
-            default:
-                break;
-        }
+        const name= e.target.name
+        const value= e.target.value   
+        setParent(prevState => ({
+            ...prevState,
+            [name] : value
+        }))
+
+
     };
+
+    // const handleParentChangeInput = (e, id) => {
+    //     const value = e.target.value;
+    //     switch (id) {
+    //         case 1:
+    //             setParent({ ...diploma, branch: value });
+    //             break;
+    //         case 2:
+    //             setParent({ ...diploma, institution_name: value });
+    //             break;
+    //         case 3:
+    //             setParent({ ...diploma, city:value });
+    //             break;
+    //         case 4:
+    //             setParent({ ...diploma,    state:value });
+    //             break;
+    //         case 5:
+    //             setParent({ ...diploma, pincode: value });
+    //             break;
+    //         case 6:
+    //             setParent({ ...diploma, year_of_passing: value });
+    //             break;
+    //         case 7:
+    //             setParent({ ...diploma, obtained_marks: value });
+    //             break;
+    //         case 8:
+    //             setParent({ ...diploma, maximum_marks: value });
+    //             break;
+    //         case 9:
+    //             setParent({ ...diploma, stream: value });
+    //             break;
+    //         case 10:
+    //             setParent({ ...diploma, file: e.target.files});
+    //             break;
+                    
+    //         default:
+    //             break;
+    //     }
+    // };
        
 const handleXIIClick = () => {
     setCheckbox({
@@ -298,12 +341,13 @@ const handleBothClick = () => {
             <form onSubmit={handleFormSubmit}>
             <Grid container className={classes.container}>
             <Grid item xs={12} className={classes.Cardcontainers}>
-            <Card>
-       <FormControl component="fieldset">
+            <Card className={classes.cardStyles}>
+       <FormControl component="fieldset" className={classes.radio}>
            
            
        
-      <RadioGroup aria-label="position" row>
+      <RadioGroup aria-label="position" row className={classes.select}>
+      <FormLabel component="legend" > Please select XII or Diploma or both under which category you fall </FormLabel>
         <FormControlLabel onClick ={handleXIIClick}
           value="0"
           control={<Radio color="primary" />}
@@ -322,8 +366,6 @@ const handleBothClick = () => {
           label="Both"
           labelPlacement="start"
         />
-   
-       <FormLabel component="legend" ><code>  * please select XII or Diploma or both under which category you fall *  </code> </FormLabel>
      
         
       </RadioGroup>
@@ -331,7 +373,7 @@ const handleBothClick = () => {
     </Card>
     </Grid>
     {
-        checkbox.XII=== "1"  && <Grid item xs={10} className={classes.Cardcontainers}>
+        checkbox.XII=== "1"  && <Grid item xs={12} className={classes.Cardcontainers}>
                     
             <Card className={classes.cardStyles}>
 
@@ -341,26 +383,29 @@ const handleBothClick = () => {
                 handleInputChange={handleProfileChangeInput}
                 Errors= {errors}
                 />
-                <label htmlFor="file">File Upload:</label>
-                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
-                </Paper>
+                <hr />
+                <Alert severity="info" className={classes.alert}>
+                            Note : Upload <CloudUploadIcon/> Scanned copies of your
+                                    twelfth certificates.(PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
             </Card>
         </Grid>
     }
 {
-        checkbox.diploma ==="1" &&  <Grid item xs={10} className={classes.Cardcontainers}>
+        checkbox.diploma ==="1" &&  <Grid item xs={12} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>
                 <DiplomaDetails 
                 diploma={diploma} 
                 handleInputChange={handleParentChangeInput}
+                Errors= {errors}
                 /> 
-                <label htmlFor="file">File Upload:</label>
-                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
-                </Paper>
+                <hr />
+                <Alert severity="info" className={classes.alert}>
+                            Note : Upload <CloudUploadIcon/> Scanned copies of your
+                                    Diploma certificates.(PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
             </Card>
         </Grid>
     }
@@ -368,20 +413,23 @@ const handleBothClick = () => {
     {
         checkbox.both === "1" &&
         <>
-        <Grid item xs={10} className={classes.Cardcontainers}>
+        <Grid item xs={12} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>
                 <DiplomaDetails 
                 diploma={diploma} 
                 handleInputChange={handleParentChangeInput}
+               
+                Errors= {errors}
                 /> 
-                <label htmlFor="file">File Upload:</label>
-                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your Diploma certificates. </code>
-                </Paper>
+                <hr />
+                <Alert severity="info" className={classes.alert}>
+                            Note : Upload <CloudUploadIcon/> Scanned copies of your
+                                    Diploma certificates.(PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
             </Card>
         </Grid>
-        <Grid item xs={10} className={classes.Cardcontainers}>
+        <Grid item xs={12} className={classes.Cardcontainers}>
                     
             <Card className={classes.cardStyles}>
 
@@ -391,21 +439,16 @@ const handleBothClick = () => {
                 handleInputChange={handleProfileChangeInput}
                 Errors= {errors}
                 />
-                <label htmlFor="file">File Upload:</label>
-                <input onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
-                <Paper variant="outlined" elevation={3} className={classes.note}>
-                    <code>Note : Upload <CloudUploadIcon /> Scanned copies of your twelfth certificates. </code>
-                </Paper>
+                <hr />
+                <Alert severity="info" className={classes.alert}>
+                            Note : Upload <CloudUploadIcon/> Scanned copies of your
+                                    twelfth certificates.(PDF Only)
+                            </Alert>
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
             </Card>
         </Grid>
         </>
     }
-
-
-                <Grid item xs={10} className={classes.Cardcontainers}>
-                    <Card className={classes.cardStyles}>
-                    </Card>
-                </Grid>
             </Grid>
             <Button className={classes.pos} type="submit" variant="contained" color="primary">
                 Submit

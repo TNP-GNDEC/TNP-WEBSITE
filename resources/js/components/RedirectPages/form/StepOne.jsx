@@ -1,43 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import CusButton from "./CusButton";
  import Button from '@material-ui/core/Button';
+import Notisfication from '../../Auth/Notisfication';
 
 const useStyles = makeStyles(theme => ({
     heading: {
-        margin: "60px",
-        color: "#038ed4"
+        paddingTop: "20px"
+    },
+    para:{
+        color: "#000"
     },
     input: {
-        height: "50px",
+        height: "40px",
         width: "100%",
-        margin: "50px ",
         borderRadius: "20px",
-        textAlign: "Center"
+        "&:focus":{
+            outline: "none"
+        },
+        border: "1px solid #038ed4",
+        boxShadow: "0px 5px 15px #038ed433"
     },
     field: {
-        height: "200px",
-        background: "#DADADA"
-    },
-    otp: {
-        padding: "8px 70px 8px 70px",
-        margin: "0 auto"
+        width: "60%",
+        paddingTop: "20px",
+        margin: "auto"
     },
     box: {
-        margin: "0 auto",
-        width: "50%",
+        margin: "30px auto",
+        width: "60%",
         alignContent: "center",
-        background: "#DADADA	",
-        color: "BLUE ",
+        background: theme.palette.secondary.main,
+        color: theme.palette.primary.dark,
         textAlign: "center",
-        borderRadius: "20px",
-
-        ":hover": {
-            backgroundColor: "primary.main",
-
-            margin: "0px"
-        }
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033",
     },
     root: {
         width: "100%"
@@ -49,7 +47,21 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         // marginRight: theme.spacing(1)
-        margin: "0 auto"
+        margin: "30px auto",
+        border: "none",
+        textDecoration: "none",
+        padding: "10px 35px",
+        color: theme.palette.secondary.main,
+        background: theme.palette.primary.main,
+        borderRadius: "20px",
+        boxShadow: "0px 15px 25px #038ed433",
+        "&:focus":{
+            outline: "none"
+        },
+    },
+    alert:{
+        width: "60%",
+        margin: "auto"
     },
     spacer: {
         flex: "1 1 auto"
@@ -68,15 +80,15 @@ const useStyles = makeStyles(theme => ({
 }));
 export default function StepOne() {
     const [email, setEmail] = React.useState("");
+    const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
+
     const handleChange = (e) => {
         const email= e.target.value   
-        setEmail(email)
-        console.log(email)
-
+        setEmail(email);
       }
     
       const handleFormSubmit = (e) => {
-        event.preventDefault();
+        e.preventDefault();
         var uuid= localStorage.getItem("useruuid")
         var id= localStorage.getItem("userid")
         console.log(uuid)
@@ -86,9 +98,12 @@ export default function StepOne() {
     
       })
       .then((response) => {
-        var user=response.data
-        console.log(response.data)
-          
+        if(response.data.msg){
+            setNotify({isOpen:true, message:response.data.msg, type:'success'})
+          }
+        if(response.data.alert){
+        setNotify({isOpen:true, message:response.data.alert, type:'error'})
+        }
       })
       .catch((error) => {
           console.log(error);
@@ -101,10 +116,10 @@ export default function StepOne() {
         <Card className={classes.box}>
             <div className={classes.heading}>
                 <b>
-                    <h1>Email verification</h1>
+                    <h1>Email Verification</h1>
                 </b>
                 <b>
-                    <p>
+                    <p className={classes.para}>
                         Kindly enter your personal email id instead your college
                         mail id
                     </p>
@@ -112,10 +127,10 @@ export default function StepOne() {
                 <div>
                     <form
                         className={classes.field}
-                        noValidate
                         autoComplete="off"
                         onSubmit={(event) => handleFormSubmit(event)}
                     >
+                        <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
                         <div
                             style={{
                                 display: "flex",
@@ -123,21 +138,23 @@ export default function StepOne() {
                                 justifyContent: "center",
                                 flexDirection:"column"
                             }}
-                        >
+                        >   
                             <label for="email"></label>
                             <input
                                 className={classes.input}
                                 type="email"
                                 id="email"
                                 name="email"
-                                placeholder="Email"
+                                placeholder="Enter your email..."
                                 defaultValue={email}
                                 onChange={handleChange}
+                                required
                             />
-                            <Button 
-                            type="submit" 
-                              variant="contained" color="primary">SEND OTP</Button> 
+                            
                         </div>
+                        <button 
+                              type="submit" 
+                              className={classes.button}>Verify!</button> 
                     </form>
                 </div>
             </div>

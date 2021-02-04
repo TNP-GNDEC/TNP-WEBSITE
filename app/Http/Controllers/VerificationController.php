@@ -26,14 +26,18 @@ class VerificationController extends Controller {
 
         $user = User::findOrFail($request->id);
         $user->email = $request->email;
-
+    	$userValid = User::where('email', $user->email)->first();
+    	if (!$userValid) {
+    		return response()->json(['alert'=> 'Invalid Mail!']);		
+        }
+        
         if (!$user->hasVerifiedEmail()) {
             $user->sendEmailVerificationNotification(new EmailVerification);
-            $user->markEmailAsVerified();
-            $form_step_change= DB::table('form_statuses')
-            ->where('user_id', $user->id)
-            ->update(['form_step' => 1]);
-            return response()->json(["msg" => "Email verification link sent on your email id"]);
+            // $user->markEmailAsVerified();
+            // $form_step_change= DB::table('form_statuses')
+            // ->where('user_id', $user->id)
+            // ->update(['form_step' => 1]);
+            return response()->json(["msg" => "Email verification link sent on your email id, it may take upto 5mins Rewards GNE Server"]);
         }
 
         return response()->json(["msg" => "Email already verified."]);
