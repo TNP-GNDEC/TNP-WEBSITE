@@ -5,6 +5,9 @@ import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import 'react-tagsinput/react-tagsinput.css'
+import '../../../../css/app.css';
+import TagsInput from 'react-tagsinput'
 
 class EditPosts extends React.Component {
     state = {
@@ -12,7 +15,11 @@ class EditPosts extends React.Component {
         type: '',
         description: '',
         editorState: EditorState.createEmpty(),
+        tags: [],
     }
+    handleChange(tags) {
+        this.setState({tags})
+      }
 
     handleInput = (e) => {
         this.setState({[e.target.name]: e.target.value});
@@ -51,7 +58,8 @@ class EditPosts extends React.Component {
         const { contentBlocks, entityMap } = blocksFromHtml;
         const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
         this.setState({editorState: EditorState.createWithContent(contentState)});
-        
+        const tagwa= JSON.parse(res.data.posts.tags);
+        this.setState({tags: tagwa});
     }
 
     render(){
@@ -89,11 +97,12 @@ class EditPosts extends React.Component {
                                             onEditorStateChange={this.onEditorStateChange}
                                      />
                                 </div>
-                            
+
                                 {/* <textarea type="text" name="description" className="form-control highlight"
                                 value={this.state.description} onChange={this.handleInput} 
                                 placeholder="Write the Description" required/> */}
                             </div>
+                            <TagsInput value={this.state.tags} onChange={tags => this.handleChange(tags)} />
                             <div className="form-group">
                                 <button type="submit" className="primary">
                                     Edit Post

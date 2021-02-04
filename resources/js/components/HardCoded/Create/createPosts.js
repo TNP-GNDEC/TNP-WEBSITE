@@ -5,9 +5,10 @@ import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import 'react-tagsinput/react-tagsinput.css'
 import '../../../../css/app.css';
 import TagsInput from 'react-tagsinput'
-import 'react-tagsinput/react-tagsinput.css'
+
 const useStyles = theme => ({
     description:{
         
@@ -44,8 +45,6 @@ class CreatePosts extends React.Component {
     }
     savePost = async (e) => {
         e.preventDefault();
-        const myJsonString = JSON.stringify(this.state.tags);
-        this.setState({json : myJsonString});
         console.log(myJsonString);
         const res = await axios.post("/addPost", this.state);
         if(res.data.status === 200){

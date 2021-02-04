@@ -57,7 +57,7 @@ export default function ShowPost() {
   });
 
   const fetchPosts = async () => { // Function featching posts
-    const res = await axios.get(`/addPost/${id}/edit`);
+    const res = await Axios.get(`/addPost/${id}/edit`);
     if(res.data.status === 200){
         setData({
           posts: res.data.posts,
@@ -78,7 +78,7 @@ export default function ShowPost() {
         <Grid container spacing={3}>
           <Grid item md={9} className={classes.center}>
             <Paper className={classes.paper}>
-              <Data posts = {data.posts} key={data.posts.id} />
+              {/* <Data posts = {data.posts} key={data.posts.id} /> */}
             </Paper>
           </Grid>
           <Grid item md={3} className={classes.right} display={{ xs: 'none', md: 'block' }}>

@@ -173,7 +173,6 @@ class Data extends React.Component {
         const {classes} = this.props;
         const html = posts.description;
         const tagwa = JSON.parse(posts.tags);
-        console.log(tagwa);
         if(window.location.href === window.origin + "/coordinator"){
             return(
                 <Card className={classes.root}>
