@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       paddingTop: '90px',
       minHeight: "100vh",
+      paddingBottom: "60px",
       background: theme.palette.primary.light
     },
     button: {
@@ -46,7 +47,10 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "0px 12px 20px #00000033",
       display: "block",
       background: theme.palette.secondary.main,
-      paddingBottom: "10px"
+      paddingBottom: "10px",
+      ['@media (max-width:830px)']: {
+        display: "none"
+      }
     },
     alert: {
       margin: "auto",
@@ -69,14 +73,14 @@ const useStyles = makeStyles((theme) => ({
     return ['Email Verification','Personal Details', 'Matriculation','12 or Diploma','Post Graduation/Degree','Verify'];
   }
   
-  function getStepContent(step) {
+  function getStepContent(step, next, complete,back) {
     switch (step) {
       case 0:
-        return <StepOne/>;
+        return <StepOne Next={next} Complete={complete} />;
       case 1:
-        return <StepTwo /> ;
+        return <StepTwo Next={next} Complete={complete} /> ;
       case 2:
-        return <StepThree />;
+        return <StepThree Next={next} Complete={complete} Back={back} />;
       case 3:
         return <StepFour />;
         case 4:
@@ -171,7 +175,7 @@ const useStyles = makeStyles((theme) => ({
           ) : (
             <div>
               {/* <Typography className={classes.body}>{getStepContent(activeStep)}</Typography> */}
-              <div className={classes.body}>  {getStepContent(activeStep) }</div>
+              <div className={classes.body}>  {getStepContent(activeStep, handleNext, handleComplete, handleBack) }</div>
               {/* <div>
                 <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                   Back

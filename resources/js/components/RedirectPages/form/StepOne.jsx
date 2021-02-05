@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import CusButton from "./CusButton";
@@ -25,10 +25,13 @@ const useStyles = makeStyles(theme => ({
     field: {
         width: "60%",
         paddingTop: "20px",
-        margin: "auto"
+        margin: "auto",
+        ['@media (max-width:650px)']: {
+             width: "90%"
+          }
     },
     box: {
-        margin: "30px auto",
+        margin: "30px auto 60px",
         width: "60%",
         alignContent: "center",
         background: theme.palette.secondary.main,
@@ -36,9 +39,13 @@ const useStyles = makeStyles(theme => ({
         textAlign: "center",
         borderRadius: "10px",
         boxShadow: "0px 15px 25px #00000033",
+        ['@media (max-width:960px)']: {
+            width: "90%"
+          }
     },
     root: {
-        width: "100%"
+        width: "100%",
+        paddingBottom: "60px"
     },
     buttonWrapper: {
         display: "flex",
@@ -78,7 +85,8 @@ const useStyles = makeStyles(theme => ({
         margin: "0px 0px px 0px"
     }
 }));
-export default function StepOne() {
+export default function StepOne(props) {
+    const [loading, setLoading] = useState(true);
     const [email, setEmail] = React.useState("");
     const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
 
@@ -110,7 +118,38 @@ export default function StepOne() {
       });
       }
     
+      const fetchUsers = async () => { // Function featching users
+        var id= localStorage.getItem("userid")
+        const res = await axios.get(`/api/email/getusers/${id}`);
+        if (res.data.msg ===  "Email already verified."){
+            props.Complete();
+            props.Next();
+        }
+        setLoading(false);
+      }
+
+    useEffect(()=>{
+       fetchUsers();
+    },[])
+
+
     const classes = useStyles();
+    if(loading){
+        return(
+            <Card className={classes.box}>
+                <div className={classes.heading}>
+                <b>
+                    <h1>Please Wait...</h1>
+                </b>
+                <b>
+                    <p className={classes.para}>
+                        Checking the Step 1 - Email Verification Status
+                    </p>
+                </b>
+                </div>
+            </Card>
+        )
+    }
     return (
         
         <Card className={classes.box}>

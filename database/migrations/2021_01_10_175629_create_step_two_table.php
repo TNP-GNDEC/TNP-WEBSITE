@@ -12,7 +12,7 @@ class CreateStepTwoTable extends Migration
      */
     public function up()
     {
-        Schema::create('personalDetails', function (Blueprint $table) {
+        Schema::create('personaldetails', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('urn')->unsigned()->unique();

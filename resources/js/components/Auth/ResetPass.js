@@ -103,7 +103,6 @@ export default function ResetPass() {
 
 const validate = () => {
   let temp = {}
-  temp.email = state.email ? "": "This field is required."
   temp.password = state.password.length>5 ? "": "Min 6 char required."
   temp.confirmPassword = state.confirmPassword.length>5 ? "": "Min 6 char required."
   setErrors({
@@ -113,20 +112,11 @@ const validate = () => {
   return true
 }
   const [state , setState] = useState({
-    email: "",
     password: "",
     confirmPassword: "",
     token: ""
 });
 
-const handleEmailChange = (e) => {
-  const name= e.target.name
-  const value= e.target.value   
-  setState(prevState => ({
-      ...prevState,
-      [name] : value
-  }))
-}
 
 const handlepasswordChange = (e) => {
   const name= e.target.name
@@ -150,7 +140,6 @@ const handleFormSubmit= async (event)=>{
     event.preventDefault();
     if(validate()){}
     axios.post('/reset-password', {
-      email: state.email,
       password: state.password,
       confirmPassword: state.confirmPassword,
       token: token
@@ -159,6 +148,9 @@ const handleFormSubmit= async (event)=>{
     var user=response.data.msg
     if(user){
       setNotify({isOpen:true, message:user, type:'error'})
+    }
+    if(response.data.alert){
+      setNotify({isOpen:true, message:response.data.alert, type:'success'})
     }
     if(response.data.status === 200){
       window.location.href = window.origin+ "/login";
@@ -183,24 +175,6 @@ const handleFormSubmit= async (event)=>{
         </Typography>
         <form onSubmit={(event) => handleFormSubmit(event)} className={classes.form}>
         <Notisfication notify={notify} setNotify={setNotify} />
-        <TextField
-            variant="outlined"
-            InputProps={{
-              classes: {
-                notchedOutline: classes.notchedOutline,
-                focused: classes.focused
-              }
-            }}
-            margin="normal"     
-            fullWidth
-            name="email"
-            label="Email"
-            type="text"
-            id="email"
-            defaultValue={state.email}
-            onChange={handleEmailChange}
-            {...(errors.email && {error:true, helperText:errors.email})}
-          />
         <TextField
             variant="outlined"
             InputProps={{

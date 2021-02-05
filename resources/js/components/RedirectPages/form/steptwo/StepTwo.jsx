@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -10,9 +10,7 @@ import Button from "@material-ui/core/Button";
 import { concat } from "lodash";
 import AddressDetails from "./AddressDetails";
 const useStyles = makeStyles(theme => ({
-    root:{
-        background: theme.palette.primary.light
-    },
+    
     head: {
         color: "#038ed4",
         padding: "20px "
@@ -25,6 +23,25 @@ const useStyles = makeStyles(theme => ({
     formControl: {
         margin: theme.spacing(2),
         minWidth: 120
+    },
+    heading: {
+        paddingTop: "20px"
+    },
+    para:{
+        color: "#000"
+    },
+    box: {
+        margin: "30px auto 60px",
+        width: "60%",
+        alignContent: "center",
+        background: theme.palette.secondary.main,
+        color: theme.palette.primary.dark,
+        textAlign: "center",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033",
+        ['@media (max-width:960px)']: {
+            width: "90%"
+          }
     },
     hr: {
         color: "#038ed4",
@@ -60,7 +77,7 @@ const useStyles = makeStyles(theme => ({
     btnBox:{
         width: "90%",
         margin: "20px auto",
-        paddingBottom: "50px",
+        paddingBottom: "10px",
         textAlign: "right"
     },
     button: {
@@ -84,7 +101,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function StepTwo() {
     const classes = useStyles();
-
+    const [loading, setLoading] = React.useState(true);
     // state for holding inputs from profile form imported as ProfileDetails
     const [profile, setProfile] = React.useState({
         first_name: "",
@@ -375,7 +392,10 @@ export default function StepTwo() {
                     address: address
                 })
                 .then(response => {
-                    console.log(response);
+                    if(response.data.form_status === "form_step_change"){
+                        props.Complete();
+                        props.Next();
+                    }
                 })
                 .catch(error => {
                     console.log(error);
@@ -385,22 +405,32 @@ export default function StepTwo() {
         }
     };
 
-    //useEffect hooks to call after state change {just for debugging the inputs will be removed when it will be finalised}
-    React.useEffect(() => {
-        console.log("Do something after profile has changed", academics);
-    }, [academics]);
-    React.useEffect(() => {
-        console.log("Do something after profile has changed", profile);
-    }, [profile]);
-    React.useEffect(() => {
-        console.log("Do something after contact has changed", parent);
-    }, [parent]);
-    React.useEffect(() => {
-        console.log("Do something after ready has changed", contact);
-    }, [contact]);
-    React.useEffect(() => {
-        console.log("...............................", eror);
-    }, [eror]);
+    const fetchDetails = async () => {
+        var id= localStorage.getItem("userid")
+        const res = await axios.get(`personalDetails/${id}`);
+        setLoading(false);
+        if (res.data.details.first_name !==  null){
+            setProfile({
+                first_name: res.data.details.first_name,
+                last_name: res.data.details.last_name,
+                dob: res.data.details.dob,
+                height: res.data.details.height,
+                weight: res.data.details.weight,
+                blood_group: res.data.details.blood_group,
+                gender: res.data.details.gender,
+                marital_status: res.data.details.marital_status,
+                farming_background: res.data.details.farming_background,
+                disability: res.data.details.disability,
+                aadhar: res.data.details.aadhar
+            })
+        }
+
+        setLoading(false);
+    }
+    useEffect(()=>{
+        // fetchDetails();
+        setLoading(false);
+    },[])
 
     const validate = () => {
         if (contact.contact != contact.re_enter_contact) {
@@ -410,6 +440,20 @@ export default function StepTwo() {
     };
     return (
         <div className={classes.root}>
+            {loading ? (
+                <Card className={classes.box}>
+                <div className={classes.heading}>
+                <b>
+                    <h1>Please Wait...</h1>
+                </b>
+                <b>
+                    <p className={classes.para}>
+                        Checking the Step 2 - Personal Details Status
+                    </p>
+                </b>
+                </div>
+              </Card>
+            ):(
             <form onSubmit={event => handleFormSubmit(event)}>
                 <Grid container className={classes.container}>
                     <Grid item xs={12} className={classes.Cardcontainers}>
@@ -466,6 +510,7 @@ export default function StepTwo() {
                 </button>
                 </div>
             </form>
+            )}
         </div>
     );
 }

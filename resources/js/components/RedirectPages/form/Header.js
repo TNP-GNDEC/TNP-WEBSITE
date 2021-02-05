@@ -37,6 +37,11 @@ const useStyles = makeStyles(theme => ({
             duration: theme.transitions.duration.leavingScreen
         })
     },
+    title:{
+        ['@media (max-width:500px)']: {
+            display: "none"
+         }
+    },
     appBarShift: {
         marginLeft: drawerWidth,
         width: `calc(100% - ${drawerWidth}px)`,
@@ -97,7 +102,7 @@ export default function MiniDrawer(props) {
                         <div className={classes.avatar}>
                             <img className={classes.imgl}  src={Logo} alt="logo" />
                         </div>
-                        <Typography variant="h6" noWrap>
+                        <Typography variant="h6" noWrap className={classes.title}>
                             Training and Placement Cell
                         </Typography>
                     </Toolbar>

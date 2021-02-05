@@ -6,8 +6,13 @@ use App\ApiCode;
 use App\Models\User;
 use App\Models\FormStatus;
 use Illuminate\Http\Request;
-use App\Notifications\EmailVerification;
+use App\Mail\EmailVerification;
+use App\Notifications\EmailVerification2;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Models\PasswordReset; 
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class VerificationController extends Controller {
 
@@ -31,18 +36,38 @@ class VerificationController extends Controller {
     		return response()->json(['alert'=> 'Invalid Mail!']);		
         }
         
-        if (!$user->hasVerifiedEmail()) {
-            $user->sendEmailVerificationNotification(new EmailVerification);
+        // if (!$user->hasVerifiedEmail()) {
+            // $user->sendEmailVerificationNotification(new EmailVerification);
             // $user->markEmailAsVerified();
             // $form_step_change= DB::table('form_statuses')
             // ->where('user_id', $user->id)
             // ->update(['form_step' => 1]);
-            return response()->json(["msg" => "Email verification link sent on your email id, it may take upto 5mins Rewards GNE Server"]);
+        if ($user->hasVerifiedEmail()) {
+            return response()->json(['msg' =>"Email already verified."]);
         }
+        $token = Str::random(60);
 
-        return response()->json(["msg" => "Email already verified."]);
+    	PasswordReset::create([
 
-        return redirect()->to('/');
+    		'email' => $user->email,
+
+			'token' => $token,
+    	]);
+             
+    	$tokenData = PasswordReset::where('email', $user->email)->first();
+
+    		if($tokenData){
+    			Mail::to($tokenData->email)->send(new EmailVerification($tokenData));
+    			return response()->json(['msg' => 'A Verification Link has been sent to your Mail!']);
+    		}
+    		else{
+    			return response()->json(['alert' => 'Sorry we could not send a link, try again later!']);
+    		}
+        
+
+        // return response()->json(["msg" => "Email already verified."]);
+
+        // return redirect()->to('/');
     }
 
     /**
@@ -58,5 +83,12 @@ class VerificationController extends Controller {
         auth()->user()->sendEmailVerificationNotification();
 
         return $this->respondWithMessage("Email verification link sent on your email id");
+    }
+    public function getUsers($id) {
+        $user = User::findOrFail($id);
+        if ($user->hasVerifiedEmail()) {
+            return response()->json(['msg' => "Email already verified."]);
+        }
+        return response()->json(['alert' => 'error occurs']);
     }
 }

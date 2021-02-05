@@ -24,9 +24,10 @@ Route::post('logout', [AuthController::class,'logout']);
 
 // step 1 email verification
 Route::post('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
-
+Route::get('email/getusers/{id}', [VerificationController::class, 'getUsers']);
 // step 2 personal details form post request
 Route::post('personaldetails/{id}', 'PersonaldetailsController@getFormData');
+Route::get('personalDetails/{id}', 'PersonaldetailsController@recieveFormData');
 
 // step 3  details form post request
 Route::post('matriculation/{id}', 'MatriculationController@getFormData');
