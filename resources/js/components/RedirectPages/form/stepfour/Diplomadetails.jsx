@@ -75,7 +75,17 @@ export default function DiplomaDetails(props) {
             }
           ];
         
-      
+          const currencies2 = [
+            {
+                value: "1",
+                label: "cgpa"
+            },
+            {
+                value: "2",
+                label: "percentage"
+            }
+    
+        ];
     const fields = [
         {
             label: "branch",
@@ -346,9 +356,38 @@ export default function DiplomaDetails(props) {
                               focused: classes.focused
                             }
                         }}
-                        label= "MAXIMUM MARKS"
+                        label= "MARKS TYPE"
                         type= "text"
                         id= "7"
+                        name= "marks_type"
+                        defaultValue= {props.diploma.marks_type}
+                        
+                        select="true"
+                        variant="outlined"
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.marks_type && {error:true, helperText:props.Errors.marks_type})}
+                       
+                    >
+                     {currencies2.map(option => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}    
+                    </TextField>
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "MAXIMUM MARKS"
+                        type= "text"
+                        id= "8"
                         name= "maximum_marks"
                         defaultValue= {props.diploma.maximum_marks}
                         
@@ -376,7 +415,7 @@ export default function DiplomaDetails(props) {
                         }}
                         label= "OBTAINED MARKS"
                         type= "text"
-                        id= "8"
+                        id= "9"
                         name= "obtained_marks"
                         defaultValue= {props.diploma.obtained_marks}
                         
@@ -391,6 +430,8 @@ export default function DiplomaDetails(props) {
                     >
                         
                     </TextField>
+                    </div>
+                    <div className={classes.inputs}>
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -401,7 +442,7 @@ export default function DiplomaDetails(props) {
                         }}
                         label= "STREAM OF DIPLOMA"
                         type= "text"
-                        id= "9"
+                        id= "10"
                         name= "stream"
                         defaultValue= {props.diploma.stream}
                         

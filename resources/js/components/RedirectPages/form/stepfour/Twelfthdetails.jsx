@@ -60,6 +60,18 @@ export default function TwelfthDetails(props) {
             label:'PSEB',
         }
       ];
+      const currencies2 = [
+        {
+            value: "1",
+            label: "cgpa"
+        },
+        {
+            value: "2",
+            label: "percentage"
+        }
+
+    ];
+
     const fields = [
         {
             label: "BOARD",
@@ -124,15 +136,23 @@ export default function TwelfthDetails(props) {
 
         },
         {
-            label: "OBTAINED MARKS",
+            label: "MARKS TYPE",
             type: "text",
             id: 8,
+            select: "true",
+            value: props.twelfth.marks_type,
+        },
+        {
+            label: "OBTAINED MARKS",
+            type: "text",
+            id: 9,
             value: props.twelfth.obtained_marks,
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
-            id: 9,
+            id: 10,
+            
           
             value: props.twelfth.maximum_marks,
         },
@@ -320,17 +340,75 @@ export default function TwelfthDetails(props) {
                     </TextField>
                     </div>
                     <div className={classes.inputs}>
-    <TextField
-    className={classes.fields}
-    InputProps={{
-        classes: {
-          notchedOutline: classes.notchedOutline,
-          focused: classes.focused
-        }
-    }}
-                    label= "MAXIMUM MARKS"
+                    <TextField 
+                       className={classes.fields}
+                       InputProps={{
+                           classes: {
+                             notchedOutline: classes.notchedOutline,
+                             focused: classes.focused
+                           }
+                       }} 
+                        label= "YEAR OF PASSING"
                         type= "text"
                         id= "7"
+                        name= "year_of_passing"
+                        defaultValue= {props.twelfth.year_of_passing}
+                        
+                        
+                        variant="outlined"
+                        
+                        
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.year_of_passing && {error:true, helperText:props.Errors.year_of_passing})}
+                    >
+                        
+                    </TextField>
+                   <TextField
+                    className={classes.fields}
+                    InputProps={{
+                    classes: {
+                    notchedOutline: classes.notchedOutline,
+                    focused: classes.focused
+        }
+    }}
+                    label= "MARKS TYPE"
+                        type= "text"
+                        id= "8"
+                        name= "marks_type"
+                        select="true"   
+                       
+                        defaultValue= {props.twelfth.marks_type}
+                        
+                        
+                        variant="outlined"
+                        
+                       
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.marks_type && {error:true, helperText:props.Errors.marks_type})}
+                    >
+                         {currencies2.map(option => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    
+                     
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "MAXIMUM MARKS"
+                        type= "text"
+                        id= "9"
                         name= "maximum_marks"
                         defaultValue= {props.twelfth.maximum_marks}
                         
@@ -345,19 +423,19 @@ export default function TwelfthDetails(props) {
                     >
                         
                     </TextField>
-                    
-                     
+                    </div>
+                    <div className={classes.inputs}>
                     <TextField 
-                        className={classes.fields}
-                        InputProps={{
-                            classes: {
-                              notchedOutline: classes.notchedOutline,
-                              focused: classes.focused
-                            }
-                        }}
+                       className={classes.fields}
+                       InputProps={{
+                           classes: {
+                             notchedOutline: classes.notchedOutline,
+                             focused: classes.focused
+                           }
+                       }} 
                         label= "OBTAINED MARKS"
                         type= "text"
-                        id= "8"
+                        id= "10"
                         name= "obtained_marks"
                         defaultValue= {props.twelfth.obtained_marks}
                         
@@ -372,32 +450,7 @@ export default function TwelfthDetails(props) {
                     >
                         
                     </TextField>
-                    <TextField 
-                       className={classes.fields}
-                       InputProps={{
-                           classes: {
-                             notchedOutline: classes.notchedOutline,
-                             focused: classes.focused
-                           }
-                       }} 
-                        label= "MARKS TYPE"
-                        type= "text"
-                        id= "9"
-                        name= "marks_type"
-                        defaultValue= {props.twelfth.marks_type}
-                        
-                        
-                        variant="outlined"
-                        
-                        
-                        onChange={
-                            props.handleInputChange
-                        }
-                        {...(props.Errors.marks_type && {error:true, helperText:props.Errors.marks_type})}
-                    >
-                        
-                    </TextField>
-
+                    </div>
                     {/* <TextField 
                         
                         label= ""
@@ -417,9 +470,9 @@ export default function TwelfthDetails(props) {
                         {...(props.Errors.file&& {error:true, helperText:props.Errors.file})}
                     >
                         
-                    </TextField> */}
-                        </div>
-                    {/* <TextField
+                    </TextField> */
+                    
+                    /* <TextField
                         type={field.type}
                         id="outlined-basic"
                         name={field.name}

@@ -54,7 +54,7 @@ export default function Postgraduation(props) {
             select: "",
             value: props.Post.user_id,
             options: [],
-            required:"true",
+            required:true,
         },
         {
             label: "INSTITUTION NAME",
@@ -63,7 +63,7 @@ export default function Postgraduation(props) {
             select: "",
             value: props.Post.institution_name,
             options: [],
-            required:"true",
+            required:true,
 
         },
         {
@@ -73,7 +73,7 @@ export default function Postgraduation(props) {
             select: "",
             value: props.Post.city_of_institution,
             options: [],
-            required:"true",
+            required:true,
         },
         {
             label: "STATE OF INSTITUTION ",
@@ -82,7 +82,7 @@ export default function Postgraduation(props) {
             select: "",
             value: props.Post.state_of_institution,
             options: [],
-            required:"true",
+            required:true,
         },
         
         {
@@ -92,19 +92,19 @@ export default function Postgraduation(props) {
             select: "",
             value: props.Post.pincode_of_institution,
             options: [],
-            required:"true",
+            required:true,
         },
         {
             label: "MARKS TYPE",
             type: "text",
             id: 6,
-            select: "true",
+            select: true,
             value: props.Post.marks_type,
             options: [
                 { value:"cgpa", label: "CGPA" },
                 { value: "percentage", label: "PERCENTAGE" }
             ],
-            required:"true",
+            required:true,
         },
         {
             label: "OBTAINED MARKS",
@@ -113,7 +113,7 @@ export default function Postgraduation(props) {
             select: "",
             value: props.Post.obtained_marks,
             options: [],
-            required:"true",
+            required:true,
         },
         {
             label: "MAXIMUM MARKS",
@@ -122,7 +122,7 @@ export default function Postgraduation(props) {
             select: "",
             value: props.Post.maximum_marks,
             options: [],
-            required:"true",
+            required:true,
         },
         // {
         //     label: "",
