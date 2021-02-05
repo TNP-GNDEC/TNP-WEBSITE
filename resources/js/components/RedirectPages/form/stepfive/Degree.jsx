@@ -52,7 +52,8 @@ export default function Degree(props) {
             id: 1,
             select: "",
             value: props.Degree.user_id,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: " SGPA IN 1ST SEM",
@@ -60,7 +61,10 @@ export default function Degree(props) {
             id: 2,
             select: "",
             value: props.Degree.sgpa_sem1,
-            options: []
+            options: [],
+            required:"true",
+            
+
         },
         {
             label: "CREDITS IN 1ST SEM",
@@ -68,7 +72,8 @@ export default function Degree(props) {
             id: 3,
             select: "",
             value: props.Degree.credits_sem1,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "SGPA IN 2ND SEM",
@@ -76,7 +81,8 @@ export default function Degree(props) {
             id: 4,
             select: "",
             value: props.Degree.sgpa_sem2,
-            options: []
+            options: [],
+            required:"true",
         },
         
         {
@@ -85,7 +91,8 @@ export default function Degree(props) {
             id: 5,
             select: "",
             value: props.Degree.credits_sem2,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "SGPA IN 3RD SEM",
@@ -93,9 +100,8 @@ export default function Degree(props) {
             id: 6,
             select: "",
             value: props.Degree.sgpa_sem3,
-            options: [
-
-            ]
+            options: [],
+            required:"true",
         },
         {
             label: "CREDITS IN 3RD SEM",
@@ -103,7 +109,8 @@ export default function Degree(props) {
             id: 7,
             select: "",
             value: props.Degree.credits_sem3,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "SGPA IN 4TH SEM",
@@ -111,7 +118,8 @@ export default function Degree(props) {
             id: 8,
             select: "",
             value: props.Degree.sgpa_sem4,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "CREDITS IN 4TH SEM",
@@ -119,9 +127,8 @@ export default function Degree(props) {
             id:9,
             select: "",
             value: props.Degree.credits_sem4,
-            options: [
-             
-            ]
+            options: [],
+            required:"true",
         },
         {
             label: " SGPA IN 5TH SEM",
@@ -129,7 +136,8 @@ export default function Degree(props) {
             id: 10,
             select: "",
             value: props.Degree.sgpa_sem5,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "CREDITS IN 5TH SEM",
@@ -137,7 +145,8 @@ export default function Degree(props) {
             id: 11,
             select: "",
             value: props.Degree.credits_sem5,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "SGPA IN 6TH SEM",
@@ -145,7 +154,8 @@ export default function Degree(props) {
             id: 12,
             select: "",
             value: props.Degree.sgpa_sem6,
-            options: []
+            options: [],
+            required:"true",
         },
         
         {
@@ -154,7 +164,8 @@ export default function Degree(props) {
             id: 13,
             select: "",
             value: props.Degree.credits_sem6,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "SGPA IN 7TH SEM",
@@ -162,9 +173,8 @@ export default function Degree(props) {
             id: 14,
             select: "",
             value: props.Degree.sgpa_sem7,
-            options: [
-
-            ]
+            options: [],
+            required:"true",
         },
         {
             label: "CREDITS IN 7TH SEM",
@@ -172,7 +182,8 @@ export default function Degree(props) {
             id: 15,
             select: "",
             value: props.Degree.credits_sem7,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "SGPA IN 8TH SEM",
@@ -180,7 +191,8 @@ export default function Degree(props) {
             id: 16,
             select: "",
             value: props.Degree.sgpa_sem8,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "CREDITS IN 8TH SEM",
@@ -188,9 +200,8 @@ export default function Degree(props) {
             id:17,
             select: "",
             value: props.Degree.credits_sem8,
-            options: [
-             
-            ]
+            options: [],
+            required:"true",
         },
         {
             label: "AGGREGATE SGPA",
@@ -198,9 +209,8 @@ export default function Degree(props) {
             id:18,
             select: "",
             value: props.Degree.aggregate_sgpa,
-            options: [
-             
-            ]
+            options: [],
+            required:"true",
         },
         {
             label: "AGGREGATE CREDITS ",
@@ -208,9 +218,8 @@ export default function Degree(props) {
             id:19,
             select: "",
             value: props.Degree.aggregate_credits,
-            options: [
-             
-            ]
+            options: [],
+            required:"true",
         },
 
         {
@@ -219,9 +228,8 @@ export default function Degree(props) {
             id:20,
             select: "",
             value: props.Degree.aggregate_percentage,
-            options: [
-             
-            ]
+            options: [],
+            required:"true",
         },
 
         // {
@@ -263,6 +271,7 @@ export default function Degree(props) {
                         label={field.label}
                         value={field.value}
                         select={field.select}
+                        required={field.required}
                         inputProps={{ accept: ".pdf" }}
                         
                         onChange={e => {
