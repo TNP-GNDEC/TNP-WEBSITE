@@ -382,7 +382,7 @@ export default function StepTwo() {
     const handleFormSubmit = event => {
         event.preventDefault();
         const id = localStorage.getItem("userid");
-        if (!eror) {
+        if (eror) {
             axios
                 .post(`/api/personaldetails/${id}`, {
                     profile: profile,

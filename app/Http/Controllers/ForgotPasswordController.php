@@ -61,8 +61,8 @@ class ForgotPasswordController extends Controller
 			return response()->json(['msg'=> 'Enter the Same Password Twice!']);
 		}
 		$email = PasswordReset::where('token',$request->token)->first();
-        
 		$user = User::where('email', $email->email)->first();
+
     	// $tokenData = PasswordReset::where('token', $request->token)->first();
         $tokenData = PasswordReset::where('token','=',$request->token)
 			->where('created_at','>',Carbon::now()->subHours(1))
