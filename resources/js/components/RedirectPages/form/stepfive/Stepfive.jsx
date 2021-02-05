@@ -121,16 +121,18 @@ export default function StepTwo() {
         dmc:""
    
     });
+   
 
 
   
-
+  
+   
     const handlePostChangeInput = (e, id) => {
         console.log("I am called");
         const value = e.target.value;
         switch (id) {
             case 1:
-                setProfile({ ...post, user_id: value });
+                setProfile({ ...post, user_id: parseInt(value) ? parseInt(value) : "" });
                 break;
             case 2:
                 setProfile({ ...post, institution_name: value });
@@ -142,16 +144,16 @@ export default function StepTwo() {
                 setProfile({ ...post, state_of_institution: value });
                 break;
             case 5:
-                setProfile({ ...post, pincode_of_institution: value });
+                setProfile({ ...post, pincode_of_institution: parseInt(value) ? parseInt(value) : "" });
                 break;
             case 6:
                 setProfile({ ...post, marks_type: value });
                 break;
             case 7:
-                setProfile({ ...post, obtained_marks: value });
+                setProfile({ ...post, obtained_marks: parseInt(value) ? parseInt(value) : "" });
                 break;
             case 8:
-                setProfile({ ...post, maximum_marks: value });
+                setProfile({ ...post, maximum_marks: parseInt(value) ? parseInt(value) : "" });
                 break;
             case 9:
                 
@@ -167,69 +169,69 @@ export default function StepTwo() {
         const value = e.target.value;
         switch (id) {
             case 1:
-                setDegree({ ...degree, user_id: value });
+                setDegree({ ...degree, user_id:  parseInt(value) ? parseInt(value) : ""  });
                 
                 break;
                 case 2:
-                    setDegree({ ...degree, sgpa_sem1st_sem: value });
+                    setDegree({ ...degree, sgpa_sem1st_sem:  parseFloat(value) ? parseFloat(value) : ""  });
                     break;
                 case 3:
-                    setDegree({ ...degree, credits_sem1st_sem: value });
+                    setDegree({ ...degree, credits_sem1st_sem: parseFloat(value) ? parseFloat(value) : ""   });
                     break;
                 case 4:
-                    setDegree({ ...degree, sgpa_sem2nd_sem: value });
+                    setDegree({ ...degree, sgpa_sem2nd_sem: parseFloat(value) ? parseFloat(value)  : ""  });
                     break;
                 case 5:
-                    setDegree({ ...degree, credits_sem2nd_sem: value });
+                    setDegree({ ...degree, credits_sem2nd_sem: parseFloat(value) ? parseFloat(value)  : ""  });
                     break;
                 case 6:
-                    setDegree({ ...degree, sgpa_sem3rd_sem:value });
+                    setDegree({ ...degree, sgpa_sem3rd_sem:parseFloat(value) ? parseFloat(value) : ""   });
                     break;
                 case 7:
-                    setDegree({ ...degree, credits_sem3rd_sem: value });
+                    setDegree({ ...degree, credits_sem3rd_sem: parseFloat(value) ? parseFloat(value) : ""   });
                     break;
                 case 8:
-                    setDegree({ ...degree, sgpa_sem4_sem: value });
+                    setDegree({ ...degree, sgpa_sem4_sem: parseFloat(value) ? parseFloat(value) : ""   });
                     break;
                 case 9:
                     
-                    setDegree({ ...degree, credits_sem4: value });
+                    setDegree({ ...degree, credits_sem4: parseFloat(value) ? parseFloat(value) : ""    });
                     break;
                     case 10:
-                    setDegree({ ...degree, sgpa_sem5: value });
+                    setDegree({ ...degree, sgpa_sem5: parseFloat(value) ? parseFloat(value) : ""   });
                     break;
                 case 11:
-                    setDegree({ ...degree, credits_sem5: value });
+                    setDegree({ ...degree, credits_sem5: parseFloat(value) ? parseFloat(value) : ""  });
                     break;
                 case 12:
-                    setDegree({ ...degree, sgpa_sem6: value });
+                    setDegree({ ...degree, sgpa_sem6: parseFloat(value) ? parseFloat(value) : ""   });
                     break;
                 case 13:
-                    setDegree({ ...degree, credits_sem6: value });
+                    setDegree({ ...degree, credits_sem6: parseFloat(value) ? parseFloat(value) : ""   });
                     break;
                 case 14:
-                    setDegree({ ...degree, sgpa_sem6:value });
+                    setDegree({ ...degree, sgpa_sem6: parseFloat(value) ? parseFloat(value) : ""  });
                     break;
                 case 15:
-                    setDegree({ ...degree, credits_sem7: value });
+                    setDegree({ ...degree, credits_sem7: parseFloat(value) ? parseFloat(value) : ""  });
                     break;
                 case 16:
-                    setDegree({ ...degree, sgpa_sem8: value });
+                    setDegree({ ...degree, sgpa_sem8: parseFloat(value) ? parseFloat(value) : ""  });
                     break;
                 case 17:
-                    setDegree({ ...degree, credits_sem8: value });
+                    setDegree({ ...degree, credits_sem8: parseFloat(value) ? parseFloat(value) : ""  });
                     break;
                 case 18:
                     
-                    setDegree({ ...degree, aggregate_sgpa: value });
+                    setDegree({ ...degree, aggregate_sgpa: parseFloat(value) ? parseFloat(value) : ""   });
                     break;
                 case 19:
                     
-                    setDegree({ ...degree, aggregate_credits: value });
+                    setDegree({ ...degree, aggregate_credits: parseFloat(value) ? parseFloat(value) : ""   });
                     break;
                 case 20:
                     
-                    setDegree({ ...degree, aggregate_percentage: value });
+                    setDegree({ ...degree, aggregate_percentage: parseFloat(value) ? parseFloat(value) : ""  });
                     break;
                     case 20:
                     
@@ -243,8 +245,8 @@ export default function StepTwo() {
 const handeldegreeclick = () => {
     setCheckbox({
         degree:"1",
-postgraduation:"0",
-both:"0",
+        postgraduation:"0",
+        both:"0",
 
     })
 }
@@ -295,7 +297,7 @@ const handelbothclick = () => {
     React.useEffect(() => {
         console.log("Do something after  has changed", degree);
     }, [degree]);
-   
+    
       
     return (
         <div>
@@ -345,6 +347,7 @@ const handelbothclick = () => {
                 <PostgraduationDetails
                     Post={post}
                     handleInputChange={handlePostChangeInput}
+                    
                 />
                 <hr />
                 <Alert severity="info" className={classes.alert}>
@@ -362,6 +365,7 @@ const handelbothclick = () => {
                 <Degreedetails
                     Degree={degree}
                     handleInputChange={handleDegreeChangeInput}
+                   
                 />
                  <hr />
                 <Alert severity="info" className={classes.alert}>

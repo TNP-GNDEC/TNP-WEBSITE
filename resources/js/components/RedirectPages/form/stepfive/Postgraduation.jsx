@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 0px",
         fontWeight: "500",
         backgroundColor: "#038ed459",
+
     }, 
     textFieldContainer: {
         display: "flex",
@@ -52,7 +53,8 @@ export default function Postgraduation(props) {
             id: 1,
             select: "",
             value: props.Post.user_id,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "INSTITUTION NAME",
@@ -60,7 +62,9 @@ export default function Postgraduation(props) {
             id: 2,
             select: "",
             value: props.Post.institution_name,
-            options: []
+            options: [],
+            required:"true",
+
         },
         {
             label: "CITY OF INSTITUTION",
@@ -68,7 +72,8 @@ export default function Postgraduation(props) {
             id: 3,
             select: "",
             value: props.Post.city_of_institution,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "STATE OF INSTITUTION ",
@@ -76,7 +81,8 @@ export default function Postgraduation(props) {
             id: 4,
             select: "",
             value: props.Post.state_of_institution,
-            options: []
+            options: [],
+            required:"true",
         },
         
         {
@@ -85,7 +91,8 @@ export default function Postgraduation(props) {
             id: 5,
             select: "",
             value: props.Post.pincode_of_institution,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "MARKS TYPE",
@@ -96,7 +103,8 @@ export default function Postgraduation(props) {
             options: [
                 { value:"cgpa", label: "CGPA" },
                 { value: "percentage", label: "PERCENTAGE" }
-            ]
+            ],
+            required:"true",
         },
         {
             label: "OBTAINED MARKS",
@@ -104,7 +112,8 @@ export default function Postgraduation(props) {
             id: 7,
             select: "",
             value: props.Post.obtained_marks,
-            options: []
+            options: [],
+            required:"true",
         },
         {
             label: "MAXIMUM MARKS",
@@ -112,7 +121,8 @@ export default function Postgraduation(props) {
             id: 8,
             select: "",
             value: props.Post.maximum_marks,
-            options: []
+            options: [],
+            required:"true",
         },
         // {
         //     label: "",
@@ -153,6 +163,8 @@ export default function Postgraduation(props) {
                         label={field.label}
                         value={field.value}
                         select={field.select}
+                      
+                        required={field.required}
                         inputProps={{ accept: ".pdf" }}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
