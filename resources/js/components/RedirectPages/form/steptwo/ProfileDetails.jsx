@@ -48,7 +48,7 @@ export default function ProfileDetails(props) {
             select: false,
             value: props.Profile.first_name,
             options: [],
-            required: true
+            validate: props.Errors.first_name
         },
         {
             label: "LAST NAME",
@@ -57,7 +57,7 @@ export default function ProfileDetails(props) {
             select: false,
             value: props.Profile.last_name,
             options: [],
-            required: false
+            validate: false
         },
         {
             label: "DATE OF BIRTH (yyyy-mm-dd)",
@@ -66,7 +66,7 @@ export default function ProfileDetails(props) {
             select: false,
             value: props.Profile.dob,
             options: [],
-            required: true
+            validate: props.Errors.dob
         },
         {
             label: "AADHAR NO.",
@@ -75,7 +75,7 @@ export default function ProfileDetails(props) {
             select: false,
             value: props.Profile.aadhar,
             options: [],
-            required: true
+            validate: props.Errors.aadhar
         },
 
         {
@@ -85,7 +85,7 @@ export default function ProfileDetails(props) {
             select: false,
             value: props.Profile.height,
             options: [],
-            required: true
+            validate: props.Errors.height
         },
         {
             label: "WEIGHT (in kg)",
@@ -94,7 +94,7 @@ export default function ProfileDetails(props) {
             select: false,
             value: props.Profile.weight,
             options: [],
-            required: true
+            validate: props.Errors.weight
         },
         {
             label: "BLOOD GROUP",
@@ -112,7 +112,7 @@ export default function ProfileDetails(props) {
                 { label: "AB+", value: "AB+" },
                 { label: "AB-", value: "AB-" }
             ],
-            required: true
+            validate: props.Errors.blood_group
         },
         {
             label: "GENDER",
@@ -124,7 +124,7 @@ export default function ProfileDetails(props) {
                 { value: "male", label: "MALE" },
                 { value: "female", label: "FEMALE" }
             ],
-            required: true
+            validate: props.Errors.gender
         },
         {
             label: "MARITAL STATUS",
@@ -136,7 +136,7 @@ export default function ProfileDetails(props) {
                 { value: "married", label: "MARRIED" },
                 { value: "unmarried", label: "UNMARRIED" }
             ],
-            required: true
+            validate: props.Errors.marital_status
         },
 
         {
@@ -149,7 +149,7 @@ export default function ProfileDetails(props) {
                 { value: 1, label: "YES" },
                 { value: 0, label: "NO" }
             ],
-            required: true
+            validate: props.Errors.farming_background
         },
 
         {
@@ -162,7 +162,7 @@ export default function ProfileDetails(props) {
                 { value: 1, label: "YES" },
                 { value: 0, label: "NO" }
             ],
-            required: true
+            validate: props.Errors.disability
         }
     ];
 
@@ -191,8 +191,7 @@ export default function ProfileDetails(props) {
                         label={field.label}
                         value={field.value}
                         select={field.select}
-                        style={{ minWidth: "230px" }}
-                        required={field.required}
+                        {...(field.validate && {error:true, helperText:field.validate})}
                         // onBlur={() => {
                         //     console.log(`I am blurred and ready to process`);
                         //     field.id==3 && setDateLabel("");

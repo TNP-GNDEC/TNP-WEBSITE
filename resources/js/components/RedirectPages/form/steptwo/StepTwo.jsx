@@ -99,9 +99,53 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function StepTwo() {
+export default function StepTwo(props) {
     const classes = useStyles();
     const [loading, setLoading] = React.useState(true);
+    const [errors, setErrors] = React.useState({});
+
+    const validate = () => {
+        let temp = {}
+        temp.first_name = profile.first_name ? "": "Enter Valid Name (only char)."
+        temp.dob = profile.dob? "": "Enter DOB in correct format(yyyy-mm-dd)."
+        temp.aadhar = profile.aadhar ? "": "This field is required."
+        temp.height = profile.height ? "": "This field is required."
+        temp.weight = profile.weight ? "": "This field is required."
+        temp.blood_group = profile.blood_group ? "": "This field is required."
+        temp.gender = profile.gender ? "": "This field is required."
+        temp.marital_status = profile.marital_status ? "": "This field is required."
+        temp.farming_background = profile.farming_background == 0 || profile.farming_background == 1 ? "": "This field is required."
+        temp.disability = profile.disability == 0 || profile.disability == 1 ? "": "This field is required."
+
+        temp.father_name = parent.father_name ? "": "This field is required."
+        temp.father_phone = parent.father_phone ? "": "Enter Vaild Phone No."
+        temp.mother_name = parent.mother_name ? "": "This field is required."
+        temp.mother_phone = parent.mother_phone ? "": "Enter Vaild Phone No."
+
+        temp.course = academics.course ? "": "This field is required."
+        temp.stream = academics.stream ? "": "This field is required."
+        temp.shift = academics.shift ? "": "This field is required."
+        temp.section = academics.section ? "": "This field is required."
+        temp.leet = academics.leet == 0 || academics.leet == 1 ? "": "This field is required."
+        temp.hostler = academics.hostler ==0 || academics.hostler == 1 ? "": "This field is required."
+        temp.training_sem = academics.training_sem ? "": "This field is required."
+
+        temp.whatsapp_contact = contact.whatsapp_contact ? "": "Enter Vaild Phone No."
+        temp.contact = contact.contact ? "": "Enter Vaild Phone No."
+        temp.re_enter_contact = contact.re_enter_contact ? "": "Enter Vaild Phone No."
+
+        temp.street = address.street ? "": "This field is required."
+        temp.city = address.city ? "": "This field is required."
+        temp.pincode2 = address.pincode ? "": "This field is required."
+        temp.state = address.state ? "": "This field is required."
+        temp.district = address.district ? "": "This field is required."
+        setErrors({
+          ...temp
+        })
+        return true
+      }
+
+
     // state for holding inputs from profile form imported as ProfileDetails
     const [profile, setProfile] = React.useState({
         first_name: "",
@@ -153,18 +197,6 @@ export default function StepTwo() {
         state: ""
     });
 
-    const [eror, setEror] = React.useState(0);
-
-    const handleEror = (r, section) => {
-        if (section == "contact") {
-            setEror(r);
-            return r ? true : false;
-        }
-        if(section=="parent"){
-            setEror(r);
-            return r? true :false
-        }
-    };
     // Utility Function
     // const toCamelCase = str => {
     //     if (typeof str == "string") {
@@ -381,8 +413,8 @@ export default function StepTwo() {
 
     const handleFormSubmit = event => {
         event.preventDefault();
+        if(validate()){}
         const id = localStorage.getItem("userid");
-        if (!eror) {
             axios
                 .post(`/api/personaldetails/${id}`, {
                     profile: profile,
@@ -391,53 +423,68 @@ export default function StepTwo() {
                     contact: contact,
                     address: address
                 })
-                .then(response => {
-                    if(response.data.form_status === "form_step_change"){
+                .then((response) => {
+                    if(response.data.msg === "stepcomplete"){
                         props.Complete();
                         props.Next();
                     }
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                 });
-        } else {
-            window.alert("Please Remove Erors Before Submitting");
-        }
     };
 
     const fetchDetails = async () => {
         var id= localStorage.getItem("userid")
-        const res = await axios.get(`personalDetails/${id}`);
-        setLoading(false);
-        if (res.data.details.first_name !==  null){
+        const res = await axios.get(`/api/personalDetails/${id}`);
             setProfile({
-                first_name: res.data.details.first_name,
-                last_name: res.data.details.last_name,
-                dob: res.data.details.dob,
-                height: res.data.details.height,
-                weight: res.data.details.weight,
-                blood_group: res.data.details.blood_group,
-                gender: res.data.details.gender,
-                marital_status: res.data.details.marital_status,
-                farming_background: res.data.details.farming_background,
-                disability: res.data.details.disability,
-                aadhar: res.data.details.aadhar
+                first_name: res.data.details['first_name'],
+                last_name: res.data.details['last_name'],
+                dob: res.data.details['dob'],
+                height: res.data.details['height'],
+                weight: res.data.details['weight'],
+                blood_group: res.data.details['blood_group'],
+                gender: res.data.details['gender'],
+                marital_status: res.data.details['marital_status'],
+                farming_background: res.data.details['farming_background'],
+                disability: res.data.details['disability'],
+                aadhar: res.data.details['aadhar']
             })
-        }
+            setParent({
+                father_name: res.data.details['father_name'],
+                father_phone: res.data.details['father_mobile'],
+                mother_name: res.data.details['mother_name'],
+                mother_phone: res.data.details['mother_mobile']
+            })
+            setAcademics({
+                univ_roll: res.data.details['urn'],
+                college_roll: res.data.details['crn'],
+                course: res.data.details['category'],
+                stream: res.data.details['stream'],
+                section: res.data.details['branch_type'],
+                shift: res.data.details['shift'],
+                training_sem: res.data.details['training_sem'],
+                leet: res.data.details['leet'],
+                hostler: res.data.details['hostler']
+            })
+            setContact({
+                whatsapp_contact: res.data.details['whatsapp'],
+                contact: res.data.details['mobile'],
+                re_enter_contact: res.data.details['mobile']
+            })
+            setAddress({
+                address: res.data.details['address'],
+                pincode: res.data.details['pincode'],
+                district: res.data.details['district'],
+                city: res.data.details['city'],
+                state: res.data.details['state']
+            })
 
         setLoading(false);
     }
     useEffect(()=>{
-        // fetchDetails();
-        setLoading(false);
+        fetchDetails();
     },[])
-
-    const validate = () => {
-        if (contact.contact != contact.re_enter_contact) {
-            setEror({ ...eror, contact: "Numbers Not Matched" });
-            return false;
-        }
-    };
     return (
         <div className={classes.root}>
             {loading ? (
@@ -461,6 +508,7 @@ export default function StepTwo() {
                             <ProfileDetails
                                 Profile={profile}
                                 handleInputChange={handleProfileChangeInput}
+                                Errors= {errors}
                             />
                         </Card>
                     </Grid>
@@ -470,7 +518,8 @@ export default function StepTwo() {
                             <ParentDetails
                                 parent={parent}
                                 handleInputChange={handleParentChangeInput}
-                                handleEror={handleEror}
+
+                                Errors= {errors}
                             />
                         </Card>
                     </Grid>
@@ -480,6 +529,7 @@ export default function StepTwo() {
                             <AcademicDetails
                                 academics={academics}
                                 handleInputChange={handleAcademicsChangeInput}
+                                Errors= {errors}
                             />
                         </Card>
                     </Grid>
@@ -488,9 +538,9 @@ export default function StepTwo() {
                         <Card className={classes.cardStyles}>
                             <ContactDetails
                                 contact={contact}
-                                eror={eror}
+
                                 handleInputChange={handleContactChangeInput}
-                                handleEror={handleEror}
+                                Errors= {errors}
                             />
                         </Card>
                     </Grid>
@@ -500,6 +550,7 @@ export default function StepTwo() {
                             <AddressDetails
                                 address={address}
                                 handleInputChange={handleAddresssChangeInput}
+                                Errors= {errors}
                             />
                         </Card>
                     </Grid>

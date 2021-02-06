@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
         alignContent: "center",
         padding: "20px 0px",
         width: "100%",
+        
     },
     inputs:{
         display: "flex",

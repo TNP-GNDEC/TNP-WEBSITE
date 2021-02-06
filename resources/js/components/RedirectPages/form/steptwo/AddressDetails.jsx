@@ -19,7 +19,8 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
-        padding: "20px 60px"
+        padding: "20px 0px",
+        width: "30%"
     },
     fields:{
         width: "80%"
@@ -41,18 +42,21 @@ export default function AddressDetails(props) {
             type: "text",
             id: 1,
             value: props.address.address,
+            validate: props.Errors.address
         },
         {
             label: "CITY/VILLAGE",
             type: "text",
             id: 2,
             value: props.address.city,
+            validate: props.Errors.city
         },
         {
             label: "DISTRICT",
             type: "text",
             id: 3,
             value: props.address.district,
+            validate: props.Errors.district
 
         },
         {
@@ -60,7 +64,7 @@ export default function AddressDetails(props) {
             type: "text",
             id: 4,
             value: props.address.pincode,
-
+            validate: props.Errors.pincode2
         },
 
         {
@@ -96,12 +100,11 @@ export default function AddressDetails(props) {
                         name={field.name}
                         variant="outlined"
                         label={field.label}
-                        style={{ minWidth:"260px"}}
                         value={field.value}
-                        required={true}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
+                        {...(field.validate && {error:true, helperText:field.validate})}
                     />
                 </Grid>
         ));

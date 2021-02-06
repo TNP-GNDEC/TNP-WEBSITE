@@ -18,10 +18,11 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
-        padding: "20px 120px"
+        padding: "20px 0px",
+        width: "100%"
     },
     fields:{
-        width: "90%"
+        width: "80%"
     },
     notchedOutline: {
         boxShadow: "0px 2px 6px #75757533",
@@ -41,21 +42,21 @@ export default function ContactDetails(props) {
             type: "text",
             id: 1,
             value: props.contact.whatsapp_contact,
-            eror: ""
+            validate: props.Errors.whatsapp_contact
         },
         {
             label: "CONTACT NO.",
             type: "text",
             id: 2,
             value: props.contact.contact,
-            eror: props.eror.contact
+            validate: props.Errors.contact
         },
         {
             label: "RE-ENTER CONTACT NO.",
             type: "text",
             id: 3,
             value: props.contact.re_enter_contact,
-            eror: props.eror.contact
+            validate: props.Errors.re_enter_contact
         }
     ];
 
@@ -83,26 +84,10 @@ export default function ContactDetails(props) {
                     variant="outlined"
                     label={field.label}
                     value={field.value}
-                    style={{ minWidth: "230px" }}
-                    required={true}
-                    error={
-                        props.contact.contact === props.contact.re_enter_contact
-                            ? props.handleEror(false)
-                            : field.id === 3
-                            ? props.handleEror(true,"contact")
-                            : props.handleEror(false)
-                    }
-                    helperText={
-                        props.contact.contact === props.contact.re_enter_contact
-                            ? ""
-                            : field.id === 3
-                            ? "Numbers did'nt match"
-                            : ""
-                    }
-                    inputProps={{ maxLength: 10, minLength: 10 }}
                     onChange={e => {
                         props.handleInputChange(e, field.id);
                     }}
+                    {...(field.validate && {error:true, helperText:field.validate})}
                 />
             </Grid>
         ));

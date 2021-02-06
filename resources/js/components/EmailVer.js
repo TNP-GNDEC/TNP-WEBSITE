@@ -161,7 +161,7 @@ const useStyles = makeStyles((theme) => ({
           ))}
         </Stepper>
           <Alert severity="info" className={classes.alert}>
-                You cannot edit the data after completing all the steps, Please fill the data carefully!!
+                Fields with '*' are mandatory to fill & You cannot edit the data after completing all the steps, Please fill the data carefully!!
           </Alert>
         </div>
         <div>
