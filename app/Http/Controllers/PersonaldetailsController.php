@@ -78,7 +78,7 @@ class PersonaldetailsController extends Controller
 
   public function recieveFormData($id){
     $user = User::findOrFail($id);
-    $details = DB::table('personaldetails')
+    $details = DB::table('personalDetails')
       ->where('user_id', $user->id)
       ->first();
       
