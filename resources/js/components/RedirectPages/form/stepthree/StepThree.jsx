@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React,{ useState, useEffect } from "react";
 import { Alert } from '@material-ui/lab';
 import '../../../../../css/app.css';
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,6 +15,25 @@ const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
         padding: "20px "
+    },
+    heading: {
+        paddingTop: "20px"
+    },
+    para:{
+        color: "#000"
+    },
+    box: {
+        margin: "30px auto 60px",
+        width: "60%",
+        alignContent: "center",
+        background: theme.palette.secondary.main,
+        color: theme.palette.primary.dark,
+        textAlign: "center",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033",
+        ['@media (max-width:960px)']: {
+            width: "90%"
+          }
     },
     paper: {
         padding: theme.spacing(3),
@@ -139,7 +158,6 @@ export default function StepThree(props) {
         temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
         temp.pincode = matriculation.pincode ? "": "This field is required."
         temp.maximum_marks = matriculation.maximum_marks ? "": "This field is required."
-        temp.pincode = matriculation.pincode ? "": "This field is required."
         setErrors({
           ...temp
         })
@@ -158,8 +176,11 @@ export default function StepThree(props) {
         fd.append('file', document.getElementById('file').files[0]);
         axios.post(`/api/matriculation/${id}`, 
             fd
-        ).then(function (response) {
-            console.log(response);
+        ).then((response) => {
+            if(response.data.msg === "stepcomplete"){
+                props.Complete();
+                props.Next();
+            }
         })
         .catch((error) => {
             console.log(error);
@@ -179,12 +200,44 @@ export default function StepThree(props) {
 
 
     };
+    const [loading, setLoading] = React.useState(true);
+    const fetchDetails = async () => {
+        var id= localStorage.getItem("userid")
+        const res = await axios.get(`/api/matriculationdata/${id}`);
+            setmatric({
+                board: res.data.details['board'],
+                institution_name: res.data.details['institution_name'],
+                state_of_institution: res.data.details['state'],
+                city_of_institution: res.data.details['city'],
+                year_of_passing: res.data.details['year_of_passing'],
+                marks_type: res.data.details['marks_type'],
+                pincode: res.data.details['pincode'],
+                obtained_marks: res.data.details['obtained_marks'],
+                maximum_marks: res.data.details['maximum_marks'],
+            })
 
-    React.useEffect(() => {
-        console.log("Do something after matric has changed", matriculation);
-    }, [matriculation]);
+        setLoading(false);
+    }
+    
+    useEffect(()=> {
+        fetchDetails();
+    },[])
     return (
         <div>
+            {loading ? (
+                <Card className={classes.box}>
+                <div className={classes.heading}>
+                <b>
+                    <h1>Please Wait...</h1>
+                </b>
+                <b>
+                    <p className={classes.para}>
+                        Checking the Step 3 - Matriculation Details Status
+                    </p>
+                </b>
+                </div>
+              </Card>
+            ):(
             <form onSubmit={handleFormSubmit}>
                 <Grid container className={classes.container}>
                     <Grid item xs={12} className={classes.Cardcontainers}>
@@ -201,7 +254,7 @@ export default function StepThree(props) {
                             Note : Upload <CloudUploadIcon/> Scanned copies of your
                                     matriculation certificates.(PDF Only)
                             </Alert>
-                            <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" /> 
+                            <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" required /> 
                         </Card>
                     </Grid>
                 </Grid>
@@ -214,6 +267,7 @@ export default function StepThree(props) {
                 </button>
                 </div>
             </form>
+            )}
         </div>
     );
 }

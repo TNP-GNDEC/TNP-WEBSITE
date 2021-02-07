@@ -19,7 +19,8 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
-        padding: "20px 0px"
+        padding: "20px 0px",
+        width: "30%",
     },
     fields:{
         width: "80%"
@@ -40,7 +41,7 @@ export default function Details(props) {
             label: "UNIVERSITY ROLL NO.",
             type: "text",
             id: 1,
-            value: props.academics.university_roll,
+            value: props.academics.univ_roll,
             select: "",
             disabled: "true",
             options: []
@@ -55,11 +56,12 @@ export default function Details(props) {
             options: []
         },
         {
-            label: "COURSE",
+            label: "COURSE*",
             type: "text",
             id: 3,
             value: props.academics.course,
             select: "true",
+            validate: props.Errors.course,
             options: [
                 {
                     value: "B.Tech",
@@ -81,6 +83,7 @@ export default function Details(props) {
             id: 4,
             value: props.academics.stream,
             select: "true",
+            validate: props.Errors.stream,
             options: [
                 {
                     value: "cse",
@@ -196,7 +199,7 @@ export default function Details(props) {
                     value: "production",
                     label: "PRODUCTION"
                 }
-            ]
+            ],
         },
 
         {
@@ -214,7 +217,8 @@ export default function Details(props) {
                     value: "evening",
                     label: "EVENING"
                 }
-            ]
+            ],
+            validate: props.Errors.shift
         },
         {
             label: "SECTION",
@@ -222,7 +226,8 @@ export default function Details(props) {
             id: 6,
             value: props.academics.section,
             select: "",
-            options: []
+            options: [],
+            validate: props.Errors.section
         },
         {
             label: "LEET",
@@ -239,7 +244,8 @@ export default function Details(props) {
                     value: 0,
                     label: "NO"
                 }
-            ]
+            ],
+            validate: props.Errors.leet
         },
         {
             label: "HOSTLER",
@@ -256,7 +262,8 @@ export default function Details(props) {
                     value: 0,
                     label: "NO"
                 }
-            ]
+            ],
+            validate: props.Errors.hostler
         },
 
         {
@@ -274,7 +281,8 @@ export default function Details(props) {
                     value: "8",
                     label: "EIGHT"
                 }
-            ]
+            ],
+            validate: props.Errors.training_sem
         }
     ];
 
@@ -302,16 +310,14 @@ export default function Details(props) {
                         id="outlined-basic"
                         name={field.name}
                         variant="outlined"
-                        error={false}
                         label={field.label}
                         value={field.value}
                         select={field.select}
-                        style={{ minWidth: "230px" }}
                         disabled={field.disabled}
-                        required={true}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
+                        {...(field.validate && {error:true, helperText:field.validate})}
                     >
                         {
                         /* if the course will not be selected it will show no options in select of its preceeding Textfields */}

@@ -15,13 +15,15 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: "#038ed459",
     }, 
     textFieldContainer: {
+        width: "30%",
         display: "flex",
         justifyContent: "center",
         alignContent: "center",
-        padding: "20px 63px"
+        padding: "20px 0px"
     },
     fields:{
-        width: "80%"
+        width: "80%",
+        margin: "auto"
     },
     notchedOutline: {
         boxShadow: "0px 2px 6px #75757533",
@@ -36,13 +38,14 @@ export default function ParentDetails(props) {
     const classes = useStyles();
     const fields = [
         {
-            label: "FATHER NAME",
+            label: "FATHER NAME (No Prefix)",
             type: "text",
             id: 1,
             value: props.parent.father_name,
             required:true,
             maxLength:80,
-            minLength:0
+            minLength:0,
+            validate: props.Errors.father_name
         },
         {
             label: "FATHER PHONE NO.",
@@ -51,16 +54,18 @@ export default function ParentDetails(props) {
             value: props.parent.father_phone,
             required:true,
             maxLength:10,
-            minLength:10
+            minLength:10,
+            validate: props.Errors.father_phone
         },
         {
-            label: "MOTHER NAME",
+            label: "MOTHER NAME (No Prefix)",
             type: "text",
             id: 3,
             value: props.parent.mother_name,
             required:true,
             maxLength:80,
-            minLength:0
+            minLength:0,
+            validate: props.Errors.mother_name
         },
         {
             label: "MOTHER PHONE NO.",
@@ -69,15 +74,11 @@ export default function ParentDetails(props) {
             value: props.parent.mother_phone,
             required:true,
             maxLength:10,
-            minLength:10
+            minLength:10,
+            validate: props.Errors.mother_phone
         }
     ];
 
-    const checkEror = (f)=>{
-        if(f.id === 2){
-           return props.parent.father_phone.toString().length != 10 ? props.handleEror(true) : props.handleEror(false)
-        }
-    }
 
     const renderParentFields = () =>
         fields.map(field => (
@@ -103,14 +104,11 @@ export default function ParentDetails(props) {
                         name={field.name}
                         variant="outlined"
                         label={field.label}
-                        inputProps={{maxLength:field.maxLength, minLength:field.minLength }}
                         value={field.value}
-                        style={{ minWidth:"230px"}}
-                        required={field.required}
-                        error={ checkEror(field) ? true : false }
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
+                        {...(field.validate && {error:true, helperText:field.validate})}
                     />
 
                 </Grid>

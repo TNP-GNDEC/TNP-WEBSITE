@@ -53,7 +53,7 @@ class PersonaldetailsController extends Controller
         'shift' => $request->academics["shift"],
         'stream' => $request->academics["stream"],
         'category' => $request->academics["course"],
-        'branch_type' => $request->academics["branch"],
+        'branch_type' => $request->academics["section"],
         'training_sem' => $request->academics["training_sem"],
         'hostler' => $request->academics["hostler"],
         'leet' => $request->academics["leet"],
@@ -80,7 +80,7 @@ class PersonaldetailsController extends Controller
     $user = User::findOrFail($id);
     $details = DB::table('personaldetails')
       ->where('user_id', $user->id)
-      ->get();
+      ->first();
       
     return response()->json(["details"=> $details]);
   }
