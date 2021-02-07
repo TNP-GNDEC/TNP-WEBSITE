@@ -161,13 +161,12 @@ export default function StepThree(props) {
         setErrors({
           ...temp
         })
-        console.log(errors);
-        return true
+        return false
       }
 
     const handleFormSubmit = event => {
         event.preventDefault();
-        if(validate()){}
+        if(validate()){
         const id = localStorage.getItem("userid");
         const fd = new FormData();
         Object.keys(matriculation).forEach(function (key){         
@@ -185,6 +184,7 @@ export default function StepThree(props) {
         .catch((error) => {
             console.log(error);
         });
+    }
     };
 
 
