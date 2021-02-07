@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UgDetails extends Model
 {
     use HasFactory;
+    protected $table = "ug";
     protected $fillable = [
         "credits_sem1",
         "credits_sem2",
