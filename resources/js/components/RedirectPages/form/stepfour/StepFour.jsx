@@ -29,6 +29,31 @@ const useStyles = makeStyles(theme => ({
        
         
     },
+    btnBox:{
+        width: "90%",
+        margin: "20px auto",
+        paddingBottom: "10px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignContent: "center"
+    },
+    button: {
+        // marginRight: theme.spacing(1)
+        border: "none",
+        textDecoration: "none",
+        padding: "10px 35px",
+        color: theme.palette.secondary.main,
+        background: theme.palette.primary.main,
+        borderRadius: "20px",
+        boxShadow: "0px 15px 25px #038ed433",
+        "&:focus":{
+            outline: "none"
+        },
+        "&:hover":{
+            background: theme.palette.primary.main,
+            color: theme.palette.secondary.main,
+        },
+    },
     formControl: {
         margin: theme.spacing(2),
         minWidth: 120,
@@ -450,9 +475,14 @@ const handleBothClick = () => {
         </>
     }
             </Grid>
-            <Button className={classes.pos} type="submit" variant="contained" color="primary">
-                Submit
-            </Button>
+            <div className={classes.btnBox}>
+                <button className={classes.button} onClick={props.Back}>
+                    Back
+                </button>
+                <button type="submit" className={classes.button}>
+                    Submit & Next
+                </button>
+                </div>
             </form>
         </div>
     );

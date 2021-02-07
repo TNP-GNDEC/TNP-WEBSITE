@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\FormStatus;
 use App\Models\PersonalDetails;
 use App\Models\Matriculation;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Tymon\JWTAuth\Providers\JWTAuthServiceProvider;
 use JWTAuth;
@@ -90,5 +91,11 @@ protected function respondWithToken($token, $currentUser)
         'expires_in' => auth('api')->factory()->getTTL() * 60,
         'current_user' => $currentUser
     ]);
+}
+public function status($id){
+    $form = DB::table('form_statuses')
+      ->where('user_id', $id)
+      ->first();
+    return response()->json(['step'=>$form]);
 }
 }

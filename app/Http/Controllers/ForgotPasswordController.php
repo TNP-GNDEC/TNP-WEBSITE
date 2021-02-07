@@ -75,8 +75,7 @@ class ForgotPasswordController extends Controller
 
 		$token = PasswordReset::where('email', $email->email)->delete();
 
-		if (!$user->hasVerifiedEmail()) {
-            $user->markEmailAsVerified();
+		if ($user->hasVerifiedEmail()) {
             $form_step_change= DB::table('form_statuses')
             ->where('user_id', $user->id)
 			->update(['form_step' => 1]);

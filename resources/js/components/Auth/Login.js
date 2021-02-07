@@ -135,6 +135,11 @@ const handlepasswordChange = (e) => {
   }))
 
 }
+const fetchSteps = async (id) => {
+  const step = await axios.get(`/api/formStatus/${id}`);
+  const form_step = step.data.step['form_step'];
+  return form_step;
+}
 
 const handleFormSubmit= async (event)=>{
     event.preventDefault();
@@ -152,14 +157,15 @@ const handleFormSubmit= async (event)=>{
     localStorage.setItem('token', JWTtoken);
     localStorage.setItem('userid', user.id);
     localStorage.setItem('useruuid', user.uuid);
+    var id = user.id;
+    const checkStep = fetchSteps(id);
       if(user.role_id===1){
-        console.log(user)
 
-        if(user.email_verified_at === null){
-          props.history.push("/email");
+        if(checkStep === 6){
+          props.history.push("/student");
         }
         else{
-          props.history.push("/student");
+          props.history.push("/email");
         }
       }
       if(user.role_id===2){

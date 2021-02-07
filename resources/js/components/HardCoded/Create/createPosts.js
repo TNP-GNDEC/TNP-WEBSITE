@@ -45,7 +45,6 @@ class CreatePosts extends React.Component {
     }
     savePost = async (e) => {
         e.preventDefault();
-        console.log(myJsonString);
         const res = await axios.post("/addPost", this.state);
         if(res.data.status === 200){
             alert("Added Successfully");

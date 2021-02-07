@@ -134,7 +134,7 @@ export default function StepTwo(props) {
         temp.contact = contact.contact ? "": "Enter Vaild Phone No."
         temp.re_enter_contact = contact.re_enter_contact ? "": "Enter Vaild Phone No."
 
-        temp.street = address.street ? "": "This field is required."
+        temp.street = address.address ? "": "This field is required."
         temp.city = address.city ? "": "This field is required."
         temp.pincode2 = address.pincode ? "": "This field is required."
         temp.state = address.state ? "": "This field is required."

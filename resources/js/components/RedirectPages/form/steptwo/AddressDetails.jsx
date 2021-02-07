@@ -42,7 +42,7 @@ export default function AddressDetails(props) {
             type: "text",
             id: 1,
             value: props.address.address,
-            validate: props.Errors.address
+            validate: props.Errors.street
         },
         {
             label: "CITY/VILLAGE",
@@ -72,7 +72,7 @@ export default function AddressDetails(props) {
             type: "text",
             id: 5,
             value: props.address.state,
-            
+            validate: props.Errors.state
         },
 
     ];

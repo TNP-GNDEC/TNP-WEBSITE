@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-import Data from "../../HomeComponent/PostComponents/Data";
+import Data from "../../HomeComponent/PostComponents/ShowData";
 import Navbar from "../../HomeComponent/SideComponents/Navbar";
 import RightBar from "../../HomeComponent/RightBar/RightBar";
 import Scroll from "../../HomeComponent/SideComponents/scroll";
@@ -78,7 +78,7 @@ export default function ShowPost() {
         <Grid container spacing={3}>
           <Grid item md={9} className={classes.center}>
             <Paper className={classes.paper}>
-              {/* <Data posts = {data.posts} key={data.posts.id} /> */}
+              <Data data = {data.posts} key={data.posts.id} />
             </Paper>
           </Grid>
           <Grid item md={3} className={classes.right} display={{ xs: 'none', md: 'block' }}>

@@ -21,6 +21,7 @@ Route::post('registerstudent', [AuthController::class, 'registerStudent']);
 Route::post('registeradmin', [AuthController::class, 'registerAdmin']);
 Route::post('login', [AuthController::class,'login'])->name('login');
 Route::post('logout', [AuthController::class,'logout']);
+Route::get('formStatus/{id}', [AuthController::class,'status']);
 
 // step 1 email verification
 Route::post('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');

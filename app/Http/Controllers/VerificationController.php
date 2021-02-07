@@ -31,6 +31,7 @@ class VerificationController extends Controller {
 
         $user = User::findOrFail($request->id);
         $user->email = $request->email;
+<<<<<<< HEAD
     	//$userValid = User::where('email', $user->email)->first();
     	//if (!$userValid) {
     	//	return response()->json(['alert'=> 'Invalid Mail!']);		
@@ -41,6 +42,14 @@ class VerificationController extends Controller {
 
             return response()->json(['msg' =>"Email already verified."]);
         }
+=======
+    	// $userValid = User::where('email', $user->email)->first();
+    	// if (!$userValid) {
+    	// 	return response()->json(['alert'=> 'Invalid Mail!']);		
+        // }
+        
+       
+>>>>>>> 112d19c78d9467670abeedc0a24a1f5e639a6f49
         $token = Str::random(60);
 
     	PasswordReset::create([
@@ -53,6 +62,7 @@ class VerificationController extends Controller {
     	$tokenData = PasswordReset::where('email', $user->email)->first();
 
     		if($tokenData){
+<<<<<<< HEAD
                 Mail::to($tokenData->email)->send(new EmailVerification($tokenData));
                 if (!$user->hasVerifiedEmail()) {
                     // $user->sendEmailVerificationNotification(new EmailVerification);
@@ -61,6 +71,12 @@ class VerificationController extends Controller {
                     // ->where('user_id', $user->id)
                     // ->update(['form_step' => 1]);
                  }
+=======
+    			Mail::to($tokenData->email)->send(new EmailVerification($tokenData));
+                if (!$user->hasVerifiedEmail()) {
+                    $user->markEmailAsVerified();
+                }
+>>>>>>> 112d19c78d9467670abeedc0a24a1f5e639a6f49
     			return response()->json(['msg' => 'A Verification Link has been sent to your Mail!']);
     		}
     		else{
@@ -88,8 +104,10 @@ class VerificationController extends Controller {
         return $this->respondWithMessage("Email verification link sent on your email id");
     }
     public function getUsers($id) {
-        $user = User::findOrFail($id);
-        if ($user->hasVerifiedEmail()) {
+        $form = DB::table('form_statuses')
+        ->where('user_id', $id)
+        ->first();
+        if ($form->form_step == 1) {
             return response()->json(['msg' => "Email already verified."]);
         }
         return response()->json(['alert' => 'error occurs']);
