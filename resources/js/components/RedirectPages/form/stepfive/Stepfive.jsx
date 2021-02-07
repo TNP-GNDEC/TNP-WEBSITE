@@ -81,7 +81,6 @@ const useStyles = makeStyles(theme => ({
 export default function StepTwo() {
     const classes = useStyles();
     const [degree, setDegree] = React.useState({
-        user_id: "",
         credits_sem1 : "",
         credits_sem2 : "",
         credits_sem3 : "",
@@ -107,9 +106,9 @@ export default function StepTwo() {
         console.log("I am called for parent");
         const value = e.target.value;
         switch (id) {
-            case 1:
-                setDegree({ ...degree, user_id:  parseInt(value) ? parseInt(value) : ""  });
-                break;
+            // case 1:
+            //     setDegree({ ...degree, user_id:  parseInt(value) ? parseInt(value) : ""  });
+            //     break;
             case 2:
                 setDegree({ ...degree, sgpa_sem1:  value});
                 break;
@@ -220,8 +219,7 @@ export default function StepTwo() {
                 <input className={classes.fileupload} accept= "application/pdf" id="degreefile" type="file" /> 
             </Card>
 
-        </Grid>) 
-        :(<div></div>) 
+        </Grid> 
                 </Grid>
                 <Button
                     className={classes.pos}

@@ -28,7 +28,8 @@ class PersonaldetailsController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-    $details = DB::table('personaldetails')
+  if($current_step==1){
+    $details = DB::table('personalDetails')
     ->where('user_id', $user->id)
     ->update([
         'first_name' => $request->profile["first_name"], 
@@ -67,16 +68,17 @@ class PersonaldetailsController extends Controller
         'address' => $request->address["address"],
 
     ]);
-      // $form_step_change= DB::table('form_statuses')
-      // ->where('user_id', $user->id)
-      // ->update(['form_step' => 2]);
-    return response()->json([ "msg"=> "stepcomplete"]);
-  // else return response()->json(["details"=> "first complete email verification"]);
+      $form_step_change= DB::table('form_statuses')
+      ->where('user_id', $user->id)
+      ->update(['form_step' => 2]);
+    return response()->json([ "form_status"=> $form_step_change]);
+  }
+  else return response()->json(["details"=> "first complete email verification"]);
  }
 
   public function recieveFormData($id){
     $user = User::findOrFail($id);
-    $details = DB::table('personaldetails')
+    $details = DB::table('personalDetails')
       ->where('user_id', $user->id)
       ->first();
       

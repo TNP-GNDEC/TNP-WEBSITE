@@ -57,7 +57,6 @@ class TwelfthdiplomaController extends Controller
 
   ]);
   
-        
     }
     
     if($request->diploma=="1" || $request->both=="1"){

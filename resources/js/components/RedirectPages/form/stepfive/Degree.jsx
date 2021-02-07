@@ -46,15 +46,15 @@ const useStyles = makeStyles(theme => ({
 export default function Degree(props) {
     const classes = useStyles();
     const fields = [
-        {
-            label: "USER ID",
-            type: "text",
-            id: 1,
-            select: "",
-            value: props.Degree.user_id,
-            options: [],
-            required:true,
-        },
+        // {
+        //     label: "USER ID",
+        //     type: "text",
+        //     id: 1,
+        //     select: "",
+        //     value: props.Degree.user_id,
+        //     options: [],
+        //     required:true,
+        // },
         {
             label: " SGPA IN 1ST SEM",
             type: "text",
