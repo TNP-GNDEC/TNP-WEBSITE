@@ -231,20 +231,6 @@ export default function Degree(props) {
             options: [],
             required:true,
         },
-
-        // {
-        //     label: "",
-        //     type: "file",
-        //     id:21,
-        //     select: "",
-        //     value: props.Degree.dmc,
-        //     options: [
-             
-        //     ]
-        // },
-
-       
-
     ];
 
     const renderDegreeFields = () =>
