@@ -9,6 +9,7 @@ import ContactDetails from "./ContactDetails";
 import Button from "@material-ui/core/Button";
 import { concat } from "lodash";
 import AddressDetails from "./AddressDetails";
+import { faOdnoklassnikiSquare } from "@fortawesome/free-brands-svg-icons";
 const useStyles = makeStyles(theme => ({
     
     head: {
@@ -142,7 +143,10 @@ export default function StepTwo(props) {
         setErrors({
           ...temp
         })
-        return true
+        var filter =  Object.keys(temp);
+        var ok = "";
+        console.log(temp['first_name'].valueOf());
+        return filter.every(x => temp[x].valueOf() === ok.valueOf());
       }
 
 
@@ -413,7 +417,7 @@ export default function StepTwo(props) {
 
     const handleFormSubmit = event => {
         event.preventDefault();
-        if(validate()){}
+        if(validate()){
         const id = localStorage.getItem("userid");
             axios
                 .post(`/api/personaldetails/${id}`, {
@@ -432,6 +436,7 @@ export default function StepTwo(props) {
                 .catch((error) => {
                     console.log(error);
                 });
+                }
     };
 
     const fetchDetails = async () => {
