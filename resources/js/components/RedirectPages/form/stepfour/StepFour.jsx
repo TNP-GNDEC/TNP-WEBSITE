@@ -119,7 +119,7 @@ const useStyles = makeStyles(theme => ({
     
 }));
 
-export default function StepTwo() {
+export default function StepFour(props) {
     const classes = useStyles();
     const [checkbox ,setCheckbox] = React.useState({
         XII:"0",

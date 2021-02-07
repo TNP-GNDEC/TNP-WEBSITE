@@ -161,7 +161,9 @@ export default function StepThree(props) {
         setErrors({
           ...temp
         })
-        return false
+        var filter =  Object.keys(temp);
+        var ok = "";
+        return filter.every(x => temp[x].valueOf() === ok.valueOf());
       }
 
     const handleFormSubmit = event => {
