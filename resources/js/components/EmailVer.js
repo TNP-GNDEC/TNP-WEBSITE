@@ -11,8 +11,8 @@ import StepTwo from "./RedirectPages/form/steptwo/StepTwo";
 import StepThree from "./RedirectPages/form/stepthree/StepThree";
 import StepFour from "./RedirectPages/form/stepfour/StepFour";
 import StepFive from "./RedirectPages/form/stepfive/Stepfive.jsx";
-import StepSix from "./RedirectPages/form/StepSix";
-
+import StepSeven from "./RedirectPages/form/StepSix";
+import StepSix from "../components/RedirectPages/form/stepsix/StepSix";
 
 import Header from "../components/RedirectPages/form/Header";
 import Footer from "./HomeComponent/SideComponents/Footer";
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   }));
   
   function getSteps() {
-    return ['Email Verification','Personal Details', 'Matriculation','12 or Diploma','Post Graduation/Degree','Verify'];
+    return ['Email Verification','Personal Details', 'Matriculation','12 or Diploma','Degree','Post Graduation','Verify'];
   }
   
   function getStepContent(step, next, complete,back) {
@@ -83,10 +83,12 @@ const useStyles = makeStyles((theme) => ({
         return <StepThree Next={next} Complete={complete} Back={back} />;
       case 3:
         return <StepFour />;
-        case 4:
+      case 4:
         return <StepFive />;
-        case 5:
-        return <StepSix />;
+      case 5:
+        return <StepSix />
+      case 6:
+        return <StepSeven />;
       default:
         return 'Unknown step';
     }
