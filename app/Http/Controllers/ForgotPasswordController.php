@@ -56,13 +56,13 @@ class ForgotPasswordController extends Controller
 	
 	public function resetPassword(Request $request)
     {
+		
         $request->validate([ 'password'=>'required|min:6', 'confirmPassword'=>'required']);
 		if($request->confirmPassword != $request->password){
 			return response()->json(['msg'=> 'Enter the Same Password Twice!']);
 		}
 		$email = PasswordReset::where('token',$request->token)->first();
 		$user = User::where('email', $email->email)->first();
-
     	// $tokenData = PasswordReset::where('token', $request->token)->first();
         $tokenData = PasswordReset::where('token','=',$request->token)
 			->where('created_at','>',Carbon::now()->subHours(1))
@@ -70,16 +70,10 @@ class ForgotPasswordController extends Controller
         if(!($request->has('token') && $tokenData)){
             return response()->json(['msg' =>'Token not Found or Expires!']);      
         }
-
         $user->fill(['password' => bcrypt($request->password)])->save();
 
 		$token = PasswordReset::where('email', $email->email)->delete();
 
-		if ($user->hasVerifiedEmail()) {
-            $form_step_change= DB::table('form_statuses')
-            ->where('user_id', $user->id)
-			->update(['form_step' => 1]);
-		  }
     	return response()->json(['status' => 200, 'alert'=> 'Password Changed Successfully']);		
     }
 }

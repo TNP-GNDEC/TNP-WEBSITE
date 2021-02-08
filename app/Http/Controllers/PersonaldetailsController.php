@@ -28,52 +28,51 @@ class PersonaldetailsController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-  if($current_step>=1){
-    // $details = DB::table('personalDetails')
-    // ->where('user_id', $user->id)
-    // ->update([
-    //     'first_name' => $request->profile["first_name"], 
-    //     'last_name' => $request->profile["last_name"],
-    //     'height' => $request->profile["height"],
-    //     'weight' => $request->profile["weight"],
-    //     'dob' => $request->profile["dob"],
-    //     'blood_group' => $request->profile["blood_group"],
-    //     'user_id' => $request->id,
-    //     'gender' => $request->profile["gender"],
-    //     'marital_status' => $request->profile["marital_status"],
-    //     'disability' => $request->profile["disability"],
-    //     'aadhar' => $request->profile["aadhar"],
-    //     'farming_background' => $request->profile["farming_background"],
+    $details = DB::table('personalDetails')
+    ->where('user_id', $user->id)
+    ->update([
+        'first_name' => $request->profile["first_name"], 
+        'last_name' => $request->profile["last_name"],
+        'height' => $request->profile["height"],
+        'weight' => $request->profile["weight"],
+        'dob' => $request->profile["dob"],
+        'blood_group' => $request->profile["blood_group"],
+        'user_id' => $request->id,
+        'gender' => $request->profile["gender"],
+        'marital_status' => $request->profile["marital_status"],
+        'disability' => $request->profile["disability"],
+        'aadhar' => $request->profile["aadhar"],
+        'farming_background' => $request->profile["farming_background"],
 
-    //     'mother_name' => $request->parent["mother_name"],
-    //     'father_name' => $request->parent["father_name"],
-    //     'father_mobile' => $request->parent["father_phone"],
-    //     'mother_mobile' => $request->parent["mother_phone"],
+        'mother_name' => $request->parent["mother_name"],
+        'father_name' => $request->parent["father_name"],
+        'father_mobile' => $request->parent["father_phone"],
+        'mother_mobile' => $request->parent["mother_phone"],
 
-    //     'shift' => $request->academics["shift"],
-    //     'stream' => $request->academics["stream"],
-    //     'category' => $request->academics["course"],
-    //     'branch_type' => $request->academics["section"],
-    //     'training_sem' => $request->academics["training_sem"],
-    //     'hostler' => $request->academics["hostler"],
-    //     'leet' => $request->academics["leet"],
+        'shift' => $request->academics["shift"],
+        'stream' => $request->academics["stream"],
+        'category' => $request->academics["course"],
+        'branch_type' => $request->academics["section"],
+        'training_sem' => $request->academics["training_sem"],
+        'hostler' => $request->academics["hostler"],
+        'leet' => $request->academics["leet"],
 
-    //     'mobile' => $request->contact["contact"],
-    //     'whatsapp' => $request->contact["whatsapp_contact"],
+        'mobile' => $request->contact["contact"],
+        'whatsapp' => $request->contact["whatsapp_contact"],
         
-    //     'pincode' => $request->address["pincode"],
-    //     'district' => $request->address["district"],
-    //     'city' => $request->address["city"],
-    //     'state' => $request->address["state"],
-    //     'address' => $request->address["address"],
+        'pincode' => $request->address["pincode"],
+        'district' => $request->address["district"],
+        'city' => $request->address["city"],
+        'state' => $request->address["state"],
+        'address' => $request->address["address"],
 
-    // ]);
+    ]);
+    if($current_step < 3){
       $form_step_change= DB::table('form_statuses')
       ->where('user_id', $user->id)
       ->update(['form_step' => 2]);
-    return response()->json([ "form_status"=> $form_step_change]);
-  }
-  else return response()->json(["details"=> "first complete email verification"]);
+    }
+    return response()->json([ "msg"=> "stepcomplete"]);
  }
 
   public function recieveFormData($id){

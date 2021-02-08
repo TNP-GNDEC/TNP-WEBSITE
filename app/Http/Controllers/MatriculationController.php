@@ -28,7 +28,6 @@ class MatriculationController extends Controller
     $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-    if($current_step>=2){
     $file = $request->file('file');
     $filename  = $file->getClientOriginalName();
     $extension = $file->getClientOriginalExtension();
@@ -50,12 +49,12 @@ class MatriculationController extends Controller
         'file' => $path.$matriculation_file
 
     ]);
+    if($current_step <4){
       $form_step_change= DB::table('form_statuses')
       ->where('user_id', $user->id)
       ->update(['form_step' => 3]);
-      return response()->json(["data"=>$form_step_change]);
     }
-    else return response()->json(["msg"=> "stepcomplete"]);
+    return response()->json(["msg"=> "stepcomplete"]);
   }
 
   public function recieveFormData($id){

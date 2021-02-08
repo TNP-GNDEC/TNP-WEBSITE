@@ -31,12 +31,7 @@ class VerificationController extends Controller {
 
         $user = User::findOrFail($request->id);
         $user->email = $request->email;
-    	// $userValid = User::where('email', $user->email)->first();
-    	// if (!$userValid) {
-    	// 	return response()->json(['alert'=> 'Invalid Mail!']);		
-        // }
-        
-       
+
         $token = Str::random(60);
 
     	PasswordReset::create([
@@ -52,8 +47,10 @@ class VerificationController extends Controller {
     			Mail::to($tokenData->email)->send(new EmailVerification($tokenData));
                 if (!$user->hasVerifiedEmail()) {
                     $user->markEmailAsVerified();
+                    DB::table('form_statuses')
+                    ->where('user_id', $user->id)
+                    ->update(['form_step' => 1]);
                 }
-                
     			return response()->json(['msg' => 'A Verification Link has been sent to your Mail!']);
     		}
     		else{
@@ -84,7 +81,7 @@ class VerificationController extends Controller {
         $form = DB::table('form_statuses')
         ->where('user_id', $id)
         ->first();
-        if ($form->form_step == 1) {
+        if ($form->form_step > 0) {
             return response()->json(['msg' => "Email already verified."]);
         }
         return response()->json(['alert' => 'error occurs']);

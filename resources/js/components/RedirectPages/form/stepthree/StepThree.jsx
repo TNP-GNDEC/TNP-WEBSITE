@@ -10,6 +10,7 @@ import FormRow from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
     head: {
@@ -133,6 +134,7 @@ const useStyles = makeStyles(theme => ({
 export default function StepThree(props) {
     const classes = useStyles();
     const [file, setfile] = React.useState("");
+    const [loader, setLoader] = React.useState(false);
     const [matriculation, setmatric] = React.useState({
         board: "",
         institution_name: "",
@@ -168,6 +170,7 @@ export default function StepThree(props) {
 
     const handleFormSubmit = event => {
         event.preventDefault();
+        setLoader(true);
         if(validate()){
         const id = localStorage.getItem("userid");
         const fd = new FormData();
@@ -178,6 +181,7 @@ export default function StepThree(props) {
         axios.post(`/api/matriculation/${id}`, 
             fd
         ).then((response) => {
+            setLoader(false);
             if(response.data.msg === "stepcomplete"){
                 props.Complete();
                 props.Next();
@@ -229,9 +233,9 @@ export default function StepThree(props) {
             {loading ? (
                 <Card className={classes.box}>
                 <div className={classes.heading}>
-                <b>
-                    <h1>Please Wait...</h1>
-                </b>
+                <div className={classes.loader}>
+                <CircularProgress color="#193b68" size="80px" />
+                </div>
                 <b>
                     <p className={classes.para}>
                         Checking the Step 3 - Matriculation Details Status
@@ -264,9 +268,14 @@ export default function StepThree(props) {
                 <button className={classes.button} onClick={props.Back}>
                     Back
                 </button>
+                {loader ? (
+                            
+                            <CircularProgress />
+                        ):(
                 <button type="submit" className={classes.button}>
                     Submit & Next
                 </button>
+                        )}
                 </div>
             </form>
             )}
