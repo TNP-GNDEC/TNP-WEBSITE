@@ -53,6 +53,7 @@ class VerificationController extends Controller {
                 if (!$user->hasVerifiedEmail()) {
                     $user->markEmailAsVerified();
                 }
+                
     			return response()->json(['msg' => 'A Verification Link has been sent to your Mail!']);
     		}
     		else{
