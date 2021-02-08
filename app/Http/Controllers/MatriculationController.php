@@ -24,7 +24,7 @@ class MatriculationController extends Controller
 
  public function getFormData(Request $request)
   {
-    $user = User::findOrFail($request->id);
+    $user = auth()->user();
     $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
@@ -57,8 +57,8 @@ class MatriculationController extends Controller
     return response()->json(["msg"=> "stepcomplete"]);
   }
 
-  public function recieveFormData($id){
-    $user = User::findOrFail($id);
+  public function receiveFormData(Request $request){
+    $user = auth()->user();
     $details = DB::table('matriculation')
       ->where('user_id', $user->id)
       ->first();

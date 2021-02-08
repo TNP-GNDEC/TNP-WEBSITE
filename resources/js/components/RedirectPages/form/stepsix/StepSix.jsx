@@ -165,8 +165,9 @@ const handelskipclick = () => {
         fd.append('file', document.getElementById('postfile').files[0]);
         console.log(parent);
         axios
-            .post(`/api/postdetails/${id}`,
-                fd,
+            .post(`/api/postdetails`,
+                fd, { headers: {'Authorization': 'Bearer ' + token }  }
+                
             )
             .then(response => {
                 var user = response.data;

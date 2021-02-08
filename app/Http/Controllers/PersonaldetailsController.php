@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Models\User;
 use App\Models\PersonalDetails;
 use App\Models\FormStatus;
@@ -24,20 +25,20 @@ class PersonaldetailsController extends Controller
 
  public function getFormData(Request $request)
   {
-  $user = User::findOrFail($request->id);
+  $user = auth()->user();
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
     $details = DB::table('personalDetails')
     ->where('user_id', $user->id)
     ->update([
+        'user_id'=> $user->id,
         'first_name' => $request->profile["first_name"], 
         'last_name' => $request->profile["last_name"],
         'height' => $request->profile["height"],
         'weight' => $request->profile["weight"],
         'dob' => $request->profile["dob"],
         'blood_group' => $request->profile["blood_group"],
-        'user_id' => $request->id,
         'gender' => $request->profile["gender"],
         'marital_status' => $request->profile["marital_status"],
         'disability' => $request->profile["disability"],
@@ -72,15 +73,27 @@ class PersonaldetailsController extends Controller
       ->where('user_id', $user->id)
       ->update(['form_step' => 2]);
     }
-    return response()->json([ "msg"=> "stepcomplete"]);
+    
+    
+    return response()->json([ "msg"=> "stepcomplete", "user"=>$user]);
  }
 
-  public function recieveFormData($id){
-    $user = User::findOrFail($id);
+  public function receiveFormData(Request $request){
+      try {
+        $user = auth()->user();
+    } catch (Exception $e) {
+        if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
+            return response()->json(['status' => 'Token is Invalid']);
+        }else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
+            return response()->json(['status' => 'Token is Expired']);
+        }else{
+            return response()->json(['status' => 'Authorization Token not found']);
+        }
+    }
     $details = DB::table('personalDetails')
       ->where('user_id', $user->id)
       ->first();
-      
-    return response()->json(["details"=> $details]);
+    return response()->json(['details' => $details]);
+
   }
 }

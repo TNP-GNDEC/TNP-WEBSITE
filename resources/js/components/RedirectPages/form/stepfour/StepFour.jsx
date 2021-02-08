@@ -204,33 +204,24 @@ export default function StepFour(props) {
         Object.keys(checkbox).forEach(function (key){         
             fd.append(key, checkbox[key]);
         })
-        if(checkbox.both==="1"){
         
-        Object.keys(twelfth).forEach(function (key){         
-            fd.append(key+"_12", twelfth[key]);
-        })
-        fd.append('file_12', document.getElementById('twelfthfile').files[0]);
-
-        Object.keys(diploma).forEach(function (key){         
-            fd.append(key+"_diploma", diploma[key]);
-        })
-        fd.append('file_diploma', document.getElementById('diplomafile').files[0]);
-    }
-    else if(checkbox.XII==="1")
+    if(checkbox.XII==="1" || checkbox.both==="1")
     {
         Object.keys(twelfth).forEach(function (key){         
             fd.append(key+"_12", twelfth[key]);
         })
         fd.append('file_12', document.getElementById('twelfthfile').files[0]);
     }
-    else{
+    if(checkbox.diploma==="1" || checkbox.both==="1"){
         Object.keys(diploma).forEach(function (key){         
             fd.append(key+"_diploma", diploma[key]);
         })
         fd.append('file_diploma', document.getElementById('diplomafile').files[0]);
-    }
-       axios.post(`/api/diplomatwelfth/${id}`, 
-            fd    
+    }   
+       const token = localStorage.getItem("token")
+       axios.post(`/api/diplomatwelfth/`, 
+            fd, {
+                headers: { 'Authorization': 'Bearer ' + token }  }  
             ).then(function (response) {
                 console.log(response.data);
             })

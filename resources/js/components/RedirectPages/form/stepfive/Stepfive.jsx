@@ -174,7 +174,7 @@ export default function StepTwo() {
     
     const handleFormSubmit = event => {
         event.preventDefault();
-        const id = localStorage.getItem("userid");
+        const token = localStorage.getItem("token");
         const fd = new FormData();
         Object.keys(degree).forEach(function (key){         
             fd.append(key, degree[key]);
@@ -182,8 +182,10 @@ export default function StepTwo() {
         fd.append('file', document.getElementById('degreefile').files[0]);
         console.log(parent);
         axios
-            .post(`/api/degreeDetails/${id}`, 
-                fd,
+            .post(`/api/degreeDetails`, 
+                fd,{
+                    headers: { 'Authorization': 'Bearer ' + token }
+                }
             )
             .then(response => {
                 var user = response.data;

@@ -25,7 +25,7 @@ class PgController extends Controller
 
  public function getFormData(Request $request)
   {
-    $user = User::findOrFail($request->id);
+    $user = auth()->user();
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');

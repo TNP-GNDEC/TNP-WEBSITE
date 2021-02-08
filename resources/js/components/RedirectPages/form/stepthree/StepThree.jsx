@@ -172,14 +172,16 @@ export default function StepThree(props) {
         event.preventDefault();
         setLoader(true);
         if(validate()){
-        const id = localStorage.getItem("userid");
+        const token = localStorage.getItem("token");
         const fd = new FormData();
         Object.keys(matriculation).forEach(function (key){         
             fd.append(key, matriculation[key]);
     })
         fd.append('file', document.getElementById('file').files[0]);
-        axios.post(`/api/matriculation/${id}`, 
-            fd
+        axios.post(`/api/matriculation/`, 
+            fd,{
+                headers: { 'Authorization': 'Bearer ' + token }  }
+            
         ).then((response) => {
             setLoader(false);
             if(response.data.msg === "stepcomplete"){
@@ -208,8 +210,8 @@ export default function StepThree(props) {
     };
     const [loading, setLoading] = React.useState(true);
     const fetchDetails = async () => {
-        var id= localStorage.getItem("userid")
-        const res = await axios.get(`/api/matriculationdata/${id}`);
+        var token= localStorage.getItem("token")
+        const res = await axios.get(`/api/matriculationdata`, {headers: { 'Authorization': 'Bearer ' + token }  });
             setmatric({
                 board: res.data.details['board'],
                 institution_name: res.data.details['institution_name'],

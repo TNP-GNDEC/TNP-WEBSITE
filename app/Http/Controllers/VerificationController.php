@@ -27,9 +27,9 @@ class VerificationController extends Controller {
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function verify($user_id, Request $request) {
+    public function verify(Request $request) {
 
-        $user = User::findOrFail($request->id);
+        $user = auth()->user();
         $user->email = $request->email;
 
         $token = Str::random(60);
@@ -77,9 +77,10 @@ class VerificationController extends Controller {
 
         return $this->respondWithMessage("Email verification link sent on your email id");
     }
-    public function getUsers($id) {
+    public function getUsers() {
+        $user=auth()->user();
         $form = DB::table('form_statuses')
-        ->where('user_id', $id)
+        ->where('user_id', $user->id)
         ->first();
         if ($form->form_step > 0) {
             return response()->json(['msg' => "Email already verified."]);

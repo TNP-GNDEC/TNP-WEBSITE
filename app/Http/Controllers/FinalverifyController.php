@@ -11,7 +11,7 @@ use App\Models\PgDetails;
 use App\Models\FormStatus;
 use Illuminate\Support\Facades\DB;
 
-class UgController extends Controller
+class FinalverifyController extends Controller
 {
   public function __construct()
     {
@@ -25,7 +25,7 @@ class UgController extends Controller
 
  public function getFormData(Request $request)
   {
-    $user = User::findOrFail($request->id);
+    $user = auth()->user();
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
