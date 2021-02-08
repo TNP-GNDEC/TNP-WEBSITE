@@ -50,10 +50,11 @@ class MatriculationController extends Controller
         'file' => $path.$matriculation_file
 
     ]);
-      // $form_step_change= DB::table('form_statuses')
-      // ->where('user_id', $user->id)
-      // ->update(['form_step' => 3]);
-      // return response()->json(["pic"=>$request]);
+    if($current_step <4){
+      $form_step_change= DB::table('form_statuses')
+      ->where('user_id', $user->id)
+      ->update(['form_step' => 3]);
+    }
     return response()->json(["msg"=> "stepcomplete"]);
   }
 

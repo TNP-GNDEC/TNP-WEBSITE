@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import Header from "./Header";
 import Footer from "../HomeComponent/SideComponents/Footer";
@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import intro from '../../../images/2.jpg';
 
@@ -72,7 +73,12 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     margin: theme.spacing(0),
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
+  },
+  loader:{
+    width: "100%",
+    textAlign: "center"
+
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -104,8 +110,10 @@ export default function SignIn(props) {
     username : "",
     password : ""
 })
+  const [checkAuth, setAuth] = useState(true);
   const [errors, setErrors] = useState({});
   const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
+  const [loading, setLoading] = useState(false);
 
 const validate = () => {
   let temp = {}
@@ -114,8 +122,8 @@ const validate = () => {
   setErrors({
     ...temp
   })
-
-  return true
+  var ok ="";
+  return Object.keys(temp).every(x => temp[x].valueOf() == ok.valueOf());
 }
 const handlenameChange = (e) => {
   const name= e.target.name
@@ -135,6 +143,23 @@ const handlepasswordChange = (e) => {
   }))
 
 }
+const fetchUser = async (id) => {
+  const user = await axios.get(`/api/getUsers/${id}`);
+  const role = user.data.user['role_id'];
+  if(role===1){
+    var checkStep = fetchSteps(id);
+    if(checkStep === 6){
+      props.history.push("/student");
+    }
+    else{
+      props.history.push("/email");
+    }
+  }
+  if(role ===2){
+    props.history.push("/coordinator")
+  }
+}
+
 const fetchSteps = async (id) => {
   const step = await axios.get(`/api/formStatus/${id}`);
   const form_step = step.data.step['form_step'];
@@ -143,12 +168,14 @@ const fetchSteps = async (id) => {
 
 const handleFormSubmit= async (event)=>{
     event.preventDefault();
-    if(validate()){}
+    setLoading(true);
+    if(validate()){
     axios.post('/api/login', {
       username: state.username,
       password: state.password,
   })
   .then((response) => {
+    setLoading(false);
     if(response.data.alert){
       setNotify({isOpen:true, message:response.data.alert, type:'error'})
     }
@@ -176,9 +203,24 @@ const handleFormSubmit= async (event)=>{
   .catch((error) => {
       console.log(error);
   });
+  }
   };
+  useEffect(()=>{
+    var istoken = localStorage.getItem('token');
+    if(istoken !== null){
+      var id = localStorage.getItem('userid');
+      fetchUser(id);
+    }
+    setAuth(false);
+  },[])
   return (
     <div className={classes.root}>
+      {checkAuth ? (
+        <div>
+        <CircularProgress />
+        </div>
+      ):(
+        <div>
     <Header />
     <div className={classes.card}>
     <div className={classes.container}>
@@ -246,6 +288,11 @@ const handleFormSubmit= async (event)=>{
             control={<Checkbox value="remember" />}
             label="Remember me"
           /> */}
+          {loading ? (
+            <div className={classes.loader}>
+            <CircularProgress />
+            </div>
+          ):(
           <Button
             type="submit"
             fullWidth
@@ -254,13 +301,15 @@ const handleFormSubmit= async (event)=>{
           >
             Sign In
           </Button>
-          
+          )}
         </form>
       </Box>
       </div>
     </div>
     </div>
      <Footer />
+     </div>
+     )}
     </div>
 
   );

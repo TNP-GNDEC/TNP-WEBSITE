@@ -9,6 +9,7 @@ import ContactDetails from "./ContactDetails";
 import Button from "@material-ui/core/Button";
 import { concat } from "lodash";
 import AddressDetails from "./AddressDetails";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { faOdnoklassnikiSquare } from "@fortawesome/free-brands-svg-icons";
 const useStyles = makeStyles(theme => ({
     
@@ -72,6 +73,9 @@ const useStyles = makeStyles(theme => ({
         borderRadius: "10px",
         boxShadow: "0px 15px 25px #00000033"
     },
+    loader:{
+        padding: "10px"
+    },
     pos: {
         float: "right"
     },
@@ -103,6 +107,7 @@ const useStyles = makeStyles(theme => ({
 export default function StepTwo(props) {
     const classes = useStyles();
     const [loading, setLoading] = React.useState(true);
+    const [loader, setLoader] = React.useState(false);
     const [errors, setErrors] = React.useState({});
 
     const validate = () => {
@@ -145,7 +150,6 @@ export default function StepTwo(props) {
         })
         var filter =  Object.keys(temp);
         var ok = "";
-        console.log(temp['first_name'].valueOf());
         return filter.every(x => temp[x].valueOf() === ok.valueOf());
       }
 
@@ -416,6 +420,7 @@ export default function StepTwo(props) {
     const makeOjectsReady = () => {};
 
     const handleFormSubmit = event => {
+        setLoader(true);
         event.preventDefault();
         if(validate()){
         const id = localStorage.getItem("userid");
@@ -428,6 +433,7 @@ export default function StepTwo(props) {
                     address: address
                 })
                 .then((response) => {
+                    setLoader(false);
                     if(response.data.msg === "stepcomplete"){
                         props.Complete();
                         props.Next();
@@ -495,9 +501,9 @@ export default function StepTwo(props) {
             {loading ? (
                 <Card className={classes.box}>
                 <div className={classes.heading}>
-                <b>
-                    <h1>Please Wait...</h1>
-                </b>
+                <div className={classes.loader}>
+                <CircularProgress color="#193b68" size="80px" />
+                </div>
                 <b>
                     <p className={classes.para}>
                         Checking the Step 2 - Personal Details Status
@@ -561,9 +567,14 @@ export default function StepTwo(props) {
                     </Grid>
                 </Grid>
                 <div className={classes.btnBox}>
+                {loader ? (
+                            
+                            <CircularProgress />
+                        ):(
                 <button type="submit" className={classes.button}>
                     Submit & Next
                 </button>
+                        )}
                 </div>
             </form>
             )}

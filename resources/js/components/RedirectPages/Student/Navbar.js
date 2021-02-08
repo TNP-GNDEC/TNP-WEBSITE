@@ -44,6 +44,8 @@ export default function ButtonAppBar() {
 
   const handleLogout = () =>{
     localStorage.removeItem('token');
+    localStorage.removeItem('userid');
+    localStorage.removeItem('useruuid');
     window.location.href = window.origin+ "/login";
   }
   const classes = useStyles();

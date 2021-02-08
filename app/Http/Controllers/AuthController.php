@@ -92,6 +92,12 @@ protected function respondWithToken($token, $currentUser)
         'current_user' => $currentUser
     ]);
 }
+public function user($id){
+    $user = DB::table('users')
+       ->where('id', $id)
+       ->first();
+    return response()->json(['user' => $user]);
+}
 public function status($id){
     $form = DB::table('form_statuses')
       ->where('user_id', $id)

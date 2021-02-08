@@ -28,7 +28,6 @@ class PersonaldetailsController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-  if($current_step==1){
     $details = DB::table('personalDetails')
     ->where('user_id', $user->id)
     ->update([
@@ -68,12 +67,12 @@ class PersonaldetailsController extends Controller
         'address' => $request->address["address"],
 
     ]);
+    if($current_step < 3){
       $form_step_change= DB::table('form_statuses')
       ->where('user_id', $user->id)
       ->update(['form_step' => 2]);
-    return response()->json([ "form_status"=> $form_step_change]);
-  }
-  else return response()->json(["details"=> "first complete email verification"]);
+    }
+    return response()->json([ "msg"=> "stepcomplete"]);
  }
 
   public function recieveFormData($id){

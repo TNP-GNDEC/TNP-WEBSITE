@@ -4,6 +4,7 @@ import { Card } from "@material-ui/core";
 import CusButton from "./CusButton";
  import Button from '@material-ui/core/Button';
 import Notisfication from '../../Auth/Notisfication';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
     heading: {
@@ -20,7 +21,10 @@ const useStyles = makeStyles(theme => ({
             outline: "none"
         },
         border: "1px solid #038ed4",
-        boxShadow: "0px 5px 15px #038ed433"
+        boxShadow: "0px 5px 15px #038ed433",
+        "&:placeholder-shown":{
+            paddingLeft: "5px"
+        }
     },
     field: {
         width: "60%",
@@ -47,10 +51,16 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         paddingBottom: "60px"
     },
+    loader:{
+        padding: "10px"
+    },
     buttonWrapper: {
         display: "flex",
         flexDirection: "row",
         padding: "16px 0 0"
+    },
+    loader:{
+        padding: "10px"
     },
     button: {
         // marginRight: theme.spacing(1)
@@ -87,6 +97,7 @@ const useStyles = makeStyles(theme => ({
 }));
 export default function StepOne(props) {
     const [loading, setLoading] = useState(true);
+    const [loader, setLoader] = useState(false);
     const [email, setEmail] = React.useState("");
     const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
 
@@ -97,6 +108,7 @@ export default function StepOne(props) {
     
       const handleFormSubmit = (e) => {
         e.preventDefault();
+        setLoader(true);
         var uuid= localStorage.getItem("useruuid")
         var id= localStorage.getItem("userid")
         console.log(uuid)
@@ -106,6 +118,7 @@ export default function StepOne(props) {
     
       })
       .then((response) => {
+          setLoader(false);
         if(response.data.msg){
             setNotify({isOpen:true, message:response.data.msg, type:'success'})
           }
@@ -138,9 +151,9 @@ export default function StepOne(props) {
         return(
             <Card className={classes.box}>
                 <div className={classes.heading}>
-                <b>
-                    <h1>Please Wait...</h1>
-                </b>
+                    <div className={classes.loader}>
+                <CircularProgress color="#193b68" size="80px" />
+                </div>
                 <b>
                     <p className={classes.para}>
                         Checking the Step 1 - Email Verification Status
@@ -191,9 +204,16 @@ export default function StepOne(props) {
                             />
                             
                         </div>
+                        {loader ? (
+                            <div className={classes.loader}>
+                            <CircularProgress />
+                            </div>
+                        ):(
                         <button 
                               type="submit" 
-                              className={classes.button}>Verify!</button> 
+                              className={classes.button}>Verify!
+                        </button> 
+                        )}
                     </form>
                 </div>
             </div>
