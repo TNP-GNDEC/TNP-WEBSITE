@@ -28,7 +28,6 @@ class MatriculationController extends Controller
     $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-    
     $file = $request->file('file');
     $filename  = $file->getClientOriginalName();
     $extension = $file->getClientOriginalExtension();

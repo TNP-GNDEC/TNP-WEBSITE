@@ -29,7 +29,7 @@ class TwelfthdiplomaController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-  if($current_step==3){
+  if($current_step>=2){
     if($request->XII=="1" || $request->both=="1"){
     $twelfth_file = $request->file('file_12');
     $twelfth_filename  = $twelfth_file->getClientOriginalName();
@@ -70,7 +70,7 @@ class TwelfthdiplomaController extends Controller
     $diploma_details = Diploma::updateOrCreate(
       ['user_id' => $user->id],
       [ 'user_id' => $user->id,
-        'urn' => $user->username,
+      'urn' => $user->username,
       'pincode' => $request->pincode_diploma,
       'city' => $request->city_diploma,
       'state' => $request->state_diploma,

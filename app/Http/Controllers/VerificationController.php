@@ -31,13 +31,7 @@ class VerificationController extends Controller {
 
         $user = User::findOrFail($request->id);
         $user->email = $request->email;
-    	//$userValid = User::where('email', $user->email)->first();
-    	//if (!$userValid) {
-    	//	return response()->json(['alert'=> 'Invalid Mail!']);		
-        //}
-        
-         
-        
+
         $token = Str::random(60);
 
     	PasswordReset::create([

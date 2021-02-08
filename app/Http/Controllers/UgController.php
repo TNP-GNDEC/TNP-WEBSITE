@@ -29,7 +29,7 @@ class UgController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-  if($current_step==4){
+  if($current_step>=4){
     $ug_file = $request->file('file');
     $ug_filename  = $ug_file->getClientOriginalName();
     $ug_extension = $ug_file->getClientOriginalExtension();
@@ -37,13 +37,6 @@ class UgController extends Controller
     $ug_path = public_path('documents/ug');
     $ug_file->move(public_path('documents/ug'), $ug_file_url);
     
-    // $pg_file = $request->file('file');
-    // $pg_filename  = $pg_file->getClientOriginalName();
-    // $pg_extension = $pg_file->getClientOriginalExtension();
-    // $pg_file_url   = $user->username._.'pg.'.$pg_extension;
-    // $pg_path = public_path('documents/pg');
-    // $pg_file->move(public_path('documents/pg'), $pg_file_url);
-
     $ug_details = UgDetails::updateOrCreate(
       ['user_id' => $user->id],
       [ 'user_id' => $user->id,
@@ -71,22 +64,6 @@ class UgController extends Controller
         'file' => $ug_file_url,
 
     ]);
-
-    // $pg_details = DB::table('pg')
-    // ->where('user_id', $user->id)
-    // ->update([
-    //     'pincode' => $request->pg["pincode_of_institution,
-    //     'city' => $request->pg["city_of_institution,
-    //     'state' => $request->pg["state_of_institution,
-    //     'branch' => $request->pg["stream,
-    //     'marks_type' => $request->pg["marks_type,
-    //     'maximum_marks' => $request->pg["maximum_marks,
-    //     'obtained_marks' => $request->pg["obtained_marks,
-    //     'institution_name' => $request->pg["institution_name,
-    //     'year_of_passing' => $request->pg["year_of_passing,
-    //     'file' => $pg_file_url
-
-    // ]);
 
       $form_step_change= DB::table('form_statuses')
       ->where('user_id', $user->id)
