@@ -170,17 +170,17 @@ export default function StepThree(props) {
 
     const handleFormSubmit = event => {
         event.preventDefault();
-        setLoader(true);
         if(validate()){
-        const token = localStorage.getItem("token");
-        const fd = new FormData();
-        Object.keys(matriculation).forEach(function (key){         
-            fd.append(key, matriculation[key]);
-    })
-        fd.append('file', document.getElementById('file').files[0]);
-        axios.post(`/api/matriculation/`, 
-            fd,{
-                headers: { 'Authorization': 'Bearer ' + token }  }
+            setLoader(true);
+            const token = localStorage.getItem("token");
+            const fd = new FormData();
+            Object.keys(matriculation).forEach(function (key){         
+                fd.append(key, matriculation[key]);
+        })
+            fd.append('file', document.getElementById('file').files[0]);
+            axios.post(`/api/matriculation/`, 
+                fd,{
+                    headers: { 'Authorization': 'Bearer ' + token }  }
             
         ).then((response) => {
             setLoader(false);

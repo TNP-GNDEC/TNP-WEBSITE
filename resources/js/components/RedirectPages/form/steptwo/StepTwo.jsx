@@ -10,6 +10,10 @@ import Button from "@material-ui/core/Button";
 import { concat } from "lodash";
 import AddressDetails from "./AddressDetails";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {
+  camelCase,
+  capitalCase,
+} from "change-case";
 import { faOdnoklassnikiSquare } from "@fortawesome/free-brands-svg-icons";
 const useStyles = makeStyles(theme => ({
     
@@ -112,21 +116,21 @@ export default function StepTwo(props) {
 
     const validate = () => {
         let temp = {}
-        temp.first_name = profile.first_name ? "": "Enter Valid Name (only char)."
+        temp.first_name = (/^[a-zA-Z\s]*$/).test(profile.first_name) ? "": "Enter Valid Name (only char)."
         temp.dob = profile.dob? "": "Enter DOB in correct format(yyyy-mm-dd)."
-        temp.aadhar = profile.aadhar ? "": "This field is required."
-        temp.height = profile.height ? "": "This field is required."
-        temp.weight = profile.weight ? "": "This field is required."
+        temp.aadhar = (/^[0-9\b]+$/).test(profile.aadhar) ? "": "Enter 12digits with no space."
+        temp.height = (/^[0-9\b]+$/).test(profile.height) ? "": "This field is required."
+        temp.weight = (/^[0-9\b]+$/).test(profile.weight) ? "": "This field is required."
         temp.blood_group = profile.blood_group ? "": "This field is required."
         temp.gender = profile.gender ? "": "This field is required."
         temp.marital_status = profile.marital_status ? "": "This field is required."
         temp.farming_background = profile.farming_background == 0 || profile.farming_background == 1 ? "": "This field is required."
         temp.disability = profile.disability == 0 || profile.disability == 1 ? "": "This field is required."
 
-        temp.father_name = parent.father_name ? "": "This field is required."
-        temp.father_phone = parent.father_phone ? "": "Enter Vaild Phone No."
-        temp.mother_name = parent.mother_name ? "": "This field is required."
-        temp.mother_phone = parent.mother_phone ? "": "Enter Vaild Phone No."
+        temp.father_name = (/^[a-zA-Z\s]*$/).test(parent.father_name) ? "": "Enter Valid Name (only char)."
+        temp.father_phone = (/^[0-9\b]+$/).test(parent.father_phone) ? "": "Enter Vaild Phone No."
+        temp.mother_name = (/^[a-zA-Z\s]*$/).test(parent.mother_name) ? "": "Enter Valid Name (only char)."
+        temp.mother_phone = (/^[0-9\b]+$/).test(parent.mother_phone) ? "": "Enter Vaild Phone No."
 
         temp.course = academics.course ? "": "This field is required."
         temp.stream = academics.stream ? "": "This field is required."
@@ -136,15 +140,15 @@ export default function StepTwo(props) {
         temp.hostler = academics.hostler ==0 || academics.hostler == 1 ? "": "This field is required."
         temp.training_sem = academics.training_sem ? "": "This field is required."
 
-        temp.whatsapp_contact = contact.whatsapp_contact ? "": "Enter Vaild Phone No."
-        temp.contact = contact.contact ? "": "Enter Vaild Phone No."
-        temp.re_enter_contact = contact.re_enter_contact ? "": "Enter Vaild Phone No."
+        temp.whatsapp_contact = (/^[0-9\b]+$/).test(contact.whatsapp_contact) ? "": "Enter Vaild Phone No."
+        temp.contact = (/^[0-9\b]+$/).test(contact.contact) ? "": "Enter Vaild Phone No."
+        temp.re_enter_contact = (/^[0-9\b]+$/).test(contact.re_enter_contact) ? "": "Enter Vaild Phone No."
 
         temp.street = address.address ? "": "This field is required."
-        temp.city = address.city ? "": "This field is required."
-        temp.pincode2 = address.pincode ? "": "This field is required."
-        temp.state = address.state ? "": "This field is required."
-        temp.district = address.district ? "": "This field is required."
+        temp.city = (/^[a-zA-Z\s]*$/).test(address.city) ? "": "This field is required."
+        temp.pincode2 = (/^[0-9\b]+$/).test(address.pincode) ? "": "This field is required."
+        temp.state = (/^[a-zA-Z\s]*$/).test(address.state) ? "": "This field is required."
+        temp.district = (/^[a-zA-Z\s]*$/).test(address.district) ? "": "This field is required."
         setErrors({
           ...temp
         })
@@ -226,10 +230,32 @@ export default function StepTwo(props) {
     //     }
     // };
 
-    function camelize() {
-        return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
-            if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
-            return index === 0 ? match.toLowerCase() : match.toUpperCase();
+    function setCamelCase(){
+        setProfile({
+            first_name : camelCase(profile.first_name),
+            last_name : camelCase(profile.last_name),
+            dob: profile.dob,
+            height: profile.height,
+            weight: profile.weight,
+            blood_group: profile.blood_group,
+            gender: profile.gender,
+            marital_status: profile.marital_status,
+            farming_background: profile.farming_background,
+            disability: profile.disability,
+            aadhar: profile.aadhar
+        });
+        setParent({
+            father_name: camelCase(parent.father_name),
+            mother_name: camelCase(parent.mother_name),
+            father_phone: parent.father_phone,
+            mother_phone: parent.mother_phone
+        });
+        setAddress({ 
+            address: camelCase(address.address),
+            city: camelCase(address.city),
+            district: camelCase(address.district),
+            state: camelCase(address.state),
+            pincode: address.pincode
         });
     }
 
@@ -252,7 +278,7 @@ export default function StepTwo(props) {
             case 4:
                 setProfile({
                     ...profile,
-                    aadhar: parseInt(value) ? parseInt(value) : ""
+                    aadhar: value
                 });
                 break;
             case 5:
@@ -304,16 +330,16 @@ export default function StepTwo(props) {
             case 2:
                 setParent({
                     ...parent,
-                    father_phone: parseInt(value) ? parseInt(value) : ""
+                    father_phone: value
                 });
                 break;
             case 3:
-                setParent({ ...parent, mother_name: value });
+                setParent({ ...parent, mother_name: value});
                 break;
             case 4:
                 setParent({
                     ...parent,
-                    mother_phone: parseInt(value) ? parseInt(value) : ""
+                    mother_phone: value
                 });
                 break;
             default:
@@ -367,20 +393,19 @@ export default function StepTwo(props) {
                 // value = contact.whatsapp_contact.toString().length+1 <= 10 ? value : contact.whatsapp_contact.toString()
                 setContact({
                     ...contact,
-                    whatsapp_contact: parseInt(value) ? parseInt(value) : ""
+                    whatsapp_contact: value
                 });
-                console.log(contact.whatsapp_contact.toString().length);
                 break;
             case 2:
                 setContact({
                     ...contact,
-                    contact: parseInt(value) ? parseInt(value) : ""
+                    contact: value
                 });
                 break;
             case 3:
                 setContact({
                     ...contact,
-                    re_enter_contact: parseInt(value) ? parseInt(value) : ""
+                    re_enter_contact: value
                 });
                 break;
             default:
@@ -400,16 +425,16 @@ export default function StepTwo(props) {
                 setAddress({ ...address, city: value });
                 break;
             case 3:
-                setAddress({ ...address, district: value });
+                setAddress({ ...address, district: value});
                 break;
             case 4:
                 setAddress({
                     ...address,
-                    pincode: parseInt(value) ? parseInt(value) : ""
+                    pincode: value
                 });
                 break;
             case 5:
-                setAddress({ ...address, state: value });
+                setAddress({ ...address, state:value});
                 break;
             default:
                 break;
@@ -420,15 +445,21 @@ export default function StepTwo(props) {
     const makeOjectsReady = () => {};
 
     const handleFormSubmit = event => {
-        setLoader(true);
         event.preventDefault();
+        // setCamelCase();
         if(validate()){
+            setLoader(true);
             const token = localStorage.getItem("token");
             axios
                 .post(`/api/personaldetails/`, {
                     profile: profile,
                     academics: academics,
-                    parent: parent,
+                    parent: parent ={
+                        father_name: camelCase(parent.father_name),
+                        mother_name: camelCase(parent.mother_name),
+                        father_phone: parent.father_phone,
+                        mother_phone: parent.mother_phone
+                    },
                     contact: contact,
                     address: address
                 }, {
@@ -447,13 +478,12 @@ export default function StepTwo(props) {
     };
 
     const fetchDetails = async () => {
-        var id= localStorage.getItem("userid")
         var token= localStorage.getItem("token")
         const res = await axios.get(`/api/personalDetails/`,{
             headers: { 'Authorization': 'Bearer ' + token }});
             setProfile({
-                first_name: res.data.details['first_name'],
-                last_name: res.data.details['last_name'],
+                first_name: capitalCase(res.data.details['first_name']),
+                last_name: capitalCase(res.data.details['last_name']),
                 dob: res.data.details['dob'],
                 height: res.data.details['height'],
                 weight: res.data.details['weight'],
@@ -465,9 +495,9 @@ export default function StepTwo(props) {
                 aadhar: res.data.details['aadhar']
             })
             setParent({
-                father_name: res.data.details['father_name'],
+                father_name: capitalCase(res.data.details['father_name']),
                 father_phone: res.data.details['father_mobile'],
-                mother_name: res.data.details['mother_name'],
+                mother_name: capitalCase(res.data.details['mother_name']),
                 mother_phone: res.data.details['mother_mobile']
             })
             setAcademics({
@@ -487,11 +517,11 @@ export default function StepTwo(props) {
                 re_enter_contact: res.data.details['mobile']
             })
             setAddress({
-                address: res.data.details['address'],
+                address: capitalCase(res.data.details['address']),
                 pincode: res.data.details['pincode'],
-                district: res.data.details['district'],
-                city: res.data.details['city'],
-                state: res.data.details['state']
+                district: capitalCase(res.data.details['district']),
+                city: capitalCase(res.data.details['city']),
+                state: capitalCase(res.data.details['state'])
             })
 
         setLoading(false);

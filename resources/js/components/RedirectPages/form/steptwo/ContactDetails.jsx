@@ -38,21 +38,21 @@ export default function ContactDetails(props) {
     const [truthy, setT] = React.useState(false);
     const fields = [
         {
-            label: " WHATSAPP CONTACT NO.",
+            label: " WHATSAPP CONTACT NO.*",
             type: "text",
             id: 1,
             value: props.contact.whatsapp_contact,
             validate: props.Errors.whatsapp_contact
         },
         {
-            label: "CONTACT NO.",
+            label: "CONTACT NO.*",
             type: "text",
             id: 2,
             value: props.contact.contact,
             validate: props.Errors.contact
         },
         {
-            label: "RE-ENTER CONTACT NO.",
+            label: "RE-ENTER CONTACT NO.*",
             type: "text",
             id: 3,
             value: props.contact.re_enter_contact,
