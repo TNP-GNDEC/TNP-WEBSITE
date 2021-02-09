@@ -423,15 +423,16 @@ export default function StepTwo(props) {
         setLoader(true);
         event.preventDefault();
         if(validate()){
-        const id = localStorage.getItem("userid");
+            const token = localStorage.getItem("token");
             axios
-                .post(`/api/personaldetails/${id}`, {
+                .post(`/api/personaldetails/`, {
                     profile: profile,
                     academics: academics,
                     parent: parent,
                     contact: contact,
                     address: address
-                })
+                }, {
+                    headers: { 'Authorization': 'Bearer ' + token }})
                 .then((response) => {
                     setLoader(false);
                     if(response.data.msg === "stepcomplete"){
@@ -447,7 +448,9 @@ export default function StepTwo(props) {
 
     const fetchDetails = async () => {
         var id= localStorage.getItem("userid")
-        const res = await axios.get(`/api/personalDetails/${id}`);
+        var token= localStorage.getItem("token")
+        const res = await axios.get(`/api/personalDetails/`,{
+            headers: { 'Authorization': 'Bearer ' + token }});
             setProfile({
                 first_name: res.data.details['first_name'],
                 last_name: res.data.details['last_name'],

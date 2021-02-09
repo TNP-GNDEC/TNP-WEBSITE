@@ -144,7 +144,7 @@ const handlepasswordChange = (e) => {
 
 }
 const fetchUser = async (id) => {
-  const user = await axios.get(`/api/getUsers/${id}`);
+  const user = await axios.get(`/api/getUsers`);
   const role = user.data.user['role_id'];
   if(role===1){
     var checkStep = fetchSteps(id);
@@ -161,7 +161,9 @@ const fetchUser = async (id) => {
 }
 
 const fetchSteps = async (id) => {
-  const step = await axios.get(`/api/formStatus/${id}`);
+  const step = await axios.get(`/api/formStatus/`, {
+    headers: { 'Authorization': 'Bearer ' + token }
+  });
   const form_step = step.data.step['form_step'];
   return form_step;
 }

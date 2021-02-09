@@ -92,15 +92,15 @@ protected function respondWithToken($token, $currentUser)
         'current_user' => $currentUser
     ]);
 }
-public function user($id){
+public function user(){
     $user = DB::table('users')
-       ->where('id', $id)
+       ->where('id', auth()->user())
        ->first();
     return response()->json(['user' => $user]);
 }
-public function status($id){
+public function status(Request $request){
     $form = DB::table('form_statuses')
-      ->where('user_id', $id)
+      ->where('user_id', auth()->user())
       ->first();
     return response()->json(['step'=>$form]);
 }

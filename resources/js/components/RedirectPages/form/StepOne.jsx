@@ -132,8 +132,10 @@ export default function StepOne(props) {
       }
     
       const fetchUsers = async () => { // Function featching users
-        var id= localStorage.getItem("userid")
-        const res = await axios.get(`/api/email/getusers/${id}`);
+        var token= localStorage.getItem("token")
+        const res = await axios.get(`/api/email/getusers`, {headers: {
+            'authorization' : 'bearer '+token
+        }});
         if (res.data.msg ===  "Email already verified."){
             props.Complete();
             props.Next();
