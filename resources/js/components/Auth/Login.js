@@ -11,6 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {  InputAdornment, IconButton } from "@material-ui/core";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import intro from '../../../images/2.jpg';
 
@@ -165,7 +168,9 @@ const fetchSteps = async (id) => {
   const form_step = step.data.step['form_step'];
   return form_step;
 }
-
+const [showPassword, setShowPassword] = useState(false);
+const handleClickShowPassword = () => setShowPassword(!showPassword);
+const handleMouseDownPassword = () => setShowPassword(!showPassword);
 const handleFormSubmit= async (event)=>{
     event.preventDefault();
     setLoading(true);
@@ -267,10 +272,27 @@ const handleFormSubmit= async (event)=>{
             label="Password"
             type="password"
             id="password"
+            type={showPassword ? 'text' : 'password'}
+            id="standard-adornment-password"
             autoComplete="current-password"
             defaultValue={state.password}
+            
             onChange={handlepasswordChange} 
             {...(errors.password && {error:true, helperText:errors.password})}
+            InputProps={{ 
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                    
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
           />
           <Grid container>
             <Grid item xs>
