@@ -37,7 +37,6 @@ const Uploadcsv = () => {
         skipEmptyLines: true,
         complete: function(results) {
           data = results;
-          console.log(data.data)
           axios.post('/api/registerstudent', {
             data: data
         })

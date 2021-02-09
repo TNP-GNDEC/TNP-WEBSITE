@@ -197,7 +197,6 @@ export default function StepThree(props) {
 
 
     const handleMatriculationChangeInput = (e, id) => {
-        console.log("I am called");
         
         const name= e.target.name
         const value= e.target.value   

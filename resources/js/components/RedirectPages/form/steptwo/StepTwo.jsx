@@ -235,7 +235,6 @@ export default function StepTwo(props) {
 
     // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
-        console.log("I am called");
         const value = e.target.value;
         switch (id) {
             case 1:
@@ -294,12 +293,10 @@ export default function StepTwo(props) {
 
     // State setter function of parent form sent as props to ParentDetails forms
     const handleParentChangeInput = (e, id) => {
-        console.log("I am called for parent");
         const value = e.target.value;
         switch (id) {
             case 1:
                 setParent({ ...parent, father_name: value });
-                console.log(parent.father_name);
                 break;
             case 2:
                 setParent({
@@ -323,15 +320,8 @@ export default function StepTwo(props) {
 
     // State setter function of academics form sent as props to AcademicDetails forms
     const handleAcademicsChangeInput = (e, id) => {
-        console.log("I am called for academics");
         const value = e.target.value;
         switch (id) {
-            // case 1:
-            //     setAcademics({ ...academics, univ_roll: value });
-            //     break;
-            // case 2:
-            //     setAcademics({ ...academics, college_roll: value });
-            //     break;
             case 3:
                 setAcademics({ ...academics, course: value });
                 break;
@@ -360,7 +350,6 @@ export default function StepTwo(props) {
 
     // State setter function of contact form sent as props to ContactDetails forms
     const handleContactChangeInput = (e, id) => {
-        console.log("I am called for contact : ", e.target);
         let value = e.target.value;
         switch (id) {
             case 1:
@@ -369,7 +358,6 @@ export default function StepTwo(props) {
                     ...contact,
                     whatsapp_contact: parseInt(value) ? parseInt(value) : ""
                 });
-                console.log(contact.whatsapp_contact.toString().length);
                 break;
             case 2:
                 setContact({
@@ -390,7 +378,6 @@ export default function StepTwo(props) {
 
     // function for setting  address object
     const handleAddresssChangeInput = (e, id) => {
-        console.log("I am called for contact");
         const value = e.target.value;
         switch (id) {
             case 1:

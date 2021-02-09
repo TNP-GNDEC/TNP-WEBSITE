@@ -103,7 +103,6 @@ export default function StepTwo() {
     });
    
     const handleDegreeChangeInput = (e, id) => {
-        console.log("I am called for parent");
         const value = e.target.value;
         switch (id) {
             // case 1:
@@ -180,7 +179,6 @@ export default function StepTwo() {
             fd.append(key, degree[key]);
     })
         fd.append('file', document.getElementById('degreefile').files[0]);
-        console.log(parent);
         axios
             .post(`/api/degreeDetails`, 
                 fd,{
@@ -188,7 +186,6 @@ export default function StepTwo() {
                 }
             )
             .then(response => {
-                var user = response.data;
                 console.log(response.data);
             })
             .catch(error => {
@@ -196,11 +193,6 @@ export default function StepTwo() {
             });
     };
 
- 
-    React.useEffect(() => {
-        console.log("Do something after  has changed", degree);
-    }, [degree]);
-    
       
     return (
         <div>

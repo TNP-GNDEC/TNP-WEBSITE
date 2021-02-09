@@ -319,13 +319,6 @@ const handleBothClick = () => {
     })
 }
 
-
-    React.useEffect(() => {
-        console.log("Do something after profile has changed", diploma);
-    }, [diploma]);
-    React.useEffect(() => {
-        console.log("Do something after profile has changed", twelfth);
-    }, [twelfth]);
     const renderPersonalFields = () =>
         fields.map(field => (
             <>

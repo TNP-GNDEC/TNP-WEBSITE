@@ -103,9 +103,6 @@ export default function StepTwo() {
    
    
     const handlePostChangeInput = (e, id) => {
-        console.log("I am called");
-        console.log(e);
-        console.log(id);
         const value = e.target.value;
         switch (id) {
             case 1:
@@ -163,26 +160,18 @@ const handelskipclick = () => {
             fd.append(key, post[key]);
     })
         fd.append('file', document.getElementById('postfile').files[0]);
-        console.log(parent);
         axios
             .post(`/api/postdetails`,
                 fd, { headers: {'Authorization': 'Bearer ' + token }  }
                 
             )
             .then(response => {
-                var user = response.data;
                 console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
             });
     };
-
- 
-    React.useEffect(() => {
-        console.log("Do something after postgraduation has changed", post);
-    }, [post]);
-    
       
     return (
         <div>

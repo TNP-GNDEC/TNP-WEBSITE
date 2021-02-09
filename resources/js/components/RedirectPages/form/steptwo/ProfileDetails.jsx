@@ -192,14 +192,6 @@ export default function ProfileDetails(props) {
                         value={field.value}
                         select={field.select}
                         {...(field.validate && {error:true, helperText:field.validate})}
-                        // onBlur={() => {
-                        //     console.log(`I am blurred and ready to process`);
-                        //     field.id==3 && setDateLabel("");
-                        // }}
-                        // onClick={() => {
-                        //     console.log("Onfocus Call me ");
-                        //     field.id==3 && setDateLabel("DATE OF BIRTH");
-                        // }}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
