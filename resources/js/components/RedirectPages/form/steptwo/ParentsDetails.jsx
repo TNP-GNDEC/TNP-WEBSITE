@@ -38,7 +38,7 @@ export default function ParentDetails(props) {
     const classes = useStyles();
     const fields = [
         {
-            label: "FATHER NAME (No Prefix)",
+            label: "FATHER NAME (No Prefix)*",
             type: "text",
             id: 1,
             value: props.parent.father_name,
@@ -48,7 +48,7 @@ export default function ParentDetails(props) {
             validate: props.Errors.father_name
         },
         {
-            label: "FATHER PHONE NO.",
+            label: "FATHER PHONE NO.*",
             type: "text",
             id: 2,
             value: props.parent.father_phone,
@@ -58,7 +58,7 @@ export default function ParentDetails(props) {
             validate: props.Errors.father_phone
         },
         {
-            label: "MOTHER NAME (No Prefix)",
+            label: "MOTHER NAME (No Prefix)*",
             type: "text",
             id: 3,
             value: props.parent.mother_name,
@@ -68,7 +68,7 @@ export default function ParentDetails(props) {
             validate: props.Errors.mother_name
         },
         {
-            label: "MOTHER PHONE NO.",
+            label: "MOTHER PHONE NO.*",
             type: "text",
             id: 4,
             value: props.parent.mother_phone,

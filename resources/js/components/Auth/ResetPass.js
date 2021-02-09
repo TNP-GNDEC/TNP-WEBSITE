@@ -186,7 +186,7 @@ const handleFormSubmit= async (event)=>{
             margin="normal"
             fullWidth
             name="password"
-            label="Password"
+            label="New Password"
             type="password"
             id="password"
             defaultValue={state.password}

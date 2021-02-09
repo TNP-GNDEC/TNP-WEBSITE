@@ -42,7 +42,7 @@ export default function ProfileDetails(props) {
 
     const fields = [
         {
-            label: "FIRST NAME",
+            label: "FIRST NAME*",
             type: "text",
             id: 1,
             select: false,
@@ -60,7 +60,7 @@ export default function ProfileDetails(props) {
             validate: false
         },
         {
-            label: "DATE OF BIRTH (yyyy-mm-dd)",
+            label: "DATE OF BIRTH (yyyy-mm-dd)*",
             type: "text",
             id: 3,
             select: false,
@@ -69,7 +69,7 @@ export default function ProfileDetails(props) {
             validate: props.Errors.dob
         },
         {
-            label: "AADHAR NO.",
+            label: "AADHAR NO.*",
             type: "text",
             id: 4,
             select: false,
@@ -79,7 +79,7 @@ export default function ProfileDetails(props) {
         },
 
         {
-            label: "HEIGHT (in cm)",
+            label: "HEIGHT (in cm)*",
             type: "text",
             id: 5,
             select: false,
@@ -88,7 +88,7 @@ export default function ProfileDetails(props) {
             validate: props.Errors.height
         },
         {
-            label: "WEIGHT (in kg)",
+            label: "WEIGHT (in kg)*",
             type: "tel",
             id: 6,
             select: false,
@@ -97,7 +97,7 @@ export default function ProfileDetails(props) {
             validate: props.Errors.weight
         },
         {
-            label: "BLOOD GROUP",
+            label: "BLOOD GROUP*",
             type: "text",
             id: 7,
             select: true,
@@ -115,7 +115,7 @@ export default function ProfileDetails(props) {
             validate: props.Errors.blood_group
         },
         {
-            label: "GENDER",
+            label: "GENDER*",
             type: "text",
             id: 8,
             select: "true",
@@ -127,7 +127,7 @@ export default function ProfileDetails(props) {
             validate: props.Errors.gender
         },
         {
-            label: "MARITAL STATUS",
+            label: "MARITAL STATUS*",
             type: "text",
             id: 9,
             select: "True",
@@ -140,7 +140,7 @@ export default function ProfileDetails(props) {
         },
 
         {
-            label: "FARMING BACKGROUND",
+            label: "FARMING BACKGROUND*",
             type: "text",
             id: 10,
             select: "True",
@@ -153,7 +153,7 @@ export default function ProfileDetails(props) {
         },
 
         {
-            label: "DISABILITY",
+            label: "DISABILITY*",
             type: "text",
             id: 11,
             select: "True",

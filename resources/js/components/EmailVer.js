@@ -84,9 +84,9 @@ const useStyles = makeStyles((theme) => ({
       case 3:
         return <StepFour Next={next} Complete={complete} Back={back} />;
       case 4:
-        return <StepFive />;
+        return <StepFive Next={next} Complete={complete} Back={back} />;
       case 5:
-        return <StepSix />
+        return <StepSix Next={next} Complete={complete} Back={back} />
       case 6:
         return <StepSeven />;
       default:

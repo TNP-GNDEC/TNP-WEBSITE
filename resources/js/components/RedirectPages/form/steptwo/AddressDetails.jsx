@@ -38,21 +38,21 @@ export default function AddressDetails(props) {
     const classes = useStyles();
     const fields = [
         {
-            label: "STREET",
+            label: "STREET*",
             type: "text",
             id: 1,
             value: props.address.address,
             validate: props.Errors.street
         },
         {
-            label: "CITY/VILLAGE",
+            label: "CITY/VILLAGE*",
             type: "text",
             id: 2,
             value: props.address.city,
             validate: props.Errors.city
         },
         {
-            label: "DISTRICT",
+            label: "DISTRICT*",
             type: "text",
             id: 3,
             value: props.address.district,
@@ -60,7 +60,7 @@ export default function AddressDetails(props) {
 
         },
         {
-            label: "PINCODE",
+            label: "PINCODE*",
             type: "text",
             id: 4,
             value: props.address.pincode,
@@ -68,7 +68,7 @@ export default function AddressDetails(props) {
         },
 
         {
-            label: "STATE",
+            label: "STATE*",
             type: "text",
             id: 5,
             value: props.address.state,

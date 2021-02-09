@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React,{ useState , useEffect} from "react";
 import { Alert } from '@material-ui/lab';
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, FormGroup } from "@material-ui/core";
@@ -13,8 +13,14 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormLabel from '@material-ui/core/FormLabel';    
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import {
+  camelCase,
+  capitalCase,
+} from "change-case";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
+import { Category } from "@material-ui/icons";
 const useStyles = makeStyles(theme => ({
     head: {
         color: "#038ed4",
@@ -105,6 +111,28 @@ const useStyles = makeStyles(theme => ({
         marginLeft: "60px",
         padding: "20px 0"
     },
+    heading: {
+        paddingTop: "20px"
+    },
+    para:{
+        color: "#000"
+    },
+    loader:{
+        padding: "10px"
+    },
+    box: {
+        margin: "30px auto 60px",
+        width: "60%",
+        alignContent: "center",
+        background: theme.palette.secondary.main,
+        color: theme.palette.primary.dark,
+        textAlign: "center",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033",
+        ['@media (max-width:960px)']: {
+            width: "90%"
+          }
+    },
     radio:{
         width: "100%",
         padding: "10px",
@@ -121,11 +149,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function StepFour(props) {
     const classes = useStyles();
-    const [checkbox ,setCheckbox] = React.useState({
-        XII:"0",
-        diploma:"0",
-        both:"0"
-    })
+    const [loading, setLoading] = React.useState(true);
+    const [loader, setLoader] = React.useState(false);
+    const [category ,setCategory] = React.useState("")
 
     const [twelfth, setProfile] = React.useState({
         board: "",
@@ -195,35 +221,42 @@ export default function StepFour(props) {
       
     });
 
+    const handleCategoryChange = (event) => {
+        setCategory(event.target.value);
+        console.log(category)
+      };
+
     const handleFormSubmit = (event) => {
         event.preventDefault(); 
         if(validate()){}
              
         const id=localStorage.getItem("userid")
         const fd = new FormData();
-        Object.keys(checkbox).forEach(function (key){         
-            fd.append(key, checkbox[key]);
-        })
+        fd.append('category', category);
         
-    if(checkbox.XII==="1" || checkbox.both==="1")
+    if(category=="XII" || category==="both")
     {
         Object.keys(twelfth).forEach(function (key){         
             fd.append(key+"_12", twelfth[key]);
         })
         fd.append('file_12', document.getElementById('twelfthfile').files[0]);
     }
-    if(checkbox.diploma==="1" || checkbox.both==="1"){
+
+    if(actegory==="diploma" || category==="both"){
         Object.keys(diploma).forEach(function (key){         
             fd.append(key+"_diploma", diploma[key]);
         })
         fd.append('file_diploma', document.getElementById('diplomafile').files[0]);
     }   
+
        const token = localStorage.getItem("token")
        axios.post(`/api/diplomatwelfth/`, 
             fd, {
                 headers: { 'Authorization': 'Bearer ' + token }  }  
             ).then(function (response) {
                 console.log(response.data);
+                props.Complete();
+                props.Next();
             })
             .catch((error) => {
                 console.log(error);
@@ -253,60 +286,75 @@ export default function StepFour(props) {
 
     };
 
-       
-const handleXIIClick = () => {
-    setCheckbox({
-        XII:"1",
-       diploma:"0",
-    both:"0"
+const fetchDetails = async () => {
+    var token= localStorage.getItem("token")
+    // const res = await axios.get(`/api/personalDetails/`,{
+    //     headers: { 'Authorization': 'Bearer ' + token }});
+    //     setProfile({
+    //         first_name: capitalCase(res.data.details['first_name']),
+    //         last_name: capitalCase(res.data.details['last_name']),
+    //         dob: res.data.details['dob'],
+    //         height: res.data.details['height'],
+    //         weight: res.data.details['weight'],
+    //         blood_group: res.data.details['blood_group'],
+    //         gender: res.data.details['gender'],
+    //         marital_status: res.data.details['marital_status'],
+    //         farming_background: res.data.details['farming_background'],
+    //         disability: res.data.details['disability'],
+    //         aadhar: res.data.details['aadhar']
+    //     })
+    //     setParent({
+    //         father_name: capitalCase(res.data.details['father_name']),
+    //         father_phone: res.data.details['father_mobile'],
+    //         mother_name: capitalCase(res.data.details['mother_name']),
+    //         mother_phone: res.data.details['mother_mobile']
+    //     })
+    //     setAcademics({
+    //         univ_roll: res.data.details['urn'],
+    //         college_roll: res.data.details['crn'],
+    //         course: res.data.details['category'],
+    //         stream: res.data.details['stream'],
+    //         section: res.data.details['branch_type'],
+    //         shift: res.data.details['shift'],
+    //         training_sem: res.data.details['training_sem'],
+    //         leet: res.data.details['leet'],
+    //         hostler: res.data.details['hostler']
+    //     })
+    //     setContact({
+    //         whatsapp_contact: res.data.details['whatsapp'],
+    //         contact: res.data.details['mobile'],
+    //         re_enter_contact: res.data.details['mobile']
+    //     })
+    //     setAddress({
+    //         address: capitalCase(res.data.details['address']),
+    //         pincode: res.data.details['pincode'],
+    //         district: capitalCase(res.data.details['district']),
+    //         city: capitalCase(res.data.details['city']),
+    //         state: capitalCase(res.data.details['state'])
+    //     })
 
-    })
+    setLoading(false);
 }
+useEffect(()=>{
+    fetchDetails();
+},[])
 
-const handleDiplomaClick = () => {
-    setCheckbox({
-        diploma:"1",
-        XII:"0",
-        both:"0"
-
-    })
-}
-
-const handleBothClick = () => {
-    setCheckbox({
-        both:"1",
-        XII:"0",
-        diploma: "0"
-
-    })
-}
-
-    const renderPersonalFields = () =>
-        fields.map(field => (
-            <>
-                <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    lg={4}
-                    className={classes.textFieldContainer}
-                >
-                    <TextField
-                        className={classes.input}
-                        type={field.type}
-                        id="outlined-basic"
-                        name={field.name}
-                        variant="outlined"
-                        label={field.label}
-                        defaultValue={field.value}
-                        onChange={e => {
-                            field.change(e, field.id);
-                        }}
-                    />
-
-                </Grid>
-            </>
-        ));
+    if(loading){
+        return(
+            <Card className={classes.box}>
+                <div className={classes.heading}>
+                    <div className={classes.loader}>
+                <CircularProgress color="#193b68" size="80px" />
+                </div>
+                <b>
+                    <p className={classes.para}>
+                        Checking the Step 1 - 12th/Diploma Status
+                    </p>
+                </b>
+                </div>
+            </Card>
+        )
+    }
     return (
         <div>
             <form onSubmit={handleFormSubmit}>
@@ -317,7 +365,7 @@ const handleBothClick = () => {
            
            
        
-      <RadioGroup aria-label="position" row className={classes.select}>
+      {/* <RadioGroup aria-label="position" row className={classes.select}>
       <FormLabel component="legend" > Please select XII or Diploma or both under which category you fall </FormLabel>
         <FormControlLabel onClick ={handleXIIClick}
           value="0"
@@ -339,12 +387,17 @@ const handleBothClick = () => {
         />
      
         
+      </RadioGroup> */}
+      <RadioGroup row aria-label="category" name="category" value={category} onChange={handleCategoryChange}>
+        <FormControlLabel value="XII" control={<Radio color="default" />}   label="XII" />
+        <FormControlLabel value="diploma" control={<Radio color="default" />}   label="Diploma" />
+        <FormControlLabel value="both" control={<Radio color="default" />}  label="Both" />
       </RadioGroup>
     </FormControl>
     </Card>
     </Grid>
     {
-        checkbox.XII=== "1"  && <Grid item xs={12} className={classes.Cardcontainers}>
+        category==="XII"  && <Grid item xs={12} className={classes.Cardcontainers}>
                     
             <Card className={classes.cardStyles}>
 
@@ -364,7 +417,7 @@ const handleBothClick = () => {
         </Grid>
     }
 {
-        checkbox.diploma ==="1" &&  <Grid item xs={12} className={classes.Cardcontainers}>
+        category==="diploma" &&  <Grid item xs={12} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>
                 <DiplomaDetails 
                 diploma={diploma} 
@@ -382,7 +435,7 @@ const handleBothClick = () => {
     }
 
     {
-        checkbox.both === "1" &&
+        category === "both" &&
         <>
         <Grid item xs={12} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>

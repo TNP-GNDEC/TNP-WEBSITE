@@ -78,7 +78,7 @@ export default function Details(props) {
             ]
         },
         {
-            label: "STREAM",
+            label: "STREAM*",
             type: "text",
             id: 4,
             value: props.academics.stream,
@@ -203,7 +203,7 @@ export default function Details(props) {
         },
 
         {
-            label: "SHIFT",
+            label: "SHIFT*",
             type: "text",
             id: 5,
             value: props.academics.shift,
@@ -221,7 +221,7 @@ export default function Details(props) {
             validate: props.Errors.shift
         },
         {
-            label: "SECTION",
+            label: "SECTION*",
             type: "text",
             id: 6,
             value: props.academics.section,
@@ -230,7 +230,7 @@ export default function Details(props) {
             validate: props.Errors.section
         },
         {
-            label: "LEET",
+            label: "LEET*",
             type: "text",
             id: 7,
             value: props.academics.leet,
@@ -248,7 +248,7 @@ export default function Details(props) {
             validate: props.Errors.leet
         },
         {
-            label: "HOSTLER",
+            label: "HOSTLER*",
             type: "text",
             id: 8,
             value: props.academics.hostler,
@@ -267,7 +267,7 @@ export default function Details(props) {
         },
 
         {
-            label: "TRAINING SEM",
+            label: "TRAINING SEM*",
             type: "text",
             id: 9,
             value: props.academics.training_sem,

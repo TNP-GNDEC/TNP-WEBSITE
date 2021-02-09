@@ -151,15 +151,16 @@ export default function StepThree(props) {
 
     const validate = () => {
         let temp = {}
-        temp.board = matriculation.board ? "": "This field is required."
-        temp.institution_name = matriculation.institution_name? "": "This field is required."
-        temp.year_of_passing = matriculation.year_of_passing ? "": "This field is required."
+        temp.board = matriculation.board ? "": "This field is required"
+        temp.institution_name = (/^[a-zA-Z\s]*$/).test(matriculation.institution_name)? "": "This field is required and must contain only char."
+        temp.year_of_passing = (/^[0-9]{4}$/).test(matriculation.year_of_passing) ? "": "This field is required and be in yyyy format."
         temp.marks_type = matriculation.marks_type ? "": "This field is required."
-        temp.state_of_institution = matriculation.state_of_institution ? "": "This field is required."
-        temp.city_of_institution = matriculation.city_of_institution ? "": "This field is required."
+        temp.state_of_institution = (/^[a-zA-Z\s]*$/).test(matriculation.state_of_institution) ? "": "This field is required and must contain only char."
+        temp.city_of_institution = (/^[a-zA-Z\s]*$/).test(matriculation.city_of_institution) ? "": "This field is required and must contain only char."
         temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
-        temp.pincode = matriculation.pincode ? "": "This field is required."
-        temp.maximum_marks = matriculation.maximum_marks ? "": "This field is required."
+        temp.pincode = (/^[0-9]{6}$/).test(matriculation.pincode) ? "": "This field is required and must be exactly 6 digits."
+        temp.maximum_marks = (/^[0-9]{,3}$/).test(matriculation.maximum_marks) ? "": "This field is required and must be max 3 digits."
+        temp.obtained_marks = matriculation.obtained_marks<=matriculation.maximum_marks ? "": "marks obtained can't be greater than maximum marks."
         setErrors({
           ...temp
         })
@@ -170,17 +171,17 @@ export default function StepThree(props) {
 
     const handleFormSubmit = event => {
         event.preventDefault();
-        setLoader(true);
         if(validate()){
-        const token = localStorage.getItem("token");
-        const fd = new FormData();
-        Object.keys(matriculation).forEach(function (key){         
-            fd.append(key, matriculation[key]);
-    })
-        fd.append('file', document.getElementById('file').files[0]);
-        axios.post(`/api/matriculation/`, 
-            fd,{
-                headers: { 'Authorization': 'Bearer ' + token }  }
+            setLoader(true);
+            const token = localStorage.getItem("token");
+            const fd = new FormData();
+            Object.keys(matriculation).forEach(function (key){         
+                fd.append(key, matriculation[key]);
+        })
+            fd.append('file', document.getElementById('file').files[0]);
+            axios.post(`/api/matriculation/`, 
+                fd,{
+                    headers: { 'Authorization': 'Bearer ' + token }  }
             
         ).then((response) => {
             setLoader(false);
