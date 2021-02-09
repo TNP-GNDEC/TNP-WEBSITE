@@ -30,7 +30,7 @@ class TwelfthdiplomaController extends Controller
                     ->where('user_id', $user->id)
                     ->value('form_step');
   if($current_step>=2){
-    if($request->XII=="1" || $request->both=="1"){
+    if($request->category=="XII" || $request->category=="both"){
     $twelfth_file = $request->file('file_12');
     $twelfth_filename  = $twelfth_file->getClientOriginalName();
     $twelfth_extension = $twelfth_file->getClientOriginalExtension();
@@ -59,7 +59,7 @@ class TwelfthdiplomaController extends Controller
   
     }
     
-    if($request->diploma=="1" || $request->both=="1"){
+    if($request->category=="diploma" || $request->category=="both"){
     $diploma_file = $request->file('file_diploma');
     $diploma_filename  = $diploma_file->getClientOriginalName();
     $diploma_extension = $diploma_file->getClientOriginalExtension();
