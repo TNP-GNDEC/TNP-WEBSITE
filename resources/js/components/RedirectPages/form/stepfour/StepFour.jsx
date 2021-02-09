@@ -253,44 +253,6 @@ export default function StepFour(props) {
 
     };
 
-    // const handleParentChangeInput = (e, id) => {
-    //     const value = e.target.value;
-    //     switch (id) {
-    //         case 1:
-    //             setParent({ ...diploma, branch: value });
-    //             break;
-    //         case 2:
-    //             setParent({ ...diploma, institution_name: value });
-    //             break;
-    //         case 3:
-    //             setParent({ ...diploma, city:value });
-    //             break;
-    //         case 4:
-    //             setParent({ ...diploma,    state:value });
-    //             break;
-    //         case 5:
-    //             setParent({ ...diploma, pincode: value });
-    //             break;
-    //         case 6:
-    //             setParent({ ...diploma, year_of_passing: value });
-    //             break;
-    //         case 7:
-    //             setParent({ ...diploma, obtained_marks: value });
-    //             break;
-    //         case 8:
-    //             setParent({ ...diploma, maximum_marks: value });
-    //             break;
-    //         case 9:
-    //             setParent({ ...diploma, stream: value });
-    //             break;
-    //         case 10:
-    //             setParent({ ...diploma, file: e.target.files});
-    //             break;
-                    
-    //         default:
-    //             break;
-    //     }
-    // };
        
 const handleXIIClick = () => {
     setCheckbox({
