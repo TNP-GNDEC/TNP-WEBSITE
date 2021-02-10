@@ -321,10 +321,10 @@ const fetchDetails = async () => {
             stream: res.data.diploma['stream'],
         });
         var fullpath = res.data.twelfth['file'];
-        var filename = fullpath.replace(/^.*[\\\/]/,'');
+        var filename = fullpath.split('\\').pop().split('/').pop();;
         setTwelfthFile(filename);
         var fullpath2 = res.data.diploma['file'];
-        var filename2 = fullpath2.replace(/^.*[\\\/]/,'');
+        var filename2 = fullpath2.split('\\').pop().split('/').pop();;
         setDiplomaFile(filename2);
     }
     if(category === "XII"){
@@ -342,7 +342,7 @@ const fetchDetails = async () => {
             marks_type: res.data.twelfth['marks_type']
         });
         var fullpath = res.data.twelfth['file'];
-        var filename = fullpath.replace(/^.*[\\\/]/,'');
+        var filename = fullpath.split('\\').pop().split('/').pop();;
         setTwelfthFile(filename);
     }
     if(category === "diploma"){
@@ -359,7 +359,7 @@ const fetchDetails = async () => {
             stream: res.data.diploma['stream'],
         });
         var fullpath2 = res.data.diploma['file'];
-        var filename2 = fullpath2.replace(/^.*[\\\/]/,'');
+        var filename2 = fullpath2.split('\\').pop().split('/').pop();
         setDiplomaFile(filename2);
     }
     setLoading(false);

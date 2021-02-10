@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   }));
   
   function getSteps() {
-    return ['Email Verification','Personal Details', 'Matriculation','12 or Diploma','Degree','Post Graduation','Verify'];
+    return ['Email Verification','Personal Details', 'Matriculation','12 or Diploma','Under Graduation','Verify'];
   }
   
   function getStepContent(step, next, complete,back) {
@@ -86,9 +86,7 @@ const useStyles = makeStyles((theme) => ({
       case 4:
         return <StepFive Next={next} Complete={complete} Back={back} />;
       case 5:
-        return <StepSix Next={next} Complete={complete} Back={back} />
-      case 6:
-        return <StepSeven Next={next} Complete={complete} Back={back} />;
+        return <StepSeven Next={next} Complete={complete} Back={back} />
       default:
         return 'Unknown step';
     }

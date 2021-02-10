@@ -77,8 +77,7 @@ export default function TwelfthDetails(props) {
             label: "BOARD",
             type: "text",
             id: 1,
-            // name: "first_name",
-            value: props.twelfth.board,
+                value: props.twelfth.board,
             
             select: "true",
             options: [
@@ -125,7 +124,7 @@ export default function TwelfthDetails(props) {
             label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 6,
-            value: props.twelfth.pincode_of_institute,
+            value: props.twelfth.pincode,
 
         },
         {
@@ -326,7 +325,7 @@ export default function TwelfthDetails(props) {
                         type= "text"
                         id= "6"
                         name= "pincode"
-                        defaultValue= {props.twelfth.pincode_of_institute}
+                        defaultValue= {props.twelfth.pincode}
                         
                         
                         variant="outlined"

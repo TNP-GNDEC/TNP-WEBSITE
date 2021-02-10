@@ -136,89 +136,38 @@ export default function StepFive(props) {
     const [loader, setLoader] = React.useState(false);
     const [file, setFile] = React.useState("");
     const [degree, setDegree] = React.useState({
-        credits_sem1 : "",
-        credits_sem2 : "",
-        credits_sem3 : "",
-        credits_sem4 : "",
-        credits_sem5 : "",
-        credits_sem6 : "",
-        credits_sem7 : "",
-        credits_sem8 : "",
-        sgpa_sem1 : "",
-        sgpa_sem2 : "",
-        sgpa_sem3 : "",
-        sgpa_sem4 : "",
-        sgpa_sem5 : "",
-        sgpa_sem6 : "",
-        sgpa_sem7 : "",
-        sgpa_sem8 : "",
-        aggregate_sgpa : "",
-        aggregate_credits : "",
-        aggregate_percentage : "",
+        institution_name: "",
+        city: "",
+        state: "",
+        pincode: "",
+        marks_type: "",
+        obtained_marks: "",
+        maximum_marks: "",
     });
    
     const handleDegreeChangeInput = (e, id) => {
         const value = e.target.value;
         switch (id) {
-            // case 1:
-            //     setDegree({ ...degree, user_id:  parseInt(value) ? parseInt(value) : ""  });
-            //     break;
+            case 1:
+                setDegree({ ...degree, institution_name:  value });
+                break;
             case 2:
-                setDegree({ ...degree, sgpa_sem1:  value});
+                setDegree({ ...degree, city:  value});
                 break;
             case 3:
-                setDegree({ ...degree, credits_sem1: value});
+                setDegree({ ...degree, state: value});
                 break;
             case 4:
-                setDegree({ ...degree, sgpa_sem2: value});
+                setDegree({ ...degree, pincode: value});
                 break;
             case 5:
-                setDegree({ ...degree, credits_sem2: value});
+                setDegree({ ...degree, marks_type: value});
                 break;
             case 6:
-                setDegree({ ...degree, sgpa_sem3: value});
+                setDegree({ ...degree, obtained_marks: value});
                 break;
             case 7:
-                setDegree({ ...degree, credits_sem3: value});
-                break;
-            case 8:
-                setDegree({ ...degree, sgpa_sem4: value});
-                break;
-            case 9:
-                setDegree({ ...degree, credits_sem4: value});
-                break;
-            case 10:
-                setDegree({ ...degree, sgpa_sem5: value});
-                break;
-            case 11:
-                setDegree({ ...degree, credits_sem5: value});
-                break;
-            case 12:
-                setDegree({ ...degree, sgpa_sem6: value});
-                break;
-            case 13:
-                setDegree({ ...degree, credits_sem6: value});
-                break;
-            case 14:
-                setDegree({ ...degree, sgpa_sem7: value });
-                break;
-            case 15:
-                setDegree({ ...degree, credits_sem7: value});
-                break;
-            case 16:
-                setDegree({ ...degree, sgpa_sem8: value});
-                break;
-            case 17:
-                setDegree({ ...degree, credits_sem8: value });
-                break;
-            case 18:
-                setDegree({ ...degree, aggregate_sgpa: value  });
-                break;
-            case 19: 
-                setDegree({ ...degree, aggregate_credits: value  });
-                break;
-            case 20:
-                setDegree({ ...degree, aggregate_percentage: value });
+                setDegree({ ...degree, maximum_marks: value});
                 break;
             default:
                 break;
@@ -253,34 +202,24 @@ export default function StepFive(props) {
     const fetchDetails = async () => {
         var token= localStorage.getItem("token")
         const res = await axios.get(`/api/degreedetails`, {headers: { 'Authorization': 'Bearer ' + token }  });
-        if(res.data.details !== "error"){
-            setDegree({
-                credits_sem1 : res.data.details['credits_sem1'],
-                credits_sem2 : res.data.details['credits_sem2'],
-                credits_sem3 : res.data.details['credits_sem3'],
-                credits_sem4 : res.data.details['credits_sem4'],
-                credits_sem5 : res.data.details['credits_sem5'],
-                credits_sem6 : res.data.details['credits_sem6'],
-                credits_sem7 : res.data.details['credits_sem7'],
-                credits_sem8 : res.data.details['credits_sem8'],
-                sgpa_sem1 : res.data.details['sgpa_sem1'],
-                sgpa_sem2 : res.data.details['sgpa_sem2'],
-                sgpa_sem3 : res.data.details['sgpa_sem3'],
-                sgpa_sem4 : res.data.details['sgpa_sem4'],
-                sgpa_sem5 : res.data.details['sgpa_sem5'],
-                sgpa_sem6 : res.data.details['sgpa_sem6'],
-                sgpa_sem7 : res.data.details['sgpa_sem7'],
-                sgpa_sem8 : res.data.details['sgpa_sem8'],
-                aggregate_sgpa : res.data.details['aggregate_sgpa'],
-                aggregate_credits : res.data.details['aggregate_credits'],
-                aggregate_percentage : res.data.details['aggregate_percentage'],
-            });
-            var fullpath = res.data.details['file'];
-            var filename = fullpath.replace(/^.*[\\\/]/,'');
-            setFile(filename);
-        }
+        // if(res.data.details !== "null"){
+        //     setDegree({
+        //         institution_name: res.data.details["institution_name"],
+        //         city: res.data.details["city"],
+        //         state: res.data.details["state"],
+        //         pincode: res.data.details["pincode"],
+        //         marks_type: res.data.details["marks_type"],
+        //         obtained_marks: res.data.details["obtained_marks"],
+        //         maximum_marks: res.data.details["maximum_marks"],
+        //     });
+        //     var fullpath = res.data.details['file'];
+        //     var filename = fullpath.split('\\').pop().split('/').pop();;
+        //     setFile(filename);
+        // }
+        console.log(res.data.details)
         setLoading(false);
     }
+
     useEffect(()=>{
         fetchDetails();
     },[])
