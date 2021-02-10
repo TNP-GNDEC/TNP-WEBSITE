@@ -118,9 +118,9 @@ export default function StepTwo(props) {
         let temp = {}
         temp.first_name = (/^[a-zA-Z\s]*$/).test(profile.first_name) ? "": "Enter Valid Name (only char)."
         temp.dob = profile.dob? "": "Enter DOB in correct format(yyyy-mm-dd)."
-        temp.aadhar = (/^[0-9\b]+$/).test(profile.aadhar) ? "": "Enter 12digits with no space."
-        temp.height = (/^[0-9\b]+$/).test(profile.height) ? "": "This field is required."
-        temp.weight = (/^[0-9\b]+$/).test(profile.weight) ? "": "This field is required."
+        temp.aadhar = (/^[0-9]{12}$/).test(profile.aadhar) ? "": "Enter 12 digits with no space."
+        temp.height = (/^[0-9\s]+$/).test(profile.height) ? "": "This field is required."
+        temp.weight = (/^[0-9]{2,3}$/).test(profile.weight) ? "": "This field is required and can be of max 3 digits."
         temp.blood_group = profile.blood_group ? "": "This field is required."
         temp.gender = profile.gender ? "": "This field is required."
         temp.marital_status = profile.marital_status ? "": "This field is required."
@@ -128,9 +128,9 @@ export default function StepTwo(props) {
         temp.disability = profile.disability == 0 || profile.disability == 1 ? "": "This field is required."
 
         temp.father_name = (/^[a-zA-Z\s]*$/).test(parent.father_name) ? "": "Enter Valid Name (only char)."
-        temp.father_phone = (/^[0-9\b]+$/).test(parent.father_phone) ? "": "Enter Vaild Phone No."
+        temp.father_phone = (/^[0-9]{10}$/).test(parent.father_phone) ? "": "Enter valid Phone No."
         temp.mother_name = (/^[a-zA-Z\s]*$/).test(parent.mother_name) ? "": "Enter Valid Name (only char)."
-        temp.mother_phone = (/^[0-9\b]+$/).test(parent.mother_phone) ? "": "Enter Vaild Phone No."
+        temp.mother_phone = (/^[0-9]{10}$/).test(parent.mother_phone) ? "": "Enter valid Phone No."
 
         temp.course = academics.course ? "": "This field is required."
         temp.stream = academics.stream ? "": "This field is required."
@@ -140,15 +140,15 @@ export default function StepTwo(props) {
         temp.hostler = academics.hostler ==0 || academics.hostler == 1 ? "": "This field is required."
         temp.training_sem = academics.training_sem ? "": "This field is required."
 
-        temp.whatsapp_contact = (/^[0-9\b]+$/).test(contact.whatsapp_contact) ? "": "Enter Vaild Phone No."
-        temp.contact = (/^[0-9\b]+$/).test(contact.contact) ? "": "Enter Vaild Phone No."
-        temp.re_enter_contact = (/^[0-9\b]+$/).test(contact.re_enter_contact) ? "": "Enter Vaild Phone No."
+        temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "": "Enter valid Phone No."
+        temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "": "Enter valid Phone No."
+        temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "": "Enter valid Phone No."
 
         temp.street = address.address ? "": "This field is required."
         temp.city = (/^[a-zA-Z\s]*$/).test(address.city) ? "": "This field is required."
-        temp.pincode2 = (/^[0-9\b]+$/).test(address.pincode) ? "": "This field is required."
+        temp.pincode2 = (/^[0-9]{6}$/).test(address.pincode) ? "": "This field is required and must be of 6 digits."
         temp.state = (/^[a-zA-Z\s]*$/).test(address.state) ? "": "This field is required."
-        temp.district = (/^[a-zA-Z\s]*$/).test(address.district) ? "": "This field is required."
+        temp.district = (/^[a-zA-Z\s]*$/).test(address.district) ? "": "This valid name (only char)."
         setErrors({
           ...temp
         })
@@ -261,7 +261,6 @@ export default function StepTwo(props) {
 
     // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
-        console.log("I am called");
         const value = e.target.value;
         switch (id) {
             case 1:
@@ -320,12 +319,10 @@ export default function StepTwo(props) {
 
     // State setter function of parent form sent as props to ParentDetails forms
     const handleParentChangeInput = (e, id) => {
-        console.log("I am called for parent");
         const value = e.target.value;
         switch (id) {
             case 1:
                 setParent({ ...parent, father_name: value });
-                console.log(parent.father_name);
                 break;
             case 2:
                 setParent({
@@ -349,15 +346,8 @@ export default function StepTwo(props) {
 
     // State setter function of academics form sent as props to AcademicDetails forms
     const handleAcademicsChangeInput = (e, id) => {
-        console.log("I am called for academics");
         const value = e.target.value;
         switch (id) {
-            // case 1:
-            //     setAcademics({ ...academics, univ_roll: value });
-            //     break;
-            // case 2:
-            //     setAcademics({ ...academics, college_roll: value });
-            //     break;
             case 3:
                 setAcademics({ ...academics, course: value });
                 break;
@@ -386,7 +376,6 @@ export default function StepTwo(props) {
 
     // State setter function of contact form sent as props to ContactDetails forms
     const handleContactChangeInput = (e, id) => {
-        console.log("I am called for contact : ", e.target);
         let value = e.target.value;
         switch (id) {
             case 1:
@@ -415,7 +404,6 @@ export default function StepTwo(props) {
 
     // function for setting  address object
     const handleAddresssChangeInput = (e, id) => {
-        console.log("I am called for contact");
         const value = e.target.value;
         switch (id) {
             case 1:
@@ -450,6 +438,7 @@ export default function StepTwo(props) {
         if(validate()){
             setLoader(true);
             const token = localStorage.getItem("token");
+
             axios
                 .post(`/api/personaldetails/`, {
                     profile: profile,

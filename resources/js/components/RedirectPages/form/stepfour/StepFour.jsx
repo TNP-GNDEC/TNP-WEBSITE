@@ -9,7 +9,6 @@ import DiplomaDetails from './Diplomadetails'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import Checkbox from '@material-ui/core/Checkbox';
 import FormLabel from '@material-ui/core/FormLabel';    
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -150,11 +149,7 @@ export default function StepFour(props) {
     const classes = useStyles();
     const [loading, setLoading] = React.useState(true);
     const [loader, setLoader] = React.useState(false);
-    const [checkbox ,setCheckbox] = React.useState({
-        XII:"0",
-        diploma:"0",
-        both:"0"
-    })
+    const [category ,setCategory] = React.useState("")
 
     const [twelfth, setProfile] = React.useState({
         board: "",
@@ -173,41 +168,46 @@ export default function StepFour(props) {
 
     const validate = () => {
         let temp = {}
+        if(category==="XII" || category==="both"){
         temp.board = twelfth.board ? "": "This field is required."
-        temp.institution_name = twelfth.institution_name? "": "This field is required."
+        temp.institution_name = (/^[a-zA-Z\s]*$/).test(twelfth.institution_name) ? "": "This field is required and must only contain char."
         temp.jee_rank = twelfth.jee_rank? "": "This field is required."
         temp.marks_type = twelfth.marks_type ? "": "This field is required."
         
         temp.year_of_passing = twelfth.year_of_passing ? "": "This field is required."
-        temp.institution_name = twelfth.institution_name? "": "This field is required."
         
-        temp.city = twelfth.city ? "": "This field is required."
-        temp.state = twelfth.state ? "": "This field is required."
-        temp.pincode = twelfth.pincode ? "": "This field is required."
-        temp.obtained_marks = twelfth.obtained_marks ? "": "This field is required."
+        temp.city = (/^[a-zA-Z\s]*$/).test(twelfth.city) ? "": "This field is required."
+        temp.state = (/^[a-zA-Z\s]*$/).test(twelfth.state) ? "": "This field is required."
+        temp.pincode = (/^[0-9]{6}$/).test(twelfth.pincode) ? "": "This field is required."
+        temp.obtained_marks = (/^[0-9]{2,3}$/).test(twelfth.obtained_marks) ? "": "This field is required."
         
-        temp.maximum_marks = twelfth.maximum_marks ? "": "This field is required."
+        temp.maximum_marks = (/^[0-9]{2,3}$/).test(twelfth.maximum_marks) ? "": "This field is required."
+        }
 
+        if(category==="diploma" || category==="both"){
         temp.branch = diploma.branch ? "": "This field is required."
-        temp.institution_name = diploma.institution_name? "": "This field is required."
+        temp.institution_name = (/^[a-zA-Z\s]*$/).test(diploma.institution_name)? "": "This field is required."
         
         temp.marks_type = diploma.marks_type ? "": "This field is required."
         
         temp.year_of_passing = diploma.year_of_passing ? "": "This field is required."
-        temp.institution_name = diploma.institution_name? "": "This field is required."
         
-        temp.city = diploma.city ? "": "This field is required."
-        temp.state = diploma.state ? "": "This field is required."
-        temp.pincode = diploma.pincode ? "": "This field is required."
-        temp.obtained_marks = diploma.obtained_marks ? "": "This field is required."
+        temp.city = (/^[a-zA-Z\s]*$/).test(diploma.city) ? "": "This field is required."
+        temp.state = (/^[a-zA-Z\s]*$/).test(diploma.state) ? "": "This field is required."
+        temp.pincode = (/^[0-9]{6}$/).test(diploma.pincode) ? "": "This field is required."
+        temp.obtained_marks = (/^[0-9]$/).test(diploma.obtained_marks) ? "": "This field is required."
         
-        temp.maximum_marks = diploma.maximum_marks ? "": "This field is required."
-        temp.stream = diploma.stream ? "": "This field is required."
+        temp.maximum_marks = (/^[0-9]{6}$/).test(diploma.maximum_marks) ? "": "This field is required."
+        temp.stream = (/^[a-zA-Z\s]*$/).test(diploma.stream) ? "": "This field is required."
+
+        }
         setErrors({
           ...temp
         })
-        console.log(errors);
-        return true
+            console.log(temp)
+          var filter =  Object.keys(temp);
+          var ok = "";
+          return filter.every(x => temp[x].valueOf() === ok.valueOf());
       }
 
     const [diploma, setParent] = React.useState({
@@ -224,29 +224,32 @@ export default function StepFour(props) {
       
     });
 
+    const handleCategoryChange = (event) => {
+        setCategory(event.target.value);
+      };
+
     const handleFormSubmit = (event) => {
         event.preventDefault(); 
-        if(validate()){}
-             
-        const id=localStorage.getItem("userid")
+        if(validate()){
+            setLoader(true);             
         const fd = new FormData();
-        Object.keys(checkbox).forEach(function (key){         
-            fd.append(key, checkbox[key]);
-        })
+        fd.append('category', category);
         
-    if(checkbox.XII==="1" || checkbox.both==="1")
+    if(category==="XII" || category==="both")
     {
         Object.keys(twelfth).forEach(function (key){         
             fd.append(key+"_12", twelfth[key]);
         })
         fd.append('file_12', document.getElementById('twelfthfile').files[0]);
     }
-    if(checkbox.diploma==="1" || checkbox.both==="1"){
+
+    if(category==="diploma" || category==="both"){
         Object.keys(diploma).forEach(function (key){         
             fd.append(key+"_diploma", diploma[key]);
         })
         fd.append('file_diploma', document.getElementById('diplomafile').files[0]);
     }   
+
        const token = localStorage.getItem("token")
        axios.post(`/api/diplomatwelfth/`, 
             fd, {
@@ -260,7 +263,7 @@ export default function StepFour(props) {
                 console.log(error);
             });
         };
-    
+    }
       
     const handleProfileChangeInput = (e, id) => {
         const name= e.target.name
@@ -284,117 +287,9 @@ export default function StepFour(props) {
 
     };
 
-    // const handleParentChangeInput = (e, id) => {
-    //     const value = e.target.value;
-    //     switch (id) {
-    //         case 1:
-    //             setParent({ ...diploma, branch: value });
-    //             break;
-    //         case 2:
-    //             setParent({ ...diploma, institution_name: value });
-    //             break;
-    //         case 3:
-    //             setParent({ ...diploma, city:value });
-    //             break;
-    //         case 4:
-    //             setParent({ ...diploma,    state:value });
-    //             break;
-    //         case 5:
-    //             setParent({ ...diploma, pincode: value });
-    //             break;
-    //         case 6:
-    //             setParent({ ...diploma, year_of_passing: value });
-    //             break;
-    //         case 7:
-    //             setParent({ ...diploma, obtained_marks: value });
-    //             break;
-    //         case 8:
-    //             setParent({ ...diploma, maximum_marks: value });
-    //             break;
-    //         case 9:
-    //             setParent({ ...diploma, stream: value });
-    //             break;
-    //         case 10:
-    //             setParent({ ...diploma, file: e.target.files});
-    //             break;
-                    
-    //         default:
-    //             break;
-    //     }
-    // };
-       
-const handleXIIClick = () => {
-    setCheckbox({
-        XII:"1",
-       diploma:"0",
-    both:"0"
-
-    })
-}
-
-const handleDiplomaClick = () => {
-    setCheckbox({
-        diploma:"1",
-        XII:"0",
-        both:"0"
-
-    })
-}
-
-const handleBothClick = () => {
-    setCheckbox({
-        both:"1",
-        XII:"0",
-        diploma: "0"
-
-    })
-}
 const fetchDetails = async () => {
     var token= localStorage.getItem("token")
-    // const res = await axios.get(`/api/personalDetails/`,{
-    //     headers: { 'Authorization': 'Bearer ' + token }});
-    //     setProfile({
-    //         first_name: capitalCase(res.data.details['first_name']),
-    //         last_name: capitalCase(res.data.details['last_name']),
-    //         dob: res.data.details['dob'],
-    //         height: res.data.details['height'],
-    //         weight: res.data.details['weight'],
-    //         blood_group: res.data.details['blood_group'],
-    //         gender: res.data.details['gender'],
-    //         marital_status: res.data.details['marital_status'],
-    //         farming_background: res.data.details['farming_background'],
-    //         disability: res.data.details['disability'],
-    //         aadhar: res.data.details['aadhar']
-    //     })
-    //     setParent({
-    //         father_name: capitalCase(res.data.details['father_name']),
-    //         father_phone: res.data.details['father_mobile'],
-    //         mother_name: capitalCase(res.data.details['mother_name']),
-    //         mother_phone: res.data.details['mother_mobile']
-    //     })
-    //     setAcademics({
-    //         univ_roll: res.data.details['urn'],
-    //         college_roll: res.data.details['crn'],
-    //         course: res.data.details['category'],
-    //         stream: res.data.details['stream'],
-    //         section: res.data.details['branch_type'],
-    //         shift: res.data.details['shift'],
-    //         training_sem: res.data.details['training_sem'],
-    //         leet: res.data.details['leet'],
-    //         hostler: res.data.details['hostler']
-    //     })
-    //     setContact({
-    //         whatsapp_contact: res.data.details['whatsapp'],
-    //         contact: res.data.details['mobile'],
-    //         re_enter_contact: res.data.details['mobile']
-    //     })
-    //     setAddress({
-    //         address: capitalCase(res.data.details['address']),
-    //         pincode: res.data.details['pincode'],
-    //         district: capitalCase(res.data.details['district']),
-    //         city: capitalCase(res.data.details['city']),
-    //         state: capitalCase(res.data.details['state'])
-    //     })
+    
 
     setLoading(false);
 }
@@ -402,7 +297,6 @@ useEffect(()=>{
     fetchDetails();
 },[])
 
-    
     if(loading){
         return(
             <Card className={classes.box}>
@@ -412,7 +306,7 @@ useEffect(()=>{
                 </div>
                 <b>
                     <p className={classes.para}>
-                        Checking the Step 1 - 12th/Diploma Status
+                        Checking the Step 4 - 12th/Diploma Status
                     </p>
                 </b>
                 </div>
@@ -429,7 +323,7 @@ useEffect(()=>{
            
            
        
-      <RadioGroup aria-label="position" row className={classes.select}>
+      {/* <RadioGroup aria-label="position" row className={classes.select}>
       <FormLabel component="legend" > Please select XII or Diploma or both under which category you fall </FormLabel>
         <FormControlLabel onClick ={handleXIIClick}
           value="0"
@@ -451,12 +345,17 @@ useEffect(()=>{
         />
      
         
+      </RadioGroup> */}
+      <RadioGroup row aria-label="category" name="category" value={category} onChange={handleCategoryChange}>
+        <FormControlLabel value="XII" control={<Radio color="default" />}   label="XII" />
+        <FormControlLabel value="diploma" control={<Radio color="default" />}   label="Diploma" />
+        <FormControlLabel value="both" control={<Radio color="default" />}  label="Both" />
       </RadioGroup>
     </FormControl>
     </Card>
     </Grid>
     {
-        checkbox.XII=== "1"  && <Grid item xs={12} className={classes.Cardcontainers}>
+        category==="XII"  && <Grid item xs={12} className={classes.Cardcontainers}>
                     
             <Card className={classes.cardStyles}>
 
@@ -476,7 +375,7 @@ useEffect(()=>{
         </Grid>
     }
 {
-        checkbox.diploma ==="1" &&  <Grid item xs={12} className={classes.Cardcontainers}>
+        category==="diploma" &&  <Grid item xs={12} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>
                 <DiplomaDetails 
                 diploma={diploma} 
@@ -494,7 +393,7 @@ useEffect(()=>{
     }
 
     {
-        checkbox.both === "1" &&
+        category === "both" &&
         <>
         <Grid item xs={12} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>

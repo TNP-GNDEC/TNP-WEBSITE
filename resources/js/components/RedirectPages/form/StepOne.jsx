@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
-import CusButton from "./CusButton";
- import Button from '@material-ui/core/Button';
 import Notisfication from '../../Auth/Notisfication';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -111,7 +109,6 @@ export default function StepOne(props) {
         setLoader(true);
         var uuid= localStorage.getItem("useruuid")
         var id= localStorage.getItem("userid")
-        console.log(uuid)
         axios.post(`/api/email/verify/${uuid}`, {
           email: email,
           id: id
@@ -134,7 +131,7 @@ export default function StepOne(props) {
       const fetchUsers = async () => { // Function featching users
         var token= localStorage.getItem("token")
         const res = await axios.get(`/api/email/getusers`, {headers: {
-            'authorization' : 'bearer '+token
+            'authorization' : 'Bearer '+token
         }});
         if (res.data.msg ===  "Email already verified."){
             props.Complete();
