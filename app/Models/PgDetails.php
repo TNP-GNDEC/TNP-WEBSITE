@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PgDetails extends Model
 {
     use HasFactory;
-
+    protected $table = "pg";
     protected $fillable = [
         "institution_name",
         "city",
