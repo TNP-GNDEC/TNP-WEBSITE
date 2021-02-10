@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import { Alert } from '@material-ui/lab';
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from "@material-ui/core";
@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Degreedetails from "./Degree";
 import Button from "@material-ui/core/Button";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const useStyles = makeStyles(theme => ({
@@ -53,6 +54,35 @@ const useStyles = makeStyles(theme => ({
         alignContent: "center",
         padding: "20px 0px"
     },
+    btnBox:{
+        width: "90%",
+        margin: "20px auto",
+        paddingBottom: "10px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignContent: "center"
+    },
+    button: {
+        // marginRight: theme.spacing(1)
+        border: "none",
+        textDecoration: "none",
+        padding: "10px 35px",
+        color: theme.palette.secondary.main,
+        background: theme.palette.primary.main,
+        borderRadius: "20px",
+        boxShadow: "0px 15px 25px #038ed433",
+        "&:focus":{
+            outline: "none"
+        },
+        "&:hover":{
+            background: theme.palette.primary.main,
+            color: theme.palette.secondary.main,
+        },
+    },
+    fileShow:{
+        width: "90%",
+        margin: "auto"
+    },
     cardStyles: {
         width: "90%",
         borderRadius: "10px",
@@ -73,13 +103,38 @@ const useStyles = makeStyles(theme => ({
     },
     pos: {
         float: "right"
-    }
+    },
+    heading: {
+        paddingTop: "20px"
+    },
+    para:{
+        color: "#000"
+    },
+    loader:{
+        padding: "10px"
+    },
+    box: {
+        margin: "30px auto 60px",
+        width: "60%",
+        alignContent: "center",
+        background: theme.palette.secondary.main,
+        color: theme.palette.primary.dark,
+        textAlign: "center",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033",
+        ['@media (max-width:960px)']: {
+            width: "90%"
+          }
+    },
 }));
 
 
 
-export default function StepTwo() {
+export default function StepFive(props) {
     const classes = useStyles();
+    const [loading, setLoading] = React.useState(true);
+    const [loader, setLoader] = React.useState(false);
+    const [file, setFile] = React.useState("");
     const [degree, setDegree] = React.useState({
         credits_sem1 : "",
         credits_sem2 : "",
@@ -173,6 +228,7 @@ export default function StepTwo() {
     
     const handleFormSubmit = event => {
         event.preventDefault();
+        setLoader(true);  
         const token = localStorage.getItem("token");
         const fd = new FormData();
         Object.keys(degree).forEach(function (key){         
@@ -186,14 +242,65 @@ export default function StepTwo() {
                 }
             )
             .then(response => {
-                console.log(response.data);
+                setLoader(false);
+                props.Complete();
+                props.Next();
             })
             .catch(error => {
                 console.log(error);
             });
     };
+    const fetchDetails = async () => {
+        var token= localStorage.getItem("token")
+        const res = await axios.get(`/api/degreedetails`, {headers: { 'Authorization': 'Bearer ' + token }  });
+        if(res.data.details !== "error"){
+            setDegree({
+                credits_sem1 : res.data.details['credits_sem1'],
+                credits_sem2 : res.data.details['credits_sem2'],
+                credits_sem3 : res.data.details['credits_sem3'],
+                credits_sem4 : res.data.details['credits_sem4'],
+                credits_sem5 : res.data.details['credits_sem5'],
+                credits_sem6 : res.data.details['credits_sem6'],
+                credits_sem7 : res.data.details['credits_sem7'],
+                credits_sem8 : res.data.details['credits_sem8'],
+                sgpa_sem1 : res.data.details['sgpa_sem1'],
+                sgpa_sem2 : res.data.details['sgpa_sem2'],
+                sgpa_sem3 : res.data.details['sgpa_sem3'],
+                sgpa_sem4 : res.data.details['sgpa_sem4'],
+                sgpa_sem5 : res.data.details['sgpa_sem5'],
+                sgpa_sem6 : res.data.details['sgpa_sem6'],
+                sgpa_sem7 : res.data.details['sgpa_sem7'],
+                sgpa_sem8 : res.data.details['sgpa_sem8'],
+                aggregate_sgpa : res.data.details['aggregate_sgpa'],
+                aggregate_credits : res.data.details['aggregate_credits'],
+                aggregate_percentage : res.data.details['aggregate_percentage'],
+            });
+            var fullpath = res.data.details['file'];
+            var filename = fullpath.replace(/^.*[\\\/]/,'');
+            setFile(filename);
+        }
+        setLoading(false);
+    }
+    useEffect(()=>{
+        fetchDetails();
+    },[])
 
-      
+    if(loading){
+        return(
+            <Card className={classes.box}>
+                <div className={classes.heading}>
+                    <div className={classes.loader}>
+                <CircularProgress color="#193b68" size="80px" />
+                </div>
+                <b>
+                    <p className={classes.para}>
+                        Checking the Step 5 - Degree Status
+                    </p>
+                </b>
+                </div>
+            </Card>
+        )
+    }
     return (
         <div>
             <form onSubmit={event => handleFormSubmit(event)}>
@@ -211,19 +318,24 @@ export default function StepTwo() {
                 Note : Upload <CloudUploadIcon /> Scanned copies of your all 8 semester dmc's in one file.(PDF Only)
                             </Alert>
                 <input className={classes.fileupload} accept= "application/pdf" id="degreefile" type="file" /> 
+                <div className={classes.fileShow}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}</p>}</div>
             </Card>
 
         </Grid> 
                 </Grid>
-                <Button
-                    className={classes.pos}
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    onClick={handleFormSubmit}
-                >
-                    SUBMIT
-                </Button>
+                <div className={classes.btnBox}>
+                <button className={classes.button} onClick={props.Back}>
+                    Back
+                </button>
+                {loader ? (
+                            
+                            <CircularProgress />
+                        ):(
+                <button type="submit" className={classes.button}>
+                    Submit & Next
+                </button>
+                        )}
+                </div>
             </form>
         </div>
     );

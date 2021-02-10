@@ -45,8 +45,10 @@ Route::middleware('auth:api')->group(function (){
 
     // step 4 Diploma or 12th details form post request
     Route::post('diplomatwelfth', 'TwelfthdiplomaController@getFormData');
+    Route::get('diplomaTwelfth', 'TwelfthdiplomaController@receiveFormData');
 
     // step 5 Ug form post request
     Route::post('degreeDetails', 'UgController@getFormData');
+    Route::get('degreedetails', 'UgController@receiveFormData');
  
 });

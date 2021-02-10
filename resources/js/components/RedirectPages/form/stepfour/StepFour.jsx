@@ -69,6 +69,10 @@ const useStyles = makeStyles(theme => ({
         color: "#038ed4",
         font: "2px"
     },
+    fileShow:{
+        width: "90%",
+        margin: "auto"
+    },
     cardHeading: {
         color: "#fff",
         display: "flex",
@@ -149,7 +153,9 @@ export default function StepFour(props) {
     const classes = useStyles();
     const [loading, setLoading] = React.useState(true);
     const [loader, setLoader] = React.useState(false);
-    const [category ,setCategory] = React.useState("")
+    const [category ,setCategory] = React.useState("");
+    const [twelfthFile, setTwelfthFile] = React.useState("");
+    const [diplomaFile, setDiplomaFile] = React.useState("");
 
     const [twelfth, setProfile] = React.useState({
         board: "",
@@ -195,16 +201,15 @@ export default function StepFour(props) {
         temp.city = (/^[a-zA-Z\s]*$/).test(diploma.city) ? "": "This field is required."
         temp.state = (/^[a-zA-Z\s]*$/).test(diploma.state) ? "": "This field is required."
         temp.pincode = (/^[0-9]{6}$/).test(diploma.pincode) ? "": "This field is required."
-        temp.obtained_marks = (/^[0-9]$/).test(diploma.obtained_marks) ? "": "This field is required."
+        temp.obtained_marks = (/^[0-9\b]+$/).test(diploma.obtained_marks) ? "": "This field is required."
         
-        temp.maximum_marks = (/^[0-9]{6}$/).test(diploma.maximum_marks) ? "": "This field is required."
+        temp.maximum_marks = (/^[0-9]{3}$/).test(diploma.maximum_marks) ? "": "This field is required."
         temp.stream = (/^[a-zA-Z\s]*$/).test(diploma.stream) ? "": "This field is required."
 
         }
         setErrors({
           ...temp
         })
-            console.log(temp)
           var filter =  Object.keys(temp);
           var ok = "";
           return filter.every(x => temp[x].valueOf() === ok.valueOf());
@@ -220,7 +225,6 @@ export default function StepFour(props) {
         obtained_marks:"",
         maximum_marks: "",
         stream:"",
-        file:"(upload scanned certificate)",
       
     });
 
@@ -255,7 +259,7 @@ export default function StepFour(props) {
             fd, {
                 headers: { 'Authorization': 'Bearer ' + token }  }  
             ).then(function (response) {
-                console.log(response.data);
+                setLoader(false);
                 props.Complete();
                 props.Next();
             })
@@ -289,8 +293,75 @@ export default function StepFour(props) {
 
 const fetchDetails = async () => {
     var token= localStorage.getItem("token")
-    
-
+    const res = await axios.get(`/api/diplomaTwelfth`, {headers: { 'Authorization': 'Bearer ' + token }  });
+    const category = res.data.category;
+    if(category === "both"){
+        setCategory(category);
+        setProfile({
+            board: res.data.twelfth['board'],
+            institution_name: res.data.twelfth['institution_name'],
+            jee_rank : res.data.twelfth['jee_rank'],
+            city: res.data.twelfth['city'],
+            state: res.data.twelfth['state'],
+            pincode: res.data.twelfth['pincode'],
+            year_of_passing: res.data.twelfth['year_of_passing'],
+            obtained_marks: res.data.twelfth['obtained_marks'],
+            maximum_marks: res.data.twelfth['maximum_marks'],
+            marks_type: res.data.twelfth['marks_type']
+        });
+        setParent({
+            branch: res.data.diploma['branch'],
+            institution_name: res.data.diploma['institution_name'],
+            pincode: res.data.diploma['pincode'],
+            city: res.data.diploma['city'],
+            state: res.data.diploma['state'],
+            year_of_passing: res.data.diploma['year_of_passing'],
+            obtained_marks: res.data.diploma['obtained_marks'],
+            maximum_marks: res.data.diploma['maximum_marks'],
+            stream: res.data.diploma['stream'],
+        });
+        var fullpath = res.data.twelfth['file'];
+        var filename = fullpath.replace(/^.*[\\\/]/,'');
+        setTwelfthFile(filename);
+        var fullpath2 = res.data.diploma['file'];
+        var filename2 = fullpath2.replace(/^.*[\\\/]/,'');
+        setDiplomaFile(filename2);
+    }
+    if(category === "XII"){
+        setCategory(category);
+        setProfile({
+            board: res.data.twelfth['board'],
+            institution_name: res.data.twelfth['institution_name'],
+            jee_rank : res.data.twelfth['jee_rank'],
+            city: res.data.twelfth['city'],
+            state: res.data.twelfth['state'],
+            pincode: res.data.twelfth['pincode'],
+            year_of_passing: res.data.twelfth['year_of_passing'],
+            obtained_marks: res.data.twelfth['obtained_marks'],
+            maximum_marks: res.data.twelfth['maximum_marks'],
+            marks_type: res.data.twelfth['marks_type']
+        });
+        var fullpath = res.data.twelfth['file'];
+        var filename = fullpath.replace(/^.*[\\\/]/,'');
+        setTwelfthFile(filename);
+    }
+    if(category === "diploma"){
+        setCategory(category);
+        setParent({
+            branch: res.data.diploma['branch'],
+            institution_name: res.data.diploma['institution_name'],
+            pincode: res.data.diploma['pincode'],
+            city: res.data.diploma['city'],
+            state: res.data.diploma['state'],
+            year_of_passing: res.data.diploma['year_of_passing'],
+            obtained_marks: res.data.diploma['obtained_marks'],
+            maximum_marks: res.data.diploma['maximum_marks'],
+            stream: res.data.diploma['stream'],
+        });
+        var fullpath2 = res.data.diploma['file'];
+        var filename2 = fullpath2.replace(/^.*[\\\/]/,'');
+        setDiplomaFile(filename2);
+    }
     setLoading(false);
 }
 useEffect(()=>{
@@ -347,9 +418,10 @@ useEffect(()=>{
         
       </RadioGroup> */}
       <RadioGroup row aria-label="category" name="category" value={category} onChange={handleCategoryChange}>
-        <FormControlLabel value="XII" control={<Radio color="default" />}   label="XII" />
-        <FormControlLabel value="diploma" control={<Radio color="default" />}   label="Diploma" />
-        <FormControlLabel value="both" control={<Radio color="default" />}  label="Both" />
+        <FormLabel component="legend" > Please select XII or Diploma or both under which category you fall </FormLabel>
+        <FormControlLabel value="XII" control={<Radio color="default" />}  label="XII" />
+        <FormControlLabel value="diploma" control={<Radio color="default" />}  label="Diploma" />
+        <FormControlLabel value="both" control={<Radio color="default" />} label="Both" />
       </RadioGroup>
     </FormControl>
     </Card>
@@ -371,6 +443,7 @@ useEffect(()=>{
                                     twelfth certificates.(PDF Only)
                             </Alert>
                 <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
+                <div className={classes.fileShow}>{twelfthFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {twelfthFile}</p>}</div>
             </Card>
         </Grid>
     }
@@ -388,6 +461,7 @@ useEffect(()=>{
                                     Diploma certificates.(PDF Only)
                             </Alert>
                 <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
+                <div className={classes.fileShow}>{diplomaFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {diplomaFile}</p>}</div>
             </Card>
         </Grid>
     }
@@ -409,6 +483,7 @@ useEffect(()=>{
                                     Diploma certificates.(PDF Only)
                             </Alert>
                 <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
+                <div className={classes.fileShow}>{diplomaFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {diplomaFile}</p>}</div>
             </Card>
         </Grid>
         <Grid item xs={12} className={classes.Cardcontainers}>
@@ -427,6 +502,7 @@ useEffect(()=>{
                                     twelfth certificates.(PDF Only)
                             </Alert>
                 <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
+                <div className={classes.fileShow}>{twelfthFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {twelfthFile}</p>}</div>
             </Card>
         </Grid>
         </>
@@ -436,9 +512,14 @@ useEffect(()=>{
                 <button className={classes.button} onClick={props.Back}>
                     Back
                 </button>
+                {loader ? (
+                            
+                            <CircularProgress />
+                        ):(
                 <button type="submit" className={classes.button}>
                     Submit & Next
                 </button>
+                        )}
                 </div>
             </form>
         </div>

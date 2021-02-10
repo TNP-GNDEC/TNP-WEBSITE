@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
     heading: {
         paddingTop: "20px"
     },
+    loader:{
+        padding: "20px"
+    },
     para:{
         color: "#000"
     },
@@ -35,6 +38,10 @@ const useStyles = makeStyles(theme => ({
         ['@media (max-width:960px)']: {
             width: "90%"
           }
+    },
+    fileShow:{
+        width: "90%",
+        margin: "auto"
     },
     paper: {
         padding: theme.spacing(3),
@@ -159,7 +166,7 @@ export default function StepThree(props) {
         temp.city_of_institution = (/^[a-zA-Z\s]*$/).test(matriculation.city_of_institution) ? "": "This field is required and must contain only char."
         temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
         temp.pincode = (/^[0-9]{6}$/).test(matriculation.pincode) ? "": "This field is required and must be exactly 6 digits."
-        temp.maximum_marks = (/^[0-9]{,3}$/).test(matriculation.maximum_marks) ? "": "This field is required and must be max 3 digits."
+        temp.maximum_marks = (/^[0-9]{1,3}$/).test(matriculation.maximum_marks) ? "": "This field is required and must be max 3 digits."
         temp.obtained_marks = matriculation.obtained_marks<=matriculation.maximum_marks ? "": "marks obtained can't be greater than maximum marks."
         setErrors({
           ...temp
@@ -223,6 +230,9 @@ export default function StepThree(props) {
                 obtained_marks: res.data.details['obtained_marks'],
                 maximum_marks: res.data.details['maximum_marks'],
             })
+            var fullpath = res.data.details['file'];
+            var filename = fullpath.replace(/^.*[\\\/]/,'');
+            setfile(filename);
 
         setLoading(false);
     }
@@ -263,6 +273,7 @@ export default function StepThree(props) {
                                     matriculation certificates.(PDF Only)
                             </Alert>
                             <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" required /> 
+                            <div className={classes.fileShow}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}</p>}</div>
                         </Card>
                     </Grid>
                 </Grid>

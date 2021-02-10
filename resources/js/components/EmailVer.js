@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
       case 5:
         return <StepSix Next={next} Complete={complete} Back={back} />
       case 6:
-        return <StepSeven />;
+        return <StepSeven Next={next} Complete={complete} Back={back} />;
       default:
         return 'Unknown step';
     }

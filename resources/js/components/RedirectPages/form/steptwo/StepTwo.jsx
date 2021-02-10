@@ -443,12 +443,7 @@ export default function StepTwo(props) {
                 .post(`/api/personaldetails/`, {
                     profile: profile,
                     academics: academics,
-                    parent: parent ={
-                        father_name: camelCase(parent.father_name),
-                        mother_name: camelCase(parent.mother_name),
-                        father_phone: parent.father_phone,
-                        mother_phone: parent.mother_phone
-                    },
+                    parent: parent,
                     contact: contact,
                     address: address
                 }, {

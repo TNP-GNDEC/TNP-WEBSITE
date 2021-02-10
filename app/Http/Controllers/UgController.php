@@ -29,7 +29,6 @@ class UgController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-  if($current_step>=4){
     $ug_file = $request->file('file');
     $ug_filename  = $ug_file->getClientOriginalName();
     $ug_extension = $ug_file->getClientOriginalExtension();
@@ -62,14 +61,22 @@ class UgController extends Controller
         'aggregate_sgpa'=> $request->aggregate_sgpa,
         'aggregate_percentage'=> $request->aggregate_percentage,
         'file' => $ug_file_url,
-
     ]);
-
+    if($current_step <=4){
       $form_step_change= DB::table('form_statuses')
       ->where('user_id', $user->id)
       ->update(['form_step' => 5]);
-      return response()->json(["details"=> $ug_details, "form_status"=> $form_step_change]);
     }
-    else return response()->json(["details"=> "first complete 12th diploma details"]);
-  }
+      return response()->json(["msg"=> "stepcomplete"]);
+    }
+    public function receiveFormData(Request $request){
+      $user = auth()->user();
+      $details = DB::table('ug')
+        ->where('user_id', $user->id)
+        ->first();
+      if(!$details){
+        return response()->json(["details"=> "error"]);
+      }
+      return response()->json(["details"=> $details]);
+    }
 }
