@@ -67,6 +67,13 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
   },
+  loader:{
+    width: "30%",
+    margin: "auto",
+    height: "30%",
+    textAlign: "center",
+    marginTop: "30%"
+  },
   icon:{
     fontSize: "90px",
   },
@@ -117,6 +124,7 @@ export default function SignIn(props) {
   const [errors, setErrors] = useState({});
   const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
   const [loading, setLoading] = useState(false);
+  const [action, setAction] = useState(true);
 
 const validate = () => {
   let temp = {}
@@ -146,11 +154,11 @@ const handlepasswordChange = (e) => {
   }))
 
 }
-const fetchUser = async (id) => {
-  const user = await axios.get(`/api/getUsers`);
+const fetchUser = async (token) => {
+  const user = await axios.get(`/api/getUsers`, {headers: { 'Authorization': 'Bearer ' + token }  });
   const role = user.data.user['role_id'];
   if(role===1){
-    var checkStep = fetchSteps(id);
+    var checkStep = fetchSteps(token);
     if(checkStep === 6){
       props.history.push("/student");
     }
@@ -163,7 +171,7 @@ const fetchUser = async (id) => {
   }
 }
 
-const fetchSteps = async (id) => {
+const fetchSteps = async (token) => {
   const step = await axios.get(`/api/formStatus/`, {
     headers: { 'Authorization': 'Bearer ' + token }
   });
@@ -189,10 +197,7 @@ const handleFormSubmit= async (event)=>{
     var user=response.data.current_user
     var JWTtoken=response.data.access_token
     localStorage.setItem('token', JWTtoken);
-    localStorage.setItem('userid', user.id);
-    localStorage.setItem('useruuid', user.uuid);
-    var id = user.id;
-    const checkStep = fetchSteps(id);
+    const checkStep = fetchSteps(JWTtoken);
       if(user.role_id===1){
 
         if(checkStep === 6){
@@ -215,19 +220,19 @@ const handleFormSubmit= async (event)=>{
   useEffect(()=>{
     var istoken = localStorage.getItem('token');
     if(istoken !== null){
-      var id = localStorage.getItem('userid');
-      fetchUser(id);
+      fetchUser(istoken);
     }
     setAuth(false);
   },[])
+  if(checkAuth){
+      return (<div className={classes.root}>
+       <div className={classes.loader}>
+       <CircularProgress size="100px" color="#193b68" />
+       </div>
+       </div>)
+  }
   return (
     <div className={classes.root}>
-      {checkAuth ? (
-        <div>
-        <CircularProgress />
-        </div>
-      ):(
-        <div>
     <Header />
     <div className={classes.card}>
     <div className={classes.container}>
@@ -332,8 +337,6 @@ const handleFormSubmit= async (event)=>{
     </div>
     </div>
      <Footer />
-     </div>
-     )}
     </div>
 
   );

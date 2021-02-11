@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card } from "@material-ui/core";
+import { Card, DialogContent } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import ProfileDetails from "./ProfileDetails";
 import ParentDetails from "./ParentsDetails";
@@ -10,10 +10,7 @@ import Button from "@material-ui/core/Button";
 import { concat } from "lodash";
 import AddressDetails from "./AddressDetails";
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {
-  camelCase,
-  capitalCase,
-} from "change-case";
+import {capitalCase} from 'change-case'; 
 import { faOdnoklassnikiSquare } from "@fortawesome/free-brands-svg-icons";
 const useStyles = makeStyles(theme => ({
     
@@ -113,6 +110,7 @@ export default function StepTwo(props) {
     const [loading, setLoading] = React.useState(true);
     const [loader, setLoader] = React.useState(false);
     const [errors, setErrors] = React.useState({});
+    const {action, setAction} = props;
 
     const validate = () => {
         let temp = {}
@@ -316,7 +314,12 @@ export default function StepTwo(props) {
                 break;
         }
     };
-
+    const ChangeCase = (dic) => {
+        Object.keys(dic).every((key) => {
+            dic[key] = capitalCase(dic[key]);
+        });
+        return dic;
+    }
     // State setter function of parent form sent as props to ParentDetails forms
     const handleParentChangeInput = (e, id) => {
         const value = e.target.value;
@@ -431,21 +434,24 @@ export default function StepTwo(props) {
 
     // function for making objects ready by converting values into camelCase;
     const makeOjectsReady = () => {};
-
     const handleFormSubmit = event => {
         event.preventDefault();
-        // setCamelCase();
         if(validate()){
             setLoader(true);
+            if(academics.course === "M.Tech"){
+                setAction(false);
+            }
+            else{
+                setAction(true);
+            }
             const token = localStorage.getItem("token");
-
             axios
                 .post(`/api/personaldetails/`, {
-                    profile: profile,
+                    profile: ChangeCase(profile),
                     academics: academics,
-                    parent: parent,
+                    parent: ChangeCase(parent),
                     contact: contact,
-                    address: address
+                    address: ChangeCase(address)
                 }, {
                     headers: { 'Authorization': 'Bearer ' + token }})
                 .then((response) => {
@@ -462,10 +468,9 @@ export default function StepTwo(props) {
     };
 
     const fetchDetails = async () => {
-        const token= localStorage.getItem("token")
+        var token= localStorage.getItem("token")
         const res = await axios.get(`/api/personalDetails/`,{
             headers: { 'Authorization': 'Bearer ' + token }});
-            console.log(res.data.details)
             setProfile({
                 first_name: res.data.details['first_name'],
                 last_name: res.data.details['last_name'],
@@ -511,7 +516,6 @@ export default function StepTwo(props) {
 
         setLoading(false);
     }
-    
     useEffect(()=>{
         fetchDetails();
     },[])
@@ -547,8 +551,7 @@ export default function StepTwo(props) {
                         <Card className={classes.cardStyles}>
                             <ParentDetails
                                 parent={parent}
-                                handleInputChange={handleParentChangeInput}
-
+                                handleInputChange={handleParentChangeInput}  
                                 Errors= {errors}
                             />
                         </Card>

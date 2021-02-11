@@ -93,14 +93,16 @@ protected function respondWithToken($token, $currentUser)
     ]);
 }
 public function user(){
+    $data = auth()->user();
     $user = DB::table('users')
-       ->where('id', auth()->user())
+       ->where('id', $data->id)
        ->first();
     return response()->json(['user' => $user]);
 }
 public function status(Request $request){
+    $data= auth()->user();
     $form = DB::table('form_statuses')
-      ->where('user_id', auth()->user())
+      ->where('user_id', $data->id)
       ->first();
     return response()->json(['step'=>$form]);
 }

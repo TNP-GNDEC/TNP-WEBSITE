@@ -197,10 +197,7 @@ export default function StepSix(props) {
    
     const handleFormSubmit = event => {
         event.preventDefault();
-<<<<<<< HEAD
-=======
         setLoader(true);
->>>>>>> 8c655939c2364ca6263108e93cb162bb6bdc9e5b
         const token = localStorage.getItem("token");
         const fd = new FormData();
         fd.append('category', category);

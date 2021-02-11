@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useEffect} from 'react';
 import { Alert } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
@@ -70,15 +70,33 @@ const useStyles = makeStyles((theme) => ({
   }));
   
   function getSteps() {
+    return ['Email Verification','Personal Details', 'Matriculation','12 or Diploma','Verify'];
+  }
+  function getSteps2() {
     return ['Email Verification','Personal Details', 'Matriculation','12 or Diploma','Under Graduation','Verify'];
   }
-  
-  function getStepContent(step, next, complete,back) {
+  function getStepContent(step, next, complete,back, ac, setac) {
     switch (step) {
       case 0:
         return <StepOne Next={next} Complete={complete} />;
       case 1:
-        return <StepTwo Next={next} Complete={complete} /> ;
+        return <StepTwo Next={next} Complete={complete} action={ac} setAction={setac} /> ;
+      case 2:
+        return <StepThree Next={next} Complete={complete} Back={back} />;
+      case 3:
+        return <StepFour Next={next} Complete={complete} Back={back} />;
+      case 4:
+        return <StepSeven Next={next} Complete={complete} Back={back} />;
+      default:
+        return 'Unknown step';
+    }
+  }
+  function getStepContent2(step, next, complete,back, ac, setac) {
+    switch (step) {
+      case 0:
+        return <StepOne Next={next} Complete={complete} />;
+      case 1:
+        return <StepTwo Next={next} Complete={complete} action={ac} setAction={setac} /> ;
       case 2:
         return <StepThree Next={next} Complete={complete} Back={back} />;
       case 3:
@@ -96,8 +114,19 @@ const useStyles = makeStyles((theme) => ({
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState({});
-    const steps = getSteps();
-  
+    const getAction = () => {
+      return JSON.parse(localStorage.getItem("action")) || false
+    }
+    const [action, setAction] = React.useState(getAction());
+    if(action === true){
+      var steps = getSteps();
+    }else{
+      var steps = getSteps2();
+    }
+    useEffect(()=> {
+      localStorage.setItem("action", JSON.stringify(action));
+    },[action])
+    
     const totalSteps = () => {
       return steps.length;
     };
@@ -175,7 +204,7 @@ const useStyles = makeStyles((theme) => ({
           ) : (
             <div>
               {/* <Typography className={classes.body}>{getStepContent(activeStep)}</Typography> */}
-              <div className={classes.body}>  {getStepContent(activeStep, handleNext, handleComplete, handleBack) }</div>
+              <div className={classes.body}>  {action ? getStepContent(activeStep, handleNext, handleComplete, handleBack, action, setAction) : getStepContent2(activeStep, handleNext, handleComplete, handleBack, action, setAction) }</div>
               {/* <div>
                 <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                   Back
