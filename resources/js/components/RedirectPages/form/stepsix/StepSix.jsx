@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { Alert } from '@material-ui/lab';
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, RadioGroup } from "@material-ui/core";
@@ -9,6 +9,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from "@material-ui/core/Button";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Radio from '@material-ui/core/Radio';
 
@@ -76,6 +77,57 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         padding: "10px",
     },
+    btnBox:{
+        width: "90%",
+        margin: "20px auto",
+        paddingBottom: "10px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignContent: "center"
+    },
+    button: {
+        // marginRight: theme.spacing(1)
+        border: "none",
+        textDecoration: "none",
+        padding: "10px 35px",
+        color: theme.palette.secondary.main,
+        background: theme.palette.primary.main,
+        borderRadius: "20px",
+        boxShadow: "0px 15px 25px #038ed433",
+        "&:focus":{
+            outline: "none"
+        },
+        "&:hover":{
+            background: theme.palette.primary.main,
+            color: theme.palette.secondary.main,
+        },
+    },
+    fileShow:{
+        width: "90%",
+        margin: "auto"
+    },
+    heading: {
+        paddingTop: "20px"
+    },
+    para:{
+        color: "#000"
+    },
+    loader:{
+        padding: "10px"
+    },
+    box: {
+        margin: "30px auto 60px",
+        width: "60%",
+        alignContent: "center",
+        background: theme.palette.secondary.main,
+        color: theme.palette.primary.dark,
+        textAlign: "center",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #00000033",
+        ['@media (max-width:960px)']: {
+            width: "90%"
+          }
+    },
     pos: {
         float: "right"
     }
@@ -83,12 +135,12 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function StepTwo() {
+export default function StepSix(props) {
     const classes = useStyles();
-    const [checkbox ,setCheckbox] = React.useState({
-        postgraduation:"0",
-        skip:"0",
-    })
+    const [category ,setCategory] = React.useState("");
+    const [loading, setLoading] = React.useState(true);
+    const [loader, setLoader] = React.useState(false);
+    const [file, setFile] = React.useState("");
 
     const [post, setProfile] = React.useState({
         user_id: "",
@@ -139,39 +191,84 @@ export default function StepTwo() {
         }
     };
 
-const handelpostgraduationclick = () => {
-    setCheckbox({
-        postgraduation:"1",
-        skip:"0",
-    })
-}
-const handelskipclick = () => {
-    setCheckbox({
-        skip:"1",
-        postgraduation:"0",
-    })
-}
+    const handleCategoryChange = (event) => {
+        setCategory(event.target.value);
+      };
    
     const handleFormSubmit = event => {
         event.preventDefault();
+<<<<<<< HEAD
+=======
+        setLoader(true);
+>>>>>>> 8c655939c2364ca6263108e93cb162bb6bdc9e5b
         const token = localStorage.getItem("token");
         const fd = new FormData();
+        fd.append('category', category);
+        if(category === "post"){
         Object.keys(post).forEach(function (key){         
             fd.append(key, post[key]);
-    })
+        })
         fd.append('file', document.getElementById('postfile').files[0]);
+        }
         axios
-            .post(`/api/postdetails`,
+            .post(`/api/pgDetails`,
                 fd, { headers: {'Authorization': 'Bearer ' + token }  }
                 
             )
             .then(response => {
-                console.log(response.data);
+                setLoader(false);
+                props.Complete();
+                props.Next();
             })
             .catch(error => {
                 console.log(error);
             });
+        
     };
+    const fetchDetails = async () => {
+        var token= localStorage.getItem("token")
+        const res = await axios.get(`/api/pgdetails`, {headers: { 'Authorization': 'Bearer ' + token }  });
+        if(res.data.category === "post"){
+            setCategory(res.data.category);
+            setProfile({
+                user_id: res.data.details['user_id'],
+                institution_name: res.data.details['institution_name'],
+                city_of_institution: res.data.details['city'],
+                state_of_institution: res.data.details['state'],
+                pincode_of_institution: res.data.details['pincode'],
+                marks_type: res.data.details['marks_type'],
+                obtained_marks: res.data.details['obtained_marks'],
+                maximum_marks: res.data.details['maximum_marks'],
+            });
+            var fullpath = res.data.details['file'];
+            var filename = fullpath.replace(/^.*[\\\/]/,'');
+            setFile(filename);
+        }
+        if(res.data.category === "NA"){
+            setCategory(res.data.category);
+        }
+        setLoading(false);
+    }
+    useEffect(()=>{
+        fetchDetails();
+    },[])
+
+    if(loading){
+        return(
+            <Card className={classes.box}>
+                <div className={classes.heading}>
+                    <div className={classes.loader}>
+                <CircularProgress color="#193b68" size="80px" />
+                </div>
+                <b>
+                    <p className={classes.para}>
+                        Checking the Step 6 - Post Graduation Status
+                    </p>
+                </b>
+                </div>
+            </Card>
+        )
+    }
       
     return (
         <div>
@@ -185,32 +282,18 @@ const handelskipclick = () => {
            
            
        
-      <RadioGroup row aria-label="position" color="primary">
-      <FormLabel component="legend" > Please select Postgraduation or Not applicable under which categorie you fall </FormLabel>
-        <FormControlLabel onClick = {handelpostgraduationclick} 
-        
-          value="a"
-          control={<Radio color="primary"  />}
-          label="Postgraduation"
-          labelPlacement="start"
-        />
-         <FormControlLabel onClick ={handelskipclick} 
-          value="c"
-          control={<Radio color="primary"   />}
-          label="Not applicable "
-          labelPlacement="start"
-        />
-     
-        
+       <RadioGroup row aria-label="category" name="category" value={category} onChange={handleCategoryChange} required >
+        <FormLabel component="legend" > Please select Postgraduation or Not applicable under which categorie you fall </FormLabel>
+        <FormControlLabel value="post" control={<Radio color="default" />}  label="Post Graduation" />
+        <FormControlLabel value="NA" control={<Radio color="default" />}  label="Not Applicable" />
       </RadioGroup>
     </FormControl>
     </Card>
     </Grid>
     {
-        checkbox.postgraduation=== "1" && checkbox.skip ==="0" ? ( <Grid item xs={12} className={classes.Cardcontainers}>
+        category=== "post" ? ( <Grid item xs={12} className={classes.Cardcontainers}>
                     
             <Card className={classes.cardStyles}>
-           
 
                 <PostgraduationDetails
                     Post={post}
@@ -221,24 +304,29 @@ const handelskipclick = () => {
                 Note : Upload <CloudUploadIcon /> Scanned copies of your dmc. (PDF Only)
                             </Alert>
                 <input className={classes.fileupload} accept= "application/pdf" id="postfile" type="file" /> 
+                <div className={classes.fileShow}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}</p>}</div>
             </Card>
         </Grid>) 
         :(<div></div>) 
     }
     {
-        checkbox.postgraduation=== "0" && checkbox.skip ==="1" ? ( <Grid item xs={12} className={classes.Cardcontainers} />) 
+        category=== "NA" ? ( <Grid item xs={12} className={classes.Cardcontainers} />) 
         :(<div></div>) 
     }
                 </Grid>
-                <Button
-                    className={classes.pos}
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    onClick={handleFormSubmit}
-                >
-                    SUBMIT
-                </Button>
+                <div className={classes.btnBox}>
+                <button className={classes.button} onClick={props.Back}>
+                    Back
+                </button>
+                {loader ? (
+                            
+                            <CircularProgress />
+                        ):(
+                <button type="submit" className={classes.button}>
+                    Submit & Next
+                </button>
+                        )}
+                </div>
             </form>
         </div>
     );

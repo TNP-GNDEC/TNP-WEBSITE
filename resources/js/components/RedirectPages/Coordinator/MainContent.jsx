@@ -7,7 +7,7 @@ import Posts from "../../HomeComponent/PostComponents/Posts";
 import Create from "../../RedirectPages/Coordinator/CreatePost";
 import Users from './Users';
 import Uploadcsv from './Uploadcsv';
-
+import Filter from './Filter';
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.background.paper,
@@ -51,7 +51,8 @@ export default function FullWidthTabs(props) {
         } else if (props.activeId === 2) {
             return (
                 <>
-                    <h2> Data Using Excel Here </h2>
+                    <h2> Data Filter </h2>
+                    <Filter />
                 </>
             );
         }else if (props.activeId === 3) {
