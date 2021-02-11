@@ -462,12 +462,13 @@ export default function StepTwo(props) {
     };
 
     const fetchDetails = async () => {
-        var token= localStorage.getItem("token")
+        const token= localStorage.getItem("token")
         const res = await axios.get(`/api/personalDetails/`,{
             headers: { 'Authorization': 'Bearer ' + token }});
+            console.log(res.data.details)
             setProfile({
-                first_name: capitalCase(res.data.details['first_name']),
-                last_name: capitalCase(res.data.details['last_name']),
+                first_name: res.data.details['first_name'],
+                last_name: res.data.details['last_name'],
                 dob: res.data.details['dob'],
                 height: res.data.details['height'],
                 weight: res.data.details['weight'],
@@ -479,9 +480,9 @@ export default function StepTwo(props) {
                 aadhar: res.data.details['aadhar']
             })
             setParent({
-                father_name: capitalCase(res.data.details['father_name']),
+                father_name: res.data.details['father_name'],
                 father_phone: res.data.details['father_mobile'],
-                mother_name: capitalCase(res.data.details['mother_name']),
+                mother_name: res.data.details['mother_name'],
                 mother_phone: res.data.details['mother_mobile']
             })
             setAcademics({
@@ -501,15 +502,16 @@ export default function StepTwo(props) {
                 re_enter_contact: res.data.details['mobile']
             })
             setAddress({
-                address: capitalCase(res.data.details['address']),
+                address: res.data.details['address'],
                 pincode: res.data.details['pincode'],
-                district: capitalCase(res.data.details['district']),
-                city: capitalCase(res.data.details['city']),
-                state: capitalCase(res.data.details['state'])
+                district: res.data.details['district'],
+                city: res.data.details['city'],
+                state: res.data.details['state']
             })
 
         setLoading(false);
     }
+    
     useEffect(()=>{
         fetchDetails();
     },[])

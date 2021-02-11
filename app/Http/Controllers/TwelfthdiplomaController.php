@@ -61,11 +61,17 @@ class TwelfthdiplomaController extends Controller
         'institution_name' => $request->institution_name_12,
         'board' => $request->board_12,
         'year_of_passing' => $request->year_of_passing_12,
-        'file' => $twelfth_file_url
+        'file' => $twelfth_path.'/'.$twelfth_file_url
 
   ]);
   if($request->category=="XII"){
-    $dip = DB::table('diploma')->where('user_id', $user->id)->delete();
+    
+    $dip = DB::table('diploma')->where('user_id', $user->id);
+    if($dip->id!=0){
+    $filename=$dip->file;
+    unlink(storage_path($filename));
+    $dip->delete();
+    }
   }
   if($current_step <5){
     $form_step_change= DB::table('form_statuses')
@@ -96,11 +102,15 @@ class TwelfthdiplomaController extends Controller
       'institution_name' => $request->institution_name_diploma,
       'branch' => $request->branch_diploma,
       'year_of_passing' => $request->year_of_passing_diploma,
-      'file' => $diploma_file_url
+      'file' => $diploma_path.'/'.$diploma_file_url
       ]
     );
     if($request->category=="diploma"){
-      $twe = DB::table('twelfth')->where('user_id', $user->id)->delete();
+      $twe = DB::table('twelfth')->where('user_id', $user->id);
+      if($twe->id!=0){
+      unlink(storage_path($filename));
+      $twe->delete();
+      }
     }
     if($current_step <5){
       $form_step_change= DB::table('form_statuses')

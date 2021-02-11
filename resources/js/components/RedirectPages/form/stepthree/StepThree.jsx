@@ -145,8 +145,8 @@ export default function StepThree(props) {
     const [matriculation, setmatric] = React.useState({
         board: "",
         institution_name: "",
-        state_of_institution: "",
-        city_of_institution: "",
+        state: "",
+        city: "",
         year_of_passing: "",
         marks_type: "",
         pincode:"",
@@ -162,8 +162,8 @@ export default function StepThree(props) {
         temp.institution_name = (/^[a-zA-Z\s]*$/).test(matriculation.institution_name)? "": "This field is required and must contain only char."
         temp.year_of_passing = (/^[0-9]{4}$/).test(matriculation.year_of_passing) ? "": "This field is required and be in yyyy format."
         temp.marks_type = matriculation.marks_type ? "": "This field is required."
-        temp.state_of_institution = (/^[a-zA-Z\s]*$/).test(matriculation.state_of_institution) ? "": "This field is required and must contain only char."
-        temp.city_of_institution = (/^[a-zA-Z\s]*$/).test(matriculation.city_of_institution) ? "": "This field is required and must contain only char."
+        temp.state = (/^[a-zA-Z\s]*$/).test(matriculation.state) ? "": "This field is required and must contain only char."
+        temp.city = (/^[a-zA-Z\s]*$/).test(matriculation.city) ? "": "This field is required and must contain only char."
         temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
         temp.pincode = (/^[0-9]{6}$/).test(matriculation.pincode) ? "": "This field is required and must be exactly 6 digits."
         temp.maximum_marks = (/^[0-9]{1,3}$/).test(matriculation.maximum_marks) ? "": "This field is required and must be max 3 digits."
@@ -222,8 +222,8 @@ export default function StepThree(props) {
             setmatric({
                 board: res.data.details['board'],
                 institution_name: res.data.details['institution_name'],
-                state_of_institution: res.data.details['state'],
-                city_of_institution: res.data.details['city'],
+                state: res.data.details['state'],
+                city: res.data.details['city'],
                 year_of_passing: res.data.details['year_of_passing'],
                 marks_type: res.data.details['marks_type'],
                 pincode: res.data.details['pincode'],
@@ -231,7 +231,7 @@ export default function StepThree(props) {
                 maximum_marks: res.data.details['maximum_marks'],
             })
             var fullpath = res.data.details['file'];
-            var filename = fullpath.replace(/^.*[\\\/]/,'');
+            var filename = fullpath.split('\\').pop().split('/').pop();;
             setfile(filename);
 
         setLoading(false);

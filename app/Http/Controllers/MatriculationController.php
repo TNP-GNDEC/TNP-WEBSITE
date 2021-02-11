@@ -37,16 +37,16 @@ class MatriculationController extends Controller
     $details = DB::table('matriculation')
     ->where('user_id', $user->id)
     ->update([
-        'state' => $request->state_of_institution,
+        'state' => $request->state,
         'pincode' => $request->pincode,
-        'city' => $request->city_of_institution,
+        'city' => $request->city,
         'marks_type' => $request->marks_type,
         'maximum_marks' => $request->maximum_marks,
         'obtained_marks' => $request->obtained_marks,
         'institution_name' => $request->institution_name,
         'board' => $request->board,
         'year_of_passing' => $request->year_of_passing,
-        'file' => $path.$matriculation_file
+        'file' => $path.'/'.$matriculation_file
 
     ]);
     if($current_step <4){

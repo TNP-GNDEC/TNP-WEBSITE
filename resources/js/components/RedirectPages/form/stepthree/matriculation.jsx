@@ -95,15 +95,15 @@ export default function matriculationDetails(props) {
             label: "CITY OF INSTITUTION",
             type: "text",
             id: 3,
-            name: "city_of_institution",
-            value: props.matriculation.city_of_institution
+            name: "city",
+            value: props.matriculation.city
         },
         {
             label: "STATE OF INSTITUTION",
             type: "text",
             id: 4,
-            name: "state_of_institution",
-            value: props.matriculation.state_of_institution
+            name: "state",
+            value: props.matriculation.state
         },
         {
             label: "PINCODE OF INSTITUTION",
@@ -227,8 +227,8 @@ export default function matriculationDetails(props) {
                         label= "CITY OF INSTITUTION"
                         type= "text"
                         id= "3"
-                        name= "city_of_institution"
-                        defaultValue= {props.matriculation.city_of_institution}
+                        name= "city"
+                        defaultValue= {props.matriculation.city}
                         
                         
                         variant="outlined"
@@ -238,7 +238,7 @@ export default function matriculationDetails(props) {
                         onChange={
                             props.handleInputChange
                         }
-                        {...(props.Errors.city_of_institution && {error:true, helperText:props.Errors.city_of_institution})}
+                        {...(props.Errors.city && {error:true, helperText:props.Errors.city})}
                     >
                         
                     </TextField>
@@ -256,8 +256,8 @@ export default function matriculationDetails(props) {
                         label= "STATE OF INSTITUTION"
                         type= "text"
                         id= "4"
-                        name= "state_of_institution"
-                        defaultValue= {props.matriculation.state_of_institution}
+                        name= "state"
+                        defaultValue= {props.matriculation.state}
                         
                         
                         
@@ -268,7 +268,7 @@ export default function matriculationDetails(props) {
                         onChange={
                             props.handleInputChange
                         }
-                        {...(props.Errors.state_of_institution && {error:true, helperText:props.Errors.state_of_institution})}
+                        {...(props.Errors.state && {error:true, helperText:props.Errors.state})}
                     >
                         
                     </TextField>
@@ -436,7 +436,7 @@ export default function matriculationDetails(props) {
                         onChange={
                             props.handleInputChange
                         }
-                        {...(props.Errors.city_of_institution && {error:true, helperText:props.Errors.city_of_institution})}
+                        {...(props.Errors.city && {error:true, helperText:props.Errors.city})}
                     >
                         
                     </TextField> */}

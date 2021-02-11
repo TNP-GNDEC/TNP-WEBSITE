@@ -91,8 +91,7 @@ export default function DiplomaDetails(props) {
             label: "branch",
             type: "text",
             id: 1,
-            // name: "first_name",
-            value: props.diploma.branch,
+                value: props.diploma.branch,
             
             select: "true",
             options: [
@@ -115,57 +114,49 @@ export default function DiplomaDetails(props) {
             label: "INSTITUTION NAME",
             type: "text",
             id: 2,
-            // name: "first_name",
-            value: props.diploma.institution_name
+                value: props.diploma.institution_name
         },
         {
             label: "CITY OF INSTITUTE",
             type: "text",
             id: 3,
-            // name: "first_name",
-            value: props.diploma.city_of_institute
+                value: props.diploma.city
         },
         {
             label: "STATE OF INSTITUTE",
             type: "text",
             id: 4,
-            // name: "first_name",
-            value: props.diploma.state_of_institute
+                value: props.diploma.state
         },
         {
             label: "PINCODE OF INSTITUTION",
             type: "text",
             id: 5,
-            // name: "first_name",
-            value: props.diploma.pincode_of_institute
+                value: props.diploma.pincode
         },
         {
             label: "YEAR OF PASSING",
             type: "text",
             id: 6,
-            // name: "first_name",
-            value: props.diploma.year_of_passing
+                value: props.diploma.year_of_passing
         },
         {
             label: "OBTAINED MARKS",
             type: "text",
             id: 7,
-            // name: "first_name",
-            value: props.diploma.obtained_marks
+                value: props.diploma.obtained_marks
         },
         {
             label: "MAXIMUM MARKS",
             type: "text",
             id: 8,
-            // name: "first_name",
-            value: props.diploma.maximum_marks
+                value: props.diploma.maximum_marks
         },
         {
             label: "STREAM OF DIPLOMA",
             type: "text",
             id: 9,
-            // name: "first_name",
-            value: props.diploma.stream
+                value: props.diploma.stream
         },
         // {
         //     label:"",

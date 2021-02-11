@@ -145,9 +145,9 @@ export default function StepSix(props) {
     const [post, setProfile] = React.useState({
         user_id: "",
         institution_name: "",
-        city_of_institution: "",
-        state_of_institution: "",
-        pincode_of_institution: "",
+        city: "",
+        state: "",
+        pincode: "",
         marks_type: "",
         obtained_marks: "",
         maximum_marks: "",   
@@ -157,20 +157,20 @@ export default function StepSix(props) {
     const handlePostChangeInput = (e, id) => {
         const value = e.target.value;
         switch (id) {
-            case 1:
-                setProfile({ ...post, user_id: parseInt(value) ? parseInt(value) : "" });
-                break;
+            // case 1:
+            //     setProfile({ ...post, user_id: parseInt(value) ? parseInt(value) : "" });
+            //     break;
             case 2:
                 setProfile({ ...post, institution_name: value });
                 break;
             case 3:
-                setProfile({ ...post, city_of_institution: value });
+                setProfile({ ...post, city: value });
                 break;
             case 4:
-                setProfile({ ...post, state_of_institution: value });
+                setProfile({ ...post, state: value });
                 break;
             case 5:
-                setProfile({ ...post, pincode_of_institution: parseInt(value) ? parseInt(value) : "" });
+                setProfile({ ...post, pincode: parseInt(value) ? parseInt(value) : "" });
                 break;
             case 6:
                 setProfile({ ...post, marks_type: value });
@@ -197,7 +197,10 @@ export default function StepSix(props) {
    
     const handleFormSubmit = event => {
         event.preventDefault();
+<<<<<<< HEAD
+=======
         setLoader(true);
+>>>>>>> 8c655939c2364ca6263108e93cb162bb6bdc9e5b
         const token = localStorage.getItem("token");
         const fd = new FormData();
         fd.append('category', category);
