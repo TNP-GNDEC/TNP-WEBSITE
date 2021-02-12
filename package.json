@@ -39,6 +39,7 @@
         "@material-ui/icons": "^4.11.2",
         "@material-ui/lab": "^4.0.0-alpha.57",
         "@material-ui/x-grid-data-generator": "^4.0.0-alpha.19",
+        "@tinymce/tinymce-react": "^3.10.1",
         "change-case": "^4.1.2",
         "draft-js": "^0.11.7",
         "draftjs-to-html": "^0.9.1",
