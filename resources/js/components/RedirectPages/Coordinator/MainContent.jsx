@@ -8,6 +8,8 @@ import Create from "../../RedirectPages/Coordinator/CreatePost";
 import Users from './Users';
 import Uploadcsv from './Uploadcsv';
 import Filter from './Filter';
+import Notice from './NoticeMaker';
+import Card from "@material-ui/core/Card";
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.background.paper,
@@ -25,7 +27,12 @@ const useStyles = makeStyles(theme => ({
     BG: {
         paddingBottom: "15px",
         paddingTop: "15px",
-    }
+    },
+   notices:{
+       color:"#038ed4",
+       borderradius: "5px"
+       
+   }
 }));
 
 export default function FullWidthTabs(props) {
@@ -98,7 +105,13 @@ export default function FullWidthTabs(props) {
         }else if (props.activeId === 6) {
             return (
                 <>
-                    <h2> Notice Maker </h2>
+                <Card className={classes.notices}>
+                  
+                    <h1>Notice Maker</h1>
+                   
+                    <Notice />
+                    </Card>
+
                 </>
             );
         }else if (props.activeId === 7) {
