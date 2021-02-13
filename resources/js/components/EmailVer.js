@@ -11,7 +11,7 @@ import StepTwo from "./RedirectPages/form/steptwo/StepTwo";
 import StepThree from "./RedirectPages/form/stepthree/StepThree";
 import StepFour from "./RedirectPages/form/stepfour/StepFour";
 import StepFive from "./RedirectPages/form/stepfive/Stepfive.jsx";
-import StepSeven from "./RedirectPages/form/StepSix";
+import StepSeven from "./RedirectPages/form/finalStep/StepTwo";
 import StepSix from "../components/RedirectPages/form/stepsix/StepSix";
 
 import Header from "../components/RedirectPages/form/Header";

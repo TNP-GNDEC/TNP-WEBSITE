@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     height: "30%",
     textAlign: "center",
-    marginTop: "30%"
+    marginTop: "200px"
   },
   icon:{
     fontSize: "90px",
