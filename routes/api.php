@@ -51,7 +51,6 @@ Route::middleware('auth:api')->group(function (){
     Route::post('degreeDetails', 'UgController@getFormData');
     Route::get('degreedetails', 'UgController@receiveFormData');
  
-    // step 6 Pg form post request
-    Route::post('pgDetails', 'PgController@getFormData');
-    Route::get('pgdetails', 'PgController@receiveFormData');
+    
+    
 });

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { DataGrid, GridToolbar } from '@material-ui/data-grid';
 import { useDemoData } from '@material-ui/x-grid-data-generator';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -17,6 +17,16 @@ export default function BasicToolbarFilteringGrid() {
     rowLength: 100,
     maxColumns: 6,
   });
+
+  const fetchDetails = async () => {
+    var token= localStorage.getItem("token");
+    const res = await axios.get(`/filterData`);
+    console.log(res.data.details);
+}
+
+useEffect(()=> {
+    fetchDetails();
+},[])
 
   return (
     <div style={{ height: 400, width: '100%' }}>
