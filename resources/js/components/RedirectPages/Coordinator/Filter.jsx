@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DataGrid, GridToolbar } from '@material-ui/data-grid';
 import { useDemoData } from '@material-ui/x-grid-data-generator';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -7,22 +7,26 @@ const useStyles = makeStyles(theme => ({
     
 }));
 
-const riceFilterModel = {
-  items: [{ columnField: 'commodity', operatorValue: 'contains', value: 'rice' }],
-};
+
 
 export default function BasicToolbarFilteringGrid() {
-  const { data } = useDemoData({
-    dataSet: 'Commodity',
-    rowLength: 100,
-    maxColumns: 6,
-  });
-
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'user_id', headerName: 'User Id', width: 130 },
+    { field: 'urn', headerName: 'urn', width: 130 },
+    { field: 'crn',headerName: 'crn'},
+  ];
+  
+  const [rowData, setRowData] = useState([]);
+  // const columns = [{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'},{field: 'id'}] 
   const fetchDetails = async () => {
-    var token= localStorage.getItem("token");
     const res = await axios.get(`/filterData`);
-    console.log(res.data.details);
+    setRowData(res.data.details);
+    console.log(res.data);
 }
+const riceFilterModel = {
+  items: [{ columnField: rowData, operatorValue: 'contains', value: 'rice' }],
+};
 
 useEffect(()=> {
     fetchDetails();
@@ -30,14 +34,16 @@ useEffect(()=> {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        {...data}
-        filterModel={riceFilterModel}
-        showToolbar
-        components={{
-          Toolbar: GridToolbar,
-        }}
-      />
-    </div>
+    <DataGrid
+      filterModel={riceFilterModel}
+      showToolbar
+      rows={rowData}
+      columns={columns} 
+      pageSize={5}
+      components={{
+        Toolbar: GridToolbar,
+      }}
+    />
+  </div>
   );
 }
