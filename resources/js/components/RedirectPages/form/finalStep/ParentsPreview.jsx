@@ -97,6 +97,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "flex-start",
         padding: "0px 0px",
+        paddingLeft: "15px",
         fontWeight: "400",
         fontSize: "22px"
     },
@@ -163,7 +164,7 @@ function ParentsPreview(props) {
                     variant="h4"
                     className={classes.cardHeading}
                 >
-                    Parents Details
+                    Matriculation Details
                 </Typography>
                 <CardContent>
                     <Grid container>{renderFields()}</Grid>
