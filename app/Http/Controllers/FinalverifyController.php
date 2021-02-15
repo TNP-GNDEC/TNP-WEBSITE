@@ -56,7 +56,15 @@ class FinalverifyController extends Controller
     $ug_details = DB::table('ug')
     ->where('user_id', $user->id)
     ->first();
-
+   
+    return response()->json([
+      "details"=>$personal_details,
+      "matric"=>$matriculation_details,
+      "category"=>$twelfth_diploma_category,
+      "twelfth"=>$twelfth_details,
+      "diploma"=>$diploma_details,
+      "ug"=>$ug_details
+      ]);
 
     }
 }

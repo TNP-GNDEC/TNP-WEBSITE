@@ -93,7 +93,8 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.primary.dark,
         display: "flex",
         justifyContent: "flex-start",
-        padding: "0px 0px",
+        padding: "0px",
+        paddingLeft: "15px",
         fontWeight: "400",
         fontSize: "22px"
     },
@@ -160,7 +161,7 @@ function ProfilePreview(props) {
                     variant="h4"
                     className={classes.cardHeading}
                 >
-                    Profile Details
+                    Personal Details
                 </Typography>
                 <CardContent>
                     <Grid container>{renderFields()}</Grid>
