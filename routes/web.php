@@ -88,3 +88,6 @@ Route::post('/reset-password', 'ForgotPasswordController@resetPassword');
 Route::get('/showPost/{id}', function () {
     return view('welcome');
 })-> name('example');
+
+//Filter Controller
+Route::get('filterData','FilterController@receiveFilterData');

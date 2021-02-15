@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-
+import Card from "@material-ui/core/Card";
 import ProfilePreview from './ProfilePreview';
 import AcademicsPreview from "./AcademicsPreview";
 import ParentsPreview from "./ParentsPreview";
