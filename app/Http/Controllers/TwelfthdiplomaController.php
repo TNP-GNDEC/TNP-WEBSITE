@@ -67,9 +67,9 @@ class TwelfthdiplomaController extends Controller
   if($request->category=="XII"){
     
     $dip = DB::table('diploma')->where('user_id', $user->id);
-    if($dip->id!=0){
+    if($dip->count() > 0){
     $filename=$dip->file;
-    unlink(storage_path($filename));
+    unlink(storage_path($dip->filename));
     $dip->delete();
     }
   }
@@ -100,6 +100,7 @@ class TwelfthdiplomaController extends Controller
       'maximum_marks' => $request->maximum_marks_diploma,
       'obtained_marks' => $request->obtained_marks_diploma,
       'institution_name' => $request->institution_name_diploma,
+      'stream' => $request->stream_diploma,
       'branch' => $request->branch_diploma,
       'year_of_passing' => $request->year_of_passing_diploma,
       'file' => $diploma_path.'/'.$diploma_file_url
@@ -107,8 +108,8 @@ class TwelfthdiplomaController extends Controller
     );
     if($request->category=="diploma"){
       $twe = DB::table('twelfth')->where('user_id', $user->id);
-      if($twe->id!=0){
-      unlink(storage_path($filename));
+      if($twe->count() > 0){
+      unlink(storage_path($twe->filename));
       $twe->delete();
       }
     }

@@ -10,7 +10,7 @@ class Diploma extends Model
     use HasFactory;
     protected $table = "diploma";
     protected $fillable = [
-        "board",
+        "branch",
         "user_id",
         "urn",
         "institution_name",
@@ -19,7 +19,7 @@ class Diploma extends Model
         "pincode",
         "year_of_passing",
         "obtained_marks",
-        "maximum_marks ",
+        "maximum_marks",
         "stream",
         "file",
         "marks_type",

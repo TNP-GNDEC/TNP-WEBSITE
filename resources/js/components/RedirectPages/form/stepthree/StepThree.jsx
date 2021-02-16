@@ -231,9 +231,10 @@ export default function StepThree(props) {
                 maximum_marks: res.data.details['maximum_marks'],
             })
             var fullpath = res.data.details['file'];
-            var filename = fullpath.split('\\').pop().split('/').pop();;
+            if(filename){
+            var filename = fullpath.split('\\').pop().split('/').pop();
             setfile(filename);
-
+            }
         setLoading(false);
     }
     

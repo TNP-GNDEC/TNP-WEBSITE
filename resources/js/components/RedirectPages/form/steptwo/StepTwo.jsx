@@ -207,27 +207,7 @@ export default function StepTwo(props) {
         state: ""
     });
 
-    // Utility Function
-    // const toCamelCase = str => {
-    //     if (typeof str == "string") {
-    //         var splittedStr = [];
-    //         var strInCamelCase = "";
-    //         splittedStr = str.split(8000" ");
-
-    //         for (var i = 0; i < splittedStr.length; i++) {
-    //             var word = splittedStr[i];
-    //             if (word.length > 0) {
-    //                 strInCamelCase = strInCamelCase.concat(
-    //                     word[0].toUpperCase() + word.substr(1, word.length)
-    //                 );
-    //             }
-    //         }
-    //         return strInCamelCase;
-    //     } else {
-    //         return str;
-    //     }
-    // };
-
+   
     function setCamelCase(){
         setProfile({
             first_name : camelCase(profile.first_name),

@@ -204,7 +204,7 @@ export default function StepFour(props) {
         temp.obtained_marks = (/^[0-9\b]+$/).test(diploma.obtained_marks) ? "": "This field is required."
         
         temp.maximum_marks = (/^[0-9]{3}$/).test(diploma.maximum_marks) ? "": "This field is required."
-        temp.stream = (/^[a-zA-Z\s]*$/).test(diploma.stream) ? "": "This field is required."
+        temp.stream = diploma.stream ? "": "This field is required."
 
         }
         setErrors({
@@ -253,6 +253,7 @@ export default function StepFour(props) {
         })
         fd.append('file_diploma', document.getElementById('diplomafile').files[0]);
     }   
+    console.log(fd)
 
        const token = localStorage.getItem("token")
        axios.post(`/api/diplomatwelfth/`, 
@@ -356,6 +357,7 @@ const fetchDetails = async () => {
             year_of_passing: res.data.diploma['year_of_passing'],
             obtained_marks: res.data.diploma['obtained_marks'],
             maximum_marks: res.data.diploma['maximum_marks'],
+            marks_type: res.data.diploma['marks_type'],
             stream: res.data.diploma['stream'],
         });
         var fullpath2 = res.data.diploma['file'];
@@ -391,32 +393,6 @@ useEffect(()=>{
             <Grid item xs={12} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>
        <FormControl component="fieldset" className={classes.radio}>
-           
-           
-       
-      {/* <RadioGroup aria-label="position" row className={classes.select}>
-      <FormLabel component="legend" > Please select XII or Diploma or both under which category you fall </FormLabel>
-        <FormControlLabel onClick ={handleXIIClick}
-          value="0"
-          control={<Radio color="primary" />}
-          label="XII"
-          labelPlacement="start"
-        />
-        <FormControlLabel onClick ={handleDiplomaClick}
-          value="1"
-          control={<Radio color="primary" />}
-          label="Diploma"
-          labelPlacement="start"
-        />
-        <FormControlLabel onClick ={handleBothClick}
-          value="2"
-          control={<Radio color="primary" />}
-          label="Both"
-          labelPlacement="start"
-        />
-     
-        
-      </RadioGroup> */}
       <RadioGroup row aria-label="category" name="category" value={category} onChange={handleCategoryChange}>
         <FormLabel component="legend" > Please select XII or Diploma or both under which category you fall </FormLabel>
         <FormControlLabel value="XII" control={<Radio color="default" />}  label="XII" />
