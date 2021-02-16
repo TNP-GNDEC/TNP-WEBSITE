@@ -67,9 +67,10 @@ class TwelfthdiplomaController extends Controller
   if($request->category=="XII"){
     
     $dip = DB::table('diploma')->where('user_id', $user->id);
-    if($dip->count() > 0){
-    $filename=$dip->file;
-    unlink(storage_path($dip->filename));
+    $user=$dip->first();
+    if($user!= null){
+      if (file_exists($user->file))
+    unlink($user->file);
     $dip->delete();
     }
   }
@@ -108,8 +109,10 @@ class TwelfthdiplomaController extends Controller
     );
     if($request->category=="diploma"){
       $twe = DB::table('twelfth')->where('user_id', $user->id);
-      if($twe->count() > 0){
-      unlink(storage_path($twe->filename));
+      $user= $twe->first();
+      if($user !== null){
+        if(file_exists($user->file))
+        unlink($user->file);
       $twe->delete();
       }
     }

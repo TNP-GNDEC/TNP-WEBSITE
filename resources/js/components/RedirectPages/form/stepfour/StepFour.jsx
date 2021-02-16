@@ -180,7 +180,7 @@ export default function StepFour(props) {
         temp.jee_rank = twelfth.jee_rank? "": "This field is required."
         temp.marks_type = twelfth.marks_type ? "": "This field is required."
         
-        temp.year_of_passing = twelfth.year_of_passing ? "": "This field is required."
+        temp.year_of_passing = (/^[0-9]{4}$/).test(twelfth.year_of_passing) ? "": "This field is required."
         
         temp.city = (/^[a-zA-Z\s]*$/).test(twelfth.city) ? "": "This field is required."
         temp.state = (/^[a-zA-Z\s]*$/).test(twelfth.state) ? "": "This field is required."
@@ -196,7 +196,7 @@ export default function StepFour(props) {
         
         temp.marks_type = diploma.marks_type ? "": "This field is required."
         
-        temp.year_of_passing = diploma.year_of_passing ? "": "This field is required."
+        temp.year_of_passing = (/^[0-9]{4}$/).test(diploma.year_of_passing) ? "": "This field is required."
         
         temp.city = (/^[a-zA-Z\s]*$/).test(diploma.city) ? "": "This field is required."
         temp.state = (/^[a-zA-Z\s]*$/).test(diploma.state) ? "": "This field is required."
