@@ -11,7 +11,7 @@ use App\Models\Matriculation;
 use App\Models\Diploma;
 use App\Models\Twelfth;
 use App\Models\TwelfthDiplomaCategory;
-use App\Models\UgDetails;
+use App\Models\ug;
 use Illuminate\Support\Facades\DB;
 
 class FinalverifyController extends Controller
@@ -40,31 +40,58 @@ class FinalverifyController extends Controller
     $twelfth_diploma_category = DB::table('twelfth_diploma_category')
       ->where('user_id', $user->id)
       ->first();
+
+    $ug_details = DB:: table('ug')
+        ->where('user_id', $user->id)
+        ->first();
     
-    if($twelfth_diploma_category->category == "both" || $twelfth_diploma_category->category=="diploma"){
+    if($twelfth_diploma_category->category === "both" || $twelfth_diploma_category->category==="diploma"){
       $diploma_details = DB::table('diploma')
         ->where('user_id', $user->id)
         ->first();
+        if($ug_details != null)
+        return response()->json([
+          "details"=>$personal_details,
+          "matric"=>$matriculation_details,
+          "category"=>$twelfth_diploma_category,
+          "diploma"=>$diploma_details,
+          "ug"=>$ug_details,
+          ]);
+          else
+          return response()->json([
+            "details"=>$personal_details,
+            "matric"=>$matriculation_details,
+            "category"=>$twelfth_diploma_category,
+            "diploma"=>$diploma_details,
+            
+            ]);
     }
 
-    if($twelfth_diploma_category->category == "both" || $twelfth_diploma_category->category == "XII"){
+    if($twelfth_diploma_category->category === "both" || $twelfth_diploma_category->category === "XII"){
       $twelfth_details = DB::table('twelfth')
         ->where('user_id', $user->id)
         ->first();
+        if($ug_details != null)
+        return response()->json([
+          "details"=>$personal_details,
+          "matric"=>$matriculation_details,
+          "category"=>$twelfth_diploma_category,
+          "twelfth"=>$twelfth_details,
+          "ug"=>$ug_details
+          ]);
+          else
+          return response()->json([
+            "details"=>$personal_details,
+            "matric"=>$matriculation_details,
+            "category"=>$twelfth_diploma_category,
+            "twelfth"=>$twelfth_details,
+            ]);
+    
     }
 
-    $ug_details = DB::table('ug')
-    ->where('user_id', $user->id)
-    ->first();
-   
-    return response()->json([
-      "details"=>$personal_details,
-      "matric"=>$matriculation_details,
-      "category"=>$twelfth_diploma_category,
-      "twelfth"=>$twelfth_details,
-      "diploma"=>$diploma_details,
-      "ug"=>$ug_details
-      ]);
-
-    }
+    // $ug_details = DB::table('ug')
+    // ->where('user_id', $user->id)
+    // ->first();
+    
+  }
 }

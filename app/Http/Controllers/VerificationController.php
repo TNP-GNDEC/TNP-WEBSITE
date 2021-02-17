@@ -36,12 +36,13 @@ class VerificationController extends Controller {
 
     	PasswordReset::create([
 
-    		'email' => $user->email,
+    		'email' => $request->email,
 
 			'token' => $token,
     	]);
              
-    	$tokenData = PasswordReset::where('email', $user->email)->first();
+    	$tokenData = PasswordReset::where('email', $request
+        ->email)->first();
 
     		if($tokenData){
     			Mail::to($tokenData->email)->send(new EmailVerification($tokenData));

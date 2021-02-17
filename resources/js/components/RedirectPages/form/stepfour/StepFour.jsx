@@ -177,34 +177,34 @@ export default function StepFour(props) {
         if(category==="XII" || category==="both"){
         temp.board = twelfth.board ? "": "This field is required."
         temp.institution_name = (/^[a-zA-Z\s]*$/).test(twelfth.institution_name) ? "": "This field is required and must only contain char."
-        temp.jee_rank = twelfth.jee_rank? "": "This field is required."
+        temp.jee_rank = (/^[0-9]$/).test(twelfth.jee_rank)? "": "This field is required and must contain only numbers."
         temp.marks_type = twelfth.marks_type ? "": "This field is required."
         
-        temp.year_of_passing = twelfth.year_of_passing ? "": "This field is required."
+        temp.year_of_passing = (/^[0-9]{4}$/).test(twelfth.year_of_passing) ? "": "This field is required and must be in yyyy format."
         
-        temp.city = (/^[a-zA-Z\s]*$/).test(twelfth.city) ? "": "This field is required."
-        temp.state = (/^[a-zA-Z\s]*$/).test(twelfth.state) ? "": "This field is required."
-        temp.pincode = (/^[0-9]{6}$/).test(twelfth.pincode) ? "": "This field is required."
-        temp.obtained_marks = (/^[0-9]{2,3}$/).test(twelfth.obtained_marks) ? "": "This field is required."
+        temp.city = (/^[a-zA-Z\s]*$/).test(twelfth.city) ? "": "This field is required and must contain letters only."
+        temp.state = (/^[a-zA-Z\s]*$/).test(twelfth.state) ? "": "This field is required and must contain letters only."
+        temp.pincode = (/^[0-9]{6}$/).test(twelfth.pincode) ? "": "This field is required and must be of 6 digits"
+        temp.obtained_marks = (/^[0-9]{2,3}$/).test(twelfth.obtained_marks) ? "": "This field is required and must be max 3 digits long."
         
-        temp.maximum_marks = (/^[0-9]{2,3}$/).test(twelfth.maximum_marks) ? "": "This field is required."
+        temp.maximum_marks = (/^[0-9]{2,3}$/).test(twelfth.maximum_marks) ? "": "This field is required and must be max 3 digits long."
         }
 
         if(category==="diploma" || category==="both"){
         temp.branch = diploma.branch ? "": "This field is required."
-        temp.institution_name = (/^[a-zA-Z\s]*$/).test(diploma.institution_name)? "": "This field is required."
+        temp.institution_name = (/^[a-zA-Z\s]*$/).test(diploma.institution_name)? "": "This field is required and must contain letters only."
         
         temp.marks_type = diploma.marks_type ? "": "This field is required."
         
-        temp.year_of_passing = diploma.year_of_passing ? "": "This field is required."
+        temp.year_of_passing = (/^[0-9]{4}$/).test(diploma.year_of_passing) ? "": "This field is required and must be in yyyy format."
         
-        temp.city = (/^[a-zA-Z\s]*$/).test(diploma.city) ? "": "This field is required."
-        temp.state = (/^[a-zA-Z\s]*$/).test(diploma.state) ? "": "This field is required."
-        temp.pincode = (/^[0-9]{6}$/).test(diploma.pincode) ? "": "This field is required."
-        temp.obtained_marks = (/^[0-9\b]+$/).test(diploma.obtained_marks) ? "": "This field is required."
+        temp.city = (/^[a-zA-Z\s]*$/).test(diploma.city) ? "": "This field is required and must contain letters only"
+        temp.state = (/^[a-zA-Z\s]*$/).test(diploma.state) ? "": "This field is required and must contain letters only"
+        temp.pincode = (/^[0-9]{6}$/).test(diploma.pincode) ? "": "This field is required and must be of 6 digits"
+        temp.obtained_marks = (/^[0-9\b]+$/).test(diploma.obtained_marks) ? "": "This field is required and must be max 3 digits long."
         
-        temp.maximum_marks = (/^[0-9]{3}$/).test(diploma.maximum_marks) ? "": "This field is required."
-        temp.stream = (/^[a-zA-Z\s]*$/).test(diploma.stream) ? "": "This field is required."
+        temp.maximum_marks = (/^[0-9]{3}$/).test(diploma.maximum_marks) ? "": "This field is required and must be max 3 digits long."
+        temp.stream = diploma.stream ? "": "This field is required and must be contain letters only."
 
         }
         setErrors({
@@ -253,6 +253,7 @@ export default function StepFour(props) {
         })
         fd.append('file_diploma', document.getElementById('diplomafile').files[0]);
     }   
+    console.log(fd)
 
        const token = localStorage.getItem("token")
        axios.post(`/api/diplomatwelfth/`, 
@@ -295,7 +296,7 @@ const fetchDetails = async () => {
     var token= localStorage.getItem("token")
     const res = await axios.get(`/api/diplomaTwelfth`, {headers: { 'Authorization': 'Bearer ' + token }  });
     const category = res.data.category;
-    if(category === "both"){
+    if(category === "both" || category === 'XII'){
         setCategory(category);
         setProfile({
             board: res.data.twelfth['board'],
@@ -309,43 +310,14 @@ const fetchDetails = async () => {
             maximum_marks: res.data.twelfth['maximum_marks'],
             marks_type: res.data.twelfth['marks_type']
         });
-        setParent({
-            branch: res.data.diploma['branch'],
-            institution_name: res.data.diploma['institution_name'],
-            pincode: res.data.diploma['pincode'],
-            city: res.data.diploma['city'],
-            state: res.data.diploma['state'],
-            year_of_passing: res.data.diploma['year_of_passing'],
-            obtained_marks: res.data.diploma['obtained_marks'],
-            maximum_marks: res.data.diploma['maximum_marks'],
-            stream: res.data.diploma['stream'],
-        });
+        
         var fullpath = res.data.twelfth['file'];
         var filename = fullpath.split('\\').pop().split('/').pop();;
         setTwelfthFile(filename);
-        var fullpath2 = res.data.diploma['file'];
-        var filename2 = fullpath2.split('\\').pop().split('/').pop();;
-        setDiplomaFile(filename2);
+        
     }
-    if(category === "XII"){
-        setCategory(category);
-        setProfile({
-            board: res.data.twelfth['board'],
-            institution_name: res.data.twelfth['institution_name'],
-            jee_rank : res.data.twelfth['jee_rank'],
-            city: res.data.twelfth['city'],
-            state: res.data.twelfth['state'],
-            pincode: res.data.twelfth['pincode'],
-            year_of_passing: res.data.twelfth['year_of_passing'],
-            obtained_marks: res.data.twelfth['obtained_marks'],
-            maximum_marks: res.data.twelfth['maximum_marks'],
-            marks_type: res.data.twelfth['marks_type']
-        });
-        var fullpath = res.data.twelfth['file'];
-        var filename = fullpath.split('\\').pop().split('/').pop();;
-        setTwelfthFile(filename);
-    }
-    if(category === "diploma"){
+    
+    if(category === "diploma" || category === "both"){
         setCategory(category);
         setParent({
             branch: res.data.diploma['branch'],
@@ -356,6 +328,7 @@ const fetchDetails = async () => {
             year_of_passing: res.data.diploma['year_of_passing'],
             obtained_marks: res.data.diploma['obtained_marks'],
             maximum_marks: res.data.diploma['maximum_marks'],
+            marks_type: res.data.diploma['marks_type'],
             stream: res.data.diploma['stream'],
         });
         var fullpath2 = res.data.diploma['file'];
@@ -391,32 +364,6 @@ useEffect(()=>{
             <Grid item xs={12} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>
        <FormControl component="fieldset" className={classes.radio}>
-           
-           
-       
-      {/* <RadioGroup aria-label="position" row className={classes.select}>
-      <FormLabel component="legend" > Please select XII or Diploma or both under which category you fall </FormLabel>
-        <FormControlLabel onClick ={handleXIIClick}
-          value="0"
-          control={<Radio color="primary" />}
-          label="XII"
-          labelPlacement="start"
-        />
-        <FormControlLabel onClick ={handleDiplomaClick}
-          value="1"
-          control={<Radio color="primary" />}
-          label="Diploma"
-          labelPlacement="start"
-        />
-        <FormControlLabel onClick ={handleBothClick}
-          value="2"
-          control={<Radio color="primary" />}
-          label="Both"
-          labelPlacement="start"
-        />
-     
-        
-      </RadioGroup> */}
       <RadioGroup row aria-label="category" name="category" value={category} onChange={handleCategoryChange}>
         <FormLabel component="legend" > Please select XII or Diploma or both under which category you fall </FormLabel>
         <FormControlLabel value="XII" control={<Radio color="default" />}  label="XII" />
@@ -427,7 +374,7 @@ useEffect(()=>{
     </Card>
     </Grid>
     {
-        category==="XII"  && <Grid item xs={12} className={classes.Cardcontainers}>
+        (category==="XII" || category === "both") && <Grid item xs={12} className={classes.Cardcontainers}>
                     
             <Card className={classes.cardStyles}>
 
@@ -448,7 +395,7 @@ useEffect(()=>{
         </Grid>
     }
 {
-        category==="diploma" &&  <Grid item xs={12} className={classes.Cardcontainers}>
+        (category==="diploma"  || category === "both" )&&  <Grid item xs={12} className={classes.Cardcontainers}>
             <Card className={classes.cardStyles}>
                 <DiplomaDetails 
                 diploma={diploma} 
@@ -466,47 +413,7 @@ useEffect(()=>{
         </Grid>
     }
 
-    {
-        category === "both" &&
-        <>
-        <Grid item xs={12} className={classes.Cardcontainers}>
-            <Card className={classes.cardStyles}>
-                <DiplomaDetails 
-                diploma={diploma} 
-                handleInputChange={handleParentChangeInput}
-               
-                Errors= {errors}
-                /> 
-                <hr />
-                <Alert severity="info" className={classes.alert}>
-                            Note : Upload <CloudUploadIcon/> Scanned copies of your
-                                    Diploma certificates.(PDF Only)
-                            </Alert>
-                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
-                <div className={classes.fileShow}>{diplomaFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {diplomaFile}</p>}</div>
-            </Card>
-        </Grid>
-        <Grid item xs={12} className={classes.Cardcontainers}>
-                    
-            <Card className={classes.cardStyles}>
-
-
-                <TwelfthDetails 
-                twelfth={twelfth} 
-                handleInputChange={handleProfileChangeInput}
-                Errors= {errors}
-                />
-                <hr />
-                <Alert severity="info" className={classes.alert}>
-                            Note : Upload <CloudUploadIcon/> Scanned copies of your
-                                    twelfth certificates.(PDF Only)
-                            </Alert>
-                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
-                <div className={classes.fileShow}>{twelfthFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {twelfthFile}</p>}</div>
-            </Card>
-        </Grid>
-        </>
-    }
+  
             </Grid>
             <div className={classes.btnBox}>
                 <button className={classes.button} onClick={props.Back}>

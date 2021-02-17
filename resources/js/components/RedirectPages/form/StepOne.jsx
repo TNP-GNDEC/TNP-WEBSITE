@@ -107,13 +107,11 @@ export default function StepOne(props) {
       const handleFormSubmit = (e) => {
         e.preventDefault();
         setLoader(true);
-        var uuid= localStorage.getItem("useruuid")
-        var id= localStorage.getItem("userid")
-        axios.post(`/api/email/verify/${uuid}`, {
+        var token= localStorage.getItem("token")
+        axios.post(`/api/email/verify`, {
           email: email,
-          id: id
     
-      })
+      }, {headers: {'Authorization': 'Bearer '+ token}})
       .then((response) => {
           setLoader(false);
         if(response.data.msg){

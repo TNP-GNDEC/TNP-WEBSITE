@@ -50,27 +50,27 @@ export default function DiplomaDetails(props) {
     
         const currencies = [
             {
-                value:"ONE",
+                value:"1",
                 label:"Computer Science And Engg"
             },
             {
-                value:"TWO",
+                value:"2",
                 label:"IT Engg"
             },
             {
-                value:"THREE",
+                value:"3",
                 label:"Mechenical Engg"
             },
             {
-                value:"FOUR",
-                label:"Eletrical Engg"
+                value:"4",
+                label:"Electrical Engg"
             },
             {
-                value:"FIVE",
+                value:"5",
                 label:"Civil Engg"
             },
             {
-                value:"SIX",
+                value:"6",
                 label:"Production Engg"
             }
           ];
@@ -86,87 +86,6 @@ export default function DiplomaDetails(props) {
             }
     
         ];
-    const fields = [
-        {
-            label: "branch",
-            type: "text",
-            id: 1,
-                value: props.diploma.branch,
-            
-            select: "true",
-            options: [
-                {
-                    value:"ONE",
-                    label:"CBSE"
-                },
-                {
-                    value:"TWO",
-                    label:"ICSE"
-                },
-                {
-                    value:"THREE",
-                    label:"PSEB"
-                }
-            ]
-            
-        },
-        {
-            label: "INSTITUTION NAME",
-            type: "text",
-            id: 2,
-                value: props.diploma.institution_name
-        },
-        {
-            label: "CITY OF INSTITUTE",
-            type: "text",
-            id: 3,
-                value: props.diploma.city
-        },
-        {
-            label: "STATE OF INSTITUTE",
-            type: "text",
-            id: 4,
-                value: props.diploma.state
-        },
-        {
-            label: "PINCODE OF INSTITUTION",
-            type: "text",
-            id: 5,
-                value: props.diploma.pincode
-        },
-        {
-            label: "YEAR OF PASSING",
-            type: "text",
-            id: 6,
-                value: props.diploma.year_of_passing
-        },
-        {
-            label: "OBTAINED MARKS",
-            type: "text",
-            id: 7,
-                value: props.diploma.obtained_marks
-        },
-        {
-            label: "MAXIMUM MARKS",
-            type: "text",
-            id: 8,
-                value: props.diploma.maximum_marks
-        },
-        {
-            label: "STREAM OF DIPLOMA",
-            type: "text",
-            id: 9,
-                value: props.diploma.stream
-        },
-        // {
-        //     label:"",
-        //     type: "file",
-        //     id: 10,
-        //     // name: "first_name",
-        //     inputid:"pdf-file",
-        //     value: props.diploma.file,
-        // }
-    ];
 
     const renderDiplomaFields = (
         // fields.map(field => (
@@ -220,13 +139,8 @@ export default function DiplomaDetails(props) {
                         type= "text"
                         id= "2"
                         name= "institution_name"
-                        defaultValue= {props.diploma.institution_name}
-                        
-                        
+                        defaultValue= {props.diploma.institution_name}                        
                         variant="outlined"
-                        
-        
-                        
                         onChange={
                             props.handleInputChange
                         }
@@ -352,7 +266,6 @@ export default function DiplomaDetails(props) {
                         id= "7"
                         name= "marks_type"
                         defaultValue= {props.diploma.marks_type}
-                        
                         select="true"
                         variant="outlined"
                         
