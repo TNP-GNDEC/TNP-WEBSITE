@@ -269,9 +269,6 @@ export default function DiplomaDetails(props) {
                         
                     </TextField>
                     
-                    
-  
-                     
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -285,11 +282,7 @@ export default function DiplomaDetails(props) {
                         id= "9"
                         name= "obtained_marks"
                         defaultValue= {props.diploma.obtained_marks}
-                        
-                        
                         variant="outlined"
-                        
-                        
                         onChange={
                             props.handleInputChange
                         }

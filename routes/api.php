@@ -48,7 +48,7 @@ Route::middleware('auth:api')->group(function (){
     Route::get('diplomaTwelfth', 'TwelfthdiplomaController@receiveFormData');
 
     // step 5 Ug form post request
-    Route::post('degreeDetails', 'UgController@getFormData');
+    Route::post('degreedetails', 'UgController@getFormData');
     Route::get('degreedetails', 'UgController@receiveFormData');
  
     // step 6 Verify form get request

@@ -17,7 +17,6 @@ class CreateUgTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned()->default(0);
             $table->bigInteger('urn')->unsigned()->unique()->default(0);
-            $table->bigInteger('crn')->unsigned()->default(0);
             $table->string('institution_name')->nullable();
             $table->string('marks_type')->nullable();
             $table->string('obtained_marks')->nullable();
@@ -26,7 +25,8 @@ class CreateUgTable extends Migration
             $table->string('state')->nullable();
             $table->bigInteger('pincode')->nullable();
             $table->string('file')->nullable();
-
+            $table->string('branch')->nullable();
+            $table->year('year_of_passing')->nullable();
             $table->timestamps();
         });
     }

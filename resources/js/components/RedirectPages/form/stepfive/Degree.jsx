@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles(theme => ({
@@ -21,6 +22,7 @@ const useStyles = makeStyles(theme => ({
         alignContent: "center",
         padding: "20px 0px",
         width: "100%",
+        
     },
     inputs:{
         display: "flex",
@@ -30,8 +32,7 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
     },
     fields:{
-        width: "80%",
-        margin: "auto"
+        width: "25%"
     },
     notchedOutline: {
         boxShadow: "0px 2px 6px #75757533",
@@ -42,106 +43,230 @@ const useStyles = makeStyles(theme => ({
       },
 }));
 
-
-export default function Degree(props) {
+export default function degreeDetails(props) {
     const classes = useStyles();
 
-const fields = [
-    {
-        
-        label: "INSTITUTION NAME",
-        type: "text",
-        id: 1,
-        value: props.Degree.institution_name
-    },
-    {
-        label: "CITY OF INSTITUTE",
-        type: "text",
-        id: 2,
-        value: props.Degree.city
-    },
-    {
-        label: "STATE OF INSTITUTE",
-        type: "text",
-        id: 3,
-        value: props.Degree.state
-    },
-    {
-        label: "PINCODE OF INSTITUTION",
-        type: "text",
-        id: 4,
-        value: props.Degree.pincode
-    },
-    {
-        label: "OBTAINED MARKS",
-        type: "text",
-        id: 6,
-        value: props.Degree.obtained_marks
-    },
-    {
-        label: "MAXIMUM MARKS",
-        type: "text",
-        id: 7,
-        value: props.Degree.maximum_marks
-    },
-    {
-        label: "MARKS TYPE",
-        type: "text",
-        id: 5,
-        value: props.Degree.marks_type
-    },
-    // {
-    //     label:"",
-    //     type: "file",
-    //     id: 10,
-    //     // name: "first_name",
-    //     inputid:"pdf-file",
-    //     value: props.Degree.file,
-    // }
-];
-
-    const renderDegreeFields = () =>
-        fields.map(field => (
-            <>
-                <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    lg={4}
+    const renderdegreeFields = (
+        // fields.map(field => (
+        //     <>
+  <Grid
+                    
+                    container
+                
                     className={classes.textFieldContainer}
                 >
-                    <TextField
-                    className={classes.fields}
-                    InputProps={{
-                        classes: {
-                          notchedOutline: classes.notchedOutline,
-                          focused: classes.focused
-                        }
-                    }}
-                        type={field.type}
-                        id="outlined-basic"
-                        variant="outlined"
-                        label={field.label}
-                        value={field.value}
-                        select={field.select}
-                        required={field.required}
-                        inputProps={{ accept: ".pdf" }}
-                        
-                        onChange={e => {
-                            props.handleInputChange(e, field.id);
+                    <div className={classes.inputs}>
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
                         }}
-                    >
+                        label= "BRANCH"
+                        type="text"
+                        id= "1"
+                        name= "branch"
+                        defaultValue= {props.degree.branch}
+                        variant="outlined"
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.branch && {error:true, helperText:props.Errors.branch})}
+                    >  
                     </TextField>
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "INSTITUTION NAME"
+                        type= "text"
+                        id= "2"
+                        name= "institution_name"
+                        defaultValue= {props.degree.institution_name}
+                        variant="outlined"
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.institution_name && {error:true, helperText:props.Errors.institution_name})}
+                    >
+                        
+                    </TextField>
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "CITY OF INSTITUTION"
+                        type= "text"
+                        id= "3"
+                        name= "city"
+                        defaultValue= {props.degree.city}
+                        variant="outlined"
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.city && {error:true, helperText:props.Errors.city})}
+                    >
+                        
+                    </TextField>
+                    </div>
+                        
+                    <div className={classes.inputs}>
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "STATE OF INSTITUTION"
+                        type= "text"
+                        id= "4"
+                        name= "state"
+                        defaultValue= {props.degree.state}
+                        variant="outlined"
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.state && {error:true, helperText:props.Errors.state})}
+                    >
+                        
+                    </TextField>
+
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "PINCODE OF INSTITUTION"
+                        type= "text"
+                        id= "5"
+                        name= "pincode"
+                        defaultValue= {props.degree.pincode}
+                        variant="outlined"
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.pincode && {error:true, helperText:props.Errors.pincode})}
+                    >
+                        
+                    </TextField>
+
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "YEAR OF PASSING"
+                        type= "text"
+                        id= "6"
+                        name= "year_of_passing"
+                        defaultValue= {props.degree.year_of_passing}
+                        variant="outlined"
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.year_of_passing && {error:true, helperText:props.Errors.year_of_passing})}
+                    >
+                        
+                    </TextField>
+                    </div>
+                    <div className={classes.inputs}>
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "MARKS TYPE"
+                        type= "text"
+                        id= "7"
+                        name= "marks_type"
+                        defaultValue= {props.degree.marks_type}
+                        variant="outlined"
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.marks_type && {error:true, helperText:props.Errors.marks_type})}
+                        >
+                       
+                    </TextField>
+
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "OBTAINED MARKS"
+                        type= "text"
+                        id= "8"
+                        name= "obtained_marks"
+                        defaultValue= {props.degree.obtained_marks}
+                        variant="outlined"
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.obtained_marks && {error:true, helperText:props.Errors.obtained_marks})}
+                    >
+                        
+                    </TextField>
+
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "MAXIMUM MARKS"
+                        type= "text"
+                        id= "9"
+                        name= "maximum_marks"
+                        defaultValue= {props.degree.maximum_marks}
+                        variant="outlined"
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.maximum_marks && {error:true, helperText:props.Errors.maximum_marks})}
+                    >
+                        
+                    </TextField>
+                    </div>
+                    
                 </Grid>
-            </>
-        ));
+            
+        )
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
-                Degree  Details
+                Degree Details
             </Typography>
             <CardContent>
-                <Grid container>{renderDegreeFields()}</Grid>
+
+                <Grid container>{renderdegreeFields}</Grid>
+
             </CardContent>
         </>
     );

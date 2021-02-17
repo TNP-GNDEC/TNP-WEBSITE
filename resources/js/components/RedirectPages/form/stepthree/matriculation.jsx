@@ -229,12 +229,7 @@ export default function matriculationDetails(props) {
                         id= "3"
                         name= "city"
                         defaultValue= {props.matriculation.city}
-                        
-                        
                         variant="outlined"
-                        
-                       
-                        
                         onChange={
                             props.handleInputChange
                         }
@@ -258,13 +253,7 @@ export default function matriculationDetails(props) {
                         id= "4"
                         name= "state"
                         defaultValue= {props.matriculation.state}
-                        
-                        
-                        
                         variant="outlined"
-                        
-                        
-                        
                         onChange={
                             props.handleInputChange
                         }
@@ -286,12 +275,7 @@ export default function matriculationDetails(props) {
                         id= "5"
                         name= "pincode"
                         defaultValue= {props.matriculation.pincode}
-                        
-                        
                         variant="outlined"
-                        
-                       
-                        
                         onChange={
                             props.handleInputChange
                         }
@@ -342,12 +326,7 @@ export default function matriculationDetails(props) {
                         name= "marks_type"
                         defaultValue= {props.matriculation.marks_type}
                         select="true"
-                        
-                        
                         variant="outlined"
-                        
-                
-                        
                         onChange={
                             props.handleInputChange
                         }
@@ -358,10 +337,6 @@ export default function matriculationDetails(props) {
                                 {option.label}
                             </MenuItem>
                         ))}
-
-                        
-                    
-                        
                     </TextField>
 
                     <TextField 
@@ -377,11 +352,7 @@ export default function matriculationDetails(props) {
                         id= "8"
                         name= "obtained_marks"
                         defaultValue= {props.matriculation.obtained_marks}
-                        
-                        
                         variant="outlined"
-                        
-                     
                         onChange={
                             props.handleInputChange
                         }
@@ -403,12 +374,7 @@ export default function matriculationDetails(props) {
                         id= "9"
                         name= "maximum_marks"
                         defaultValue= {props.matriculation.maximum_marks}
-                        
-                        
                         variant="outlined"
-                        
-                
-                        
                         onChange={
                             props.handleInputChange
                         }

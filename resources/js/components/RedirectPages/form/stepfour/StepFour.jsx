@@ -275,8 +275,6 @@ export default function StepFour(props) {
             ...prevState,
             [name] : value
         }))
-
-
     };
        
     const handleParentChangeInput = (e, id) => {
