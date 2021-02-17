@@ -52,5 +52,6 @@ Route::middleware('auth:api')->group(function (){
     Route::get('degreedetails', 'UgController@receiveFormData');
  
     // step 6 Verify form get request
+    Route::post('formCompleted', 'FinalverifyController@completeFormData');
     Route::get('verifyAll', 'FinalverifyController@getFormData');
 });

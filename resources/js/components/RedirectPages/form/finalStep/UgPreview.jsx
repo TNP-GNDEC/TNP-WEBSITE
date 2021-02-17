@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, DialogContent } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import { concat, size } from "lodash";
+import { HelpOutlineOutlined } from "@material-ui/icons";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles(theme => ({
@@ -93,7 +96,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.primary.dark,
         display: "flex",
         justifyContent: "flex-start",
-        padding: "0px",
+        padding: "0px 0px",
         paddingLeft: "15px",
         fontWeight: "400",
         fontSize: "22px"
@@ -128,7 +131,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function ProfilePreview(props) {
+function AcademicsPreview(props) {
     const classes = useStyles();
 
     const renderFields = () =>
@@ -161,10 +164,11 @@ function ProfilePreview(props) {
                     variant="h4"
                     className={classes.cardHeading}
                 >
-                    Diploma Details
+                    Under Graduation Details
                 </Typography>
                 <CardContent>
                     <Grid container>{renderFields()}</Grid>
+                   
                 </CardContent>
             </div>
         </Grid>
@@ -172,4 +176,4 @@ function ProfilePreview(props) {
     )
 }
 
-export default ProfilePreview
+export default AcademicsPreview

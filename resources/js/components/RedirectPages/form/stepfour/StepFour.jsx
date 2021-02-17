@@ -177,7 +177,7 @@ export default function StepFour(props) {
         if(category==="XII" || category==="both"){
         temp.board = twelfth.board ? "": "This field is required."
         temp.institution_name = (/^[a-zA-Z\s]*$/).test(twelfth.institution_name) ? "": "This field is required and must only contain char."
-        temp.jee_rank = (/^[0-9]$/).test(twelfth.jee_rank)? "": "This field is required and must contain only numbers."
+        temp.jee_rank = (/^[0-9\s]+$/).test(twelfth.jee_rank)? "": "This field is required and must contain only numbers."
         temp.marks_type = twelfth.marks_type ? "": "This field is required."
         
         temp.year_of_passing = (/^[0-9]{4}$/).test(twelfth.year_of_passing) ? "": "This field is required and must be in yyyy format."
@@ -204,7 +204,7 @@ export default function StepFour(props) {
         temp.obtained_marks = (/^[0-9\b]+$/).test(diploma.obtained_marks) ? "": "This field is required and must be max 3 digits long."
         
         temp.maximum_marks = (/^[0-9]{3}$/).test(diploma.maximum_marks) ? "": "This field is required and must be max 3 digits long."
-        temp.stream = diploma.stream ? "": "This field is required and must be contain letters only."
+        temp.stream = (/^[a-zA-Z\s]*$/).test(diploma.stream) ? "": "This field is required and must be contain letters only."
 
         }
         setErrors({

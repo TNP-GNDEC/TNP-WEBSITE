@@ -158,13 +158,7 @@ const fetchUser = async (token) => {
   const user = await axios.get(`/api/getUsers`, {headers: { 'Authorization': 'Bearer ' + token }  });
   const role = user.data.user['role_id'];
   if(role===1){
-    var checkStep = fetchSteps(token);
-    if(checkStep === 6){
-      props.history.push("/student");
-    }
-    else{
-      props.history.push("/email");
-    }
+    fetchSteps(token);
   }
   if(role ===2){
     props.history.push("/coordinator")
@@ -176,7 +170,12 @@ const fetchSteps = async (token) => {
     headers: { 'Authorization': 'Bearer ' + token }
   });
   const form_step = step.data.step['form_step'];
-  return form_step;
+  if(form_step === 6){
+    props.history.push("/student");
+  }
+  else{
+    props.history.push("/email");
+  }
 }
 const [showPassword, setShowPassword] = useState(false);
 const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -197,15 +196,8 @@ const handleFormSubmit= async (event)=>{
     var user=response.data.current_user
     var JWTtoken=response.data.access_token
     localStorage.setItem('token', JWTtoken);
-    const checkStep = fetchSteps(JWTtoken);
       if(user.role_id===1){
-
-        if(checkStep === 6){
-          props.history.push("/student");
-        }
-        else{
-          props.history.push("/email");
-        }
+        fetchSteps(JWTtoken);
       }
       if(user.role_id===2){
         props.history.push("/coordinator")
