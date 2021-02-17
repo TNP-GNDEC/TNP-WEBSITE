@@ -101,7 +101,6 @@ class TwelfthdiplomaController extends Controller
       'maximum_marks' => $request->maximum_marks_diploma,
       'obtained_marks' => $request->obtained_marks_diploma,
       'institution_name' => $request->institution_name_diploma,
-      'stream' => $request->stream_diploma,
       'branch' => $request->branch_diploma,
       'year_of_passing' => $request->year_of_passing_diploma,
       'file' => $diploma_path.'/'.$diploma_file_url

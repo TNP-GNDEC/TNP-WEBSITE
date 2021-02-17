@@ -48,32 +48,6 @@ const useStyles = makeStyles(theme => ({
 export default function DiplomaDetails(props) {
     const classes = useStyles();
     
-        const currencies = [
-            {
-                value:"1",
-                label:"Computer Science And Engg"
-            },
-            {
-                value:"2",
-                label:"IT Engg"
-            },
-            {
-                value:"3",
-                label:"Mechenical Engg"
-            },
-            {
-                value:"4",
-                label:"Electrical Engg"
-            },
-            {
-                value:"5",
-                label:"Civil Engg"
-            },
-            {
-                value:"6",
-                label:"Production Engg"
-            }
-          ];
         
           const currencies2 = [
             {
@@ -108,23 +82,12 @@ export default function DiplomaDetails(props) {
                         id= "1"
                         name= "branch"
                         defaultValue= {props.diploma.branch}
-                        select= "true"
-                        
-                        
                         variant="outlined"
-                        
-
-                        
                         onChange={
                             props.handleInputChange
                         }
                         {...(props.Errors.branch && {error:true, helperText:props.Errors.branch})}
                     >
-                        {currencies.map(option => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
                         
                     </TextField>
                     <TextField 
@@ -335,34 +298,7 @@ export default function DiplomaDetails(props) {
                         
                     </TextField>
                     </div>
-                    <div className={classes.inputs}>
-                    <TextField 
-                        className={classes.fields}
-                        InputProps={{
-                            classes: {
-                              notchedOutline: classes.notchedOutline,
-                              focused: classes.focused
-                            }
-                        }}
-                        label= "STREAM OF DIPLOMA"
-                        type= "text"
-                        id= "10"
-                        name= "stream"
-                        defaultValue= {props.diploma.stream}
-                        
-                        
-                        variant="outlined"
-                        
-                        
-                        onChange={
-                            props.handleInputChange
-                        }
-                        {...(props.Errors.stream && {error:true, helperText:props.Errors.stream})}
-                    >
-                        
-                    </TextField>
-
-                    </div>
+                    
 </Grid>
                     /* <TextField
                     className={classes.fields}

@@ -204,7 +204,6 @@ export default function StepFour(props) {
         temp.obtained_marks = (/^[0-9\b]+$/).test(diploma.obtained_marks) ? "": "This field is required and must be max 3 digits long."
         
         temp.maximum_marks = (/^[0-9]{3}$/).test(diploma.maximum_marks) ? "": "This field is required and must be max 3 digits long."
-        temp.stream = diploma.stream ? "": "This field is required and must be contain letters only."
 
         }
         setErrors({
@@ -224,7 +223,6 @@ export default function StepFour(props) {
         year_of_passing:"",
         obtained_marks:"",
         maximum_marks: "",
-        stream:"",
       
     });
 
@@ -319,6 +317,7 @@ const fetchDetails = async () => {
     
     if(category === "diploma" || category === "both"){
         setCategory(category);
+        if(res.data.diploma !== null){
         setParent({
             branch: res.data.diploma['branch'],
             institution_name: res.data.diploma['institution_name'],
@@ -329,12 +328,12 @@ const fetchDetails = async () => {
             obtained_marks: res.data.diploma['obtained_marks'],
             maximum_marks: res.data.diploma['maximum_marks'],
             marks_type: res.data.diploma['marks_type'],
-            stream: res.data.diploma['stream'],
         });
         var fullpath2 = res.data.diploma['file'];
         var filename2 = fullpath2.split('\\').pop().split('/').pop();
         setDiplomaFile(filename2);
     }
+}
     setLoading(false);
 }
 useEffect(()=>{
