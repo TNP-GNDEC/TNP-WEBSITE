@@ -32,6 +32,9 @@ const useStyles = makeStyles(theme => ({
        color:"#038ed4",
        borderradius: "5px"
        
+   },
+   head:{
+       color:"#038ed4",
    }
 }));
 
@@ -52,20 +55,20 @@ export default function FullWidthTabs(props) {
         if (props.activeId === 1) {
             return (
                 <>
-                    <h2>main landing </h2>
+                    <h1 className={classes.head}>Home</h1>
                 </>
             );
         } else if (props.activeId === 2) {
             return (
                 <>
-                    <h2> Data Filter </h2>
+                    <h1 className={classes.head}> Data Filter </h1>
                     <Filter />
                 </>
             );
         }else if (props.activeId === 3) {
             return (
                 <>
-                    <h2> Companies </h2>
+                    <h1 className={classes.head}> Companies </h1>
                 </>
             );
         } else if (props.activeId === 4) {

@@ -49,6 +49,7 @@
         "moment": "^2.29.1",
         "papaparse": "^5.3.0",
         "react-draft-wysiwyg": "^1.14.5",
+        "react-file-previewer": "^0.6.3",
         "react-html-parser": "^2.0.2",
         "react-material-ui-form-validator": "^2.1.2",
         "react-papaparse": "^3.11.1",
