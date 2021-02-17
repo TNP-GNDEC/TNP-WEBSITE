@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Uploadcsv = () => {
   const classes = useStyles();
+  
 
     const hiddenFileInput = React.useRef(null);
     
@@ -27,6 +28,7 @@ const Uploadcsv = () => {
     const handleChange = event => {
       const fileUploaded = event.target.files[0];
       handleFile(fileUploaded);
+     
     };
 
     const handleFile = (file) => {
@@ -66,7 +68,12 @@ const Uploadcsv = () => {
                ref={hiddenFileInput}
                onChange={handleChange}
                style={{display:'none'}} 
+              
+               
         /> 
+        <div>
+     
+     </div>
       </>
     );
   };

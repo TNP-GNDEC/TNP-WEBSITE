@@ -191,9 +191,11 @@ export default function StepFive(props) {
                 }
             )
             .then(response => {
-                setLoader(false);
-                props.Complete();
-                props.Next();
+                if(response.data.msg === "stepcomplete"){
+                    setLoader(false);
+                    props.Complete();
+                    props.Next();
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -202,21 +204,20 @@ export default function StepFive(props) {
     const fetchDetails = async () => {
         var token= localStorage.getItem("token")
         const res = await axios.get(`/api/degreedetails`, {headers: { 'Authorization': 'Bearer ' + token }  });
-        // if(res.data.details !== "null"){
-        //     setDegree({
-        //         institution_name: res.data.details["institution_name"],
-        //         city: res.data.details["city"],
-        //         state: res.data.details["state"],
-        //         pincode: res.data.details["pincode"],
-        //         marks_type: res.data.details["marks_type"],
-        //         obtained_marks: res.data.details["obtained_marks"],
-        //         maximum_marks: res.data.details["maximum_marks"],
-        //     });
-        //     var fullpath = res.data.details['file'];
-        //     var filename = fullpath.split('\\').pop().split('/').pop();;
-        //     setFile(filename);
-        // }
-        console.log(res.data.details)
+        if(res.data.details){
+            setDegree({
+                institution_name: res.data.details["institution_name"],
+                city: res.data.details["city"],
+                state: res.data.details["state"],
+                pincode: res.data.details["pincode"],
+                marks_type: res.data.details["marks_type"],
+                obtained_marks: res.data.details["obtained_marks"],
+                maximum_marks: res.data.details["maximum_marks"],
+            });
+            var fullpath = res.data.details['file'];
+            var filename = fullpath.split('\\').pop().split('/').pop();;
+            setFile(filename);
+        }
         setLoading(false);
     }
 

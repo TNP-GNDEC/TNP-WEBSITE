@@ -28,11 +28,10 @@ class UgController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-  if($current_step>=6){
     $ug_file = $request->file('file');
     $ug_filename  = $ug_file->getClientOriginalName();
     $ug_extension = $ug_file->getClientOriginalExtension();
-    $ug_file_url   = $user->username._.'ug.'.$ug_extension;
+    $ug_file_url   = $user->username.'_ug.'.$ug_extension;
     $ug_path = public_path('documents/ug');
     $ug_file->move(public_path('documents/ug'), $ug_file_url);
 
@@ -44,23 +43,20 @@ class UgController extends Controller
         'pincode' => $request->pincode,
         'city' => $request->city,
         'state' => $request->state,
-        'branch' => $request->stream,
         'marks_type' => $request->marks_type,
         'maximum_marks' => $request->maximum_marks,
         'obtained_marks' => $request->obtained_marks,
         'institution_name' => $request->institution_name,
-        'year_of_passing' => $request->year_of_passing,
         'file' => $ug_path.'/'.$ug_file_url
         
 
     ]);
-
+    if($current_step <5){
       $form_step_change= DB::table('form_statuses')
       ->where('user_id', $user->id)
-      ->update(['form_step' => 7]);
-      return response()->json(["details"=> $ug_details, "form_status"=> $form_step_change]);
+      ->update(['form_step' => 5]);
     }
-    else return response()->json(["details"=> "first complete ug details"]);
+      return response()->json(["msg"=> "stepcomplete"]);
   }
 
   public function receiveFormData(Request $request){

@@ -3,10 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Card from "@material-ui/core/Card";
 import ProfilePreview from './ProfilePreview';
-import AcademicsPreview from "./AcademicsPreview";
-import ParentsPreview from "./ParentsPreview";
+import UgPreview from "./UgPreview";
+import MatriculationPreview from "./MatriculationPreview";
 import DiplomaPreview from './DiplomaPreview';
+import TwelfthPreview from './TwelfthPreview';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
     head: {
@@ -83,7 +86,9 @@ const useStyles = makeStyles(theme => ({
         width: "90%",
         margin: "20px auto",
         paddingBottom: "10px",
-        textAlign: "right"
+        display: "flex",
+        justifyContent: "space-between",
+        alignContent: "center"
     },
     button: {
         // marginRight: theme.spacing(1)
@@ -106,10 +111,10 @@ const useStyles = makeStyles(theme => ({
     cardHeading: {
         color: theme.palette.primary.dark,
         display: "flex",
-        justifyContent: "center",
-        padding: "20px 0px",
-        fontWeight: "500",
-        backgroundColor: "#038ed459"
+        justifyContent: "flex-start",
+        padding: "0px 15px",
+        fontWeight: "400",
+        fontSize: "22px"
     },
     textFieldContainer: {
         width: "30%",
@@ -129,20 +134,22 @@ const useStyles = makeStyles(theme => ({
         boxShadow: "0px 2px 6px #038ed433"
     },
     outerSpan: {
-        padding: "10px 0px"
+        padding: "5px 0px",
+        textAlign: "left"
     },
     keySpan: {
-        fontSize: "22px",
-        fontWeight: "700"
+        fontSize: "18px",
+        color: "#038ed4"
     },
     valueSpan: {
-        fontSize: "22px"
+        fontSize: "18px"
     }
 }));
 
 export default function finalStep(props) {
     const classes = useStyles();
     const [loader, setLoader] = React.useState(false);
+    const [cond, setCond] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
 
     const [ProfileData, setProfileData] = React.useState([
@@ -177,65 +184,80 @@ export default function finalStep(props) {
         { id: 29, label: "Pincode", value: "value" },
     ]);
 
-    const [ParentsData, setParentsData] = React.useState([
-        { id: 1, label: "key", value: "value" },
-        { id: 2, label: "key", value: "value" },
-        { id: 3, label: "key", value: "value" },
-        { id: 4, label: "key", value: "value" },
-        { id: 5, label: "key", value: "value" },
-        { id: 6, label: "key", value: "value" },
-        { id: 7, label: "key", value: "value" },
-        { id: 8, label: "key", value: "value" },
-        { id: 9, label: "key", value: "value" },
-        { id: 10, label: "key", value: "value" },
-        { id: 11, label: "key", value: "value" },
-        { id: 12, label: "key", value: "value" },
-        { id: 13, label: "key", value: "value" },
-        { id: 14, label: "key", value: "value" },
-        { id: 15, label: "key", value: "value" },
-        { id: 16, label: "key", value: "value" },
-        { id: 17, label: "key", value: "value" }
+    const [MatriculationData, setMatriculationData] = React.useState([
+        { id: 1, label: "Board", value: "value" },
+        { id: 2, label: "Institute Name", value: "value" },
+        { id: 3, label: "State", value: "value" },
+        { id: 4, label: "City", value: "value" },
+        { id: 5, label: "Year of Passing", value: "value" },
+        { id: 6, label: "Marks type", value: "value" },
+        { id: 7, label: "Pincode", value: "value" },
+        { id: 8, label: "Obtained Marks", value: "value" },
+        { id: 9, label: "Maximum Marks", value: "value" },
+        { id: 10, label: "File", value: "value" },
     ]);
-    const [AcademicsData, setAcademicsData] = React.useState([
-        { id: 1, label: "key", value: "value" },
-        { id: 2, label: "key", value: "value" },
-        { id: 3, label: "key", value: "value" },
-        { id: 4, label: "key", value: "value" },
-        { id: 5, label: "key", value: "value" },
-        { id: 6, label: "key", value: "value" },
-        { id: 7, label: "key", value: "value" },
-        { id: 8, label: "key", value: "value" },
-        { id: 9, label: "key", value: "value" },
-        { id: 10, label: "key", value: "value" },
-        { id: 11, label: "key", value: "value" },
-        { id: 12, label: "key", value: "value" },
-        { id: 13, label: "key", value: "value" },
-        { id: 14, label: "key", value: "value" },
-        { id: 15, label: "key", value: "value" },
-        { id: 16, label: "key", value: "value" },
-        { id: 17, label: "key", value: "value" }
+    const [UgData, setUgData] = React.useState([
+        { id: 1, label: "Institute Name", value: "value" },
+        { id: 2, label: "State", value: "value" },
+        { id: 3, label: "City", value: "value" },
+        { id: 4, label: "Year of Passing", value: "value" },
+        { id: 5, label: "Marks type", value: "value" },
+        { id: 6, label: "Pincode", value: "value" },
+        { id: 7, label: "Obtained Marks", value: "value" },
+        { id: 8, label: "Maximum Marks", value: "value" },
+        { id: 9, label: "File", value: "value" },
     ]);
-
+    const [Cat, setCat] = React.useState({
+        label: "Category",
+        value: "",
+    });
+    const [TwelfthData, setTwelfthData] = React.useState([
+        { id: 1, label: "Board", value: "value" },
+        { id: 2, label: "Institution Name", value: "value" },
+        { id: 3, label: "Jee Rank", value: "value" },
+        { id: 4, label: "State", value: "value" },
+        { id: 5, label: "City", value: "value" },
+        { id: 6, label: "Year of Passing", value: "value" },
+        { id: 7, label: "Marks Type", value: "value" },
+        { id: 8, label: "Obtained Marks", value: "value" },
+        { id: 9, label: "Maximum Marks", value: "value" },
+        { id: 10, label: "Pincode", value: "value" },
+        { id: 11, label: "File", value: "value" },
+    ]);
     const [DiplomaData, setDiplomaData] = React.useState([
-        { id: 1, label: "key", value: "value" },
-        { id: 2, label: "key", value: "value" },
-        { id: 3, label: "key", value: "value" },
-        { id: 4, label: "key", value: "value" },
-        { id: 5, label: "key", value: "value" },
-        { id: 6, label: "key", value: "value" },
-        { id: 7, label: "key", value: "value" },
-        { id: 8, label: "key", value: "value" },
-        { id: 9, label: "key", value: "value" },
-        { id: 10, label: "key", value: "value" },
-        { id: 11, label: "key", value: "value" },
-        { id: 12, label: "key", value: "value" },
-        { id: 13, label: "key", value: "value" },
-        { id: 14, label: "key", value: "value" },
-        { id: 15, label: "key", value: "value" },
-        { id: 16, label: "key", value: "value" },
-        { id: 17, label: "key", value: "value" }
+        { id: 1, label: "Branch", value: "value" },
+        { id: 2, label: "Institution Name", value: "value" },
+        { id: 3, label: "State", value: "value" },
+        { id: 4, label: "City", value: "value" },
+        { id: 5, label: "Year of Passing", value: "value" },
+        { id: 6, label: "Marks Type", value: "value" },
+        { id: 7, label: "Obtained Marks", value: "value" },
+        { id: 8, label: "Maximum Marks", value: "value" },
+        { id: 9, label: "Pincode", value: "value" },
+        { id: 10, label: "File", value: "value" },
     ]);
-    
+    const handleVerify = () => {
+        setLoader(true);
+        var msg = "done";
+        var token = localStorage.getItem("token");
+        axios.post(`/api/formCompleted`,
+            msg,{
+                headers: { 'Authorization': 'Bearer ' + token }
+            }
+        )
+        .then(response => {
+            if(response.data.msg === "stepcomplete"){
+            setLoader(false);
+            localStorage.removeItem('token');
+            localStorage.removeItem('userid');
+            localStorage.removeItem('useruuid');
+            window.location.href = window.origin+ "/login";
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
     const fetchDetails = async () => {
         var token= localStorage.getItem("token")
         const res = await axios.get(`/api/verifyAll/`,{
@@ -270,8 +292,63 @@ export default function finalStep(props) {
                 { id: 27, label: "District", value: res.data.details['district']},
                 { id: 28, label: "State", value: res.data.details['state'] },
                 { id: 29, label: "Pincode", value: res.data.details['pincode'] },
-            ])
-            
+            ]);
+            setMatriculationData([
+                { id: 1, label: "Board", value: res.data.matric['board'] },
+                { id: 2, label: "Institute Name", value: res.data.matric['institution_name'] },
+                { id: 3, label: "State", value: res.data.matric['state'] },
+                { id: 4, label: "City", value: res.data.matric['city'] },
+                { id: 5, label: "Year of Passing", value: res.data.matric['year_of_passing'] },
+                { id: 6, label: "Marks type", value: res.data.matric['marks_type'] },
+                { id: 7, label: "Pincode", value: res.data.matric['pincode'] },
+                { id: 8, label: "Obtained Marks", value: res.data.matric['obtained_marks'] },
+                { id: 9, label: "Maximum Marks", value: res.data.matric['maximum_marks'] },
+                { id: 10, label: "File", value: res.data.matric['file'].split('\\').pop().split('/').pop() },
+            ]);
+            setCat({value: res.data.category['category'], label: "Category"});
+            if(res.data.category['category']=== "both" || res.data.category['category'] === "XII"){
+                setTwelfthData([
+                    { id: 1, label: "Board", value: res.data.twelfth['board'] },
+                    { id: 2, label: "Institution Name", value: res.data.twelfth['institution_name'] },
+                    { id: 3, label: "Jee Rank", value: res.data.twelfth['jee_rank'] },
+                    { id: 4, label: "State", value: res.data.twelfth['state'] },
+                    { id: 5, label: "City", value: res.data.twelfth['city'] },
+                    { id: 6, label: "Year of Passing", value: res.data.twelfth['year_of_passing'] },
+                    { id: 7, label: "Marks type", value: res.data.twelfth['marks_type'] },
+                    { id: 8, label: "Pincode", value: res.data.twelfth['pincode'] },
+                    { id: 9, label: "Obtained Marks", value: res.data.twelfth['obtained_marks'] },
+                    { id: 10, label: "Maximum Marks", value: res.data.twelfth['maximum_marks'] },
+                    { id: 11, label: "File", value: res.data.twelfth['file'].split('\\').pop().split('/').pop() },
+                ]);
+            }
+            if(res.data.category['category']=== "both" || res.data.category['category'] === "diploma"){
+                setDiplomaData([
+                    { id: 1, label: "Branch", value: res.data.diploma['branch'] },
+                    { id: 2, label: "Institution Name", value: res.data.diploma['institution_name'] },
+                    { id: 3, label: "State", value: res.data.diploma['state'] },
+                    { id: 4, label: "City", value: res.data.diploma['city'] },
+                    { id: 5, label: "Year of Passing", value: res.data.diploma['year_of_passing'] },
+                    { id: 6, label: "Marks type", value: res.data.diploma['marks_type'] },
+                    { id: 7, label: "Pincode", value: res.data.diploma['pincode'] },
+                    { id: 8, label: "Obtained Marks", value: res.data.diploma['obtained_marks'] },
+                    { id: 9, label: "Maximum Marks", value: res.data.diploma['maximum_marks'] },
+                    { id: 10, label: "File", value: res.data.diploma['file'].split('\\').pop().split('/').pop() },
+                ]);
+            }
+            if(res.data.ug){
+                setCond(true);
+                setUgData([
+                    { id: 1, label: "Institution Name", value: res.data.ug['institution_name'] },
+                    { id: 2, label: "State", value: res.data.ug['state'] },
+                    { id: 3, label: "City", value: res.data.ug['city'] },
+                    { id: 4, label: "Year of Passing", value: res.data.ug['year_of_passing'] },
+                    { id: 5, label: "Marks type", value: res.data.ug['marks_type'] },
+                    { id: 6, label: "Pincode", value: res.data.ug['pincode'] },
+                    { id: 7, label: "Obtained Marks", value: res.data.ug['obtained_marks'] },
+                    { id: 8, label: "Maximum Marks", value: res.data.ug['maximum_marks'] },
+                    { id: 9, label: "File", value: res.data.ug['file'].split('\\').pop().split('/').pop() },
+                ]);
+            }
         setLoading(false);
     }
     useEffect(()=>{
@@ -310,11 +387,52 @@ export default function finalStep(props) {
                 <hr />
                 <ProfilePreview data={ProfileData}/>
                 <hr />
-                <ParentsPreview data={ParentsData} /> 
+                <MatriculationPreview data={MatriculationData} /> 
                 <hr />
-                <AcademicsPreview data={AcademicsData} />
-                {/* <hr />
-                <DiplomaPreview data={DiplomaData} /> */}
+                <div>
+                    <Typography
+                        variant="h4"
+                        className={classes.cardHeading}
+                    >
+                        Twelfth/Diploma Details
+                    </Typography>
+                    <CardContent>
+                        <span className={classes.outerSpan}>
+                            <span className={classes.keySpan}>
+                                {Cat.label} :
+                            </span>
+                            <span className={classes.valueSpan}>
+                                {Cat.value}
+                            </span>
+                        </span>
+                    </CardContent>
+                </div>
+                {Cat.value === "both" ? (
+                    <div>
+                        <hr />
+                        <TwelfthPreview data={TwelfthData} />
+                        <hr />
+                        <DiplomaPreview data={DiplomaData} />
+                    </div>
+                ):(<div></div>)}
+                {Cat.value === "XII" ? (
+                    <div>
+                        <hr />
+                        <TwelfthPreview data={TwelfthData} />
+                    </div>
+                ):(<div></div>)}
+                {Cat.value === "diploma" ? (
+                    <div>
+                        <hr />
+                        <DiplomaPreview data={DiplomaData} />
+                    </div>
+                ):(<div></div>)}
+                {cond ? (
+                    <div>
+                        <hr />
+                        <UgPreview data={UgData} />
+                    </div>
+                ):(<div></div>)}
             </div>
             <div className={classes.btnBox}>
             <button className={classes.button} onClick={props.Back}>
@@ -324,7 +442,7 @@ export default function finalStep(props) {
                         
                         <CircularProgress />
                     ):(
-            <button type="submit" className={classes.button}>
+            <button onClick={handleVerify} className={classes.button}>
                 Finish
             </button>
                     )}
