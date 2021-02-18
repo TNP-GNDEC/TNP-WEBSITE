@@ -31,7 +31,7 @@ class FinalverifyController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-  if($current_step <6 && $request->msg == "done"){
+  if($current_step <6){
     $form_step_change= DB::table('form_statuses')
     ->where('user_id', $user->id)
     ->update(['form_step' => 6]);

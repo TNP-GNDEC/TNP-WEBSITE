@@ -9,9 +9,11 @@ import ContactDetails from "./ContactDetails";
 import Button from "@material-ui/core/Button";
 import { concat } from "lodash";
 import AddressDetails from "./AddressDetails";
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {capitalCase} from 'change-case'; 
-import { faOdnoklassnikiSquare } from "@fortawesome/free-brands-svg-icons";
+import { faLastfmSquare, faOdnoklassnikiSquare } from "@fortawesome/free-brands-svg-icons";
 const useStyles = makeStyles(theme => ({
     
     head: {
@@ -111,6 +113,15 @@ export default function StepTwo(props) {
     const [loader, setLoader] = React.useState(false);
     const [errors, setErrors] = React.useState({});
     const {action, setAction} = props;
+    const [open, setOpen] = React.useState(false);
+    
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+      };
 
     const validate = () => {
         let temp = {}
@@ -152,6 +163,11 @@ export default function StepTwo(props) {
         })
         var filter =  Object.keys(temp);
         var ok = "";
+        if(filter.every(x => temp[x].valueOf() === ok.valueOf())){
+            setOpen(false);
+        }else{
+            setOpen(true);
+        }
         return filter.every(x => temp[x].valueOf() === ok.valueOf());
       }
 
@@ -568,6 +584,11 @@ export default function StepTwo(props) {
                         </Card>
                     </Grid>
                 </Grid>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="error">
+                    Oops !! Error Occurs, Check it...
+                    </Alert>
+                </Snackbar>
                 <div className={classes.btnBox}>
                 {loader ? (
                             
