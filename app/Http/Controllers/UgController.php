@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
-use App\Models\ugDetails;
+use App\Models\UgDetails;
 use App\Models\FormStatus;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +25,7 @@ class UgController extends Controller
  public function getFormData(Request $request)
   {
     $user = auth()->user();
-  $current_step= DB::table('form_statuses')
+    $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
     $ug_file = $request->file('file');
@@ -35,11 +35,11 @@ class UgController extends Controller
     $ug_path = public_path('documents/ug');
     $ug_file->move(public_path('documents/ug'), $ug_file_url);
 
-    $ug_details = ugDetails::updateOrCreate(
+    $ug_details = UgDetails::updateOrCreate(
       ['user_id' => $user->id],
-      [ 'user_id' => $user->id,
+      [         
         'urn' => $user->username,
-        'crn' => 0,
+        'user_id' => $user->id,
         'pincode' => $request->pincode,
         'city' => $request->city,
         'state' => $request->state,
@@ -47,11 +47,12 @@ class UgController extends Controller
         'maximum_marks' => $request->maximum_marks,
         'obtained_marks' => $request->obtained_marks,
         'institution_name' => $request->institution_name,
-        'file' => $ug_path.'/'.$ug_file_url
-        
+        'file' => $ug_path.'/'.$ug_file_url,
+        'year_of_passing' => $request->year_of_passing,
+        'branch' => $request->branch
 
     ]);
-    if($current_step <5){
+    if($current_step <6){
       $form_step_change= DB::table('form_statuses')
       ->where('user_id', $user->id)
       ->update(['form_step' => 5]);

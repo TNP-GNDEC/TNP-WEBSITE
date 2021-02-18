@@ -20,7 +20,6 @@ class Diploma extends Model
         "year_of_passing",
         "obtained_marks",
         "maximum_marks",
-        "stream",
         "file",
         "marks_type",
         "user_id"

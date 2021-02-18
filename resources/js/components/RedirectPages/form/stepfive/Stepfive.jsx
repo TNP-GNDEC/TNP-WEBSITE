@@ -143,49 +143,58 @@ export default function StepFive(props) {
         marks_type: "",
         obtained_marks: "",
         maximum_marks: "",
+        year_of_passing: "",
+        branch:""
     });
    
+    
     const handleDegreeChangeInput = (e, id) => {
-        const value = e.target.value;
-        switch (id) {
-            case 1:
-                setDegree({ ...degree, institution_name:  value });
-                break;
-            case 2:
-                setDegree({ ...degree, city:  value});
-                break;
-            case 3:
-                setDegree({ ...degree, state: value});
-                break;
-            case 4:
-                setDegree({ ...degree, pincode: value});
-                break;
-            case 5:
-                setDegree({ ...degree, marks_type: value});
-                break;
-            case 6:
-                setDegree({ ...degree, obtained_marks: value});
-                break;
-            case 7:
-                setDegree({ ...degree, maximum_marks: value});
-                break;
-            default:
-                break;
-        }
+        
+        const name= e.target.name
+        const value= e.target.value   
+        setDegree(prevState => ({
+            ...prevState,
+            [name] : value
+        }))
     };
 
+
+    const [errors, setErrors] = useState({});
+
+    const validate = () => {
+        let temp = {}
+        temp.branch = degree.branch ? "": "This field is required"
+        temp.institution_name = (/^[a-zA-Z\s]*$/).test(degree.institution_name)? "": "This field is required and must contain only char."
+        temp.year_of_passing = (/^[0-9]{4}$/).test(degree.year_of_passing) ? "": "This field is required and be in yyyy format."
+        temp.marks_type = degree.marks_type ? "": "This field is required."
+        temp.state = (/^[a-zA-Z\s]*$/).test(degree.state) ? "": "This field is required and must contain only char."
+        temp.city = (/^[a-zA-Z\s]*$/).test(degree.city) ? "": "This field is required and must contain only char."
+        temp.obtained_marks = degree.obtained_marks ? "": "This field is required."
+        temp.pincode = (/^[0-9]{6}$/).test(degree.pincode) ? "": "This field is required and must be exactly 6 digits."
+        temp.maximum_marks = (/^[0-9]{1,3}$/).test(degree.maximum_marks) ? "": "This field is required and must be max 3 digits."
+        temp.obtained_marks = degree.obtained_marks<=degree.maximum_marks ? "": "marks obtained can't be greater than maximum marks."
+        setErrors({
+          ...temp
+        })
+        var filter =  Object.keys(temp);
+        var ok = "";
+        return filter.every(x => temp[x].valueOf() === ok.valueOf());
+      }
     
     const handleFormSubmit = event => {
         event.preventDefault();
+        if(validate()){
         setLoader(true);  
+
         const token = localStorage.getItem("token");
         const fd = new FormData();
         Object.keys(degree).forEach(function (key){         
             fd.append(key, degree[key]);
     })
         fd.append('file', document.getElementById('degreefile').files[0]);
+        console.log(fd)
         axios
-            .post(`/api/degreeDetails`, 
+            .post(`/api/degreedetails`, 
                 fd,{
                     headers: { 'Authorization': 'Bearer ' + token }
                 }
@@ -200,11 +209,12 @@ export default function StepFive(props) {
             .catch(error => {
                 console.log(error);
             });
+        }
     };
     const fetchDetails = async () => {
         var token= localStorage.getItem("token")
         const res = await axios.get(`/api/degreedetails`, {headers: { 'Authorization': 'Bearer ' + token }  });
-        if(res.data.details){
+        if(res.data.details!==null){
             setDegree({
                 institution_name: res.data.details["institution_name"],
                 city: res.data.details["city"],
@@ -213,6 +223,8 @@ export default function StepFive(props) {
                 marks_type: res.data.details["marks_type"],
                 obtained_marks: res.data.details["obtained_marks"],
                 maximum_marks: res.data.details["maximum_marks"],
+                branch: res.data.details["branch"],
+                year_of_passing: res.data.details["year_of_passing"]
             });
             var fullpath = res.data.details['file'];
             var filename = fullpath.split('\\').pop().split('/').pop();;
@@ -250,8 +262,9 @@ export default function StepFive(props) {
           
             <Card className={classes.cardStyles}>
                 <Degreedetails
-                    Degree={degree}
+                    degree={degree}
                     handleInputChange={handleDegreeChangeInput}
+                    Errors= {errors}
                 />
                  <hr />
                 <Alert severity="info" className={classes.alert}>
