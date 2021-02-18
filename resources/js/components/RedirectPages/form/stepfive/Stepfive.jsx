@@ -270,7 +270,7 @@ export default function StepFive(props) {
                 <Alert severity="info" className={classes.alert}>
                 Note : Upload <CloudUploadIcon /> Scanned copies of your all 8 semester dmc's in one file.(PDF Only)
                             </Alert>
-                <input className={classes.fileupload} accept= "application/pdf" id="degreefile" type="file" /> 
+                <input className={classes.fileupload} accept= "application/pdf" id="degreefile" type="file" required /> 
                 <div className={classes.fileShow}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}</p>}</div>
             </Card>
 

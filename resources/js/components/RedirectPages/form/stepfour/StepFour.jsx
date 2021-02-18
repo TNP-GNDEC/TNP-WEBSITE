@@ -386,7 +386,7 @@ useEffect(()=>{
                             Note : Upload <CloudUploadIcon/> Scanned copies of your
                                     twelfth certificates.(PDF Only)
                             </Alert>
-                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" /> 
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" required /> 
                 <div className={classes.fileShow}>{twelfthFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {twelfthFile}</p>}</div>
             </Card>
         </Grid>
@@ -404,7 +404,7 @@ useEffect(()=>{
                             Note : Upload <CloudUploadIcon/> Scanned copies of your
                                     Diploma certificates.(PDF Only)
                             </Alert>
-                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" /> 
+                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" required /> 
                 <div className={classes.fileShow}>{diplomaFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {diplomaFile}</p>}</div>
             </Card>
         </Grid>
