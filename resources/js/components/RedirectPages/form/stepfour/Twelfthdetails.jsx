@@ -57,7 +57,7 @@ export default function TwelfthDetails(props) {
             label:'ICSE',
         },
         {
-            value:'2',
+            value:'3',
             label:'PSEB',
         }
       ];
