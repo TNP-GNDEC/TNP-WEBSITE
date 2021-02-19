@@ -5,6 +5,7 @@ import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Degreedetails from "./Degree";
+import Notisfication from '../../../Auth/Notisfication';
 import Button from "@material-ui/core/Button";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -135,6 +136,7 @@ export default function StepFive(props) {
     const [loading, setLoading] = React.useState(true);
     const [loader, setLoader] = React.useState(false);
     const [file, setFile] = React.useState("");
+    const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
     const [degree, setDegree] = React.useState({
         institution_name: "",
         city: "",
@@ -183,6 +185,11 @@ export default function StepFive(props) {
     
     const handleFormSubmit = event => {
         event.preventDefault();
+        var fileSize = document.getElementById('degreefile').files[0].size / 1024 / 1024;
+        if(fileSize>1){
+            setNotify({isOpen: true, message: "File Size should be less than 1 MB.", type: "error"});
+            return;
+        }
         if(validate()){
         setLoader(true);  
 
@@ -270,6 +277,7 @@ export default function StepFive(props) {
                 <Alert severity="info" className={classes.alert}>
                 Note : Upload <CloudUploadIcon /> Scanned copies of your all 8 semester dmc's in one file.(PDF Only)
                             </Alert>
+                <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
                 <input className={classes.fileupload} accept= "application/pdf" id="degreefile" type="file" required /> 
                 <div className={classes.fileShow}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}</p>}</div>
             </Card>
