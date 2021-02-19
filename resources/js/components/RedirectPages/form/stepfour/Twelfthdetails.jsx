@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         alignContent: "center",
         padding: "20px 0px",
-        width: "100%",
+        width: "30%",
     },
     inputs:{
         display: "flex",
@@ -33,7 +33,8 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
     },
     fields:{
-        width: "25%"
+        width: "80%",
+        margin: "auto"
     },
     notchedOutline: {
         boxShadow: "0px 2px 6px #75757533",
@@ -167,15 +168,14 @@ export default function TwelfthDetails(props) {
     const rendertwelfthFields  = (
         // fields.map(field => (
         //     <>
-                <Grid    container
-                
-                    // item
-                    // xs={12}
-                    // sm={6}
-                    // lg={4}
+        <Grid container>
+                <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    lg={4}
                     className={classes.textFieldContainer}
                 >
-                    <div className={classes.inputs}>
                      <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -208,6 +208,15 @@ export default function TwelfthDetails(props) {
                         ))}
                         
                     </TextField>
+                    </Grid>
+                    <Grid
+                
+                    item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -235,6 +244,15 @@ export default function TwelfthDetails(props) {
                         
                         
                     </TextField>
+                    </Grid>
+                    <Grid
+                
+                    item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -260,8 +278,15 @@ export default function TwelfthDetails(props) {
                     >
                         
                     </TextField>
-                    </div>
-                    <div className={classes.inputs}>
+                    </Grid>
+                    <Grid
+                
+                    item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -288,6 +313,15 @@ export default function TwelfthDetails(props) {
                     >
                         
                     </TextField>
+                    </Grid>
+                    <Grid
+                
+                    item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -313,6 +347,15 @@ export default function TwelfthDetails(props) {
                     >
                         
                     </TextField>
+                    </Grid>
+                    <Grid
+                
+                    item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -337,8 +380,15 @@ export default function TwelfthDetails(props) {
                     >
                         
                     </TextField>
-                    </div>
-                    <div className={classes.inputs}>
+                    </Grid>
+                    <Grid
+                
+                    item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                        className={classes.fields}
                        InputProps={{
@@ -364,6 +414,15 @@ export default function TwelfthDetails(props) {
                     >
                         
                     </TextField>
+                    </Grid>
+                    <Grid
+                
+                    item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                    <TextField
                     className={classes.fields}
                     InputProps={{
@@ -396,7 +455,15 @@ export default function TwelfthDetails(props) {
                         ))}
                     </TextField>
                     
-                     
+                    </Grid>
+                    <Grid
+                
+                    item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -422,8 +489,15 @@ export default function TwelfthDetails(props) {
                     >
                         
                     </TextField>
-                    </div>
-                    <div className={classes.inputs}>
+                    </Grid>
+                    <Grid
+                
+                    item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                        className={classes.fields}
                        InputProps={{
@@ -449,54 +523,13 @@ export default function TwelfthDetails(props) {
                     >
                         
                     </TextField>
-                    </div>
-                    {/* <TextField 
-                        
-                        label= ""
-                        type= "file"
-                        id= "10"
-                        name= ""
-                        defaultValue= {props.twelfth.file}
-                        
-                        
-                        variant="outlined"
-                        
-                        style={{ minWidth: "230px", maxWidth: "230px" }}
-                        
-                        onChange={
-                            props.handleInputChange
-                        }
-                        {...(props.Errors.file&& {error:true, helperText:props.Errors.file})}
-                    >
-                        
-                    </TextField> */
                     
-                    /* <TextField
-                        type={field.type}
-                        id="outlined-basic"
-                        name={field.name}
-                        variant="outlined"
-                        label={field.label}
-                        select={field.select}
-                        inputProps={{ accept: '.pdf' }}
-                        style={{ minWidth: "230px" ,maxWidth:"230px" }}
-                        disabled={field.disabled}
-                        value={field.defaultValue}
-                        onChange={e => {
-                            props.handleInputChange(e, field.id);
-                        }}
-                    >
-                      {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-                 
+                    
+                    
 
-                    </TextField>  */}
                      
                 </Grid>
-            // </>
+             </Grid>
         )
     return (
         <>
@@ -504,9 +537,7 @@ export default function TwelfthDetails(props) {
                 XII Details
             </Typography>
             <CardContent>
-                <Grid container>{rendertwelfthFields}
-                
-                </Grid>
+                {rendertwelfthFields}
             </CardContent>
         </>
     );

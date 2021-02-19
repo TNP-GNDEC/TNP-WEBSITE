@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         alignContent: "center",
         padding: "20px 0px",
-        width: "100%",
+        width: "30%",
         
     },
     inputs:{
@@ -32,7 +32,8 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
     },
     fields:{
-        width: "25%"
+        width: "80%",
+        margin: "auto"
     },
     notchedOutline: {
         boxShadow: "0px 2px 6px #75757533",
@@ -154,13 +155,14 @@ export default function matriculationDetails(props) {
     const rendermatriculationFields = (
         // fields.map(field => (
         //     <>
-  <Grid
-                    
-                    container
-                
+        <Grid container>
+                <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
                     className={classes.textFieldContainer}
                 >
-                    <div className={classes.inputs}>
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -191,6 +193,14 @@ export default function matriculationDetails(props) {
                         ))}
                         
                     </TextField>
+                    </Grid>
+                    <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                    >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -216,6 +226,14 @@ export default function matriculationDetails(props) {
                     >
                         
                     </TextField>
+                    </Grid>
+                    <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                    >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -237,9 +255,14 @@ export default function matriculationDetails(props) {
                     >
                         
                     </TextField>
-                    </div>
-                        
-                    <div className={classes.inputs}>
+                    </Grid>
+                    <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                    >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -261,7 +284,14 @@ export default function matriculationDetails(props) {
                     >
                         
                     </TextField>
-
+                    </Grid>
+                    <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                    >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -283,6 +313,14 @@ export default function matriculationDetails(props) {
                     >
                         
                     </TextField>
+                    </Grid>
+                    <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                    >
 
                     <TextField 
                         className={classes.fields}
@@ -310,8 +348,14 @@ export default function matriculationDetails(props) {
                     >
                         
                     </TextField>
-                    </div>
-                    <div className={classes.inputs}>
+                    </Grid>
+                    <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                    >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -338,6 +382,14 @@ export default function matriculationDetails(props) {
                             </MenuItem>
                         ))}
                     </TextField>
+                    </Grid>
+                    <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                    >
 
                     <TextField 
                         className={classes.fields}
@@ -360,6 +412,14 @@ export default function matriculationDetails(props) {
                     >
                         
                     </TextField>
+                    </Grid>
+                    <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                    >
 
                     <TextField 
                         className={classes.fields}
@@ -382,32 +442,9 @@ export default function matriculationDetails(props) {
                     >
                         
                     </TextField>
-                    </div>
-                    <div className={classes.inputs}>
-
-                    {/* <TextField 
                         
-                        label= ""
-                        type= "file"
-                        id= "10"
-                        accept= "application/pdf"
-                        name= "file"
-                        defaultValue= {props.matriculation.file}
-                        inputProps={{ accept: ".pdf" }}
-                        
-                        variant="outlined"
-                        
-                        style={{ minWidth: "230px", maxWidth: "230px" }}
-                        
-                        onChange={
-                            props.handleInputChange
-                        }
-                        {...(props.Errors.city && {error:true, helperText:props.Errors.city})}
-                    >
-                        
-                    </TextField> */}
-                    </div>
                 </Grid>
+            </Grid>
             
         )
     return (
@@ -417,7 +454,7 @@ export default function matriculationDetails(props) {
             </Typography>
             <CardContent>
 
-                <Grid container>{rendermatriculationFields}</Grid>
+            {rendermatriculationFields}
 
             </CardContent>
         </>

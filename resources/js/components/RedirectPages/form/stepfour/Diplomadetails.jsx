@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         alignContent: "center",
         padding: "20px 0px",
-        width: "100%",
+        width: "30%",
     },
     inputs:{
         display: "flex",
@@ -32,7 +32,8 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
     },
     fields:{
-        width: "25%",
+        width: "80%",
+        margin: "auto"
     },
     notchedOutline: {
         boxShadow: "0px 2px 6px #75757533",
@@ -64,11 +65,13 @@ export default function DiplomaDetails(props) {
     const renderDiplomaFields = (
         // fields.map(field => (
         //     <>
-                <Grid container
-                      
+            <Grid container>
+                <Grid item
+                    xs={12}
+                    sm={6}
+                    lg={4}
                     className={classes.textFieldContainer}
                 >
-                    <div className={classes.inputs}>
                      <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -90,6 +93,13 @@ export default function DiplomaDetails(props) {
                     >
                         
                     </TextField>
+                    </Grid>
+                    <Grid item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -112,6 +122,13 @@ export default function DiplomaDetails(props) {
                         
                         
                     </TextField>
+                    </Grid>
+                    <Grid item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -137,8 +154,13 @@ export default function DiplomaDetails(props) {
                     >
                         
                     </TextField>
-                    </div>
-                    <div className={classes.inputs}>
+                    </Grid>
+                    <Grid item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -165,6 +187,13 @@ export default function DiplomaDetails(props) {
                     >
                         
                     </TextField>
+                    </Grid>
+                    <Grid item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -190,6 +219,13 @@ export default function DiplomaDetails(props) {
                     >
                         
                     </TextField>
+                    </Grid>
+                    <Grid item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -214,8 +250,13 @@ export default function DiplomaDetails(props) {
                     >
                         
                     </TextField>
-                    </div>
-                    <div className={classes.inputs}>
+                    </Grid>
+                    <Grid item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -244,6 +285,13 @@ export default function DiplomaDetails(props) {
                             </MenuItem>
                         ))}    
                     </TextField>
+                    </Grid>
+                    <Grid item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     <TextField 
                         className={classes.fields}
                         InputProps={{
@@ -268,6 +316,13 @@ export default function DiplomaDetails(props) {
                     >
                         
                     </TextField>
+                    </Grid>
+                    <Grid item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
                     
                     <TextField 
                         className={classes.fields}
@@ -290,40 +345,10 @@ export default function DiplomaDetails(props) {
                     >
                         
                     </TextField>
-                    </div>
                     
 </Grid>
-                    /* <TextField
-                    className={classes.fields}
-                    InputProps={{
-                        classes: {
-                          notchedOutline: classes.notchedOutline,
-                          focused: classes.focused
-                        }
-                    }}
-                        type={field.type}
-                        id="outlined-basic"
-                        name={field.name}
-                        variant="outlined"
-                        label={field.label}
-                        defaultValue={field.value}
-                        select={field.select}
-                
-                        disabled={field.disabled}
-                        onChange={e => {
-                            props.handleInputChange(e, field.id);
-                        }}
-                    >
-                      
-                      {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-                 
-
-                    
-                        </TextField> */
+</Grid>
+                   
            
         )
     return (
@@ -332,9 +357,7 @@ export default function DiplomaDetails(props) {
                 Diploma Details
             </Typography>
             <CardContent>
-                <Grid container>{renderDiplomaFields}
-               
-               </Grid>
+                {renderDiplomaFields}
             </CardContent>
            
         </>
