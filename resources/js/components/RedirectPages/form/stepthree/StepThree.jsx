@@ -169,7 +169,7 @@ export default function StepThree(props) {
         temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
         temp.pincode = (/^[0-9]{6}$/).test(matriculation.pincode) ? "": "This field is required and must be exactly 6 digits."
         temp.maximum_marks = (/^[0-9]{1,3}$/).test(matriculation.maximum_marks) ? "": "This field is required and must be max 3 digits."
-        temp.obtained_marks = matriculation.obtained_marks<=matriculation.maximum_marks ? "": "marks obtained can't be greater than maximum marks."
+        temp.obtained_marks = parseInt( matriculation.obtained_marks ) <= parseInt(matriculation.maximum_marks) ? "": "marks obtained can't be greater than maximum marks."
         setErrors({
           ...temp
         })
