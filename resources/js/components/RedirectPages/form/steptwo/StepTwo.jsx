@@ -129,6 +129,7 @@ export default function StepTwo(props) {
         temp.dob = profile.dob? "": "Enter DOB in correct format(yyyy-mm-dd)."
         temp.aadhar = (/^[0-9]{12}$/).test(profile.aadhar) ? "": "Enter 12 digits with no space."
         temp.height = (/^[0-9\s]+$/).test(profile.height) ? "": "This field is required."
+        temp.height = profile.height<=310?"": "Too Big Value(hint:  1foot = 30.48cm)"
         temp.weight = (/^[0-9]{2,3}$/).test(profile.weight) ? "": "This field is required and can be of max 3 digits."
         temp.blood_group = profile.blood_group ? "": "This field is required."
         temp.gender = profile.gender ? "": "This field is required."
@@ -157,7 +158,7 @@ export default function StepTwo(props) {
         temp.city = (/^[a-zA-Z\s]*$/).test(address.city) ? "": "This field is required."
         temp.pincode2 = (/^[0-9]{6}$/).test(address.pincode) ? "": "This field is required and must be of 6 digits."
         temp.state = (/^[a-zA-Z\s]*$/).test(address.state) ? "": "This field is required."
-        temp.district = (/^[a-zA-Z\s]*$/).test(address.district) ? "": "This valid name (only char)."
+        temp.district = (/^[a-zA-Z\s]*$/).test(address.district) ? "": " Invalid input (only char allowed)."
         setErrors({
           ...temp
         })
