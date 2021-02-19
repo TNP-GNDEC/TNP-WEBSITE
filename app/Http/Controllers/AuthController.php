@@ -88,7 +88,7 @@ protected function respondWithToken($token, $currentUser)
     return response()->json([
         'access_token' => $token,
         'token_type' => 'bearer',
-        'expires_in' => auth('api')->factory()->getTTL() * 60,
+        'expires_in' => auth('api')->factory()->getTTL() * 2,
         'current_user' => $currentUser
     ]);
 }
@@ -106,4 +106,9 @@ public function status(Request $request){
       ->first();
     return response()->json(['step'=>$form]);
 }
+
+public function refresh() {
+    return $this->respondWithToken(Auth::guard('api')->refresh());
+}
+
 }

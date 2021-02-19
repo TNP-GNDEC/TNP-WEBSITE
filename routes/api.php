@@ -54,4 +54,7 @@ Route::middleware('auth:api')->group(function (){
     // step 6 Verify form get request
     Route::post('formCompleted', 'FinalverifyController@completeFormData');
     Route::get('verifyAll', 'FinalverifyController@getFormData');
+
+    Route::get('refresh', 'AuthController@refresh')->name('api.jwt.refresh');
+
 });

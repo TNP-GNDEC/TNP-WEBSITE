@@ -161,7 +161,7 @@ const fetchUser = async (token) => {
     fetchSteps(token);
   }
   if(role ===2){
-    props.history.push("/coordinator")
+    window.location.href=window.origin+'/coordinator'
   }
 }
 
@@ -171,10 +171,10 @@ const fetchSteps = async (token) => {
   });
   const form_step = step.data.step['form_step'];
   if(form_step === 6){
-    props.history.push("/student");
+    window.location.href=window.origin+'/student'
   }
   else{
-    props.history.push("/email");
+    window.location.href=window.origin+'/email';
   }
 }
 const [showPassword, setShowPassword] = useState(false);
@@ -200,7 +200,7 @@ const handleFormSubmit= async (event)=>{
         fetchSteps(JWTtoken);
       }
       if(user.role_id===2){
-        props.history.push("/coordinator")
+        window.location.href=("/coordinator")
       }
         
   })
