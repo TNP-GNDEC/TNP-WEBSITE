@@ -10,6 +10,8 @@ import Uploadcsv from './Uploadcsv';
 import Filter from './Filter';
 import Notice from './NoticeMaker';
 import Card from "@material-ui/core/Card";
+import Postmaker from "./Postmaker";
+
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.background.paper,
@@ -40,16 +42,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function FullWidthTabs(props) {
     const classes = useStyles();
-    const [heading, setHeading] = useState("CREATE POSTS");
-
-    // conditionally rendering the tabs create posts and manage posts
-    const renderPostTab = () => {
-        if (heading == "CREATE POSTS") {
-            return <Create />;
-        } else if (heading == "MANAGE POSTS") {
-            return <Posts />;
-        }
-    };
 
     const renderContent = () => {
         if (props.activeId === 1) {
@@ -80,29 +72,7 @@ export default function FullWidthTabs(props) {
         } else if (props.activeId === 5) {
             return (
                 <>
-                    {/* <h2 className={classes.heading}>{heading}</h2> */}
-                    <ButtonGroup
-                        size="large"
-                        color="primary"
-                        aria-label="large outlined primary button group"
-                        className={classes.BG}
-                    >
-                        <Button
-                            onClick={() => {
-                                setHeading("CREATE POSTS");
-                            }}
-                        >
-                            CREATE POSTS
-                        </Button>
-                        <Button
-                            onClick={() => {
-                                setHeading("MANAGE POSTS");
-                            }}
-                        >
-                            MANAGE POSTS
-                        </Button>
-                    </ButtonGroup>
-                    {renderPostTab()}
+                    <Postmaker />
                 </>
             );
         }else if (props.activeId === 6) {

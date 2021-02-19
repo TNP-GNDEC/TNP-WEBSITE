@@ -6,6 +6,7 @@ import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import MatriculationDetails from "./matriculation";
+import Notisfication from '../../../Auth/Notisfication';
 import FormRow from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
@@ -142,6 +143,7 @@ export default function StepThree(props) {
     const classes = useStyles();
     const [file, setfile] = React.useState("");
     const [loader, setLoader] = React.useState(false);
+    const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
     const [matriculation, setmatric] = React.useState({
         board: "",
         institution_name: "",
@@ -167,7 +169,7 @@ export default function StepThree(props) {
         temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
         temp.pincode = (/^[0-9]{6}$/).test(matriculation.pincode) ? "": "This field is required and must be exactly 6 digits."
         temp.maximum_marks = (/^[0-9]{1,3}$/).test(matriculation.maximum_marks) ? "": "This field is required and must be max 3 digits."
-        temp.obtained_marks = matriculation.obtained_marks<=matriculation.maximum_marks ? "": "marks obtained can't be greater than maximum marks."
+        temp.obtained_marks = parseInt( matriculation.obtained_marks ) <= parseInt(matriculation.maximum_marks) ? "": "marks obtained can't be greater than maximum marks."
         setErrors({
           ...temp
         })
@@ -178,6 +180,11 @@ export default function StepThree(props) {
 
     const handleFormSubmit = event => {
         event.preventDefault();
+        var fileSize = document.getElementById('file').files[0].size / 1024 / 1024;
+        if(fileSize>1){
+            setNotify({isOpen: true, message: "File Size should be less than 1 MB.", type: "error"});
+            return;
+        }
         if(validate()){
             setLoader(true);
             const token = localStorage.getItem("token");
@@ -273,6 +280,7 @@ export default function StepThree(props) {
                             Note : Upload <CloudUploadIcon/> Scanned copies of your
                                     matriculation certificates.(PDF Only)
                             </Alert>
+                            <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
                             <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" required /> 
                             <div className={classes.fileShow}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}</p>}</div>
                         </Card>
