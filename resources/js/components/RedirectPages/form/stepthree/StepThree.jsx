@@ -169,7 +169,8 @@ export default function StepThree(props) {
         temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
         temp.pincode = (/^[0-9]{6}$/).test(matriculation.pincode) ? "": "This field is required and must be exactly 6 digits."
         temp.maximum_marks = (/^[0-9]{1,3}$/).test(matriculation.maximum_marks) ? "": "This field is required and must be max 3 digits."
-        temp.obtained_marks = parseInt( matriculation.obtained_marks ) <= parseInt(matriculation.maximum_marks) ? "": "marks obtained can't be greater than maximum marks."
+        temp.obtained_marks = matriculation.marks_type=="2" && parseFloat( matriculation.obtained_marks ) <= parseFloat(matriculation.maximum_marks) ? "": "marks obtained can't be greater than maximum marks."
+        // temp.obtained_marks = (matriculation.marks_type=="1" && parseFloat(matriculation.obtained_marks)<=10 && parseFloat(matriculation.obtained_marks)>=0) ? "" : "Please Enter a Valid Input (hint : 0 to 10 )"
         setErrors({
           ...temp
         })
@@ -211,7 +212,7 @@ export default function StepThree(props) {
     };
 
 
-    const handleMatriculationChangeInput = (e, id) => {
+    const handleMatriculationChangeInput = (e) => {
         
         const name= e.target.name
         const value= e.target.value   
@@ -220,6 +221,9 @@ export default function StepThree(props) {
             [name] : value
         }))
 
+    React.useEffect(()=>{
+        console.log(matriculation)
+    }, [matriculation])
 
     };
     const [loading, setLoading] = React.useState(true);
