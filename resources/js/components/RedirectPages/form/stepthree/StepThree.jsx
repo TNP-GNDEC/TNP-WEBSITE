@@ -6,7 +6,6 @@ import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import MatriculationDetails from "./matriculation";
-import Notisfication from '../../../Auth/Notisfication';
 import FormRow from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
@@ -143,7 +142,6 @@ export default function StepThree(props) {
     const classes = useStyles();
     const [file, setfile] = React.useState("");
     const [loader, setLoader] = React.useState(false);
-    const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
     const [matriculation, setmatric] = React.useState({
         board: "",
         institution_name: "",
@@ -169,8 +167,18 @@ export default function StepThree(props) {
         temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
         temp.pincode = (/^[0-9]{6}$/).test(matriculation.pincode) ? "": "This field is required and must be exactly 6 digits."
         temp.maximum_marks = (/^[0-9]{1,3}$/).test(matriculation.maximum_marks) ? "": "This field is required and must be max 3 digits."
-        temp.obtained_marks = matriculation.marks_type=="2" && parseFloat( matriculation.obtained_marks ) <= parseFloat(matriculation.maximum_marks) ? "": "marks obtained can't be greater than maximum marks."
-        // temp.obtained_marks = (matriculation.marks_type=="1" && parseFloat(matriculation.obtained_marks)<=10 && parseFloat(matriculation.obtained_marks)>=0) ? "" : "Please Enter a Valid Input (hint : 0 to 10 )"
+        
+        if(matriculation.marks_type == "1"){
+            temp.obtained_marks = parseFloat(matriculation.obtained_marks)>=0   && parseFloat(matriculation.obtained_marks)<=10  ? "" : "Enter a valid cgpa Value (hint: between 0 to 10)"
+            temp.maximum_marks = parseFloat(matriculation.maximum_marks) == "10"?"":"Maximum precentage should be 100 only "
+
+        }else{
+
+            temp.obtained_marks = parseFloat( matriculation.obtained_marks ) <= parseFloat(matriculation.maximum_marks) && parseFloat(matriculation.obtained_marks)>0 ? "": "marks obtained can't be greater than maximum marks."
+
+        }
+
+
         setErrors({
           ...temp
         })
@@ -181,11 +189,6 @@ export default function StepThree(props) {
 
     const handleFormSubmit = event => {
         event.preventDefault();
-        var fileSize = document.getElementById('file').files[0].size / 1024 / 1024;
-        if(fileSize>1){
-            setNotify({isOpen: true, message: "File Size should be less than 1 MB.", type: "error"});
-            return;
-        }
         if(validate()){
             setLoader(true);
             const token = localStorage.getItem("token");
@@ -216,14 +219,22 @@ export default function StepThree(props) {
         
         const name= e.target.name
         const value= e.target.value   
+
+        if(name === "marks_type"){
+            if(value === "1" )
+            setmatric(prevState => ({
+                ...prevState,
+                marks_type : value,
+                maximum_marks : 10
+            }))
+                
+        }
+
         setmatric(prevState => ({
             ...prevState,
             [name] : value
         }))
 
-    React.useEffect(()=>{
-        console.log(matriculation)
-    }, [matriculation])
 
     };
     const [loading, setLoading] = React.useState(true);
@@ -252,6 +263,10 @@ export default function StepThree(props) {
     useEffect(()=> {
         fetchDetails();
     },[])
+
+    useEffect( ()=>{
+        console.log(matriculation)
+    }, [matriculation] )
     return (
         <div>
             {loading ? (
@@ -284,7 +299,6 @@ export default function StepThree(props) {
                             Note : Upload <CloudUploadIcon/> Scanned copies of your
                                     matriculation certificates.(PDF Only)
                             </Alert>
-                            <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
                             <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" required /> 
                             <div className={classes.fileShow}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}</p>}</div>
                         </Card>
