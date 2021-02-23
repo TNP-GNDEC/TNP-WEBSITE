@@ -53,7 +53,7 @@ export default function FullWidthTabs(props) {
         } else if (props.activeId === 2) {
             return (
                 <>
-                    <h1 className={classes.head}> Data Filter </h1>
+                    <h1 className={classes.head}>  </h1>
                     <Filter />
                 </>
             );
