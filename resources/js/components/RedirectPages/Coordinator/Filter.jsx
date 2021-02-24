@@ -8,6 +8,8 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import TextField from '@material-ui/core/TextField';
+import Grid, { GridSpacing } from '@material-ui/core/Grid';
 const useStyles = makeStyles(theme => ({
   first:{
     padding:"25px 1px 1px 25px "
@@ -55,8 +57,12 @@ const useStyles = makeStyles(theme => ({
    },
    head:{
     color:"#038ed4",
+    
    },
-   
+  selectall:{
+    display:"inline",
+    margin:"100px "
+  }
 }));
 
 
@@ -135,9 +141,19 @@ useEffect(()=> {
 
   return (
  <Card >
- <FormLabel><h1 className={classes.head}>Select Required Fields</h1></FormLabel>
- <FormGroup aria-label="position" >
+   
 
+ <FormLabel><h1 className={classes.head}>Select Required Fields</h1></FormLabel>
+ <div className={classes.selectall}>
+ <FormControlLabel
+          value="select_all"
+          control={<Checkbox color="primary" />}
+          label="Select All"
+          labelPlacement="end"
+        />
+        </div>
+ <FormGroup aria-label="position" >
+       
  <FormControl component="fieldset">
   
       <FormGroup aria-label="position" row >
@@ -501,6 +517,9 @@ useEffect(()=> {
     </FormControl>
     
     </FormGroup>
+  
+    
+    
   </Card>
   );
 }
