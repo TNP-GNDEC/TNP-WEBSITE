@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { makeStyles } from "@material-ui/core/styles";
 import { EditorState, convertToRaw, ContentState, createWithContent } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
@@ -8,8 +9,15 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import 'react-tagsinput/react-tagsinput.css'
 import '../../../../css/app.css';
 import TagsInput from 'react-tagsinput'
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Navbar from './navbar';
+
+
 
 class EditPosts extends React.Component {
+    
     state = {
         title: '',
         type: '',
@@ -63,18 +71,27 @@ class EditPosts extends React.Component {
     }
 
     render(){
+        
         return(
+            
+            <Card >
+                <Navbar />
+                
+            
             <div className="layout">
                 
                 <div className="actionDiv">
                     <div className="Formdiv">
                         <form onSubmit={this.updatePost}>
+                            <CardContent>
                             <div className="form-group">
                                 <label>Title:</label>
                                 <input type="text" name="title" className="form-control highlight" 
                                 value={this.state.title} onChange={this.handleInput}
                                 placeholder="Enter the Title" required/>
                             </div>
+                            </CardContent>
+                            <CardContent>
                             <div className="form-group">
                                 <label>Type:</label>
                                 <select name="type" className="form-control highlight" 
@@ -87,6 +104,8 @@ class EditPosts extends React.Component {
                                     <option value="Internship">Internship</option>
                                 </select>
                             </div>
+                            </CardContent>
+                            <CardContent>
                             <div className="form-group">
                                 <label>Description:</label>
                                 <div className="App">
@@ -102,17 +121,23 @@ class EditPosts extends React.Component {
                                 value={this.state.description} onChange={this.handleInput} 
                                 placeholder="Write the Description" required/> */}
                             </div>
+                            </CardContent>
+                            
+                            
                             <TagsInput value={this.state.tags} onChange={tags => this.handleChange(tags)} />
+                            <CardActions>
                             <div className="form-group">
                                 <button type="submit" className="primary">
                                     Edit Post
                                 </button>
                             </div>
+                            </CardActions>
                         </form>
                     </div>
                 </div>
                
             </div>
+            </Card>
         )
     }
 }
