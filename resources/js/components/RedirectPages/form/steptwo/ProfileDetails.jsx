@@ -60,7 +60,7 @@ export default function ProfileDetails(props) {
             validate: false
         },
         {
-            label: "DATE OF BIRTH (yyyy-mm-dd)*",
+            label: "DATE OF BIRTH (dd-mm-yyyy)*",
             type: "date",
             id: 3,
             select: false,

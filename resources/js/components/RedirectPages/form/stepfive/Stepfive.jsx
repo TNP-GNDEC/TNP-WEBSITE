@@ -166,11 +166,11 @@ export default function StepFive(props) {
     const validate = () => {
         let temp = {}
         temp.branch = degree.branch ? "": "This field is required"
-        temp.institution_name = (/^[a-zA-Z\s]*$/).test(degree.institution_name)? "": "This field is required and must contain only char."
+        temp.institution_name = (/^[a-zA-Z\s]*$/).test(degree.institution_name) && degree.institution_name? "": "This field is required and must contain only char."
         temp.year_of_passing = (/^[0-9]{4}$/).test(degree.year_of_passing) ? "": "This field is required and be in yyyy format."
         temp.marks_type = degree.marks_type ? "": "This field is required."
-        temp.state = (/^[a-zA-Z\s]*$/).test(degree.state) ? "": "This field is required and must contain only char."
-        temp.city = (/^[a-zA-Z\s]*$/).test(degree.city) ? "": "This field is required and must contain only char."
+        temp.state = (/^[a-zA-Z\s]*$/).test(degree.state) && degree.state? "": "This field is required and must contain only char."
+        temp.city = (/^[a-zA-Z\s]*$/).test(degree.city) && degree.city? "": "This field is required and must contain only char."
         temp.obtained_marks = degree.obtained_marks ? "": "This field is required."
         temp.pincode = (/^[0-9]{6}$/).test(degree.pincode) ? "": "This field is required and must be exactly 6 digits."
         temp.maximum_marks = (/^[0-9]{1,3}$/).test(degree.maximum_marks) ? "": "This field is required and must be max 3 digits."

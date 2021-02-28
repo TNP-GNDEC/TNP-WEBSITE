@@ -133,7 +133,7 @@ const useStyles = makeStyles(theme => ({
 
 function ParentsPreview(props) {
     const classes = useStyles();
-
+    const {path} = props;
     const renderFields = () =>
         props.data.map(field => {
             return (
@@ -168,6 +168,7 @@ function ParentsPreview(props) {
                 </Typography>
                 <CardContent>
                     <Grid container>{renderFields()}</Grid>
+                    <embed src={path} width="500px" height="300px" />
                 </CardContent>
             </div>
         </Grid>

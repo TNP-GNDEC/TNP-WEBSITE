@@ -121,7 +121,7 @@ class TwelfthdiplomaController extends Controller
       ->update(['form_step' => 4]);
     }
     }
-    return response()->json(["message"=> "step complete"]);
+    return response()->json(["message"=> "stepcomplete"]);
   }
 
   public function receiveFormData(Request $request){
