@@ -59,7 +59,7 @@ class ForgotPasswordController extends Controller
 		
         $request->validate([ 'password'=>'required|min:6', 'confirmPassword'=>'required']);
 		if($request->confirmPassword != $request->password){
-			return response()->json(['msg'=> 'Enter the Same Password Twice!']);
+			return response()->json(['msg'=> 'Passwords do not match']);
 		}
 		$email = PasswordReset::where('token',$request->token)->first();
 		$user = User::where('email', $email->email)->first();
@@ -68,7 +68,7 @@ class ForgotPasswordController extends Controller
 			->where('created_at','>',Carbon::now()->subHours(1))
 			->first();
         if(!($request->has('token') && $tokenData)){
-            return response()->json(['msg' =>'Token not Found or Expires!']);      
+            return response()->json(['msg' =>'Token not Found or Expired!']);      
         }
         $user->fill(['password' => bcrypt($request->password)])->save();
 
