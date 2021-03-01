@@ -244,10 +244,6 @@ export default function StepThree(props) {
 
     };
 
-    React.useEffect( () => {
-        console.log(matriculation)
-    }, [matriculation] )
-
     const [loading, setLoading] = React.useState(true);
     const fetchDetails = async () => {
         var token= localStorage.getItem("token")
@@ -308,7 +304,7 @@ export default function StepThree(props) {
                             <hr />
                             <Alert severity="info" className={classes.alert}>
                             Note : Upload <CloudUploadIcon/> Scanned copies of your
-                                    matriculation certificates.(PDF Only)
+                                    matriculation certificates.(PDF Only less than 1MB)<strong>(If you editing this form then you have to upload file again)</strong>
                             </Alert>
                             <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
                             <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" required /> 

@@ -64,11 +64,11 @@ export default function TwelfthDetails(props) {
       const currencies2 = [
         {
             value: "1",
-            label: "cgpa"
+            label: "CGPA"
         },
         {
             value: "2",
-            label: "percentage"
+            label: "PERCENTAGE"
         }
 
     ];
@@ -189,7 +189,7 @@ export default function TwelfthDetails(props) {
                         id= "1"
                         name= "board"
                         defaultValue= {props.twelfth.board}
-                        select= "true"
+                        
                         
                         
                         variant="outlined"
@@ -201,11 +201,7 @@ export default function TwelfthDetails(props) {
                         }
                         {...(props.Errors.board && {error:true, helperText:props.Errors.board})}
                     >
-                        {currencies.map(option => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
+                       
                         
                     </TextField>
                     </Grid>
@@ -476,12 +472,12 @@ export default function TwelfthDetails(props) {
                         type= "text"
                         id= "9"
                         name= "maximum_marks"
-                        defaultValue= {props.twelfth.maximum_marks}
+                        value= {props.twelfth.maximum_marks}
                         
                         
                         variant="outlined"
                         
-                        
+                        disabled={props.twelfth.marks_type === "1" ? true : false}
                         onChange={
                             props.handleInputChange
                         }
@@ -522,13 +518,39 @@ export default function TwelfthDetails(props) {
                         {...(props.Errors.obtained_marks && {error:true, helperText:props.Errors.obtained_marks})}
                     >
                         
-                    </TextField>
-                    
-                    
-                    
-
-                     
+                    </TextField> 
                 </Grid>
+                {(props.twelfth.marks_type == "2") && (parseFloat(props.twelfth.obtained_marks) > 0) && (parseFloat(props.twelfth.maximum_marks)) > 0 ?
+                <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                >
+
+                    <TextField
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                                notchedOutline: classes.notchedOutline,
+                                focused: classes.focused
+                            }
+                        }}
+                        label="PERCENTAGE"
+                        type="text"
+                        id="11"
+                        name="precentage"
+                        value={((parseFloat(props.twelfth.obtained_marks) / parseFloat(props.twelfth.maximum_marks)) * 100).toFixed(2) }
+                        variant="outlined"
+                        disabled={true}
+
+                    >
+
+                    </TextField>
+                </Grid>
+                : ""
+            }
              </Grid>
         )
     return (

@@ -53,11 +53,11 @@ export default function DiplomaDetails(props) {
           const currencies2 = [
             {
                 value: "1",
-                label: "cgpa"
+                label: "CGPA"
             },
             {
                 value: "2",
-                label: "percentage"
+                label: "PERCENTAGE"
             }
     
         ];
@@ -304,11 +304,11 @@ export default function DiplomaDetails(props) {
                         type= "text"
                         id= "8"
                         name= "maximum_marks"
-                        defaultValue= {props.diploma.maximum_marks}
+                        value= {props.diploma.maximum_marks}
                         
                         
                         variant="outlined"
-                        
+                        disabled={props.diploma.marks_type === "1" ? true : false}
                         onChange={
                             props.handleInputChange
                         }
@@ -344,9 +344,39 @@ export default function DiplomaDetails(props) {
                         {...(props.Errors.obtained_marks && {error:true, helperText:props.Errors.obtained_marks})}
                     >
                         
+                    </TextField>                   
+                </Grid>
+                {(props.diploma.marks_type == "2") && (parseFloat(props.diploma.obtained_marks) > 0) && (parseFloat(props.diploma.maximum_marks)) > 0 ?
+                <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                >
+
+                    <TextField
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                                notchedOutline: classes.notchedOutline,
+                                focused: classes.focused
+                            }
+                        }}
+                        label="PERCENTAGE"
+                        type="text"
+                        id="10"
+                        name="precentage"
+                        value={((parseFloat(props.diploma.obtained_marks) / parseFloat(props.diploma.maximum_marks)) * 100).toFixed(2) }
+                        variant="outlined"
+                        disabled={true}
+
+                    >
+
                     </TextField>
-                    
-</Grid>
+                </Grid>
+                : ""
+            }
 </Grid>
                    
            

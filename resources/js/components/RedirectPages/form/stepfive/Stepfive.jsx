@@ -154,6 +154,15 @@ export default function StepFive(props) {
         
         const name= e.target.name
         const value= e.target.value   
+        if(name === "marks_type"){
+            if(value === "1" )
+            setDegree(prevState => ({
+                ...prevState,
+                marks_type : value,
+                maximum_marks : 10
+            }))
+                
+        }
         setDegree(prevState => ({
             ...prevState,
             [name] : value
@@ -175,6 +184,15 @@ export default function StepFive(props) {
         temp.pincode = (/^[0-9]{6}$/).test(degree.pincode) ? "": "This field is required and must be exactly 6 digits."
         temp.maximum_marks = (/^[0-9]{1,3}$/).test(degree.maximum_marks) ? "": "This field is required and must be max 3 digits."
         temp.obtained_marks = degree.obtained_marks<=degree.maximum_marks ? "": "marks obtained can't be greater than maximum marks."
+        if(degree.marks_type == "1"){
+            temp.obtained_marks = parseFloat(degree.obtained_marks)>=0   && parseFloat(degree.obtained_marks)<=10  ? "" : "Enter a valid cgpa Value (hint: between 0 to 10)"
+            temp.maximum_marks = parseFloat(degree.maximum_marks) == "10"?"":"Maximum precentage should be 100 only "
+
+        }else{
+
+            temp.obtained_marks = parseFloat( degree.obtained_marks ) <= parseFloat(degree.maximum_marks) && parseFloat(degree.obtained_marks)>0 ? "": "marks obtained can't be greater than maximum marks."
+
+        }
         setErrors({
           ...temp
         })
@@ -275,7 +293,7 @@ export default function StepFive(props) {
                 />
                  <hr />
                 <Alert severity="info" className={classes.alert}>
-                Note : Upload <CloudUploadIcon /> Scanned copies of your all 8 semester dmc's in one file.(PDF Only)
+                Note : Upload <CloudUploadIcon /> Scanned copies of your all 8 semester dmc's in one file.(PDF Only less than 1MB)<strong>(If you editing this form then you have to upload file again)</strong>
                             </Alert>
                 <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
                 <input className={classes.fileupload} accept= "application/pdf" id="degreefile" type="file" required /> 

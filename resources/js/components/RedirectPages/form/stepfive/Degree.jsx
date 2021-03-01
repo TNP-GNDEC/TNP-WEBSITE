@@ -46,7 +46,17 @@ const useStyles = makeStyles(theme => ({
 
 export default function degreeDetails(props) {
     const classes = useStyles();
+    const currencies2 = [
+        {
+            value: "1",
+            label: "CGPA"
+        },
+        {
+            value: "2",
+            label: "PERCENTAGE"
+        }
 
+    ];
     const renderdegreeFields = (
         // fields.map(field => (
         //     <>
@@ -243,6 +253,7 @@ export default function degreeDetails(props) {
                         type= "text"
                         id= "7"
                         name= "marks_type"
+                        select="true"
                         defaultValue= {props.degree.marks_type}
                         variant="outlined"
                         onChange={
@@ -250,7 +261,11 @@ export default function degreeDetails(props) {
                         }
                         {...(props.Errors.marks_type && {error:true, helperText:props.Errors.marks_type})}
                         >
-                       
+                       {currencies2.map(option => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
                     </TextField>
                     </Grid>
                     <Grid
@@ -301,8 +316,9 @@ export default function degreeDetails(props) {
                         type= "text"
                         id= "9"
                         name= "maximum_marks"
-                        defaultValue= {props.degree.maximum_marks}
+                        value= {props.degree.maximum_marks}
                         variant="outlined"
+                        disabled={props.degree.marks_type === "1" ? true : false}
                         onChange={
                             props.handleInputChange
                         }
@@ -312,6 +328,38 @@ export default function degreeDetails(props) {
                     </TextField>
                     
                 </Grid>
+                {(props.degree.marks_type == "2") && (parseFloat(props.degree.obtained_marks) > 0) && (parseFloat(props.degree.maximum_marks)) > 0 ?
+                <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                >
+
+                    <TextField
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                                notchedOutline: classes.notchedOutline,
+                                focused: classes.focused
+                            }
+                        }}
+                        label="PERCENTAGE"
+                        type="text"
+                        id="10"
+                        name="precentage"
+                        value={((parseFloat(props.degree.obtained_marks) / parseFloat(props.degree.maximum_marks)) * 100).toFixed(2) }
+                        variant="outlined"
+                        disabled={true}
+
+                    >
+
+                    </TextField>
+                </Grid>
+                : ""
+
+            }
             </Grid>
             
         )

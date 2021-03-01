@@ -460,7 +460,7 @@ export default function matriculationDetails(props) {
                                 focused: classes.focused
                             }
                         }}
-                        label="PRECENTAGE"
+                        label="PERCENTAGE"
                         type="text"
                         id="10"
                         name="precentage"
