@@ -15,6 +15,8 @@ import {  InputAdornment, IconButton } from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
+import { useHistory } from 'react-router-dom';
+
 import intro from '../../../images/2.jpg';
 
 const useStyles = makeStyles((theme) => ({
@@ -114,7 +116,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function SignIn(props) {
+const SignIn= (props)=> {
+  const history = useHistory();
   const classes = useStyles();
   const [state , setState] = useState({
     username : "",
@@ -143,6 +146,8 @@ const handlenameChange = (e) => {
       ...prevState,
       [name] : value
   }))
+  console.log(history)
+
 }
 
 const handlepasswordChange = (e) => {
@@ -161,7 +166,7 @@ const fetchUser = async (token) => {
     fetchSteps(token);
   }
   if(role ===2){
-    window.location.href=window.origin+'/coordinator'
+    history.push('/coordinator')
   }
 }
 
@@ -171,10 +176,11 @@ const fetchSteps = async (token) => {
   });
   const form_step = step.data.step['form_step'];
   if(form_step === 6){
-    window.location.href=window.origin+'/student'
+    console.log(history)
+    history.push('/student')
   }
   else{
-    window.location.href=window.origin+'/email';
+    history.push('/email')
   }
 }
 const [showPassword, setShowPassword] = useState(false);
@@ -333,3 +339,4 @@ const handleFormSubmit= async (event)=>{
 
   );
 }
+export default SignIn;

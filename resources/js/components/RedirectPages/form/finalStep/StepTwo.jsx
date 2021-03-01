@@ -151,6 +151,7 @@ export default function finalStep(props) {
     const [loader, setLoader] = React.useState(false);
     const [cond, setCond] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
+    const [matricPath, setMatricPath] = React.useState("");
 
     const [ProfileData, setProfileData] = React.useState([
         { id: 1, label: "First Name", value: "value" },
@@ -305,6 +306,7 @@ export default function finalStep(props) {
                 { id: 9, label: "Maximum Marks", value: res.data.matric['maximum_marks'] },
                 { id: 10, label: "File", value: res.data.matric['file'].split('\\').pop().split('/').pop() },
             ]);
+            setMatricPath(res.data.matric['file']);
             setCat({value: res.data.category['category'], label: "Category"});
             if(res.data.category['category']=== "both" || res.data.category['category'] === "XII"){
                 setTwelfthData([
@@ -387,7 +389,7 @@ export default function finalStep(props) {
                 <hr />
                 <ProfilePreview data={ProfileData}/>
                 <hr />
-                <MatriculationPreview data={MatriculationData} /> 
+                <MatriculationPreview data={MatriculationData} path={matricPath} /> 
                 <hr />
                 <div>
                     <Typography

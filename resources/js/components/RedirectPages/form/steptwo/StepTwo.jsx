@@ -79,6 +79,9 @@ const useStyles = makeStyles(theme => ({
     loader:{
         padding: "10px"
     },
+    toast:{
+        top: "15%",
+    },
     pos: {
         float: "right"
     },
@@ -125,11 +128,10 @@ export default function StepTwo(props) {
 
     const validate = () => {
         let temp = {}
-        temp.first_name = (/^[a-zA-Z\s]*$/).test(profile.first_name) ? "": "Enter Valid Name (only char)."
-        temp.dob = profile.dob? "": "Enter DOB in correct format(yyyy-mm-dd)."
+        temp.first_name = (/^[a-zA-Z\s]*$/).test(profile.first_name) && profile.first_name? "": "Enter Valid Name (only char)."
+        temp.dob = profile.dob? "": "This field is required."
         temp.aadhar = (/^[0-9]{12}$/).test(profile.aadhar) ? "": "Enter 12 digits with no space."
-        temp.height = (/^[0-9\s]+$/).test(profile.height) ? "": "This field is required."
-        temp.height = profile.height<=310?"": "Too Big Value(hint:  1foot = 30.48cm)"
+        temp.height = (/^[0-9]{1,3}$/).test(profile.height)?"": "Too Big Value(hint:  1foot = 30.48cm)"
         temp.weight = (/^[0-9]{2,3}$/).test(profile.weight) ? "": "This field is required and can be of max 3 digits."
         temp.blood_group = profile.blood_group ? "": "This field is required."
         temp.gender = profile.gender ? "": "This field is required."
@@ -137,9 +139,9 @@ export default function StepTwo(props) {
         temp.farming_background = profile.farming_background == 0 || profile.farming_background == 1 ? "": "This field is required."
         temp.disability = profile.disability == 0 || profile.disability == 1 ? "": "This field is required."
 
-        temp.father_name = (/^[a-zA-Z\s]*$/).test(parent.father_name) ? "": "Enter Valid Name (only char)."
+        temp.father_name = (/^[a-zA-Z\s]*$/).test(parent.father_name) && parent.father_name? "": "Enter Valid Name (only char)."
         temp.father_phone = (/^[0-9]{10}$/).test(parent.father_phone) ? "": "Enter valid Phone No."
-        temp.mother_name = (/^[a-zA-Z\s]*$/).test(parent.mother_name) ? "": "Enter Valid Name (only char)."
+        temp.mother_name = (/^[a-zA-Z\s]*$/).test(parent.mother_name) && parent.mother_name? "": "Enter Valid Name (only char)."
         temp.mother_phone = (/^[0-9]{10}$/).test(parent.mother_phone) ? "": "Enter valid Phone No."
 
         temp.course = academics.course ? "": "This field is required."
@@ -155,10 +157,10 @@ export default function StepTwo(props) {
         temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "": "Enter valid Phone No."
 
         temp.street = address.address ? "": "This field is required."
-        temp.city = (/^[a-zA-Z\s]*$/).test(address.city) ? "": "This field is required."
+        temp.city = (/^[a-zA-Z\s]*$/).test(address.city) && address.city? "": "This field is required."
         temp.pincode2 = (/^[0-9]{6}$/).test(address.pincode) ? "": "This field is required and must be of 6 digits."
-        temp.state = (/^[a-zA-Z\s]*$/).test(address.state) ? "": "This field is required."
-        temp.district = (/^[a-zA-Z\s]*$/).test(address.district) ? "": " Invalid input (only char allowed)."
+        temp.state = (/^[a-zA-Z\s]*$/).test(address.state) && address.state? "": "This field is required."
+        temp.district = (/^[a-zA-Z\s]*$/).test(address.district) && address.district? "": " Invalid input (only char allowed)."
         setErrors({
           ...temp
         })
@@ -225,34 +227,6 @@ export default function StepTwo(props) {
     });
 
    
-    function setCamelCase(){
-        setProfile({
-            first_name : camelCase(profile.first_name),
-            last_name : camelCase(profile.last_name),
-            dob: profile.dob,
-            height: profile.height,
-            weight: profile.weight,
-            blood_group: profile.blood_group,
-            gender: profile.gender,
-            marital_status: profile.marital_status,
-            farming_background: profile.farming_background,
-            disability: profile.disability,
-            aadhar: profile.aadhar
-        });
-        setParent({
-            father_name: camelCase(parent.father_name),
-            mother_name: camelCase(parent.mother_name),
-            father_phone: parent.father_phone,
-            mother_phone: parent.mother_phone
-        });
-        setAddress({ 
-            address: camelCase(address.address),
-            city: camelCase(address.city),
-            district: camelCase(address.district),
-            state: camelCase(address.state),
-            pincode: address.pincode
-        });
-    }
 
     // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
@@ -585,7 +559,7 @@ export default function StepTwo(props) {
                         </Card>
                     </Grid>
                 </Grid>
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} className={classes.toast}>
                     <Alert onClose={handleClose} severity="error">
                     Oops !! Error Occurs, Check it...
                     </Alert>

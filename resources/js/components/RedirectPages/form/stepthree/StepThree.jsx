@@ -6,6 +6,7 @@ import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import MatriculationDetails from "./matriculation";
+import Notisfication from '../../../Auth/Notisfication';
 import FormRow from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
@@ -142,6 +143,7 @@ export default function StepThree(props) {
     const classes = useStyles();
     const [file, setfile] = React.useState("");
     const [loader, setLoader] = React.useState(false);
+    const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
     const [matriculation, setmatric] = React.useState({
         board: "",
         institution_name: "",
@@ -159,11 +161,11 @@ export default function StepThree(props) {
     const validate = () => {
         let temp = {}
         temp.board = matriculation.board ? "": "This field is required"
-        temp.institution_name = (/^[a-zA-Z\s]*$/).test(matriculation.institution_name)? "": "This field is required and must contain only char."
+        temp.institution_name = (/^[a-zA-Z\s]*$/).test(matriculation.institution_name) && matriculation.institution_name? "": "This field is required and must contain only char."
         temp.year_of_passing = (/^[0-9]{4}$/).test(matriculation.year_of_passing) ? "": "This field is required and be in yyyy format."
         temp.marks_type = matriculation.marks_type ? "": "This field is required."
-        temp.state = (/^[a-zA-Z\s]*$/).test(matriculation.state) ? "": "This field is required and must contain only char."
-        temp.city = (/^[a-zA-Z\s]*$/).test(matriculation.city) ? "": "This field is required and must contain only char."
+        temp.state = (/^[a-zA-Z\s]*$/).test(matriculation.state) && matriculation.state? "": "This field is required and must contain only char."
+        temp.city = (/^[a-zA-Z\s]*$/).test(matriculation.city) && matriculation.city? "": "This field is required and must contain only char."
         temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
         temp.pincode = (/^[0-9]{6}$/).test(matriculation.pincode) ? "": "This field is required and must be exactly 6 digits."
         temp.maximum_marks = (/^[0-9]{1,3}$/).test(matriculation.maximum_marks) ? "": "This field is required and must be max 3 digits."
@@ -190,6 +192,11 @@ export default function StepThree(props) {
     const handleFormSubmit = event => {
         event.preventDefault();
         if(validate()){
+            var fileSize = document.getElementById('file').files[0].size / 1024 / 1024;
+            if(fileSize>1){
+                setNotify({isOpen: true, message: "File Size should be less than 1 MB.", type: "error"});
+                return;
+            }
             setLoader(true);
             const token = localStorage.getItem("token");
             const fd = new FormData();
@@ -303,6 +310,7 @@ export default function StepThree(props) {
                             Note : Upload <CloudUploadIcon/> Scanned copies of your
                                     matriculation certificates.(PDF Only)
                             </Alert>
+                            <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
                             <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" required /> 
                             <div className={classes.fileShow}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}</p>}</div>
                         </Card>

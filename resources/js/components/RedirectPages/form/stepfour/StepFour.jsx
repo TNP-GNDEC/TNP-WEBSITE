@@ -178,14 +178,14 @@ export default function StepFour(props) {
         let temp = {}
         if(category==="XII" || category==="both"){
         temp.board = twelfth.board ? "": "This field is required."
-        temp.institution_name = (/^[a-zA-Z\s]*$/).test(twelfth.institution_name) ? "": "This field is required and must only contain char."
+        temp.institution_name = (/^[a-zA-Z\s]*$/).test(twelfth.institution_name) && twelfth.institution_name? "": "This field is required and must only contain char."
         temp.jee_rank = (/^[0-9\s]+$/).test(twelfth.jee_rank)? "": "This field is required and must contain only numbers."
         temp.marks_type = twelfth.marks_type ? "": "This field is required."
         
         temp.year_of_passing = (/^[0-9]{4}$/).test(twelfth.year_of_passing) ? "": "This field is required and must be in yyyy format."
         
-        temp.city = (/^[a-zA-Z\s]*$/).test(twelfth.city) ? "": "This field is required and must contain letters only."
-        temp.state = (/^[a-zA-Z\s]*$/).test(twelfth.state) ? "": "This field is required and must contain letters only."
+        temp.city = (/^[a-zA-Z\s]*$/).test(twelfth.city) && twelfth.city? "": "This field is required and must contain letters only."
+        temp.state = (/^[a-zA-Z\s]*$/).test(twelfth.state) && twelfth.state? "": "This field is required and must contain letters only."
         temp.pincode = (/^[0-9]{6}$/).test(twelfth.pincode) ? "": "This field is required and must be of 6 digits"
         temp.obtained_marks = (/^[0-9]{2,3}$/).test(twelfth.obtained_marks) ? "": "This field is required and must be max 3 digits long."
         
@@ -194,14 +194,14 @@ export default function StepFour(props) {
 
         if(category==="diploma" || category==="both"){
         temp.branch = diploma.branch ? "": "This field is required."
-        temp.institution_name = (/^[a-zA-Z\s]*$/).test(diploma.institution_name)? "": "This field is required and must contain letters only."
+        temp.institution_name = (/^[a-zA-Z\s]*$/).test(diploma.institution_name) && diploma.institution_name? "": "This field is required and must contain letters only."
         
         temp.marks_type = diploma.marks_type ? "": "This field is required."
         
         temp.year_of_passing = (/^[0-9]{4}$/).test(diploma.year_of_passing) ? "": "This field is required and must be in yyyy format."
         
-        temp.city = (/^[a-zA-Z\s]*$/).test(diploma.city) ? "": "This field is required and must contain letters only"
-        temp.state = (/^[a-zA-Z\s]*$/).test(diploma.state) ? "": "This field is required and must contain letters only"
+        temp.city = (/^[a-zA-Z\s]*$/).test(diploma.city) && diploma.city? "": "This field is required and must contain letters only"
+        temp.state = (/^[a-zA-Z\s]*$/).test(diploma.state) && diploma.state? "": "This field is required and must contain letters only"
         temp.pincode = (/^[0-9]{6}$/).test(diploma.pincode) ? "": "This field is required and must be of 6 digits"
         temp.obtained_marks = (/^[0-9\b]+$/).test(diploma.obtained_marks) ? "": "This field is required and must be max 3 digits long."
         
