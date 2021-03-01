@@ -235,8 +235,12 @@ export default function StepThree(props) {
             [name] : value
         }))
 
-
     };
+
+    React.useEffect( () => {
+        console.log(matriculation)
+    }, [matriculation] )
+
     const [loading, setLoading] = React.useState(true);
     const fetchDetails = async () => {
         var token= localStorage.getItem("token")
