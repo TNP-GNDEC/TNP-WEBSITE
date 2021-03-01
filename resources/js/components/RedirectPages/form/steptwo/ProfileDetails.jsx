@@ -121,8 +121,8 @@ export default function ProfileDetails(props) {
             select: "true",
             value: props.Profile.gender,
             options: [
-                { value: "male", label: "MALE" },
-                { value: "female", label: "FEMALE" }
+                { value: "Male", label: "MALE" },
+                { value: "Female", label: "FEMALE" }
             ],
             validate: props.Errors.gender
         },
@@ -133,8 +133,8 @@ export default function ProfileDetails(props) {
             select: "True",
             value: props.Profile.marital_status,
             options: [
-                { value: "married", label: "MARRIED" },
-                { value: "unmarried", label: "UNMARRIED" }
+                { value: "Married", label: "MARRIED" },
+                { value: "Unmarried", label: "UNMARRIED" }
             ],
             validate: props.Errors.marital_status
         },

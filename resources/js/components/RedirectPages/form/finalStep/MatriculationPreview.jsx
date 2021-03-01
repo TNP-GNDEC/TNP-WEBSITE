@@ -91,6 +91,13 @@ const useStyles = makeStyles(theme => ({
             color: theme.palette.secondary.main
         }
     },
+    pdf:{
+        width: "60%",
+        height: "400px",
+        ['@media (max-width:960px)']: {
+            width: "100%",
+        }
+    },
 
     cardHeading: {
         color: theme.palette.primary.dark,
@@ -168,7 +175,7 @@ function ParentsPreview(props) {
                 </Typography>
                 <CardContent>
                     <Grid container>{renderFields()}</Grid>
-                    <embed src={path} width="500px" height="300px" />
+                    <iframe src={path} className={classes.pdf} />
                 </CardContent>
             </div>
         </Grid>

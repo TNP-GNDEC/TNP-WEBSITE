@@ -111,6 +111,13 @@ const useStyles = makeStyles(theme => ({
     fields: {
         width: "80%"
     },
+    pdf:{
+        width: "60%",
+        height: "400px",
+        ['@media (max-width:960px)']: {
+            width: "100%",
+        }
+    },
     notchedOutline: {
         boxShadow: "0px 2px 6px #75757533"
     },
@@ -168,7 +175,7 @@ function AcademicsPreview(props) {
                 </Typography>
                 <CardContent>
                     <Grid container>{renderFields()}</Grid>
-                   
+                    <iframe src={props.path} className={classes.pdf} />
                 </CardContent>
             </div>
         </Grid>

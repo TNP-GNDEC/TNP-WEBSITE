@@ -86,27 +86,27 @@ export default function Details(props) {
             validate: props.Errors.stream,
             options: [
                 {
-                    value: "cse",
+                    value: "CSE",
                     label: "COMPUTER SCIENCE AND ENGINEERING"
                 },
                 {
-                    value: "it",
+                    value: "IT",
                     label: "INFORMATION TECHNOLOGY"
                 },
                 {
-                    value: "ece",
+                    value: "ECE",
                     label: "ELECTRONICS AND COMMUNICATION"
                 },
                 {
-                    value: "civil",
+                    value: "CIVIL",
                     label: "CIVIL"
                 },
                 {
-                    value: "mech",
+                    value: "MECH.",
                     label: "MECHANICAL"
                 },
                 {
-                    value: "production",
+                    value: "Production",
                     label: "PRODUCTION"
                 }
             ],
@@ -176,27 +176,27 @@ export default function Details(props) {
             // ]
             optionsMtech: [
                 {
-                    value: "cse",
+                    value: "CSE",
                     label: "COMPUTER SCIENCE AND ENGINEERING (Full time)"
                 },
                 {
-                    value: "it",
+                    value: "IT",
                     label: "INFORMATION TECHNOLOGY(Full Time)"
                 },
                 {
-                    value: "ece",
+                    value: "ECE",
                     label: "ELECTRONICS AND COMMUNICATION"
                 },
                 {
-                    value: "civil",
+                    value: "CIVIL",
                     label: "CIVIL"
                 },
                 {
-                    value: "mechanical",
+                    value: "Mechanical",
                     label: "MECHANICAL"
                 },
                 {
-                    value: "production",
+                    value: "Production",
                     label: "PRODUCTION"
                 }
             ],
@@ -210,11 +210,11 @@ export default function Details(props) {
             select: "true",
             options: [
                 {
-                    value: "morning",
+                    value: "Morning",
                     label: "MORNING"
                 },
                 {
-                    value: "evening",
+                    value: "Evening",
                     label: "EVENING"
                 }
             ],

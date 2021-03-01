@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme => ({
     },
     heading: {
         paddingTop: "20px",
-        textAlign: "center"
+        textAlign: "center",
+        color: theme.palette.primary.dark
     },
     para: {
         color: "#000"
@@ -152,6 +153,9 @@ export default function finalStep(props) {
     const [cond, setCond] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
     const [matricPath, setMatricPath] = React.useState("");
+    const [twelfthPath, setTwelfthPath] = React.useState("");
+    const [diplomaPath, setDiplomaPath] = React.useState("");
+    const [degreePath, setDegreePath] = React.useState("");
 
     const [ProfileData, setProfileData] = React.useState([
         { id: 1, label: "First Name", value: "value" },
@@ -259,10 +263,23 @@ export default function finalStep(props) {
             console.log(error);
         });
     }
+    const options = (x) => {
+        if(x === 0){
+            return "No"
+        }
+        return "Yes"
+    }
+    const Marks_type = (x) => {
+        if(x === 1){
+            return "CGPA"
+        }
+        return "PERCENTAGE"
+    }
     const fetchDetails = async () => {
         var token= localStorage.getItem("token")
         const res = await axios.get(`/api/verifyAll/`,{
             headers: { 'Authorization': 'Bearer ' + token }});
+
             setProfileData([
                 { id: 1, label: "First Name", value: res.data.details['first_name'] },
                 { id: 2, label: "Last Name", value: res.data.details['last_name'] },
@@ -273,8 +290,8 @@ export default function finalStep(props) {
                 { id: 7, label: "Blood Group", value: res.data.details['blood_group'] },
                 { id: 8, label: "Gender", value: res.data.details['gender'] },
                 { id: 9, label: "Martial Status", value: res.data.details['marital_status'] },
-                { id: 10, label: "Farming Background", value: res.data.details['farming_background'] },
-                { id: 11, label: "Disability", value: res.data.details['disability'] },
+                { id: 10, label: "Farming Background", value: options(res.data.details['farming_background']) },
+                { id: 11, label: "Disability", value: options(res.data.details['disability']) },
                 { id: 12, label: "Father Name", value: res.data.details['father_name'] },
                 { id: 13, label: "Father Phone", value: res.data.details['father_mobile'] },
                 { id: 14, label: "Mother Name", value: res.data.details['mother_name'] },
@@ -284,8 +301,8 @@ export default function finalStep(props) {
                 { id: 18, label: "Section", value: res.data.details['branch_type'] },
                 { id: 19, label: "Shift", value: res.data.details['shift'] },
                 { id: 20, label: "Training Sem", value: res.data.details['training_sem'] },
-                { id: 21, label: "Leet", value: res.data.details['leet'] },
-                { id: 22, label: "Hostler", value: res.data.details['hostler'] },
+                { id: 21, label: "Leet", value: options(res.data.details['leet']) },
+                { id: 22, label: "Hostler", value: options(res.data.details['hostler']) },
                 { id: 23, label: "WhatsApp No", value: res.data.details['whatsapp'] },
                 { id: 24, label: "Contact No", value: res.data.details['mobile'] },
                 { id: 25, label: "Address", value: res.data.details['address'] },
@@ -300,7 +317,7 @@ export default function finalStep(props) {
                 { id: 3, label: "State", value: res.data.matric['state'] },
                 { id: 4, label: "City", value: res.data.matric['city'] },
                 { id: 5, label: "Year of Passing", value: res.data.matric['year_of_passing'] },
-                { id: 6, label: "Marks type", value: res.data.matric['marks_type'] },
+                { id: 6, label: "Marks type", value: Marks_type(res.data.matric['marks_type']) },
                 { id: 7, label: "Pincode", value: res.data.matric['pincode'] },
                 { id: 8, label: "Obtained Marks", value: res.data.matric['obtained_marks'] },
                 { id: 9, label: "Maximum Marks", value: res.data.matric['maximum_marks'] },
@@ -316,12 +333,13 @@ export default function finalStep(props) {
                     { id: 4, label: "State", value: res.data.twelfth['state'] },
                     { id: 5, label: "City", value: res.data.twelfth['city'] },
                     { id: 6, label: "Year of Passing", value: res.data.twelfth['year_of_passing'] },
-                    { id: 7, label: "Marks type", value: res.data.twelfth['marks_type'] },
+                    { id: 7, label: "Marks type", value: Marks_type(res.data.twelfth['marks_type']) },
                     { id: 8, label: "Pincode", value: res.data.twelfth['pincode'] },
                     { id: 9, label: "Obtained Marks", value: res.data.twelfth['obtained_marks'] },
                     { id: 10, label: "Maximum Marks", value: res.data.twelfth['maximum_marks'] },
                     { id: 11, label: "File", value: res.data.twelfth['file'].split('\\').pop().split('/').pop() },
                 ]);
+                setTwelfthPath(res.data.twelfth['file']);
             }
             if(res.data.category['category']=== "both" || res.data.category['category'] === "diploma"){
                 setDiplomaData([
@@ -330,12 +348,13 @@ export default function finalStep(props) {
                     { id: 3, label: "State", value: res.data.diploma['state'] },
                     { id: 4, label: "City", value: res.data.diploma['city'] },
                     { id: 5, label: "Year of Passing", value: res.data.diploma['year_of_passing'] },
-                    { id: 6, label: "Marks type", value: res.data.diploma['marks_type'] },
+                    { id: 6, label: "Marks type", value: Marks_type(res.data.diploma['marks_type']) },
                     { id: 7, label: "Pincode", value: res.data.diploma['pincode'] },
                     { id: 8, label: "Obtained Marks", value: res.data.diploma['obtained_marks'] },
                     { id: 9, label: "Maximum Marks", value: res.data.diploma['maximum_marks'] },
                     { id: 10, label: "File", value: res.data.diploma['file'].split('\\').pop().split('/').pop() },
                 ]);
+                setDiplomaPath(res.data.diploma['file']);
             }
             if(res.data.ug){
                 setCond(true);
@@ -344,12 +363,13 @@ export default function finalStep(props) {
                     { id: 2, label: "State", value: res.data.ug['state'] },
                     { id: 3, label: "City", value: res.data.ug['city'] },
                     { id: 4, label: "Year of Passing", value: res.data.ug['year_of_passing'] },
-                    { id: 5, label: "Marks type", value: res.data.ug['marks_type'] },
+                    { id: 5, label: "Marks type", value: Marks_type(res.data.ug['marks_type']) },
                     { id: 6, label: "Pincode", value: res.data.ug['pincode'] },
                     { id: 7, label: "Obtained Marks", value: res.data.ug['obtained_marks'] },
                     { id: 8, label: "Maximum Marks", value: res.data.ug['maximum_marks'] },
                     { id: 9, label: "File", value: res.data.ug['file'].split('\\').pop().split('/').pop() },
                 ]);
+                setDegreePath(res.data.ug['file']);
             }
         setLoading(false);
     }
@@ -412,27 +432,27 @@ export default function finalStep(props) {
                 {Cat.value === "both" ? (
                     <div>
                         <hr />
-                        <TwelfthPreview data={TwelfthData} />
+                        <TwelfthPreview data={TwelfthData} path={twelfthPath}/>
                         <hr />
-                        <DiplomaPreview data={DiplomaData} />
+                        <DiplomaPreview data={DiplomaData} path={diplomaPath}/>
                     </div>
                 ):(<div></div>)}
                 {Cat.value === "XII" ? (
                     <div>
                         <hr />
-                        <TwelfthPreview data={TwelfthData} />
+                        <TwelfthPreview data={TwelfthData} path={twelfthPath}/>
                     </div>
                 ):(<div></div>)}
                 {Cat.value === "diploma" ? (
                     <div>
                         <hr />
-                        <DiplomaPreview data={DiplomaData} />
+                        <DiplomaPreview data={DiplomaData} path={diplomaPath}/>
                     </div>
                 ):(<div></div>)}
                 {cond ? (
                     <div>
                         <hr />
-                        <UgPreview data={UgData} />
+                        <UgPreview data={UgData} path={degreePath}/>
                     </div>
                 ):(<div></div>)}
             </div>

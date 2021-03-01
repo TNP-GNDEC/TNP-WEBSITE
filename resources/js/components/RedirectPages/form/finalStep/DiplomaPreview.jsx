@@ -105,6 +105,13 @@ const useStyles = makeStyles(theme => ({
         alignContent: "center",
         padding: "0px 0px"
     },
+    pdf:{
+        width: "60%",
+        height: "400px",
+        ['@media (max-width:960px)']: {
+            width: "100%",
+        }
+    },
     fields: {
         width: "80%"
     },
@@ -165,6 +172,7 @@ function ProfilePreview(props) {
                 </Typography>
                 <CardContent>
                     <Grid container>{renderFields()}</Grid>
+                    <iframe src={props.path} className={classes.pdf} />
                 </CardContent>
             </div>
         </Grid>

@@ -111,6 +111,13 @@ const useStyles = makeStyles(theme => ({
     notchedOutline: {
         boxShadow: "0px 2px 6px #75757533"
     },
+    pdf:{
+        width: "60%",
+        height: "400px",
+        ['@media (max-width:960px)']: {
+            width: "100%",
+        }
+    },
     focused: {
         borderColor: theme.palette.secondary.main,
         boxShadow: "0px 2px 6px #038ed433"
@@ -165,6 +172,7 @@ function ProfilePreview(props) {
                 </Typography>
                 <CardContent>
                     <Grid container>{renderFields()}</Grid>
+                    <iframe src={props.path} className={classes.pdf} />
                 </CardContent>
             </div>
         </Grid>
