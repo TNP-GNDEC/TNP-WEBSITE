@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PersonalDetails extends Model
 {
-    protected $table = "personaldetails";
+    protected $table = "personalDetails";
     use HasFactory;
     protected $fillable = [
      "user_id",
