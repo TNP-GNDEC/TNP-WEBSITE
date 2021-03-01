@@ -29,7 +29,7 @@ class PersonaldetailsController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-    $details = DB::table('personaldetails')
+    $details = DB::table('personalDetails')
     ->where('user_id', $user->id)
     ->update([
         'user_id'=> $user->id,
@@ -90,7 +90,7 @@ class PersonaldetailsController extends Controller
             return response()->json(['status' => 'Authorization Token not found']);
         }
     }
-    $details = DB::table('personaldetails')
+    $details = DB::table('personalDetails')
       ->where('user_id', $user->id)
       ->first();
     return response()->json(['details' => $details]);

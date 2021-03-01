@@ -286,7 +286,7 @@ export default function StepFour(props) {
     console.log(fd)
 
        const token = localStorage.getItem("token")
-       axios.post(`/api/diplomatwelfth/`, 
+       axios.post(`/api/diplomatwelfth`, 
             fd, {
                 headers: { 'Authorization': 'Bearer ' + token }  }  
             ).then(function (response) {

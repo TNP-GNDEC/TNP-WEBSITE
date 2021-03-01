@@ -277,7 +277,7 @@ export default function finalStep(props) {
     }
     const fetchDetails = async () => {
         var token= localStorage.getItem("token")
-        const res = await axios.get(`/api/verifyAll/`,{
+        const res = await axios.get(`/api/verifyAll`,{
             headers: { 'Authorization': 'Bearer ' + token }});
 
             setProfileData([
