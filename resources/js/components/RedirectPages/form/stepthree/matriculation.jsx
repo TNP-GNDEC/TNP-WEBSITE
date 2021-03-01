@@ -63,14 +63,14 @@ export default function matriculationDetails(props) {
             label: "PSEB"
         }
     ];
-    const currency2 = [
+    const marksTypes = [
         {
             value: "1",
-            label: "cgpa"
+            label: "CGPA"
         },
         {
             value: "2",
-            label: "percentage"
+            label: "PRECENTAGE"
         }
 
     ];
@@ -176,21 +176,18 @@ export default function matriculationDetails(props) {
                     id="1"
                     name="board"
                     defaultValue={props.matriculation.board}
-                    select="true"
-
-
+                    // select="true"
                     variant="outlined"
-
                     onChange={
                         props.handleInputChange
                     }
                     {...(props.Errors.board && { error: true, helperText: props.Errors.board })}
                 >
-                    {currencies.map(option => (
+                    {/* {currencies.map(option => (
                         <MenuItem key={option.value} value={option.value}>
                             {option.label}
                         </MenuItem>
-                    ))}
+                    ))} */}
 
                 </TextField>
             </Grid>
@@ -376,7 +373,7 @@ export default function matriculationDetails(props) {
                     }
                     {...(props.Errors.marks_type && { error: true, helperText: props.Errors.marks_type })}
                 >
-                    {currency2.map(option => (
+                    {marksTypes.map(option => (
                         <MenuItem key={option.value} value={option.value}>
                             {option.label}
                         </MenuItem>
