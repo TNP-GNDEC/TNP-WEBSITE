@@ -23,6 +23,11 @@ Generate the php application key :
 php artisan key:generate
 php artisan migrate
 ```
+For JWT Token:
+```
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+php artisan jwt:secret
+```
 Now you are Ready to launch the web application : 
 ```
 php artisan serve
