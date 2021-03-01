@@ -204,7 +204,7 @@ export default function StepThree(props) {
                 fd.append(key, matriculation[key]);
         })
             fd.append('file', document.getElementById('file').files[0]);
-            axios.post(`/api/matriculation/`, 
+            axios.post(`/api/matriculation`, 
                 fd,{
                     headers: { 'Authorization': 'Bearer ' + token }  }
             

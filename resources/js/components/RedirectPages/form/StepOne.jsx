@@ -21,8 +21,11 @@ const useStyles = makeStyles(theme => ({
         border: "1px solid #038ed4",
         boxShadow: "0px 5px 15px #038ed433",
         "&:placeholder-shown":{
-            paddingLeft: "5px"
-        }
+            // paddingLeft: "5px"
+        },
+        boxSizing: "border-box",
+        paddingLeft: "15px"
+
     },
     field: {
         width: "60%",

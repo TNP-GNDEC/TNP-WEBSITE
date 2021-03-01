@@ -417,7 +417,7 @@ export default function StepTwo(props) {
             }
             const token = localStorage.getItem("token");
             axios
-                .post(`/api/personaldetails/`, {
+                .post(`/api/personaldetails`, {
                     profile: ChangeCase(profile),
                     academics: academics,
                     parent: ChangeCase(parent),
@@ -440,7 +440,7 @@ export default function StepTwo(props) {
 
     const fetchDetails = async () => {
         var token= localStorage.getItem("token")
-        const res = await axios.get(`/api/personalDetails/`,{
+        const res = await axios.get(`/api/personalDetails`,{
             headers: { 'Authorization': 'Bearer ' + token }});
             setProfile({
                 first_name: res.data.details['first_name'],
