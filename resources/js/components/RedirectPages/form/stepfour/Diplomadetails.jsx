@@ -286,6 +286,36 @@ export default function DiplomaDetails(props) {
                         ))}    
                     </TextField>
                     </Grid>
+
+                    <Grid item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className={classes.textFieldContainer}
+                >
+                    
+                    <TextField 
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                              notchedOutline: classes.notchedOutline,
+                              focused: classes.focused
+                            }
+                        }}
+                        label= "OBTAINED MARKS"
+                        type= "text"
+                        id= "9"
+                        name= "obtained_marks"
+                        defaultValue= {props.diploma.obtained_marks}
+                        variant="outlined"
+                        onChange={
+                            props.handleInputChange
+                        }
+                        {...(props.Errors.obtained_marks && {error:true, helperText:props.Errors.obtained_marks})}
+                    >
+                        
+                    </TextField>                   
+                </Grid>
                     <Grid item
                     xs={12}
                     sm={6}
@@ -317,35 +347,7 @@ export default function DiplomaDetails(props) {
                         
                     </TextField>
                     </Grid>
-                    <Grid item
-                    xs={12}
-                    sm={6}
-                    lg={4}
-                    className={classes.textFieldContainer}
-                >
-                    
-                    <TextField 
-                        className={classes.fields}
-                        InputProps={{
-                            classes: {
-                              notchedOutline: classes.notchedOutline,
-                              focused: classes.focused
-                            }
-                        }}
-                        label= "OBTAINED MARKS"
-                        type= "text"
-                        id= "9"
-                        name= "obtained_marks"
-                        defaultValue= {props.diploma.obtained_marks}
-                        variant="outlined"
-                        onChange={
-                            props.handleInputChange
-                        }
-                        {...(props.Errors.obtained_marks && {error:true, helperText:props.Errors.obtained_marks})}
-                    >
-                        
-                    </TextField>                   
-                </Grid>
+
                 {(props.diploma.marks_type == "2") && (parseFloat(props.diploma.obtained_marks) > 0) && (parseFloat(props.diploma.maximum_marks)) > 0 ?
                 <Grid
                     xs={12}
