@@ -116,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SignIn= (props)=> {
+const SignIn= () => {
   const history = useHistory();
   const classes = useStyles();
   const [state , setState] = useState({
@@ -206,7 +206,7 @@ const handleFormSubmit= async (event)=>{
         fetchSteps(JWTtoken);
       }
       if(user.role_id===2){
-        window.location.href=("/coordinator")
+        history.push("/coordinator");
       }
         
   })

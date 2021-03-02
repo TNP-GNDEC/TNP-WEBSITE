@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import axios from 'axios';
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, DialogContent } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -416,8 +417,7 @@ export default function StepTwo(props) {
                 setAction(true);
             }
             const token = localStorage.getItem("token");
-            axios
-                .post(`/api/personaldetails`, {
+            axios.post(`/api/personaldetails`, {
                     profile: ChangeCase(profile),
                     academics: academics,
                     parent: ChangeCase(parent),
