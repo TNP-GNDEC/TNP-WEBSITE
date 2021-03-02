@@ -188,9 +188,9 @@ export default function StepFour(props) {
         temp.city = (/^[a-zA-Z\s]*$/).test(twelfth.city) && twelfth.city? "": "This field is required and must contain letters only."
         temp.state = (/^[a-zA-Z\s]*$/).test(twelfth.state) && twelfth.state? "": "This field is required and must contain letters only."
         temp.pincode = (/^[0-9]{6}$/).test(twelfth.pincode) ? "": "This field is required and must be of 6 digits"
-        // temp.obtained_marks = (/^[0-9]{2,3}$/).test(twelfth.obtained_marks) ? "": "This field is required and must be max 3 digits long."
+        temp.obtained_marks = (/^[0-9]{2,3}$/).test(twelfth.obtained_marks) ? "": "This field is required and must be max 3 digits long."
         
-        // temp.maximum_marks = (/^[0-9]{2,3}$/).test(twelfth.maximum_marks) ? "": "This field is required and must be max 3 digits long."
+        temp.maximum_marks = (/^[0-9]{2,3}$/).test(twelfth.maximum_marks) ? "": "This field is required and must be max 3 digits long."
         if(twelfth.marks_type == "1"){
             temp.obtained_marks = parseFloat(twelfth.obtained_marks)>=0   && parseFloat(twelfth.obtained_marks)<=10  ? "" : "Enter a valid cgpa Value (hint: between 0 to 10)"
             temp.maximum_marks = parseFloat(twelfth.maximum_marks) == "10"?"":"Maximum precentage should be 100 only "
@@ -214,9 +214,9 @@ export default function StepFour(props) {
         temp.city = (/^[a-zA-Z\s]*$/).test(diploma.city) && diploma.city? "": "This field is required and must contain letters only"
         temp.state = (/^[a-zA-Z\s]*$/).test(diploma.state) && diploma.state? "": "This field is required and must contain letters only"
         temp.pincode = (/^[0-9]{6}$/).test(diploma.pincode) ? "": "This field is required and must be of 6 digits"
-        // temp.obtained_marks = (/^[0-9\b]+$/).test(diploma.obtained_marks) ? "": "This field is required and must be max 3 digits long."
+        temp.obtained_marks = (/^[0-9\b]+$/).test(diploma.obtained_marks) ? "": "This field is required and must be max 3 digits long."
         
-        // temp.maximum_marks = (/^[0-9]{3}$/).test(diploma.maximum_marks) ? "": "This field is required and must be max 3 digits long."
+        temp.maximum_marks = (/^[0-9]{3}$/).test(diploma.maximum_marks) ? "": "This field is required and must be max 3 digits long."
 
         if(diploma.marks_type == "1"){
             temp.obtained_marks = parseFloat(diploma.obtained_marks)>=0   && parseFloat(diploma.obtained_marks)<=10  ? "" : "Enter a valid cgpa Value (hint: between 0 to 10)"
