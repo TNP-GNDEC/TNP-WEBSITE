@@ -11,14 +11,14 @@ const useStyles = theme => ({
       width: "100%",
       padding: "10px",
       marginBottom: "20px",
-      boxShadow: "0px 15px 25px #00000033",
+      boxShadow: "0 1px 1px rgba(0,0,0,0.15),0 8px 0 -5px #eee,0 8px 1px -4px rgba(0,0,0,0.15),0 16px 0 -10px #eee,0 16px 1px -9px rgba(0,0,0,0.15)",
     },
     header:{
         display: "flex",
     },
     icon:{
       backgroundColor: theme.palette.primary.dark,
-      boxShadow: "0px 15px 25px #193b6833",
+      boxShadow: "0px 5px 15px #193b6833",
       color: theme.palette.secondary.main,
       borderRadius: "5px",
       marginRight: "10px",

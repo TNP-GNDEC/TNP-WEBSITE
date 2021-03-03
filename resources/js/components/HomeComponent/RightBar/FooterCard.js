@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
       padding: "10px",
       marginTop: "30px",
       backgroundColor: theme.palette.secondary.light,
-      boxShadow: "0px 15px 25px #00000033",
+      boxShadow: "0px 5px 15px #0000001a",
     },
 }));
   

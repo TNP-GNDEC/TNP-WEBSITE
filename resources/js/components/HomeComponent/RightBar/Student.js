@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       padding: "10px",
       marginTop: "20px",
-      boxShadow: "0px 15px 25px #00000033",
+      boxShadow: "0 1px 1px rgba(0,0,0,0.15),0 8px 0 -5px #eee,0 8px 1px -4px rgba(0,0,0,0.15),0 16px 0 -10px #eee,0 16px 1px -9px rgba(0,0,0,0.15)",
     },
     header:{
         display: "flex",
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     icon:{
       backgroundColor: theme.palette.primary.dark,
       color: theme.palette.secondary.main,
-      boxShadow: "0px 15px 25px #193b6833",
+      boxShadow: "0px 5px 15px #193b6833",
       borderRadius: "5px",
       marginRight: "10px",
       height: "30px",
