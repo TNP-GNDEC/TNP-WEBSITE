@@ -46,6 +46,7 @@ export default function ProfileDetails(props) {
             type: "text",
             id: 1,
             select: false,
+            shrink: false,
             value: props.Profile.first_name,
             options: [],
             validate: props.Errors.first_name
@@ -55,6 +56,7 @@ export default function ProfileDetails(props) {
             type: "text",
             id: 2,
             select: false,
+            shrink: false,
             value: props.Profile.last_name,
             options: [],
             validate: false
@@ -63,6 +65,7 @@ export default function ProfileDetails(props) {
             label: "DATE OF BIRTH (dd-mm-yyyy)*",
             type: "date",
             id: 3,
+            shrink: true,
             select: false,
             value: props.Profile.dob,
             options: [],
@@ -73,6 +76,7 @@ export default function ProfileDetails(props) {
             type: "text",
             id: 4,
             select: false,
+            shrink: false,
             value: props.Profile.aadhar,
             options: [],
             validate: props.Errors.aadhar
@@ -82,6 +86,7 @@ export default function ProfileDetails(props) {
             label: "HEIGHT (in cm)*",
             type: "text",
             id: 5,
+            shrink: false,
             select: false,
             value: props.Profile.height,
             options: [],
@@ -91,6 +96,7 @@ export default function ProfileDetails(props) {
             label: "WEIGHT (in kg)*",
             type: "tel",
             id: 6,
+            shrink: false,
             select: false,
             value: props.Profile.weight,
             options: [],
@@ -100,6 +106,7 @@ export default function ProfileDetails(props) {
             label: "BLOOD GROUP*",
             type: "text",
             id: 7,
+            shrink: false,
             select: true,
             value: props.Profile.blood_group,
             options: [
@@ -118,6 +125,7 @@ export default function ProfileDetails(props) {
             label: "GENDER*",
             type: "text",
             id: 8,
+            shrink: false,
             select: "true",
             value: props.Profile.gender,
             options: [
@@ -130,6 +138,7 @@ export default function ProfileDetails(props) {
             label: "MARITAL STATUS*",
             type: "text",
             id: 9,
+            shrink: false,
             select: "True",
             value: props.Profile.marital_status,
             options: [
@@ -143,6 +152,7 @@ export default function ProfileDetails(props) {
             label: "FARMING BACKGROUND*",
             type: "text",
             id: 10,
+            shrink: false,
             select: "True",
             value: props.Profile.farming_background,
             options: [
@@ -156,6 +166,7 @@ export default function ProfileDetails(props) {
             label: "DISABILITY*",
             type: "text",
             id: 11,
+            shrink: false,
             select: "True",
             value: props.Profile.disability,
             options: [
@@ -180,6 +191,9 @@ export default function ProfileDetails(props) {
                     <TextField
                         type={field.type}
                         className={classes.fields}
+                        InputLabelProps={{
+                            shrink: field.shrink,
+                        }}
                         InputProps={{
                             classes: {
                               notchedOutline: classes.notchedOutline,
@@ -189,7 +203,7 @@ export default function ProfileDetails(props) {
                         id="outlined-basic"
                         variant="outlined"
                         label={field.label}
-                        value={field.value}
+                        defaultValue={field.value}
                         select={field.select}
                         {...(field.validate && {error:true, helperText:field.validate})}
                         onChange={e => {

@@ -116,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SignIn= (props)=> {
+const SignIn= () => {
   const history = useHistory();
   const classes = useStyles();
   const [state , setState] = useState({
