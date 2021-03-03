@@ -171,16 +171,16 @@ const fetchUser = async (token) => {
 }
 
 const fetchSteps = async (token) => {
-  const step = await axios.get(`/api/formStatus/`, {
+  const step = await axios.get(`/api/formStatus`, {
     headers: { 'Authorization': 'Bearer ' + token }
   });
   const form_step = step.data.step['form_step'];
   if(form_step === 6){
     console.log(history)
-    history.push('/student')
+            window.location.href = window.origin+ "/student";
   }
   else{
-    history.push('/email')
+    window.location.href = window.origin+ "/email";
   }
 }
 const [showPassword, setShowPassword] = useState(false);
@@ -206,7 +206,7 @@ const handleFormSubmit= async (event)=>{
         fetchSteps(JWTtoken);
       }
       if(user.role_id===2){
-        window.location.href=("/coordinator")
+        window.location.href = window.origin+ "/coordinator";
       }
         
   })
