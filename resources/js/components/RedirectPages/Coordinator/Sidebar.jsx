@@ -11,6 +11,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import DescriptionIcon from "@material-ui/icons/Description";
+import Business from "@material-ui/icons/Business";
+import User from "@material-ui/icons/People";
+import Post from "@material-ui/icons/NoteAdd";
 import avatar from "../../../../images/avatar11.jpeg";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
@@ -48,6 +51,9 @@ const useStyles = makeStyles(theme => ({
             width: theme.spacing(9) + 1
         }
     },
+    active:{
+        color: theme.palette.primary.main
+    },
     toolbar: {
         display: "flex",
         alignItems: "center",
@@ -55,6 +61,14 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(0, 1),
         // necessary for content to be below app bar
         ...theme.mixins.toolbar
+    },
+    close:{
+        color: "#cc0000"
+    },
+    admin:{
+        color: theme.palette.primary.dark,
+        fontFamily: "Nunito",
+       fontWeight: "400",
     },
     content: {
         flexGrow: 1,
@@ -82,15 +96,19 @@ const useStyles = makeStyles(theme => ({
     drawerCloseButton: {
         display: "flex",
         justifyContent: "end"
+    },
+    buttonFontSize:{
+        fontFamily: "Nunito",
+       fontWeight: "400",
     }
 }));
 
 const listItems = [
     { id: 1, name: "Home", iconName: <HomeIcon />  , onCLickAction:""},
     { id: 2, name: "Data Using Excel", iconName: <DescriptionIcon /> },
-    { id: 3, name: "Companies", iconName: <DescriptionIcon /> },
-    { id: 4, name: "Users", iconName: <DescriptionIcon /> },
-    { id: 5, name: "Posts", iconName: <DescriptionIcon /> },
+    { id: 3, name: "Companies", iconName: <Business /> },
+    { id: 4, name: "Users", iconName: <User /> },
+    { id: 5, name: "Posts", iconName: <Post /> },
     { id: 6, name: "Notice Maker", iconName: <PostAddIcon /> },
     { id: 7, name: "Upload CSV", iconName: <AddIcon /> },
 ];
@@ -98,16 +116,17 @@ const listItems = [
 
 function Sidebar(props) {
     const classes = useStyles();
+    const [active, setActive] = React.useState("Home");
     const theme = useTheme();
     const renderListItem = () => {
 		return listItems.map((item) => {
 			return (
 				<>
-					<ListItem key={item.id} button onClick={ () => { props.changeMainContent(item.id) } } >
-						<ListItemIcon>{item.iconName}</ListItemIcon>
+					<ListItem key={item.id} button onClick={ () => { props.changeMainContent(item.id);setActive(item.name); } } >
+						<ListItemIcon className={active === item.name? classes.active : ""}>{item.iconName}</ListItemIcon>
 						<ListItemText
+                            className={active === item.name? classes.active : classes.buttonFontSize}
 							primary={item.name}
-							className={classes.buttonFontSize}
 						/>
 					</ListItem>
 				</>
@@ -138,7 +157,7 @@ function Sidebar(props) {
                             className={classes.drawerCloseButton}
                         >
                             <IconButton onClick={props.handleClose}>
-                                <ClearIcon />
+                                <ClearIcon className={classes.close} />
                             </IconButton>
                         </Grid>
 
@@ -167,7 +186,7 @@ function Sidebar(props) {
                                     item
                                     xs={12}
                                 >
-                                    <h6>Admin</h6>
+                                    <h5 className={classes.admin}>Admin</h5>
                                     
                                 </Grid>
                             </Grid>

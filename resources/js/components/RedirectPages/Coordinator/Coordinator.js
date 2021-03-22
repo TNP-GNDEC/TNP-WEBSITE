@@ -8,7 +8,9 @@ import Sidebar from './Sidebar';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        display: "flex"
+        display: "flex",
+        backgroundColor: theme.palette.primary.light,
+        minHeight: "100vh",
     },
 
     toolbar: {

@@ -14,7 +14,6 @@ import Postmaker from "./Postmaker";
 
 const useStyles = makeStyles(theme => ({
     root: {
-        backgroundColor: theme.palette.background.paper,
         width: "100%"
     },
     heading: {
@@ -36,6 +35,8 @@ const useStyles = makeStyles(theme => ({
        
    },
    head:{
+       fontFamily: "Nunito",
+       fontWeight: "400",
        color:"#038ed4",
    }
 }));

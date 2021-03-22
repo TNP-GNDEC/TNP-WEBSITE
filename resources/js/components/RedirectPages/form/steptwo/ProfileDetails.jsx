@@ -46,7 +46,7 @@ export default function ProfileDetails(props) {
             type: "text",
             id: 1,
             select: false,
-            shrink: false,
+            shrink: "",
             value: props.Profile.first_name,
             options: [],
             validate: props.Errors.first_name
@@ -192,7 +192,7 @@ export default function ProfileDetails(props) {
                         type={field.type}
                         className={classes.fields}
                         InputLabelProps={{
-                            shrink: field.shrink,
+                            shrink: true,
                         }}
                         InputProps={{
                             classes: {

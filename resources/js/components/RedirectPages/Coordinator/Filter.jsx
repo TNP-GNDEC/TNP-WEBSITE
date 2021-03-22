@@ -635,7 +635,7 @@ export default function BasicToolbarFilteringGrid() {
 
     <>
 
-      <form onSubmit={handleFilterSubmit}> 
+      <form onSubmit={handleFilterSubmit} className="DataFilter"> 
 
         {/* {console.log("prnt data : " , data)} */}
 
@@ -677,7 +677,7 @@ export default function BasicToolbarFilteringGrid() {
         <button type="submit">FILTER</button>
       </form>
 
-      <div style={{ height: 400, width: '100%' }}>
+      <div style={{ height: 400, width: '100%', backgroundColor: '#ffffff' }}>
         {/* {console.log("data : " , data.rows)} */}
         <DataGrid
           {... ready ? filteredData : {rows:[] , columns:[] }}

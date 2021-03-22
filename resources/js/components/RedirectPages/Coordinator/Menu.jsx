@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 //importing  Icons
 import SettingsIcon from '@material-ui/icons/Settings';
+import PersonIcon from '@material-ui/icons/Person';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
@@ -27,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     marginRight: theme.spacing(2),
+  },
+  btn:{
+    '&:focus':{
+      outline: "none"
+    }
   },
   small: {
     width: theme.spacing(3),
@@ -96,6 +102,7 @@ export default function MenuListComposition(props) {
     <div className={classes.root}>
       <div>
         <Button
+          className={classes.btn}
           ref={anchorRef}
           aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
@@ -104,7 +111,7 @@ export default function MenuListComposition(props) {
           <SettingsIcon fontSize='large' className={classes.Icons} />
         </Button>
 
-        <h6 className={classes.heading}>Settings</h6>
+        
         <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
@@ -114,7 +121,7 @@ export default function MenuListComposition(props) {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem onClick={handleClose}> < SettingsIcon   className={classes.menuIcons}  /> Profile</MenuItem>
+                    <MenuItem onClick={handleClose}> < PersonIcon   className={classes.menuIcons}  /> Profile</MenuItem>
                     <MenuItem onClick={handleClose}> < AccountBoxIcon  className={classes.menuIcons}  /> My account</MenuItem>
                     <MenuItem onClick={handleLogout}> <ExitToAppIcon  className={classes.menuIcons}  /> Logout</MenuItem>
                   </MenuList>

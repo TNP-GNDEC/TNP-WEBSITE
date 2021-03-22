@@ -46,8 +46,25 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     width: '100%',
-    backgroundColor: theme.palette.background.paper,
+    
   },
+  tabs: {
+    width: "80%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    borderRadius: "6px",
+    "&:focus":{
+      outline: "none",
+    }
+  },
+  tab:{
+    paddingLeft: "10px"
+  },
+  posts:{
+    width: "80%",
+    marginLeft: "auto",
+    marginRight: "auto"
+  }
 }));
 
 export default function ScrollableTabsButtonAuto() {
@@ -60,8 +77,9 @@ export default function ScrollableTabsButtonAuto() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="default" className={classes.tabs}>
         <Tabs
+          className={classes.tab}
           value={value}
           onChange={handleChange}
           indicatorColor="primary"
@@ -79,7 +97,9 @@ export default function ScrollableTabsButtonAuto() {
         <Create />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Posts />
+        <div className={classes.posts}>
+          <Posts />
+        </div>
       </TabPanel>
       
     </div>

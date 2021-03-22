@@ -18,6 +18,11 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "space-between"
     },
+    title:{
+        fontFamily: "Lato",
+        fontWeight: "400",
+        fontSize: "22px"
+    },
     img: {
         width: "70px",
         height: "auto",
@@ -25,9 +30,10 @@ const useStyles = makeStyles(theme => ({
         marginRight: "40px"
     },
     imgl: {
-        width: "70px",
-        height: "auto",
-        padding: "10px",
+        width: "50px",
+        height: "50px",
+        borderRadius: "50%",
+        marginRight: "10px"
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -92,10 +98,8 @@ export default function MiniDrawer(props) {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Avatar aria-label="logo" className={classes.avatar}>
                             <img className={classes.imgl}  src={Logo} alt="logo" />
-                        </Avatar>
-                        <Typography variant="h6" noWrap>
+                        <Typography variant="h6" noWrap className={classes.title}>
                             Training and Placement Cell
                         </Typography>
                     </Toolbar>

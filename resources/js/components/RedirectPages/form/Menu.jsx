@@ -102,10 +102,9 @@ export default function MenuListComposition(props) {
           aria-haspopup="true"
           onClick={handleToggle}
           style={{ backgroundColor: 'transparent' }} >
-          <PersonIcon fontSize='large' className={classes.Icons} />
+          <SettingsIcon fontSize='large' className={classes.Icons} />
         </Button>
 
-        <h6 className={classes.heading}>Profile</h6>
         <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow

@@ -48,3 +48,7 @@ div.DraftEditor-root {
   cursor: pointer;
   outline: none;
 }
+
+.DataFilter{
+  background-color: #ffffff;
+}

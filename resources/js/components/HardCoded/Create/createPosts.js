@@ -10,8 +10,27 @@ import '../../../../css/app.css';
 import TagsInput from 'react-tagsinput'
 
 const useStyles = theme => ({
-    description:{
-        
+    layout:{
+        width: "80%",
+        marginLeft: "auto",
+        marginRight: "auto",
+        backgroundColor: theme.palette.secondary.main,
+        padding: "20px 20px",
+        borderRadius: "12px"
+    },
+    label:{
+        color: theme.palette.primary.dark,
+        fontWeight: "600"
+    },
+    btn:{
+        border: "none",
+        borderRadius: "16px",
+        textDecoration: "none",
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.secondary.main,
+        padding: "5px 30px",
+        marginTop:"15px",
+        boxShadow: "0px 15px 25px #038ed433",
     }
 });
 
@@ -56,18 +75,18 @@ class CreatePosts extends React.Component {
         const { editorState } = this.state;
         const {classes} = this.props;
         return(
-            <div className="layout">
+            <div className={classes.layout}>
                 <div className="actionDiv">
-                    <div className="Formdiv">
+                    <div className={classes.Formdiv}>
                         <form onSubmit={this.savePost}>
                             <div className="form-group">
-                                <label>Title:</label>
+                                <label className={classes.label}>Title:</label>
                                 <input type="text" name="title" className="form-control highlight" 
                                 value={this.state.title} onChange={this.handleInput}
                                 placeholder="Enter the Title" required/>
                             </div>
                             <div className="form-group">
-                                <label>Type:</label>
+                                <label className={classes.label}>Type:</label>
                                 <select name="type" className="form-control highlight" 
                                 value={this.state.type} onChange={this.handleInput}
                                 required>
@@ -80,7 +99,7 @@ class CreatePosts extends React.Component {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label>Description:</label>
+                                <label className={classes.label}>Description:</label>
                                 <div className={classes.description} >
                                     <Editor
                                         editorState={editorState}
@@ -90,9 +109,10 @@ class CreatePosts extends React.Component {
                                     />
                                 </div>
                             </div>
+                            <label className={classes.label}>Type:</label>
                             <TagsInput value={this.state.tags} onChange={tags => this.handleChange(tags)} />
                             <div className="form-group">
-                                <button type="submit" className="primary">
+                                <button type="submit" className={classes.btn}>
                                     Add Post
                                 </button>
                                 {/* <Button variant="contained" color="primary">
