@@ -14,7 +14,6 @@ import Flag from '@material-ui/icons/Flag';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import logo from "../../../../images/logo.png";
 
-import Data from "../../HomeComponent/PostComponents/ShowData";
 import Navbar from "../../HomeComponent/SideComponents/Navbar";
 import RightBar from "../../HomeComponent/RightBar/RightBar";
 import Scroll from "../../HomeComponent/SideComponents/scroll";

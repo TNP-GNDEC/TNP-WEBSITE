@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 22, 2021 at 02:23 PM
--- Server version: 8.0.23
+-- Generation Time: May 12, 2021 at 05:27 PM
+-- Server version: 10.5.10-MariaDB-1:10.5.10+maria~focal
 -- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `connects` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -50,21 +50,30 @@ INSERT INTO `connects` (`id`, `title`, `link`, `created_at`, `updated_at`) VALUE
 --
 
 CREATE TABLE `diploma` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `urn` bigint UNSIGNED NOT NULL,
-  `crn` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `urn` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `crn` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
   `institution_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `marks_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `year_of_passing` year DEFAULT NULL,
-  `stream` bigint DEFAULT NULL,
+  `branch` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `year_of_passing` year(4) DEFAULT NULL,
+  `pincode` bigint(20) DEFAULT NULL,
   `obtained_marks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `maximum_marks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `diploma`
+--
+
+INSERT INTO `diploma` (`id`, `user_id`, `urn`, `crn`, `institution_name`, `marks_type`, `city`, `state`, `branch`, `year_of_passing`, `pincode`, `obtained_marks`, `maximum_marks`, `file`, `created_at`, `updated_at`) VALUES
+(1, 28, 1805984, 0, 'abc', '2', 'Mandi Gobindgarh', 'Punjab', 'cse', 2020, 147301, '500', '600', 'C:\\Users\\vikal\\Desktop\\my websites\\TNP-WEBSITE\\public\\documents/diploma/1805984_diploma.pdf', '2021-02-18 03:30:13', '2021-03-01 11:01:46');
 
 -- --------------------------------------------------------
 
@@ -73,7 +82,7 @@ CREATE TABLE `diploma` (
 --
 
 CREATE TABLE `downloads` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -97,9 +106,9 @@ INSERT INTO `downloads` (`id`, `title`, `link`, `created_at`, `updated_at`) VALU
 --
 
 CREATE TABLE `explore` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -111,7 +120,7 @@ CREATE TABLE `explore` (
 --
 
 CREATE TABLE `explores` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -138,13 +147,13 @@ INSERT INTO `explores` (`id`, `title`, `link`, `created_at`, `updated_at`) VALUE
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -154,9 +163,9 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `form_statuses` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `form_step` int NOT NULL DEFAULT '0',
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `form_step` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -166,17 +175,17 @@ CREATE TABLE `form_statuses` (
 --
 
 INSERT INTO `form_statuses` (`id`, `user_id`, `form_step`, `created_at`, `updated_at`) VALUES
-(8, 19, 1, '2021-01-22 03:14:31', '2021-01-22 03:14:31'),
-(9, 20, 0, '2021-01-22 03:14:31', '2021-01-22 03:14:31'),
-(10, 21, 0, '2021-01-22 03:14:32', '2021-01-22 03:14:32'),
-(11, 22, 0, '2021-01-22 03:14:32', '2021-01-22 03:14:32'),
-(12, 23, 0, '2021-01-22 03:14:33', '2021-01-22 03:14:33'),
-(13, 24, 0, '2021-01-22 03:14:34', '2021-01-22 03:14:34'),
-(14, 25, 0, '2021-01-22 03:14:34', '2021-01-22 03:14:34'),
-(15, 26, 0, '2021-01-22 03:14:35', '2021-01-22 03:14:35'),
-(16, 27, 0, '2021-01-22 03:14:36', '2021-01-22 03:14:36'),
-(17, 28, 0, '2021-01-22 03:14:36', '2021-01-22 03:14:36'),
-(18, 29, 0, '2021-01-22 03:14:37', '2021-01-22 03:14:37');
+(8, 19, 1, '2021-01-21 21:44:31', '2021-01-21 21:44:31'),
+(9, 20, 0, '2021-01-21 21:44:31', '2021-01-21 21:44:31'),
+(10, 21, 0, '2021-01-21 21:44:32', '2021-01-21 21:44:32'),
+(11, 22, 0, '2021-01-21 21:44:32', '2021-01-21 21:44:32'),
+(12, 23, 0, '2021-01-21 21:44:33', '2021-01-21 21:44:33'),
+(13, 24, 0, '2021-01-21 21:44:34', '2021-01-21 21:44:34'),
+(14, 25, 0, '2021-01-21 21:44:34', '2021-01-21 21:44:34'),
+(15, 26, 0, '2021-01-21 21:44:35', '2021-01-21 21:44:35'),
+(16, 27, 5, '2021-01-21 21:44:36', '2021-01-21 21:44:36'),
+(17, 28, 5, '2021-01-21 21:44:36', '2021-01-21 21:44:36'),
+(18, 29, 0, '2021-01-21 21:44:37', '2021-01-21 21:44:37');
 
 -- --------------------------------------------------------
 
@@ -185,7 +194,7 @@ INSERT INTO `form_statuses` (`id`, `user_id`, `form_step`, `created_at`, `update
 --
 
 CREATE TABLE `links` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -210,20 +219,20 @@ INSERT INTO `links` (`id`, `title`, `link`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `matriculation` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `urn` bigint UNSIGNED NOT NULL,
-  `crn` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `urn` bigint(20) UNSIGNED NOT NULL,
+  `crn` bigint(20) UNSIGNED NOT NULL,
   `institution_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `marks_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `obtained_marks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `maximum_marks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `year_of_passing` year DEFAULT NULL,
+  `year_of_passing` year(4) DEFAULT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `board` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pincode` bigint DEFAULT NULL,
+  `pincode` bigint(20) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -233,17 +242,17 @@ CREATE TABLE `matriculation` (
 --
 
 INSERT INTO `matriculation` (`id`, `user_id`, `urn`, `crn`, `institution_name`, `marks_type`, `obtained_marks`, `maximum_marks`, `file`, `year_of_passing`, `city`, `board`, `state`, `pincode`, `created_at`, `updated_at`) VALUES
-(1, 19, 1805975, 1815375, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:31', '2021-01-22 03:14:31'),
-(2, 20, 1805976, 1815376, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:32', '2021-01-22 03:14:32'),
-(3, 21, 1805977, 1815377, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:32', '2021-01-22 03:14:32'),
-(4, 22, 1805978, 1815378, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:33', '2021-01-22 03:14:33'),
-(5, 23, 1805979, 1815379, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:33', '2021-01-22 03:14:33'),
-(6, 24, 1805980, 1815380, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:34', '2021-01-22 03:14:34'),
-(7, 25, 1805981, 1815381, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:35', '2021-01-22 03:14:35'),
-(8, 26, 1805982, 1815382, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:35', '2021-01-22 03:14:35'),
-(9, 27, 1805983, 1815383, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:36', '2021-01-22 03:14:36'),
-(10, 28, 1805984, 1815384, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:36', '2021-01-22 03:14:36'),
-(11, 29, 1805985, 1815385, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:37', '2021-01-22 03:14:37');
+(1, 19, 1805975, 1815375, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:31', '2021-01-21 21:44:31'),
+(2, 20, 1805976, 1815376, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:32', '2021-01-21 21:44:32'),
+(3, 21, 1805977, 1815377, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:32', '2021-01-21 21:44:32'),
+(4, 22, 1805978, 1815378, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:33', '2021-01-21 21:44:33'),
+(5, 23, 1805979, 1815379, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:33', '2021-01-21 21:44:33'),
+(6, 24, 1805980, 1815380, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:34', '2021-01-21 21:44:34'),
+(7, 25, 1805981, 1815381, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:35', '2021-01-21 21:44:35'),
+(8, 26, 1805982, 1815382, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:35', '2021-01-21 21:44:35'),
+(9, 27, 1805983, 1815383, 'abc', '1', '9.4', '10', 'C:\\Users\\vikal\\Desktop\\my websites\\TNP-WEBSITE\\public\\documents/matriculation/1805983_matriculation.pdf', 2020, 'Mandi Gobindgarh', '1', 'Punjab', 147301, '2021-01-21 21:44:36', '2021-01-21 21:44:36'),
+(10, 28, 1805984, 1815384, 'abc', '1', '9.7', '10', 'C:\\Users\\vikal\\Desktop\\my websites\\TNP-WEBSITE\\public\\documents/matriculation/1805984_matriculation.pdf', 2020, 'Mandi Gobindgarh', 'CSBE', 'Punjab', 147301, '2021-01-21 21:44:36', '2021-01-21 21:44:36'),
+(11, 29, 1805985, 1815385, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:37', '2021-01-21 21:44:37');
 
 -- --------------------------------------------------------
 
@@ -252,9 +261,9 @@ INSERT INTO `matriculation` (`id`, `user_id`, `urn`, `crn`, `institution_name`, 
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -262,20 +271,23 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_100000_create_password_resets_table', 1),
-(2, '2019_08_19_000000_create_failed_jobs_table', 1),
-(3, '2020_12_18_072656_create_posts_table', 1),
-(4, '2020_12_19_072932_create_downloads_table', 1),
-(5, '2020_12_19_073007_create_links_table', 1),
-(6, '2020_12_19_081226_create_connects_table', 1),
-(7, '2020_12_19_093210_create_explores_table', 1),
-(8, '2020_12_29_172641_create_roles_table', 1),
-(9, '2020_12_29_175117_create_users_table', 1),
-(10, '2020_12_30_033827_create_form_statuses_table', 1),
-(31, '2021_01_18_173325_create_step_three_table', 5),
-(32, '2021_01_10_175629_create_step_two_table', 6),
-(33, '2021_01_21_184753_create_twelfth_table', 7),
-(34, '2021_01_21_192732_create_diploma_table', 8);
+(1, '2019_08_19_000000_create_failed_jobs_table', 1),
+(2, '2020_12_19_072932_create_downloads_table', 1),
+(3, '2020_12_19_073007_create_links_table', 1),
+(4, '2020_12_19_081226_create_connects_table', 1),
+(5, '2020_12_19_093210_create_explores_table', 1),
+(6, '2020_12_29_172641_create_roles_table', 1),
+(7, '2020_12_29_175117_create_users_table', 1),
+(8, '2020_12_30_033827_create_form_statuses_table', 1),
+(9, '2021_01_18_173325_create_step_three_table', 1),
+(10, '2021_01_21_184753_create_twelfth_table', 1),
+(11, '2021_01_21_192732_create_diploma_table', 1),
+(12, '2021_02_01_092902_create_posts_table', 1),
+(13, '2021_02_04_092720_create_password_resets_table', 1),
+(14, '2021_02_06_064328_create_step_two_table', 1),
+(15, '2021_02_10_082332_create_twelfth_diploma_category_table', 1),
+(16, '2021_02_10_104611_create_pg_category_table', 1),
+(17, '2021_02_17_103136_create_ug_table', 1);
 
 -- --------------------------------------------------------
 
@@ -284,9 +296,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -295,27 +309,27 @@ CREATE TABLE `password_resets` (
 -- Table structure for table `personalDetails`
 --
 
-CREATE TABLE `personaldetails` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `urn` bigint UNSIGNED NOT NULL,
-  `crn` bigint UNSIGNED NOT NULL,
-  `pincode` bigint DEFAULT NULL,
+CREATE TABLE `personalDetails` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `urn` bigint(20) UNSIGNED NOT NULL,
+  `crn` bigint(20) UNSIGNED NOT NULL,
+  `pincode` bigint(20) DEFAULT NULL,
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `height` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `weight` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `height` int(11) DEFAULT NULL,
+  `weight` int(11) DEFAULT NULL,
   `gender` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile` bigint DEFAULT NULL,
-  `whatsapp` bigint DEFAULT NULL,
+  `mobile` bigint(20) DEFAULT NULL,
+  `whatsapp` bigint(20) DEFAULT NULL,
   `father_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `father_mobile` bigint DEFAULT NULL,
+  `father_mobile` bigint(20) DEFAULT NULL,
   `mother_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mother_mobile` bigint DEFAULT NULL,
+  `mother_mobile` bigint(20) DEFAULT NULL,
   `stream` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `blood_group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `branch_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -327,7 +341,7 @@ CREATE TABLE `personaldetails` (
   `farming_background` tinyint(1) DEFAULT NULL,
   `hostler` tinyint(1) DEFAULT NULL,
   `disability` tinyint(1) DEFAULT NULL,
-  `aadhar` bigint DEFAULT NULL,
+  `aadhar` bigint(20) DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -337,18 +351,33 @@ CREATE TABLE `personaldetails` (
 -- Dumping data for table `personalDetails`
 --
 
-INSERT INTO `personaldetails` (`id`, `user_id`, `urn`, `crn`, `pincode`, `first_name`, `last_name`, `height`, `weight`, `gender`, `address`, `city`, `state`, `district`, `mobile`, `whatsapp`, `father_name`, `father_mobile`, `mother_name`, `mother_mobile`, `stream`, `blood_group`, `branch_type`, `category`, `marital_status`, `training_sem`, `shift`, `leet`, `farming_background`, `hostler`, `disability`, `aadhar`, `dob`, `created_at`, `updated_at`) VALUES
-(1, 19, 1805975, 1815375, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:31', '2021-01-22 03:14:31'),
-(2, 20, 1805976, 1815376, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:31', '2021-01-22 03:14:31'),
-(3, 21, 1805977, 1815377, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:32', '2021-01-22 03:14:32'),
-(4, 22, 1805978, 1815378, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:33', '2021-01-22 03:14:33'),
-(5, 23, 1805979, 1815379, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:33', '2021-01-22 03:14:33'),
-(6, 24, 1805980, 1815380, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:34', '2021-01-22 03:14:34'),
-(7, 25, 1805981, 1815381, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:35', '2021-01-22 03:14:35'),
-(8, 26, 1805982, 1815382, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:35', '2021-01-22 03:14:35'),
-(9, 27, 1805983, 1815383, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:36', '2021-01-22 03:14:36'),
-(10, 28, 1805984, 1815384, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:36', '2021-01-22 03:14:36'),
-(11, 29, 1805985, 1815385, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-22 03:14:37', '2021-01-22 03:14:37');
+INSERT INTO `personalDetails` (`id`, `user_id`, `urn`, `crn`, `pincode`, `first_name`, `last_name`, `height`, `weight`, `gender`, `address`, `city`, `state`, `district`, `mobile`, `whatsapp`, `father_name`, `father_mobile`, `mother_name`, `mother_mobile`, `stream`, `blood_group`, `branch_type`, `category`, `marital_status`, `training_sem`, `shift`, `leet`, `farming_background`, `hostler`, `disability`, `aadhar`, `dob`, `created_at`, `updated_at`) VALUES
+(1, 19, 1805975, 1815375, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:31', '2021-01-21 21:44:31'),
+(2, 20, 1805976, 1815376, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:31', '2021-01-21 21:44:31'),
+(3, 21, 1805977, 1815377, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:32', '2021-01-21 21:44:32'),
+(4, 22, 1805978, 1815378, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:33', '2021-01-21 21:44:33'),
+(5, 23, 1805979, 1815379, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:33', '2021-01-21 21:44:33'),
+(6, 24, 1805980, 1815380, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:34', '2021-01-21 21:44:34'),
+(7, 25, 1805981, 1815381, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:35', '2021-01-21 21:44:35'),
+(8, 26, 1805982, 1815382, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:35', '2021-01-21 21:44:35'),
+(9, 27, 1805983, 1815383, 147301, 'Vikalp', 'kaushik', 123, 28, 'male', 'House No 37 Street No 1 Sector 4 A Gurunanak Colony', 'Ludhiana', 'Punjab', 'Delhi', 8146976548, 8146976548, 'Vikalp Kaushik', 8146976548, 'vikalp kaushik', 8146976548, 'it', 'B+', '28', 'M.Tech', 'married', '7', 'morning', 0, 0, 0, 0, 814697654812, '2021-02-01', '2021-01-21 21:44:36', '2021-01-21 21:44:36'),
+(10, 28, 1805984, 1815384, 147301, 'Vikalp', 'kaushik', 123, 56, 'Male', 'House No 37 Street No 1 Sector 4 A Gurunanak Colony', 'Ludhiana', 'Punjab', 'Delhi', 8146976548, 8146976548, 'Vikalp Kaushik', 8146976548, 'vikalp kaushik', 8146976548, 'CSE', 'A+', 'b1', 'M.Tech', 'Unmarried', '7', 'Morning', 0, 1, 0, 0, 123456789012, '2000-11-11', '2021-01-21 21:44:36', '2021-01-21 21:44:36'),
+(11, 29, 1805985, 1815385, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:37', '2021-01-21 21:44:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pg_category`
+--
+
+CREATE TABLE `pg_category` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `urn` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -357,9 +386,10 @@ INSERT INTO `personaldetails` (`id`, `user_id`, `urn`, `crn`, `pincode`, `first_
 --
 
 CREATE TABLE `posts` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -369,16 +399,16 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `type`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'post timymce', 'Selection', '<p>gyhjak<a href=\"http://localhost/phpmyadmin/sql.php?server=1&amp;db=tnp&amp;table=step_two&amp;pos=0\">http://localhost/phpmyadmin/sql.php?server=1&amp;db=tnp&amp;table=step_two&amp;pos=0</a></p>', '2021-01-19 06:54:34', '2021-01-19 06:54:34'),
-(2, 'sudhj', 'Selection', '<p>hjnd<a href=\"https://drive.google.com/file/d/1FBxckAGAoNgNLSe6bM70a2iochDSooe3/view?usp=sharing\">https://drive.google.com/file/d/1FBxckAGAoNgNLSe6bM70a2iochDSooe3/view?usp=sharing</a></p>', '2021-01-19 06:59:28', '2021-01-19 06:59:28'),
-(6, 'App developers for android and ios', 'Placement', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:07:36', '2020-12-18 04:08:55'),
-(7, 'TechBar', 'Internship', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:09:39', '2020-12-18 04:09:39'),
-(8, 'CHIKMIC - Placement drive', 'Placement', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:10:35', '2020-12-18 04:10:35'),
-(9, 'Ralson Tyres Pro', 'Internship', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:11:23', '2020-12-18 04:11:23'),
-(10, 'registrations for happy ltd', 'Placement', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:12:04', '2020-12-18 04:12:04'),
-(11, 'Accenture drive - 2019/2020 batch', 'Training', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:13:11', '2020-12-18 04:13:11'),
-(12, 'interviews for infosys', 'Announcement', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:14:11', '2020-12-18 04:14:11');
+INSERT INTO `posts` (`id`, `title`, `type`, `tags`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'post timymce', 'Selection', '', '', '2021-01-19 06:54:34', '2021-01-19 06:54:34'),
+(2, 'sudhj', 'Selection', '', '', '2021-01-19 06:59:28', '2021-01-19 06:59:28'),
+(6, 'App developers for android and ios', 'Placement', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:07:36', '2020-12-18 04:08:55'),
+(7, 'TechBar', 'Internship', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:09:39', '2020-12-18 04:09:39'),
+(8, 'CHIKMIC - Placement drive', 'Placement', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:10:35', '2020-12-18 04:10:35'),
+(9, 'Ralson Tyres Pro', 'Internship', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:11:23', '2020-12-18 04:11:23'),
+(10, 'registrations for happy ltd', 'Placement', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:12:04', '2020-12-18 04:12:04'),
+(11, 'Accenture drive - 2019/2020 batch', 'Training', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:13:11', '2020-12-18 04:13:11'),
+(12, 'interviews for infosys', 'Announcement', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2020-12-18 04:14:11', '2020-12-18 04:14:11');
 
 -- --------------------------------------------------------
 
@@ -387,7 +417,7 @@ INSERT INTO `posts` (`id`, `title`, `type`, `description`, `created_at`, `update
 --
 
 CREATE TABLE `roles` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -408,22 +438,87 @@ INSERT INTO `roles` (`id`, `description`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `twelfth` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `urn` bigint UNSIGNED NOT NULL,
-  `crn` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `urn` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `crn` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
   `institution_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `jee_rank` bigint DEFAULT NULL,
+  `jee_rank` bigint(20) DEFAULT NULL,
+  `marks_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `obtained_marks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `board` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `maximum_marks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `year_of_passing` year DEFAULT NULL,
+  `pincode` bigint(20) DEFAULT NULL,
+  `year_of_passing` year(4) DEFAULT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `twelfth`
+--
+
+INSERT INTO `twelfth` (`id`, `user_id`, `urn`, `crn`, `institution_name`, `jee_rank`, `marks_type`, `obtained_marks`, `board`, `maximum_marks`, `file`, `pincode`, `year_of_passing`, `city`, `state`, `created_at`, `updated_at`) VALUES
+(1, 28, 1805984, 0, 'abc', 1234, '2', '500', '1', '600', 'C:\\Users\\vikal\\Desktop\\my websites\\TNP-WEBSITE\\public\\documents/twelfth/1805984_twelfth.pdf', 147301, 2020, '1805984', 'Punjab', '2021-02-18 03:30:12', '2021-03-01 11:01:43'),
+(2, 27, 1805983, 0, 'abc', 4567, '2', '500', '2', '600', 'C:\\Users\\vikal\\Desktop\\my websites\\TNP-WEBSITE\\public\\documents/twelfth/1805983_twelfth.pdf', 147301, 2022, '1805983', 'Punjab', '2021-02-28 02:20:54', '2021-02-28 02:20:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `twelfth_diploma_category`
+--
+
+CREATE TABLE `twelfth_diploma_category` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `urn` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `twelfth_diploma_category`
+--
+
+INSERT INTO `twelfth_diploma_category` (`id`, `user_id`, `urn`, `category`, `created_at`, `updated_at`) VALUES
+(1, 28, 1805984, 'both', '2021-02-18 03:30:11', '2021-02-18 03:30:11'),
+(2, 27, 1805983, 'XII', '2021-02-28 02:20:53', '2021-02-28 02:20:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ug`
+--
+
+CREATE TABLE `ug` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `urn` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `institution_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `marks_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `obtained_marks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `maximum_marks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pincode` bigint(20) DEFAULT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `branch` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `year_of_passing` year(4) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ug`
+--
+
+INSERT INTO `ug` (`id`, `user_id`, `urn`, `institution_name`, `marks_type`, `obtained_marks`, `maximum_marks`, `city`, `state`, `pincode`, `file`, `branch`, `year_of_passing`, `created_at`, `updated_at`) VALUES
+(1, 28, 1805984, 'abc', '2', '500', '600', 'Mandi Gobindgarh', 'Punjab', 147301, 'C:\\Users\\vikal\\Desktop\\my websites\\TNP-WEBSITE\\public\\documents/ug/1805984_ug.pdf', 'cse', 2020, '2021-02-18 03:30:55', '2021-03-01 11:12:51'),
+(2, 27, 1805983, 'abc', '2', '500', '600', 'Mandi Gobindgarh', 'Punjab', 147301, 'C:\\Users\\vikal\\Desktop\\my websites\\TNP-WEBSITE\\public\\documents/ug/1805983_ug.pdf', 'ONE', 2000, '2021-02-28 02:26:54', '2021-02-28 02:26:54');
 
 -- --------------------------------------------------------
 
@@ -432,14 +527,14 @@ CREATE TABLE `twelfth` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_id` bigint UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -477,8 +572,7 @@ ALTER TABLE `connects`
 --
 ALTER TABLE `diploma`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `diploma_urn_unique` (`urn`),
-  ADD KEY `diploma_user_id_foreign` (`user_id`);
+  ADD UNIQUE KEY `diploma_urn_unique` (`urn`);
 
 --
 -- Indexes for table `downloads`
@@ -536,6 +630,7 @@ ALTER TABLE `migrations`
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `password_resets_email_index` (`email`);
 
 --
@@ -545,6 +640,13 @@ ALTER TABLE `personalDetails`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personaldetails_urn_unique` (`urn`),
   ADD KEY `personaldetails_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `pg_category`
+--
+ALTER TABLE `pg_category`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pg_category_urn_unique` (`urn`);
 
 --
 -- Indexes for table `posts`
@@ -563,8 +665,21 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `twelfth`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `twelfth_urn_unique` (`urn`),
-  ADD KEY `twelfth_user_id_foreign` (`user_id`);
+  ADD UNIQUE KEY `twelfth_urn_unique` (`urn`);
+
+--
+-- Indexes for table `twelfth_diploma_category`
+--
+ALTER TABLE `twelfth_diploma_category`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `twelfth_diploma_category_urn_unique` (`urn`);
+
+--
+-- Indexes for table `ug`
+--
+ALTER TABLE `ug`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ug_urn_unique` (`urn`);
 
 --
 -- Indexes for table `users`
@@ -582,101 +697,113 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `connects`
 --
 ALTER TABLE `connects`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `diploma`
 --
 ALTER TABLE `diploma`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `downloads`
 --
 ALTER TABLE `downloads`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `explore`
---
-ALTER TABLE `explore`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `explores`
 --
 ALTER TABLE `explores`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `form_statuses`
 --
 ALTER TABLE `form_statuses`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `links`
 --
 ALTER TABLE `links`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `matriculation`
 --
 ALTER TABLE `matriculation`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personalDetails`
 --
 ALTER TABLE `personalDetails`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `pg_category`
+--
+ALTER TABLE `pg_category`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `twelfth`
 --
 ALTER TABLE `twelfth`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `twelfth_diploma_category`
+--
+ALTER TABLE `twelfth_diploma_category`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `ug`
+--
+ALTER TABLE `ug`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `diploma`
---
-ALTER TABLE `diploma`
-  ADD CONSTRAINT `diploma_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `form_statuses`
@@ -695,12 +822,6 @@ ALTER TABLE `matriculation`
 --
 ALTER TABLE `personalDetails`
   ADD CONSTRAINT `personaldetails_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `twelfth`
---
-ALTER TABLE `twelfth`
-  ADD CONSTRAINT `twelfth_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`
