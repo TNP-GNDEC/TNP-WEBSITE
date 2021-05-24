@@ -105,7 +105,7 @@ const [errors, setErrors] = useState({});
 
 const validate = () => {
   let temp = {}
-  temp.email = state.email ? "": "This field is required."
+  temp.email = state.email ? "": "Required."
   setErrors({
     ...temp
   })

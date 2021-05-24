@@ -402,7 +402,7 @@ export default function finalStep(props) {
                     </b>
                     <b>
                         <p className={classes.para}>
-                            Please Check all the information carefully, You cannot change it after Finish
+                            Kindly verify that the information you filled is best of your knowledge. Once submitted, it can't be changed.
                         </p>
                     </b>
                     </div>
