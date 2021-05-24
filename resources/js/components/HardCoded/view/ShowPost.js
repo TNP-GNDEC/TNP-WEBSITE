@@ -249,7 +249,7 @@ export default function ShowPost() {
                               <div className={classes.subheader}>
                                   <Typography variant="h5" component="h2" className={classes.subheading}>
                                       <Calender className={classes.icon}/>
-                                      {moment(data.posts.updated_at).format('LLL')}
+                                      {moment.utc(data.posts.updated_at).format('LLL')}
                                   </Typography>
                                   <Typography variant="h5" component="h2" className={classes.subheading}>
                                       <Flag className={classes.icon}/>
