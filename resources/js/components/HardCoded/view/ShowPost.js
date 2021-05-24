@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-import Data from "../../HomeComponent/PostComponents/ShowData";
 import Navbar from "../../HomeComponent/SideComponents/Navbar";
 import RightBar from "../../HomeComponent/RightBar/RightBar";
 import Scroll from "../../HomeComponent/SideComponents/scroll";
@@ -78,7 +77,62 @@ export default function ShowPost() {
         <Grid container spacing={3}>
           <Grid item md={9} className={classes.center}>
             <Paper className={classes.paper}>
-              <Data data = {data.posts} key={data.posts.id} />
+              <Card className={classes.card}>
+                      <div className={classes.header}>
+                          <div>
+                              <img src={logo} className={classes.image}/>
+                          </div>
+                          <div className={classes.header2}>
+                              <Typography variant="h4" component="h1" className={classes.title}>
+                                  {data.posts.title}
+                              </Typography>
+                              <div className={classes.subheader}>
+                                  <Typography variant="h5" component="h2" className={classes.subheading}>
+                                      <Calender className={classes.icon}/>
+                                      {moment.utc(data.posts.updated_at).format('LLL')}
+                                  </Typography>
+                                  <Typography variant="h5" component="h2" className={classes.subheading}>
+                                      <Flag className={classes.icon}/>
+                                      {data.posts.type} 
+                                  </Typography>
+                              </div>
+                          </div>
+                      </div>
+                      <hr />
+                      <div >
+                          <Typography variant="h5" component="h2" className={classes.subheading2}>
+                              { ReactHtmlParser(data.posts.description) }
+                          </Typography>
+                      </div>
+                      <hr />
+                      <div className={classes.body2}>
+                          <div className={classes.socialIcons}>
+                              <div className={classes.socialIcon}>
+                                <a classes={classes.iconLinks} href="#"> <Facebook fontSize="medium" /> </a>
+                              </div>
+                              <div className={classes.socialIcon2}>
+                                <a classes={classes.iconLinks} href="#"> <Linkedin fontSize="medium" /> </a>
+                              </div>
+                              <div className={classes.socialIcon3}>
+                              <a classes={classes.iconLinks} href="#">  <Twitter fontSize="medium" /> </a>
+                              </div>
+                          </div>
+                          <div className={classes.Tags}>
+                              <LocalOffer />
+                              <Typography variant="h5" component="h1" className={classes.subheading3}>
+                              {tagArray.map((tag,i) => {
+                                      if(tagArray.length-1 === i){
+                                          return tag;
+                                      }
+                                      else{
+                                          return tag + ", ";
+                                      }
+                                  })}
+                              </Typography>
+                          </div>
+                      </div>
+              
+              </Card>
             </Paper>
           </Grid>
           <Grid item md={3} className={classes.right} display={{ xs: 'none', md: 'block' }}>
