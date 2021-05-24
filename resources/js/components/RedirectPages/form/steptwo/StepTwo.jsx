@@ -561,7 +561,7 @@ export default function StepTwo(props) {
                 </Grid>
                 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} className={classes.toast}>
                     <Alert onClose={handleClose} severity="error">
-                    Oops !! Error Occurs, Check it...
+                    Please rectify the errors, before submitting
                     </Alert>
                 </Snackbar>
                 <div className={classes.btnBox}>

@@ -368,7 +368,7 @@ export default function DiplomaDetails(props) {
                         label="PERCENTAGE"
                         type="text"
                         id="10"
-                        name="precentage"
+                        name="percentage"
                         value={((parseFloat(props.diploma.obtained_marks) / parseFloat(props.diploma.maximum_marks)) * 100).toFixed(2) }
                         variant="outlined"
                         disabled={true}

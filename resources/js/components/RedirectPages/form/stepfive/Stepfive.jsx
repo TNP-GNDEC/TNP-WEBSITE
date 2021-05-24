@@ -184,7 +184,7 @@ export default function StepFive(props) {
         temp.obtained_marks = degree.obtained_marks ? "": "Required."
         temp.pincode = (/^[0-9]{6}$/).test(degree.pincode) ? "": "Required and must be exactly 6 digits."
         temp.maximum_marks = (/^[0-9]{1,3}$/).test(degree.maximum_marks) ? "": "Marks must be inclusive of [0-999]."
-        temp.obtained_marks = degree.obtained_marks<=degree.maximum_marks ? "": "Obtained marks must be atmost equal to maximum marks."
+        temp.obtained_marks = degree.obtained_marks<=degree.maximum_marks ? "": "Obtained marks can be atmost equal to maximum marks."
         if(degree.marks_type == "1"){
             temp.obtained_marks = parseFloat(degree.obtained_marks)>=0   && parseFloat(degree.obtained_marks)<=10  ? "" : "CGPA must be inclusive of [0-10]"
             temp.maximum_marks = parseFloat(degree.maximum_marks) == "10"?"":"Maximum percentage can be 100"
