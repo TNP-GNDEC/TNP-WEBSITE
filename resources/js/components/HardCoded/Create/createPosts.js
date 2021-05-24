@@ -109,7 +109,7 @@ class CreatePosts extends React.Component {
                                     />
                                 </div>
                             </div>
-                            <label className={classes.label}>Tags:</label>
+                            <label className={classes.label}>Type:</label>
                             <TagsInput value={this.state.tags} onChange={tags => this.handleChange(tags)} />
                             <div className="form-group">
                                 <button type="submit" className={classes.btn}>
