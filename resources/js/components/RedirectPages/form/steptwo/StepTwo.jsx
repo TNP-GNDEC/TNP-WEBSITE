@@ -153,10 +153,14 @@ export default function StepTwo(props) {
         temp.hostler = academics.hostler ==0 || academics.hostler == 1 ? "": "Required."
         temp.training_sem = academics.training_sem ? "": "Required."
 
-        temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "": "Phone no. can contain only digits [0-9]."
-        temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "": "Phone no. can contain only digits [0-9]."
-        temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "": "Phone no. can contain only digits [0-9]."
-
+        temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "": "Invalid Phone"
+        temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "": "Invalid Phone"
+        temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "": "Invalid Phone"
+        
+        if (!temp.re_enter_contact) {
+            temp.re_enter_contact = contact.re_enter_contact != contact.contact ? "Mobile Number not matched" : ""
+        }
+        
         temp.street = address.address ? "": "Required."
         temp.city = (/^[a-zA-Z\s]*$/).test(address.city) && address.city? "": "Required."
         temp.pincode2 = (/^[0-9]{6}$/).test(address.pincode) ? "": "Required and must be exactly 6 digits."
