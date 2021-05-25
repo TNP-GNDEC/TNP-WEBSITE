@@ -193,7 +193,7 @@ export default function StepFour(props) {
         temp.maximum_marks = (/^[0-9]{2,3}$/).test(twelfth.maximum_marks) ? "": "This field is required and must be max 3 digits long."
         if(twelfth.marks_type == "1"){
             temp.obtained_marks = parseFloat(twelfth.obtained_marks)>=0   && parseFloat(twelfth.obtained_marks)<=10  ? "" : "Enter a valid cgpa Value (hint: between 0 to 10)"
-            temp.maximum_marks = parseFloat(twelfth.maximum_marks) == "10"?"":"Maximum precentage should be 100 only "
+            temp.maximum_marks = parseFloat(twelfth.maximum_marks) == "10"?"":"Maximum percentage should be 100 only "
 
         }else{
 
@@ -220,7 +220,7 @@ export default function StepFour(props) {
 
         if(diploma.marks_type == "1"){
             temp.obtained_marks = parseFloat(diploma.obtained_marks)>=0   && parseFloat(diploma.obtained_marks)<=10  ? "" : "Enter a valid cgpa Value (hint: between 0 to 10)"
-            temp.maximum_marks = parseFloat(diploma.maximum_marks) == "10"?"":"Maximum precentage should be 100 only "
+            temp.maximum_marks = parseFloat(diploma.maximum_marks) == "10"?"":"Maximum percentage can be 100."
 
         }else{
 
@@ -435,7 +435,7 @@ useEffect(()=>{
                 <hr />
                 <Alert severity="info" className={classes.alert}>
                             Note : Upload <CloudUploadIcon/> Scanned copies of your
-                                    twelfth certificates.(PDF Only less than 1MB)<strong>(If you editing this form then you have to upload file again)</strong>
+                                    twelfth certificates in PDF format with size less than 1 MB<strong>(If you editing this form then you have to upload file again)</strong>
                             </Alert>
                 <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
                 <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" required /> 

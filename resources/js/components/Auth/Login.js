@@ -131,8 +131,8 @@ const SignIn= () => {
 
 const validate = () => {
   let temp = {}
-  temp.username = state.username ? "": "This field is required."
-  temp.password = state.password.length>5 ? "": "Min 6 char required."
+  temp.username = state.username ? "": "Required."
+  temp.password = state.password.length>5 ? "": "Password must be atleast 6 characters long."
   setErrors({
     ...temp
   })

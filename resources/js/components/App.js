@@ -61,7 +61,7 @@ function App(){
                     <PrivateRoute path="/student" exact component={studentredirect} />
 
                     {/*Redirect Routes*/}
-                    <Route path="/email" exact component={Email} />
+                    <PrivateRoute path="/email" exact component={Email} />
 
                     {/* Reset Password */}
                     <Route path="/forgetPassword" exact component={ForgetPass} />

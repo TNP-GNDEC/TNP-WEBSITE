@@ -70,7 +70,7 @@ export default function matriculationDetails(props) {
         },
         {
             value: "2",
-            label: "PRECENTAGE"
+            label: "PERCENTAGE"
         }
 
     ];
@@ -463,7 +463,7 @@ export default function matriculationDetails(props) {
                         label="PERCENTAGE"
                         type="text"
                         id="10"
-                        name="precentage"
+                        name="percentage"
                         value={((parseFloat(props.matriculation.obtained_marks) / parseFloat(props.matriculation.maximum_marks)) * 100).toFixed(2) }
                         variant="outlined"
                         disabled={true}

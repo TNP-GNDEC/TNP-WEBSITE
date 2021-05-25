@@ -78,6 +78,8 @@ Route::resource('/addExploreItems', "ExploreController");
 Route::resource('/addDownloadsItems', "DownloadsController");
 Route::resource('/addLinksItems', "LinksController");
 
+Route::post('getposts', 'postController@getposts');
+
 Route::post('/forget-password', 'ForgotPasswordController@postEmail');
 
 Route::get('/resetPassword/{token}', function () {

@@ -12,9 +12,16 @@ class postController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function getposts(Request $request)
+    {
+        $page = $request->page;
+        $posts = Post::orderBy('updated_at', 'DESC')->skip(0)->take($page)->get();
+        return response() -> json(['status' => 200,'page'=>$page, 'posts' => $posts]);
+    }
+
     public function index()
     {
-        $posts = Post::orderBy('updated_at', 'DESC')->get();
+        $posts = Post::orderBy('updated_at', 'DESC')->limit(6)->get();
         return response() -> json(['status' => 200, 'posts' => $posts]);
     }
 

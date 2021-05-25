@@ -173,7 +173,7 @@ export default function StepThree(props) {
         
         if(matriculation.marks_type == "1"){
             temp.obtained_marks = parseFloat(matriculation.obtained_marks)>=0   && parseFloat(matriculation.obtained_marks)<=10  ? "" : "Enter a valid cgpa Value (hint: between 0 to 10)"
-            temp.maximum_marks = parseFloat(matriculation.maximum_marks) == "10"?"":"Maximum precentage should be 100 only "
+            temp.maximum_marks = parseFloat(matriculation.maximum_marks) == "10"?"":"Maximum percentage should be 100. "
 
         }else{
 

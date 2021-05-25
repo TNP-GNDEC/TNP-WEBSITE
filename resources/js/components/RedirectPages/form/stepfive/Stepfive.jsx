@@ -175,19 +175,19 @@ export default function StepFive(props) {
 
     const validate = () => {
         let temp = {}
-        temp.branch = degree.branch ? "": "This field is required"
-        temp.institution_name = (/^[a-zA-Z\s]*$/).test(degree.institution_name) && degree.institution_name? "": "This field is required and must contain only char."
-        temp.year_of_passing = (/^[0-9]{4}$/).test(degree.year_of_passing) ? "": "This field is required and be in yyyy format."
+        temp.branch = degree.branch ? "": "Required"
+        temp.institution_name = (/^[a-zA-Z\s]*$/).test(degree.institution_name) && degree.institution_name? "": "Required and can only have letters [A-Z] and/or [a-z]"
+        temp.year_of_passing = (/^[0-9]{4}$/).test(degree.year_of_passing) ? "": "Required and the acceptable format is yyyy."
         temp.marks_type = degree.marks_type ? "": "This field is required."
-        temp.state = (/^[a-zA-Z\s]*$/).test(degree.state) && degree.state? "": "This field is required and must contain only char."
-        temp.city = (/^[a-zA-Z\s]*$/).test(degree.city) && degree.city? "": "This field is required and must contain only char."
-        temp.obtained_marks = degree.obtained_marks ? "": "This field is required."
-        temp.pincode = (/^[0-9]{6}$/).test(degree.pincode) ? "": "This field is required and must be exactly 6 digits."
-        temp.maximum_marks = (/^[0-9]{1,3}$/).test(degree.maximum_marks) ? "": "This field is required and must be max 3 digits."
-        temp.obtained_marks = degree.obtained_marks<=degree.maximum_marks ? "": "marks obtained can't be greater than maximum marks."
+        temp.state = (/^[a-zA-Z\s]*$/).test(degree.state) && degree.state? "": "Required and can only have letters [A-Z] and/or [a-z] "
+        temp.city = (/^[a-zA-Z\s]*$/).test(degree.city) && degree.city? "": "Required and can only have letters [A-Z] and/or [a-z]."
+        temp.obtained_marks = degree.obtained_marks ? "": "Required."
+        temp.pincode = (/^[0-9]{6}$/).test(degree.pincode) ? "": "Required and must be exactly 6 digits."
+        temp.maximum_marks = (/^[0-9]{1,3}$/).test(degree.maximum_marks) ? "": "Marks must be inclusive of [0-999]."
+        temp.obtained_marks = degree.obtained_marks<=degree.maximum_marks ? "": "Obtained marks can be atmost equal to maximum marks."
         if(degree.marks_type == "1"){
-            temp.obtained_marks = parseFloat(degree.obtained_marks)>=0   && parseFloat(degree.obtained_marks)<=10  ? "" : "Enter a valid cgpa Value (hint: between 0 to 10)"
-            temp.maximum_marks = parseFloat(degree.maximum_marks) == "10"?"":"Maximum precentage should be 100 only "
+            temp.obtained_marks = parseFloat(degree.obtained_marks)>=0   && parseFloat(degree.obtained_marks)<=10  ? "" : "CGPA must be inclusive of [0-10]"
+            temp.maximum_marks = parseFloat(degree.maximum_marks) == "10"?"":"Maximum percentage can be 100"
 
         }else{
 
@@ -298,7 +298,7 @@ export default function StepFive(props) {
                             </Alert>
                 <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
                 <input className={classes.fileupload} accept= "application/pdf" id="degreefile" type="file" required /> 
-                <div className={classes.fileShow}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}</p>}</div>
+                <div className={classes.fileShow}>{file === "" ? <p></p> : <p><strong>The recently uploaded file(renamed):</strong> {file}</p>}</div>
             </Card>
 
         </Grid> 

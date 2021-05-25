@@ -348,7 +348,7 @@ export default function degreeDetails(props) {
                         label="PERCENTAGE"
                         type="text"
                         id="10"
-                        name="precentage"
+                        name="percentage"
                         value={((parseFloat(props.degree.obtained_marks) / parseFloat(props.degree.maximum_marks)) * 100).toFixed(2) }
                         variant="outlined"
                         disabled={true}

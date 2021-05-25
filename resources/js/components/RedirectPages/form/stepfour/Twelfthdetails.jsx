@@ -104,7 +104,7 @@ export default function TwelfthDetails(props) {
             value: props.twelfth.institution_name,
         },
         {
-            label: "JEE RANK * FILL NA IF NOT APPERRED",
+            label: "JEE RANK * FILL NA IF NOT APPEARED",
             type: "text",
             id: 3,
             value: props.twelfth.jee_rank,
@@ -201,7 +201,11 @@ export default function TwelfthDetails(props) {
                     }
                     {...(props.Errors.board && { error: true, helperText: props.Errors.board })}
                 >
-
+                {currencies.map(option => (
+                        <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </MenuItem>
+                    ))}
 
                 </TextField>
             </Grid>
@@ -226,12 +230,7 @@ export default function TwelfthDetails(props) {
                     id="2"
                     name="institution_name"
                     defaultValue={props.twelfth.institution_name}
-
-
                     variant="outlined"
-
-
-
                     onChange={
                         props.handleInputChange
                     }
@@ -257,7 +256,7 @@ export default function TwelfthDetails(props) {
                             focused: classes.focused
                         }
                     }}
-                    label="JEE RANK * FILL NA IF NOT APPERRED"
+                    label="JEE RANK * FILL NA IF NOT APPEARED"
                     type="text"
                     id="3"
                     name="jee_rank"
@@ -542,7 +541,7 @@ export default function TwelfthDetails(props) {
                         label="PERCENTAGE"
                         type="text"
                         id="11"
-                        name="precentage"
+                        name="percentage"
                         value={((parseFloat(props.twelfth.obtained_marks) / parseFloat(props.twelfth.maximum_marks)) * 100).toFixed(2)}
                         variant="outlined"
                         disabled={true}

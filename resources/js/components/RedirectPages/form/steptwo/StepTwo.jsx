@@ -129,39 +129,39 @@ export default function StepTwo(props) {
 
     const validate = () => {
         let temp = {}
-        temp.first_name = (/^[a-zA-Z\s]*$/).test(profile.first_name) && profile.first_name? "": "Enter Valid Name (only char)."
-        temp.dob = profile.dob? "": "This field is required."
-        temp.aadhar = (/^[0-9]{12}$/).test(profile.aadhar) ? "": "Enter 12 digits with no space."
-        temp.height = (/^[0-9]{1,3}$/).test(profile.height)?"": "Too Big Value(hint:  1foot = 30.48cm)"
-        temp.weight = (/^[0-9]{2,3}$/).test(profile.weight) ? "": "This field is required and can be of max 3 digits."
-        temp.blood_group = profile.blood_group ? "": "This field is required."
-        temp.gender = profile.gender ? "": "This field is required."
-        temp.marital_status = profile.marital_status ? "": "This field is required."
-        temp.farming_background = profile.farming_background == 0 || profile.farming_background == 1 ? "": "This field is required."
-        temp.disability = profile.disability == 0 || profile.disability == 1 ? "": "This field is required."
+        temp.first_name = (/^[a-zA-Z\s]*$/).test(profile.first_name) && profile.first_name? "": "Enter Valid Name using [A-Z] and/or [a-z]."
+        temp.dob = profile.dob? "": "Required."
+        temp.aadhar = (/^[0-9]{12}$/).test(profile.aadhar) ? "": "Enter 12 digits with no space or hyphens(-)."
+        temp.height = (/^[0-9]{1,3}$/).test(profile.height)?"": "Height can't be more than 3 digits long"
+        temp.weight = (/^[0-9]{2,3}$/).test(profile.weight) ? "": "Required and can be of max 3 digits."
+        temp.blood_group = profile.blood_group ? "": "Required."
+        temp.gender = profile.gender ? "": "Required."
+        temp.marital_status = profile.marital_status ? "": "Required."
+        temp.farming_background = profile.farming_background == 0 || profile.farming_background == 1 ? "": "Required."
+        temp.disability = profile.disability == 0 || profile.disability == 1 ? "": "Required."
 
-        temp.father_name = (/^[a-zA-Z\s]*$/).test(parent.father_name) && parent.father_name? "": "Enter Valid Name (only char)."
-        temp.father_phone = (/^[0-9]{10}$/).test(parent.father_phone) ? "": "Enter valid Phone No."
-        temp.mother_name = (/^[a-zA-Z\s]*$/).test(parent.mother_name) && parent.mother_name? "": "Enter Valid Name (only char)."
-        temp.mother_phone = (/^[0-9]{10}$/).test(parent.mother_phone) ? "": "Enter valid Phone No."
+        temp.father_name = (/^[a-zA-Z\s]*$/).test(parent.father_name) && parent.father_name? "": "Enter Valid Name using [A-Z] and/or [a-z]."
+        temp.father_phone = (/^[0-9]{10}$/).test(parent.father_phone) ? "": "Phone no. can contain only digits [0-9]."
+        temp.mother_name = (/^[a-zA-Z\s]*$/).test(parent.mother_name) && parent.mother_name? "": "Enter Valid Name using [A-Z] and/or [a-z]."
+        temp.mother_phone = (/^[0-9]{10}$/).test(parent.mother_phone) ? "": "Phone no. can contain only digits [0-9]."
 
-        temp.course = academics.course ? "": "This field is required."
-        temp.stream = academics.stream ? "": "This field is required."
-        temp.shift = academics.shift ? "": "This field is required."
-        temp.section = academics.section ? "": "This field is required."
-        temp.leet = academics.leet == 0 || academics.leet == 1 ? "": "This field is required."
-        temp.hostler = academics.hostler ==0 || academics.hostler == 1 ? "": "This field is required."
-        temp.training_sem = academics.training_sem ? "": "This field is required."
+        temp.course = academics.course ? "": "Required."
+        temp.stream = academics.stream ? "": "Required."
+        temp.shift = academics.shift ? "": "Required."
+        temp.section = academics.section ? "": "Required."
+        temp.leet = academics.leet == 0 || academics.leet == 1 ? "": "Required."
+        temp.hostler = academics.hostler ==0 || academics.hostler == 1 ? "": "Required."
+        temp.training_sem = academics.training_sem ? "": "Required."
 
-        temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "": "Enter valid Phone No."
-        temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "": "Enter valid Phone No."
-        temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "": "Enter valid Phone No."
+        temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "": "Phone no. can contain only digits [0-9]."
+        temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "": "Phone no. can contain only digits [0-9]."
+        temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "": "Phone no. can contain only digits [0-9]."
 
-        temp.street = address.address ? "": "This field is required."
-        temp.city = (/^[a-zA-Z\s]*$/).test(address.city) && address.city? "": "This field is required."
-        temp.pincode2 = (/^[0-9]{6}$/).test(address.pincode) ? "": "This field is required and must be of 6 digits."
-        temp.state = (/^[a-zA-Z\s]*$/).test(address.state) && address.state? "": "This field is required."
-        temp.district = (/^[a-zA-Z\s]*$/).test(address.district) && address.district? "": " Invalid input (only char allowed)."
+        temp.street = address.address ? "": "Required."
+        temp.city = (/^[a-zA-Z\s]*$/).test(address.city) && address.city? "": "Required."
+        temp.pincode2 = (/^[0-9]{6}$/).test(address.pincode) ? "": "Required and must be exactly 6 digits."
+        temp.state = (/^[a-zA-Z\s]*$/).test(address.state) && address.state? "": "Required."
+        temp.district = (/^[a-zA-Z\s]*$/).test(address.district) && address.district? "": "District can contain only letters [A-Z] and/or [a-z]"
         setErrors({
           ...temp
         })
@@ -561,7 +561,7 @@ export default function StepTwo(props) {
                 </Grid>
                 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} className={classes.toast}>
                     <Alert onClose={handleClose} severity="error">
-                    Oops !! Error Occurs, Check it...
+                    Please rectify the errors, before submitting
                     </Alert>
                 </Snackbar>
                 <div className={classes.btnBox}>

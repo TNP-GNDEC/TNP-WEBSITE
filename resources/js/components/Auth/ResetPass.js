@@ -103,8 +103,8 @@ export default function ResetPass() {
 
 const validate = () => {
   let temp = {}
-  temp.password = state.password.length>5 ? "": "Min 6 char required."
-  temp.confirmPassword = state.confirmPassword.length>5 ? "": "Min 6 char required."
+  temp.password = state.password.length>5 ? "": "Password must be atleast 6 characters."
+  temp.confirmPassword = state.confirmPassword.length>5 ? "": "Password must be atleast 6 characters."
   setErrors({
     ...temp
   })
