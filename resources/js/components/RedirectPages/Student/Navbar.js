@@ -9,6 +9,7 @@ import Back from '@material-ui/icons/KeyboardBackspace';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuIcon from '@material-ui/icons/Menu';
 import Logo from "../../../../images/logo.png";
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,7 +57,9 @@ export default function ButtonAppBar() {
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
           <div className={classes.imageLogo} >
+            <Link to ="/">
                 <img src={Logo} className={classes.profilePic} />
+                </Link>
             </div>
             {/* <MenuIcon /> */}
           </IconButton>

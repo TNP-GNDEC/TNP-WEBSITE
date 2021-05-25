@@ -363,9 +363,11 @@ export default function Home() {
     <div className={classes.body}>
         <div className={classes.navbar}>
             <div className={classes.brand}>
+                <Link to ="/">
                 <div>
                     <img src={logo2} width="50px" height="50px" />
                 </div>
+                </Link>
                 <div className={classes.titleBox}>
                     <Typography variant="h5" component="h2" className={classes.title}>
                         Training and Placement Cell
