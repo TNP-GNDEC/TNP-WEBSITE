@@ -174,7 +174,7 @@ class Data extends React.Component {
         const { classes } = this.props;
         // const html2 = data.description;
         const html = posts.description;
-        // const tagwa = JSON.parse(posts.tags);
+        const tagwa = JSON.parse(posts.tags);
         // const tagArray = JSON.parse(data.tags);
         if (window.location.href === window.origin + "/coordinator") {
             return (

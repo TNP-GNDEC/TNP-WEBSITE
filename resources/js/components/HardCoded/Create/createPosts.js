@@ -67,6 +67,7 @@ class CreatePosts extends React.Component {
         const res = await axios.post("/addPost", this.state);
         if(res.data.status === 200){
             alert("Added Successfully");
+            location.reload();
         }
     }
 

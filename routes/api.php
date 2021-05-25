@@ -28,6 +28,8 @@ Route::post('email/verify', [VerificationController::class, 'verify'])->name('ve
 
 
 Route::middleware('auth:api')->group(function (){ 
+    Route::post('getposts', 'postController@getposts');
+
     Route::get('getUsers', [AuthController::class,'user']);
     Route::get('formStatus', [AuthController::class,'status']);
     
