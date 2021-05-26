@@ -183,7 +183,7 @@ const useStyles = makeStyles((theme) => ({
         <Stepper className={classes.stepper} nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label}>
-              <StepButton onClick={handleStep(index)} completed={completed[index]} className={classes.step}>
+              <StepButton completed={completed[index]} className={classes.step}>
                 {label}
               </StepButton>
             </Step>

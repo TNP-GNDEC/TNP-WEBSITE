@@ -5,7 +5,7 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 
 import login from "./Auth/Login";
-import { PrivateRoute } from "./Auth/PrivateRoute";
+import { AdminRoute, StudentRoute } from "./Auth/PrivateRoute";
 import Email from "./EmailVer";
 
 import createConnect from "./HardCoded/Create/createConnect";
@@ -57,11 +57,11 @@ function App(){
                     <Route path="/editLinks/:id" exact component={EditLinks} />
 
                     {/*Redirect Routes*/}
-                    <PrivateRoute path="/coordinator" exact component={Coordinator} />
-                    <PrivateRoute path="/student" exact component={studentredirect} />
+                    <AdminRoute path="/coordinator" exact component={Coordinator} />
+                    <StudentRoute path="/student" exact component={studentredirect} />
 
                     {/*Redirect Routes*/}
-                    <PrivateRoute path="/email" exact component={Email} />
+                    <StudentRoute path="/forms" exact component={Email} />
 
                     {/* Reset Password */}
                     <Route path="/forgetPassword" exact component={ForgetPass} />

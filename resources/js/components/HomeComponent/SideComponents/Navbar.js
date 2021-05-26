@@ -206,9 +206,11 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
           >
-            <div className={classes.imageLogo} >
-                <img src={Logo} className={classes.profilePic} />
-            </div>
+            <Link to ="/">
+              <div className={classes.imageLogo} >
+                  <img src={Logo} className={classes.profilePic} />
+              </div>
+            </Link>
             {/* <MenuIcon /> */}
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>

@@ -139,6 +139,7 @@ export default function StepTwo(props) {
         temp.marital_status = profile.marital_status ? "": "Required."
         temp.farming_background = profile.farming_background == 0 || profile.farming_background == 1 ? "": "Required."
         temp.disability = profile.disability == 0 || profile.disability == 1 ? "": "Required."
+        temp.ruralarea = profile.ruralarea == 0 || profile.ruralarea== 1 ? "": "Required."
 
         temp.father_name = (/^[a-zA-Z\s]*$/).test(parent.father_name) && parent.father_name? "": "Enter Valid Name using [A-Z] and/or [a-z]."
         temp.father_phone = (/^[0-9]{10}$/).test(parent.father_phone) ? "": "Phone no. can contain only digits [0-9]."
@@ -153,10 +154,14 @@ export default function StepTwo(props) {
         temp.hostler = academics.hostler ==0 || academics.hostler == 1 ? "": "Required."
         temp.training_sem = academics.training_sem ? "": "Required."
 
-        temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "": "Phone no. can contain only digits [0-9]."
-        temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "": "Phone no. can contain only digits [0-9]."
-        temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "": "Phone no. can contain only digits [0-9]."
-
+        temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "": "Invalid Phone"
+        temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "": "Invalid Phone"
+        temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "": "Invalid Phone"
+        
+        if (!temp.re_enter_contact) {
+            temp.re_enter_contact = contact.re_enter_contact != contact.contact ? "Mobile Number not matched" : ""
+        }
+        
         temp.street = address.address ? "": "Required."
         temp.city = (/^[a-zA-Z\s]*$/).test(address.city) && address.city? "": "Required."
         temp.pincode2 = (/^[0-9]{6}$/).test(address.pincode) ? "": "Required and must be exactly 6 digits."
@@ -188,6 +193,7 @@ export default function StepTwo(props) {
         marital_status: "",
         farming_background: "",
         disability: "",
+        ruralarea:"",
         aadhar: ""
     });
     // state for holding inputs from parent form imported as ParentsDetails
@@ -282,6 +288,10 @@ export default function StepTwo(props) {
                 // value = parseInt(value)
                 setProfile({ ...profile, disability: value });
                 break;
+                case 12:
+                    // value = parseInt(value)
+                    setProfile({ ...profile, ruralarea: value });
+                    break;
             default:
                 break;
         }
@@ -453,6 +463,7 @@ export default function StepTwo(props) {
                 marital_status: res.data.details['marital_status'],
                 farming_background: res.data.details['farming_background'],
                 disability: res.data.details['disability'],
+                ruralarea:res.data.details['ruralarea'],
                 aadhar: res.data.details['aadhar']
             })
             setParent({

@@ -10,6 +10,7 @@ import Menu from "./Menu";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
 import Logo from "../../../../images/logo.png";
+import {Link} from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -98,7 +99,9 @@ export default function MiniDrawer(props) {
                         >
                             <MenuIcon />
                         </IconButton>
+                            <Link to ="/">
                             <img className={classes.imgl}  src={Logo} alt="logo" />
+                            </Link>
                         <Typography variant="h6" noWrap className={classes.title}>
                             Training and Placement Cell
                         </Typography>

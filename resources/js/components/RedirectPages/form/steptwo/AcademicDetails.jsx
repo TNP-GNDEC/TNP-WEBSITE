@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 0px",
         fontWeight: "500",
         backgroundColor: "#038ed459",
-    }, 
+    },
     textFieldContainer: {
         display: "flex",
         justifyContent: "center",
@@ -22,20 +22,49 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 0px",
         width: "30%",
     },
-    fields:{
+    fields: {
         width: "80%"
     },
     notchedOutline: {
         boxShadow: "0px 2px 6px #75757533",
-      },
-      focused: {
+    },
+    focused: {
         borderColor: theme.palette.secondary.main,
         boxShadow: "0px 2px 6px #038ed433"
-      },
+    },
 }));
 
 export default function Details(props) {
     const classes = useStyles();
+
+    const renderArray = (f) => {
+        if(f.id === 4){
+            if(props.academics.course === "B.Tech"){
+                return f.options;
+            }
+            else if (props.academics.course === "M.Tech"){
+                return f.options2;
+            }
+            else if (props.academics.course === "MCA"){
+                return f.options3;
+            }
+ 
+        }
+        else if(f.id === 9){
+            if(props.academics.course === "M.Tech"){
+                return [ { label:"THIRD", value:"3" }, { label:"FOURTH", value:"4" } ];
+            }
+            else{
+                return f.options ;
+            }
+
+        }
+
+        else {
+            return f.options;
+        }
+    }
+
     const fields = [
         {
             label: "UNIVERSITY ROLL NO.",
@@ -63,6 +92,10 @@ export default function Details(props) {
             select: "true",
             validate: props.Errors.course,
             options: [
+                // {
+                //     value: "",
+                //     label: "Choose"
+                // },
                 {
                     value: "B.Tech",
                     label: "B.TECH"
@@ -86,109 +119,19 @@ export default function Details(props) {
             validate: props.Errors.stream,
             options: [
                 {
-                    value: "CSE",
+                    value: "Cse",
                     label: "COMPUTER SCIENCE AND ENGINEERING"
                 },
                 {
-                    value: "IT",
+                    value: "It",
                     label: "INFORMATION TECHNOLOGY"
                 },
                 {
-                    value: "ECE",
+                    value: "Ece",
                     label: "ELECTRONICS AND COMMUNICATION"
                 },
                 {
-                    value: "CIVIL",
-                    label: "CIVIL"
-                },
-                {
-                    value: "MECH.",
-                    label: "MECHANICAL"
-                },
-                {
-                    value: "Production",
-                    label: "PRODUCTION"
-                }
-            ],
-
-            // optionsMtech: [
-            //     {
-            //         value: "production(full time)",
-            //         label: "PRODUCTION(Full Time)"
-            //     },
-            //     {
-            //         value: "industrial(full time)",
-            //         label: "INDUSTRIAL(Full Time)"
-            //     },
-            //     {
-            //         value: "power(full time)",
-            //         label: "POWER(Full Time)"
-            //     },
-            //     {
-            //         value: "structural(full time)",
-            //         label: "STRUCTURAL(Full Time)"
-            //     },
-            //     {
-            //         value: "geo-technical(full time)",
-            //         label: "GEO-TECHNICAL(Full Time) "
-            //     },
-            //     {
-            //         value: "computer science (full time)",
-            //         label: "Computer Sci(Full Time)"
-            //     },
-            //     {
-            //         value: "computer science (part time)",
-            //         label: "Computer Sci(Part Time)"
-            //     },
-            //     {
-            //         value: "production",
-            //         label: "Production(Part Time )"
-            //     },
-            //     {
-            //         value: "electronics(part time)",
-            //         label: "Electronics(Part Time)"
-            //     },
-
-            //     {
-            //         value: "electronics(full time)",
-            //         label: "Electronics(Full Time)"
-            //     },
-            //     {
-            //         value: "soil mechanism & foundation(part time)",
-            //         label: "Soil Mechanics & Foundation(Part Time)"
-            //     },
-            //     {
-            //         value: "electrical(part time)",
-            //         label: "Electrical (Part Time)"
-            //     },
-            //     {
-            //         value: "industrial(part time)",
-            //         label: "INDUSTRIAL(Part Time)"
-            //     },
-            //     {
-            //         value: "business administration(full time)",
-            //         label: "Business Administration(Full Time)"
-            //     },
-            //     {
-            //         value: "environmental science",
-            //         label: "Environmental Science"
-            //     }
-            // ]
-            optionsMtech: [
-                {
-                    value: "CSE",
-                    label: "COMPUTER SCIENCE AND ENGINEERING (Full time)"
-                },
-                {
-                    value: "IT",
-                    label: "INFORMATION TECHNOLOGY(Full Time)"
-                },
-                {
-                    value: "ECE",
-                    label: "ELECTRONICS AND COMMUNICATION"
-                },
-                {
-                    value: "CIVIL",
+                    value: "Civil",
                     label: "CIVIL"
                 },
                 {
@@ -198,8 +141,60 @@ export default function Details(props) {
                 {
                     value: "Production",
                     label: "PRODUCTION"
+                },
+
+                {
+                    value: "Electrical",
+                    label: "ELECTRICAL"
                 }
             ],
+
+
+            options2: [
+                {
+                    value: "STUCTURAL ENGINEERING (FULL TIME)",
+                    label: "STUCTURAL ENGINEERING (FULL TIME)"
+                },
+                {
+                    value: "GEOTECHNICAL ENGINEERING (FULL TIME)",
+                    label: "GEOTECHNICAL ENGINEERING (FULL TIME)"
+                },
+                {
+                    value: "ENVIRONMENTAL SCIENCE AND ENGG. (FULL TIME)",
+                    label: "ENVIRONMENTAL SCIENCE AND ENGG. (FULL TIME)"
+                },
+                {
+                    value: "ELECTRONICS AND COMMUNICATION ENGG. (FULL TIME)",
+                    label: "ELECTRONICS AND COMMUNICATION ENGG. (FULL TIME)"
+                },
+                {
+                    value: "PRODUCTION ENGINEERING (FULL TIME)",
+                    label: "PRODUCTION ENGINEERING (FULL TIME)"
+                },
+                {
+                    value: "MECHANICAL ENGINEERING (FULL TIME)",
+                    label: "MECHANICAL ENGINEERING (FULL TIME)"
+                },
+                {
+                    value: "COMPUTER SCIENCE AND ENGG. (FULL TIME)",
+                    label: "COMPUTER SCIENCE AND ENGG. (FULL TIME)"
+                },
+                {
+                    value: "COMPUTER SCIENCE AND IT (FULL TIME)",
+                    label: "COMPUTER SCIENCE AND IT (FULL TIME)"
+                },
+                {
+                    value: "SOIL MECH. AND FOUNDATION ENGG.(PART TIME)",
+                    label: "SOIL MECH. AND FOUNDATION ENGG.(PART TIME)"
+                },
+
+            ],
+        options3:[
+            {
+                value: "Computer applications",
+                label: "COMPUTER APPLICATIONS"
+            },
+        ]
         },
 
         {
@@ -303,8 +298,8 @@ export default function Details(props) {
                         className={classes.fields}
                         InputProps={{
                             classes: {
-                              notchedOutline: classes.notchedOutline,
-                              focused: classes.focused
+                                notchedOutline: classes.notchedOutline,
+                                focused: classes.focused
                             }
                         }}
                         id="outlined-basic"
@@ -317,26 +312,12 @@ export default function Details(props) {
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
-                        {...(field.validate && {error:true, helperText:field.validate})}
+                        {...(field.validate && { error: true, helperText: field.validate })}
                     >
                         {
-                        /* if the course will not be selected it will show no options in select of its preceeding Textfields */}
-                        {/* {field.id == 4 ||
-                        field.id == 5 ||
-                        field.id == 8 ||
-                        field.id == 7 ||
-                        (field.id == 9 && props.academics.course == "") ? (
-                            <MenuItem> Please select course first</MenuItem>
-                        ) : (
-                            (field.id === 4 &&
-                            props.academics.course == "M.Tech"
-                                ? field.optionsMtech
-                                : props.academics.course == "MCA"
-                                ? [{ value: "computers", label: "COMPUTERS" }]
-                                : field.options)  */}
-                               {
-                               
-                               (field.id>3 && props.academics.course=="" ? [ {label:"CHOOSE COURSE FIRST" , value:"" }] : field.options  ).map(option => {
+
+                            ( field.id > 3 && props.academics.course == null  ? [{ label: "CHOOSE COURSE FIRST", value: "" }] : renderArray(field)).map(option => {
+                               console.log(props.academics.course);
                                 return (
                                     <MenuItem
                                         key={option.value}
