@@ -176,11 +176,10 @@ const fetchSteps = async (token) => {
   });
   const form_step = step.data.step['form_step'];
   if(form_step === 6){
-    console.log(history)
-            window.location.href = window.origin+ "/student";
+    window.location.href = window.origin+ "/student";
   }
   else{
-    window.location.href = window.origin+ "/email";
+    window.location.href = window.origin+ "/forms";
   }
 }
 const [showPassword, setShowPassword] = useState(false);
@@ -202,11 +201,15 @@ const handleFormSubmit= async (event)=>{
     var user=response.data.current_user
     var JWTtoken=response.data.access_token
     localStorage.setItem('token', JWTtoken);
+    localStorage.setItem('role', user.role_id);
+    console.log(localStorage.getItem('role'));
       if(user.role_id===1){
+        localStorage.setItem('student', user.role_id);
         fetchSteps(JWTtoken);
       }
       if(user.role_id===2){
-        window.location.href = window.origin+ "/coordinator";
+        localStorage.setItem('admin', user.role_id);
+        window.location.href = window.origin + "/coordinator";
       }
         
   })

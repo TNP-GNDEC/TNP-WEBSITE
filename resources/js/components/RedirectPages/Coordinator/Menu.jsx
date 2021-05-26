@@ -70,6 +70,9 @@ export default function MenuListComposition(props) {
     localStorage.removeItem('token');
     localStorage.removeItem('userid');
     localStorage.removeItem('useruuid');
+    localStorage.removeItem('role');
+    localStorage.removeItem('student');
+    localStorage.removeItem('admin');
     window.location.href = window.origin+ "/login";
   }
 
