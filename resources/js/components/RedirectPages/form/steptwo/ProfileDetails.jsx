@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
 
+   
 const useStyles = makeStyles(theme => ({
     cardHeading: {
         color: theme.palette.primary.dark,
@@ -32,13 +33,18 @@ const useStyles = makeStyles(theme => ({
         borderColor: theme.palette.secondary.main,
         boxShadow: "0px 2px 6px #038ed433"
       },
+      
 }));
+
 
 export default function ProfileDetails(props) {
     const classes = useStyles();
     // As Input type of DOB input field is date so the placeholder of input field(Enter DATE OF BIRTH) and of calender(yyyy-mm-dd) are overlapping
     // to avoid that placeholder will be rendered dynamically by using onBlur and onFocus function inside TextField;
     const [DateLabel, setDateLabel] = React.useState("");
+
+    
+    
 
     const fields = [
         {
@@ -174,7 +180,21 @@ export default function ProfileDetails(props) {
                 { value: 0, label: "NO" }
             ],
             validate: props.Errors.disability
+        },
+        {
+            label: "RURAL AREA*",
+            type: "text",
+            id: 12,
+            shrink: false,
+            select: "True",
+            value: props.Profile.ruralarea,
+            options: [
+                { value: 1, label: "YES" },
+                { value: 0, label: "NO" }
+            ],
+            validate: props.Errors.ruralarea
         }
+        
     ];
 
     const renderPersonalFields = () =>
@@ -221,9 +241,13 @@ export default function ProfileDetails(props) {
                             );
                         })}
                     </TextField>
+              
                 </Grid>
+               
             </>
+            
         ));
+    
     return (
         <>
             <Typography variant="h4" className={classes.cardHeading}>
@@ -231,6 +255,8 @@ export default function ProfileDetails(props) {
             </Typography>
             <CardContent>
                 <Grid container>{renderPersonalFields()}</Grid>
+            
+                
             </CardContent>
         </>
     );
