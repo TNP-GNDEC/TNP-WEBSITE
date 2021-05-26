@@ -139,6 +139,7 @@ export default function StepTwo(props) {
         temp.marital_status = profile.marital_status ? "": "Required."
         temp.farming_background = profile.farming_background == 0 || profile.farming_background == 1 ? "": "Required."
         temp.disability = profile.disability == 0 || profile.disability == 1 ? "": "Required."
+        temp.ruralarea = profile.ruralarea == 0 || profile.ruralarea== 1 ? "": "Required."
 
         temp.father_name = (/^[a-zA-Z\s]*$/).test(parent.father_name) && parent.father_name? "": "Enter Valid Name using [A-Z] and/or [a-z]."
         temp.father_phone = (/^[0-9]{10}$/).test(parent.father_phone) ? "": "Phone no. can contain only digits [0-9]."
@@ -192,6 +193,7 @@ export default function StepTwo(props) {
         marital_status: "",
         farming_background: "",
         disability: "",
+        ruralarea:"",
         aadhar: ""
     });
     // state for holding inputs from parent form imported as ParentsDetails
@@ -286,6 +288,10 @@ export default function StepTwo(props) {
                 // value = parseInt(value)
                 setProfile({ ...profile, disability: value });
                 break;
+                case 12:
+                    // value = parseInt(value)
+                    setProfile({ ...profile, ruralarea: value });
+                    break;
             default:
                 break;
         }
@@ -457,6 +463,7 @@ export default function StepTwo(props) {
                 marital_status: res.data.details['marital_status'],
                 farming_background: res.data.details['farming_background'],
                 disability: res.data.details['disability'],
+                ruralarea:res.data.details['ruralarea'],
                 aadhar: res.data.details['aadhar']
             })
             setParent({
