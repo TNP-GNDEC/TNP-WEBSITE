@@ -98,14 +98,14 @@ export default function SimpleCard() {
                     Students must fill their 10th CGPA or percentage depending upon their examination boards.
                 </li>
                 <li>
-                    Don't forget the documents else stritct action must be taken against you.
+                    Don't forget the documents else strict action must be taken against you.
                 </li>
             </ol>
         </div>
         
         <div className={classes.Checkbox}>
         <Checkbox
-        
+        required="true"
         color="primary"
         inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
