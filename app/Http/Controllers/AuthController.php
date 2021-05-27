@@ -22,7 +22,7 @@ class AuthController extends Controller
         foreach($users["data"] as $user){
             $user['uuid']=(string) Str::uuid();
             $user['role_id']=1;
-            //$user['email']="";
+            $user['is_verified']=0;
             $user['username']=$user['urn'];
             $user['password']=bcrypt($user['crn']);
             $newUser = User::create($user);
@@ -42,10 +42,10 @@ class AuthController extends Controller
                     'crn' => $user['crn']
                 ]);
                 }
-
+               else return response()->json(["message"=>"data couldn't be added", "success"=>0 ]);
             }
         
-        return response()->json(["message"=>"data added successfully","daata"=>$users["data"]]);
+        return response()->json(["message"=>"data added successfully","success"=>1,"daata"=>$users["data"]]);
     }
 
     public function registerAdmin(Request $request){

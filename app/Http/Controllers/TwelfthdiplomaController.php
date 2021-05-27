@@ -62,18 +62,8 @@ class TwelfthdiplomaController extends Controller
         'board' => $request->board_12,
         'year_of_passing' => $request->year_of_passing_12,
         'file' => $twelfth_path.'/'.$twelfth_file_url
-
   ]);
-  if($request->category=="XII"){
-    
-    $dip = DB::table('diploma')->where('user_id', $user->id);
-    $user=$dip->first();
-    if($user!= null){
-      if (file_exists($user->file))
-    unlink($user->file);
-    $dip->delete();
-    }
-  }
+  
   if($current_step <5){
     $form_step_change= DB::table('form_statuses')
     ->where('user_id', $user->id)
@@ -82,6 +72,7 @@ class TwelfthdiplomaController extends Controller
 
     }
     
+  
     if($request->category=="diploma" || $request->category=="both"){
     $diploma_file = $request->file('file_diploma');
     $diploma_filename  = $diploma_file->getClientOriginalName();
@@ -92,7 +83,8 @@ class TwelfthdiplomaController extends Controller
 
     $diploma_details = Diploma::updateOrCreate(
       ['user_id' => $user->id],
-      [ 'user_id' => $user->id,
+      [ 
+      'user_id' => $user->id,
       'urn' => $user->username,
       'pincode' => $request->pincode_diploma,
       'city' => $request->city_diploma,
@@ -106,6 +98,13 @@ class TwelfthdiplomaController extends Controller
       'file' => $diploma_path.'/'.$diploma_file_url
       ]
     );
+    
+    if($current_step <5){
+      $form_step_change= DB::table('form_statuses')
+      ->where('user_id', $user->id)
+      ->update(['form_step' => 4]);
+    }
+    }
     if($request->category=="diploma"){
       $twe = DB::table('twelfth')->where('user_id', $user->id);
       $user= $twe->first();
@@ -115,12 +114,18 @@ class TwelfthdiplomaController extends Controller
       $twe->delete();
       }
     }
-    if($current_step <5){
-      $form_step_change= DB::table('form_statuses')
-      ->where('user_id', $user->id)
-      ->update(['form_step' => 4]);
+    
+    if($request->category=="XII"){
+    
+      $dip = DB::table('diploma')->where('user_id', $user->id);
+      $user=$dip->first();
+      if($user !== null){
+        if (file_exists($user->file))
+      unlink($user->file);
+      $dip->delete();
+      }
     }
-    }
+
     return response()->json(["message"=> "stepcomplete"]);
   }
 
