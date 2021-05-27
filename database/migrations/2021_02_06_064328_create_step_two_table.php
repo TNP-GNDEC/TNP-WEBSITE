@@ -43,6 +43,7 @@ class CreateStepTwoTable extends Migration
             $table->string('shift')->nullable();
             $table->boolean('leet')->nullable();
             $table->boolean('farming_background')->nullable();
+            $table->boolean('ruralarea')->nullable();
             $table->boolean('hostler')->nullable();
             $table->boolean('disability')->nullable();
             $table->bigInteger('aadhar')->nullable();

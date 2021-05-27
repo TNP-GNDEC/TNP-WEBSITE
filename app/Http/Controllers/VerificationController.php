@@ -48,9 +48,6 @@ class VerificationController extends Controller {
     			Mail::to($tokenData->email)->send(new EmailVerification($tokenData));
                 if (!$user->hasVerifiedEmail()) {
                     $user->markEmailAsVerified();
-                    DB::table('form_statuses')
-                    ->where('user_id', $user->id)
-                    ->update(['form_step' => 1]);
                 }
     			return response()->json(['msg' => 'A Verification Link has been sent to your Mail!']);
     		}

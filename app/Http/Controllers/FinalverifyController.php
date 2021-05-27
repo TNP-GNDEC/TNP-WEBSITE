@@ -41,7 +41,7 @@ class FinalverifyController extends Controller
  public function getFormData(Request $request)
   {
     $user = auth()->user();
-    $personal_details = DB::table('personalDetails')
+    $personal_details = DB::table('personaldetails')
       ->where('user_id', $user->id)
       ->first();
 

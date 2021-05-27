@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PersonalDetails extends Model
 {
-    protected $table = "personalDetails";
+    protected $table = "personaldetails";
     use HasFactory;
     protected $fillable = [
      "user_id",
@@ -30,7 +30,8 @@ class PersonalDetails extends Model
      "state", 
      "district", 
      "pincode", 
-     "farming_background", 
+     "farming_background",
+     "ruralarea",
      "marital_status", 
      "aadhar", 
      "branch_type", 

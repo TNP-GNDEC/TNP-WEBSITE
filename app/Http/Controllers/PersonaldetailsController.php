@@ -29,7 +29,7 @@ class PersonaldetailsController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-    $details = DB::table('personalDetails')
+    $details = DB::table('personaldetails')
     ->where('user_id', $user->id)
     ->update([
         'user_id'=> $user->id,
@@ -44,6 +44,7 @@ class PersonaldetailsController extends Controller
         'disability' => $request->profile["disability"],
         'aadhar' => $request->profile["aadhar"],
         'farming_background' => $request->profile["farming_background"],
+        'ruralarea' => $request->profile["ruralarea"],
 
         'mother_name' => $request->parent["mother_name"],
         'father_name' => $request->parent["father_name"],
@@ -90,7 +91,7 @@ class PersonaldetailsController extends Controller
             return response()->json(['status' => 'Authorization Token not found']);
         }
     }
-    $details = DB::table('personalDetails')
+    $details = DB::table('personaldetails')
       ->where('user_id', $user->id)
       ->first();
     return response()->json(['details' => $details]);

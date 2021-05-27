@@ -176,10 +176,10 @@ const fetchSteps = async (token) => {
   });
   const form_step = step.data.step['form_step'];
   if(form_step === 6){
-    window.location.href = window.origin+ "/student";
+    window.location.href = window.origin+ "/verify";
   }
   else{
-    window.location.href = window.origin+ "/forms";
+    window.location.href = window.origin+ "/student";
   }
 }
 const [showPassword, setShowPassword] = useState(false);

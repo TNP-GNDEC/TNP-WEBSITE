@@ -284,11 +284,11 @@ export default function StepTwo(props) {
                 // value = parseInt(value)
                 setProfile({ ...profile, farming_background: value });
                 break;
-            case 11:
+            case 12:
                 // value = parseInt(value)
                 setProfile({ ...profile, disability: value });
                 break;
-                case 12:
+                case 11:
                     // value = parseInt(value)
                     setProfile({ ...profile, ruralarea: value });
                     break;
