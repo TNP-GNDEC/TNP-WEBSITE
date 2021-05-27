@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from "./Navbar.js"
 import Footer from "./Footer.js"
-import Verify from "./Terms&Conditons.js";
+import SimpleCard from "./Terms&Conditons.js";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function VerfiyForms() {
+function VerifyForms() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
