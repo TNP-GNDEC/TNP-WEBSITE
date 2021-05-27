@@ -53,6 +53,18 @@ class ForgotPasswordController extends Controller
     			return response()->json(['alert' => 'Sorry we could not send a link, try again later!']);
     		}
 	}
+
+	public function checkToken(Request $request){
+		$tokenData = PasswordReset::where('token','=',$request->token)
+			->where('created_at','>',Carbon::now()->subHours(1))
+			->first();
+		
+		if(!($request->has('token') && $tokenData)){
+			return response()->json(['msg' =>'Token not Found or Expired!']);      
+		}
+	
+		return response()->json(['msg' =>'Token is valid!']);
+	  }
 	
 	public function resetPassword(Request $request)
     {
@@ -74,6 +86,18 @@ class ForgotPasswordController extends Controller
 
 		$token = PasswordReset::where('email', $email->email)->delete();
 
-    	return response()->json(['status' => 200, 'alert'=> 'Password Changed Successfully']);		
+		if($user->is_verified === true){
+			return response()->json(['status' => 200, 'alert'=> 'Password Changed Successfully']);		
+		  }
+		  else{
+			DB::table('form_statuses')
+			->where('user_id', $user->id)
+			->update(['form_step' => 1]);
+	  
+			DB::table('users')->where(['email'=> $request->email])
+			->update(['is_verified' => true]);
+	  
+			return response()->json(['status' => 200, 'alert'=> 'Password Changed Successfully']);		
+		  }	
     }
 }

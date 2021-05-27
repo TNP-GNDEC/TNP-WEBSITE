@@ -160,6 +160,18 @@ const handleFormSubmit= async (event)=>{
       console.log(error);
   });
   };
+
+  useEffect(()=>{
+    axios.post(`/checktoken`, {token: token}).then((response) => {
+      var user=response.data.msg;
+      if(user === "Token not Found or Expired!"){
+        window.location.href = window.origin+ "/invalid-token";
+      }
+    }).catch((error) => {
+      console.log(error);
+  });
+  },[])
+
   return (
     <div className={classes.root}>
     <Header />
