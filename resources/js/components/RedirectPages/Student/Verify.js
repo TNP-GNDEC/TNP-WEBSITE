@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Verify() {
+function VerfiyForms() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -21,5 +21,5 @@ function Verify() {
     );
 }
 
-export default Verify;
+export default VerifyForms;
 
