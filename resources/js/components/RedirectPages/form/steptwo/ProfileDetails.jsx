@@ -171,7 +171,7 @@ export default function ProfileDetails(props) {
         {
             label: "DISABILITY*",
             type: "text",
-            id: 11,
+            id: 12,
             shrink: false,
             select: "True",
             value: props.Profile.disability,
@@ -184,7 +184,7 @@ export default function ProfileDetails(props) {
         {
             label: "RURAL AREA*",
             type: "text",
-            id: 12,
+            id: 11,
             shrink: false,
             select: "True",
             value: props.Profile.ruralarea,

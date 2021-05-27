@@ -22,7 +22,7 @@ class AuthController extends Controller
         foreach($users["data"] as $user){
             $user['uuid']=(string) Str::uuid();
             $user['role_id']=1;
-            $user['email']="";
+            //$user['email']="";
             $user['username']=$user['urn'];
             $user['password']=bcrypt($user['crn']);
             $newUser = User::create($user);

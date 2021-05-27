@@ -44,6 +44,7 @@ class PersonaldetailsController extends Controller
         'disability' => $request->profile["disability"],
         'aadhar' => $request->profile["aadhar"],
         'farming_background' => $request->profile["farming_background"],
+        'ruralarea' => $request->profile["ruralarea"],
 
         'mother_name' => $request->parent["mother_name"],
         'father_name' => $request->parent["father_name"],

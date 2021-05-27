@@ -68,8 +68,6 @@ const Uploadcsv = () => {
                ref={hiddenFileInput}
                onChange={handleChange}
                style={{display:'none'}} 
-              
-               
         /> 
         <div>
      
