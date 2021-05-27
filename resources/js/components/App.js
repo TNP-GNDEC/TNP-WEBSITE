@@ -6,7 +6,9 @@ import About from "./Pages/About";
 
 import login from "./Auth/Login";
 import { AdminRoute, StudentRoute } from "./Auth/PrivateRoute";
+
 import Email from "./EmailVer";
+import Verify from "./RedirectPages/Student/Verify";
 
 import createConnect from "./HardCoded/Create/createConnect";
 import createExplore from "./HardCoded/Create/createExplore";
@@ -62,6 +64,7 @@ function App(){
 
                     {/*Redirect Routes*/}
                     <StudentRoute path="/forms" exact component={Email} />
+                    <StudentRoute path="/verify" exact component={Verify}/>
 
                     {/* Reset Password */}
                     <Route path="/forgetPassword" exact component={ForgetPass} />

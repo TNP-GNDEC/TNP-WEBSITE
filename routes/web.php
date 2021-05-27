@@ -38,32 +38,35 @@ Route::get('/edit/:id', function () {
 })-> name('example');
 Route::get('/editConnect/:id', function () {
     return view('welcome');
-})-> name('example');;
+})-> name('example');
 Route::get('/editExplore/:id', function () {
     return view('welcome');
-})-> name('example');;
+})-> name('example');
 Route::get('/editDownloads/:id', function () {
     return view('welcome');
-})-> name('example');;
+})-> name('example');
 Route::get('/editLinks/:id', function () {
     return view('welcome');
-})-> name('example');;
+})-> name('example');
 Route::get('/login', function () {
     return view('welcome');
-})-> name('example');;
+})-> name('example');
 
 Route::get('/coordinator', function () {
     return view('welcome');
-})-> name('example');;
+})-> name('example');
 Route::get('/student', function () {
     return view('welcome');
-})-> name('example');;
+})-> name('example');
 Route::get('/about', function () {
     return view('welcome');
-})-> name('example');;
+})-> name('example');
 Route::get('/forms', function () {
     return view('welcome');
-})-> name('example');;
+})-> name('example');
+Route::get('/verify', function () {
+    return view('welcome');
+})-> name('example');
 
 // Route::get('/resetPassword/:token', function () {
 //     return view('welcome');

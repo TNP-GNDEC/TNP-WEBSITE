@@ -39,7 +39,10 @@ button:{
     background: theme.palette.primary.main,
     color: theme.palette.secondary.main,
     boxShadow: "0px 15px 25px #034ed433",
-    borderRadius: "50px"
+    borderRadius: "50px",
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
 },
 
 
@@ -48,6 +51,9 @@ button:{
    
 export default function SimpleCard() {
   const classes = useStyles();
+  const handleSubmit =  () => {
+    window.location.href = window.origin+ "/forms";
+  }
    
   return (
       
@@ -115,8 +121,8 @@ export default function SimpleCard() {
       </div>
       </div>
 
-      <Button  className={classes.button} variant="contained">
-  I Agree
+      <Button  className={classes.button} variant="contained" onClick={handleSubmit}>
+  Next
 </Button>
 
       </CardContent>
