@@ -84,7 +84,7 @@ export default function SimpleCard() {
                        Students should make sure that their Email's and mobile numbers are filled correctly.
                    </li>
                 <li>
-                    Students must check the gazettes properly before filling  the semester details.
+                    Students must check the gazettes properly before filling the semester details.
                 </li>
                 <li>
                     Students must enter height in centimeters and weight in kgs.
@@ -93,10 +93,11 @@ export default function SimpleCard() {
                     The format of Date of Birth should be (dd/mm/yyyy).
                 </li>
                 <li>
-                    Initials of name must be in upper-case.
+                    Initials of name must be in upper-case (Example: John Doe).
+                    Not this "john doe", "JOHN DOE" etc.
                 </li>
                 <li>
-                    The validity of category  certificate must be checked before filling.
+                    The validity of category certificate must be checked before filling.
                 </li>
               
                 

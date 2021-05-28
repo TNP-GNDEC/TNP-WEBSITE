@@ -69,8 +69,6 @@ export default function ButtonAppBar() {
           <Typography variant="h5" className={classes.title}>
             Training & Placement Cell
           </Typography>
-          <Back />
-          <Button a href="./" className={classes.back} color="inherit">Back</Button>
           < ExitToAppIcon />
           <Button onClick={handleLogout} color="inherit">Logout</Button>
         </Toolbar>

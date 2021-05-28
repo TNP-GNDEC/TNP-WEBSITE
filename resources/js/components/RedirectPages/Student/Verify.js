@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from "./Navbar.js"
 import Footer from "./Footer.js"
-import SimpleCard from "./Terms&Conditons.js";
+import VerifyCom from "./VerifyCom.js";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,7 +15,7 @@ function VerifyForms() {
     return (
         <div className={classes.root}>
           <Navbar />
-            <h1>This is verification page</h1>
+            <VerifyCom/>
           <Footer />
        </div> 
     );
