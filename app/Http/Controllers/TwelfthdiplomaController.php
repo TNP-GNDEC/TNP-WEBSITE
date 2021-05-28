@@ -52,7 +52,7 @@ class TwelfthdiplomaController extends Controller
         'urn' => $user->username,
         'user_id' => $user->id,
         'pincode' => $request->pincode_12,
-        'city' => $user->username,
+        'city' => $request->city_12,
         'jee_rank' => $request->jee_rank_12,
         'state' => $request->state_12,
         'marks_type' => $request->marks_type_12,
