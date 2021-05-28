@@ -61,7 +61,7 @@ class TwelfthdiplomaController extends Controller
         'institution_name' => $request->institution_name_12,
         'board' => $request->board_12,
         'year_of_passing' => $request->year_of_passing_12,
-        'file' => $twelfth_path.'/'.$twelfth_file_url
+        'file' => '/documents/twelfth/'.$twelfth_file_url
   ]);
   
   if($current_step <5){
@@ -95,7 +95,7 @@ class TwelfthdiplomaController extends Controller
       'institution_name' => $request->institution_name_diploma,
       'branch' => $request->branch_diploma,
       'year_of_passing' => $request->year_of_passing_diploma,
-      'file' => $diploma_path.'/'.$diploma_file_url
+      'file' => '/documents/diploma/'.$diploma_file_url
       ]
     );
     
