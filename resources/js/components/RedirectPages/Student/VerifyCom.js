@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Card from "@material-ui/core/Card";
 import ProfilePreview from '../form/finalStep/ProfilePreview';
-import UgPreview from "./UgPreview";
+import UgPreview from "../form/finalStep/UgPreview";
 import MatriculationPreview from "../form/finalStep/MatriculationPreview";
 import DiplomaPreview from '../form/finalStep/DiplomaPreview';
 import TwelfthPreview from '../form/finalStep/TwelfthPreview';
