@@ -86,7 +86,7 @@ class ForgotPasswordController extends Controller
 
 		$token = PasswordReset::where('email', $email->email)->delete();
 
-		if($user->is_verified === true){
+		if($user->is_verified === 1){
 			return response()->json(['status' => 200, 'alert'=> 'Password Changed Successfully']);		
 		  }
 		  else{
