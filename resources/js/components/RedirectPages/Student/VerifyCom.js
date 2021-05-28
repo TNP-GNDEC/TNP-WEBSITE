@@ -459,19 +459,6 @@ export default function finalStep(props) {
                     </div>
                 ):(<div></div>)}
             </div>
-            <div className={classes.btnBox}>
-            <button className={classes.button} onClick={props.Back}>
-                Back
-            </button>
-            {loader ? (
-                        
-                        <CircularProgress />
-                    ):(
-            <button onClick={handleVerify} className={classes.button}>
-                Finish
-            </button>
-                    )}
-            </div>
             </div>
             )}
         </div>
