@@ -29,44 +29,52 @@ class PersonaldetailsController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
+    
+    $file = $request->file('file');
+    $filename  = $file->getClientOriginalName();
+    $extension = $file->getClientOriginalExtension();
+    $profile_pic   = $user->username.'_picture.'.$extension;
+    $path=public_path('documents/profile');
+    $file->move(public_path('documents/profile'), $profile_pic);
     $details = DB::table('personaldetails')
     ->where('user_id', $user->id)
     ->update([
         'user_id'=> $user->id,
-        'first_name' => $request->profile["first_name"], 
-        'last_name' => $request->profile["last_name"],
-        'height' => $request->profile["height"],
-        'weight' => $request->profile["weight"],
-        'dob' => $request->profile["dob"],
-        'blood_group' => $request->profile["blood_group"],
-        'gender' => $request->profile["gender"],
-        'marital_status' => $request->profile["marital_status"],
-        'disability' => $request->profile["disability"],
-        'aadhar' => $request->profile["aadhar"],
-        'farming_background' => $request->profile["farming_background"],
-        'ruralarea' => $request->profile["ruralarea"],
+        'first_name' => $request->first_name, 
+        'last_name' => $request->last_name,
+        'height' => $request->height,
+        'weight' => $request->weight,
+        'dob' => $request->dob,
+        'blood_group' => $request->blood_group,
+        'gender' => $request->gender,
+        'marital_status' => $request->marital_status,
+        'disability' => $request->disability,
+        'aadhar' => $request->aadhar,
+        'farming_background' => $request->farming_background,
+        'ruralarea' => $request->ruralarea,
+        'file' => $path.'/'.$profile_pic,
 
-        'mother_name' => $request->parent["mother_name"],
-        'father_name' => $request->parent["father_name"],
-        'father_mobile' => $request->parent["father_phone"],
-        'mother_mobile' => $request->parent["mother_phone"],
+        'mother_name' => $request->mother_name,
+        'father_name' => $request->father_name,
+        'father_mobile' => $request->father_phone,
+        'mother_mobile' => $request->mother_phone,
 
-        'shift' => $request->academics["shift"],
-        'stream' => $request->academics["stream"],
-        'category' => $request->academics["course"],
-        'branch_type' => $request->academics["section"],
-        'training_sem' => $request->academics["training_sem"],
-        'hostler' => $request->academics["hostler"],
-        'leet' => $request->academics["leet"],
+        'shift' => $request->shift,
+        'stream' => $request->stream,
+        'category' => $request->course,
+        'branch_type' => $request->section,
+        'training_sem' => $request->training_sem,
+        'hostler' => $request->hostler,
+        'leet' => $request->leet,
 
-        'mobile' => $request->contact["contact"],
-        'whatsapp' => $request->contact["whatsapp_contact"],
+        'mobile' => $request->contact,
+        'whatsapp' => $request->whatsapp_contact,
         
-        'pincode' => $request->address["pincode"],
-        'district' => $request->address["district"],
-        'city' => $request->address["city"],
-        'state' => $request->address["state"],
-        'address' => $request->address["address"],
+        'pincode' => $request->pincode,
+        'district' => $request->district,
+        'city' => $request->city,
+        'state' => $request->state,
+        'address' => $request->address,
 
     ]);
     if($current_step < 3){

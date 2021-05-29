@@ -54,6 +54,13 @@ const useStyles = makeStyles(theme => ({
         alignContent: "center",
         padding: "0px 0px"
     },
+    pdf:{
+        width: "30%",
+        height: "100%",
+        ['@media (max-width:960px)']: {
+            width: "100%",
+        }
+    },
     cardStyles: {
         width: "90%",
         borderRadius: "10px",
@@ -130,6 +137,7 @@ const useStyles = makeStyles(theme => ({
 
 function ProfilePreview(props) {
     const classes = useStyles();
+    const {path} = props;
 
     const renderFields = () =>
         props.data.map(field => {
@@ -165,6 +173,7 @@ function ProfilePreview(props) {
                 </Typography>
                 <CardContent>
                     <Grid container>{renderFields()}</Grid>
+                    <img src={path} className={classes.pdf} />
                 </CardContent>
             </div>
         </Grid>

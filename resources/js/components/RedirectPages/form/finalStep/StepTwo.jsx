@@ -153,6 +153,7 @@ export default function finalStep(props) {
     const [loader, setLoader] = React.useState(false);
     const [cond, setCond] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
+    const [photoPath, setPhotoPath] = React.useState("");
     const [matricPath, setMatricPath] = React.useState("");
     const [twelfthPath, setTwelfthPath] = React.useState("");
     const [diplomaPath, setDiplomaPath] = React.useState("");
@@ -189,6 +190,7 @@ export default function finalStep(props) {
         { id: 28, label: "District", value: "value" },
         { id: 29, label: "State", value: "value" },
         { id: 30, label: "Pincode", value: "value" },
+        {id: 31, label: "Photo", value: "value"}
     ]);
 
     const [MatriculationData, setMatriculationData] = React.useState([
@@ -313,7 +315,9 @@ export default function finalStep(props) {
                 { id: 28, label: "District", value: res.data.details['district']},
                 { id: 29, label: "State", value: res.data.details['state'] },
                 { id: 30, label: "Pincode", value: res.data.details['pincode'] },
+                { id: 10, label: "Photo", value: res.data.details['file'].split('\\').pop().split('/').pop() },
             ]);
+            setPhotoPath(res.data.details['file']);
             setMatriculationData([
                 { id: 1, label: "Board", value: res.data.matric['board'] },
                 { id: 2, label: "Institute Name", value: res.data.matric['institution_name'] },
@@ -410,7 +414,7 @@ export default function finalStep(props) {
                     </div>
                 </div>
                 <hr />
-                <ProfilePreview data={ProfileData}/>
+                <ProfilePreview data={ProfileData} path={photoPath}/>
                 <hr />
                 <MatriculationPreview data={MatriculationData} path={matricPath} /> 
                 <hr />

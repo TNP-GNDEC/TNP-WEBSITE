@@ -91,8 +91,10 @@ class ForgotPasswordController extends Controller
 			DB::table('form_statuses')
 			->where('user_id', $user->id)
 			->update(['form_step' => 1]);
-	  
-			$user->fill(['is_verified' => 1]);
+
+			DB::table('users')
+			->where('id', $user->id)
+			->update(['is_verified' => 1]);
 	  
 			return response()->json(['status' => 200, 'alert'=> 'Password Changed Successfully']);		
 		  }	
