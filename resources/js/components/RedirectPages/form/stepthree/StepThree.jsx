@@ -273,7 +273,7 @@ export default function StepThree(props) {
     },[])
 
     useEffect( ()=>{
-        console.log(matriculation)
+        console.log("")
     }, [matriculation] )
     return (
         <div>

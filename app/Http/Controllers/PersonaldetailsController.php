@@ -29,54 +29,61 @@ class PersonaldetailsController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-    $details = DB::table('personaldetails')
-    ->where('user_id', $user->id)
-    ->update([
-        'user_id'=> $user->id,
-        'first_name' => $request->profile["first_name"], 
-        'last_name' => $request->profile["last_name"],
-        'height' => $request->profile["height"],
-        'weight' => $request->profile["weight"],
-        'dob' => $request->profile["dob"],
-        'blood_group' => $request->profile["blood_group"],
-        'gender' => $request->profile["gender"],
-        'marital_status' => $request->profile["marital_status"],
-        'disability' => $request->profile["disability"],
-        'aadhar' => $request->profile["aadhar"],
-        'farming_background' => $request->profile["farming_background"],
-        'ruralarea' => $request->profile["ruralarea"],
+  $file = $request->file('file');
+  $filename  = $file->getClientOriginalName();
+  $extension = $file->getClientOriginalExtension();
+  $profile_photo_file   = $user->username.'_profile_photo.'.$extension;
+  $path=public_path('documents/profile_photo');
+  $file->move(public_path('documents/profile_photo'), $profile_photo_file);
+                
+  $details = DB::table('personaldetails')
+                ->where('user_id', $user->id)
+                ->update([
+                    'user_id'=> $user->id,
+                    'first_name' => $request->first_name, 
+                    'last_name' => $request->last_name,
+                    'height' => $request->height,
+                    'weight' => $request->weight,
+                    'dob' => $request->dob,
+                    'blood_group' => $request->blood_group,
+                    // 'gender' => $request->profile["gender"],
+                    // 'marital_status' => $request->profile["marital_status"],
+                    // 'disability' => $request->profile["disability"],
+                    // 'aadhar' => $request->profile["aadhar"],
+                    // 'farming_background' => $request->profile["farming_background"],
+                    // 'ruralarea' => $request->profile["ruralarea"],
 
-        'mother_name' => $request->parent["mother_name"],
-        'father_name' => $request->parent["father_name"],
-        'father_mobile' => $request->parent["father_phone"],
-        'mother_mobile' => $request->parent["mother_phone"],
+                    // 'mother_name' => $request->parent["mother_name"],
+                    // 'father_name' => $request->parent["father_name"],
+                    // 'father_mobile' => $request->parent["father_phone"],
+                    // 'mother_mobile' => $request->parent["mother_phone"],
 
-        'shift' => $request->academics["shift"],
-        'stream' => $request->academics["stream"],
-        'category' => $request->academics["course"],
-        'branch_type' => $request->academics["section"],
-        'training_sem' => $request->academics["training_sem"],
-        'hostler' => $request->academics["hostler"],
-        'leet' => $request->academics["leet"],
+                    // 'shift' => $request->academics["shift"],
+                    // 'stream' => $request->academics["stream"],
+                    // 'category' => $request->academics["course"],
+                    // 'branch_type' => $request->academics["section"],
+                    // 'training_sem' => $request->academics["training_sem"],
+                    // 'hostler' => $request->academics["hostler"],
+                    // 'leet' => $request->academics["leet"],
 
-        'mobile' => $request->contact["contact"],
-        'whatsapp' => $request->contact["whatsapp_contact"],
-        
-        'pincode' => $request->address["pincode"],
-        'district' => $request->address["district"],
-        'city' => $request->address["city"],
-        'state' => $request->address["state"],
-        'address' => $request->address["address"],
+                    // 'mobile' => $request->contact["contact"],
+                    // 'whatsapp' => $request->contact["whatsapp_contact"],
+                    
+                    // 'pincode' => $request->address["pincode"],
+                    // 'district' => $request->address["district"],
+                    // 'city' => $request->address["city"],
+                    // 'state' => $request->address["state"],
+                    // 'address' => $request->address["address"],
 
-    ]);
-    if($current_step < 3){
-      $form_step_change= DB::table('form_statuses')
-      ->where('user_id', $user->id)
-      ->update(['form_step' => 2]);
-    }
+                ]);
+                if($current_step < 3){
+                  $form_step_change= DB::table('form_statuses')
+                  ->where('user_id', $user->id)
+                  ->update(['form_step' => 2]);
+                }
     
     
-    return response()->json([ "msg"=> "stepcomplete", "user"=>$user]);
+    return response()->json([ "msg"=> "stepcomplete", "user"=>$user, "details"=>$request]);
  }
 
   public function receiveFormData(Request $request){

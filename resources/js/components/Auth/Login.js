@@ -146,7 +146,6 @@ const handlenameChange = (e) => {
       ...prevState,
       [name] : value
   }))
-  console.log(history)
 
 }
 
@@ -202,7 +201,6 @@ const handleFormSubmit= async (event)=>{
     var JWTtoken=response.data.access_token
     localStorage.setItem('token', JWTtoken);
     localStorage.setItem('role', user.role_id);
-    console.log(localStorage.getItem('role'));
       if(user.role_id===1){
         localStorage.setItem('student', user.role_id);
         fetchSteps(JWTtoken);

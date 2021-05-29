@@ -218,7 +218,6 @@ export default function StepFive(props) {
             fd.append(key, degree[key]);
     })
         fd.append('file', document.getElementById('degreefile').files[0]);
-        console.log(fd)
         axios
             .post(`/api/degreedetails`, 
                 fd,{

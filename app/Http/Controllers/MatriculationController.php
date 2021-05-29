@@ -46,7 +46,7 @@ class MatriculationController extends Controller
         'institution_name' => $request->institution_name,
         'board' => $request->board,
         'year_of_passing' => $request->year_of_passing,
-        'file' => $path.'/'.$matriculation_file
+        'file' => '/documents/matriculation/'.$matriculation_file
 
     ]);
     if($current_step <4){

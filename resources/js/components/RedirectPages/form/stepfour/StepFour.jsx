@@ -284,7 +284,6 @@ export default function StepFour(props) {
         })
         fd.append('file_diploma', document.getElementById('diplomafile').files[0]);
     }   
-    console.log(fd)
 
        const token = localStorage.getItem("token")
        axios.post(`/api/diplomatwelfth`, 

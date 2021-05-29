@@ -1,7 +1,6 @@
 @component('mail::message')
 # Reset Password
-
-Please Reset Your Password by clicking the button belovw
+Please Reset Your Password by clicking the button below. 
 
 @component('mail::button', ['url' => url('/resetPassword', $tokenData->token).'?email='.urlencode($tokenData->email)])
 	Reset Password
