@@ -13,10 +13,16 @@ import AddressDetails from "./AddressDetails";
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {capitalCase} from 'change-case'; 
+import { capitalCase } from 'change-case';
 import { faLastfmSquare, faOdnoklassnikiSquare } from "@fortawesome/free-brands-svg-icons";
+// import { Alert } from '@material-ui/lab';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import Notisfication from '../../../Auth/Notisfication';
+
+
+
 const useStyles = makeStyles(theme => ({
-    
+
     head: {
         color: "#038ed4",
         padding: "20px "
@@ -33,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     heading: {
         paddingTop: "20px"
     },
-    para:{
+    para: {
         color: "#000"
     },
     box: {
@@ -47,12 +53,12 @@ const useStyles = makeStyles(theme => ({
         boxShadow: "0px 15px 25px #00000033",
         ['@media (max-width:960px)']: {
             width: "90%"
-          }
+        }
     },
     hr: {
         color: "#038ed4",
         font: "2px"
-    }, 
+    },
     container: {
         width: "100%",
         display: "flex",
@@ -77,16 +83,16 @@ const useStyles = makeStyles(theme => ({
         borderRadius: "10px",
         boxShadow: "0px 15px 25px #00000033"
     },
-    loader:{
+    loader: {
         padding: "10px"
     },
-    toast:{
+    toast: {
         top: "15%",
     },
     pos: {
         float: "right"
     },
-    btnBox:{
+    btnBox: {
         width: "90%",
         margin: "20px auto",
         paddingBottom: "10px",
@@ -101,13 +107,22 @@ const useStyles = makeStyles(theme => ({
         background: theme.palette.primary.main,
         borderRadius: "20px",
         boxShadow: "0px 15px 25px #038ed433",
-        "&:focus":{
+        "&:focus": {
             outline: "none"
         },
-        "&:hover":{
+        "&:hover": {
             background: theme.palette.primary.main,
             color: theme.palette.secondary.main,
         },
+    },
+    alert: {
+        margin: "auto",
+        width: "90%",
+    },
+    fileupload: {
+        width: "90%",
+        marginLeft: "60px",
+        padding: "20px 0"
     },
 }));
 
@@ -116,69 +131,69 @@ export default function StepTwo(props) {
     const [loading, setLoading] = React.useState(true);
     const [loader, setLoader] = React.useState(false);
     const [errors, setErrors] = React.useState({});
-    const {action, setAction} = props;
+    const { action, setAction } = props;
     const [open, setOpen] = React.useState(false);
-    
+
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+            return;
         }
-    
+
         setOpen(false);
-      };
+    };
 
     const validate = () => {
         let temp = {}
-        temp.first_name = (/^[a-zA-Z\s]*$/).test(profile.first_name) && profile.first_name? "": "Enter Valid Name using [A-Z] and/or [a-z]."
-        temp.dob = profile.dob? "": "Required."
-        temp.aadhar = (/^[0-9]{12}$/).test(profile.aadhar) ? "": "Enter 12 digits with no space or hyphens(-)."
-        temp.height = (/^[0-9]{1,3}$/).test(profile.height)?"": "Height can't be more than 3 digits long"
-        temp.weight = (/^[0-9]{2,3}$/).test(profile.weight) ? "": "Required and can be of max 3 digits."
-        temp.blood_group = profile.blood_group ? "": "Required."
-        temp.gender = profile.gender ? "": "Required."
-        temp.marital_status = profile.marital_status ? "": "Required."
-        temp.farming_background = profile.farming_background == 0 || profile.farming_background == 1 ? "": "Required."
-        temp.disability = profile.disability == 0 || profile.disability == 1 ? "": "Required."
-        temp.ruralarea = profile.ruralarea == 0 || profile.ruralarea== 1 ? "": "Required."
+        temp.first_name = (/^[a-zA-Z\s]*$/).test(profile.first_name) && profile.first_name ? "" : "Enter Valid Name using [A-Z] and/or [a-z]."
+        temp.dob = profile.dob ? "" : "Required."
+        temp.aadhar = (/^[0-9]{12}$/).test(profile.aadhar) ? "" : "Enter 12 digits with no space or hyphens(-)."
+        temp.height = (/^[0-9]{1,3}$/).test(profile.height) ? "" : "Height can't be more than 3 digits long"
+        temp.weight = (/^[0-9]{2,3}$/).test(profile.weight) ? "" : "Required and can be of max 3 digits."
+        temp.blood_group = profile.blood_group ? "" : "Required."
+        temp.gender = profile.gender ? "" : "Required."
+        temp.marital_status = profile.marital_status ? "" : "Required."
+        temp.farming_background = profile.farming_background == 0 || profile.farming_background == 1 ? "" : "Required."
+        temp.disability = profile.disability == 0 || profile.disability == 1 ? "" : "Required."
+        temp.ruralarea = profile.ruralarea == 0 || profile.ruralarea == 1 ? "" : "Required."
 
-        temp.father_name = (/^[a-zA-Z\s]*$/).test(parent.father_name) && parent.father_name? "": "Enter Valid Name using [A-Z] and/or [a-z]."
-        temp.father_phone = (/^[0-9]{10}$/).test(parent.father_phone) ? "": "Phone no. can contain only digits [0-9]."
-        temp.mother_name = (/^[a-zA-Z\s]*$/).test(parent.mother_name) && parent.mother_name? "": "Enter Valid Name using [A-Z] and/or [a-z]."
-        temp.mother_phone = (/^[0-9]{10}$/).test(parent.mother_phone) ? "": "Phone no. can contain only digits [0-9]."
+        temp.father_name = (/^[a-zA-Z\s]*$/).test(parent.father_name) && parent.father_name ? "" : "Enter Valid Name using [A-Z] and/or [a-z]."
+        temp.father_phone = (/^[0-9]{10}$/).test(parent.father_phone) ? "" : "Phone no. can contain only digits [0-9]."
+        temp.mother_name = (/^[a-zA-Z\s]*$/).test(parent.mother_name) && parent.mother_name ? "" : "Enter Valid Name using [A-Z] and/or [a-z]."
+        temp.mother_phone = (/^[0-9]{10}$/).test(parent.mother_phone) ? "" : "Phone no. can contain only digits [0-9]."
 
-        temp.course = academics.course ? "": "Required."
-        temp.stream = academics.stream ? "": "Required."
-        temp.shift = academics.shift ? "": "Required."
-        temp.section = academics.section ? "": "Required."
-        temp.leet = academics.leet == 0 || academics.leet == 1 ? "": "Required."
-        temp.hostler = academics.hostler ==0 || academics.hostler == 1 ? "": "Required."
-        temp.training_sem = academics.training_sem ? "": "Required."
+        temp.course = academics.course ? "" : "Required."
+        temp.stream = academics.stream ? "" : "Required."
+        temp.shift = academics.shift ? "" : "Required."
+        temp.section = academics.section ? "" : "Required."
+        temp.leet = academics.leet == 0 || academics.leet == 1 ? "" : "Required."
+        temp.hostler = academics.hostler == 0 || academics.hostler == 1 ? "" : "Required."
+        temp.training_sem = academics.training_sem ? "" : "Required."
 
-        temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "": "Invalid Phone"
-        temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "": "Invalid Phone"
-        temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "": "Invalid Phone"
-        
+        temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "" : "Invalid Phone"
+        temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "" : "Invalid Phone"
+        temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "" : "Invalid Phone"
+
         if (!temp.re_enter_contact) {
             temp.re_enter_contact = contact.re_enter_contact != contact.contact ? "Mobile Number not matched" : ""
         }
-        
-        temp.street = address.address ? "": "Required."
-        temp.city = (/^[a-zA-Z\s]*$/).test(address.city) && address.city? "": "Required."
-        temp.pincode2 = (/^[0-9]{6}$/).test(address.pincode) ? "": "Required and must be exactly 6 digits."
-        temp.state = (/^[a-zA-Z\s]*$/).test(address.state) && address.state? "": "Required."
-        temp.district = (/^[a-zA-Z\s]*$/).test(address.district) && address.district? "": "District can contain only letters [A-Z] and/or [a-z]"
+
+        temp.street = address.address ? "" : "Required."
+        temp.city = (/^[a-zA-Z\s]*$/).test(address.city) && address.city ? "" : "Required."
+        temp.pincode2 = (/^[0-9]{6}$/).test(address.pincode) ? "" : "Required and must be exactly 6 digits."
+        temp.state = (/^[a-zA-Z\s]*$/).test(address.state) && address.state ? "" : "Required."
+        temp.district = (/^[a-zA-Z\s]*$/).test(address.district) && address.district ? "" : "District can contain only letters [A-Z] and/or [a-z]"
         setErrors({
-          ...temp
+            ...temp
         })
-        var filter =  Object.keys(temp);
+        var filter = Object.keys(temp);
         var ok = "";
-        if(filter.every(x => temp[x].valueOf() === ok.valueOf())){
+        if (filter.every(x => temp[x].valueOf() === ok.valueOf())) {
             setOpen(false);
-        }else{
+        } else {
             setOpen(true);
         }
         return filter.every(x => temp[x].valueOf() === ok.valueOf());
-      }
+    }
 
 
     // state for holding inputs from profile form imported as ProfileDetails
@@ -193,8 +208,9 @@ export default function StepTwo(props) {
         marital_status: "",
         farming_background: "",
         disability: "",
-        ruralarea:"",
-        aadhar: ""
+        ruralarea: "",
+        aadhar: "",
+        picture: ""
     });
     // state for holding inputs from parent form imported as ParentsDetails
     const [parent, setParent] = React.useState({
@@ -233,7 +249,9 @@ export default function StepTwo(props) {
         state: ""
     });
 
-   
+    const [notify, setNotify] = React.useState({ isOpen: false, message: "", type: "" });
+
+
 
     // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
@@ -288,10 +306,10 @@ export default function StepTwo(props) {
                 // value = parseInt(value)
                 setProfile({ ...profile, disability: value });
                 break;
-                case 11:
-                    // value = parseInt(value)
-                    setProfile({ ...profile, ruralarea: value });
-                    break;
+            case 11:
+                // value = parseInt(value)
+                setProfile({ ...profile, ruralarea: value });
+                break;
             default:
                 break;
         }
@@ -316,7 +334,7 @@ export default function StepTwo(props) {
                 });
                 break;
             case 3:
-                setParent({ ...parent, mother_name: value});
+                setParent({ ...parent, mother_name: value });
                 break;
             case 4:
                 setParent({
@@ -398,7 +416,7 @@ export default function StepTwo(props) {
                 setAddress({ ...address, city: value });
                 break;
             case 3:
-                setAddress({ ...address, district: value});
+                setAddress({ ...address, district: value });
                 break;
             case 4:
                 setAddress({
@@ -407,37 +425,53 @@ export default function StepTwo(props) {
                 });
                 break;
             case 5:
-                setAddress({ ...address, state:value});
+                setAddress({ ...address, state: value });
                 break;
             default:
                 break;
         }
     };
 
+    useEffect(() => {
+        console.log(profile);
+    }, [profile])
+
     // function for making objects ready by converting values into camelCase;
-    const makeOjectsReady = () => {};
+    // const makeOjectsReady = () => { };
     const handleFormSubmit = event => {
         event.preventDefault();
-        if(validate()){
+        if (validate()) {
             setLoader(true);
-            if(academics.course === "M.Tech"){
+            if (academics.course === "M.Tech") {
                 setAction(false);
             }
-            else{
+            else {
                 setAction(true);
             }
+
+            fileSize = profile.picture.size / 1024 / 1024;
+
+            if (fileSize > 1) {
+                setNotify({ isOpen: true, message: "File Size should be less than 1 MB.", type: "error" });
+                return;
+            }
+
+
+
+
             const token = localStorage.getItem("token");
             axios.post(`/api/personaldetails`, {
-                    profile: ChangeCase(profile),
-                    academics: academics,
-                    parent: ChangeCase(parent),
-                    contact: contact,
-                    address: ChangeCase(address)
-                }, {
-                    headers: { 'Authorization': 'Bearer ' + token }})
+                profile: ChangeCase(profile),
+                academics: academics,
+                parent: ChangeCase(parent),
+                contact: contact,
+                address: ChangeCase(address)
+            }, {
+                headers: { 'Authorization': 'Bearer ' + token }
+            })
                 .then((response) => {
                     setLoader(false);
-                    if(response.data.msg === "stepcomplete"){
+                    if (response.data.msg === "stepcomplete") {
                         props.Complete();
                         props.Next();
                     }
@@ -445,147 +479,168 @@ export default function StepTwo(props) {
                 .catch((error) => {
                     console.log(error);
                 });
-                }
+        }
     };
 
+    const handleFileChange = (e) => {
+        var pic = e.target.files[0]
+        // console.log(pic.size/1024/1024);
+
+        setProfile((prevSate) => ({ ...prevSate, picture: pic }))
+
+    }
+
     const fetchDetails = async () => {
-        var token= localStorage.getItem("token")
-        const res = await axios.get(`/api/personalDetails`,{
-            headers: { 'Authorization': 'Bearer ' + token }});
-            setProfile({
-                first_name: res.data.details['first_name'],
-                last_name: res.data.details['last_name'],
-                dob: res.data.details['dob'],
-                height: res.data.details['height'],
-                weight: res.data.details['weight'],
-                blood_group: res.data.details['blood_group'],
-                gender: res.data.details['gender'],
-                marital_status: res.data.details['marital_status'],
-                farming_background: res.data.details['farming_background'],
-                disability: res.data.details['disability'],
-                ruralarea:res.data.details['ruralarea'],
-                aadhar: res.data.details['aadhar']
-            })
-            setParent({
-                father_name: res.data.details['father_name'],
-                father_phone: res.data.details['father_mobile'],
-                mother_name: res.data.details['mother_name'],
-                mother_phone: res.data.details['mother_mobile']
-            })
-            setAcademics({
-                univ_roll: res.data.details['urn'],
-                college_roll: res.data.details['crn'],
-                course: res.data.details['category'],
-                stream: res.data.details['stream'],
-                section: res.data.details['branch_type'],
-                shift: res.data.details['shift'],
-                training_sem: res.data.details['training_sem'],
-                leet: res.data.details['leet'],
-                hostler: res.data.details['hostler']
-            })
-            setContact({
-                whatsapp_contact: res.data.details['whatsapp'],
-                contact: res.data.details['mobile'],
-                re_enter_contact: res.data.details['mobile']
-            })
-            setAddress({
-                address: res.data.details['address'],
-                pincode: res.data.details['pincode'],
-                district: res.data.details['district'],
-                city: res.data.details['city'],
-                state: res.data.details['state']
-            })
+        var token = localStorage.getItem("token")
+        const res = await axios.get(`/api/personalDetails`, {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+        setProfile({
+            first_name: res.data.details['first_name'],
+            last_name: res.data.details['last_name'],
+            dob: res.data.details['dob'],
+            height: res.data.details['height'],
+            weight: res.data.details['weight'],
+            blood_group: res.data.details['blood_group'],
+            gender: res.data.details['gender'],
+            marital_status: res.data.details['marital_status'],
+            farming_background: res.data.details['farming_background'],
+            disability: res.data.details['disability'],
+            ruralarea: res.data.details['ruralarea'],
+            aadhar: res.data.details['aadhar']
+        })
+        setParent({
+            father_name: res.data.details['father_name'],
+            father_phone: res.data.details['father_mobile'],
+            mother_name: res.data.details['mother_name'],
+            mother_phone: res.data.details['mother_mobile']
+        })
+        setAcademics({
+            univ_roll: res.data.details['urn'],
+            college_roll: res.data.details['crn'],
+            course: res.data.details['category'],
+            stream: res.data.details['stream'],
+            section: res.data.details['branch_type'],
+            shift: res.data.details['shift'],
+            training_sem: res.data.details['training_sem'],
+            leet: res.data.details['leet'],
+            hostler: res.data.details['hostler']
+        })
+        setContact({
+            whatsapp_contact: res.data.details['whatsapp'],
+            contact: res.data.details['mobile'],
+            re_enter_contact: res.data.details['mobile']
+        })
+        setAddress({
+            address: res.data.details['address'],
+            pincode: res.data.details['pincode'],
+            district: res.data.details['district'],
+            city: res.data.details['city'],
+            state: res.data.details['state']
+        })
 
         setLoading(false);
     }
-    useEffect(()=>{
+    useEffect(() => {
         fetchDetails();
-    },[])
+    }, [])
     return (
         <div className={classes.root}>
             {loading ? (
                 <Card className={classes.box}>
-                <div className={classes.heading}>
-                <div className={classes.loader}>
-                <CircularProgress color="#193b68" size="80px" />
-                </div>
-                <b>
-                    <p className={classes.para}>
-                        Checking the Step 2 - Personal Details Status
+                    <div className={classes.heading}>
+                        <div className={classes.loader}>
+                            <CircularProgress color="#193b68" size="80px" />
+                        </div>
+                        <b>
+                            <p className={classes.para}>
+                                Checking the Step 2 - Personal Details Status
                     </p>
-                </b>
-                </div>
-              </Card>
-            ):(
-            <form onSubmit={event => handleFormSubmit(event)}>
-                <Grid container className={classes.container}>
-                    <Grid item xs={12} className={classes.Cardcontainers}>
-                        <Card className={classes.cardStyles}>
-                            <ProfileDetails
-                                Profile={profile}
-                                handleInputChange={handleProfileChangeInput}
-                                Errors= {errors}
-                            />
-                        </Card>
-                    </Grid>
+                        </b>
+                    </div>
+                </Card>
+            ) : (
+                <form onSubmit={event => handleFormSubmit(event)}>
+                    <Grid container className={classes.container}>
+                        <Grid item xs={12} className={classes.Cardcontainers}>
+                            <Card className={classes.cardStyles}>
+                                <ProfileDetails
+                                    Profile={profile}
+                                    handleInputChange={handleProfileChangeInput}
+                                    Errors={errors}
+                                />
+                                <hr />
+                                <Grid container>
+                                    <Grid item xs={12} >
+                                        <Alert severity="info" className={classes.alert}>
+                                            Note : Upload <CloudUploadIcon /> Your Passport Size Photograph
+                                    (Image File Only)
+                            </Alert>
+                                        <Notisfication notify={notify} setNotify={setNotify} />
+                                        <input className={classes.fileupload} onChange={(e) => handleFileChange(e)} accept="image/*" id="upload_picture" type="file" required />
+                                        {/* <div className={classes.fileShow}>{diplomaFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {diplomaFile}</p>}</div> */}
+                                    </Grid>
+                                </Grid>
+                            </Card>
+                        </Grid>
 
-                    <Grid item xs={12} className={classes.Cardcontainers}>
-                        <Card className={classes.cardStyles}>
-                            <ParentDetails
-                                parent={parent}
-                                handleInputChange={handleParentChangeInput}  
-                                Errors= {errors}
-                            />
-                        </Card>
-                    </Grid>
+                        <Grid item xs={12} className={classes.Cardcontainers}>
+                            <Card className={classes.cardStyles}>
+                                <ParentDetails
+                                    parent={parent}
+                                    handleInputChange={handleParentChangeInput}
+                                    Errors={errors}
+                                />
+                            </Card>
+                        </Grid>
 
-                    <Grid item xs={12} className={classes.Cardcontainers}>
-                        <Card className={classes.cardStyles}>
-                            <AcademicDetails
-                                academics={academics}
-                                handleInputChange={handleAcademicsChangeInput}
-                                Errors= {errors}
-                            />
-                        </Card>
-                    </Grid>
+                        <Grid item xs={12} className={classes.Cardcontainers}>
+                            <Card className={classes.cardStyles}>
+                                <AcademicDetails
+                                    academics={academics}
+                                    handleInputChange={handleAcademicsChangeInput}
+                                    Errors={errors}
+                                />
+                            </Card>
+                        </Grid>
 
-                    <Grid item xs={12} className={classes.Cardcontainers}>
-                        <Card className={classes.cardStyles}>
-                            <ContactDetails
-                                contact={contact}
+                        <Grid item xs={12} className={classes.Cardcontainers}>
+                            <Card className={classes.cardStyles}>
+                                <ContactDetails
+                                    contact={contact}
 
-                                handleInputChange={handleContactChangeInput}
-                                Errors= {errors}
-                            />
-                        </Card>
-                    </Grid>
+                                    handleInputChange={handleContactChangeInput}
+                                    Errors={errors}
+                                />
+                            </Card>
+                        </Grid>
 
-                    <Grid item xs={12} className={classes.Cardcontainers}>
-                        <Card className={classes.cardStyles}>
-                            <AddressDetails
-                                address={address}
-                                handleInputChange={handleAddresssChangeInput}
-                                Errors= {errors}
-                            />
-                        </Card>
+                        <Grid item xs={12} className={classes.Cardcontainers}>
+                            <Card className={classes.cardStyles}>
+                                <AddressDetails
+                                    address={address}
+                                    handleInputChange={handleAddresssChangeInput}
+                                    Errors={errors}
+                                />
+                            </Card>
+                        </Grid>
                     </Grid>
-                </Grid>
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} className={classes.toast}>
-                    <Alert onClose={handleClose} severity="error">
-                    Please rectify the errors, before submitting
+                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} className={classes.toast}>
+                        <Alert onClose={handleClose} severity="error">
+                            Please rectify the errors, before submitting
                     </Alert>
-                </Snackbar>
-                <div className={classes.btnBox}>
-                {loader ? (
-                            
+                    </Snackbar>
+                    <div className={classes.btnBox}>
+                        {loader ? (
+
                             <CircularProgress />
-                        ):(
-                <button type="submit" className={classes.button}>
-                    Submit & Next
-                </button>
+                        ) : (
+                            <button type="submit" className={classes.button}>
+                                Submit & Next
+                            </button>
                         )}
-                </div>
-            </form>
+                    </div>
+                </form>
             )}
         </div>
     );
