@@ -52,12 +52,29 @@ export default function Details(props) {
         }
         else if(f.id === 9){
             if(props.academics.course === "M.Tech"){
-                return [ { label:"THIRD", value:"3" }, { label:"FOURTH", value:"4" } ];
+                return f.options2;
             }
             else{
                 return f.options ;
             }
 
+        }
+
+        else if (f.id===5){
+            if(props.academics.course === "M.Tech"){
+                return f.options2;
+            }
+            else{
+                return f.options ;
+            }
+        }
+        else if (f.id===7){
+            if(props.academics.course === "M.Tech"){
+                return f.options2;
+            }
+            else{
+                return f.options ;
+            }
         }
 
         else {
@@ -213,6 +230,12 @@ export default function Details(props) {
                     label: "EVENING"
                 }
             ],
+            options2 : [
+                {
+                    value: "Morning",
+                    label: "MORNING"
+                }
+            ],
             validate: props.Errors.shift
         },
         {
@@ -240,6 +263,13 @@ export default function Details(props) {
                     label: "NO"
                 }
             ],
+            options2: [
+                {
+                    value: 0,
+                    label: "NO"
+                }
+            ],
+
             validate: props.Errors.leet
         },
         {
@@ -276,6 +306,13 @@ export default function Details(props) {
                     value: "8",
                     label: "EIGHT"
                 }
+            ],
+            options2: [
+                {
+                    value: "No",
+                    label: "NO TRAINING SEMESTER"
+                }
+
             ],
             validate: props.Errors.training_sem
         }
