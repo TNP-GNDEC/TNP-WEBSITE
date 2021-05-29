@@ -47,6 +47,7 @@ class CreateStepTwoTable extends Migration
             $table->boolean('hostler')->nullable();
             $table->boolean('disability')->nullable();
             $table->bigInteger('aadhar')->nullable();
+            $table->string('file')->nullable();
             $table->date('dob')->nullable();
             $table->foreign('user_id')
             ->references('id')->on('users')

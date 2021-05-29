@@ -133,6 +133,7 @@ export default function StepTwo(props) {
     const [errors, setErrors] = React.useState({});
     const { action, setAction } = props;
     const [open, setOpen] = React.useState(false);
+    const [file, setFile] = React.useState("");
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -210,7 +211,6 @@ export default function StepTwo(props) {
         disability: "",
         ruralarea: "",
         aadhar: "",
-        picture: ""
     });
     // state for holding inputs from parent form imported as ParentsDetails
     const [parent, setParent] = React.useState({
@@ -449,24 +449,38 @@ export default function StepTwo(props) {
                 setAction(true);
             }
 
-            fileSize = profile.picture.size / 1024 / 1024;
+            var fileSize = document.getElementById('file').files[0].size / 1024 / 1024;
 
             if (fileSize > 1) {
                 setNotify({ isOpen: true, message: "File Size should be less than 1 MB.", type: "error" });
                 return;
             }
+            ChangeCase(profile);
+            ChangeCase(parent);
+            ChangeCase(address);
+            const fd = new FormData();
+            Object.keys(profile).forEach(function (key){         
+                fd.append(key, profile[key]);
+            });
+            fd.append('file', document.getElementById('file').files[0]);
+            Object.keys(academics).forEach(function (key){         
+                fd.append(key, academics[key]);
+            });
+            Object.keys(parent).forEach(function (key){         
+                fd.append(key, parent[key]);
+            });
+            Object.keys(contact).forEach(function (key){         
+                fd.append(key, contact[key]);
+            });
+            Object.keys(address).forEach(function (key){         
+                fd.append(key, address[key]);
+            });
 
-
-
-
+            console.log(fd);
             const token = localStorage.getItem("token");
-            axios.post(`/api/personaldetails`, {
-                profile: ChangeCase(profile),
-                academics: academics,
-                parent: ChangeCase(parent),
-                contact: contact,
-                address: ChangeCase(address)
-            }, {
+            axios.post(`/api/personaldetails`,
+                fd
+            , {
                 headers: { 'Authorization': 'Bearer ' + token }
             })
                 .then((response) => {
@@ -483,10 +497,10 @@ export default function StepTwo(props) {
     };
 
     const handleFileChange = (e) => {
-        var pic = e.target.files[0]
+        var pic = e.target.files[0];
         // console.log(pic.size/1024/1024);
 
-        setProfile((prevSate) => ({ ...prevSate, picture: pic }))
+        setFile({file: pic});
 
     }
 
@@ -573,11 +587,12 @@ export default function StepTwo(props) {
                                 <Grid container>
                                     <Grid item xs={12} >
                                         <Alert severity="info" className={classes.alert}>
-                                            Note : Upload <CloudUploadIcon /> Your Passport Size Photograph
-                                    (Image File Only)
-                            </Alert>
+                                            Note : Upload <CloudUploadIcon /> Your Passport Size Photo
+                                    (Image size should be less than 1 MB)<strong>(If you are editing this form you need to upload image again)</strong>
+                                </Alert>
                                         <Notisfication notify={notify} setNotify={setNotify} />
-                                        <input className={classes.fileupload} onChange={(e) => handleFileChange(e)} accept="image/*" id="upload_picture" type="file" required />
+                                        <input className={classes.fileupload} onChange={(e) => handleFileChange(e)} accept="image/*" id="file" type="file" required />
+                                        <img src={profile.picture} />
                                         {/* <div className={classes.fileShow}>{diplomaFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {diplomaFile}</p>}</div> */}
                                     </Grid>
                                 </Grid>

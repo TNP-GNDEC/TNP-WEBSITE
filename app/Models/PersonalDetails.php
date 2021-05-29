@@ -32,6 +32,7 @@ class PersonalDetails extends Model
      "pincode", 
      "farming_background",
      "ruralarea",
+     "file",
      "marital_status", 
      "aadhar", 
      "branch_type", 
