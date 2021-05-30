@@ -28,6 +28,7 @@ class CreateTwelfthTable extends Migration
             $table->string('file')->nullable();
             $table->bigInteger('pincode')->nullable();
             $table->year('year_of_passing')->nullable();
+            $table->bigInteger('year_gap')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             // $table->foreign('user_id')

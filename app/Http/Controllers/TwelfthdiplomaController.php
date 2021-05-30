@@ -61,6 +61,7 @@ class TwelfthdiplomaController extends Controller
         'institution_name' => $request->institution_name_12,
         'board' => $request->board_12,
         'year_of_passing' => $request->year_of_passing_12,
+        'year_gap' => $request->year_of_passing_12 - 2018,
         'file' => '/documents/twelfth/'.$twelfth_file_url
   ]);
   
@@ -95,6 +96,7 @@ class TwelfthdiplomaController extends Controller
       'institution_name' => $request->institution_name_diploma,
       'branch' => $request->branch_diploma,
       'year_of_passing' => $request->year_of_passing_diploma,
+      'year_gap' => $request->year_of_passing_diploma - 2019,
       'file' => '/documents/diploma/'.$diploma_file_url
       ]
     );

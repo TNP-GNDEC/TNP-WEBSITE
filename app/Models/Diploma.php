@@ -18,10 +18,10 @@ class Diploma extends Model
         "state",
         "pincode",
         "year_of_passing",
+        "year_gap",
         "obtained_marks",
         "maximum_marks",
         "file",
         "marks_type",
-        "user_id"
     ];
 }

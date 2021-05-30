@@ -26,6 +26,7 @@ class CreateDiplomaTable extends Migration
             $table->string('state')->nullable();
             $table->string('branch')->nullable();
             $table->year('year_of_passing')->nullable();
+            $table->year('year_gap')->nullable();
             $table->bigInteger('pincode')->nullable();
             $table->string('obtained_marks')->nullable();
             $table->string('maximum_marks')->nullable();
