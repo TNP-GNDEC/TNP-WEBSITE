@@ -315,7 +315,7 @@ export default function finalStep(props) {
                 { id: 28, label: "District", value: res.data.details['district']},
                 { id: 29, label: "State", value: res.data.details['state'] },
                 { id: 30, label: "Pincode", value: res.data.details['pincode'] },
-                { id: 10, label: "Photo", value: res.data.details['file'].split('\\').pop().split('/').pop() },
+                { id: 31, label: "Photo", value: res.data.details['file'].split('\\').pop().split('/').pop() },
             ]);
             setPhotoPath(res.data.details['file']);
             setMatriculationData([

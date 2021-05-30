@@ -49,7 +49,7 @@ class VerificationController extends Controller {
                 if (!$user->hasVerifiedEmail()) {
                     $user->markEmailAsVerified();
                 }
-    			return response()->json(['msg' => 'A Verification Link has been sent to your Mail!']);
+    			return response()->json(['msg' => 'A Verification Link has been sent to your Mail! & Please also check the spam folder.']);
     		}
     		else{
     			return response()->json(['alert' => 'Sorry we could not send a link, try again later!']);

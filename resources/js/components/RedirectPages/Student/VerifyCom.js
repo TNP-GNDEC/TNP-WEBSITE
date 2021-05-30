@@ -153,6 +153,7 @@ export default function finalStep(props) {
     const [loader, setLoader] = React.useState(false);
     const [cond, setCond] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
+    const [photoPath, setPhotoPath] = React.useState("");
     const [matricPath, setMatricPath] = React.useState("");
     const [twelfthPath, setTwelfthPath] = React.useState("");
     const [diplomaPath, setDiplomaPath] = React.useState("");
@@ -189,6 +190,7 @@ export default function finalStep(props) {
         { id: 28, label: "District", value: "value" },
         { id: 29, label: "State", value: "value" },
         { id: 30, label: "Pincode", value: "value" },
+        {id: 31, label: "Photo", value: "value"}
     ]);
 
     const [MatriculationData, setMatriculationData] = React.useState([
@@ -303,7 +305,7 @@ export default function finalStep(props) {
                 { id: 18, label: "Stream", value: res.data.details['stream'] },
                 { id: 19, label: "Section", value: res.data.details['branch_type'] },
                 { id: 20, label: "Shift", value: res.data.details['shift'] },
-                { id: 21, label: "Training Sem", value: res.data.details['training_sem'] },
+                //{ id: 21, label: "Training Sem", value: res.data.details['training_sem'] },
                 { id: 22, label: "Leet", value: options(res.data.details['leet']) },
                 { id: 23, label: "Hostler", value: options(res.data.details['hostler']) },
                 { id: 24, label: "WhatsApp No", value: res.data.details['whatsapp'] },
@@ -313,7 +315,9 @@ export default function finalStep(props) {
                 { id: 28, label: "District", value: res.data.details['district']},
                 { id: 29, label: "State", value: res.data.details['state'] },
                 { id: 30, label: "Pincode", value: res.data.details['pincode'] },
+                { id: 31, label: "Photo", value: res.data.details['file'].split('\\').pop().split('/').pop() },
             ]);
+            setPhotoPath(res.data.details['file']);
             setMatriculationData([
                 { id: 1, label: "Board", value: res.data.matric['board'] },
                 { id: 2, label: "Institute Name", value: res.data.matric['institution_name'] },
@@ -400,17 +404,12 @@ export default function finalStep(props) {
                 <div>
                     <div className={classes.heading}>
                     <b>
-                        <h1>Verify Your Data</h1>
-                    </b>
-                    <b>
-                        <p className={classes.para}>
-                            Kindly verify that the information you filled is best of your knowledge. Once submitted, it can't be changed.
-                        </p>
+                        <h1>Your Details</h1>
                     </b>
                     </div>
                 </div>
                 <hr />
-                <ProfilePreview data={ProfileData}/>
+                <ProfilePreview data={ProfileData} path={photoPath}/>
                 <hr />
                 <MatriculationPreview data={MatriculationData} path={matricPath} /> 
                 <hr />
