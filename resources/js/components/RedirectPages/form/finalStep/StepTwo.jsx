@@ -305,7 +305,7 @@ export default function finalStep(props) {
                 { id: 18, label: "Stream", value: res.data.details['stream'] },
                 { id: 19, label: "Section", value: res.data.details['branch_type'] },
                 { id: 20, label: "Shift", value: res.data.details['shift'] },
-                { id: 21, label: "Training Sem", value: res.data.details['training_sem'] },
+                // { id: 21, label: "Training Sem", value: res.data.details['training_sem'] },
                 { id: 22, label: "Leet", value: options(res.data.details['leet']) },
                 { id: 23, label: "Hostler", value: options(res.data.details['hostler']) },
                 { id: 24, label: "WhatsApp No", value: res.data.details['whatsapp'] },

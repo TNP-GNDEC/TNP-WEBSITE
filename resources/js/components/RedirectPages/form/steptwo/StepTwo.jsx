@@ -168,7 +168,7 @@ export default function StepTwo(props) {
         temp.section = academics.section ? "" : "Required."
         temp.leet = academics.leet == 0 || academics.leet == 1 ? "" : "Required."
         temp.hostler = academics.hostler == 0 || academics.hostler == 1 ? "" : "Required."
-        temp.training_sem = academics.training_sem ? "" : "Required."
+        // temp.training_sem = academics.training_sem ? "" : "Required."
 
         temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "" : "Invalid Phone"
         temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "" : "Invalid Phone"
@@ -229,7 +229,7 @@ export default function StepTwo(props) {
         stream: "",
         section: "",
         shift: "",
-        training_sem: "",
+        // training_sem: "",
         leet: "",
         hostler: ""
     });
@@ -536,7 +536,7 @@ export default function StepTwo(props) {
             stream: res.data.details['stream'],
             section: res.data.details['branch_type'],
             shift: res.data.details['shift'],
-            training_sem: res.data.details['training_sem'],
+            // training_sem: res.data.details['training_sem'],
             leet: res.data.details['leet'],
             hostler: res.data.details['hostler']
         })

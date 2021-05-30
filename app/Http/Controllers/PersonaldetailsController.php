@@ -34,8 +34,7 @@ class PersonaldetailsController extends Controller
     $filename  = $file->getClientOriginalName();
     $extension = $file->getClientOriginalExtension();
     $profile_pic   = $user->username.'_picture.'.$extension;
-    $path=public_path('documents/profile');
-    $file->move(public_path('documents/profile'), $profile_pic);
+    $file->move(public_path('documents/profile_picture'), $profile_pic);
     $details = DB::table('personaldetails')
     ->where('user_id', $user->id)
     ->update([
@@ -52,7 +51,7 @@ class PersonaldetailsController extends Controller
         'aadhar' => $request->aadhar,
         'farming_background' => $request->farming_background,
         'ruralarea' => $request->ruralarea,
-        'file' => $path.'/'.$profile_pic,
+        'file' => 'documents/profile_picture/'.$profile_pic,
 
         'mother_name' => $request->mother_name,
         'father_name' => $request->father_name,
@@ -63,7 +62,8 @@ class PersonaldetailsController extends Controller
         'stream' => $request->stream,
         'category' => $request->course,
         'branch_type' => $request->section,
-        'training_sem' => $request->training_sem,
+        // 'training_sem' => $request->training_sem,
+        'training_sem' => "7",
         'hostler' => $request->hostler,
         'leet' => $request->leet,
 

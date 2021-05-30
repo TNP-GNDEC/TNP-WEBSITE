@@ -179,7 +179,7 @@ export default function finalStep(props) {
         { id: 18, label: "Stream", value: "value" },
         { id: 19, label: "Section", value: "value" },
         { id: 20, label: "Shift", value: "value" },
-        { id: 21, label: "Training Sem", value: "value" },
+        // { id: 21, label: "Training Sem", value: "value" },
         { id: 22, label: "Leet", value: "value" },
         { id: 23, label: "Hostler", value: "value" },
         { id: 24, label: "WhatsApp No", value: "value" },

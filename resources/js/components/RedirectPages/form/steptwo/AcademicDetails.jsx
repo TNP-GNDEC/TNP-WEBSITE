@@ -169,8 +169,8 @@ export default function Details(props) {
 
             options2: [
                 {
-                    value: "STUCTURAL ENGINEERING (FULL TIME)",
-                    label: "STUCTURAL ENGINEERING (FULL TIME)"
+                    value: "STRUCTURAL ENGINEERING (FULL TIME)",
+                    label: "STRUCTURAL ENGINEERING (FULL TIME)"
                 },
                 {
                     value: "GEOTECHNICAL ENGINEERING (FULL TIME)",
@@ -292,7 +292,7 @@ export default function Details(props) {
         },
 
         {
-            label: "TRAINING SEM*",
+            label: "TRAINING SEM",
             type: "text",
             id: 9,
             value: props.academics.training_sem,
@@ -314,7 +314,8 @@ export default function Details(props) {
                 }
 
             ],
-            validate: props.Errors.training_sem
+            disabled: "true",
+            //validate: props.Errors.training_sem
         }
     ];
 
