@@ -85,7 +85,9 @@ export default function header(){
         <div className={classes.navbar}>
             <div className={classes.brand}>
                 <div>
-                    <img src={logo} width="50px" height="50px" className={classes.image}/>
+                    <Link to ="/">
+                        <img src={logo} width="50px" height="50px" className={classes.image}/>
+                    </Link>
                 </div>
                 <div className={classes.titleBox}>
                     <Typography variant="h5" component="h2" className={classes.title}>
