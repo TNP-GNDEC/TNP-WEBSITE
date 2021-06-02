@@ -17,7 +17,7 @@ class Twelfth extends Model
         "crn",
         "institution_name",
         "jee_rank",
-        "marks_type",
+        //"marks_type",
         "city",
         "state",
         "pincode",

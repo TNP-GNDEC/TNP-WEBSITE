@@ -20,8 +20,8 @@ class CreateTwelfthTable extends Migration
             $table->bigInteger('urn')->unsigned()->unique()->default(0);
             $table->bigInteger('crn')->unsigned()->default(0);
             $table->string('institution_name')->nullable();
-            $table->bigInteger('jee_rank')->nullable();
-            $table->string('marks_type')->nullable();
+            $table->string('jee_rank')->nullable();
+            //$table->string('marks_type')->nullable();
             $table->string('obtained_marks')->nullable();
             $table->string('board')->nullable();
             $table->string('maximum_marks')->nullable();

@@ -55,13 +55,13 @@ class TwelfthdiplomaController extends Controller
         'city' => $request->city_12,
         'jee_rank' => $request->jee_rank_12,
         'state' => $request->state_12,
-        'marks_type' => $request->marks_type_12,
+        //'marks_type' => $request->marks_type_12,
         'maximum_marks' => $request->maximum_marks_12,
         'obtained_marks' => $request->obtained_marks_12,
         'institution_name' => $request->institution_name_12,
         'board' => $request->board_12,
         'year_of_passing' => $request->year_of_passing_12,
-        'year_gap' => $request->year_of_passing_12 - 2018,
+        'year_gap' => 2018-($request->year_of_passing_12) , 
         'file' => '/documents/twelfth/'.$twelfth_file_url
   ]);
   
@@ -90,13 +90,13 @@ class TwelfthdiplomaController extends Controller
       'pincode' => $request->pincode_diploma,
       'city' => $request->city_diploma,
       'state' => $request->state_diploma,
-      'marks_type' => $request->marks_type_diploma,
+      //'marks_type' => $request->marks_type_diploma,
       'maximum_marks' => $request->maximum_marks_diploma,
       'obtained_marks' => $request->obtained_marks_diploma,
       'institution_name' => $request->institution_name_diploma,
       'branch' => $request->branch_diploma,
       'year_of_passing' => $request->year_of_passing_diploma,
-      'year_gap' => $request->year_of_passing_diploma - 2019,
+      'year_gap' => 2019-($request->year_of_passing_diploma),
       'file' => '/documents/diploma/'.$diploma_file_url
       ]
     );
