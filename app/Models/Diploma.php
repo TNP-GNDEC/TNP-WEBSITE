@@ -22,6 +22,6 @@ class Diploma extends Model
         "obtained_marks",
         "maximum_marks",
         "file",
-        "marks_type",
+        //"marks_type",
     ];
 }
