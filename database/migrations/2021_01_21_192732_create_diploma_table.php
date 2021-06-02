@@ -30,6 +30,7 @@ class CreateDiplomaTable extends Migration
             $table->bigInteger('pincode')->nullable();
             $table->string('obtained_marks')->nullable();
             $table->string('maximum_marks')->nullable();
+            $table->string('percentage')->nullable();
             $table->string('file')->nullable();
             // $table->foreign('user_id')
             // ->references('id')->on('users')

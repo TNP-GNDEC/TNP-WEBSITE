@@ -135,6 +135,7 @@ export default function StepTwo(props) {
     const { action, setAction } = props;
     const [open, setOpen] = React.useState(false);
     const [req, setRequired] = React.useState(true);
+    const [photo, setPhoto] = React.useState("");
     const [file, setFile] = React.useState("");
     const [path, setFullpath] = React.useState("");
 
@@ -431,10 +432,6 @@ export default function StepTwo(props) {
         }
     };
 
-    useEffect(() => {
-        console.log(profile);
-    }, [profile])
-
     // function for making objects ready by converting values into camelCase;
     // const makeOjectsReady = () => { };
     const handleFormSubmit = event => {
@@ -485,7 +482,6 @@ export default function StepTwo(props) {
                 fd.append(key, address[key]);
             });
 
-            console.log(fd);
             const token = localStorage.getItem("token");
             axios.post(`/api/personaldetails`,
                 fd
@@ -507,7 +503,6 @@ export default function StepTwo(props) {
 
     const handleFileChange = (e) => {
         var pic = e.target.files[0];
-        // console.log(pic.size/1024/1024);
 
         setFile({file: pic});
 
@@ -563,11 +558,14 @@ export default function StepTwo(props) {
         })
         var fullpath = res.data.details['file'];
         setFullpath(fullpath);
-        var filename = fullpath.split('\\').pop().split('/').pop();
-        setFile(filename);
-        if(filename){
-            setRequired(false);
+        if(fullpath){
+            var filename = fullpath.split('\\').pop().split('/').pop();
+            setPhoto(filename);
+            if(filename){
+                setRequired(false);
+            }
         }
+        
         setLoading(false);
     }
     useEffect(() => {
@@ -605,11 +603,10 @@ export default function StepTwo(props) {
                                             Note : Upload <CloudUploadIcon /> Your Passport Size Photo
                                     (Image size should be less than 1 MB)
                                 </Alert>
-                                <div className={classes.alert}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}. <strong>Choose to replace previous file.</strong></p>}</div>
+                                <div className={classes.alert}>{photo === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}. <strong>Choose to replace previous file.</strong></p>}</div>
                                         <div className={classes.alert}><Notification notify={notify} setNotify={setNotify} /></div>
                                         <input className={classes.fileupload} onChange={(e) => handleFileChange(e)} accept="image/*" id="file" type="file" required={req === true? true : false} />
                                         <img src={profile.picture} />
-                                        
                                     </Grid>
                                 </Grid>
                             </Card>

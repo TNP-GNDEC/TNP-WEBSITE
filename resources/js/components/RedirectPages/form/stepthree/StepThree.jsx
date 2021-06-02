@@ -141,6 +141,7 @@ const useStyles = makeStyles(theme => ({
 export default function StepThree(props) {
     const classes = useStyles();
     const [file, setfile] = React.useState("");
+    const [DBfile, setDBfile] = React.useState("");
     const [path, setPath] = React.useState("");
     const [loader, setLoader] = React.useState(false);
     const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
@@ -270,9 +271,11 @@ export default function StepThree(props) {
                 maximum_marks: res.data.details['maximum_marks'],
             })
             var fullpath = res.data.details['file'];
-            var filename = fullpath.split('\\').pop().split('/').pop();
-            setfile(filename);
             setPath(fullpath);
+            if(fullpath){
+                var filename = fullpath.split('\\').pop().split('/').pop();
+                setDBfile(filename);
+            }
         setLoading(false);
     }
     
@@ -315,9 +318,9 @@ export default function StepThree(props) {
                             Note : Upload <CloudUploadIcon/> Scanned copies of your
                                     matriculation certificates.(PDF Only less than 1MB)
                             </Alert>
-                            <div className={classes.alert}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}. <strong>Choose to replace previous file.</strong></p>}</div>
+                            <div className={classes.alert}>{DBfile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {DBfile}. <strong>Choose to replace previous file.</strong></p>}</div>
                             <div className={classes.alert}><Notification notify={notify} setNotify={setNotify} className={classes.alert} /></div>
-                            <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" required={file=== ""? true: false} />   
+                            <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" required={DBfile=== ""? true: false} />   
                         </Card>
                     </Grid>
                 </Grid>

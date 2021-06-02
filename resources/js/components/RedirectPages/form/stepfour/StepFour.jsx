@@ -159,6 +159,8 @@ export default function StepFour(props) {
     const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
     const [twelfthFile, setTwelfthFile] = React.useState("");
     const [diplomaFile, setDiplomaFile] = React.useState("");
+    const [twelfthDBFile, setTwelfthDBFile] = React.useState("");
+    const [diplomaDBFile, setDiplomaDBFile] = React.useState("");
 
     const [twelfth, setProfile] = React.useState({
         board: "",
@@ -170,7 +172,6 @@ export default function StepFour(props) {
         year_of_passing: "",
         obtained_marks:"",
         maximum_marks:"",
-        marks_type: ""
         // file:"(upload scanned certificate)",
     });
     const [errors, setErrors] = useState({});
@@ -181,7 +182,6 @@ export default function StepFour(props) {
         temp.board = twelfth.board ? "": "This field is required."
         temp.institution_name = (/^[a-zA-Z\s]*$/).test(twelfth.institution_name) && twelfth.institution_name? "": "This field is required and must only contain char."
         temp.jee_rank = twelfth.jee_rank ? "": "This field is required."
-        temp.marks_type = twelfth.marks_type ? "": "This field is required."
         
         temp.year_of_passing = (/^[0-9]{4}$/).test(twelfth.year_of_passing) ? "": "This field is required and must be in yyyy format."
         
@@ -189,25 +189,12 @@ export default function StepFour(props) {
         temp.state = (/^[a-zA-Z\s]*$/).test(twelfth.state) && twelfth.state? "": "This field is required and must contain letters only."
         temp.pincode = (/^[0-9]{6}$/).test(twelfth.pincode) ? "": "This field is required and must be of 6 digits"
         temp.obtained_marks = (/^[0-9]{2,3}$/).test(twelfth.obtained_marks) ? "": "This field is required and must be max 3 digits long."
-        
-        temp.maximum_marks = (/^[0-9]{2,3}$/).test(twelfth.maximum_marks) ? "": "This field is required and must be max 3 digits long."
-        if(twelfth.marks_type == "1"){
-            temp.obtained_marks = parseFloat(twelfth.obtained_marks)>=0   && parseFloat(twelfth.obtained_marks)<=10  ? "" : "Enter a valid cgpa Value (hint: between 0 to 10)"
-            temp.maximum_marks = parseFloat(twelfth.maximum_marks) == "10"?"":"Maximum percentage should be 100 only "
-
-        }else{
-
-            temp.obtained_marks = parseFloat( twelfth.obtained_marks ) <= parseFloat(twelfth.maximum_marks) && parseFloat(twelfth.obtained_marks)>0 ? "": "marks obtained can't be greater than maximum marks."
-
-        }
     }
 
 
         if(category==="diploma" || category==="both"){
         temp.branch = diploma.branch ? "": "This field is required."
         temp.institution_name = (/^[a-zA-Z\s]*$/).test(diploma.institution_name) && diploma.institution_name? "": "This field is required and must contain letters only."
-        
-        temp.marks_type = diploma.marks_type ? "": "This field is required."
         
         temp.year_of_passing = (/^[0-9]{4}$/).test(diploma.year_of_passing) ? "": "This field is required and must be in yyyy format."
         
@@ -218,15 +205,6 @@ export default function StepFour(props) {
         
         temp.maximum_marks = (/^[0-9]{3}$/).test(diploma.maximum_marks) ? "": "This field is required and must be max 3 digits long."
 
-        if(diploma.marks_type == "1"){
-            temp.obtained_marks = parseFloat(diploma.obtained_marks)>=0   && parseFloat(diploma.obtained_marks)<=10  ? "" : "Enter a valid cgpa Value (hint: between 0 to 10)"
-            temp.maximum_marks = parseFloat(diploma.maximum_marks) == "10"?"":"Maximum percentage can be 100."
-
-        }else{
-
-            temp.obtained_marks = parseFloat( diploma.obtained_marks ) <= parseFloat(diploma.maximum_marks) && parseFloat(diploma.obtained_marks)>0 ? "": "marks obtained can't be greater than maximum marks."
-
-        }
         }
         setErrors({
           ...temp
@@ -245,7 +223,6 @@ export default function StepFour(props) {
         year_of_passing:"",
         obtained_marks:"",
         maximum_marks: "",
-      
     });
 
     const handleCategoryChange = (event) => {
@@ -302,34 +279,23 @@ export default function StepFour(props) {
       
     const handleProfileChangeInput = (e, id) => {
         const name= e.target.name
-        const value= e.target.value
-        if(name === "marks_type"){
-            if(value === "1" )
-            setProfile(prevState => ({
-                ...prevState,
-                marks_type : value,
-                maximum_marks : 10
-            }))
-                
-        }   
+        const value= e.target.value  
         setProfile(prevState => ({
             ...prevState,
             [name] : value
         }))
     };
-       
+    const handleTwelfthChange = (e) => {
+        var pdf = e.target.files[0];
+        setTwelfthFile(pdf);
+    } 
+    const handleDiplomaChange = (e) => {
+        var pdf = e.target.files[0];
+        setDiplomaFile(pdf);
+    } 
     const handleParentChangeInput = (e, id) => {
         const name= e.target.name
         const value= e.target.value   
-        if(name === "marks_type"){
-            if(value === "1" )
-            setParent(prevState => ({
-                ...prevState,
-                marks_type : value,
-                maximum_marks : 10
-            }))
-                
-        }
         setParent(prevState => ({
             ...prevState,
             [name] : value
@@ -354,12 +320,11 @@ const fetchDetails = async () => {
             year_of_passing: res.data.twelfth['year_of_passing'],
             obtained_marks: res.data.twelfth['obtained_marks'],
             maximum_marks: res.data.twelfth['maximum_marks'],
-            marks_type: res.data.twelfth['marks_type']
         });
         
         var fullpath = res.data.twelfth['file'];
         var filename = fullpath.split('\\').pop().split('/').pop();;
-        setTwelfthFile(filename);
+        setTwelfthDBFile(filename);
         
     }
     
@@ -375,11 +340,10 @@ const fetchDetails = async () => {
             year_of_passing: res.data.diploma['year_of_passing'],
             obtained_marks: res.data.diploma['obtained_marks'],
             maximum_marks: res.data.diploma['maximum_marks'],
-            marks_type: res.data.diploma['marks_type'],
         });
         var fullpath2 = res.data.diploma['file'];
         var filename2 = fullpath2.split('\\').pop().split('/').pop();
-        setDiplomaFile(filename2);
+        setDiplomaDBFile(filename2);
     }
 }
     setLoading(false);
@@ -437,8 +401,8 @@ useEffect(()=>{
                                     twelfth certificates in PDF format with size less than 1 MB<strong>(If you editing this form then you have to upload file again)</strong>
                             </Alert>
                 <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
-                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="twelfthfile" type="file" required /> 
-                <div className={classes.fileShow}>{twelfthFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {twelfthFile}</p>}</div>
+                <input className={classes.fileupload} onChange={ (e) => handleTwelfthChange(e) } accept= "application/pdf" id="twelfthfile" type="file" required /> 
+                <div className={classes.fileShow}>{twelfthDBFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {twelfthFile}</p>}</div>
             </Card>
         </Grid>
     }
@@ -456,8 +420,8 @@ useEffect(()=>{
                                     Diploma certificates.(PDF Only)
                             </Alert>
                 <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
-                <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="diplomafile" type="file" required /> 
-                <div className={classes.fileShow}>{diplomaFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {diplomaFile}</p>}</div>
+                <input className={classes.fileupload} onChange={ (e) => handleDiplomaChange(e) } accept= "application/pdf" id="diplomafile" type="file" required /> 
+                <div className={classes.fileShow}>{diplomaDBFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {diplomaFile}</p>}</div>
             </Card>
         </Grid>
     }

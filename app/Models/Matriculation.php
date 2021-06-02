@@ -21,6 +21,7 @@ class Matriculation extends Model
      "marks_type", 
      "maximum_marks",
      "obtained_marks",
+     "percentage",
      "institution_name",
      "year_of_passing",
     ];

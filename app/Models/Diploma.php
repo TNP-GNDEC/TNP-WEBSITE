@@ -21,6 +21,7 @@ class Diploma extends Model
         "year_gap",
         "obtained_marks",
         "maximum_marks",
+        "percentage",
         "file",
         //"marks_type",
     ];

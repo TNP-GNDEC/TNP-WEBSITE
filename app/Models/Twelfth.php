@@ -25,6 +25,7 @@ class Twelfth extends Model
         "year_gap",
         "obtained_marks",
         "maximum_marks",
+        "percentage",
         "file"
     ];
 }

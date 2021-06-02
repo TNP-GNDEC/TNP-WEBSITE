@@ -251,41 +251,6 @@ export default function DiplomaDetails(props) {
                         
                     </TextField>
                     </Grid>
-                    <Grid item
-                    xs={12}
-                    sm={6}
-                    lg={4}
-                    className={classes.textFieldContainer}
-                >
-                    <TextField 
-                        className={classes.fields}
-                        InputProps={{
-                            classes: {
-                              notchedOutline: classes.notchedOutline,
-                              focused: classes.focused
-                            }
-                        }}
-                        label= "MARKS TYPE"
-                        type= "text"
-                        id= "7"
-                        name= "marks_type"
-                        defaultValue= {props.diploma.marks_type}
-                        select="true"
-                        variant="outlined"
-                        
-                        onChange={
-                            props.handleInputChange
-                        }
-                        {...(props.Errors.marks_type && {error:true, helperText:props.Errors.marks_type})}
-                       
-                    >
-                     {currencies2.map(option => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}    
-                    </TextField>
-                    </Grid>
 
                     <Grid item
                     xs={12}
@@ -348,7 +313,7 @@ export default function DiplomaDetails(props) {
                     </TextField>
                     </Grid>
 
-                {(props.diploma.marks_type == "2") && (parseFloat(props.diploma.obtained_marks) > 0) && (parseFloat(props.diploma.maximum_marks)) > 0 ?
+                {(parseFloat(props.diploma.obtained_marks) > 0) && (parseFloat(props.diploma.maximum_marks)) > 0 ?
                 <Grid
                     xs={12}
                     sm={6}

@@ -136,13 +136,6 @@ export default function TwelfthDetails(props) {
 
         },
         {
-            label: "MARKS TYPE",
-            type: "text",
-            id: 8,
-            select: "true",
-            value: props.twelfth.marks_type,
-        },
-        {
             label: "OBTAINED MARKS",
             type: "text",
             id: 9,
@@ -410,47 +403,6 @@ export default function TwelfthDetails(props) {
 
                 </TextField>
             </Grid>
-            <Grid
-
-                item
-                xs={12}
-                sm={6}
-                lg={4}
-                className={classes.textFieldContainer}
-            >
-                <TextField
-                    className={classes.fields}
-                    InputProps={{
-                        classes: {
-                            notchedOutline: classes.notchedOutline,
-                            focused: classes.focused
-                        }
-                    }}
-                    label="MARKS TYPE"
-                    type="text"
-                    id="8"
-                    name="marks_type"
-                    select="true"
-
-                    defaultValue={props.twelfth.marks_type}
-
-
-                    variant="outlined"
-
-
-                    onChange={
-                        props.handleInputChange
-                    }
-                    {...(props.Errors.marks_type && { error: true, helperText: props.Errors.marks_type })}
-                >
-                    {currencies2.map(option => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
-
-            </Grid>
 
             <Grid
 
@@ -521,7 +473,7 @@ export default function TwelfthDetails(props) {
 
                 </TextField>
             </Grid>
-            {(props.twelfth.marks_type == "2") && (parseFloat(props.twelfth.obtained_marks) > 0) && (parseFloat(props.twelfth.maximum_marks)) > 0 ?
+            {(parseFloat(props.twelfth.obtained_marks) > 0) && (parseFloat(props.twelfth.maximum_marks)) > 0 ?
                 <Grid
                     xs={12}
                     sm={6}

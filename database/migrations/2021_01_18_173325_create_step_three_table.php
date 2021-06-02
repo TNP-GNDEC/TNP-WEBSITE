@@ -23,6 +23,7 @@ class CreateStepThreeTable extends Migration
             $table->string('marks_type')->nullable();
             $table->string('obtained_marks')->nullable();
             $table->string('maximum_marks')->nullable();
+            $table->string('percentage')->nullable();
             $table->string('file')->nullable();
             $table->year('year_of_passing')->nullable();
             $table->string('city')->nullable();

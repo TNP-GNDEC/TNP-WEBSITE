@@ -100,6 +100,7 @@ const useStyles = makeStyles(theme => ({
 export default function StepOne(props) {
     const [loading, setLoading] = useState(true);
     const [loader, setLoader] = useState(false);
+    const [disable, setDisable] = useState(false);
     const [email, setEmail] = React.useState("");
     const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
 
@@ -120,6 +121,7 @@ export default function StepOne(props) {
           setLoader(false);
         if(response.data.msg){
             setNotify({isOpen:true, message:response.data.msg, type:'success'})
+            setDisable(true);
           }
         if(response.data.alert){
         setNotify({isOpen:true, message:response.data.alert, type:'error'})
@@ -204,6 +206,7 @@ export default function StepOne(props) {
                             />
                             
                         </div>
+                        
                         {loader ? (
                             <div className={classes.loader}>
                             <CircularProgress />
@@ -211,6 +214,7 @@ export default function StepOne(props) {
                         ):(
                         <button 
                               type="submit" 
+                              disabled={disable? true: false}
                               className={classes.button}>Verify!
                         </button> 
                         )}
