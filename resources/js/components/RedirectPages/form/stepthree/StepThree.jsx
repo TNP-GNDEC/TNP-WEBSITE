@@ -196,6 +196,9 @@ export default function StepThree(props) {
             var fileSize = document.getElementById('file').files[0].size / 1024 / 1024;
             if(fileSize>1){
                 setNotify({isOpen: true, message: "File Size should be less than 1 MB.", type: "error"});
+                // alert("File Size Of Uploaded Photo too large");
+                // setLoading(False);
+                setLoader(false);
                 return;
             }
             setLoader(true);
