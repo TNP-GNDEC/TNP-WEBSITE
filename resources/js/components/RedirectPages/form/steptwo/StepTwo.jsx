@@ -7,8 +7,7 @@ import ProfileDetails from "./ProfileDetails";
 import ParentDetails from "./ParentsDetails";
 import AcademicDetails from "./AcademicDetails";
 import ContactDetails from "./ContactDetails";
-import Button from "@material-ui/core/Button";
-import { concat } from "lodash";
+import Notification from '../../../Auth/Notisfication';
 import AddressDetails from "./AddressDetails";
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
@@ -116,13 +115,14 @@ const useStyles = makeStyles(theme => ({
         },
     },
     alert: {
+        marginTop: "5px",
         margin: "auto",
         width: "90%",
     },
     fileupload: {
         width: "90%",
         marginLeft: "60px",
-        padding: "20px 0"
+        padding: "2px 0 20px"
     },
 }));
 
@@ -131,9 +131,12 @@ export default function StepTwo(props) {
     const [loading, setLoading] = React.useState(true);
     const [loader, setLoader] = React.useState(false);
     const [errors, setErrors] = React.useState({});
+    const [notify, setNotify] = React.useState({isOpen:false, message:"", type:""});
     const { action, setAction } = props;
     const [open, setOpen] = React.useState(false);
+    const [req, setRequired] = React.useState(true);
     const [file, setFile] = React.useState("");
+    const [path, setFullpath] = React.useState("");
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -158,7 +161,7 @@ export default function StepTwo(props) {
         temp.ruralarea = profile.ruralarea == 0 || profile.ruralarea == 1 ? "" : "Required."
 
         temp.father_name = (/^[a-zA-Z\s]*$/).test(parent.father_name) && parent.father_name ? "" : "Enter Valid Name using [A-Z] and/or [a-z]."
-        temp.father_phone = (/^[0-9]{10}$/).test(parent.father_phone) ? "" : "Phone no. can contain only digits [0-9]."
+        temp.father_phone = (/^[0-9]{10}$/).test(parent.father_phone) ? "" : "Phone no. can contain only 10 digits."
         temp.mother_name = (/^[a-zA-Z\s]*$/).test(parent.mother_name) && parent.mother_name ? "" : "Enter Valid Name using [A-Z] and/or [a-z]."
         temp.mother_phone = (/^[0-9]{10}$/).test(parent.mother_phone) ? "" : "Phone no. can contain only digits [0-9]."
 
@@ -170,12 +173,12 @@ export default function StepTwo(props) {
         temp.hostler = academics.hostler == 0 || academics.hostler == 1 ? "" : "Required."
         // temp.training_sem = academics.training_sem ? "" : "Required."
 
-        temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "" : "Invalid Phone"
-        temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "" : "Invalid Phone"
-        temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "" : "Invalid Phone"
+        temp.whatsapp_contact = (/^[0-9]{10}$/).test(contact.whatsapp_contact) ? "" : "Invalid Contact No."
+        temp.contact = (/^[0-9]{10}$/).test(contact.contact) ? "" : "Invalid Contact No."
+        temp.re_enter_contact = (/^[0-9]{10}$/).test(contact.re_enter_contact) ? "" : "Invalid Contact No."
 
         if (!temp.re_enter_contact) {
-            temp.re_enter_contact = contact.re_enter_contact != contact.contact ? "Mobile Number not matched" : ""
+            temp.re_enter_contact = contact.re_enter_contact != contact.contact ? "Contact Number not matched" : ""
         }
 
         temp.street = address.address ? "" : "Required."
@@ -248,10 +251,6 @@ export default function StepTwo(props) {
         city: "",
         state: ""
     });
-
-    const [notify, setNotify] = React.useState({ isOpen: false, message: "", type: "" });
-
-
 
     // State setter function of Profile form sent as props to ProfileDetails forms
     const handleProfileChangeInput = (e, id) => {
@@ -441,28 +440,38 @@ export default function StepTwo(props) {
     const handleFormSubmit = event => {
         event.preventDefault();
         if (validate()) {
-            setLoader(true);
             if (academics.course === "M.Tech") {
                 setAction(false);
             }
             else {
                 setAction(true);
             }
-
-            var fileSize = document.getElementById('file').files[0].size / 1024 / 1024;
-
-            if (fileSize > 1) {
-                setNotify({ isOpen: true, message: "File Size should be less than 1 MB.", type: "error" });
-                return;
+            if(document.getElementById('file').files[0]){
+                var fileExt = /(\.jpg|\.jpeg|\.png)$/i;
+                var filePath = document.getElementById('file').value;
+                var fileSize = document.getElementById('file').files[0].size / 1024 / 1024;
+                if(!fileExt.exec(filePath)){
+                    setNotify({ isOpen: true, message: "Invalid File Format, Please upload file having extension .jpg/ .jpeg/ .png", type: "error" });
+                    setOpen(true);
+                    return;
+                }
+                if (fileSize > 1) {
+                    setNotify({ isOpen: true, message: "File Size should be less than 1 MB.", type: "error" });
+                    setOpen(true);
+                    return;
+                }
             }
             ChangeCase(profile);
             ChangeCase(parent);
             ChangeCase(address);
+            setLoader(true);
             const fd = new FormData();
             Object.keys(profile).forEach(function (key){         
                 fd.append(key, profile[key]);
             });
-            fd.append('file', document.getElementById('file').files[0]);
+            if(document.getElementById('file').files[0]){
+                fd.append('file', document.getElementById('file').files[0]);
+            }
             Object.keys(academics).forEach(function (key){         
                 fd.append(key, academics[key]);
             });
@@ -552,7 +561,13 @@ export default function StepTwo(props) {
             city: res.data.details['city'],
             state: res.data.details['state']
         })
-
+        var fullpath = res.data.details['file'];
+        setFullpath(fullpath);
+        var filename = fullpath.split('\\').pop().split('/').pop();
+        setFile(filename);
+        if(filename){
+            setRequired(false);
+        }
         setLoading(false);
     }
     useEffect(() => {
@@ -588,12 +603,13 @@ export default function StepTwo(props) {
                                     <Grid item xs={12} >
                                         <Alert severity="info" className={classes.alert}>
                                             Note : Upload <CloudUploadIcon /> Your Passport Size Photo
-                                    (Image size should be less than 1 MB)<strong>(If you are editing this form you need to upload image again)</strong>
+                                    (Image size should be less than 1 MB)
                                 </Alert>
-                                        <Notisfication notify={notify} setNotify={setNotify} />
-                                        <input className={classes.fileupload} onChange={(e) => handleFileChange(e)} accept="image/*" id="file" type="file" required />
+                                <div className={classes.alert}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}. <strong>Choose to replace previous file.</strong></p>}</div>
+                                        <div className={classes.alert}><Notification notify={notify} setNotify={setNotify} /></div>
+                                        <input className={classes.fileupload} onChange={(e) => handleFileChange(e)} accept="image/*" id="file" type="file" required={req === true? true : false} />
                                         <img src={profile.picture} />
-                                        {/* <div className={classes.fileShow}>{diplomaFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {diplomaFile}</p>}</div> */}
+                                        
                                     </Grid>
                                 </Grid>
                             </Card>

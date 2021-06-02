@@ -28,12 +28,19 @@ class MatriculationController extends Controller
     $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
+
     $file = $request->file('file');
-    $filename  = $file->getClientOriginalName();
-    $extension = $file->getClientOriginalExtension();
-    $matriculation_file   = $user->username.'_matriculation.'.$extension;
-    $path=public_path('documents/matriculation');
-    $file->move(public_path('documents/matriculation'), $matriculation_file);
+    if($file){
+      $filename  = $file->getClientOriginalName();
+      $extension = $file->getClientOriginalExtension();
+      $matriculation_file   = $user->username.'_matriculation.'.$extension;
+      $path=public_path('documents/matriculation');
+      $file->move(public_path('documents/matriculation'), $matriculation_file);
+      $detail = DB::table('matriculation')
+      ->where('user_id', $user->id)
+      ->update(['file' => '/documents/matriculation/'.$matriculation_file]);
+    }
+
     $details = DB::table('matriculation')
     ->where('user_id', $user->id)
     ->update([
@@ -46,7 +53,6 @@ class MatriculationController extends Controller
         'institution_name' => $request->institution_name,
         'board' => $request->board,
         'year_of_passing' => $request->year_of_passing,
-        'file' => '/documents/matriculation/'.$matriculation_file
 
     ]);
     if($current_step <4){

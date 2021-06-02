@@ -53,6 +53,7 @@ export default function ProfileDetails(props) {
             id: 1,
             select: false,
             shrink: "",
+            text: "Example: 'John'",
             value: props.Profile.first_name,
             options: [],
             validate: props.Errors.first_name
@@ -63,6 +64,7 @@ export default function ProfileDetails(props) {
             id: 2,
             select: false,
             shrink: false,
+            text: "Example: 'Doe'",
             value: props.Profile.last_name,
             options: [],
             validate: false
@@ -73,6 +75,7 @@ export default function ProfileDetails(props) {
             id: 3,
             shrink: true,
             select: false,
+            text: "",
             value: props.Profile.dob,
             options: [],
             validate: props.Errors.dob
@@ -83,6 +86,7 @@ export default function ProfileDetails(props) {
             id: 4,
             select: false,
             shrink: false,
+            text: "",
             value: props.Profile.aadhar,
             options: [],
             validate: props.Errors.aadhar
@@ -94,6 +98,7 @@ export default function ProfileDetails(props) {
             id: 5,
             shrink: false,
             select: false,
+            text: "",
             value: props.Profile.height,
             options: [],
             validate: props.Errors.height
@@ -104,6 +109,7 @@ export default function ProfileDetails(props) {
             id: 6,
             shrink: false,
             select: false,
+            text: "",
             value: props.Profile.weight,
             options: [],
             validate: props.Errors.weight
@@ -114,6 +120,7 @@ export default function ProfileDetails(props) {
             id: 7,
             shrink: false,
             select: true,
+            text: "",
             value: props.Profile.blood_group,
             options: [
                 { label: "A+", value: "A+" },
@@ -146,6 +153,7 @@ export default function ProfileDetails(props) {
             id: 9,
             shrink: false,
             select: "True",
+            text: "",
             value: props.Profile.marital_status,
             options: [
                 { value: "Married", label: "MARRIED" },
@@ -160,6 +168,7 @@ export default function ProfileDetails(props) {
             id: 10,
             shrink: false,
             select: "True",
+            text: "",
             value: props.Profile.farming_background,
             options: [
                 { value: 1, label: "YES" },
@@ -174,6 +183,7 @@ export default function ProfileDetails(props) {
             id: 12,
             shrink: false,
             select: "True",
+            text: "",
             value: props.Profile.disability,
             options: [
                 { value: 1, label: "YES" },
@@ -187,6 +197,7 @@ export default function ProfileDetails(props) {
             id: 11,
             shrink: false,
             select: "True",
+            text: "",
             value: props.Profile.ruralarea,
             options: [
                 { value: 1, label: "YES" },
@@ -225,6 +236,7 @@ export default function ProfileDetails(props) {
                         label={field.label}
                         defaultValue={field.value}
                         select={field.select}
+                        helperText={field.text}
                         {...(field.validate && {error:true, helperText:field.validate})}
                         onChange={e => {
                             props.handleInputChange(e, field.id);

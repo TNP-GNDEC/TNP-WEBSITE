@@ -7,10 +7,7 @@ import { Card } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import MatriculationDetails from "./matriculation";
-import Notisfication from '../../../Auth/Notisfication';
-import FormRow from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
+import Notification from '../../../Auth/Notisfication';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -83,13 +80,14 @@ const useStyles = makeStyles(theme => ({
         boxShadow: "0px 15px 25px #00000033"
     },
     alert: {
+        marginTop: "10px",
         margin: "auto",
         width: "90%",
       },
     fileupload:{
         width: "90%",
         marginLeft: "60px",
-        padding: "20px 0"
+        padding: "2px 0 20px"
     },
     file: {
         paddding: "10px 20px "
@@ -143,6 +141,7 @@ const useStyles = makeStyles(theme => ({
 export default function StepThree(props) {
     const classes = useStyles();
     const [file, setfile] = React.useState("");
+    const [path, setPath] = React.useState("");
     const [loader, setLoader] = React.useState(false);
     const [notify, setNotify] = useState({isOpen:false, message:"", type:""});
     const [matriculation, setmatric] = React.useState({
@@ -193,18 +192,28 @@ export default function StepThree(props) {
     const handleFormSubmit = event => {
         event.preventDefault();
         if(validate()){
-            var fileSize = document.getElementById('file').files[0].size / 1024 / 1024;
-            if(fileSize>1){
-                setNotify({isOpen: true, message: "File Size should be less than 1 MB.", type: "error"});
-                return;
+            if(document.getElementById('file').files[0]){
+                var fileExt = /(\.pdf)$/i;
+                var filePath = document.getElementById('file').value;
+                var fileSize = document.getElementById('file').files[0].size / 1024 / 1024;
+                if(!fileExt.exec(filePath)){
+                    setNotify({ isOpen: true, message: "Invalid File Format, Please upload file having extension .jpg/ .jpeg/ .png", type: "error" });
+                    return;
+                }
+                if (fileSize > 1) {
+                    setNotify({ isOpen: true, message: "File Size should be less than 1 MB.", type: "error" });
+                    return;
+                }
             }
             setLoader(true);
             const token = localStorage.getItem("token");
             const fd = new FormData();
             Object.keys(matriculation).forEach(function (key){         
                 fd.append(key, matriculation[key]);
-        })
-            fd.append('file', document.getElementById('file').files[0]);
+            })
+            if(document.getElementById('file').files[0]){
+                fd.append('file', document.getElementById('file').files[0]);
+            }
             axios.post(`/api/matriculation`, 
                 fd,{
                     headers: { 'Authorization': 'Bearer ' + token }  }
@@ -261,10 +270,9 @@ export default function StepThree(props) {
                 maximum_marks: res.data.details['maximum_marks'],
             })
             var fullpath = res.data.details['file'];
-            if(filename){
             var filename = fullpath.split('\\').pop().split('/').pop();
             setfile(filename);
-            }
+            setPath(fullpath);
         setLoading(false);
     }
     
@@ -305,11 +313,11 @@ export default function StepThree(props) {
                             <hr />
                             <Alert severity="info" className={classes.alert}>
                             Note : Upload <CloudUploadIcon/> Scanned copies of your
-                                    matriculation certificates.(PDF Only less than 1MB)<strong>(If you editing this form then you have to upload file again)</strong>
+                                    matriculation certificates.(PDF Only less than 1MB)
                             </Alert>
-                            <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
-                            <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" required /> 
-                            <div className={classes.fileShow}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}</p>}</div>
+                            <div className={classes.alert}>{file === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}. <strong>Choose to replace previous file.</strong></p>}</div>
+                            <div className={classes.alert}><Notification notify={notify} setNotify={setNotify} className={classes.alert} /></div>
+                            <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" required={file=== ""? true: false} />   
                         </Card>
                     </Grid>
                 </Grid>

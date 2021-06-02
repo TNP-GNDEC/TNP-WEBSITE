@@ -29,12 +29,17 @@ class PersonaldetailsController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-    
-    $file = $request->file('file');
+  $file = $request->file('file');
+  if($file){
     $filename  = $file->getClientOriginalName();
     $extension = $file->getClientOriginalExtension();
     $profile_pic   = $user->username.'_picture.'.$extension;
     $file->move(public_path('documents/profile_picture'), $profile_pic);
+    $detail = DB::table('personaldetails')
+    ->where('user_id', $user->id)
+    ->update(['file' => 'documents/profile_picture/'.$profile_pic,]);
+  }
+
     $details = DB::table('personaldetails')
     ->where('user_id', $user->id)
     ->update([
@@ -51,7 +56,6 @@ class PersonaldetailsController extends Controller
         'aadhar' => $request->aadhar,
         'farming_background' => $request->farming_background,
         'ruralarea' => $request->ruralarea,
-        'file' => 'documents/profile_picture/'.$profile_pic,
 
         'mother_name' => $request->mother_name,
         'father_name' => $request->father_name,

@@ -43,6 +43,7 @@ export default function ParentDetails(props) {
             id: 1,
             value: props.parent.father_name,
             required:true,
+            text: "Example: 'John Doe'",
             maxLength:80,
             minLength:0,
             validate: props.Errors.father_name
@@ -53,6 +54,7 @@ export default function ParentDetails(props) {
             id: 2,
             value: props.parent.father_phone,
             required:true,
+            text: "",
             maxLength:10,
             minLength:10,
             validate: props.Errors.father_phone
@@ -63,6 +65,7 @@ export default function ParentDetails(props) {
             id: 3,
             value: props.parent.mother_name,
             required:true,
+            text: "Example: 'John Doe",
             maxLength:80,
             minLength:0,
             validate: props.Errors.mother_name
@@ -73,6 +76,7 @@ export default function ParentDetails(props) {
             id: 4,
             value: props.parent.mother_phone,
             required:true,
+            text: "",
             maxLength:10,
             minLength:10,
             validate: props.Errors.mother_phone
@@ -105,6 +109,7 @@ export default function ParentDetails(props) {
                         variant="outlined"
                         label={field.label}
                         value={field.value}
+                        helperText={field.text}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}
