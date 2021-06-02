@@ -6,6 +6,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import MenuItem from "@material-ui/core/MenuItem";
+import Alert from '@material-ui/lab/Alert';
+
 
 const useStyles = makeStyles(theme => ({
     cardHeading: {
@@ -42,6 +44,10 @@ const useStyles = makeStyles(theme => ({
         borderColor: theme.palette.secondary.main,
         boxShadow: "0px 2px 6px #038ed433"
     },
+    alert: {
+        margin: "auto",
+        width: "90%",
+      },
 }));
 
 export default function matriculationDetails(props) {
@@ -72,6 +78,7 @@ export default function matriculationDetails(props) {
             value: "2",
             label: "PERCENTAGE"
         }
+
 
     ];
 
@@ -464,7 +471,7 @@ export default function matriculationDetails(props) {
                         type="text"
                         id="10"
                         name="percentage"
-                        value={((parseFloat(props.matriculation.obtained_marks) / parseFloat(props.matriculation.maximum_marks)) * 100).toFixed(2) }
+                        value={ ((parseFloat(props.matriculation.obtained_marks) / parseFloat(props.matriculation.maximum_marks)) * 100).toFixed(2) }
                         variant="outlined"
                         disabled={true}
 
@@ -472,11 +479,56 @@ export default function matriculationDetails(props) {
 
                     </TextField>
                 </Grid>
-                : ""
+                : props.matriculation.marks_type == null ? "" :
+                    <Grid
+                        xs={12}
+                        sm={6}
+                        lg={4}
+                        item
+                        className={classes.textFieldContainer}
+                    >
 
+                        <TextField
+                            className={classes.fields}
+                            InputProps={{
+                                classes: {
+                                    notchedOutline: classes.notchedOutline,
+                                    focused: classes.focused
+                                }
+                            }}
+                            label="PERCENTAGE"
+                            type="text"
+                            id="10"
+                            name="percentage"
+                            value={(parseFloat(props.matriculation.obtained_marks) * 9.5).toFixed(2)}
+                            variant="outlined"
+                            disabled={true}
+
+                        >
+
+                        </TextField>
+                    </Grid>
             }
 
+            { (props.matriculation.marks_type === "1" && props.matriculation.obtained_marks !== null) ?
+                <Grid
+                    xs={12}
+                    sm={12}
+                    lg={12}
+                    item
+                    // className={classes.textFieldContainer}
+                > 
+                  <div style={{ paddingLeft: "0px" }}>
+                        <Alert severity="info" className={classes.alert}>
+                            <small> <b>Note: Conversion factor is 9.5, In case of any discrepancies contact tpo@gndec.ac.in </b></small>
+                        </Alert>
+                    </div>
+                </Grid>
+
+                : ""
+            }
         </Grid>
+
 
     )
     return (
