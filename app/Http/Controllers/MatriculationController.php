@@ -55,6 +55,18 @@ class MatriculationController extends Controller
         'year_of_passing' => $request->year_of_passing,
 
     ]);
+    if($request->marks_type==1)
+    $details = DB::table('matriculation')
+    ->where('user_id', $user->id)
+    ->update([
+        'percentage' => $request->obtained_marks * 9.5,
+    ]);
+    else
+    $details = DB::table('matriculation')
+    ->where('user_id', $user->id)
+    ->update([
+        'percentage' => ($request->obtained_marks) * 100/ ($request->maximum_marks),
+    ]);
     if($current_step <4){
       $form_step_change= DB::table('form_statuses')
       ->where('user_id', $user->id)

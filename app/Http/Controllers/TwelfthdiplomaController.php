@@ -40,12 +40,19 @@ class TwelfthdiplomaController extends Controller
   ]);
     if($request->category=="XII" || $request->category=="both"){
     $twelfth_file = $request->file('file_12');
+    If($twelfth_file){
     $twelfth_filename  = $twelfth_file->getClientOriginalName();
     $twelfth_extension = $twelfth_file->getClientOriginalExtension();
     $twelfth_file_url  = $user->username.'_twelfth.'.$twelfth_extension;
     $twelfth_path = public_path('documents/twelfth');
     $twelfth_file->move(public_path('documents/twelfth'), $twelfth_file_url);
-
+    $twelfth_details = Twelfth::updateOrCreate(
+      ['user_id' => $user->id],
+      [
+        'user_id' => $user->id,
+        'file' => '/documents/twelfth/'.$twelfth_file_url
+  ]);
+    }
     $twelfth_details = Twelfth::updateOrCreate(
       ['user_id' => $user->id],
       [
@@ -63,7 +70,7 @@ class TwelfthdiplomaController extends Controller
         'board' => $request->board_12,
         'year_of_passing' => $request->year_of_passing_12,
         'year_gap' => 2018-($request->year_of_passing_12) , 
-        'file' => '/documents/twelfth/'.$twelfth_file_url
+        //'file' => '/documents/twelfth/'.$twelfth_file_url
   ]);
   
   if($current_step <5){
@@ -77,12 +84,19 @@ class TwelfthdiplomaController extends Controller
   
     if($request->category=="diploma" || $request->category=="both"){
     $diploma_file = $request->file('file_diploma');
+    if($diploma_file){
     $diploma_filename  = $diploma_file->getClientOriginalName();
     $diploma_extension = $diploma_file->getClientOriginalExtension();
     $diploma_file_url   = $user->username.'_diploma.'.$diploma_extension;
     $diploma_path = public_path('documents/diploma');
     $diploma_file->move(public_path('documents/diploma'), $diploma_file_url);
-
+    $diploma_details = Diploma::updateOrCreate(
+      ['user_id' => $user->id],
+      [ 
+      'user_id' => $user->id,
+      'file' => '/documents/diploma/'.$diploma_file_url
+      ]);
+    }
     $diploma_details = Diploma::updateOrCreate(
       ['user_id' => $user->id],
       [ 
@@ -99,7 +113,7 @@ class TwelfthdiplomaController extends Controller
       'branch' => $request->branch_diploma,
       'year_of_passing' => $request->year_of_passing_diploma,
       'year_gap' => 2019-($request->year_of_passing_diploma),
-      'file' => '/documents/diploma/'.$diploma_file_url
+      //'file' => '/documents/diploma/'.$diploma_file_url
       ]
     );
     
