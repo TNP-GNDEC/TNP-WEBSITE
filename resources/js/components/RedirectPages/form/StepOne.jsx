@@ -78,6 +78,20 @@ const useStyles = makeStyles(theme => ({
             outline: "none"
         },
     },
+    disabled: {
+        // marginRight: theme.spacing(1)
+        margin: "30px auto",
+        border: "none",
+        textDecoration: "none",
+        padding: "10px 35px",
+        color: "#cccccc",
+        background: "#26262633",
+        borderRadius: "20px",
+        boxShadow: "0px 15px 25px #038ed433",
+        "&:focus":{
+            outline: "none"
+        },
+    },
     alert:{
         width: "60%",
         margin: "auto"
@@ -215,7 +229,7 @@ export default function StepOne(props) {
                         <button 
                               type="submit" 
                               disabled={disable? true: false}
-                              className={classes.button}>Verify!
+                              className={disable? classes.button: classes.disabled}>Verify!
                         </button> 
                         )}
                     </form>

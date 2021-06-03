@@ -431,6 +431,7 @@ export default function matriculationDetails(props) {
                     id="9"
                     name="maximum_marks"
                     value={props.matriculation.maximum_marks}
+                    shrink={props.matriculation.marks_type === "1" ? true : false}
                     variant="outlined"
                     onChange={
                         props.handleInputChange
@@ -442,7 +443,38 @@ export default function matriculationDetails(props) {
                 </TextField>
 
             </Grid>
+            
+            {(props.matriculation.marks_type == "1") && (parseFloat(props.matriculation.obtained_marks) > 0) ?
+                <Grid
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    item
+                    className={classes.textFieldContainer}
+                >
 
+                    <TextField
+                        className={classes.fields}
+                        InputProps={{
+                            classes: {
+                                notchedOutline: classes.notchedOutline,
+                                focused: classes.focused
+                            }
+                        }}
+                        label="PERCENTAGE"
+                        type="text"
+                        id="10"
+                        name="percentage"
+                        value={(parseFloat(props.matriculation.obtained_marks) * 9.5).toFixed(2) }
+                        variant="outlined"
+                        disabled={true}
+                        helperText="Conversion factor is 9.5, if any other contact at tpo@gndec.ac.in"
+                    >
+
+                    </TextField>
+                </Grid>
+                : ""
+            }
             {(props.matriculation.marks_type == "2") && (parseFloat(props.matriculation.obtained_marks) > 0) && (parseFloat(props.matriculation.maximum_marks)) > 0 ?
                 <Grid
                     xs={12}

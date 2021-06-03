@@ -6,8 +6,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root:{
-    backgroundColor: theme.palette.primary.light
-  }
+    backgroundColor: theme.palette.primary.light,
+    height: "100%"
+  },
+  com:{
+    marginBottom: "40%",
+  },
 }));
 
 function VerifyForms() {
@@ -15,7 +19,7 @@ function VerifyForms() {
     return (
         <div className={classes.root}>
           <Navbar />
-            <VerifyCom/>
+            <VerifyCom className={classes.com} />
           <Footer />
        </div> 
     );

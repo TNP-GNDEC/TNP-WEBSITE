@@ -9,12 +9,13 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   foot: {
+    bottom: "0",
     width: "100%",
     background: theme.palette.primary.main,
     color: "#000000",
     textAlign: "center" ,
     padding: "10px",
-    height: "55px",
+    height: "40px",
   },
   tag:{
     textDecoration: "none",
@@ -34,13 +35,8 @@ export default function SimpleBottomNavigation() {
   var dt=new Date();
  var year = dt.getFullYear();
   return (
-    
-    <BottomNavigation color="primary">
-    
       <div className={classes.foot}>
       <p> Developed with ❤️ by <a className={classes.tag} href="https://gndec.ac.in/">Genconians</a>  | ©️ {year} <a className={classes.tag} href="https://gndec.ac.in/"> GNDEC,ldh</a></p>
       </div>
-    </BottomNavigation>
-    
   );
 }

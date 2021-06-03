@@ -351,7 +351,7 @@ export default function finalStep(props) {
                     { id: 9, label: "Pincode", value: res.data.twelfth['pincode'] },
                     { id: 10, label: "Obtained Marks", value: res.data.twelfth['obtained_marks'] },
                     { id: 11, label: "Maximum Marks", value: res.data.twelfth['maximum_marks'] },
-                    { id: 12, label: "Maximum Marks", value: res.data.twelfth['percentage'] },
+                    { id: 12, label: "Percentage", value: res.data.twelfth['percentage'] },
                     { id: 13, label: "File", value: res.data.twelfth['file'].split('\\').pop().split('/').pop() },
                 ]);
                 setTwelfthPath(res.data.twelfth['file']);
