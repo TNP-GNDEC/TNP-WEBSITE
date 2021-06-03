@@ -203,7 +203,8 @@ export default function finalStep(props) {
         { id: 7, label: "Pincode", value: "value" },
         { id: 8, label: "Obtained Marks", value: "value" },
         { id: 9, label: "Maximum Marks", value: "value" },
-        { id: 10, label: "File", value: "value" },
+        { id: 10, label: "Percentage", value: "value" },
+        { id: 11, label: "File", value: "value" },
     ]);
     const [UgData, setUgData] = React.useState([
         { id: 1, label: "Institute Name", value: "value" },
@@ -231,8 +232,9 @@ export default function finalStep(props) {
         { id: 8, label: "Marks Type", value: "value" },
         { id: 9, label: "Obtained Marks", value: "value" },
         { id: 10, label: "Maximum Marks", value: "value" },
-        { id: 11, label: "Pincode", value: "value" },
-        { id: 12, label: "File", value: "value" },
+        { id: 11, label: "Maximum Marks", value: "value" },
+        { id: 12, label: "Pincode", value: "value" },
+        { id: 13, label: "File", value: "value" },
     ]);
     const [DiplomaData, setDiplomaData] = React.useState([
         { id: 1, label: "Branch", value: "value" },
@@ -244,8 +246,9 @@ export default function finalStep(props) {
         { id: 7, label: "Marks Type", value: "value" },
         { id: 8, label: "Obtained Marks", value: "value" },
         { id: 9, label: "Maximum Marks", value: "value" },
-        { id: 10, label: "Pincode", value: "value" },
-        { id: 11, label: "File", value: "value" },
+        { id: 10, label: "Percentage", value: "value" },
+        { id: 11, label: "Pincode", value: "value" },
+        { id: 12, label: "File", value: "value" },
     ]);
     const handleVerify = () => {
         setLoader(true);
@@ -330,7 +333,8 @@ export default function finalStep(props) {
                 { id: 7, label: "Pincode", value: res.data.matric['pincode'] },
                 { id: 8, label: "Obtained Marks", value: res.data.matric['obtained_marks'] },
                 { id: 9, label: "Maximum Marks", value: res.data.matric['maximum_marks'] },
-                { id: 10, label: "File", value: res.data.matric['file'].split('\\').pop().split('/').pop() },
+                { id: 10, label: "Percentage", value: res.data.matric['maximum_marks'] },
+                { id: 11, label: "File", value: res.data.matric['file'].split('\\').pop().split('/').pop() },
             ]);
             setMatricPath(res.data.matric['file']);
             setCat({value: res.data.category['category'], label: "Category"});
@@ -347,6 +351,7 @@ export default function finalStep(props) {
                     { id: 9, label: "Pincode", value: res.data.twelfth['pincode'] },
                     { id: 10, label: "Obtained Marks", value: res.data.twelfth['obtained_marks'] },
                     { id: 11, label: "Maximum Marks", value: res.data.twelfth['maximum_marks'] },
+                    { id: 11, label: "Percentage", value: res.data.twelfth['percentage'] },
                     { id: 12, label: "File", value: res.data.twelfth['file'].split('\\').pop().split('/').pop() },
                 ]);
                 setTwelfthPath(res.data.twelfth['file']);
@@ -363,7 +368,8 @@ export default function finalStep(props) {
                     { id: 8, label: "Pincode", value: res.data.diploma['pincode'] },
                     { id: 9, label: "Obtained Marks", value: res.data.diploma['obtained_marks'] },
                     { id: 10, label: "Maximum Marks", value: res.data.diploma['maximum_marks'] },
-                    { id: 11, label: "File", value: res.data.diploma['file'].split('\\').pop().split('/').pop() },
+                    { id: 11, label: "Percentage", value: res.data.diploma['percentage'] },
+                    { id: 12, label: "File", value: res.data.diploma['file'].split('\\').pop().split('/').pop() },
                 ]);
                 setDiplomaPath(res.data.diploma['file']);
             }

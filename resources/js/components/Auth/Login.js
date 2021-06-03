@@ -186,8 +186,8 @@ const handleClickShowPassword = () => setShowPassword(!showPassword);
 const handleMouseDownPassword = () => setShowPassword(!showPassword);
 const handleFormSubmit= async (event)=>{
     event.preventDefault();
-    setLoading(true);
     if(validate()){
+      setLoading(true);
     axios.post('/api/login', {
       username: state.username,
       password: state.password,

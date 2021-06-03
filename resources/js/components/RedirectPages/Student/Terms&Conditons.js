@@ -43,6 +43,22 @@ button:{
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
     },
+    '&:focus': {
+      outline: "none",
+    },
+},
+disable:{
+  width: "150px",
+    background: "#26262633",
+    color: "#cccccc",
+    boxShadow: "0px 15px 25px #034ed433",
+    borderRadius: "50px",
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
+    '&:focus': {
+      outline: "none",
+    },
 },
 
 
@@ -51,6 +67,11 @@ button:{
    
 export default function SimpleCard() {
   const classes = useStyles();
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
   const handleSubmit =  () => {
     window.location.href = window.origin+ "/forms";
   }
@@ -112,7 +133,7 @@ export default function SimpleCard() {
         
         <div className={classes.Checkbox}>
         <Checkbox
-        required="true"
+        onChange={handleChange}
         color="primary"
         inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
@@ -122,9 +143,9 @@ export default function SimpleCard() {
       </div>
       </div>
 
-      <Button  className={classes.button} variant="contained" onClick={handleSubmit}>
-  Next
-</Button>
+      <Button  className={checked? classes.button : classes.disable} variant="contained" onClick={handleSubmit} disabled={checked? false : true}>
+          Next
+      </Button>
 
       </CardContent>
       

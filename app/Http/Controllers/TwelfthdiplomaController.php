@@ -40,7 +40,7 @@ class TwelfthdiplomaController extends Controller
   ]);
     if($request->category=="XII" || $request->category=="both"){
     $twelfth_file = $request->file('file_12');
-    If($twelfth_file){
+    if($twelfth_file){
     $twelfth_filename  = $twelfth_file->getClientOriginalName();
     $twelfth_extension = $twelfth_file->getClientOriginalExtension();
     $twelfth_file_url  = $user->username.'_twelfth.'.$twelfth_extension;

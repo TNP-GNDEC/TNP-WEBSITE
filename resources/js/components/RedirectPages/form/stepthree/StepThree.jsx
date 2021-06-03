@@ -167,9 +167,9 @@ export default function StepThree(props) {
         temp.marks_type = matriculation.marks_type ? "": "This field is required."
         temp.state = (/^[a-zA-Z\s]*$/).test(matriculation.state) && matriculation.state? "": "This field is required and must contain only char."
         temp.city = (/^[a-zA-Z\s]*$/).test(matriculation.city) && matriculation.city? "": "This field is required and must contain only char."
-        temp.obtained_marks = matriculation.obtained_marks ? "": "This field is required."
+        temp.obtained_marks = (/^[0-9]{1,4}$/).test(matriculation.obtained_marks) ? "": "This field is required."
         temp.pincode = (/^[0-9]{6}$/).test(matriculation.pincode) ? "": "This field is required and must be exactly 6 digits."
-        temp.maximum_marks = (/^[0-9]{1,3}$/).test(matriculation.maximum_marks) ? "": "This field is required and must be max 3 digits."
+        temp.maximum_marks = (/^[0-9]{1,4}$/).test(matriculation.maximum_marks) ? "": "This field is required."
         
         if(matriculation.marks_type == "1"){
             temp.obtained_marks = parseFloat(matriculation.obtained_marks)>=0   && parseFloat(matriculation.obtained_marks)<=10  ? "" : "Enter a valid cgpa Value (hint: between 0 to 10)"
@@ -198,7 +198,7 @@ export default function StepThree(props) {
                 var filePath = document.getElementById('file').value;
                 var fileSize = document.getElementById('file').files[0].size / 1024 / 1024;
                 if(!fileExt.exec(filePath)){
-                    setNotify({ isOpen: true, message: "Invalid File Format, Please upload file having extension .jpg/ .jpeg/ .png", type: "error" });
+                    setNotify({ isOpen: true, message: "Invalid File Format, Please upload file having extension .pdf", type: "error" });
                     return;
                 }
                 if (fileSize > 1) {
@@ -232,6 +232,10 @@ export default function StepThree(props) {
     }
     };
 
+    const handleChange = (e) => {
+        var pdf = e.target.files[0];
+        setfile(pdf);
+    }
 
     const handleMatriculationChangeInput = (e) => {
         
@@ -320,7 +324,7 @@ export default function StepThree(props) {
                             </Alert>
                             <div className={classes.alert}>{DBfile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {DBfile}. <strong>Choose to replace previous file.</strong></p>}</div>
                             <div className={classes.alert}><Notification notify={notify} setNotify={setNotify} className={classes.alert} /></div>
-                            <input className={classes.fileupload} onChange={ (e) => handleChange(e.target.files) } accept= "application/pdf" id="file" type="file" required={DBfile=== ""? true: false} />   
+                            <input className={classes.fileupload} onChange={ (e) => handleChange(e) } accept= "application/pdf" id="file" type="file" required={DBfile=== ""? true: false} />   
                         </Card>
                     </Grid>
                 </Grid>

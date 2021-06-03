@@ -107,13 +107,14 @@ const useStyles = makeStyles(theme => ({
         boxShadow: "0px 15px 25px #00000033"
     },
     alert: {
+        marginTop: "10px",
         margin: "auto",
         width: "90%",
       },
     fileupload:{
         width: "90%",
         marginLeft: "60px",
-        padding: "20px 0"
+        padding: "2px 0 20px"
     },
     heading: {
         paddingTop: "20px"
@@ -201,9 +202,8 @@ export default function StepFour(props) {
         temp.city = (/^[a-zA-Z\s]*$/).test(diploma.city) && diploma.city? "": "This field is required and must contain letters only"
         temp.state = (/^[a-zA-Z\s]*$/).test(diploma.state) && diploma.state? "": "This field is required and must contain letters only"
         temp.pincode = (/^[0-9]{6}$/).test(diploma.pincode) ? "": "This field is required and must be of 6 digits"
-        temp.obtained_marks = (/^[0-9\b]+$/).test(diploma.obtained_marks) ? "": "This field is required and must be max 3 digits long."
-        
-        temp.maximum_marks = (/^[0-9]{3}$/).test(diploma.maximum_marks) ? "": "This field is required and must be max 3 digits long."
+        temp.obtained_marks = (/^[0-9\b]+$/).test(diploma.obtained_marks) ? "": "This field is required."
+        temp.maximum_marks = (/^[0-9]{1,4}$/).test(diploma.maximum_marks) ? "": "This field is required."
 
         }
         setErrors({
@@ -237,29 +237,51 @@ export default function StepFour(props) {
         
     if(category==="XII" || category==="both")
     {
-        var fileSize = document.getElementById('twelfthfile').files[0].size / 1024 / 1024;
-        if(fileSize>1){
-            setNotify({isOpen: true, message: "File Size should be less than 1 MB.", type: "error"});
-            return;
+        if(document.getElementById('twelfthfile').files[0]){
+            var fileExt = /(\.pdf)$/i;
+            var filePath = document.getElementById('twelfthfile').value;
+            var fileSize = document.getElementById('twelfthfile').files[0].size / 1024 / 1024;
+            if(!fileExt.exec(filePath)){
+                setNotify({ isOpen: true, message: "Invalid File Format, Please upload file having extension .pdf", type: "error" });
+                return;
+            }
+            if (fileSize > 1) {
+                setNotify({ isOpen: true, message: "File Size should be less than 1 MB.", type: "error" });
+                return;
+            }
         }
         setLoader(true);
         Object.keys(twelfth).forEach(function (key){         
             fd.append(key+"_12", twelfth[key]);
         })
-        fd.append('file_12', document.getElementById('twelfthfile').files[0]);
+        if(document.getElementById('twelfthfile').files[0]){
+            fd.append('file_12', document.getElementById('twelfthfile').files[0]);
+        }
+        
     }
 
     if(category==="diploma" || category==="both"){
-        var fileSize = document.getElementById('diplomafile').files[0].size / 1024 / 1024;
-        if(fileSize>1){
-            setNotify({isOpen: true, message: "File Size should be less than 1 MB.", type: "error"});
-            return;
+        if(document.getElementById('diplomafile').files[0]){
+            var fileExt = /(\.pdf)$/i;
+            var filePath = document.getElementById('diplomafile').value;
+            var fileSize = document.getElementById('diplomafile').files[0].size / 1024 / 1024;
+            if(!fileExt.exec(filePath)){
+                setNotify({ isOpen: true, message: "Invalid File Format, Please upload file having extension .pdf", type: "error" });
+                return;
+            }
+            if (fileSize > 1) {
+                setNotify({ isOpen: true, message: "File Size should be less than 1 MB.", type: "error" });
+                return;
+            }
         }
         setLoader(true);
         Object.keys(diploma).forEach(function (key){         
             fd.append(key+"_diploma", diploma[key]);
         })
-        fd.append('file_diploma', document.getElementById('diplomafile').files[0]);
+        if(document.getElementById('diplomafile').files[0]){
+            fd.append('file_diploma', document.getElementById('diplomafile').files[0]);
+        }
+        
     }   
 
        const token = localStorage.getItem("token")
@@ -323,8 +345,11 @@ const fetchDetails = async () => {
         });
         
         var fullpath = res.data.twelfth['file'];
-        var filename = fullpath.split('\\').pop().split('/').pop();;
-        setTwelfthDBFile(filename);
+        if(fullpath){
+            var filename = fullpath.split('\\').pop().split('/').pop();
+            setTwelfthDBFile(filename);
+        }
+        
         
     }
     
@@ -342,8 +367,10 @@ const fetchDetails = async () => {
             maximum_marks: res.data.diploma['maximum_marks'],
         });
         var fullpath2 = res.data.diploma['file'];
-        var filename2 = fullpath2.split('\\').pop().split('/').pop();
-        setDiplomaDBFile(filename2);
+        if(fullpath2){
+            var filename2 = fullpath2.split('\\').pop().split('/').pop();
+            setDiplomaDBFile(filename2);
+        }
     }
 }
     setLoading(false);
@@ -397,12 +424,12 @@ useEffect(()=>{
                 />
                 <hr />
                 <Alert severity="info" className={classes.alert}>
-                            Note : Upload <CloudUploadIcon/> Scanned copies of your
-                                    twelfth certificates in PDF format with size less than 1 MB<strong>(If you editing this form then you have to upload file again)</strong>
-                            </Alert>
-                <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
-                <input className={classes.fileupload} onChange={ (e) => handleTwelfthChange(e) } accept= "application/pdf" id="twelfthfile" type="file" required /> 
-                <div className={classes.fileShow}>{twelfthDBFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {twelfthFile}</p>}</div>
+                    Note : Upload <CloudUploadIcon/> Scanned copies of your
+                            twelfth certificates in PDF format with size less than 1 MB.
+                </Alert>
+                <div className={classes.alert}>{twelfthDBFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {twelfthDBFile}. <strong>Choose to replace previous file.</strong></p>}</div>
+                <div className={classes.alert}><Notisfication notify={notify} setNotify={setNotify} className={classes.alert} /></div>
+                <input className={classes.fileupload} onChange={ (e) => handleTwelfthChange(e) } accept= "application/pdf" id="twelfthfile" type="file" required={twelfthDBFile=== ""? true: false} /> 
             </Card>
         </Grid>
     }
@@ -419,9 +446,10 @@ useEffect(()=>{
                             Note : Upload <CloudUploadIcon/> Scanned copies of your
                                     Diploma certificates.(PDF Only)
                             </Alert>
-                <Notisfication notify={notify} setNotify={setNotify} className={classes.alert} />
-                <input className={classes.fileupload} onChange={ (e) => handleDiplomaChange(e) } accept= "application/pdf" id="diplomafile" type="file" required /> 
-                <div className={classes.fileShow}>{diplomaDBFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {diplomaFile}</p>}</div>
+                <div className={classes.alert}>{diplomaDBFile === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {diplomaDBFile}. <strong>Choose to replace previous file.</strong></p>}</div>
+                <div className={classes.alert}><Notisfication notify={notify} setNotify={setNotify} className={classes.alert} /></div>
+                <input className={classes.fileupload} onChange={ (e) => handleDiplomaChange(e) } accept= "application/pdf" id="diplomafile" type="file" required={diplomaDBFile=== ""? true: false} /> 
+                
             </Card>
         </Grid>
     }

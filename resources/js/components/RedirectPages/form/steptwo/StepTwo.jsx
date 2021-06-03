@@ -503,9 +503,7 @@ export default function StepTwo(props) {
 
     const handleFileChange = (e) => {
         var pic = e.target.files[0];
-
-        setFile({file: pic});
-
+        setFile(pic);
     }
 
     const fetchDetails = async () => {
@@ -603,7 +601,7 @@ export default function StepTwo(props) {
                                             Note : Upload <CloudUploadIcon /> Your Passport Size Photo
                                     (Image size should be less than 1 MB)
                                 </Alert>
-                                <div className={classes.alert}>{photo === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {file}. <strong>Choose to replace previous file.</strong></p>}</div>
+                                <div className={classes.alert}>{photo === "" ? <p></p> : <p><strong>The File you previously choosed got renamed & stored:</strong> {photo}. <strong>Choose to replace previous file.</strong></p>}</div>
                                         <div className={classes.alert}><Notification notify={notify} setNotify={setNotify} /></div>
                                         <input className={classes.fileupload} onChange={(e) => handleFileChange(e)} accept="image/*" id="file" type="file" required={req === true? true : false} />
                                         <img src={profile.picture} />
