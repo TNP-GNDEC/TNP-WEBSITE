@@ -536,7 +536,7 @@ export default function StepTwo(props) {
             college_roll: res.data.details['crn'],
             course: res.data.details['category'],
             stream: res.data.details['stream'],
-            section: res.data.details['branch_type'],
+            section: res.data.details['section'],
             shift: res.data.details['shift'],
             // training_sem: res.data.details['training_sem'],
             leet: res.data.details['leet'],

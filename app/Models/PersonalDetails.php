@@ -35,7 +35,7 @@ class PersonalDetails extends Model
      "file",
      "marital_status", 
      "aadhar", 
-     "branch_type", 
+     "section", 
      "stream", 
      "hostler", 
      "training_sem", 

@@ -36,7 +36,7 @@ class CreateStepTwoTable extends Migration
             $table->bigInteger('mother_mobile')->nullable();
             $table->string('stream')->nullable();
             $table->string('blood_group')->nullable();
-            $table->string('branch_type')->nullable();
+            $table->string('section')->nullable();
             $table->string('category')->nullable();
             $table->string('marital_status')->nullable();
             $table->string('training_sem')->nullable();

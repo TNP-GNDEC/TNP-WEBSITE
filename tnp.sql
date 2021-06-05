@@ -332,7 +332,7 @@ CREATE TABLE `personalDetails` (
   `mother_mobile` bigint(20) DEFAULT NULL,
   `stream` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `blood_group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `branch_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `section` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `marital_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `training_sem` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -351,7 +351,7 @@ CREATE TABLE `personalDetails` (
 -- Dumping data for table `personalDetails`
 --
 
-INSERT INTO `personalDetails` (`id`, `user_id`, `urn`, `crn`, `pincode`, `first_name`, `last_name`, `height`, `weight`, `gender`, `address`, `city`, `state`, `district`, `mobile`, `whatsapp`, `father_name`, `father_mobile`, `mother_name`, `mother_mobile`, `stream`, `blood_group`, `branch_type`, `category`, `marital_status`, `training_sem`, `shift`, `leet`, `farming_background`, `hostler`, `disability`, `aadhar`, `dob`, `created_at`, `updated_at`) VALUES
+INSERT INTO `personalDetails` (`id`, `user_id`, `urn`, `crn`, `pincode`, `first_name`, `last_name`, `height`, `weight`, `gender`, `address`, `city`, `state`, `district`, `mobile`, `whatsapp`, `father_name`, `father_mobile`, `mother_name`, `mother_mobile`, `stream`, `blood_group`, `section`, `category`, `marital_status`, `training_sem`, `shift`, `leet`, `farming_background`, `hostler`, `disability`, `aadhar`, `dob`, `created_at`, `updated_at`) VALUES
 (1, 19, 1805975, 1815375, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:31', '2021-01-21 21:44:31'),
 (2, 20, 1805976, 1815376, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:31', '2021-01-21 21:44:31'),
 (3, 21, 1805977, 1815377, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-21 21:44:32', '2021-01-21 21:44:32'),

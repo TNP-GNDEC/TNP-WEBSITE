@@ -45,8 +45,8 @@ class AuthController extends Controller
                     'gender' => $user['gender'],
                     'father_name' => $user['father_name'],
                     'mother_name' => $user['mother_name'],
-                    'category' => $user['category'], //course on fronetend is btech mtech
-                    'branch_type' => $user['branch_type'],
+                    'category' => $user['category'], //course on frontend is btech mtech and category is course
+                    'section' => $user['section'], 
                     'shift' => $user['shift'],
                     'leet' => $user['leet'],
                 ]);

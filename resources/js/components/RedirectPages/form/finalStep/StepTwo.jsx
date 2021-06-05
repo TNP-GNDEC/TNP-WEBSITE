@@ -308,7 +308,7 @@ export default function finalStep(props) {
                 { id: 16, label: "Mother Phone", value: res.data.details['mother_mobile'] },
                 { id: 17, label: "Course", value: res.data.details['category'] },
                 { id: 18, label: "Stream", value: res.data.details['stream'] },
-                { id: 19, label: "Section", value: res.data.details['branch_type'] },
+                { id: 19, label: "Section", value: res.data.details['section'] },
                 { id: 20, label: "Shift", value: res.data.details['shift'] },
                 // { id: 21, label: "Training Sem", value: res.data.details['training_sem'] },
                 { id: 22, label: "Leet", value: options(res.data.details['leet']) },
