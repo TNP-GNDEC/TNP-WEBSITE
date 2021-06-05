@@ -64,7 +64,7 @@ class PersonaldetailsController extends Controller
 
         'shift' => $request->shift,
         'stream' => $request->stream,
-        'category' => $request->course,
+        'category' => $request->course, //btech mtech
         'branch_type' => $request->section,
         // 'training_sem' => $request->training_sem,
         'training_sem' => "7",

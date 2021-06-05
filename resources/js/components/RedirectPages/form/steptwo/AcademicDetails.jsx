@@ -136,15 +136,15 @@ export default function Details(props) {
             validate: props.Errors.stream,
             options: [
                 {
-                    value: "Cse",
+                    value: "CSE",
                     label: "COMPUTER SCIENCE AND ENGINEERING"
                 },
                 {
-                    value: "It",
+                    value: "IT",
                     label: "INFORMATION TECHNOLOGY"
                 },
                 {
-                    value: "Ece",
+                    value: "ECE",
                     label: "ELECTRONICS AND COMMUNICATION"
                 },
                 {
