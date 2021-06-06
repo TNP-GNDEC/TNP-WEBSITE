@@ -229,7 +229,7 @@ export default function StepOne(props) {
                         <button 
                               type="submit" 
                               disabled={disable? true: false}
-                              className={disable? classes.button: classes.disabled}>Verify!
+                              className={disable? classes.disabled: classes.button}>Verify!
                         </button> 
                         )}
                     </form>
