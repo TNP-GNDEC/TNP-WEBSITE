@@ -46,7 +46,7 @@ class AuthController extends Controller
                     'father_name' => $user['father_name'],
                     'mother_name' => $user['mother_name'],
                     'category' => $user['category'], //course on frontend is btech mtech and category is course
-                    'section' => $user['section'], 
+                    'stream' => $user['stream'], 
                     'shift' => $user['shift'],
                     'leet' => $user['leet'],
                 ]);
