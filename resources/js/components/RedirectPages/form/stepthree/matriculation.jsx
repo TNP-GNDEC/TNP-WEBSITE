@@ -367,6 +367,7 @@ export default function matriculationDetails(props) {
                     name="marks_type"
                     defaultValue={props.matriculation.marks_type}
                     select="true"
+                    disabled="true"
                     variant="outlined"
                     onChange={
                         props.handleInputChange
@@ -402,6 +403,7 @@ export default function matriculationDetails(props) {
                     name="obtained_marks"
                     defaultValue={props.matriculation.obtained_marks}
                     variant="outlined"
+                    disabled="true"
                     onChange={
                         props.handleInputChange
                     }
@@ -436,7 +438,7 @@ export default function matriculationDetails(props) {
                     onChange={
                         props.handleInputChange
                     }
-                    disabled={props.matriculation.marks_type === "1" ? true : false}
+                    disabled="true"
 
                     {...(props.Errors.maximum_marks && { error: true, helperText: props.Errors.maximum_marks })}
                 >
@@ -467,7 +469,7 @@ export default function matriculationDetails(props) {
                         name="percentage"
                         value={(parseFloat(props.matriculation.obtained_marks) * 9.5).toFixed(2) }
                         variant="outlined"
-                        disabled={true}
+                        disabled="true"
                         helperText="Conversion factor is 9.5, if any other contact at tpo@gndec.ac.in"
                     >
 
@@ -498,7 +500,7 @@ export default function matriculationDetails(props) {
                         name="percentage"
                         value={((parseFloat(props.matriculation.obtained_marks) / parseFloat(props.matriculation.maximum_marks)) * 100).toFixed(2) }
                         variant="outlined"
-                        disabled={true}
+                        disabled="true"
 
                     >
 

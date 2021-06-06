@@ -106,6 +106,7 @@ export default function Details(props) {
             type: "text",
             id: 3,
             value: props.academics.course,
+            disabled: "true",
             select: "true",
             validate: props.Errors.course,
             options: [
@@ -133,6 +134,7 @@ export default function Details(props) {
             id: 4,
             value: props.academics.stream,
             select: "true",
+            disabled: "true",
             validate: props.Errors.stream,
             options: [
                 {
@@ -219,6 +221,7 @@ export default function Details(props) {
             type: "text",
             id: 5,
             value: props.academics.shift,
+            disabled: "true",
             select: "true",
             options: [
                 {
@@ -252,6 +255,7 @@ export default function Details(props) {
             type: "text",
             id: 7,
             value: props.academics.leet,
+            disabled: "true",
             select: "true",
             options: [
                 {

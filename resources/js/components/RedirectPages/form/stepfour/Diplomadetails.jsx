@@ -270,6 +270,7 @@ export default function DiplomaDetails(props) {
                         label= "OBTAINED MARKS"
                         type= "text"
                         id= "9"
+                        disabled={true}
                         name= "obtained_marks"
                         defaultValue= {props.diploma.obtained_marks}
                         variant="outlined"
@@ -303,7 +304,7 @@ export default function DiplomaDetails(props) {
                         
                         
                         variant="outlined"
-                        disabled={props.diploma.marks_type === "1" ? true : false}
+                        disabled={true}
                         onChange={
                             props.handleInputChange
                         }

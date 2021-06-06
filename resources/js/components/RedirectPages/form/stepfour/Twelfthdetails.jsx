@@ -425,8 +425,7 @@ export default function TwelfthDetails(props) {
                     id="10"
                     name="obtained_marks"
                     defaultValue={props.twelfth.obtained_marks}
-
-
+                    disabled="true"
                     variant="outlined"
 
 
@@ -464,7 +463,7 @@ export default function TwelfthDetails(props) {
 
                     variant="outlined"
 
-                    disabled={props.twelfth.marks_type === "1" ? true : false}
+                    disabled="true"
                     onChange={
                         props.handleInputChange
                     }
