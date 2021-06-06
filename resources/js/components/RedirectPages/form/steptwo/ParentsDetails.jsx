@@ -43,7 +43,7 @@ export default function ParentDetails(props) {
             id: 1,
             value: props.parent.father_name,
             required:true,
-            text: "Example: 'John Doe'",
+            disabled: "true",
             maxLength:80,
             minLength:0,
             validate: props.Errors.father_name
@@ -65,7 +65,7 @@ export default function ParentDetails(props) {
             id: 3,
             value: props.parent.mother_name,
             required:true,
-            text: "Example: 'John Doe",
+            disabled: "true",
             maxLength:80,
             minLength:0,
             validate: props.Errors.mother_name
@@ -108,8 +108,8 @@ export default function ParentDetails(props) {
                         name={field.name}
                         variant="outlined"
                         label={field.label}
+                        disabled={field.disable}
                         value={field.value}
-                        helperText={field.text}
                         onChange={e => {
                             props.handleInputChange(e, field.id);
                         }}

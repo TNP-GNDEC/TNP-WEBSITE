@@ -52,6 +52,7 @@ export default function ProfileDetails(props) {
             type: "text",
             id: 1,
             select: false,
+            disable: "true",
             shrink: "",
             text: "Example: 'John'",
             value: props.Profile.first_name,
@@ -64,6 +65,7 @@ export default function ProfileDetails(props) {
             id: 2,
             select: false,
             shrink: false,
+            disable: "true",
             text: "Example: 'Doe'",
             value: props.Profile.last_name,
             options: [],
@@ -140,6 +142,7 @@ export default function ProfileDetails(props) {
             id: 8,
             shrink: false,
             select: "true",
+            disable: "true",
             value: props.Profile.gender,
             options: [
                 { value: "Male", label: "MALE" },
@@ -231,6 +234,7 @@ export default function ProfileDetails(props) {
                               focused: classes.focused
                             }
                         }}
+                        disabled={field.disable}
                         id="outlined-basic"
                         variant="outlined"
                         label={field.label}
