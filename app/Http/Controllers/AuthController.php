@@ -58,7 +58,8 @@ class AuthController extends Controller
                     'maximum_marks' => $user['maximum_marks_10'],
                     'obtained_marks' => $user['obtained_marks_10'],
                     'percentage' => $user['percentage_10'],
-                    'marks_type' => 1
+                    'marks_type' => 1,
+                    'year_of_passing' => $user['yop_10']
                 ]);
                 }
                 else{
@@ -69,8 +70,8 @@ class AuthController extends Controller
                         'maximum_marks' => $user['maximum_marks_10'],
                         'obtained_marks' => $user['obtained_marks_10'],
                         'percentage' => $user['percentage_10'],
-                        'marks_type' => 0
-
+                        'marks_type' => 0,
+                        'year_of_passing' => $user['yop_10']
                     ]);
                 }
                 if($user['leet']==0){
@@ -81,6 +82,7 @@ class AuthController extends Controller
                         'maximum_marks' => $user['maximum_marks_12'],
                         'obtained_marks' => $user['obtained_marks_12'],
                         'percentage' => $user['percentage_12'],
+                        'year_of_passing' => $user['yop_12']
                     ]);
                     $category = TwelfthDiplomaCategory::create(
                         ['user_id' => $newUser->id,
@@ -97,6 +99,7 @@ class AuthController extends Controller
                             'maximum_marks' => $user['maximum_marks_12'],
                             'obtained_marks' => $user['obtained_marks_12'],
                             'percentage' => $user['percentage_12'],
+                            'year_of_passing' => $user['yop_12']
                         ]);
                         $category = TwelfthDiplomaCategory::create([
                             'user_id' => $newUser->id,
@@ -109,7 +112,7 @@ class AuthController extends Controller
                else return response()->json(["message"=>"data couldn't be added", "success"=>0 ]);
             }
         
-        return response()->json(["message"=>"data added successfully","success"=>1,"daata"=>$users["data"]]);
+        return response()->json(["message"=>"data added successfully","success"=>1,"data"=>$users["data"]]);
     }
 
     public function registerAdmin(Request $request){
