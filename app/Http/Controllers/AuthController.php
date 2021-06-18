@@ -109,10 +109,10 @@ class AuthController extends Controller
                         }
                     }
 
-               else return response()->json(["message"=>"data couldn't be added", "success"=>0 ]);
+               else return response()->json(["message"=>"Data couldn't be added", "success"=>0 ]);
             }
         
-        return response()->json(["message"=>"data added successfully","success"=>1,"data"=>$users["data"]]);
+        return response()->json(["message"=>"Data added successfully","success"=>1,"data"=>$users["data"]]);
     }
 
     public function registerAdmin(Request $request){

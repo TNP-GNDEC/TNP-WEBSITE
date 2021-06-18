@@ -238,6 +238,7 @@ export default function DiplomaDetails(props) {
                         type= "text"
                         id= "6"
                         name= "year_of_passing"
+                        disabled="true"
                         defaultValue= {props.diploma.year_of_passing}
                         
                         

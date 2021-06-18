@@ -44,7 +44,7 @@ div.DraftEditor-root {
   padding: 15px 25px;
   border: none;
   border-radius: 10px;
-  box-shadow: 0px 15px 25px #206a5d33;
+  box-shadow: 0px 15px 15px #206a5d33;
   cursor: pointer;
   outline: none;
 }

@@ -389,6 +389,7 @@ export default function TwelfthDetails(props) {
                     type="text"
                     id="7"
                     name="year_of_passing"
+                    disabled="true"
                     defaultValue={props.twelfth.year_of_passing}
 
 

@@ -84,6 +84,9 @@ const useStyles = makeStyles(theme => ({
     pos: {
         float: "right"
     },
+    note:{
+        fontSize: "18px"
+    },
     btnBox: {
         width: "90%",
         margin: "20px auto",
@@ -472,6 +475,10 @@ export default function finalStep(props) {
                         <UgPreview data={UgData} path={degreePath}/>
                     </div>
                 ):(<div></div>)}
+                <hr />
+                <h3 className={classes.note}>For any discrepency related to online profile,kindly fill the Discrepancy Redressal Form available at <br />
+                <a href="https://forms.gle/Kz9q12fgMea3Wd989">https://forms.gle/Kz9q12fgMea3Wd989 </a>
+                </h3>
             </div>
             <div className={classes.btnBox}>
             <button className={classes.button} onClick={props.Back}>

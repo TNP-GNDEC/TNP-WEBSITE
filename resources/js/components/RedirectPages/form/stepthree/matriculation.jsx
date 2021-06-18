@@ -330,6 +330,7 @@ export default function matriculationDetails(props) {
                     label="YEAR OF PASSING"
                     type="text"
                     id="6"
+                    disabled="true"
                     name="year_of_passing"
                     defaultValue={props.matriculation.year_of_passing}
 
