@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Home from "./Pages/Home";
 import About from "./Pages/About";
+import Genconians from "./Pages/Genconians/Genconians";
 
 import login from "./Auth/Login";
 import { AdminRoute, StudentRoute } from "./Auth/PrivateRoute";
@@ -41,6 +42,7 @@ function App(){
                 <Switch>
                     <Route path="/" exact component={Home}/>
                     <Route path="/about" exact component={About}/>
+                    <Route path="/genconians" exact component={Genconians}/>
 
                     {/* Auth */}
                     <Route path="/login" exact component={login}/>

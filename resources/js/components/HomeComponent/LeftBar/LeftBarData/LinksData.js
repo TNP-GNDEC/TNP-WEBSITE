@@ -47,7 +47,7 @@ class LinksData extends React.Component {
             <div>
                 <hr />
                 <div className={classes.root}>
-                    <a href={data.links}><Typography variant="h5" component="h2" className={classes.heading}>
+                    <a href={data.link}><Typography variant="h5" component="h2" className={classes.heading}>
                         {data.title}
                     </Typography></a>
                 </div>

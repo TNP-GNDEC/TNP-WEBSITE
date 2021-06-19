@@ -104,15 +104,6 @@ export default function header(){
                     </Typography>
                 </div>
                 </Link>
-              
-                <Link to="/about">
-                <div className={classes.login}>
-                    <About />
-                    <Typography variant="h5" component="h2" className={classes.subheading}>
-                        About
-                    </Typography>
-                </div>
-                </Link>
             </div>
         </div>
     )

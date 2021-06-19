@@ -61,6 +61,9 @@ Route::get('/student', function () {
 Route::get('/about', function () {
     return view('welcome');
 })-> name('example');
+Route::get('/genconians', function () {
+    return view('welcome');
+})-> name('example');
 Route::get('/forms', function () {
     return view('welcome');
 })-> name('example');
