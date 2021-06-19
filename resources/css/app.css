@@ -52,3 +52,11 @@ div.DraftEditor-root {
 .DataFilter{
   background-color: #ffffff;
 }
+.pad{
+  padding-top: 20px;
+}
+.img-round {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
