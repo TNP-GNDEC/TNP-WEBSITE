@@ -114,9 +114,9 @@ export default function Genconians(){
                     />
                   </p> */}
                   <h4 class="card-title">Palak Thapar</h4>
-                  <p class="card-subtitle">Developer</p>
+                  <p class="card-subtitle">Full Stack Developer</p>
                   <p class="card-text">
-                    He is a B.Tech student in Computer Science &amp; Engineering
+                    She is a B.Tech student in Computer Science &amp; Engineering
                     of 2018-22 batch.
                   </p>
                   <ul class="list-inline" id="list-link">
@@ -138,15 +138,15 @@ export default function Genconians(){
                         <Insta />
                       </a>
                     </li>
-                    {/* <li class="list-inline-item">
+                    <li class="list-inline-item">
                       <a
                         class="social-icon"
                         target="_blank"
-                        href="https://github.com/lakshaychopra"
+                        href="https://github.com/palak199"
                       >
                         <Github />
                       </a>
-                    </li> */}
+                    </li> 
                     <li class="list-inline-item">
                       <a
                         class="social-icon"
@@ -175,7 +175,7 @@ export default function Genconians(){
                   <h4 class="card-title">Suryansh Chopra</h4>
                   <p class="card-subtitle">Developer</p>
                   <p class="card-text">
-                    She is a B.Tech student in Computer Science &amp; Engineering
+                    He is a B.Tech student in Computer Science &amp; Engineering
                     of 2018-22 batch.
                   </p>
                   <ul class="list-inline" id="list-link">
