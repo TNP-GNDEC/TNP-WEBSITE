@@ -6,10 +6,10 @@ import Github from '@material-ui/icons/GitHub';
 import Twitter from '@material-ui/icons/Twitter';
 import Medium from '@material-ui/icons/Web';
 import Mail from '@material-ui/icons/Mail';
-import Member1 from '../../../../images/Genconians/kirti.jpeg';
-import Member2 from '../../../../images/Genconians/lakshay.jpeg';
-import Member3 from '../../../../images/Genconians/riya.jpeg';
-import Member4 from '../../../../images/Genconians/anurag.png';
+import Member1 from '../../../../images/Genconians/vikalp.jpeg';
+import Member2 from '../../../../images/Genconians/palak.jpeg';
+import Member3 from '../../../../images/Genconians/suryansh.jpeg';
+import Member4 from '../../../../images/Genconians/gursidak.jpeg';
 import Member5 from '../../../../images/Genconians/arsh.png';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,17 +25,17 @@ export default function Genconians(){
     return (
         <div className={classes.root}>
         <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6">
+        <div class="col-xs-12 col-sm-12 col-md-6 pad">
             <div class="frontside">
               <div class="card con-card">
                 <div class="card-body text-center">
-                  {/* <p>
+                  <p>
                     <img
                       class="img-fluid img-round"
                       src={Member1}
                       alt="card image"
                     />
-                  </p> */}
+                  </p>
                   <h4 class="card-title">Vikalp Kaushik</h4>
                   <p class="card-subtitle">Full Stack Developer</p>
                   <p class="card-text">
@@ -83,7 +83,7 @@ export default function Genconians(){
                       <a
                         class="social-icon"
                         target="_blank"
-                        href="https://twiiter.com/kaushik_vikalp"
+                        href="https://twitter.com/kaushik_vikalp"
                       >
                         <Twitter />
                       </a>
@@ -102,17 +102,17 @@ export default function Genconians(){
               </div>
             </div>
           </div>
-        <div class="col-xs-12 col-sm-12 col-md-6">
+        <div class="col-xs-12 col-sm-12 col-md-6 pad">
             <div class="frontside">
               <div class="card con-card">
                 <div class="card-body text-center">
-                  {/* <p>
+                  <p>
                     <img
                       class="img-fluid img-round"
                       src={Member2}
                       alt="card image"
                     />
-                  </p> */}
+                  </p>
                   <h4 class="card-title">Palak Thapar</h4>
                   <p class="card-subtitle">Full Stack Developer</p>
                   <p class="card-text">
@@ -165,17 +165,17 @@ export default function Genconians(){
             <div class="frontside">
               <div class="card con-card">
                 <div class="card-body text-center">
-                  {/* <p>
+                  <p>
                     <img
                       class="img-fluid img-round"
                       src={Member3}
                       alt="card image"
                     />
-                  </p> */}
+                  </p>
                   <h4 class="card-title">Suryansh Chopra</h4>
                   <p class="card-subtitle">Developer</p>
                   <p class="card-text">
-                    He is a B.Tech student in Computer Science &amp; Engineering
+                    He is a B.Tech student in Information Technology
                     of 2018-22 batch.
                   </p>
                   <ul class="list-inline" id="list-link">
@@ -220,6 +220,65 @@ export default function Genconians(){
               </div>
             </div>
           </div>
+          <div class="col-xs-12 col-sm-12 col-md-4 pad">
+            <div class="frontside">
+              <div class="card con-card">
+                <div class="card-body text-center">
+                  <p>
+                    <img
+                      class="img-fluid img-round"
+                      src={Member4}
+                      alt="card image"
+                    />
+                  </p>
+                  <h4 class="card-title">Gursidak Singh</h4>
+                  <p class="card-subtitle">Developer</p>
+                  <p class="card-text">
+                    He is a B.Tech student in Computer Science &amp; Engineering
+                    of 2018-22 batch.
+                  </p>
+                  <ul class="list-inline" id="list-link">
+                    <li class="list-inline-item">
+                      <a
+                        class="social-icon"
+                        target="_blank"
+                        href="https://www.linkedin.com/in/gursidak-singh-620173190/"
+                      >
+                        <Linkedin />
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a
+                        class="social-icon"
+                        target="_blank"
+                        href="https://github.com/gursidak"
+                      >
+                        <Github />
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a
+                        class="social-icon"
+                        target="_blank"
+                        href="https://twitter.com/Gursidak8685"
+                      >
+                        <Twitter />
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a
+                        class="social-icon"
+                        target="_blank"
+                        href="mailto:singhgursidak89@gmail.com"
+                      >
+                        <Mail />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            </div>
         <div class="col-xs-12 col-sm-12 col-md-4 pad">
             <div class="frontside">
               <div class="card con-card">
@@ -302,7 +361,7 @@ export default function Genconians(){
                   <h4 class="card-title">Gurkipal Singh</h4>
                   <p class="card-subtitle">UI/UX Designer</p>
                   <p class="card-text">
-                    He is a B.Tech student in Computer Science &amp; Engineering
+                    He is a B.Tech student in Electronics &amp; Communications Engineering
                     of 2018-22 batch.
                   </p>
                   <ul class="list-inline" id="list-link">
@@ -343,56 +402,6 @@ export default function Genconians(){
                       </a>
                     </li>
                   </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        <div class="col-xs-12 col-sm-12 col-md-4 pad">
-            <div class="frontside">
-              <div class="card con-card">
-                <div class="card-body text-center">
-                  {/* <p>
-                    <img
-                      class="img-fluid img-round"
-                      src={Member5}
-                      alt="card image"
-                    />
-                  </p> */}
-                  <h4 class="card-title">Gursidak Singh</h4>
-                  <p class="card-subtitle">Developer</p>
-                  <p class="card-text">
-                    He is a B.Tech student in Computer Science &amp; Engineering
-                    of 2018-22 batch.
-                  </p>
-                  {/* <ul class="list-inline" id="list-link">
-                    <li class="list-inline-item">
-                      <a
-                        class="social-icon"
-                        target="_blank"
-                        href="https://www.linkedin.com/in/arshgu09/"
-                      >
-                        <Linkedin />
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a
-                        class="social-icon"
-                        target="_blank"
-                        href="https://twitter.com/ArshGupta07"
-                      >
-                        <Twitter />
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a
-                        class="social-icon"
-                        target="_blank"
-                        href="mailto:arsh.gupta8@gmail.com"
-                      >
-                        <Mail />
-                      </a>
-                    </li>
-                  </ul> */}
                 </div>
               </div>
             </div>

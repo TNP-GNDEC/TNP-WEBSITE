@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   
     return (
       <Card className={classes.root}>
-        <p> Developed with ❤️ by <a className={classes.tag} href="#">Genconians </a> | ©️ {year} <a className={classes.tag} href="https://gndec.ac.in/"> GNDEC,ldh</a></p>
+        <p> Developed with ❤️ by <a className={classes.tag} href="https://tnpgndec.com/genconians">Genconians </a> | ©️ {year} <a className={classes.tag} href="https://gndec.ac.in/"> GNDEC,ldh</a></p>
       </Card>
     );
   }
