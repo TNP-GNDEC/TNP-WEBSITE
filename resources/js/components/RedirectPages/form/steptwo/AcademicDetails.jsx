@@ -150,20 +150,20 @@ export default function Details(props) {
                     label: "ELECTRONICS AND COMMUNICATION"
                 },
                 {
-                    value: "Civil",
+                    value: "CE",
                     label: "CIVIL"
                 },
                 {
-                    value: "Mechanical",
+                    value: "ME",
                     label: "MECHANICAL"
                 },
                 {
-                    value: "Production",
+                    value: "PE",
                     label: "PRODUCTION"
                 },
 
                 {
-                    value: "Electrical",
+                    value: "EE",
                     label: "ELECTRICAL"
                 }
             ],
