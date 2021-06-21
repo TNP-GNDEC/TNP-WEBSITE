@@ -43,7 +43,6 @@ export default function ParentDetails(props) {
             id: 1,
             value: props.parent.father_name,
             required:true,
-            disabled: "true",
             maxLength:80,
             minLength:0,
             validate: props.Errors.father_name
@@ -65,7 +64,6 @@ export default function ParentDetails(props) {
             id: 3,
             value: props.parent.mother_name,
             required:true,
-            disabled: "true",
             maxLength:80,
             minLength:0,
             validate: props.Errors.mother_name

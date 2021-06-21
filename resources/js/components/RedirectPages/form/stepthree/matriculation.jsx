@@ -330,7 +330,6 @@ export default function matriculationDetails(props) {
                     label="YEAR OF PASSING"
                     type="text"
                     id="6"
-                    disabled="true"
                     name="year_of_passing"
                     defaultValue={props.matriculation.year_of_passing}
 
@@ -368,7 +367,6 @@ export default function matriculationDetails(props) {
                     name="marks_type"
                     defaultValue={props.matriculation.marks_type}
                     select="true"
-                    disabled="true"
                     variant="outlined"
                     onChange={
                         props.handleInputChange
@@ -404,7 +402,6 @@ export default function matriculationDetails(props) {
                     name="obtained_marks"
                     defaultValue={props.matriculation.obtained_marks}
                     variant="outlined"
-                    disabled="true"
                     onChange={
                         props.handleInputChange
                     }
@@ -439,7 +436,6 @@ export default function matriculationDetails(props) {
                     onChange={
                         props.handleInputChange
                     }
-                    disabled="true"
 
                     {...(props.Errors.maximum_marks && { error: true, helperText: props.Errors.maximum_marks })}
                 >
