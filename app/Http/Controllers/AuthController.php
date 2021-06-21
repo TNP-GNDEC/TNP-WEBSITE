@@ -8,9 +8,9 @@ use App\Models\User;
 use App\Models\FormStatus;
 use App\Models\PersonalDetails;
 use App\Models\Matriculation;
-use App\Models\Diploma;
-use App\Models\Twelfth;
-use App\Models\TwelfthDiplomaCategory;
+// use App\Models\Diploma;
+// use App\Models\Twelfth;
+// use App\Models\TwelfthDiplomaCategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Tymon\JWTAuth\Providers\JWTAuthServiceProvider;
@@ -30,83 +30,83 @@ class AuthController extends Controller
             $user['password']=bcrypt($user['crn']);
             
             
-            $newUser = User::create($user);
+            $newUser = User::updateOrCreate($user);
             if($newUser){ 
-                $form_user= formStatus::create([
+                $form_user= formStatus::updateOrCreate([
                 'user_id' => $newUser->id
 
                 ]);
-                $form_step_two = PersonalDetails::create([
+                $form_step_two = PersonalDetails::updateOrCreate([
                     'user_id' => $newUser->id,
                     'urn' => $user['urn'],
-                    'crn' => $user['crn'],
-                    'first_name' => $user['first_name'],
-                    'last_name' => $user['last_name'],
-                    'gender' => $user['gender'],
-                    'father_name' => $user['father_name'],
-                    'mother_name' => $user['mother_name'],
-                    'category' => $user['category'], //course on frontend is btech mtech and category is course
-                    'stream' => $user['stream'], 
-                    'shift' => $user['shift'],
-                    'leet' => $user['leet'],
+                    // 'crn' => $user['crn'],
+                    // 'first_name' => $user['first_name'],
+                    // 'last_name' => $user['last_name'],
+                    // 'gender' => $user['gender'],
+                    // 'father_name' => $user['father_name'],
+                    // 'mother_name' => $user['mother_name'],
+                    // 'category' => $user['category'], //course on frontend is btech mtech and category is course
+                    // 'stream' => $user['stream'], 
+                    // 'shift' => $user['shift'],
+                    // 'leet' => $user['leet'],
                 ]);
-                if($user['maximum_marks_10']==10){
-                $form_step_three = Matriculation::create([
+                // if($user['maximum_marks_10']==10){
+                $form_step_three = Matriculation::updateOrCreate([
                     'user_id' => $newUser->id,
                     'urn' => $user['urn'],
-                    'crn' => $user['crn'],
-                    'maximum_marks' => $user['maximum_marks_10'],
-                    'obtained_marks' => $user['obtained_marks_10'],
-                    'percentage' => $user['percentage_10'],
-                    'marks_type' => 1,
-                    'year_of_passing' => $user['yop_10']
+                    // 'crn' => $user['crn'],
+                    // 'maximum_marks' => $user['maximum_marks_10'],
+                    // 'obtained_marks' => $user['obtained_marks_10'],
+                    // 'percentage' => $user['percentage_10'],
+                    // 'marks_type' => 1,
+                    // 'year_of_passing' => $user['yop_10']
                 ]);
-                }
-                else{
-                    $form_step_three = Matriculation::create([
-                        'user_id' => $newUser->id,
-                        'urn' => $user['urn'],
-                        'crn' => $user['crn'],
-                        'maximum_marks' => $user['maximum_marks_10'],
-                        'obtained_marks' => $user['obtained_marks_10'],
-                        'percentage' => $user['percentage_10'],
-                        'marks_type' => 0,
-                        'year_of_passing' => $user['yop_10']
-                    ]);
-                }
-                if($user['leet']==0){
-                    $form_step_four = Twelfth::create([
-                        'user_id' => $newUser->id,
-                        'urn' => $user['urn'],
-                        'crn' => $user['crn'],
-                        'maximum_marks' => $user['maximum_marks_12'],
-                        'obtained_marks' => $user['obtained_marks_12'],
-                        'percentage' => $user['percentage_12'],
-                        'year_of_passing' => $user['yop_12']
-                    ]);
-                    $category = TwelfthDiplomaCategory::create(
-                        ['user_id' => $newUser->id,
-                        'urn' => $user['urn'],
-                          'category' => 'XII'
-                      ]);                
-                    }
+                // }
+                // else{
+                //     $form_step_three = Matriculation::create([
+                //         'user_id' => $newUser->id,
+                //         'urn' => $user['urn'],
+                //         'crn' => $user['crn'],
+                //         'maximum_marks' => $user['maximum_marks_10'],
+                //         'obtained_marks' => $user['obtained_marks_10'],
+                //         'percentage' => $user['percentage_10'],
+                //         'marks_type' => 0,
+                //         'year_of_passing' => $user['yop_10']
+                //     ]);
+                // }
+                // if($user['leet']==0){
+                    // $form_step_four = Twelfth::updateOrCreate([
+                    //     'user_id' => $newUser->id,
+                    //     'urn' => $user['urn'],
+                        // 'crn' => $user['crn'],
+                        // 'maximum_marks' => $user['maximum_marks_12'],
+                        // 'obtained_marks' => $user['obtained_marks_12'],
+                        // 'percentage' => $user['percentage_12'],
+                        // 'year_of_passing' => $user['yop_12']
+                    // ]);
+                    // $category = TwelfthDiplomaCategory::updateOrCreate(
+                    //     ['user_id' => $newUser->id,
+                    //     'urn' => $user['urn'],
+                        //   'category' => 'XII'
+                    //   ]);                
+                    // }
 
-                    else{
-                        $form_step_four = Diploma::create([
-                            'user_id' => $newUser->id,
-                            'urn' => $user['urn'],
-                            'crn' => $user['crn'],
-                            'maximum_marks' => $user['maximum_marks_12'],
-                            'obtained_marks' => $user['obtained_marks_12'],
-                            'percentage' => $user['percentage_12'],
-                            'year_of_passing' => $user['yop_12']
-                        ]);
-                        $category = TwelfthDiplomaCategory::create([
-                            'user_id' => $newUser->id,
-                            'urn' => $user['urn'],
-                            'category' => 'Diploma'
-                          ]);                
-                        }
+                    // else{
+                    //     $form_step_four = Diploma::create([
+                    //         'user_id' => $newUser->id,
+                    //         'urn' => $user['urn'],
+                    //         'crn' => $user['crn'],
+                    //         'maximum_marks' => $user['maximum_marks_12'],
+                    //         'obtained_marks' => $user['obtained_marks_12'],
+                    //         'percentage' => $user['percentage_12'],
+                    //         'year_of_passing' => $user['yop_12']
+                    //     ]);
+                    //     $category = TwelfthDiplomaCategory::create([
+                    //         'user_id' => $newUser->id,
+                    //         'urn' => $user['urn'],
+                    //         'category' => 'Diploma'
+                    //       ]);                
+                    //     }
                     }
 
                else return response()->json(["message"=>"Data couldn't be added", "success"=>0 ]);

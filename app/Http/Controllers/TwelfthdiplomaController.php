@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use App\Models\Matriculation;
 use App\Models\Twelfth;
 use App\Models\Diploma;
 use App\Models\FormStatus;
@@ -30,7 +31,9 @@ class TwelfthdiplomaController extends Controller
   $current_step= DB::table('form_statuses')
                     ->where('user_id', $user->id)
                     ->value('form_step');
-
+  $matriculation_year= DB::table('matriculation')
+                    ->where('user_id', $user->id)
+                    ->value('year_of_passing');
   $category = TwelfthDiplomaCategory::updateOrCreate(
     ['user_id' => $user->id],
     [
@@ -53,6 +56,8 @@ class TwelfthdiplomaController extends Controller
         'file' => '/documents/twelfth/'.$twelfth_file_url
   ]);
     }
+    $gap_btw_10_12 = $request->year_of_passing_12-$matriculation_year-2;
+    $gap_btw_12_clg = 2018-$request->year_of_passing_12; 
     $twelfth_details = Twelfth::updateOrCreate(
       ['user_id' => $user->id],
       [
@@ -69,7 +74,7 @@ class TwelfthdiplomaController extends Controller
         'institution_name' => $request->institution_name_12,
         'board' => $request->board_12,
         'year_of_passing' => $request->year_of_passing_12,
-        'year_gap' => 2018-($request->year_of_passing_12) , 
+        'year_gap' => $gap_btw_10_12+$gap_btw_12_clg , 
         //'file' => '/documents/twelfth/'.$twelfth_file_url
   ]);
   
@@ -97,6 +102,9 @@ class TwelfthdiplomaController extends Controller
       'file' => '/documents/diploma/'.$diploma_file_url
       ]);
     }
+    $gap_10_diploma = $request->year_of_passing_12-$matriculation_year-3;
+    $gap_diploma_clg = 2019-$request->year_of_passing_12; 
+
     $diploma_details = Diploma::updateOrCreate(
       ['user_id' => $user->id],
       [ 
@@ -112,7 +120,7 @@ class TwelfthdiplomaController extends Controller
       'institution_name' => $request->institution_name_diploma,
       'branch' => $request->branch_diploma,
       'year_of_passing' => $request->year_of_passing_diploma,
-      'year_gap' => 2019-($request->year_of_passing_diploma),
+      'year_gap' => $gap_10_diploma+$gap_diploma_clg,
       //'file' => '/documents/diploma/'.$diploma_file_url
       ]
     );
