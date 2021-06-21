@@ -333,7 +333,7 @@ export default function finalStep(props) {
                 { id: 7, label: "Pincode", value: res.data.matric['pincode'] },
                 { id: 8, label: "Obtained Marks", value: res.data.matric['obtained_marks'] },
                 { id: 9, label: "Maximum Marks", value: res.data.matric['maximum_marks'] },
-                { id: 10, label: "Percentage", value: res.data.matric['maximum_marks'] },
+                { id: 10, label: "Percentage", value: res.data.matric['percentage'] },
                 { id: 11, label: "File", value: res.data.matric['file'].split('\\').pop().split('/').pop() },
             ]);
             setMatricPath(res.data.matric['file']);
