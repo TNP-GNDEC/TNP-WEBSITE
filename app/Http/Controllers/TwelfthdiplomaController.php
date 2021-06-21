@@ -56,8 +56,6 @@ class TwelfthdiplomaController extends Controller
         'file' => '/documents/twelfth/'.$twelfth_file_url
   ]);
     }
-    $gap_btw_10_12 = $request->year_of_passing_12-$matriculation_year-2;
-    $gap_btw_12_clg = 2018-$request->year_of_passing_12; 
     $twelfth_details = Twelfth::updateOrCreate(
       ['user_id' => $user->id],
       [
@@ -74,7 +72,7 @@ class TwelfthdiplomaController extends Controller
         'institution_name' => $request->institution_name_12,
         'board' => $request->board_12,
         'year_of_passing' => $request->year_of_passing_12,
-        'year_gap' => $gap_btw_10_12+$gap_btw_12_clg , 
+        'year_gap' => 2016- $matriculation_year, 
         //'file' => '/documents/twelfth/'.$twelfth_file_url
   ]);
   
@@ -102,8 +100,6 @@ class TwelfthdiplomaController extends Controller
       'file' => '/documents/diploma/'.$diploma_file_url
       ]);
     }
-    $gap_10_diploma = $request->year_of_passing_12-$matriculation_year-3;
-    $gap_diploma_clg = 2019-$request->year_of_passing_12; 
 
     $diploma_details = Diploma::updateOrCreate(
       ['user_id' => $user->id],
@@ -120,7 +116,7 @@ class TwelfthdiplomaController extends Controller
       'institution_name' => $request->institution_name_diploma,
       'branch' => $request->branch_diploma,
       'year_of_passing' => $request->year_of_passing_diploma,
-      'year_gap' => $gap_10_diploma+$gap_diploma_clg,
+      'year_gap' => 2018-$matriculation_year,
       //'file' => '/documents/diploma/'.$diploma_file_url
       ]
     );
