@@ -389,7 +389,6 @@ export default function TwelfthDetails(props) {
                     type="text"
                     id="7"
                     name="year_of_passing"
-                    disabled="true"
                     defaultValue={props.twelfth.year_of_passing}
 
 
@@ -426,7 +425,6 @@ export default function TwelfthDetails(props) {
                     id="10"
                     name="obtained_marks"
                     defaultValue={props.twelfth.obtained_marks}
-                    disabled="true"
                     variant="outlined"
 
 
@@ -464,7 +462,6 @@ export default function TwelfthDetails(props) {
 
                     variant="outlined"
 
-                    disabled="true"
                     onChange={
                         props.handleInputChange
                     }
