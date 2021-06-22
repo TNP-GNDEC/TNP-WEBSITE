@@ -279,7 +279,7 @@ export default function finalStep(props) {
         return "Yes"
     }
     const Marks_type = (x) => {
-        if(x === 1){
+        if(x === '1'){
             return "CGPA"
         }
         return "PERCENTAGE"
