@@ -232,12 +232,11 @@ export default function finalStep(props) {
         { id: 5, label: "City", value: "value" },
         { id: 6, label: "Year of Passing", value: "value" },
         { id: 7, label: "Year Gap", value: "value" },
-        { id: 8, label: "Marks Type", value: "value" },
-        { id: 9, label: "Obtained Marks", value: "value" },
-        { id: 10, label: "Maximum Marks", value: "value" },
-        { id: 11, label: "Percentage", value: "value" },
-        { id: 12, label: "Pincode", value: "value" },
-        { id: 13, label: "File", value: "value" },
+        { id: 8, label: "Obtained Marks", value: "value" },
+        { id: 9, label: "Maximum Marks", value: "value" },
+        { id: 10, label: "Percentage", value: "value" },
+        { id: 11, label: "Pincode", value: "value" },
+        { id: 12, label: "File", value: "value" },
     ]);
     const [DiplomaData, setDiplomaData] = React.useState([
         { id: 1, label: "Branch", value: "value" },
@@ -246,12 +245,11 @@ export default function finalStep(props) {
         { id: 4, label: "City", value: "value" },
         { id: 5, label: "Year of Passing", value: "value" },
         { id: 6, label: "Year Gap", value: "value" },
-        { id: 7, label: "Marks Type", value: "value" },
-        { id: 8, label: "Obtained Marks", value: "value" },
-        { id: 9, label: "Maximum Marks", value: "value" },
-        { id: 10, label: "Percentage", value: "value" },
-        { id: 11, label: "Pincode", value: "value" },
-        { id: 12, label: "File", value: "value" },
+        { id: 7, label: "Obtained Marks", value: "value" },
+        { id: 8, label: "Maximum Marks", value: "value" },
+        { id: 9, label: "Percentage", value: "value" },
+        { id: 10, label: "Pincode", value: "value" },
+        { id: 11, label: "File", value: "value" },
     ]);
     const handleVerify = () => {
         setLoader(true);
@@ -282,7 +280,7 @@ export default function finalStep(props) {
         return "Yes"
     }
     const Marks_type = (x) => {
-        if(x === 1){
+        if(x === '1'){
             return "CGPA"
         }
         return "PERCENTAGE"
@@ -350,12 +348,11 @@ export default function finalStep(props) {
                     { id: 5, label: "City", value: res.data.twelfth['city'] },
                     { id: 6, label: "Year of Passing", value: res.data.twelfth['year_of_passing'] },
                     { id: 7, label: "Year Gap", value: res.data.twelfth['year_gap'] },
-                    { id: 8, label: "Marks type", value: Marks_type(res.data.twelfth['marks_type']) },
-                    { id: 9, label: "Pincode", value: res.data.twelfth['pincode'] },
-                    { id: 10, label: "Obtained Marks", value: res.data.twelfth['obtained_marks'] },
-                    { id: 11, label: "Maximum Marks", value: res.data.twelfth['maximum_marks'] },
-                    { id: 12, label: "Percentage", value: res.data.twelfth['percentage'] },
-                    { id: 13, label: "File", value: res.data.twelfth['file'].split('\\').pop().split('/').pop() },
+                    { id: 8, label: "Pincode", value: res.data.twelfth['pincode'] },
+                    { id: 9, label: "Obtained Marks", value: res.data.twelfth['obtained_marks'] },
+                    { id: 10, label: "Maximum Marks", value: res.data.twelfth['maximum_marks'] },
+                    { id: 11, label: "Percentage", value: res.data.twelfth['percentage'] },
+                    { id: 12, label: "File", value: res.data.twelfth['file'].split('\\').pop().split('/').pop() },
                 ]);
                 setTwelfthPath(res.data.twelfth['file']);
             }
@@ -367,12 +364,11 @@ export default function finalStep(props) {
                     { id: 4, label: "City", value: res.data.diploma['city'] },
                     { id: 5, label: "Year of Passing", value: res.data.diploma['year_of_passing'] },
                     { id: 6, label: "Year Gap", value: res.data.diploma['year_gap'] },
-                    { id: 7, label: "Marks type", value: Marks_type(res.data.diploma['marks_type']) },
-                    { id: 8, label: "Pincode", value: res.data.diploma['pincode'] },
-                    { id: 9, label: "Obtained Marks", value: res.data.diploma['obtained_marks'] },
-                    { id: 10, label: "Maximum Marks", value: res.data.diploma['maximum_marks'] },
-                    { id: 11, label: "Percentage", value: res.data.diploma['percentage'] },
-                    { id: 12, label: "File", value: res.data.diploma['file'].split('\\').pop().split('/').pop() },
+                    { id: 7, label: "Pincode", value: res.data.diploma['pincode'] },
+                    { id: 8, label: "Obtained Marks", value: res.data.diploma['obtained_marks'] },
+                    { id: 9, label: "Maximum Marks", value: res.data.diploma['maximum_marks'] },
+                    { id: 10, label: "Percentage", value: res.data.diploma['percentage'] },
+                    { id: 11, label: "File", value: res.data.diploma['file'].split('\\').pop().split('/').pop() },
                 ]);
                 setDiplomaPath(res.data.diploma['file']);
             }
