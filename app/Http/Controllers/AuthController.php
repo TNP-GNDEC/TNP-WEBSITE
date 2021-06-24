@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\FormStatus;
 use App\Models\PersonalDetails;
 use App\Models\Matriculation;
+use Illuminate\Support\Facades\Hash;
 // use App\Models\Diploma;
 // use App\Models\Twelfth;
 // use App\Models\TwelfthDiplomaCategory;
@@ -19,27 +20,47 @@ use JWTAuth;
 class AuthController extends Controller
 {
     public function registerStudent(Request $request)
-    {
+    {	$count=0;
         $users= $request->data;
         $data=0;
         foreach($users["data"] as $user){
             $user['uuid']=(string) Str::uuid();
             $user['role_id']=1;
             $user['is_verified']=0;
-            $user['username']=$user['urn'];
+            $user['username']=(string) $user['urn'];
             $user['password']=bcrypt($user['crn']);
             
             
-            $newUser = User::updateOrCreate($user);
-            if($newUser){ 
-                $form_user= formStatus::updateOrCreate([
-                'user_id' => $newUser->id
+            $is_user= DB::table('users')
+				->where('username', $user['username'])->exists();
 
+	if($is_user){
+	//$update=DB::table('users')
+          //    ->where('username', $user['username'])
+            //  ->update(['password' => $user['password']]);
+	$update2=DB::table('personaldetails')
+              ->where('urn', $user['username'])
+              ->update(['crn' => $user['crn']]);
+  	$update3=DB::table('matriculation')
+              ->where('urn', $user['username'])
+              ->update(['crn' => $user['crn']]);  
+	$update4=DB::table('twelfth')
+              ->where('urn', $user['username'])
+              ->update(['crn' => $user['crn']]);
+	$update5=DB::table('diploma')
+              ->where('urn', $user['username'])
+              ->update(['crn' => $user['crn']]);
+    }
+            else{ 
+		$newUser = User::create($user);$count++;
+                $form_user= formStatus::create([
+                'user_id' => $newUser->id,
+		'form_step' => 0
                 ]);
-                $form_step_two = PersonalDetails::updateOrCreate([
+                $form_step_two = PersonalDetails::create([
                     'user_id' => $newUser->id,
                     'urn' => $user['urn'],
-                    // 'crn' => $user['crn'],
+                    'crn' => $user['crn'],
                     // 'first_name' => $user['first_name'],
                     // 'last_name' => $user['last_name'],
                     // 'gender' => $user['gender'],
@@ -51,10 +72,10 @@ class AuthController extends Controller
                     // 'leet' => $user['leet'],
                 ]);
                 // if($user['maximum_marks_10']==10){
-                $form_step_three = Matriculation::updateOrCreate([
+                $form_step_three = Matriculation::create([
                     'user_id' => $newUser->id,
                     'urn' => $user['urn'],
-                    // 'crn' => $user['crn'],
+                    'crn' => $user['crn'],
                     // 'maximum_marks' => $user['maximum_marks_10'],
                     // 'obtained_marks' => $user['obtained_marks_10'],
                     // 'percentage' => $user['percentage_10'],
@@ -109,10 +130,10 @@ class AuthController extends Controller
                     //     }
                     }
 
-               else return response()->json(["message"=>"Data couldn't be added", "success"=>0 ]);
+               //else return response()->json(["message"=>"Data couldn't be added", "success"=>0 ]);
             }
         
-        return response()->json(["message"=>"Data added successfully","success"=>1,"data"=>$users["data"]]);
+        return response()->json(["message"=>"Data added successfully","success"=>1,"data"=>$users["data"], "count"=>$count]);
     }
 
     public function registerAdmin(Request $request){
