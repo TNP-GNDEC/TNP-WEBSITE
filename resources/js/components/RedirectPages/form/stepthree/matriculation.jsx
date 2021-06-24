@@ -431,7 +431,7 @@ export default function matriculationDetails(props) {
                     id="9"
                     name="maximum_marks"
                     value={props.matriculation.maximum_marks}
-                    shrink={props.matriculation.marks_type === "1" ? true : false}
+                    shrink= "true"
                     variant="outlined"
                     onChange={
                         props.handleInputChange
