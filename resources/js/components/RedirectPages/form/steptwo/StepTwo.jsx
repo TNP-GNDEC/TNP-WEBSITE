@@ -460,7 +460,6 @@ export default function StepTwo(props) {
             }
             ChangeCase(profile);
             ChangeCase(parent);
-            ChangeCase(address);
             setLoader(true);
             const fd = new FormData();
             Object.keys(profile).forEach(function (key){         
