@@ -162,7 +162,7 @@ export default function StepThree(props) {
     const validate = () => {
         let temp = {}
         temp.board = matriculation.board ? "": "This field is required"
-        temp.institution_name = (/^[a-zA-Z\s]*$/).test(matriculation.institution_name) && matriculation.institution_name? "": "This field is required and must contain only char."
+        temp.institution_name = matriculation.institution_name? "": "This field is required and must contain only char."
         temp.year_of_passing = (/^[0-9]{4}$/).test(matriculation.year_of_passing) ? "": "This field is required and be in yyyy format."
         temp.marks_type = matriculation.marks_type ? "": "This field is required."
         temp.state = (/^[a-zA-Z\s]*$/).test(matriculation.state) && matriculation.state? "": "This field is required and must contain only char."
