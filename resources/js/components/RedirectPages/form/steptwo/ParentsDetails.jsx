@@ -48,7 +48,7 @@ export default function ParentDetails(props) {
             validate: props.Errors.father_name
         },
         {
-            label: "FATHER'S PHONE NO.*",
+            label: "FATHER'S PHONE NO./ GUARDIAN'S PHONE NO*",
             type: "text",
             id: 2,
             value: props.parent.father_phone,
@@ -69,7 +69,7 @@ export default function ParentDetails(props) {
             validate: props.Errors.mother_name
         },
         {
-            label: "MOTHER'S PHONE NO.*",
+            label: "MOTHER'S PHONE NO./ GUARDIAN'S PHONE NO*",
             type: "text",
             id: 4,
             value: props.parent.mother_phone,
