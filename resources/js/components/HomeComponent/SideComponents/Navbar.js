@@ -30,12 +30,13 @@ const useStyles = makeStyles((theme) => ({
   },
   grow: {
     flexGrow: 1,
-    boxShadow: "0px 15px 25px #00000033",
+    boxShadow: "none"
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
+    fontFamily: "Open Sans",
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -110,11 +111,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "#ffffff66",
-    boxShadow: "0px 15px 25px #ffffff33",
   },
   link:{
     color: theme.palette.secondary.main,
+    fontFamily: "Open Sans",
     paddingTop: "8px",
     "&:hover":{
       textDecoration: "none",
@@ -216,19 +216,6 @@ export default function PrimarySearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             Training & Placement Cell
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton color="inherit">

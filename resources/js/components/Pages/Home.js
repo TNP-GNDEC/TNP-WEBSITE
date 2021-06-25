@@ -42,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
   },
   center:{
     marginTop: "40px",
-    
+    ['@media (max-width:960px)']: {
+      width: "100%",
+   }
   },
   right:{
     marginTop: "40px",
@@ -50,7 +52,16 @@ const useStyles = makeStyles((theme) => ({
     ['@media (max-width:960px)']: {
        display: "none",
     }
-  }
+  },
+  cardTitle:{
+    fontSize: "18px",
+    color: theme.palette.primary.dark,
+    fontFamily: "Open Sans",
+    fontWeight: "600",
+    ['@media (max-width:960px)']: {
+      fontSize: "14px"
+    }
+  },
 }));
 
 export default function Home() {
@@ -69,6 +80,7 @@ export default function Home() {
           </Grid>
           <Grid item md={6} className={classes.center}>
             <Paper className={classes.paper}>
+              <h3 className={classes.cardTitle}>Latest Posts</h3>
               <Posts />
             </Paper>
           </Grid>

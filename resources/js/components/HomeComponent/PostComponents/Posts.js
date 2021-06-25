@@ -39,7 +39,7 @@ class Posts extends React.Component {
             dataLength={this.state.posts.length} //This is important field to render the next data
             next={this.fetchPosts}
             hasMore={true}
-            loader={<Loading/>}
+            loader={<h2>Loading...</h2>}
             endMessage={
               <p style={{ textAlign: 'center' }}>
                 <b>Yay! You have seen it all</b>
