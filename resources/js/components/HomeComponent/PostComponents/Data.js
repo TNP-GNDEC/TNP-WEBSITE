@@ -18,9 +18,25 @@ import Button from '@material-ui/core/Button';
 const useStyles = theme => ({
     root: {
         width: "100%",
-        padding: "20px",
+        padding: "15px",
         marginBottom: "20px",
-        boxShadow: "0 1px 1px rgba(0,0,0,0.15),0 8px 0 -5px #eee,0 8px 1px -4px rgba(0,0,0,0.15),0 16px 0 -10px #eee,0 16px 1px -9px rgba(0,0,0,0.15)",
+        borderRadius: "16px",
+        boxShadow: "0px 10px 25px #8a959e33",
+    },
+    type:{
+        padding: "3px",
+        backgroundColor: theme.palette.secondary.accent,
+        fontSize: "12px",
+        width: "30%",
+        textAlign: "center",
+        borderRadius: "8px",
+        color: theme.palette.primary.dark,
+        fontFamily: "Open Sans",
+        fontWeight: "600",
+        ['@media (max-width:960px)']: {
+            fontSize: "10px",
+            width: "40%"
+        },
     },
     header: {
         width: "100%",
@@ -28,38 +44,59 @@ const useStyles = theme => ({
     },
     header2: {
         width: "100%",
-        padding: "0px 10px 10px 10px"
+        paddingTop: "5px"
     },
     image: {
-        width: "50px",
-        height: "50px"
+        width: "14px",
+        height: "14px",
+        ['@media (max-width:960px)']: {
+            width: "12px",
+            height: "12px",
+        },
     },
     title: {
-        fontSize: "26px",
+        fontSize: "24px",
         textTransform: "uppercase",
         wordWarp: "word-break",
+        fontFamily: "Open Sans",
+        fontWeight: "600",
         color: theme.palette.primary.dark,
-        '&:hover': {
-            color: theme.palette.primary.main
-        }
+        ['@media (max-width:960px)']: {
+            fontSize: "18px",
+        },
     },
     subheader: {
         display: "flex",
         justifyContent: "space-between",
-        padding: "10px 20px 0px 0px"
+        padding: "5px 0px 0px 0px"
+    },
+    subheader2: {
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "0px 5px 0px 0px",
     },
     subheading: {
-        fontSize: "14px"
+        fontSize: "12px",
+        fontFamily: "Open Sans",
+        fontWeight: "600",
+        paddingLeft: "5px",
+        color: theme.palette.primary.dark,
+        ['@media (max-width:960px)']: {
+            fontSize: "10px",
+        },
     },
     icon: {
         fontSize: "18px"
     },
     subheading2: {
-        fontSize: "18px",
-        color: "#00000099",
-        padding: "10px 20px",
+        fontSize: "16px !important",
+        color: theme.palette.primary.text,
+        padding: "20px 0px",
         textAlign: "justify",
-        // textJustify: "inter-word"
+        fontFamily: "Open Sans",
+        ['@media (max-width:960px)']: {
+            fontSize: "13px !important",
+        },
     },
     subheading3: {
         fontSize: "16px",
@@ -70,33 +107,44 @@ const useStyles = theme => ({
     },
     read: {
         borderRadius: "5px",
-        width: "95%",
+        width: "100%",
         margin: "8px auto",
         height: "40px",
         marginTop: "5px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: "30px 0px 30px 0px"
+        padding: "10px 0px 0px 0px"
     },
     readLink: {
         width: "100%",
         textDecoration: "none"
     },
     readButton: {
-        backgroundColor: "#7575751a",
+        backgroundColor: theme.palette.primary.main,
         padding: "10px 0px",
         fontSize: "16px",
-        color: "#757575",
+        borderRadius: "16px",
+        fontFamily: "Open Sans",
+        fontWeight: "400",
+        boxShadow: "0px 10px 25px #1687d933",
+        color: theme.palette.secondary.main,
         textDecoration: "none",
-        "&:hover": {
-            backgroundColor: theme.palette.primary.light,
-            color: theme.palette.primary.main
-        }
+        ['@media (max-width:960px)']: {
+            fontSize: "14px",
+        },
     },
     body2: {
         display: "flex",
         justifyContent: "space-between"
+    },
+    Icons: {
+        width: "16px",
+        height: "16px",
+        ['@media (max-width:960px)']: {
+            width: "14px",
+            height: "14px",
+        },
     },
     Tags: {
         backgroundColor: "#3b59981a",
@@ -152,7 +200,7 @@ const useStyles = theme => ({
         color: "#fff",
     },
     body3: {
-        maxHeight: "150px",
+        maxHeight: "250px",
         overflow: "Hidden",
     },
     pdfs: {
@@ -227,69 +275,41 @@ class Data extends React.Component {
         
         return (
             <Card className={classes.root}>
-
+                <div className={classes.type}>
+                    {posts.type}
+                </div>
                 <div className={classes.header}>
-                    <div>
-                        <img src={logo} className={classes.image} />
-                    </div>
                     <div className={classes.header2}>
                         <Typography variant="h4" component="h1" className={classes.title}>
-                            <Link to={`/showPost/${posts.id}`} style={{ textDecoration: 'none', color: "#193b68" }}>{posts.title}</Link>
+                            {posts.title}
                         </Typography>
                         <div className={classes.subheader}>
-                            <Typography variant="h5" component="h2" className={classes.subheading}>
-                                <Calender className={classes.icon} />
-                                {moment.utc(posts.updated_at).format('LLL')}
-                            </Typography>
-                            <Typography variant="h5" component="h2" className={classes.subheading}>
-                                <Flag className={classes.icon} />
-                                {posts.type}
-                            </Typography>
+                            <div className={classes.subheader2}>
+                                <img src={logo} className={classes.image} />
+                                <Typography variant="h5" component="h2" className={classes.subheading}>
+                                    {moment.utc(posts.updated_at).format('LLL')}
+                                </Typography>
+                            </div>
+                            <div className={classes.subheader2}>
+                                <Facebook className={classes.Icons}/>
+                                <Linkedin className={classes.Icons}/>
+                                <Twitter className={classes.Icons}/>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <hr />
                 <div className={classes.body}>
                     <div className={classes.body3}>
-                        <Typography variant="h5" component="h2" className={classes.subheading2}>
+                        <p className={classes.subheading2}>
                             {ReactHtmlParser(html)}
-                        </Typography>
+                        </p>
                     </div>
                     <div className={classes.read}>
                         <Link to={`/showPost/${posts.id}`} style={{ textDecoration: 'none' }} className={classes.readLink}>
-                            <Button className={classes.readButton} fullWidth>READ MORE <AddIcon /></Button>
+                            <Button className={classes.readButton} fullWidth>READ MORE </Button>
                         </Link>
                     </div>
                 </div>
-                <hr />
-                <div className={classes.body2}>
-                    <div className={classes.socialIcons}>
-                        <div className={classes.socialIcon}>
-                            <a classes={classes.iconLinks} href="#"> <Facebook fontSize="medium" /> </a>
-                        </div>
-                        <div className={classes.socialIcon2}>
-                            <a classes={classes.iconLinks} href="#"> <Linkedin fontSize="medium" /> </a>
-                        </div>
-                        <div className={classes.socialIcon3}>
-                            <a classes={classes.iconLinks} href="#">  <Twitter fontSize="medium" /> </a>
-                        </div>
-                    </div>
-                    <div className={classes.Tags}>
-                        <LocalOffer />
-                        <Typography variant="h5" component="h1" className={classes.subheading3}>
-                            {tagwa.map((tag, i) => {
-                                if (tagwa.length - 1 === i) {
-                                    return tag;
-                                }
-                                else {
-                                    return tag + ", ";
-                                }
-                              })}
-                        </Typography>
-
-                    </div>
-                </div>
-
             </Card>
         )
     }

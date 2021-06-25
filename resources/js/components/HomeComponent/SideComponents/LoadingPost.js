@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) =>({
       display: "block",
       position: "relative",
       overflow: "hidden",
-      width: "500px",
+      width: "100%",
       height: "24px",
   },
   about:{
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) =>({
     display: "block",
     position: "relative",
       overflow: "hidden",
-      width: "500px",
+      width: "100%",
       height: "12px",
       marginTop: "10px",
 },
@@ -75,7 +75,7 @@ btn2:{
     overflow: "hidden",
     width: "200px",
     height: "35px",
-    marginLeft: "150px",
+    marginLeft: "150px"
 },
 
 }));
