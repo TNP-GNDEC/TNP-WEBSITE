@@ -23,7 +23,7 @@ class AuthController extends Controller
     {	$count=0;
         $users= $request->data;
         $data=0;
-$updt=0;
+	$gyt=0;
         foreach($users["data"] as $user){
             $user['uuid']=(string) Str::uuid();
             $user['role_id']=1;
@@ -35,7 +35,8 @@ $updt=0;
             $is_user= DB::table('users')
 				->where('username', $user['username'])->exists();
 
-	if($is_user){$updt++;
+	if($is_user){
+	$gyt++;
 	//$update=DB::table('users')
           //    ->where('username', $user['username'])
             //  ->update(['password' => $user['password']]);
@@ -53,7 +54,8 @@ $updt=0;
               ->update(['crn' => $user['crn']]);
     }
             else{ 
-		$newUser = User::create($user);$count++;
+		$newUser = User::create($user);
+		$count++;
                 $form_user= formStatus::create([
                 'user_id' => $newUser->id,
 		'form_step' => 0
@@ -134,7 +136,7 @@ $updt=0;
                //else return response()->json(["message"=>"Data couldn't be added", "success"=>0 ]);
             }
         
-        return response()->json(["udpt"=>$updt,"message"=>"Data added successfully","success"=>1,"data"=>$users["data"], "count"=>$count]);
+        return response()->json(["update"=>$rd"message"=>"Data added successfully","success"=>1,"data"=>$users["data"], "count"=>$count]);
     }
 
     public function registerAdmin(Request $request){
