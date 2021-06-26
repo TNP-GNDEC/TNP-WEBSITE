@@ -8,6 +8,7 @@ import LocalOffer from '@material-ui/icons/LocalOffer';
 import Facebook from '@material-ui/icons/Facebook';
 import Linkedin from '@material-ui/icons/LinkedIn';
 import Twitter from '@material-ui/icons/Twitter';
+import Share from '@material-ui/icons/ShareTwoTone';
 import Calender from '@material-ui/icons/EventAvailable';
 import Flag from '@material-ui/icons/Flag';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
@@ -50,8 +51,8 @@ const useStyles = theme => ({
         width: "14px",
         height: "14px",
         ['@media (max-width:960px)']: {
-            width: "12px",
-            height: "12px",
+            width: "13px",
+            height: "13px",
         },
     },
     title: {
@@ -75,6 +76,16 @@ const useStyles = theme => ({
         justifyContent: "space-between",
         padding: "0px 5px 0px 0px",
     },
+    subheader3: {
+        display: "flex",
+        padding: "0px",
+        width: "10%",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        ['@media (max-width:600px)']: {
+            width: "20%",
+        },
+    },
     subheading: {
         fontSize: "12px",
         fontFamily: "Open Sans",
@@ -91,9 +102,9 @@ const useStyles = theme => ({
     subheading2: {
         fontSize: "16px !important",
         color: theme.palette.primary.text,
-        padding: "20px 0px",
+        padding: "30px 0px",
         textAlign: "justify",
-        fontFamily: "Open Sans",
+        fontFamily: "Open Sans !important",
         ['@media (max-width:960px)']: {
             fontSize: "13px !important",
         },
@@ -130,6 +141,12 @@ const useStyles = theme => ({
         boxShadow: "0px 10px 25px #1687d933",
         color: theme.palette.secondary.main,
         textDecoration: "none",
+        '&:hover': {
+            backgroundColor: theme.palette.primary.main,
+        },
+        '&:focus': {
+            outline: "none"
+        },
         ['@media (max-width:960px)']: {
             fontSize: "14px",
         },
@@ -141,6 +158,9 @@ const useStyles = theme => ({
     Icons: {
         width: "16px",
         height: "16px",
+        padding: "0px",
+        color: theme.palette.primary.dark,
+        verticalAlign: "initial",
         ['@media (max-width:960px)']: {
             width: "14px",
             height: "14px",
@@ -290,10 +310,17 @@ class Data extends React.Component {
                                     {moment.utc(posts.updated_at).format('LLL')}
                                 </Typography>
                             </div>
-                            <div className={classes.subheader2}>
-                                <Facebook className={classes.Icons}/>
-                                <Linkedin className={classes.Icons}/>
-                                <Twitter className={classes.Icons}/>
+                            <div className={classes.subheader3}>
+                                <a href="https://facebook.com/official.gndec" style={{ textDecoration: 'none', padding: '0px' }} >
+                                    <Facebook className={classes.Icons}/>
+                                </a>
+                                <a href="https://linkedin.com/in/gndec" style={{ textDecoration: 'none' }} >
+                                    <Linkedin className={classes.Icons}/>
+                                </a>
+                                <a href="https://twitter.com/OfficialGNDEC" style={{ textDecoration: 'none' }} >
+                                    <Twitter className={classes.Icons}/>
+                                </a>
+                                {/* <Share className={classes.Icons}/> */}
                             </div>
                         </div>
                     </div>
@@ -306,7 +333,7 @@ class Data extends React.Component {
                     </div>
                     <div className={classes.read}>
                         <Link to={`/showPost/${posts.id}`} style={{ textDecoration: 'none' }} className={classes.readLink}>
-                            <Button className={classes.readButton} fullWidth>READ MORE </Button>
+                            <Button hover="false" className={classes.readButton} fullWidth>READ MORE </Button>
                         </Link>
                     </div>
                 </div>
