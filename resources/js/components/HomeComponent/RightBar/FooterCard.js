@@ -10,10 +10,20 @@ import Phone from '@material-ui/icons/Phone';
 const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
-      padding: "10px",
+      padding: "15px 15px 0px 15px",
       marginTop: "30px",
-      backgroundColor: theme.palette.secondary.light,
-      boxShadow: "0px 5px 15px #0000001a",
+      borderRadius: "16px",
+      backgroundColor: theme.palette.primary.main,
+      boxShadow: "0px 10px 25px #1687d933",
+    },
+    para: {
+      color: theme.palette.secondary.main
+    },
+    tag:{
+      color: theme.palette.secondary.main,
+      '&:hover':{
+        color: theme.palette.secondary.main,
+      },
     },
 }));
   
@@ -24,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   
     return (
       <Card className={classes.root}>
-        <p> Developed with ❤️ by <a className={classes.tag} href="https://tnpgndec.com/genconians">Genconians </a> | ©️ {year} <a className={classes.tag} href="https://gndec.ac.in/"> GNDEC,ldh</a></p>
+        <p className={classes.para}> Developed with ❤️ by <a className={classes.tag} href="https://tnpgndec.com/genconians"><strong><u>Genconians</u></strong></a> | ©️ {year} <a className={classes.tag} href="https://gndec.ac.in/"><strong><u>GNDEC,ldh</u></strong></a></p>
       </Card>
     );
   }
