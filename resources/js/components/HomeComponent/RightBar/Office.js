@@ -6,16 +6,19 @@ import Business from '@material-ui/icons/Business';
 import Email from '@material-ui/icons/Email';
 import Phone from '@material-ui/icons/Phone';
 
-import office from "../../../../images/office.jpg";
+import office from "../../../../images/office1.jpg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    padding: "10px",
-    boxShadow: "0 1px 1px rgba(0,0,0,0.15),0 8px 0 -5px #eee,0 8px 1px -4px rgba(0,0,0,0.15),0 16px 0 -10px #eee,0 16px 1px -9px rgba(0,0,0,0.15)",
+    paddingTop: "15px",
+    marginBottom: "20px",
+    textAlign: "center",
+    borderRadius: "16px",
+    boxShadow: "0px 15px 30px #8a959e33",
   },
-  header:{
-      display: "flex",
+  media:{
+    textAlign: "center"
   },
   icon:{
       backgroundColor: theme.palette.primary.dark,
@@ -37,38 +40,71 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "22px"
   },
   imageBox:{
-      textAlign: "center"
+      marginLeft: "auto",
+      marginRight: "auto",
+      width: "120px",
+      height: "120px",
+      borderRadius: "50%",
+      border: "2px solid #1687d9",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
   },
   image:{
-      width:"180px"
-  },
-  name:{
-      marginLeft: "60px",
-      textAlign: "left",
-      color: theme.palette.secondary.contrastText
+      width: "106px",
+      height: "106px",
+      borderRadius: "50%",
+      boxShadow: "0px 10px 20px #1687d933"
   },
   heading:{
-    fontSize: "18px"
+    fontSize: "18px",
+    fontFamily: "Open Sans",
+    fontWeight: "600",
+    color: theme.palette.primary.dark,
+    paddingTop: "5px"
   },
   subheading:{
-      fontSize: "12px",
-      paddingTop: "5px"
+      fontSize: "13px",
+      fontFamily: "Open Sans",
+      fontWeight: "600",
+      color: theme.palette.primary.text,
   },
-  name2:{
-
+  box:{
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: "10px",
+    marginTop: "20px",
+    width: "80%",
+    height: "34px",
+    background: theme.palette.secondary.accent,
+    borderRadius: "8px",
     display: "flex",
-    color: theme.palette.primary.main
+    alignItems: "center",
+    justifyContent: "flex-start"
+},
+box2:{
+  marginLeft: "auto",
+  marginRight: "auto",
+  marginBottom: "15px",
+  width: "80%",
+  height: "34px",
+  background: theme.palette.secondary.accent,
+  borderRadius: "8px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-start"
 },
 icon2:{
     fontSize: "16px",
     color: theme.palette.primary.dark,
-    marginTop: "5px",
     marginLeft: "10px"
 },
 subheading2:{
-    fontSize: "12px",
-    paddingTop: "5px",
-    marginLeft: "35px"
+    fontSize: "14px",
+    marginLeft: "30px",
+    fontFamily: "Open Sans",
+    fontWeight: "600",
+    color: theme.palette.primary.dark,
 },
 }));
 
@@ -76,38 +112,30 @@ export default function Office() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} variant="outlined">
-      <div className={classes.header}>
-          <div className={classes.icon}><Business className={classes.Icon}/></div>
-          <Typography variant="h5" component="h2" className={classes.title}>
-              T&P OFFICE
-          </Typography>
-         
-      </div>
-      <hr />
-      <div className={classes.imageBox}>
-          <img src={office} className={classes.image}/>
-      </div>
-      <div className={classes.name}>
-            <Typography variant="h5" component="h2" className={classes.heading}>
-              Prof. G.S.Sodhi
-            </Typography>
-            <Typography variant="h6" component="h2" className={classes.subheading}>
-              Training and Placement Officer
-            </Typography>
-      </div>
-      <div className={classes.name2}>
-            <Email className={classes.icon2}/>
-            <Typography variant="h6" component="h2" className={classes.subheading2}>
-              tpo@gndec.ac.in
-            </Typography>
+    <Card className={classes.root}>
+      <div className={classes.media}>
+        <div className={classes.imageBox}>
+            <img src={office} className={classes.image}/>
         </div>
-        <div className={classes.name2}>
+      </div>
+      <h1 className={classes.heading}>
+        Prof. G.S.Sodhi
+      </h1>
+      <h3 className={classes.subheading}>
+        Training and Placement Officer
+      </h3>
+      <div className={classes.box}>
             <Phone className={classes.icon2}/>
             <Typography variant="h6" component="h2" className={classes.subheading2}>
               +91-98722-19178
             </Typography>
       </div>
+      <div className={classes.box2}>
+            <Email className={classes.icon2}/>
+            <Typography variant="h6" component="h2" className={classes.subheading2}>
+              tpo@gndec.ac.in
+            </Typography>
+        </div>   
     </Card>
   );
 }

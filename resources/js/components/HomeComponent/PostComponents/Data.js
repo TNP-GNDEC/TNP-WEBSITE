@@ -20,9 +20,9 @@ const useStyles = theme => ({
     root: {
         width: "100%",
         padding: "15px",
-        marginBottom: "20px",
+        marginBottom: "30px",
         borderRadius: "16px",
-        boxShadow: "0px 10px 25px #8a959e33",
+        boxShadow: "0px 15px 30px #8a959e33",
     },
     type:{
         padding: "3px",
