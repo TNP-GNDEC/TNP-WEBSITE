@@ -10,7 +10,7 @@ import Member1 from '../../../../images/Genconians/vikalp.jpeg';
 import Member2 from '../../../../images/Genconians/palak.jpeg';
 import Member3 from '../../../../images/Genconians/suryansh.jpeg';
 import Member4 from '../../../../images/Genconians/gursidak.jpeg';
-import Member5 from '../../../../images/Genconians/arsh.png';
+import Member5 from '../../../../images/Genconians/mahin.jpeg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -283,13 +283,13 @@ export default function Genconians(){
             <div class="frontside">
               <div class="card con-card">
                 <div class="card-body text-center">
-                  {/* <p>
+                  <p>
                     <img
                       class="img-fluid img-round"
-                      src={Member4}
+                      src={Member5}
                       alt="card image"
                     />
-                  </p> */}
+                  </p>
                   <h4 class="card-title">Mahin Mittal</h4>
                   <p class="card-subtitle">Developer</p>
                   <p class="card-text">

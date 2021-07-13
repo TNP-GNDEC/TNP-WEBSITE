@@ -13,9 +13,9 @@ import map from "../../../../images/map.png";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    padding: "10px",
-    marginTop: "20px",
-    boxShadow: "0 1px 1px rgba(0,0,0,0.15),0 8px 0 -5px #eee,0 8px 1px -4px rgba(0,0,0,0.15),0 16px 0 -10px #eee,0 16px 1px -9px rgba(0,0,0,0.15)",
+    borderRadius: "16px",
+    textAlign: "center",
+    boxShadow: "0 15px 30px #8a959e33",
   },
   header:{
       display: "flex",
@@ -54,24 +54,48 @@ Icon:{
     fontSize: "18px"
   },
   subheading:{
-      fontSize: "12px",
-      paddingTop: "5px"
+      fontSize: "14px",
+      marginTop: "10px",
+      fontFamily: "Open Sans",
+      fontWeight: "600",
+      color: theme.palette.primary.text,
   },
-  name2:{
-
+  box:{
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: "10px",
+    marginTop: "20px",
+    width: "80%",
+    height: "34px",
+    background: theme.palette.secondary.accent,
+    borderRadius: "8px",
     display: "flex",
-    color: theme.palette.primary.main
+    alignItems: "center",
+    justifyContent: "flex-start"
+},
+box2:{
+  marginLeft: "auto",
+  marginRight: "auto",
+  marginBottom: "15px",
+  width: "80%",
+  height: "34px",
+  background: theme.palette.secondary.accent,
+  borderRadius: "8px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-start"
 },
 icon2:{
     fontSize: "16px",
     color: theme.palette.primary.dark,
-    marginTop: "5px",
     marginLeft: "10px"
 },
 subheading2:{
-    fontSize: "12px",
-    paddingTop: "5px",
-    marginLeft: "35px"
+    fontSize: "14px",
+    marginLeft: "30px",
+    fontFamily: "Open Sans",
+    fontWeight: "600",
+    color: theme.palette.primary.dark,
 },
 subheading3:{
     fontSize: "12px",
@@ -88,44 +112,18 @@ export default function Office() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} variant="outlined">
-      <div className={classes.header}>
-      <div className={classes.icon}><Location className={classes.Icon}/></div>
-          <Typography variant="h5" component="h2" className={classes.title}>
-              LOCATION
-          </Typography>
-         
-      </div>
-      <hr />
+    <Card className={classes.root}>
       <div className={classes.imageBox}>
           <img src={map} className={classes.image}/>
       </div>
-      
-      <div className={classes.name2}>
-            <Explore className={classes.icon2}/>
-            <Typography variant="h6" component="h2" className={classes.subheading3}>
-              Guru Nanak Dev Engineering College Gill Park Ludhiana
-              <br />
-              141006
-              <br />
-              Ludhiana, Punjab, India
-              <br />
-              <div className={classes.color}>↱  Get Directions</div>
-            </Typography>
-        </div>
-      <div className={classes.name2}>
-            <Email className={classes.icon2}/>
-            <Typography variant="h6" component="h2" className={classes.subheading2}>
-              tpo@gndec.ac.in
-            </Typography>
-        </div>
-        <div className={classes.name2}>
+      <h3 className={classes.subheading}>Guru Nanak Dev Engineering College, Gill Park Ludhiana (141006), Punjab, India</h3>
+        <div className={classes.box}>
             <Phone className={classes.icon2}/>
             <Typography variant="h6" component="h2" className={classes.subheading2}>
               0161-5064510
             </Typography>
       </div>
-      <div className={classes.name2}>
+      <div className={classes.box2}>
             <Language className={classes.icon2}/>
             <Typography variant="h6" component="h2" className={classes.subheading2}>
               www.gndec.ac.in
