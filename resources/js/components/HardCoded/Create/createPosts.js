@@ -64,7 +64,9 @@ class CreatePosts extends React.Component {
     }
     savePost = async (e) => {
         e.preventDefault();
-        const res = await axios.post("/addPost", this.state);
+        let payload = {...this.state}
+        delete payload.editorState;
+        const res = await axios.post("/addPost", payload);
         if(res.data.status === 200){
             alert("Added Successfully");
             location.reload();
