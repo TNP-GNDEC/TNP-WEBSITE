@@ -107,6 +107,14 @@ class CreatePosts extends React.Component {
                                         wrapperClassName="demo-wrapper"
                                         editorClassName="demo-editor"
                                         onEditorStateChange={this.onEditorStateChange}
+                                        toolbar={{
+                                            options: ['inline', 'blockType', 'colorPicker', 'list', 'textAlign', 'link', 'embedded', 'emoji', 'image', 'remove', 'history'],
+                                            inline: { inDropdown: true },
+                                            list: { inDropdown: true },
+                                            textAlign: { inDropdown: true },
+                                            link: { inDropdown: true },
+                                            history: { inDropdown: true },
+                                        }}
                                     />
                                 </div>
                             </div>
