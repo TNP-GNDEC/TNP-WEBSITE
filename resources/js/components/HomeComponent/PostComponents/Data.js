@@ -291,8 +291,7 @@ class Data extends React.Component {
 
                 </Card>
             )
-        }
-        
+        }     
         return (
             <Card className={classes.root}>
                 <div className={classes.type}>
@@ -333,7 +332,7 @@ class Data extends React.Component {
                     </div>
                     <div className={classes.read}>
                         <Link to={`/showPost/${posts.id}`} style={{ textDecoration: 'none' }} className={classes.readLink}>
-                            <Button hover="false" className={classes.readButton} fullWidth>READ MORE </Button>
+                            <Button hover="false" className={classes.readButton} fullWidth>Read More </Button>
                         </Link>
                     </div>
                 </div>

@@ -11,6 +11,7 @@ import Member2 from '../../../../images/Genconians/palak.jpeg';
 import Member3 from '../../../../images/Genconians/suryansh.jpeg';
 import Member4 from '../../../../images/Genconians/gursidak.jpeg';
 import Member5 from '../../../../images/Genconians/mahin.jpeg';
+import Member6 from '../../../../images/Genconians/gurkipal.jpg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -351,17 +352,17 @@ export default function Genconians(){
             <div class="frontside">
               <div class="card con-card">
                 <div class="card-body text-center">
-                  {/* <p>
+                  <p>
                     <img
                       class="img-fluid img-round"
-                      src={Member5}
+                      src={Member6}
                       alt="card image"
                     />
-                  </p> */}
+                  </p>
                   <h4 class="card-title">Gurkipal Singh</h4>
                   <p class="card-subtitle">UI/UX Designer</p>
                   <p class="card-text">
-                    He is a B.Tech student in Electronics &amp; Communications Engineering
+                    He is a B.Tech student in Electrical Engineering
                     of 2018-22 batch.
                   </p>
                   <ul class="list-inline" id="list-link">

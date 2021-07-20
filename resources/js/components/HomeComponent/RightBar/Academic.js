@@ -127,7 +127,7 @@ export default function Office() {
       <div className={classes.box}>
             <Phone className={classes.icon2}/>
             <Typography variant="h6" component="h2" className={classes.subheading2}>
-              +91-97801-99970
+              +91-97810-99970
             </Typography>
       </div>
       <div className={classes.box2}>
