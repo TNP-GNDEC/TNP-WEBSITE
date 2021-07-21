@@ -138,6 +138,7 @@ const useStyles = theme => ({
         borderRadius: "16px",
         fontFamily: "Open Sans",
         fontWeight: "400",
+        textTransform: "capitalize",
         boxShadow: "0px 10px 25px #1687d933",
         color: theme.palette.secondary.main,
         textDecoration: "none",
@@ -332,7 +333,7 @@ class Data extends React.Component {
                     </div>
                     <div className={classes.read}>
                         <Link to={`/showPost/${posts.id}`} style={{ textDecoration: 'none' }} className={classes.readLink}>
-                            <Button hover="false" className={classes.readButton} fullWidth>Read More </Button>
+                            <Button hover="false" className={classes.readButton} fullWidth>Read More</Button>
                         </Link>
                     </div>
                 </div>

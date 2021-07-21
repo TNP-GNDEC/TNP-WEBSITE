@@ -13,7 +13,8 @@ import Scroll from "../HomeComponent/SideComponents/scroll";
 const useStyles = makeStyles((theme) => ({
   body: {
     backgroundColor: theme.palette.primary.light,
-    margin: "0px"
+    margin: "0px",
+    minHeight: "100vh",
   },
   root: {
     flexGrow: 1,
