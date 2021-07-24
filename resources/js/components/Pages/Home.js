@@ -9,6 +9,7 @@ import RightBar from "../HomeComponent/RightBar/RightBar";
 import RightBarSticky from "../HomeComponent/RightBar/RightBarSticky";
 import LeftBar from "../HomeComponent/LeftBar/LeftBar";
 import Scroll from "../HomeComponent/SideComponents/scroll";
+import SearchArea from "../HomeComponent/SideComponents/SearchArea";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -17,10 +18,9 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "100vh",
   },
   root: {
-    flexGrow: 1,
-    margin: "15px",
-    marginTop: "40px",
-    paddingTop: "20px",
+    flexGrow: 0,
+    margin: "0 15px 15px",
+    marginTop: "0px",
   },
   paper: {
     padding: theme.spacing(1),
@@ -35,20 +35,20 @@ const useStyles = makeStyles((theme) => ({
     top: "60px"
   },
   left:{
-    marginTop: "40px",
+    marginTop: "10px",
     width: "100%",
     ['@media (max-width:960px)']: {
       display: "none",
    }
   },
   center:{
-    marginTop: "40px",
+    marginTop: "10px",
     ['@media (max-width:960px)']: {
       width: "100%",
    }
   },
   right:{
-    marginTop: "40px",
+    marginTop: "10px",
     width: "100%",
     ['@media (max-width:960px)']: {
        display: "none",
@@ -71,6 +71,7 @@ export default function Home() {
   return (
     <div className={classes.body}>
       <Navbar />
+      <SearchArea />
       <div className={classes.root}>
         <Scroll showBelow={250} />
         <Grid container spacing={3}>
