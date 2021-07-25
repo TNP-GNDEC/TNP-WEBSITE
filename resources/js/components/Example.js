@@ -10,15 +10,16 @@ const theme = createMuiTheme({
         light: '#e9f3fd',
         main: '#1687d9',
         dark: '#303030',
-        contrastText: '#fff',
-        text: '#606060'
+        text: '#606060',
+        accent: '#D8DEE7'
       },
       secondary: {
         light: '#038ed433',
         main: '#ffffff',
         dark: '#969696',
         accent: '#e5e5e5',
-        contrastText: '#000000bf',
+        text: '#000000bf',
+        hover: '#ccd6e7'
       },
     },
   });

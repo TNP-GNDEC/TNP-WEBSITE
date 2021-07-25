@@ -15,7 +15,16 @@ class postController extends Controller
     public function getposts(Request $request)
     {
         $page = $request->page;
-        $posts = Post::orderBy('updated_at', 'DESC')->skip(0)->take($page)->get();
+        $search = $request->searchText;
+        if (!empty($search)) {
+            $posts = Post::orderBy('updated_at', 'DESC')
+            ->where('title','Like', '%' . $search . '%')
+            ->skip(0)->take($page)->get();
+        }
+        else{
+            $posts = Post::orderBy('updated_at', 'DESC')
+            ->skip(0)->take($page)->get();
+        }
         return response() -> json(['status' => 200,'page'=>$page, 'posts' => $posts]);
     }
 

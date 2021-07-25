@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Skeleton} from '@material-ui/lab';
-import vector from '../../../../images/loading.png';
+import vector from '../../../../images/empty.png';
 
 
 const useStyles = makeStyles((theme) =>({
@@ -26,12 +26,12 @@ const useStyles = makeStyles((theme) =>({
   },
 }));
 
-export default function LoadingPost() {
+export default function NoPostFound() {
   const classes = useStyles();
   return (
       <div className={classes.card}>
         <img src={vector} className={classes.img} />
-        <h1 className={classes.title}>Loading ...</h1>
+        <h1 className={classes.title}>Not Found</h1>
       </div>
   );
 }

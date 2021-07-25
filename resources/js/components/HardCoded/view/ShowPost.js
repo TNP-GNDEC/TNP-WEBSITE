@@ -234,8 +234,7 @@ tagslist:{
 tag: {
     backgroundColor: theme.palette.secondary.accent,
     color: theme.palette.primary.dark,
-    width: "15%",
-    height: "35px",
+    padding: "5px 12px",
     marginRight: "10px",
     display: "flex",
     justifyContent: "center",
@@ -244,7 +243,10 @@ tag: {
     textTransform: "uppercase",
     fontFamily: "Open Sans",
     fontSize: "15px",
-    fontWeight: "600"
+    fontWeight: "600",
+    ['@media (max-width:960px)']: {
+      fontSize: "12px"
+   }
 },
 
 }));
@@ -327,16 +329,30 @@ export default function ShowPost() {
                       {ReactHtmlParser(data.posts.description)}
                   </p>
                 </div>
-                {/* <div className={classes.tagslist}>
-                  {tagArray.map((tag,i) => {
-                    if( i === 0){
-                      return
+                <div className={classes.tagslist}>
+                <div className={classes.tag}>
+                      TNP
+                    </div>
+                    <div className={classes.tag}>
+                      GNDEC
+                    </div>
+                  {/* {tagArray.map((tag,i) => {
+                    alert(tagArray.length);
+                    if( tagArray.length === 0){
+                      return (<><div className={classes.tag}>
+                      TNP
+                    </div>
+                    <div className={classes.tag}>
+                      GNDEC
+                    </div></>);
                     }
-                    return (<div className={classes.tag}>
-                      {tag}
-                    </div>)
-                  })}
-                </div> */}
+                    else{
+                      return (<div className={classes.tag} key={i} value={tag}>
+                        {tag}
+                      </div>)
+                    }
+                  })} */}
+                </div>
             </Card>
             </Paper>
           </Grid>
