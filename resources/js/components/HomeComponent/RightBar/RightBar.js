@@ -16,12 +16,15 @@ const useStyles = makeStyles((theme) => ({
           fontSize: "14px"
         }
     },
+    level:{
+        marginTop: "96px"
+    },
 }));
 
 export default function RightBar(){
     const classes = useStyles();
     return(
-        <div>
+        <div className={classes.level}>
             <h3 className={classes.cardTitle}>T&P Office</h3>
             <Office />
             <h3 className={classes.cardTitle}>Faculty</h3>

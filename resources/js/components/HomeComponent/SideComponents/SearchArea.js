@@ -137,12 +137,11 @@ const useStyles = makeStyles((theme) => ({
 },
 }));
 
-export default function SearchArea() {
+export default function SearchArea(props) {
   const classes = useStyles();
-  const [text, setText] = React.useState('');
+  const [state, setState] = props;
   function handleChange(e) {
-    setText(e.target.value);
-    localStorage.setItem('searchText', text);
+    setState(e.target.value);
   }
 
   return (
@@ -168,7 +167,7 @@ export default function SearchArea() {
             <Paper className={classes.paper}>
               <div className={classes.filterDiv}>
                 <label className={classes.label}>Filter By:</label>
-                <select className={classes.filter} disabled>
+                <select className={classes.filter} >
                     <option>All</option>
                     <option>Announcement</option>
                     <option>Placement</option>
