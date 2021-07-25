@@ -140,7 +140,10 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchArea() {
   const classes = useStyles();
   const [text, setText] = React.useState('');
-  console.log(text);
+  function handleChange(e) {
+    setText(e.target.value);
+    localStorage.setItem('searchText', text);
+  }
 
   return (
     <div className={classes.body}>
@@ -156,7 +159,7 @@ export default function SearchArea() {
             <Paper className={classes.paper}>
               <div className={classes.searchDiv}>
                 <SearchIcon className={classes.icon} />
-                <input className={classes.search} onChange={e => setText(e.target.value)} 
+                <input className={classes.search} onChange={handleChange} 
                 placeholder="Search Posts..." />
               </div>
             </Paper>

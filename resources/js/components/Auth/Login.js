@@ -162,7 +162,8 @@ const fetchUser = async (token) => {
   const user = await axios.get(`/api/getUsers`, {headers: { 'Authorization': 'Bearer ' + token }  });
   const role = user.data.user['role_id'];
   if(role===1){
-    fetchSteps(token);
+    //fetchSteps(token);
+    alert('Login Server is currently down');
   }
   if(role ===2){
     history.push('/coordinator')

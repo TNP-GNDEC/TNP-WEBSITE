@@ -8,6 +8,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 class Posts extends React.Component {
     state = {
         page: 6,
+        searchText: "",
         posts: [],
         loading: true,
     }
@@ -23,6 +24,8 @@ class Posts extends React.Component {
         });
     }
     componentDidMount(){
+        var search = localStorage.getItem('searchText');
+        this.setState({searchText: search});
         this.fetchPosts();
     }
 
