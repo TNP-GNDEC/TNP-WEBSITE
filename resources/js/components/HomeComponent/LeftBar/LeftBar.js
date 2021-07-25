@@ -39,9 +39,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LeftBar(){
     const classes = useStyles();
+    var greeting = "";
+        var dt=new Date();
+        var hour = dt.getHours();
+        if( hour >= 1 && hour < 12){
+            greeting = 'Good Morning!';
+        }
+        if( hour >= 12 && hour < 19){
+            greeting = 'Good Afternoon!';
+        }
+        else{
+            greeting = 'Good Evening!';
+        }
     return(
         <div>
-            <h1 className={classes.greeting}>Good Morning!</h1>
+            <h1 className={classes.greeting}>{greeting}</h1>
             <p className={classes.greeting2}>Welcome to the T&P Cell</p>
             <h3 className={classes.cardTitle}>Connect</h3>
             <Connect />
