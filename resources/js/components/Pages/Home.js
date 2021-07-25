@@ -18,9 +18,10 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "100vh",
   },
   root: {
-    flexGrow: 0,
-    margin: "0 15px 15px",
-    marginTop: "0px",
+    flexGrow: 1,
+    margin: "15px 15px 0",
+    marginTop: "30px",
+    paddingTop: "20px",
   },
   paper: {
     padding: theme.spacing(1),
@@ -35,20 +36,20 @@ const useStyles = makeStyles((theme) => ({
     top: "60px"
   },
   left:{
-    marginTop: "10px",
+    marginTop: "40px",
     width: "100%",
     ['@media (max-width:960px)']: {
       display: "none",
    }
   },
   center:{
-    marginTop: "10px",
+    marginTop: "40px",
     ['@media (max-width:960px)']: {
       width: "100%",
    }
   },
   right:{
-    marginTop: "10px",
+    marginTop: "40px",
     width: "100%",
     ['@media (max-width:960px)']: {
        display: "none",
@@ -67,11 +68,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles();
+  const [searchText, setSearchText] = React.useState('');
 
   return (
     <div className={classes.body}>
       <Navbar />
-      <SearchArea />
+      {/* <SearchArea searchText={searchText} setState={setSearchText} /> */}
       <div className={classes.root}>
         <Scroll showBelow={250} />
         <Grid container spacing={3}>
@@ -82,7 +84,6 @@ export default function Home() {
           </Grid>
           <Grid item md={6} className={classes.center}>
             <Paper className={classes.paper}>
-              <h3 className={classes.cardTitle}>Latest Posts</h3>
               <Posts />
             </Paper>
           </Grid>
