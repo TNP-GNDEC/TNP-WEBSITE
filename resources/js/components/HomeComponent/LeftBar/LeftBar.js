@@ -45,7 +45,7 @@ export default function LeftBar(){
         if( hour >= 1 && hour < 12){
             greeting = 'Good Morning!';
         }
-        if( hour >= 12 && hour < 19){
+        else if( hour >= 12 && hour < 16){
             greeting = 'Good Afternoon!';
         }
         else{
