@@ -41,13 +41,20 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
+    ['@media (min-width:1600px)']: {
+      fontSize: "26px"
+  },
   },
   imageLogo: {
     width: "50px",
     height: "50px",
     position: "relative",
     overflow: "hidden",
-    borderRadius: "50%"
+    borderRadius: "50%",
+    ['@media (min-width:1600px)']: {
+      height: "70px",
+      width: "70px",
+  },
   },
   profilePic: {
     display: "inline",

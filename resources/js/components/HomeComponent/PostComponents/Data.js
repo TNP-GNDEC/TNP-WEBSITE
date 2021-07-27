@@ -23,6 +23,9 @@ const useStyles = theme => ({
         marginBottom: "30px",
         borderRadius: "16px",
         boxShadow: "0px 15px 30px #8a959e33",
+        ['@media (min-width:1600px)']: {
+            padding: "20px"
+        },
     },
     type:{
         padding: "3px",
@@ -37,6 +40,10 @@ const useStyles = theme => ({
         ['@media (max-width:960px)']: {
             fontSize: "10px",
             width: "40%"
+        },
+        ['@media (min-width:1600px)']: {
+            fontSize: "16px",
+            width: "30%"
         },
     },
     header: {
@@ -54,6 +61,10 @@ const useStyles = theme => ({
             width: "13px",
             height: "13px",
         },
+        ['@media (min-width:1600px)']: {
+            width: "17px",
+            height: "17px",
+        },
     },
     title: {
         fontSize: "24px",
@@ -64,6 +75,9 @@ const useStyles = theme => ({
         color: theme.palette.primary.dark,
         ['@media (max-width:960px)']: {
             fontSize: "18px",
+        },
+        ['@media (min-width:1600px)']: {
+            fontSize: "32px",
         },
     },
     subheader: {
@@ -94,6 +108,9 @@ const useStyles = theme => ({
         color: theme.palette.primary.dark,
         ['@media (max-width:960px)']: {
             fontSize: "10px",
+        },
+        ['@media (min-width:1600px)']: {
+            fontSize: "16px",
         },
     },
     icon: {
@@ -151,6 +168,9 @@ const useStyles = theme => ({
         ['@media (max-width:960px)']: {
             fontSize: "14px",
         },
+        ['@media (min-width:1600px)']: {
+            fontSize: "18px",
+        },
     },
     body2: {
         display: "flex",
@@ -165,6 +185,10 @@ const useStyles = theme => ({
         ['@media (max-width:960px)']: {
             width: "14px",
             height: "14px",
+        },
+        ['@media (min-width:1600px)']: {
+            width: "20px",
+            height: "20px",
         },
     },
     Tags: {

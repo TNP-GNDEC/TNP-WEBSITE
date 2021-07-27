@@ -14,10 +14,16 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "5px",
         ['@media (max-width:960px)']: {
           fontSize: "14px"
-        }
+        },
+        ['@media (min-width:1600px)']: {
+            fontSize: "20px"
+        },
     },
     level:{
-        marginTop: "96px"
+        marginTop: "98px",
+        ['@media (min-width:1600px)']: {
+            marginTop: "104px"
+        },
     },
 }));
 

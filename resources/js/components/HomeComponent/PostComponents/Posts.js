@@ -15,7 +15,10 @@ const useStyles = theme => ({
         fontWeight: "600",
         ['@media (max-width:960px)']: {
           fontSize: "14px"
-        }
+        },
+        ['@media (min-width:1600px)']: {
+            fontSize: "20px"
+        },
       },
       searchDiv: {
         position: "relative",
@@ -24,7 +27,10 @@ const useStyles = theme => ({
       icon: {
         position: "absolute",
         top: "15px",
-        left: "15px"
+        left: "15px",
+        ['@media (min-width:1600px)']: {
+            top: "20px"
+        },
       },
       search: {   
           marginTop: "5px",
@@ -51,6 +57,10 @@ const useStyles = theme => ({
         },
         "&:hover":{
           backgroundColor: theme.palette.secondary.hover
+        },
+        ['@media (min-width:1600px)']: {
+            height: "54px",
+            fontSize: "20px",
         },
       },
 });

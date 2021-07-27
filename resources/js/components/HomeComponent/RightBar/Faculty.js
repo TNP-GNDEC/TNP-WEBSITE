@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     borderRadius: "16px",
     boxShadow: "0px 15px 30px #8a959e33",
+    ['@media (min-width:1600px)']: {
+      paddingTop: "20px"
+  },
   },
   media:{
     textAlign: "center"
@@ -35,10 +38,6 @@ const useStyles = makeStyles((theme) => ({
   Icon:{
     fontSize: "18px",
   },
-  title:{
-      color: theme.palette.primary.dark,
-      fontSize: "22px"
-  },
   imageBox:{
       marginLeft: "auto",
       marginRight: "auto",
@@ -49,25 +48,39 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      ['@media (min-width:1600px)']: {
+        height: "140px",
+        width: "140px"
+    },
   },
   image:{
-      width: "110px",
-      height: "110px",
+      width: "106px",
+      height: "106px",
       borderRadius: "50%",
-      boxShadow: "0px 10px 20px #1687d933"
+      boxShadow: "0px 10px 20px #1687d933",
+      ['@media (min-width:1600px)']: {
+        height: "126px",
+        width: "126px",
+    },
   },
   heading:{
     fontSize: "18px",
     fontFamily: "Open Sans",
     fontWeight: "600",
     color: theme.palette.primary.dark,
-    paddingTop: "5px"
+    paddingTop: "12px",
+    ['@media (min-width:1600px)']: {
+      fontSize: "20px",
+  },
   },
   subheading:{
       fontSize: "13px",
       fontFamily: "Open Sans",
       fontWeight: "600",
       color: theme.palette.primary.text,
+      ['@media (min-width:1600px)']: {
+        fontSize: "16px",
+    },
   },
   box:{
     marginLeft: "auto",
@@ -80,7 +93,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "8px",
     display: "flex",
     alignItems: "center",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    ['@media (min-width:1600px)']: {
+      height: "36px",
+  },
 },
 box2:{
   marginLeft: "auto",
@@ -92,19 +108,29 @@ box2:{
   borderRadius: "8px",
   display: "flex",
   alignItems: "center",
-  justifyContent: "flex-start"
+  justifyContent: "flex-start",
+  ['@media (min-width:1600px)']: {
+    height: "36px",
+    marginBottom: "20px"
+},
 },
 icon2:{
     fontSize: "16px",
     color: theme.palette.primary.dark,
-    marginLeft: "10px"
+    marginLeft: "10px",
+    ['@media (min-width:1600px)']: {
+      fontSize: "18px",
+  },
 },
 subheading2:{
     fontSize: "14px",
-    marginLeft: "25px",
+    marginLeft: "30px",
     fontFamily: "Open Sans",
     fontWeight: "600",
     color: theme.palette.primary.dark,
+    ['@media (min-width:1600px)']: {
+      fontSize: "16px",
+  },
 },
 }));
 
@@ -127,7 +153,7 @@ export default function Office() {
       <div className={classes.box}>
             <Phone className={classes.icon2}/>
             <Typography variant="h6" component="h2" className={classes.subheading2}>
-              +91-97799-03758
+              +91-97799-03785
             </Typography>
       </div>
       <div className={classes.box2}>
