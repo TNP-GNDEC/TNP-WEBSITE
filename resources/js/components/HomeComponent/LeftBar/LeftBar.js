@@ -15,7 +15,10 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "5px",
         ['@media (max-width:960px)']: {
           fontSize: "14px"
-        }
+        },
+        ['@media (min-width:1600px)']: {
+            fontSize: "20px"
+        },
     },
     greeting:{
         fontSize: "32px",
@@ -24,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: "900",
         padding: "0px",
         marginTop: "0px",
+        ['@media (min-width:1600px)']: {
+            fontSize: "38px"
+        },
       },
       greeting2:{
         fontSize: "16px",
@@ -34,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "0px",
         lineHeight: "0px",
         marginBottom: "50px",
+        ['@media (min-width:1600px)']: {
+            fontSize: "18px"
+        },
       },
 }));
 

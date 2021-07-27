@@ -59,6 +59,10 @@ Icon:{
       fontFamily: "Open Sans",
       fontWeight: "600",
       color: theme.palette.primary.text,
+      ['@media (min-width:1600px)']: {
+        fontSize: "19px",
+        padding: "10px"
+    },
   },
   box:{
     marginLeft: "auto",
@@ -71,7 +75,10 @@ Icon:{
     borderRadius: "8px",
     display: "flex",
     alignItems: "center",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    ['@media (min-width:1600px)']: {
+      height: "36px",
+  },
 },
 box2:{
   marginLeft: "auto",
@@ -83,7 +90,11 @@ box2:{
   borderRadius: "8px",
   display: "flex",
   alignItems: "center",
-  justifyContent: "flex-start"
+  justifyContent: "flex-start",
+  ['@media (min-width:1600px)']: {
+    height: "36px",
+    marginBottom: "20px"
+},
 },
 icon2:{
     fontSize: "16px",
@@ -96,6 +107,9 @@ subheading2:{
     fontFamily: "Open Sans",
     fontWeight: "600",
     color: theme.palette.primary.dark,
+    ['@media (min-width:1600px)']: {
+      fontSize: "16px"
+  },
 },
 subheading3:{
     fontSize: "12px",

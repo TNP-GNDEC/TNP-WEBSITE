@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     borderRadius: "16px",
     boxShadow: "0px 15px 30px #8a959e33",
+    ['@media (min-width:1600px)']: {
+      paddingTop: "20px"
+  },
   },
   media:{
     textAlign: "center"
@@ -49,23 +52,38 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      ['@media (min-width:1600px)']: {
+        height: "70px",
+        width: "70px",
+    },
   },
   image:{
       width: "30px",
       height: "30px",
+      ['@media (min-width:1600px)']: {
+        height: "40px",
+        width: "40px",
+    },
   },
   heading:{
     fontSize: "18px",
     fontFamily: "Open Sans",
     fontWeight: "600",
     color: theme.palette.primary.dark,
-    paddingTop: "5px"
+    paddingTop: "5px",
+    ['@media (min-width:1600px)']: {
+      fontSize: "20px",
+      paddingTop: "12px"
+  },
   },
   subheading:{
       fontSize: "13px",
       fontFamily: "Open Sans",
       fontWeight: "600",
       color: theme.palette.primary.text,
+      ['@media (min-width:1600px)']: {
+        fontSize: "16px"
+    },
   },
   button:{
     marginLeft: "auto",
@@ -86,12 +104,18 @@ const useStyles = makeStyles((theme) => ({
     "&:focus": {
       outline: "none",
     },
+    ['@media (min-width:1600px)']: {
+      height: "50px",
+  },
 },
 subheading2:{
     fontSize: "14px",
     fontFamily: "Open Sans",
     fontWeight: "600",
     color: theme.palette.primary.main,
+    ['@media (min-width:1600px)']: {
+      fontSize: "16px"
+  },
 },
 }));
 

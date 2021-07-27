@@ -17,7 +17,11 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "0px 10px 25px #1687d933",
     },
     para: {
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.main,
+      fontSize: "16px",
+      ['@media (min-width:1600px)']: {
+        fontSize: "20px"
+    },
     },
     tag:{
       color: theme.palette.secondary.main,

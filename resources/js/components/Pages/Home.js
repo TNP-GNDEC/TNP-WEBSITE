@@ -40,20 +40,29 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     ['@media (max-width:960px)']: {
       display: "none",
-   }
+   },
+   ['@media (min-width:1600px)']: {
+    marginTop: "60px"
+},
   },
   center:{
     marginTop: "40px",
     ['@media (max-width:960px)']: {
       width: "100%",
-   }
+   },
+   ['@media (min-width:1600px)']: {
+    marginTop: "60px"
+},
   },
   right:{
     marginTop: "40px",
     width: "100%",
     ['@media (max-width:960px)']: {
        display: "none",
-    }
+    },
+    ['@media (min-width:1600px)']: {
+      marginTop: "60px"
+  },
   },
   cardTitle:{
     fontSize: "18px",
