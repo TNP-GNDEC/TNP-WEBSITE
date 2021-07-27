@@ -155,8 +155,11 @@ $updt=0;
         'username' => 'required',
         'password' => 'required'
     ]);
-    $token = JWTAuth::attempt(['username'=>$request->username, 'password'=>$request->password]);
 
+    //allow only admin to login 
+    if($request->username == 'admin'){
+    	$token = JWTAuth::attempt(['username'=>$request->username, 'password'=>$request->password]);
+    }
     if (! $token ) {
         return response()->json(['alert' => 'invalid credentials']);
     }
