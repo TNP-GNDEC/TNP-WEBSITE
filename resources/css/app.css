@@ -68,16 +68,22 @@ div.DraftEditor-root {
 span[style] {
   font-size: 16px !important;
   font-family: 'Open Sans' !important;
+  color: #606060;
+}
+p[style] {
+  font-size: 16px !important;
+  font-family: 'Open Sans' !important;
+  color: #606060;
 }
 
 @media only screen and (max-width: 800px) {
-  span[style]{
+  p[style], span[style]{
     font-size: 14px !important;
   }
 }
 
 @media only screen and (min-width: 1600px) {
-  span[style]{
+  p[style], span[style]{
     font-size: 20px !important;
   }
 }
