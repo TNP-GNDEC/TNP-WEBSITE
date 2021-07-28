@@ -310,6 +310,12 @@ pdfs: {
   height: "500px",
   margin: "auto",
 },
+tagslist: {
+  width: "100%",
+  height: "40px",
+  display: "flex",
+  alignItems: "center",
+},
 tag: {
     backgroundColor: theme.palette.secondary.accent,
     color: theme.palette.primary.dark,
