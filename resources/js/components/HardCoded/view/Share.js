@@ -110,6 +110,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon2:{
     height: "30px",
+    cursor: "poinrer",
     ['@media (min-width:1600px)']: {
       height: "40px"
     },
