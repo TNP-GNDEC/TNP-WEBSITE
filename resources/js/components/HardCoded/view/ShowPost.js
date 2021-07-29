@@ -1,22 +1,22 @@
 import React, { useState , useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import moment from "moment";
 import Share from "./Share";
+import MorePosts from "./MorePosts";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import LocalOffer from '@material-ui/icons/LocalOffer';
+import Loading from "../../HomeComponent/SideComponents/LoadingPost";
+import Footer from "../../HomeComponent/RightBar/FooterCard";
 import Facebook from '@material-ui/icons/Facebook';
 import Linkedin from '@material-ui/icons/LinkedIn';
 import Twitter from '@material-ui/icons/Twitter';
-import Calender from '@material-ui/icons/EventAvailable';
-import Flag from '@material-ui/icons/Flag';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 import logo from "../../../../images/logo.png";
 
 import Navbar from "../../HomeComponent/SideComponents/Navbar";
-import RightBar from "../../HomeComponent/RightBar/RightBar";
 import Scroll from "../../HomeComponent/SideComponents/scroll";
 import { useParams } from 'react-router-dom';
 import Axios from "axios";
@@ -43,35 +43,48 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "transparent",
     boxShadow: "none",
     position: "sticky",
-    top: "60px"
+    top: "80px"
   },
   left:{
-    marginTop: "60px",
+    marginTop: "40px",
     width: "100%",
-    ['@media (max-width:960px)']: {
+    ['@media (max-width:1000px)']: {
       display: "none",
+   },
+   ['@media (min-width:1600px)']: {
+     marginTop: "60px"
    }
   },
   center:{
-    marginTop: "60px",
-    ['@media (max-width:960px)']: {
+    marginTop: "40px",
+    ['@media (max-width:1000px)']: {
       width: "100%",
-   }
+   },
+   ['@media (min-width:1600px)']: {
+    marginTop: "60px"
+  }
   },
   right:{
-    marginTop: "60px",
+    marginTop: "40px",
     width: "100%",
-    ['@media (max-width:960px)']: {
+    ['@media (max-width:1000px)']: {
        display: "none",
+    },
+    ['@media (min-width:1600px)']: {
+      marginTop: "60px"
     }
   },
   cardTitle:{
     fontSize: "18px",
+    paddingLeft: "5px",
     color: theme.palette.primary.dark,
     fontFamily: "Open Sans",
     fontWeight: "600",
     ['@media (max-width:960px)']: {
       fontSize: "14px"
+    },
+    ['@media (min-width:1600px)']: {
+      fontSize: "20px"
     }
   },
   cardRoot: {
@@ -327,7 +340,10 @@ tag: {
     fontWeight: "600",
     ['@media (max-width:960px)']: {
       fontSize: "12px"
-   }
+   },
+   link:{
+     textDecoration: "none"
+   },
 },
 
 }));
@@ -338,6 +354,12 @@ export default function ShowPost() {
   let { id } = useParams();
 
   const [tagArray, setTagArray] = useState([]);
+  const [state, setState] = useState({
+    postArray: [],
+    loading: true,
+    page: 3,
+    searchText: "",
+  });
   const [data, setData] = useState({
     posts: [],
     loading: true,
@@ -352,13 +374,22 @@ export default function ShowPost() {
         });
         setTagArray([
           JSON.parse(res.data.posts.tags)
-        ]);
-        
+        ]);   
     }
+  }
+  const fetchMorePosts = async () => {
+    Axios.post(`/getposts`, state).then((res) => {
+      if(res.data.status === 200){
+          setState({postArray: res.data.posts});
+      }
+      }).catch((error) => {
+      console.log(error);
+      });
   }
 
   useEffect(() => { // it is similar to componentDidMount
     fetchPosts(); // custom function which fetch the posts
+    fetchMorePosts(); 
   }, []); // '[]' here stops rerendering of page which is a cause of state updates.
 
   return (
@@ -369,15 +400,17 @@ export default function ShowPost() {
 
         <Grid container spacing={3}>
           <Grid item md={3} className={classes.left} display={{ xs: 'none', md: 'block' }}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper2}>
               <h3 className={classes.cardTitle}>Share</h3>
               <Share id={data.posts.id} />
+              <Footer />
             </Paper>
           </Grid>
 
           <Grid item md={6} className={classes.center}>
             <Paper className={classes.paper}>
             <h3 className={classes.cardTitle}>Full Post</h3>
+            {data.loading ? <Loading /> :
             <Card className={classes.cardRoot}>
                 <div className={classes.type}>
                     {data.posts.type}
@@ -421,28 +454,19 @@ export default function ShowPost() {
                     <div className={classes.tag}>
                       GNDEC
                     </div>
-                  {/* {tagArray.map((tag,i) => {
-                    alert(tagArray.length);
-                    if( tagArray.length === 0){
-                      return (<><div className={classes.tag}>
-                      TNP
-                    </div>
-                    <div className={classes.tag}>
-                      GNDEC
-                    </div></>);
-                    }
-                    else{
-                      return (<div className={classes.tag} key={i} value={tag}>
-                        {tag}
-                      </div>)
-                    }
-                  })} */}
                 </div>
             </Card>
+            }
             </Paper>
           </Grid>
           <Grid item md={3} className={classes.right} display={{ xs: 'none', md: 'block' }}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper2}>
+            <h3 className={classes.cardTitle}>More Posts from T&P</h3>
+              {state.postArray.map(posts => (
+                <Link to={"/showPost/" + posts.id} >
+                <MorePosts posts = {posts} key={posts.id} />
+                </Link>
+              ))}
             </Paper>
           </Grid>
         </Grid>

@@ -10,6 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 const useStyles = theme => ({
     cardTitle:{
         fontSize: "18px",
+        paddingLeft: "5px",
         color: theme.palette.primary.dark,
         fontFamily: "Open Sans",
         fontWeight: "600",

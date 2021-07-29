@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "transparent",
     boxShadow: "none",
     position: "sticky",
-    top: "60px"
+    top: "80px"
   },
   left:{
     marginTop: "40px",

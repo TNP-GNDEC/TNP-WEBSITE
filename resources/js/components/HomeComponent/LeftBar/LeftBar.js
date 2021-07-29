@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.primary.dark,
         fontFamily: "Open Sans",
         fontWeight: "600",
+        paddingLeft: "5px",
         marginBottom: "5px",
         ['@media (max-width:960px)']: {
           fontSize: "14px"
