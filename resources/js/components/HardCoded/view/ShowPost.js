@@ -301,10 +301,6 @@ iconLinks: {
   textDecoration: "none",
   color: "#fff",
 },
-body3: {
-  maxHeight: "250px",
-  overflow: "Hidden",
-},
 pdfs: {
   width: "70%",
   height: "500px",
