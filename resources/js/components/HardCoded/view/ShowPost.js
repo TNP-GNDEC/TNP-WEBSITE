@@ -463,9 +463,9 @@ export default function ShowPost() {
             <Paper className={classes.paper2}>
             <h3 className={classes.cardTitle}>More Posts from T&P</h3>
               {state.postArray.map(posts => (
-                <Link to={"/showPost/" + posts.id} >
+                <a style={{ textDecoration: 'none' }} href={"https://tnpgndec.com/showPost/" + posts.id} >
                 <MorePosts posts = {posts} key={posts.id} />
-                </Link>
+                </a>
               ))}
             </Paper>
           </Grid>

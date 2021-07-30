@@ -359,7 +359,7 @@ export default function Genconians(){
                       alt="card image"
                     />
                   </p>
-                  <h4 class="card-title">Gurkipal Singh</h4>
+                  <h4 class="card-title">Gurkirpal Singh</h4>
                   <p class="card-subtitle">UI/UX Designer</p>
                   <p class="card-text">
                     He is a B.Tech student in Electrical Engineering
