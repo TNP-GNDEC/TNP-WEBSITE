@@ -11,6 +11,7 @@ import Filter from './Filter';
 import Notice from './NoticeMaker';
 import Card from "@material-ui/core/Card";
 import Postmaker from "./Postmaker";
+import PlacementRecord from "./PlacementRecord";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -61,7 +62,7 @@ export default function FullWidthTabs(props) {
         }else if (props.activeId === 3) {
             return (
                 <>
-                    <h1 className={classes.head}> Companies </h1>
+                    <PlacementRecord />
                 </>
             );
         } else if (props.activeId === 4) {

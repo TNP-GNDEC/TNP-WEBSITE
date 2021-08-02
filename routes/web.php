@@ -100,3 +100,12 @@ Route::get('/showPost/{id}', function () {
 
 //Filter Controller
 Route::get('filterData','FilterController@receiveFilterData');
+
+//PlacementRecord Controller
+Route::get('/placement2021','PlacementController@Data2021');
+Route::get('/placement2020','PlacementController@Data2020');
+Route::get('/placement2019','PlacementController@Data2019');
+Route::get('/placement2018','PlacementController@Data2018');
+Route::get('/placement2017','PlacementController@Data2017');
+Route::get('/placement2016','PlacementController@Data2016');
+Route::get('/placement2015','PlacementController@Data2015');
