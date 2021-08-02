@@ -32,16 +32,16 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Data2021() {
+export default function Data2016() {
     const classes = useStyles();
     const [state, setState] = React.useState({
        record: [],
     });
 
     const fetchDetails = async () => {
-        const res = await axios.get(`/placement2021`);
+        const res = await axios.get(`/placement2016`);
         if(res.data.status === 200){
-            setState({record: res.data.record21});
+            setState({record: res.data.record16});
         }
     }
   
