@@ -11,7 +11,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import DescriptionIcon from "@material-ui/icons/Description";
-import Business from "@material-ui/icons/Business";
+import Work from "@material-ui/icons/Work";
 import User from "@material-ui/icons/People";
 import Post from "@material-ui/icons/NoteAdd";
 import avatar from "../../../../images/avatar11.jpeg";
@@ -106,7 +106,7 @@ const useStyles = makeStyles(theme => ({
 const listItems = [
     { id: 1, name: "Home", iconName: <HomeIcon />  , onCLickAction:""},
     { id: 2, name: "Data Using Excel", iconName: <DescriptionIcon /> },
-    { id: 3, name: "Companies", iconName: <Business /> },
+    { id: 3, name: "Placement Record", iconName: <Work /> },
     { id: 4, name: "Users", iconName: <User /> },
     { id: 5, name: "Posts", iconName: <Post /> },
     { id: 6, name: "Notice Maker", iconName: <PostAddIcon /> },
