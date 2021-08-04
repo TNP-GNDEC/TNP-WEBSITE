@@ -124,11 +124,13 @@ export default function Share(props) {
     setClick(true);
   }
   const {id} = props;
-  const shareLink = "https://tnpgndec.com/showPost/" + id;
+  const {title} = props;
+  const postLink = "https://tnpgndec.com/showPost/" + id;
+  const shareLink = title + "\n" + postLink;
   return (
     <Card className={classes.root}>
       <h1 className={classes.heading}>
-        Share this post
+        Share This Post
       </h1>
       <h3 className={classes.subheading}>
         via Social Media
@@ -153,10 +155,10 @@ export default function Share(props) {
         </div>
         <div className={classes.linkDiv2}>
           <div className={classes.paraDiv}>
-          <p className={classes.para}>{shareLink}</p>
+          <p className={classes.para}>{postLink}</p>
           </div>
           <div className={classes.iconDiv}>
-            <CopyToClipboard text={shareLink} onCopy={handleClick}>
+            <CopyToClipboard text={postLink} onCopy={handleClick}>
               {click ? <Copied className={classes.icon2} /> :<Copy className={classes.icon2} />}
             </CopyToClipboard>
           </div>

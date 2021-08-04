@@ -402,7 +402,7 @@ export default function ShowPost() {
           <Grid item md={3} className={classes.left} display={{ xs: 'none', md: 'block' }}>
             <Paper className={classes.paper2}>
               <h3 className={classes.cardTitle}>Share</h3>
-              <Share id={data.posts.id} />
+              <Share id={data.posts.id} title={data.posts.title} />
               <Footer />
             </Paper>
           </Grid>
