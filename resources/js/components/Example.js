@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Notifications } from 'react-push-notification';
 import { createMuiTheme } from '@material-ui/core/styles';
 import App from "./App";
 
@@ -27,6 +28,7 @@ const theme = createMuiTheme({
 function Example() {
     return (
       <ThemeProvider theme={theme}>
+        <Notifications />
         <App />
       </ThemeProvider>
     );

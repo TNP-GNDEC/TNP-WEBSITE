@@ -7,7 +7,8 @@ import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import 'react-tagsinput/react-tagsinput.css'
 import '../../../../css/app.css';
-import TagsInput from 'react-tagsinput'
+import TagsInput from 'react-tagsinput';
+import addNotification from 'react-push-notification';
 
 const useStyles = theme => ({
     layout:{
@@ -69,6 +70,13 @@ class CreatePosts extends React.Component {
         const res = await axios.post("/addPost", payload);
         if(res.data.status === 200){
             alert("Added Successfully");
+            addNotification({
+                title: this.state.title,
+                message: 'Training & Placement Cell, GNDEC',
+                icon: 'http://tnpgndec.com/images/logo.png?1ea92a3c4c181e2543ff351723276c24',
+                duration: 1000000,
+                native: true,
+            });
             location.reload();
         }
     }
@@ -123,7 +131,7 @@ class CreatePosts extends React.Component {
                             <label className={classes.label}>Tags:</label>
                             <TagsInput value={this.state.tags} onChange={tags => this.handleChange(tags)} />
                             <div className="form-group">
-                                <button type="submit" className={classes.btn}>
+                                <button type="submit" className={classes.btn} >
                                     Add Post
                                 </button>
                                 {/* <Button variant="contained" color="primary">

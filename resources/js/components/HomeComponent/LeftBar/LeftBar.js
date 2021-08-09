@@ -5,6 +5,7 @@ import Connect from "./Connect";
 import Explore from "./Explore";
 import Downloads from "./Downloads";
 import UsefulLinks from "./Links";
+import WebNotify from './WebNotify';
 
 const useStyles = makeStyles((theme) => ({
     cardTitle:{
@@ -70,6 +71,8 @@ export default function LeftBar(){
             <Explore />
             <Downloads />
             <UsefulLinks />
+            <h3 className={classes.cardTitle}>Notifications</h3>
+            <WebNotify />
         </div>
     )
 }
