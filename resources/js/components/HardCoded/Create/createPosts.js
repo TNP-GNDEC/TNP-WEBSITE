@@ -70,13 +70,6 @@ class CreatePosts extends React.Component {
         const res = await axios.post("/addPost", payload);
         if(res.data.status === 200){
             alert("Added Successfully");
-            addNotification({
-                title: this.state.title,
-                message: 'Training & Placement Cell, GNDEC',
-                icon: 'http://tnpgndec.com/images/logo.png?1ea92a3c4c181e2543ff351723276c24',
-                duration: 1000000,
-                native: true,
-            });
             location.reload();
         }
     }

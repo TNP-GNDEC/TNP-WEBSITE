@@ -118,7 +118,7 @@ button2:{
   border: "none",
   borderRadius: "8px",
   backgroundColor: "#E6E9ED",
-  color: "#ACB9C2",
+  color: "#6F91AA",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -150,9 +150,6 @@ export default function WebNotify() {
   const classes = useStyles();
   const ButtonClick = () => {
     Notification.requestPermission();
-    if(Notification.permission === `denied`){
-      location.reload();
-    }
   }
 
   return (
@@ -166,27 +163,20 @@ export default function WebNotify() {
         Stay Upto Date!!
       </h1>
       <h3 className={classes.subheading}>
-        Get notified when latest posts uploaded.
+        Allow notifications in site settings.
       </h3>
       {Notification.permission === `granted` ?
         <div className={classes.button2}>
         <Typography variant="h6" component="h2" className={classes.subheading3}>
-          Subscribed
+          Status: Subscribed
         </Typography>
         </div>  
       :
-      Notification.permission === `denied` ?  
         <div className={classes.button2}>
-        <Typography variant="h6" component="h2" className={classes.subheading3}>
-          Blocked
-        </Typography>
-        </div> 
-      :
-        <button className={classes.button} onClick={ButtonClick}>
-          <Typography variant="h6" component="h2" className={classes.subheading2}>
-            Subscribe
+          <Typography variant="h6" component="h2" className={classes.subheading3}>
+            Status: Not Subscribed
           </Typography>
-        </button> 
+        </div> 
       }  
     </Card>
   );
