@@ -145,7 +145,7 @@ export default function Office() {
         </div>
       </div>
       <h1 className={classes.heading}>
-        Mr. Jagjot Singh
+        Mr. Prateek Khanna
       </h1>
       <h3 className={classes.subheading}>
         Student Coordinator
@@ -153,7 +153,7 @@ export default function Office() {
       <div className={classes.box}>
             <Phone className={classes.icon2}/>
             <Typography variant="h6" component="h2" className={classes.subheading2}>
-              +91-75033-88264
+              +91-85638-05068
             </Typography>
       </div>
       <div className={classes.box2}>
