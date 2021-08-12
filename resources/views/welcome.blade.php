@@ -12,16 +12,11 @@
         <!-- One Signal -->
         <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
         <script>
-        var OneSignal = window.OneSignal || [];
+        window.OneSignal = window.OneSignal || [];
         OneSignal.push(function() {
             OneSignal.init({
             appId: "9e3fe13d-b637-46b4-b2a8-9041cbf72e03",
-            autoRegister: true,
-            notifyButton: {
-                enable: true,
-            },
             });
-            OneSignal.registerForPushNotifications();
         });
         </script>
 

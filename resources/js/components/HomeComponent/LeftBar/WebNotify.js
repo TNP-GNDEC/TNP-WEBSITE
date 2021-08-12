@@ -178,6 +178,7 @@ export default function WebNotify() {
           </Typography>
         </div> 
       }  
+      <div class='onesignal-customlink-container'></div>
     </Card>
   );
 }
