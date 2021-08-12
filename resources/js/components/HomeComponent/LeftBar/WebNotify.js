@@ -163,21 +163,8 @@ export default function WebNotify() {
         Stay Upto Date!!
       </h1>
       <h3 className={classes.subheading}>
-        Allow notifications in site settings.
-      </h3>
-      {Notification.permission === `granted` ?
-        <div className={classes.button2}>
-        <Typography variant="h6" component="h2" className={classes.subheading3}>
-          Status: Subscribed
-        </Typography>
-        </div>  
-      :
-        <div className={classes.button2}>
-          <Typography variant="h6" component="h2" className={classes.subheading3}>
-            Status: Not Subscribed
-          </Typography>
-        </div> 
-      }  
+        Get updates from all sorts of things that matter to you.
+      </h3> 
       <div class='onesignal-customlink-container'></div>
     </Card>
   );
