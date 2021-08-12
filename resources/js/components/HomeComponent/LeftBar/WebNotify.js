@@ -163,7 +163,7 @@ export default function WebNotify() {
         Stay Upto Date!!
       </h1>
       <h3 className={classes.subheading}>
-        Get updates from all sorts of things that matter to you.
+      Subscribe for the latest news and updates.
       </h3> 
       <div class='onesignal-customlink-container'></div>
     </Card>
