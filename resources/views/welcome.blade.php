@@ -10,7 +10,7 @@
         <title>Training and Placement Cell</title>
 
         <!-- One Signal -->
-        <!-- <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
         <script>
         window.OneSignal = window.OneSignal || [];
         OneSignal.push(function() {
@@ -18,7 +18,7 @@
             appId: "775ce28f-b0b1-4132-85e3-fa3dd5ab3aa4",
             });
         });
-        </script> -->
+        </script>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
