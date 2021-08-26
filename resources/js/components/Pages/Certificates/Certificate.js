@@ -94,7 +94,7 @@ export default function Certificate() {
   const [Name, setName] = React.useState("");
 
   const fetchCert = async () => {
-    Axios.get(`/certData`, {id: id}).then((res) => {
+    Axios.post(`/certData`, {id: id}).then((res) => {
       if(res.data.status === 200){
           setFile(res.data.cert['file']);
           setName(res.data.cert['Name']);

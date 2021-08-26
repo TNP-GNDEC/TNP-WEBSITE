@@ -115,4 +115,4 @@ Route::get('/certificate/{id}', function () {
     return view('welcome');
 })-> name('example');
 
-Route::get('/certData','CertificateController@GetCert');
+Route::post('/certData','CertificateController@GetCert');
