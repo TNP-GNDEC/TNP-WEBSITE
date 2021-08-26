@@ -109,3 +109,10 @@ Route::get('/placement2018','PlacementController@Data2018');
 Route::get('/placement2017','PlacementController@Data2017');
 Route::get('/placement2016','PlacementController@Data2016');
 Route::get('/placement2015','PlacementController@Data2015');
+
+//Certificates
+Route::get('/certificate/{id}', function () {
+    return view('welcome');
+})-> name('example');
+
+Route::get('/certData','CertificateController@GetCert');
