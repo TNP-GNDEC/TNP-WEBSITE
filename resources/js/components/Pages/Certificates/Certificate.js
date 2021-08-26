@@ -90,12 +90,14 @@ const useStyles = makeStyles((theme) => ({
 export default function Certificate() {
   const classes = useStyles();
   const {id} = useParams();
+  const [cert, setCert] = React.useState([]);
   const [file, setFile] = React.useState("");
   const [Name, setName] = React.useState("");
 
   const fetchCert = async () => {
     Axios.post(`/certData`, {id: id}).then((res) => {
       if(res.data.status === 200){
+          setCert(res.data.cert);
           setFile(res.data.cert['file']);
           setName(res.data.cert['Name']);
       }
@@ -116,7 +118,7 @@ export default function Certificate() {
           <Grid item md={3} className={classes.left} display={{ xs: 'none', md: 'block' }}>
             <Paper className={classes.paper}>
               <h3 className={classes.cardTitle}>Candidate</h3>
-              <Candidate id={id} Name={Name} />
+              <Candidate id={id} Name={cert.Name} />
               <Footer />
             </Paper>
           </Grid>
@@ -124,7 +126,7 @@ export default function Certificate() {
             <Paper className={classes.paper}>
               <h3 className={classes.cardTitle}>Certificate</h3>
               <div className={classes.Certificate}>
-                  <img src={file} width="100%" height="100%" />
+                  <img src={cert.file} width="100%" height="100%" />
               </div>
             </Paper>
           </Grid>
