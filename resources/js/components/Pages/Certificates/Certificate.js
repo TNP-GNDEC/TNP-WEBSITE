@@ -92,7 +92,10 @@ export default function Certificate() {
   const {id} = useParams();
   const [cert, setCert] = React.useState([]);
   const [file, setFile] = React.useState("");
-  const [Name, setName] = React.useState("");
+  const [Name, setName] = React.useState("Undefined");
+  const [ID, setID] = React.useState("Null");
+  const [label, setLabel] = React.useState("Unvalid!");
+  const [Load, setLoad] = React.useState(true);
 
   const fetchCert = async () => {
     Axios.post(`/certData`, {id: id}).then((res) => {
@@ -100,6 +103,9 @@ export default function Certificate() {
           setCert(res.data.cert);
           setFile(res.data.cert['file']);
           setName(res.data.cert['Name']);
+          setID(res.data.cert['certificate_id']);
+          setLabel("Verified!");
+          setLoad(false);
       }
       }).catch((error) => {
       console.log(error);
@@ -118,7 +124,7 @@ export default function Certificate() {
           <Grid item md={3} className={classes.left} display={{ xs: 'none', md: 'block' }}>
             <Paper className={classes.paper}>
               <h3 className={classes.cardTitle}>Candidate</h3>
-              <Candidate id={id} Name={cert.Name} />
+              <Candidate id={ID} Name={Name} label={label} />
               <Footer />
             </Paper>
           </Grid>
@@ -126,7 +132,11 @@ export default function Certificate() {
             <Paper className={classes.paper}>
               <h3 className={classes.cardTitle}>Certificate</h3>
               <div className={classes.Certificate}>
-                  <img src={cert.file} width="100%" height="100%" />
+                {Load ? 
+                <></>
+                :
+                  <img src={file} width="100%" height="100%" />
+                }
               </div>
             </Paper>
           </Grid>

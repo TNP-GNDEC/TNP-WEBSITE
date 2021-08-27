@@ -12,7 +12,7 @@ class CertificateController extends Controller
   public function GetCert(Request $request)
   {
     $id = $request->id;
-	  $cert = DB::table('certificate_tnp')->where('certificate_id', $request->id)->get();
+	  $cert = DB::table('certificate_tnp')->where('certificate_id', $request->id)->first();
     return response() -> json(['status' => 200, 'cert' => $cert , 'id' => $request->id]);
   }
 }
