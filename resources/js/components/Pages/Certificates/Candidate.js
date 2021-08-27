@@ -133,12 +133,43 @@ subheading2:{
       fontSize: "16px",
   },
 },
+label:{
+  width: "45%",
+  height: "32px",
+  textAlign: "left",
+  display: "flex",
+  margin: "0 0 15px 15px",
+  borderRadius: "8px",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "#93DC96",
+  color: "#2B472C",
+  fontFamily: "Open Sans",
+  fontWeight: "600",
+  fontSize: "14px"
+},
+label2:{
+  width: "45%",
+  height: "32px",
+  textAlign: "left",
+  display: "flex",
+  margin: "0 0 15px 15px",
+  borderRadius: "8px",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "#F6A5A5",
+  color: "#683838",
+  fontFamily: "Open Sans",
+  fontWeight: "600",
+  fontSize: "14px"
+},
 }));
 
 export default function Candidate(props) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
+      <div className={ props.label === "Unvalid!" ? classes.label2 : classes.label}>{props.label}</div>
       <div className={classes.media}>
         <div className={classes.imageBox}>
             <img src={office} className={classes.image}/>
