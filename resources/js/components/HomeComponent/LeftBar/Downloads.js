@@ -66,7 +66,7 @@ export default function Office() {
 
   return (
     <Card className={classes.root}>
-      <a href="../../../../files/PlacementBroucher.pdf" download="PlacementBroucher.pdf" >
+      <a href="/documents/Downloads/PlacementBroucher.pdf" download="PlacementBroucher.pdf" >
         <div className={classes.down1}>
           <div className={classes.innerDown}>
             <h3 className={classes.heading}>Placement Broucher</h3>
@@ -74,7 +74,7 @@ export default function Office() {
           </div>
         </div>
       </a>
-      <a href="../../../../files/Evaluation.pdf" download="Evaluation.pdf" >
+      <a href="/documents/Downloads/Evaluation.pdf" download="Evaluation.pdf" >
         <div className={classes.down2}>
           <div className={classes.innerDown}>
             <h3 className={classes.heading}>Evaluation</h3>
@@ -82,7 +82,7 @@ export default function Office() {
           </div>
         </div>
       </a>
-      <a href="../../../../files/Department_Faculty_Coordinators.pdf" download="Department_Faculty_Coordinator.pdf">
+      <a href="/documents/Downloads/Department_Faculty_Coordinators.pdf" download="Department_Faculty_Coordinator.pdf">
         <div className={classes.down1}>
           <div className={classes.innerDown}>
             <h3 className={classes.heading}>Department Coordinators</h3>
@@ -90,7 +90,7 @@ export default function Office() {
           </div>
         </div>
       </a>
-      <a href="../../../../files/6WeeksTraining.pdf" download="6WeeksTraining.pdf" >
+      <a href="/documents/Downloads/6WeeksTraining.pdf" download="6WeeksTraining.pdf" >
         <div className={classes.down2}>
           <div className={classes.innerDown}>
             <h3 className={classes.heading}>6 Weeks Training Form</h3>
@@ -98,7 +98,7 @@ export default function Office() {
           </div>
         </div>
       </a>
-      <a href="../../../../files/Training.pdf" download="Training.pdf" >
+      <a href="/documents/Downloads/Training.pdf" download="Training.pdf" >
         <div className={classes.down1}>
           <div className={classes.innerDown}>
             <h3 className={classes.heading}>6 Months Training Form</h3>
