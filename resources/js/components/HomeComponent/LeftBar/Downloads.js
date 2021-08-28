@@ -1,82 +1,111 @@
-import React from "react";
-import Axios from "axios";
-import DownloadsData from "./LeftBarData/DownloadsData";
-import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import Download from '@material-ui/icons/GetApp';
+import Business from '@material-ui/icons/Business';
+import Email from '@material-ui/icons/Email';
+import Phone from '@material-ui/icons/Phone';
 
-const useStyles = theme => ({
-    root: {
-      width: "100%",
-      padding: "10px",
-      marginBottom: "20px",
-      boxShadow: "0 1px 1px rgba(0,0,0,0.15),0 8px 0 -5px #eee,0 8px 1px -4px rgba(0,0,0,0.15),0 16px 0 -10px #eee,0 16px 1px -9px rgba(0,0,0,0.15)",
-    },
-    header:{
-        display: "flex",
-    },
-    icon:{
-      backgroundColor: theme.palette.primary.dark,
-      boxShadow: "0px 5px 15px #193b6833",
-      color: theme.palette.secondary.main,
-      borderRadius: "5px",
-      marginRight: "10px",
-      height: "30px",
-      width: "30px",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center"
+import file from "../../../../images/file.png";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    marginBottom: "34px",
+    borderRadius: "16px",
+    boxShadow: "0px 15px 30px #8a959e33",
   },
-  Icon:{
-    fontSize: "18px",
+  heading:{
+    fontSize: "17px",
+    fontFamily: "Open Sans",
+    fontWeight: "600",
+    paddingTop: "3px",
+    color: theme.palette.primary.dark,
+    ['@media (min-width:1600px)']: {
+      fontSize: "20px",
   },
-    title:{
-        color: theme.palette.primary.dark,
-        fontSize: "22px"
+  },
+  subheading:{
+      fontSize: "13px",
+      fontFamily: "Open Sans",
+      fontWeight: "600",
+      color: theme.palette.primary.text,
+      ['@media (min-width:1600px)']: {
+        fontSize: "16px"
     },
-});
+  },
+subheading2:{
+    fontSize: "14px",
+    fontFamily: "Open Sans",
+    fontWeight: "600",
+    color: theme.palette.primary.main,
+    ['@media (min-width:1600px)']: {
+      fontSize: "16px"
+  },
+},
+down1:{
+  width: "100%",
+  padding: "20px",
+},
+down2:{
+  width: "100%",
+  padding: "20px",
+  backgroundColor: "#f6f6f6",
+},
+innerDown:{
+  width: "100%",
+  height: "25px",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItem: "center",
+},
+}));
 
-class Downloads extends React.Component {
-    state = {
-        data: [],
-    }
-    fetchData = async () => {
-        const res = await Axios.get("/addDownloadsItems");
-        if(res.data.status === 200){
-            this.setState({data: res.data.data});
-        }
-    }
-    componentDidMount(){
-        this.fetchData();
-    }
+export default function Office() {
+  const classes = useStyles();
 
-    deleteData = async (id) => {
-        const res = await Axios.delete(`/addDownloadsItems/${id}`);
-        if(res.data.status === 200){
-            this.fetchData();
-        }
-    }
-
-    render(){
-        if(Object.keys(this.state.data).length == 0){
-            return <div></div>
-        }
-        const {classes} = this.props;
-        return(
-            <Card className={classes.root} variant="outlined">
-                <div className={classes.header}>
-                <div className={classes.icon}><Download className={classes.Icon}/></div>
-                    <Typography variant="h5" component="h2" className={classes.title}>
-                        Downloads
-                    </Typography>
-                </div>
-                {this.state.data.map(data => (
-                    <DownloadsData data = {data} key={data.id} deleteData = {this.deleteData}/>
-                ))}
-            </Card>
-        )
-    }
+  return (
+    <Card className={classes.root}>
+      <a href="../../../../files/PlacementBroucher.pdf" download="PlacementBroucher.pdf" >
+        <div className={classes.down1}>
+          <div className={classes.innerDown}>
+            <h3 className={classes.heading}>Placement Broucher</h3>
+            <img src={file} width="18px" />
+          </div>
+        </div>
+      </a>
+      <a href="../../../../files/Evaluation.pdf" download="Evaluation.pdf" >
+        <div className={classes.down2}>
+          <div className={classes.innerDown}>
+            <h3 className={classes.heading}>Evaluation</h3>
+            <img src={file} width="18px" />
+          </div>
+        </div>
+      </a>
+      <a href="../../../../files/Department_Faculty_Coordinators.pdf" download="Department_Faculty_Coordinator.pdf">
+        <div className={classes.down1}>
+          <div className={classes.innerDown}>
+            <h3 className={classes.heading}>Department Coordinators</h3>
+            <img src={file} width="18px" />
+          </div>
+        </div>
+      </a>
+      <a href="../../../../files/6WeeksTraining.pdf" download="6WeeksTraining.pdf" >
+        <div className={classes.down2}>
+          <div className={classes.innerDown}>
+            <h3 className={classes.heading}>6 Weeks Training Form</h3>
+            <img src={file} width="18px" />
+          </div>
+        </div>
+      </a>
+      <a href="../../../../files/Training.pdf" download="Training.pdf" >
+        <div className={classes.down1}>
+          <div className={classes.innerDown}>
+            <h3 className={classes.heading}>6 Months Training Form</h3>
+            <img src={file} width="18px" />
+          </div>
+        </div>
+      </a>
+    </Card>
+  );
 }
-
-export default withStyles(useStyles)(Downloads);
