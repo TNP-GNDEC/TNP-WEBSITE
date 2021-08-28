@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
       padding: "15px 15px 0px 15px",
-      marginTop: "30px",
+      marginTop: "34px",
       borderRadius: "16px",
       backgroundColor: theme.palette.primary.main,
       boxShadow: "0px 10px 25px #1687d933",

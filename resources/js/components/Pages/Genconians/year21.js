@@ -6,7 +6,7 @@ import Github from '@material-ui/icons/GitHub';
 import Twitter from '@material-ui/icons/Twitter';
 import Medium from '@material-ui/icons/Web';
 import Mail from '@material-ui/icons/Mail';
-import Member1 from '../../../../images/Genconians/vikalp.jpeg';
+import Member1 from '../../../../images/Genconians/vikalp.png';
 import Member2 from '../../../../images/Genconians/palak.jpeg';
 import Member3 from '../../../../images/Genconians/suryansh.jpeg';
 import Member4 from '../../../../images/Genconians/gursidak.jpeg';

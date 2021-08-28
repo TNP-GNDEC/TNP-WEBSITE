@@ -68,10 +68,11 @@ export default function LeftBar(){
             <p className={classes.greeting2}>Welcome to the T&P Cell</p>
             <h3 className={classes.cardTitle}>Connect</h3>
             <Connect />
+            <h3 className={classes.cardTitle}>Downloads</h3>
+            <Downloads />
             <h3 className={classes.cardTitle}>Notifications</h3>
             <WebNotify />
             <Explore />
-            <Downloads />
             <UsefulLinks />
         </div>
     )

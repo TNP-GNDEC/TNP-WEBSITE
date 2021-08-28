@@ -20,7 +20,7 @@ const useStyles = theme => ({
     root: {
         width: "100%",
         padding: "15px",
-        marginBottom: "30px",
+        marginBottom: "40px",
         borderRadius: "16px",
         boxShadow: "0px 15px 30px #8a959e33",
         ['@media (min-width:1600px)']: {

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     paddingTop: "15px",
-    marginBottom: "20px",
+    marginBottom: "24px",
     textAlign: "center",
     borderRadius: "16px",
     boxShadow: "0px 15px 30px #8a959e33",
