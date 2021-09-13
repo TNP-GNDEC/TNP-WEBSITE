@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     paddingTop: "15px",
     marginBottom: "34px",
-    textAlign: "center",
     borderRadius: "16px",
     boxShadow: "0px 15px 30px #8a959e33",
     ['@media (min-width:1600px)']: {
@@ -45,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   handles:{
     width: "90%",
-    marginBottom: "20px",
+    marginBottom: "15px",
     marginLeft: "auto",
     marginRight: "auto",
     height: "30%",
@@ -95,6 +94,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heading:{
     marginBottom: "10px",
+    paddingLeft: "10px",
     fontSize: "18px",
     fontFamily: "Open Sans",
     fontWeight: "600",
@@ -155,9 +155,6 @@ export default function Office() {
 
   return (
     <Card className={classes.root}>
-      <h1 className={classes.heading}>
-        Connect with the TPO
-      </h1>
       <div className={classes.handles}>
         <div className={classes.imageBox}>
             <img src={whatsapp} className={classes.image}/>
