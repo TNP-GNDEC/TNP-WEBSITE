@@ -136,13 +136,13 @@ const useStyles = theme => ({
     read: {
         borderRadius: "5px",
         width: "100%",
-        margin: "8px auto",
+        margin: "12px auto",
         height: "40px",
         marginTop: "5px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: "10px 0px 0px 0px"
+        padding: "15px 0px 10px 0px"
     },
     readLink: {
         width: "100%",
@@ -151,6 +151,7 @@ const useStyles = theme => ({
     readButton: {
         backgroundColor: theme.palette.primary.main,
         padding: "10px 0px",
+        margin: "10px 0px",
         fontSize: "16px",
         borderRadius: "16px",
         fontFamily: "Open Sans",

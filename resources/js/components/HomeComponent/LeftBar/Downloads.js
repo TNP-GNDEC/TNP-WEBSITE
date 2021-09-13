@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "34px",
     borderRadius: "16px",
     boxShadow: "0px 15px 30px #8a959e33",
+    border: "2px solid #e5e5e5",
   },
   heading:{
     fontSize: "17px",
@@ -50,7 +51,7 @@ down1:{
 down2:{
   width: "100%",
   padding: "20px",
-  backgroundColor: "#f6f6f6",
+  backgroundColor: theme.palette.secondary.accent,
 },
 innerDown:{
   width: "100%",
