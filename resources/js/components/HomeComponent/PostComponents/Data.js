@@ -332,7 +332,7 @@ class Data extends React.Component {
                             <div className={classes.subheader2}>
                                 <img src={logo} className={classes.image} />
                                 <Typography variant="h5" component="h2" className={classes.subheading}>
-                                    {moment.utc(posts.updated_at).format('LLL')}
+                                    {moment(posts.updated_at).format('LLL')}
                                 </Typography>
                             </div>
                             <div className={classes.subheader3}>
