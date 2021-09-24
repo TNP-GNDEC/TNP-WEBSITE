@@ -26,6 +26,7 @@ import EditLinks from "./HardCoded/Edit/EditLinks";
 
 import Coordinator from "./RedirectPages/Coordinator/Coordinator";
 import studentredirect from "./RedirectPages/Student/Student";
+import Admin from "./RedirectPages/Admin/Coordinator";
 
 import ForgetPass from "./Auth/ForgotPassword";
 import ResetPass from "./Auth/ResetPass";
@@ -66,6 +67,7 @@ function App(){
                     {/*Redirect Routes*/}
                     <AdminRoute path="/coordinator" exact component={Coordinator} />
                     <StudentRoute path="/student" exact component={studentredirect} />
+                    <Route path="/admin" exact component={Admin} /> {/*under development*/}
 
                     {/*Redirect Routes*/}
                     <StudentRoute path="/forms" exact component={Email} />

@@ -58,6 +58,9 @@ Route::get('/coordinator', function () {
 Route::get('/student', function () {
     return view('welcome');
 })-> name('example');
+Route::get('/admin', function () {
+    return view('welcome');
+})-> name('example');
 Route::get('/about', function () {
     return view('welcome');
 })-> name('example');

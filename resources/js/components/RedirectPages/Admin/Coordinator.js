@@ -1,0 +1,73 @@
+import React from "react";
+import Navbar from "./CoordinatorNav";
+import { makeStyles } from '@material-ui/core/styles';
+import CssBaseline from "@material-ui/core/CssBaseline";
+import MainContent from "./MainContent";
+import Sidebar from './Sidebar';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: "flex",
+        backgroundColor: theme.palette.primary.light,
+        minHeight: "100vh",
+    },
+
+    toolbar: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: theme.spacing(0, 1),
+        marginTop:"10px",
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar
+    },
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing(1),
+    },
+    
+    mainContent:{
+        marginTop:"30px",
+    },
+
+    foot: {
+        position: "fixed",
+        bottom: "3px",
+        width: "100%",
+        textAlign: "center",
+    }
+
+}));
+
+export default function Coordinator() {
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+    const [activeContentID, setId] = React.useState(1);
+
+    //Sidebar Utility Functions for open and close
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
+
+    const changeActiveId = (id) =>{
+        setId(id);
+    }
+
+    return (
+        <div className={classes.root}>
+            <CssBaseline />
+            <Sidebar isOpen={open} changeMainContent={changeActiveId} />
+
+            <main className={classes.content}>
+                <Navbar isOpen={open} handleOpen={handleDrawerOpen} handleClose={handleDrawerClose} />             
+                <MainContent activeId={activeContentID} className={classes.mainContent} />
+            </main>
+        </div>
+    );
+}
+
+
