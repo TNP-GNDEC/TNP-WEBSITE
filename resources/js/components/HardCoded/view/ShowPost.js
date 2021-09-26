@@ -424,7 +424,7 @@ export default function ShowPost() {
                             <div className={classes.subheader2}>
                                 <img src={logo} className={classes.image} />
                                 <Typography variant="h5" component="h2" className={classes.subheading}>
-                                    {moment.utc(data.posts.updated_at).format('LLL')}
+                                    {moment(data.posts.updated_at).format('LLL')}
                                 </Typography>
                             </div>
                             <div className={classes.subheader3}>
