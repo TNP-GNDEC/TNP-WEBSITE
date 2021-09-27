@@ -44,15 +44,6 @@ export default function Genconians(){
                     of 2018-22 batch.
                   </p>
                   <ul class="list-inline" id="list-link">
-                  <li class="list-inline-item">
-                      <a
-                        class="social-icon"
-                        target="_blank"
-                        href="https://vikalpkaushik99.medium.com"
-                      >
-                        <Medium />
-                      </a>
-                    </li>
                     <li class="list-inline-item">
                       <a
                         class="social-icon"
@@ -78,15 +69,6 @@ export default function Genconians(){
                         href="https://github.com/vikalp2502"
                       >
                         <Github />
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a
-                        class="social-icon"
-                        target="_blank"
-                        href="https://twitter.com/kaushik_vikalp"
-                      >
-                        <Twitter />
                       </a>
                     </li>
                     <li class="list-inline-item">
