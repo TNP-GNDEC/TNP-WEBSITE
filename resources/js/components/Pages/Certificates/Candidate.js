@@ -169,7 +169,7 @@ export default function Candidate(props) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <div className={ props.label === "Unvalid!" ? classes.label2 : classes.label}>{props.label}</div>
+      <div className={ props.label === "Invalid!" ? classes.label2 : classes.label}>{props.label}</div>
       <div className={classes.media}>
         <div className={classes.imageBox}>
             <img src={office} className={classes.image}/>
