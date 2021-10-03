@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -16,22 +15,26 @@ class postController extends Controller
     {
         $page = $request->page;
         $search = $request->searchText;
-        if (!empty($search)) {
-            $posts = Post::orderBy('updated_at', 'DESC')
-            ->where('title','Like', '%' . $search . '%')
-            ->skip(0)->take($page)->get();
+        if (!empty($search))
+        {
+            $posts = Post::orderBy('updated_at', 'DESC')->where('title', 'Like', '%' . $search . '%')->skip(0)
+                ->take($page)->get();
         }
-        else{
-            $posts = Post::orderBy('updated_at', 'DESC')
-            ->skip(0)->take($page)->get();
+        else
+        {
+            $posts = Post::orderBy('updated_at', 'DESC')->skip(0)
+                ->take($page)->get();
         }
-        return response() -> json(['status' => 200,'page'=>$page, 'posts' => $posts]);
+        return response()
+            ->json(['status' => 200, 'page' => $page, 'posts' => $posts]);
     }
 
     public function index()
     {
-        $posts = Post::orderBy('updated_at', 'DESC')->limit(6)->get();
-        return response() -> json(['status' => 200, 'posts' => $posts]);
+        $posts = Post::orderBy('updated_at', 'DESC')->limit(6)
+            ->get();
+        return response()
+            ->json(['status' => 200, 'posts' => $posts]);
     }
 
     /**
@@ -42,6 +45,7 @@ class postController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -52,13 +56,9 @@ class postController extends Controller
      */
     public function store(Request $request)
     {
-        $newPost = Post::create([
-            'title' => $request->title,
-            'type' => $request->type,
-            'description' => $request->description,
-            'tags' => json_encode($request->tags),
-        ]);
-        if($newPost){
+        $newPost = Post::create(['title' => $request->title, 'type' => $request->type, 'description' => $request->description, 'tags' => json_encode($request->tags) , ]);
+        if ($newPost)
+        {
             return response()->json(["status" => 200]);
         }
     }
@@ -72,6 +72,7 @@ class postController extends Controller
     public function show($id)
     {
         //
+        
     }
 
     /**
@@ -100,8 +101,10 @@ class postController extends Controller
         $posts->type = $request->type;
         $posts->description = $request->description;
         $posts->tags = json_encode($request->tags);
-        if($posts -> save()){
-            return response()->json(["status" => 200]);
+        if ($posts->save())
+        {
+            return response()
+                ->json(["status" => 200]);
         }
     }
 
@@ -114,8 +117,10 @@ class postController extends Controller
     public function destroy($id)
     {
         $posts = Post::find($id);
-        if($posts -> delete()){
-            return response()->json(["status" => 200]);
+        if ($posts->delete())
+        {
+            return response()
+                ->json(["status" => 200]);
         }
     }
 }
