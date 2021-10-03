@@ -114,7 +114,7 @@ const Assistance = () => {
             <h3 className={classes.subheading}>in Placement/ Internship.</h3>
             <div className={classes.read}>
                 <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSf-BA4aX65jg_7KsfMEhyF6IuISiOQoUXZJATEyZZqfXyWOaQ/viewform"
+                    href="https://forms.gle/zgzK87DuoyVVSfSn7"
                     target="_blank"
                     style={{ textDecoration: "none" }}
                     className={classes.readLink}
