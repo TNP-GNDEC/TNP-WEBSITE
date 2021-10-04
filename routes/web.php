@@ -68,8 +68,14 @@ Route::get('/login', function ()
 })
     ->name('example');
 
+
+Route::get('/executiveMembers', function () {
+    return view('welcome');
+})-> name('example');
+
 Route::get('/coordinator', function ()
 {
+
     return view('welcome');
 })
     ->name('example');
