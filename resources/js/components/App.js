@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import '../../css/app.css';
 
 import Home from "./Pages/Home";
@@ -33,59 +33,58 @@ import ResetPass from "./Auth/ResetPass";
 
 
 import ShowPost from "./HardCoded/view/ShowPost";
+import TechnicalMembers from "./Pages/TecnhincalMembers/TechnicalMembers";
 
 
-function App(){ 
-    
-    return(
-        
-            
-        <Router>
-            <>
-                <Switch>
-                    <Route path="/" exact component={Home}/>
-                    <Route path="/about" exact component={About}/>
-                    <Route path="/genconians" exact component={Genconians}/>
-                    <Route path="/certificate/:id" exact component={Certificates}></Route>
+function App() {
+  return (
+    <Router>
+      <>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/about" exact component={About} />
+          <Route path="/genconians" exact component={Genconians} />
+          <Route path="/technicalMembers" exact component={TechnicalMembers}></Route>
+          <Route path="/certificate/:id" exact component={Certificates}></Route>
 
-                    {/* Auth */}
-                    <Route path="/login" exact component={login}/>
+          {/* Auth */}
+          <Route path="/login" exact component={login} />
 
-                    {/* Create Routes */}
-                    <Route path="/addConnect" exact component={createConnect} />
-                    <Route path="/addExplore" exact component={createExplore} />
-                    <Route path="/addDownloads" exact component={createDownloads} />
-                    <Route path="/addLinks" exact component={createLinks} />
-                    
-                    {/* Edit Routes */}
-                    <Route path="/edit/:id" exact component={EditPosts} />
-                    <Route path="/editConnect/:id" exact component={EditConnect} />
-                    <Route path="/editExplore/:id" exact component={EditExplore} />
-                    <Route path="/editDownloads/:id" exact component={EditDownloads} />
-                    <Route path="/editLinks/:id" exact component={EditLinks} />
+          {/* Create Routes */}
+          <Route path="/addConnect" exact component={createConnect} />
+          <Route path="/addExplore" exact component={createExplore} />
+          <Route path="/addDownloads" exact component={createDownloads} />
+          <Route path="/addLinks" exact component={createLinks} />
 
-                    {/*Redirect Routes*/}
-                    <AdminRoute path="/coordinator" exact component={Coordinator} />
-                    <StudentRoute path="/student" exact component={studentredirect} />
-                    <Route path="/admin" exact component={Admin} /> {/*under development*/}
+          {/* Edit Routes */}
+          <Route path="/edit/:id" exact component={EditPosts} />
+          <Route path="/editConnect/:id" exact component={EditConnect} />
+          <Route path="/editExplore/:id" exact component={EditExplore} />
+          <Route path="/editDownloads/:id" exact component={EditDownloads} />
+          <Route path="/editLinks/:id" exact component={EditLinks} />
 
-                    {/*Redirect Routes*/}
-                    <StudentRoute path="/forms" exact component={Email} />
-                    <StudentRoute path="/verify" exact component={Verify}/>
+          {/*Redirect Routes*/}
+          <AdminRoute path="/coordinator" exact component={Coordinator} />
+          <StudentRoute path="/student" exact component={studentredirect} />
+          <Route path="/admin" exact component={Admin} /> {/*under development*/}
 
-                    {/* Reset Password */}
-                    <Route path="/forgetPassword" exact component={ForgetPass} />
-                    <Route path="/resetPassword/:token" exact component={ResetPass} />
+          {/*Redirect Routes*/}
+          <StudentRoute path="/forms" exact component={Email} />
+          <StudentRoute path="/verify" exact component={Verify} />
 
-                    {/* viewing Post after Read more */}
-                    <Route path="/showPost/:id" exact component={ShowPost}></Route>
-                    
-                </Switch>
-            </>
-            
-        </Router>
-        
-    );
+          {/* Reset Password */}
+          <Route path="/forgetPassword" exact component={ForgetPass} />
+          <Route path="/resetPassword/:token" exact component={ResetPass} />
+
+          {/* viewing Post after Read more */}
+          <Route path="/showPost/:id" exact component={ShowPost}></Route>
+
+        </Switch>
+      </>
+
+    </Router>
+
+  );
 }
 
 export default App;
