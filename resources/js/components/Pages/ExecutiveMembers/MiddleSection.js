@@ -96,10 +96,10 @@ export default function MiddleSection() {
           style={{padding: 5, fontSize: 20}}
           disableUnderline
         >
-          <MenuItem value={3} style={{fontSize: 18}}>2021-22</MenuItem>
-          <MenuItem value={2} style={{fontSize: 18}}>2020-21</MenuItem>
-          <MenuItem value={1} style={{fontSize: 18}}>2019-20</MenuItem>
           <MenuItem value={0} style={{fontSize: 18}}>2018-19</MenuItem>
+          <MenuItem value={1} style={{fontSize: 18}}>2019-20</MenuItem>
+          <MenuItem value={2} style={{fontSize: 18}}>2020-21</MenuItem>
+          <MenuItem value={3} style={{fontSize: 18}}>2021-22</MenuItem>
         </Select>
       </FormControl>
       <Card className={classes.pdfCard}>
