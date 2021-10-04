@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     formControl: {
         backgroundColor: "#FFFFFF",
         borderRadius: "12px",
-        border: "2px #B1B1B1 solid",
+        border: "1px #B1B1B1 solid",
         overflow: "hidden",
         userSelect: "none",
         outline: "none",
@@ -78,9 +78,21 @@ export default function MiddleSection() {
                 fullWidth
             >
                 <Select
+                    MenuProps={{
+                        anchorOrigin: {
+                            vertical: "top",
+                            horizontal: "left"
+                        },
+                        transformOrigin: {
+                            vertical: "top",
+                            horizontal: "left"
+                        },
+                        getContentAnchorEl: null
+                    }}
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={index}
+                    className={classes.selectDropdown}
                     onChange={handleChange}
                     label="batch"
                     disableUnderline

@@ -16,13 +16,14 @@ const useStyles = makeStyles(theme => ({
         }
     },
     heading: {
-        marginTop: "18px",
-        marginBottom: "22px",
-        paddingLeft: "5px",
-        paddingRight: "5px",
-        fontSize: "18px",
+        marginTop: "15px",
+        marginBottom: "15px",
+        fontSize: "16px",
+        padding: "0 5px",
         fontFamily: "Open Sans",
         fontWeight: "600",
+        width: "100%",
+        textAlign: 'center',
         ["@media (min-width:1600px)"]: {
             fontSize: "20px",
             paddingTop: "12px"
@@ -34,9 +35,9 @@ const useStyles = makeStyles(theme => ({
         borderRadius: "16px",
         marginTop: "7px",
         marginBottom: "15px",
+        TextAlign: "center",
         marginLeft: "auto",
         marginRight: "auto",
-        paddingLeft: "20px",
         height: "50%",
         display: "flex",
         alignItems: "center"
@@ -62,7 +63,7 @@ export default function Links() {
                         <ComputerIcon
                             style={{
                                 fontSize: 25,
-                                marginRight: 10,
+                                marginRight: 5,
                                 color: "#1687D9"
                             }}
                         />{" "}
@@ -82,7 +83,7 @@ export default function Links() {
                         <PlaylistAddCheckIcon
                             style={{
                                 fontSize: 25,
-                                marginRight: 10,
+                                marginRight: 5,
                                 color: "#1687D9"
                             }}
                         />{" "}
