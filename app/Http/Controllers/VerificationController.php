@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\ApiCode;
@@ -10,15 +9,17 @@ use App\Mail\EmailVerification;
 use App\Notifications\EmailVerification2;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use App\Models\PasswordReset; 
+use App\Models\PasswordReset;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
-class VerificationController extends Controller {
+class VerificationController extends Controller
+{
 
-    public function __construct() {
-        
-        }
+    public function __construct()
+    {
+
+    }
 
     /**
      * Verify email
@@ -27,38 +28,43 @@ class VerificationController extends Controller {
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function verify(Request $request) {
+    public function verify(Request $request)
+    {
 
         $user = auth()->user();
         $user->email = $request->email;
 
         $token = Str::random(60);
 
-    	PasswordReset::create([
+        PasswordReset::create([
 
-    		'email' => $request->email,
+        'email' => $request->email,
 
-			'token' => $token,
-    	]);
-             
-    	$tokenData = PasswordReset::where('email', $request
-        ->email)->first();
+        'token' => $token, ]);
 
-    		if($tokenData){
-    			Mail::to($tokenData->email)->send(new EmailVerification($tokenData));
-                if (!$user->hasVerifiedEmail()) {
-                    $user->markEmailAsVerified();
-                }
-    			return response()->json(['msg' => 'A Verification Link has been sent to your Mail! & Please also check the spam folder.']);
-    		}
-    		else{
-    			return response()->json(['alert' => 'Sorry we could not send a link, try again later!']);
-    		}
-        
+        $tokenData = PasswordReset::where('email', $request->email)
+            ->first();
+
+        if ($tokenData)
+        {
+            Mail::to($tokenData->email)
+                ->send(new EmailVerification($tokenData));
+            if (!$user->hasVerifiedEmail())
+            {
+                $user->markEmailAsVerified();
+            }
+            return response()
+                ->json(['msg' => 'A Verification Link has been sent to your Mail! & Please also check the spam folder.']);
+        }
+        else
+        {
+            return response()
+                ->json(['alert' => 'Sorry we could not send a link, try again later!']);
+        }
 
         // return response()->json(["msg" => "Email already verified."]);
-
         // return redirect()->to('/');
+        
     }
 
     /**
@@ -66,23 +72,32 @@ class VerificationController extends Controller {
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function resend() {
-        if (auth()->user()->hasVerifiedEmail()) {
+    public function resend()
+    {
+        if (auth()
+            ->user()
+            ->hasVerifiedEmail())
+        {
             return $this->respondBadRequest(ApiCode::EMAIL_ALREADY_VERIFIED);
         }
 
-        auth()->user()->sendEmailVerificationNotification();
+        auth()
+            ->user()
+            ->sendEmailVerificationNotification();
 
         return $this->respondWithMessage("Email verification link sent on your email id");
     }
-    public function getUsers() {
-        $user=auth()->user();
-        $form = DB::table('form_statuses')
-        ->where('user_id', $user->id)
-        ->first();
-        if ($form->form_step > 0) {
-            return response()->json(['msg' => "Email already verified."]);
+    public function getUsers()
+    {
+        $user = auth()->user();
+        $form = DB::table('form_statuses')->where('user_id', $user->id)
+            ->first();
+        if ($form->form_step > 0)
+        {
+            return response()
+                ->json(['msg' => "Email already verified."]);
         }
-        return response()->json(['alert' => 'error occurs']);
+        return response()
+            ->json(['alert' => 'error occurs']);
     }
 }

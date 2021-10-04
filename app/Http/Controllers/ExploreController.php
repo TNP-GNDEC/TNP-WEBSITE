@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -15,7 +14,7 @@ class ExploreController extends Controller
     public function index()
     {
         $data = Explore::all();
-        return response() -> json(['status' => 200, 'data' => $data]);
+        return response()->json(['status' => 200, 'data' => $data]);
     }
 
     /**
@@ -26,6 +25,7 @@ class ExploreController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -36,11 +36,9 @@ class ExploreController extends Controller
      */
     public function store(Request $request)
     {
-        $newData = Explore::create([
-            'title' => $request->title,
-            'link' => $request->link,
-        ]);
-        if($newData){
+        $newData = Explore::create(['title' => $request->title, 'link' => $request->link, ]);
+        if ($newData)
+        {
             return response()->json(["status" => 200]);
         }
     }
@@ -54,6 +52,7 @@ class ExploreController extends Controller
     public function show($id)
     {
         //
+        
     }
 
     /**
@@ -80,8 +79,10 @@ class ExploreController extends Controller
         $data = Explore::find($id);
         $data->title = $request->title;
         $data->link = $request->link;
-        if($data -> save()){
-            return response()->json(["status" => 200]);
+        if ($data->save())
+        {
+            return response()
+                ->json(["status" => 200]);
         }
     }
 
@@ -94,8 +95,10 @@ class ExploreController extends Controller
     public function destroy($id)
     {
         $data = Explore::find($id);
-        if($data -> delete()){
-            return response()->json(["status" => 200]);
+        if ($data->delete())
+        {
+            return response()
+                ->json(["status" => 200]);
         }
     }
 }
