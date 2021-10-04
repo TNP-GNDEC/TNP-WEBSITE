@@ -34,6 +34,8 @@ import ResetPass from "./Auth/ResetPass";
 
 import ShowPost from "./HardCoded/view/ShowPost";
 
+import coreMembers from './Pages/coreMembers/coreMembers';
+
 
 function App(){ 
     
@@ -47,6 +49,7 @@ function App(){
                     <Route path="/about" exact component={About}/>
                     <Route path="/genconians" exact component={Genconians}/>
                     <Route path="/certificate/:id" exact component={Certificates}></Route>
+                    <Route path="/coreMembers" exact component={coreMembers} />
 
                     {/* Auth */}
                     <Route path="/login" exact component={login}/>
