@@ -7,6 +7,7 @@ import About from "./Pages/About";
 import Genconians from "./Pages/Genconians/Genconians";
 import Certificates from "./Pages/Certificates/Certificate";
 import ExecutiveMembers from "./Pages/ExecutiveMembers/ExecutiveMembers";
+import TechnicalMembers from "./Pages/TechnicalMembers/TechnicalMembers";
 
 import login from "./Auth/Login";
 import { AdminRoute, StudentRoute } from "./Auth/PrivateRoute";
