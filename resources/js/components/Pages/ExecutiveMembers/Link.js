@@ -18,13 +18,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   heading:{
-    marginTop: "18px",
-    marginBottom: "22px",
-    paddingLeft: "10px",
-    fontSize: "18px",
+    marginTop: "16px",
+    marginBottom: "16px",
+    textAlign: "center",
+    fontSize: "16px",
+    width: "100%",
     fontFamily: "Open Sans",
     fontWeight: "600",
-    paddingTop: "5px",
     ['@media (min-width:1600px)']: {
       fontSize: "20px",
       paddingTop: "12px"
@@ -38,19 +38,25 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "15px",
     marginLeft: "auto",
     marginRight: "auto",
-    paddingLeft: "20px",
+    paddingLeft: "5px",
     paddingRight: "5px",
     height: "50%",
     display: "flex",
     alignItems: "center",
   },
-  linkIcon:{
+  linkIcon1:{
     fontSize: "30px",
     marginRight: "10px",
     color: "#1687D9"
   },
+  linkIcon2:{
+    fontSize: "30px",
+    marginRight: "5px",
+    color: "#1687D9"
+  },
   text:{
-    color: "#303030"
+    color: "#303030",
+    textAlign: "center"
   }
 }));
 
@@ -63,7 +69,8 @@ export default function Links() {
           <h3 className={classes.heading}>
             <a href="/technicalMembers" target="_blank" rel="noopener" className={classes.text}
             style={{ textDecoration: 'none' }}>
-              <ComputerIcon className={classes.linkIcon} /> Technical Members
+              <ComputerIcon className={classes.linkIcon1}/> 
+              Technical Members
             </a>
           </h3>
       </div>
@@ -72,7 +79,8 @@ export default function Links() {
           <h3 className={classes.heading}>
             <a href="/coreMembers" target="_blank" rel="noopener" className={classes.text}
             style={{ textDecoration: 'none' }}>
-              <PersonRoundedIcon className={classes.linkIcon} /> Core Members
+              <PersonRoundedIcon className={classes.linkIcon2}/> 
+              Core Members
             </a>
           </h3>
       </div>

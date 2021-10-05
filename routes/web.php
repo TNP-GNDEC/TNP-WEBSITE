@@ -17,7 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/addPosts', function () {
+Route::get('/coreMembers', function ()
+{
+    return view('welcome');
+});
+
+Route::get('/addPosts', function ()
+{
     return view('welcome');
 });
 Route::get('/addConnect', function () {

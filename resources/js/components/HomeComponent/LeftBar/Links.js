@@ -5,36 +5,58 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/icons/Link';
+import { Icon } from "@material-ui/core";
+import gneLogo from '../../../../images/gndec.png';
+import linkIcon from '../../../../images/link.png';
+import naukriIcon from '../../../../images/naukri-com.png';
+import bixIcon from '../../../../images/indiabix.jpg';
+import indeedIcon from '../../../../images/indeed.jpg';
+import internshalaIcon from '../../../../images/internshala.jpg';
 
 const useStyles = theme => ({
-    root: {
-      width: "100%",
-      padding: "10px",
-      marginBottom: "20px",
-      boxShadow: "0 1px 1px rgba(0,0,0,0.15),0 8px 0 -5px #eee,0 8px 1px -4px rgba(0,0,0,0.15),0 16px 0 -10px #eee,0 16px 1px -9px rgba(0,0,0,0.15)",
-    },
-    header:{
-        display: "flex",
-    },
-    icon:{
-      backgroundColor: theme.palette.primary.dark,
-      boxShadow: "0px 5px 15px #193b6833",
-      color: theme.palette.secondary.main,
-      borderRadius: "5px",
-      marginRight: "10px",
-      height: "30px",
-      width: "30px",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center"
-  },
-  Icon:{
-    fontSize: "18px",
-  },
     title:{
         color: theme.palette.primary.dark,
-        fontSize: "22px"
+        fontSize: "20px",
+        fontWeight: "500"
     },
+    card:{
+        width: "300px",
+        height: "56px",
+        padding: "8px",
+        borderRadius: "8px",
+        filter: "drop-shadow(0 5px 25px rgba(48, 48, 48, 20%))",
+        marginTop: "14px",
+        boxShadow: "none"
+    },
+    cardTitle:{
+        fontSize: "20px",
+        fontWeight: "600",
+        marginTop: "auto",
+        marginBottom: "auto",
+        marginLeft: "7px"
+    },
+    container:{
+        display: "flex"
+    },
+    icon:{
+        width: "40px",
+        height: "40px"
+    },
+    linkIcon:{
+        width: "25px",
+        height: "25px",
+        marginTop: "auto",
+        marginBottom: "auto",
+        marginRight: "10px"
+    },
+    outerContainer: {
+        display: "flex",
+        justifyContent: "space-between",
+    },
+    link: {
+        marginTop: "auto",
+        marginBottom: "auto"
+    }
 });
 
 class Links extends React.Component {
@@ -47,6 +69,7 @@ class Links extends React.Component {
             this.setState({data: res.data.data});
         }
     }
+    
     componentDidMount(){
         this.fetchData();
     }
@@ -59,22 +82,92 @@ class Links extends React.Component {
     }
 
     render(){
-        if(Object.keys(this.state.data).length == 0){
-            return <div></div>
-        }
         const {classes} = this.props;
         return(
-            <Card className={classes.root} variant="outlined">
-                <div className={classes.header}>
-                <div className={classes.icon}><Link className={classes.Icon}/></div>
-                    <Typography variant="h5" component="h2" className={classes.title}>
-                        Useful Links
-                    </Typography>
+            <>
+            <Typography variant="h5" component="h2" className={classes.title}>
+                Useful Links
+            </Typography>
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={gneLogo}></img>
+                        <Typography className={classes.cardTitle}>
+                            GNDEC
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://gndec.ac.in" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
                 </div>
-                {this.state.data.map(data => (
-                    <LinksData data = {data} key={data.id} deleteData = {this.deleteData}/>
-                ))}
             </Card>
+
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={naukriIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            Naukri.com
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://naukri.com" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={bixIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            IndiaBix
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://indiabix.com" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={indeedIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            Indeed
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://indeed.com" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={internshalaIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            Internshala
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://internshala.com" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+            </>
         )
     }
 }
