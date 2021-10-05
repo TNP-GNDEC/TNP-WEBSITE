@@ -38,6 +38,30 @@ Route::get('/addLinks', function ()
     return view('welcome');
 });
 
+<<<<<<< HEAD
+Route::get('/technicalMembers', function () {
+    return view('welcome');
+});
+
+Route::get('/edit/:id', function () {
+    return view('welcome');
+})->name('example');
+Route::get('/editConnect/:id', function () {
+    return view('welcome');
+})->name('example');
+Route::get('/editExplore/:id', function () {
+    return view('welcome');
+})->name('example');
+Route::get('/editDownloads/:id', function () {
+    return view('welcome');
+})->name('example');
+Route::get('/editLinks/:id', function () {
+    return view('welcome');
+})->name('example');
+Route::get('/login', function () {
+    return view('welcome');
+})->name('example');
+=======
 Route::get('/edit/:id', function ()
 {
     return view('welcome');
@@ -68,9 +92,31 @@ Route::get('/login', function ()
 })
     ->name('example');
 
+>>>>>>> main
 
 Route::get('/executiveMembers', function () {
     return view('welcome');
+<<<<<<< HEAD
+})->name('example');
+Route::get('/student', function () {
+    return view('welcome');
+})->name('example');
+Route::get('/admin', function () {
+    return view('welcome');
+})->name('example');
+Route::get('/about', function () {
+    return view('welcome');
+})->name('example');
+Route::get('/genconians', function () {
+    return view('welcome');
+})->name('example');
+Route::get('/forms', function () {
+    return view('welcome');
+})->name('example');
+Route::get('/verify', function () {
+    return view('welcome');
+})->name('example');
+=======
 })-> name('example');
 
 Route::get('/coordinator', function ()
@@ -109,6 +155,7 @@ Route::get('/verify', function ()
     return view('welcome');
 })
     ->name('example');
+>>>>>>> main
 
 // Route::get('/resetPassword/:token', function () {
 //     return view('welcome');
@@ -131,16 +178,24 @@ Route::post('/forget-password', 'ForgotPasswordController@postEmail');
 Route::get('/resetPassword/{token}', function ()
 {
     return view('welcome');
+<<<<<<< HEAD
+})->name('example');
+=======
 })
     ->name('example');
+>>>>>>> main
 Route::post('/checktoken', 'ForgotPasswordController@checkToken');
 Route::post('/reset-password', 'ForgotPasswordController@resetPassword');
 
 Route::get('/showPost/{id}', function ()
 {
     return view('welcome');
+<<<<<<< HEAD
+})->name('example');
+=======
 })
     ->name('example');
+>>>>>>> main
 
 //Filter Controller
 Route::get('filterData', 'FilterController@receiveFilterData');
@@ -158,8 +213,14 @@ Route::get('/placement2015', 'PlacementController@Data2015');
 Route::get('/certificate/{id}', function ()
 {
     return view('welcome');
+<<<<<<< HEAD
+})->name('example');
+
+Route::post('/certData', 'CertificateController@GetCert');
+=======
 })
     ->name('example');
 
 Route::post('/certData', 'CertificateController@GetCert');
 
+>>>>>>> main
