@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     backgroundColor: "#FFFFFF",
     borderRadius: "16px",
-    border: "3px #B1B1B1 solid",
+    border: "1px #B1B1B1 solid",
     overflow: "hidden",
     paddingLeft: "15px",
     paddingRight: "15px",
@@ -77,6 +77,17 @@ export default function MiddleSection() {
       <h3 className={classes.cardTitle} style={{ marginBottom: 15 }}>Executive Members</h3>
       <FormControl variant="standard" className={classes.formControl} fullWidth>
         <Select
+          MenuProps={{
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "left"
+            },
+            transformOrigin: {
+              vertical: "top",
+              horizontal: "left"
+            },
+            getContentAnchorEl: null
+          }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={index}
