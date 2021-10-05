@@ -94,7 +94,7 @@ export default function Certificate() {
   const [file, setFile] = React.useState("");
   const [Name, setName] = React.useState("Undefined");
   const [ID, setID] = React.useState("Null");
-  const [label, setLabel] = React.useState("Unvalid!");
+  const [label, setLabel] = React.useState("Invalid!");
   const [Load, setLoad] = React.useState(true);
 
   const fetchCert = async () => {
