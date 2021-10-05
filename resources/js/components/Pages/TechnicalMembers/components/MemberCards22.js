@@ -74,7 +74,7 @@ const memberData = [
 
 const useStyles = makeStyles((theme) => ({
   center: {
-    marginTop: "40px",
+    marginTop: "15px",
     ['@media (max-width:960px)']: {
       width: "100%",
     },

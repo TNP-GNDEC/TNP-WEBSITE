@@ -171,7 +171,7 @@ export default function MemberCard({ name, designation, description, profilePic,
             </li>
           ) : ""}
           {twitter ? (
-            <li className="list-inline-item">
+            <li className="list-inline-item mx-2">
               <a
                 className="social-icon"
                 target="_blank"
@@ -182,7 +182,7 @@ export default function MemberCard({ name, designation, description, profilePic,
             </li>
           ) : ""}
           {linkedIn ? (
-            <li className="list-inline-item">
+            <li className="list-inline-item mx-2">
               <a
                 className="social-icon"
                 target="_blank"
@@ -193,7 +193,7 @@ export default function MemberCard({ name, designation, description, profilePic,
             </li>
           ) : ""}
           {instagram ? (
-            <li className="list-inline-item">
+            <li className="list-inline-item mx-2">
               <a
                 className="social-icon"
                 target="_blank"
@@ -204,7 +204,7 @@ export default function MemberCard({ name, designation, description, profilePic,
             </li>
           ) : ""}
           {mail ? (
-            <li className="list-inline-item">
+            <li className="list-inline-item mx-2">
               <a
                 className="social-icon"
                 target="_blank"
