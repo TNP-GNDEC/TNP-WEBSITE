@@ -25,7 +25,6 @@ const customStyles = {
   control: base => ({
     ...base,
     height: 50,
-    fontSize: 17,
   })
 };
 

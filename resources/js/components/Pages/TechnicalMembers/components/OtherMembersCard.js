@@ -75,8 +75,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   image: {
-    width: "32px",
-    height: "32px",
+    width: "25px",
+    height: "25px",
     ['@media (min-width:1600px)']: {
       height: "40px",
       width: "40px",
@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   },
   subheading: {
     textAlign: "left",
-    padding: "10px 0px 0px 10px",
+    padding: "10px 0px 0px 0px",
     fontSize: "15px",
     fontFamily: "Open Sans",
     fontWeight: "600",
