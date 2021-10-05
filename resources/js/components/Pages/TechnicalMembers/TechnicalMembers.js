@@ -103,8 +103,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     margin: "auto",
   },
-  rselect: {
-    borderRadius: "15px",
+  containerSpace3: {
     margin: "auto",
   }
 }));
@@ -118,7 +117,7 @@ export default function TechnicalMembers() {
       <Navbar />
       <div className={classes.root}>
         <Scroll showBelow={250} />
-        <Grid container spacing={3}>
+        <Grid container spacing={3} className={classes.containerSpace3}>
           <Grid item md={3} className={classes.left}>
             <Paper className={classes.paper}>
               <LeftBar />
