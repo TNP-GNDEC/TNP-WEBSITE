@@ -69,6 +69,7 @@ class Links extends React.Component {
             this.setState({data: res.data.data});
         }
     }
+    
     componentDidMount(){
         this.fetchData();
     }
@@ -81,9 +82,6 @@ class Links extends React.Component {
     }
 
     render(){
-        if(Object.keys(this.state.data).length == 0){
-            return <div></div>
-        }
         const {classes} = this.props;
         return(
             <>
