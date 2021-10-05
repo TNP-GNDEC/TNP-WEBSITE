@@ -134,7 +134,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   description: {
-    padding: "15px"
+    padding: "15px",
+    height: "120px",
+    ['@media (max-width:1024px)']: {
+      height: "170px",
+    },
+    ['@media (max-width:768px)']: {
+      height: "110px",
+    },
+    ['@media (max-width:376px)']: {
+      height: "120px",
+    },
   },
 }));
 

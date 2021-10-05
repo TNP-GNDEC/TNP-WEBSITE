@@ -6,68 +6,42 @@ import { makeStyles } from '@material-ui/core/styles';
 const memberData = [
   {
     key: 1,
-    name: "Joe Mama",
-    designation: "Full Stack Developer",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eleifend sagittis nulla id blandit.Cras sodales nulla ac rutrum maximus.",
-    profilePic: "https://i.imgur.com/215uuA1.png",
-    linkedIn: "https://tnpgndec.com/",
-    instagram: "https://tnpgndec.com/",
-    github: "https://tnpgndec.com/",
-    facebook: "https://tnpgndec.com/",
-    mail: "https://tnpgndec.com/",
-    twitter: "https://tnpgndec.com/",
+    name: "Sanjampreet singh",
+    designation: "Developer",
+    description: "He is a B.Tech student in Information Technology of 2015-19 batch. He was Co-Cordinator of Training and Placement Cell. He has worked as Developer on the PWA and Restful APIs.",
+    profilePic: "https://tnpgndec.com/images/sanjam.jpeg",
+    linkedIn: "https://www.linkedin.com/in/sanjampreetsingh/",
+    instagram: "https://www.instagram.com/sanjampreetsingh_/",
+    github: "",
+    facebook: "https://www.facebook.com/sanjampreet.singh1",
+    mail: "mailto:sanjam531@gmail.com",
+    twitter: "https://twitter.com/Itzrealsanjam",
   },
   {
     key: 2,
-    name: "Joe Mama",
-    designation: "Full Stack Developer",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eleifend sagittis nulla id blandit.Cras sodales nulla ac rutrum maximus.",
-    profilePic: "https://i.imgur.com/215uuA1.png",
-    linkedIn: "https://tnpgndec.com/",
-    instagram: "https://tnpgndec.com/",
-    github: "https://tnpgndec.com/",
-    facebook: "https://tnpgndec.com/",
-    mail: "https://tnpgndec.com/",
-    twitter: "https://tnpgndec.com/",
+    name: "Karamveer Singh",
+    designation: "Developer",
+    description: "He is a B.Tech student in Computer Science and Engineering of 2015-19 batch. He has worked as Developer on the SPA and Vue.js.",
+    profilePic: "https://tnpgndec.com/images/karamveer.jpg",
+    linkedIn: "https://www.linkedin.com/in/singh-karamveer/",
+    instagram: "https://www.instagram.com/honey_singh008/",
+    github: "",
+    facebook: "https://www.facebook.com/loveforeverKM",
+    mail: "mailto:kmvsingh007@gmail.com",
+    twitter: "https://www.twitter.com/kmvsingh007",
   },
   {
     key: 3,
-    name: "Joe Mama",
-    designation: "Full Stack Developer",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eleifend sagittis nulla id blandit.Cras sodales nulla ac rutrum maximus.",
-    profilePic: "https://i.imgur.com/215uuA1.png",
-    linkedIn: "https://tnpgndec.com/",
-    instagram: "https://tnpgndec.com/",
-    github: "https://tnpgndec.com/",
-    facebook: "https://tnpgndec.com/",
-    mail: "https://tnpgndec.com/",
-    twitter: "https://tnpgndec.com/",
-  },
-  {
-    key: 4,
-    name: "Joe Mama",
-    designation: "Full Stack Developer",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eleifend sagittis nulla id blandit.Cras sodales nulla ac rutrum maximus.",
-    profilePic: "https://i.imgur.com/215uuA1.png",
-    linkedIn: "https://tnpgndec.com/",
-    instagram: "https://tnpgndec.com/",
-    github: "https://tnpgndec.com/",
-    facebook: "https://tnpgndec.com/",
-    mail: "https://tnpgndec.com/",
-    twitter: "https://tnpgndec.com/",
-  },
-  {
-    key: 5,
-    name: "Joe Mama",
-    designation: "Full Stack Developer",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eleifend sagittis nulla id blandit.Cras sodales nulla ac rutrum maximus.",
-    profilePic: "https://i.imgur.com/215uuA1.png",
-    linkedIn: "https://tnpgndec.com/",
-    instagram: "https://tnpgndec.com/",
-    github: "https://tnpgndec.com/",
-    facebook: "https://tnpgndec.com/",
-    mail: "https://tnpgndec.com/",
-    twitter: "https://tnpgndec.com/",
+    name: "Karamveer Singh",
+    designation: "Developer",
+    description: "He is a B.Tech student in Computer Science and Engineering of 2015-19 batch. He has worked as Developer on the SPA and Vue.js.",
+    profilePic: "https://tnpgndec.com/images/karamveer.jpg",
+    linkedIn: "https://www.linkedin.com/in/singh-karamveer/",
+    instagram: "https://www.instagram.com/honey_singh008/",
+    github: "",
+    facebook: "https://www.facebook.com/loveforeverKM",
+    mail: "mailto:kmvsingh007@gmail.com",
+    twitter: "https://www.twitter.com/kmvsingh007",
   },
 ]
 
@@ -83,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "15px",
     paddingRight: "15px",
   },
+  invisibleMember: {
+    visibility: "hidden",
+  }
 }));
 
 const MemberCards19 = ({ year }) => {
@@ -91,8 +68,18 @@ const MemberCards19 = ({ year }) => {
   return (
     <>
       {memberData.map((member) => (
-        <Grid item className={classes.center} md={6} sm={6} xs={12} key={member.key} >
-          <MemberCard name={member.name} designation={member.designation} description={member.description} profilePic={member.profilePic} facebook={member.facebook} linkedIn={member.linkedIn} github={member.github} instagram={member.instagram} twitter={member.twitter} mail={member.mail} />
+        <Grid item className={classes.center} md={6} sm={6} xs={12} key={member.key} className={member.key === 3 && memberData[1].name === memberData[2].name ? classes.invisibleMember : ""} >
+          <MemberCard
+            name={member.name}
+            designation={member.designation}
+            description={member.description}
+            profilePic={member.profilePic}
+            facebook={member.facebook}
+            linkedIn={member.linkedIn}
+            github={member.github}
+            instagram={member.instagram}
+            twitter={member.twitter}
+            mail={member.mail} />
         </Grid>
       ))}
     </>
