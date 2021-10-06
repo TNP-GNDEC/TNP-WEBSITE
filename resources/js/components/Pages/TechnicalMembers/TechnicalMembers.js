@@ -21,6 +21,13 @@ const options = [
   { value: "19", label: "2018-19" }
 ]
 
+const customStyles = {
+  control: base => ({
+    ...base,
+    height: 50,
+  })
+};
+
 const useStyles = makeStyles((theme) => ({
   body: {
     backgroundColor: theme.palette.primary.light,
@@ -56,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   center: {
-    marginTop: "30px",
+    marginTop: "25px",
     ['@media (max-width:960px)']: {
       width: "100%",
     },
@@ -78,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardTitle: {
     fontSize: "18px",
-    marginTop: "20px",
+    marginTop: "15px",
     width: "100%",
     ['@media (min-width:1600px)']: {
       marginTop: "60px"
@@ -91,13 +98,12 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   memberCards: {
-    marginTop: "20px",
+    marginTop: "10px",
     width: "50%",
     padding: "10px",
     margin: "auto",
   },
-  rselect: {
-    borderRadius: "15px",
+  containerSpace3: {
     margin: "auto",
   }
 }));
@@ -111,7 +117,7 @@ export default function TechnicalMembers() {
       <Navbar />
       <div className={classes.root}>
         <Scroll showBelow={250} />
-        <Grid container spacing={3}>
+        <Grid container spacing={3} className={classes.containerSpace3}>
           <Grid item md={3} className={classes.left}>
             <Paper className={classes.paper}>
               <LeftBar />
@@ -119,8 +125,8 @@ export default function TechnicalMembers() {
           </Grid>
           <Grid item spacing={2} container md={6} className={classes.center} >
             <Grid item xs={12}>
-              <h3 className={classes.cardTitle}>T&P Office</h3>
-              <Select options={options} defaultValue={options[0]} onChange={(val) => setSelectValue(val.value)} />
+              <h3 className={classes.cardTitle}>Technical Members</h3>
+              <Select styles={customStyles} options={options} defaultValue={options[0]} onChange={(val) => setSelectValue(val.value)} />
             </Grid>
             {!selectValue || selectValue === "22" ? <MemberCards22 /> : ""}
             {selectValue === "21" ? <MemberCards21 /> : ""}

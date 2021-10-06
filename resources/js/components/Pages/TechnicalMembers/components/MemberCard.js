@@ -134,7 +134,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   description: {
-    padding: "15px"
+    padding: "15px",
+    height: "120px",
+    ['@media (max-width:1024px)']: {
+      height: "170px",
+    },
+    ['@media (max-width:768px)']: {
+      height: "110px",
+    },
+    ['@media (max-width:376px)']: {
+      height: "120px",
+    },
   },
 }));
 
@@ -171,7 +181,7 @@ export default function MemberCard({ name, designation, description, profilePic,
             </li>
           ) : ""}
           {twitter ? (
-            <li className="list-inline-item">
+            <li className="list-inline-item mx-1">
               <a
                 className="social-icon"
                 target="_blank"
@@ -182,7 +192,7 @@ export default function MemberCard({ name, designation, description, profilePic,
             </li>
           ) : ""}
           {linkedIn ? (
-            <li className="list-inline-item">
+            <li className="list-inline-item mx-1">
               <a
                 className="social-icon"
                 target="_blank"
@@ -193,7 +203,7 @@ export default function MemberCard({ name, designation, description, profilePic,
             </li>
           ) : ""}
           {instagram ? (
-            <li className="list-inline-item">
+            <li className="list-inline-item mx-1">
               <a
                 className="social-icon"
                 target="_blank"
@@ -204,7 +214,7 @@ export default function MemberCard({ name, designation, description, profilePic,
             </li>
           ) : ""}
           {mail ? (
-            <li className="list-inline-item">
+            <li className="list-inline-item mx-1">
               <a
                 className="social-icon"
                 target="_blank"
@@ -215,7 +225,7 @@ export default function MemberCard({ name, designation, description, profilePic,
             </li>
           ) : ""}
           {github ? (
-            <li className="list-inline-item">
+            <li className="list-inline-item ml-1">
               <a
                 className="social-icon"
                 target="_blank"
