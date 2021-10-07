@@ -12,10 +12,10 @@ const memberData = [
     profilePic: "https://tnpgndec.com/images/vikalp.png",
     linkedIn: "https://www.linkedin.com/in/vikalp-kaushik-99966a1ab",
     instagram: "https://www.instagram.com/vikalp._.kaushik",
-    github: "",
+    github: "https://github.com/vikalp2502",
     facebook: "",
     mail: "mailto:vikalpkaushik99@gmail.com",
-    twitter: "https://github.com/vikalp2502",
+    twitter: "",
   },
   {
     key: 2,

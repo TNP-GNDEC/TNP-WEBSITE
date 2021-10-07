@@ -134,16 +134,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   description: {
-    padding: "15px",
-    height: "120px",
+    margin: "20px",
+    fontFamily: "Open Sans",
+    color: theme.palette.primary.text,
+    height: "80px",
     ['@media (max-width:1024px)']: {
-      height: "170px",
+      height: "140px",
     },
     ['@media (max-width:768px)']: {
-      height: "110px",
+      height: "80px",
     },
     ['@media (max-width:376px)']: {
-      height: "120px",
+      height: "90px",
     },
   },
 }));
@@ -164,9 +166,11 @@ export default function MemberCard({ name, designation, description, profilePic,
       <h3 className={classes.subheading}>
         {designation}
       </h3>
-      <p className={classes.description}>
-        {description}
-      </p>
+      <div className={classes.description}>
+        <p className={classes.descrip}>
+          {description}
+        </p>
+      </div>
       <div>
         <ul className="list-inline" id="list-link">
           {facebook ? (
@@ -225,7 +229,7 @@ export default function MemberCard({ name, designation, description, profilePic,
             </li>
           ) : ""}
           {github ? (
-            <li className="list-inline-item ml-1">
+            <li className="list-inline-item mx-1">
               <a
                 className="social-icon"
                 target="_blank"

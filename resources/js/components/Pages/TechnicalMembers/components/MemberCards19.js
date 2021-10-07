@@ -8,7 +8,7 @@ const memberData = [
     key: 1,
     name: "Sanjampreet singh",
     designation: "Developer",
-    description: "He is a B.Tech student in Information Technology of 2015-19 batch. He was Co-Cordinator of Training and Placement Cell. He has worked as Developer on the PWA and Restful APIs.",
+    description: "He is a B.Tech student in Information Technology of 2015-19 batch. He has worked as Developer on the PWA and Restful APIs.",
     profilePic: "https://tnpgndec.com/images/sanjam.jpeg",
     linkedIn: "https://www.linkedin.com/in/sanjampreetsingh/",
     instagram: "https://www.instagram.com/sanjampreetsingh_/",

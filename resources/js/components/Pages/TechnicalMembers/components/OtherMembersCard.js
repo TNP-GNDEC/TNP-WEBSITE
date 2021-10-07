@@ -75,16 +75,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   image: {
-    width: "25px",
-    height: "25px",
+    width: "18px",
+    height: "18px",
     ['@media (min-width:1600px)']: {
-      height: "40px",
-      width: "40px",
+      height: "22px",
+      width: "22px",
     },
   },
   textInfo: {
-    width: "60%",
+    width: "70%",
+    height: "18px",
     // paddingRight: "10px",
+    ['@media (min-width:1600px)']: {
+      height: "20px",
+    },
   },
   heading: {
     marginBottom: "10px",
@@ -100,13 +104,13 @@ const useStyles = makeStyles((theme) => ({
   },
   subheading: {
     textAlign: "left",
-    padding: "10px 0px 0px 0px",
+    padding: "0px 0px 0px 0px",
     fontSize: "15px",
     fontFamily: "Open Sans",
     fontWeight: "600",
     color: "#303030",
     ['@media (min-width:1600px)']: {
-      fontSize: "15px",
+      fontSize: "18px",
     },
   },
   button: {

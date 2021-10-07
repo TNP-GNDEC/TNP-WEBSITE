@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
     readButton: {
         backgroundColor: theme.palette.primary.main,
         padding: "10px 0px",
-        margin: "30px 0px",
+        width: "100%",
         fontSize: "16px",
         borderRadius: "16px",
         fontFamily: "Open Sans",
@@ -122,7 +122,6 @@ const Assistance = () => {
                     <Button
                         hover="false"
                         className={classes.readButton}
-                        fullWidth
                     >
                         submit Details
                     </Button>

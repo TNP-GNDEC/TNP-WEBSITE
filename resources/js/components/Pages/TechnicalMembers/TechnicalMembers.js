@@ -25,6 +25,10 @@ const customStyles = {
   control: base => ({
     ...base,
     height: 50,
+    borderRadius: 16,
+    fontFamily: 'Open Sans',
+    fontSize: 16,
+    color: '#303030',
   })
 };
 
@@ -103,9 +107,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     margin: "auto",
   },
-  containerSpace3: {
-    margin: "auto",
-  }
 }));
 
 export default function TechnicalMembers() {
@@ -117,7 +118,7 @@ export default function TechnicalMembers() {
       <Navbar />
       <div className={classes.root}>
         <Scroll showBelow={250} />
-        <Grid container spacing={3} className={classes.containerSpace3}>
+        <Grid container spacing={3} >
           <Grid item md={3} className={classes.left}>
             <Paper className={classes.paper}>
               <LeftBar />
