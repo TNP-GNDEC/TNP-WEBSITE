@@ -91,7 +91,7 @@ const MemberCards20 = ({ year }) => {
   return (
     <>
       {memberData.map((member) => (
-        <Grid item className={classes.center} md={6} sm={6} xs={12} key={member.key} >
+        <Grid item md={6} sm={6} xs={12} key={member.key} >
           <MemberCard name={member.name} designation={member.designation} description={member.description} profilePic={member.profilePic} facebook={member.facebook} linkedIn={member.linkedIn} github={member.github} instagram={member.instagram} twitter={member.twitter} mail={member.mail} />
         </Grid>
       ))}

@@ -21,6 +21,8 @@ const useStyles = makeStyles(theme => ({
     },
     cardTitle: {
         fontSize: "18px",
+        paddingLeft: "5px",
+        marginBottom: "5px",
         color: theme.palette.primary.dark,
         fontFamily: "Open Sans",
         fontWeight: "600",
@@ -43,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     },
     pdfEmbedContainer: {
         borderRadius: "10px",
-        marginTop: "25px",
+        marginTop: "20px",
         border: "none",
         outline: "none",
         padding: "15px",

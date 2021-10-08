@@ -87,7 +87,7 @@ const memberData = [
 
 const useStyles = makeStyles((theme) => ({
   center: {
-    marginTop: "15px",
+    //marginTop: "15px",
     ['@media (max-width:960px)']: {
       width: "100%",
     },
@@ -105,7 +105,7 @@ const MemberCards22 = ({ year }) => {
   return (
     <>
       {memberData.map((member) => (
-        <Grid item className={classes.center} md={6} sm={6} xs={12} key={member.key} >
+        <Grid item md={6} sm={6} xs={12} key={member.key} >
           <MemberCard name={member.name} designation={member.designation} description={member.description} profilePic={member.profilePic} facebook={member.facebook} linkedIn={member.linkedIn} github={member.github} instagram={member.instagram} twitter={member.twitter} mail={member.mail} />
         </Grid>
       ))}

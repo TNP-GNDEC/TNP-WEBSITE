@@ -8,6 +8,8 @@ import Select from '@material-ui/core/Select';
 const useStyles = makeStyles((theme) => ({
   cardTitle: {
     fontSize: "18px",
+    paddingLeft: "5px",
+    marginBottom: "5px",
     color: theme.palette.primary.dark,
     fontFamily: "Open Sans",
     fontWeight: "600",
@@ -20,12 +22,13 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     backgroundColor: "#FFFFFF",
-    borderRadius: "16px",
+    borderRadius: "12px",
     border: "1px #B1B1B1 solid",
     overflow: "hidden",
-    paddingLeft: "15px",
-    paddingRight: "15px",
+    userSelect: "none",
+    outline: "none",
     color: "#303030",
+    padding: "5px 15px"
   },
   pdfCard: {
     padding: "15px",
@@ -74,12 +77,12 @@ export default function MiddleSection() {
 
   return (
     <>
-      <h3 className={classes.cardTitle} style={{ marginBottom: 15 }}>Executive Members</h3>
+      <h3 className={classes.cardTitle} >Executive Members</h3>
       <FormControl variant="standard" className={classes.formControl} fullWidth>
         <Select
           MenuProps={{
             anchorOrigin: {
-              vertical: "bottom",
+              vertical: "top",
               horizontal: "left"
             },
             transformOrigin: {
@@ -93,7 +96,7 @@ export default function MiddleSection() {
           value={index}
           onChange={handleChange}
           label="batch"
-          style={{padding: 5, fontSize: 20}}
+          className={classes.selectDropdown}
           disableUnderline
         >
           <MenuItem value={0} style={{fontSize: 18}}>2018-19</MenuItem>

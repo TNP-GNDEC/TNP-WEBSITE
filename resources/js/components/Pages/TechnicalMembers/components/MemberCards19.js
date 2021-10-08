@@ -68,7 +68,7 @@ const MemberCards19 = ({ year }) => {
   return (
     <>
       {memberData.map((member) => (
-        <Grid item className={classes.center} md={6} sm={6} xs={12} key={member.key} className={member.key === 3 && memberData[1].name === memberData[2].name ? classes.invisibleMember : ""} >
+        <Grid item md={6} sm={6} xs={12} key={member.key} className={member.key === 3 && memberData[1].name === memberData[2].name ? classes.invisibleMember : ""} >
           <MemberCard
             name={member.name}
             designation={member.designation}

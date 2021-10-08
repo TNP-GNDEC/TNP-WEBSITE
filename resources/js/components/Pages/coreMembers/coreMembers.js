@@ -58,6 +58,8 @@ const useStyles = makeStyles(theme => ({
     },
     cardTitle: {
         fontSize: "18px",
+        paddingLeft: "5px",
+        marginBottom: "5px",
         color: theme.palette.primary.dark,
         fontFamily: "Open Sans",
         fontWeight: "600",

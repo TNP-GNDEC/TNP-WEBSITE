@@ -77,9 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     width: "18px",
-    height: "18px",
     ['@media (min-width:1600px)']: {
-      height: "22px",
       width: "22px",
     },
   },
