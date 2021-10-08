@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from "react-router-dom"
 import Card from '@material-ui/core/Card';
 
 import technicalMemberIcon from '../../../../../images/technicalMemberIcon.svg';
@@ -155,50 +156,54 @@ export default function Office() {
       {
         !window.location.href.includes("/technicalMembers") ?
           (
-            <div className={classes.handles}>
-              <div className={classes.imageBox}>
-                <img src={technicalMemberIcon} alt="Technical Members" className={classes.image} />
+            <Link to="/technicalMembers">
+              <div className={classes.handles}>
+                <div className={classes.imageBox}>
+                  <img src={technicalMemberIcon} alt="Technical Members" className={classes.image} />
+                </div>
+                <div className={classes.textInfo}>
+                  <h3 className={classes.subheading}>
+                    Technical Members
+                  </h3>
+                </div>
               </div>
-              <div className={classes.textInfo}>
-                <h3 className={classes.subheading}>
-                  Technical Members
-                </h3>
-              </div>
-            </div>
+            </Link>
           ) : ""
       }
       {
         !window.location.href.includes("/executiveMembers") ?
           (
-            <div className={classes.handles}>
-              <div className={classes.imageBox}>
-                <img src={executiveMemberIcon} alt="Executive Members" className={classes.image} />
+            <Link to="/executiveMembers">
+              <div className={classes.handles}>
+                <div className={classes.imageBox}>
+                  <img src={executiveMemberIcon} alt="Executive Members" className={classes.image} />
+                </div>
+                <div className={classes.textInfo}>
+                  <h3 className={classes.subheading}>
+                    Executive Members
+                  </h3>
+                </div>
               </div>
-              <div className={classes.textInfo}>
-                <h3 className={classes.subheading}>
-                  Executive Members
-                </h3>
-              </div>
-            </div>
+            </Link>
           ) : ""
       }
       {
         !window.location.href.includes("/coreMembers") ?
           (
-            <div className={classes.handles}>
-              <div className={classes.imageBox}>
-                <img src={coreMemberIcon} alt="Core Members" className={classes.image} />
+            <Link to="/coreMembers">
+              <div className={classes.handles}>
+                <div className={classes.imageBox}>
+                  <img src={coreMemberIcon} alt="Core Members" className={classes.image} />
+                </div>
+                <div className={classes.textInfo}>
+                  <h3 className={classes.subheading}>
+                    Core Members
+                  </h3>
+                </div>
               </div>
-              <div className={classes.textInfo}>
-                <h3 className={classes.subheading}>
-                  Core Members
-                </h3>
-              </div>
-            </div>
+            </Link>
           ) : ""
       }
-
-
     </Card>
   );
 }
