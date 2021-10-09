@@ -1,11 +1,15 @@
 import React from "react";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import '../../css/app.css';
 
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Genconians from "./Pages/Genconians/Genconians";
 import Certificates from "./Pages/Certificates/Certificate";
+
+import ExecutiveMembers from "./Pages/ExecutiveMembers/ExecutiveMembers";
+import TechnicalMembers from "./Pages/TechnicalMembers/TechnicalMembers";
+import coreMembers from './Pages/coreMembers/coreMembers';
 
 import login from "./Auth/Login";
 import { AdminRoute, StudentRoute } from "./Auth/PrivateRoute";
@@ -31,8 +35,8 @@ import Admin from "./RedirectPages/Admin/Coordinator";
 import ForgetPass from "./Auth/ForgotPassword";
 import ResetPass from "./Auth/ResetPass";
 
-
 import ShowPost from "./HardCoded/view/ShowPost";
+
 
 
 function App(){ 
@@ -47,6 +51,11 @@ function App(){
                     <Route path="/about" exact component={About}/>
                     <Route path="/genconians" exact component={Genconians}/>
                     <Route path="/certificate/:id" exact component={Certificates}></Route>
+
+                    {/* Members */}
+                    <Route path="/coreMembers" exact component={coreMembers} />
+                    <Route path="/technicalMembers" exact component={TechnicalMembers}></Route>
+                    <Route path="/executiveMembers" exact component={ExecutiveMembers}></Route>
 
                     {/* Auth */}
                     <Route path="/login" exact component={login}/>

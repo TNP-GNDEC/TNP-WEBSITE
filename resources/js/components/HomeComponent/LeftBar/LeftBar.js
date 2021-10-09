@@ -73,7 +73,7 @@ export default function LeftBar() {
             <Downloads />
             <h3 className={classes.cardTitle}>Notifications</h3>
             <WebNotify />
-            <Explore />
+            <h3 className={classes.cardTitle}>Useful Links</h3>
             <UsefulLinks />
         </div>
     );
