@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/icons/Link';
 import { Icon } from "@material-ui/core";
 import gneLogo from '../../../../images/gndec.png';
-import linkIcon from '../../../../images/link.png';
+import linkIcon from '../../../../images/Link.png';
 import naukriIcon from '../../../../images/naukri-com.png';
 import bixIcon from '../../../../images/indiabix.jpg';
 import indeedIcon from '../../../../images/indeed.jpg';
