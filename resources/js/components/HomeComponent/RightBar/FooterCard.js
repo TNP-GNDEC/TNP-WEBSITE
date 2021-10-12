@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   
     return (
       <Card className={classes.root}>
-        <p className={classes.para}> Developed with ❤️ by <a className={classes.tag} href="https://tnpgndec.com/genconians"><strong><u>Genconians</u></strong></a> | ©️ {year} <a className={classes.tag} href="https://gndec.ac.in/"><strong><u>GNDEC,ldh</u></strong></a></p>
+        <p className={classes.para}> Developed with ❤️ by <a className={classes.tag} href="https://tnpgndec.com/technicalMembers"><strong><u>Genconians</u></strong></a> | ©️ {year} <a className={classes.tag} href="https://gndec.ac.in/"><strong><u>GNDEC,ldh</u></strong></a></p>
       </Card>
     );
   }
