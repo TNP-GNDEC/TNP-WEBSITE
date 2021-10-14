@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/icons/Link';
 import { Icon } from "@material-ui/core";
 import gneLogo from '../../../../images/gndec.png';
-import linkIcon from '../../../../images/link.png';
+import linkIcon from '../../../../images/Link.png';
 import naukriIcon from '../../../../images/naukri-com.png';
 import bixIcon from '../../../../images/indiabix.jpg';
 import indeedIcon from '../../../../images/indeed.jpg';
@@ -20,20 +20,29 @@ const useStyles = theme => ({
         fontWeight: "500"
     },
     card:{
-        width: "300px",
+        width: "100%",
         height: "56px",
         padding: "8px",
         borderRadius: "8px",
-        filter: "drop-shadow(0 5px 25px rgba(48, 48, 48, 20%))",
-        marginTop: "14px",
-        boxShadow: "none"
+        marginBottom: "15px",
+        boxShadow: "0 5px 15px #30303033",
+        ["@media (min-width:1600px)"]: {
+            height: "65px",
+            padding: "12px"
+        }
     },
     cardTitle:{
-        fontSize: "20px",
+        fontSize: "16px",
         fontWeight: "600",
+        fontFamily: "Open Sans",
         marginTop: "auto",
         marginBottom: "auto",
-        marginLeft: "7px"
+        color: theme.palette.primary.dark,
+        marginLeft: "20px",
+        ["@media (min-width:1600px)"]: {
+            fontSize: "20px",
+            marginLeft: "30px"
+        }
     },
     container:{
         display: "flex"
@@ -43,11 +52,15 @@ const useStyles = theme => ({
         height: "40px"
     },
     linkIcon:{
-        width: "25px",
-        height: "25px",
+        width: "20px",
+        height: "20px",
         marginTop: "auto",
         marginBottom: "auto",
-        marginRight: "10px"
+        marginRight: "10px",
+        ["@media (min-width:1600px)"]: {
+            width: "22px",
+            height: "22px"
+        }
     },
     outerContainer: {
         display: "flex",
@@ -60,36 +73,11 @@ const useStyles = theme => ({
 });
 
 class Links extends React.Component {
-    state = {
-        data: [],
-    }
-    fetchData = async () => {
-        const res = await Axios.get("/addLinksItems");
-        if(res.data.status === 200){
-            this.setState({data: res.data.data});
-        }
-    }
-    componentDidMount(){
-        this.fetchData();
-    }
-
-    deleteData = async (id) => {
-        const res = await Axios.delete(`/addLinksItems/${id}`);
-        if(res.data.status === 200){
-            this.fetchData();
-        }
-    }
 
     render(){
-        if(Object.keys(this.state.data).length == 0){
-            return <div></div>
-        }
         const {classes} = this.props;
         return(
             <>
-            <Typography variant="h5" component="h2" className={classes.title}>
-                Useful Links
-            </Typography>
             <Card className={classes.card}>
                 <div className={classes.outerContainer}>
                     <div className={classes.container}>

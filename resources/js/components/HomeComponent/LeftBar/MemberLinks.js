@@ -153,57 +153,44 @@ export default function Office() {
 
   return (
     <Card className={classes.root}>
-      {
-        !window.location.href.includes("/technicalMembers") ?
-          (
-            <Link to="/technicalMembers">
-              <div className={classes.handles}>
-                <div className={classes.imageBox}>
-                  <img src={technicalMemberIcon} alt="Technical Members" className={classes.image} />
-                </div>
-                <div className={classes.textInfo}>
-                  <h3 className={classes.subheading}>
-                    Technical Members
-                  </h3>
-                </div>
-              </div>
-            </Link>
-          ) : ""
-      }
-      {
-        !window.location.href.includes("/executiveMembers") ?
-          (
-            <Link to="/executiveMembers">
-              <div className={classes.handles}>
-                <div className={classes.imageBox}>
-                  <img src={executiveMemberIcon} alt="Executive Members" className={classes.image} />
-                </div>
-                <div className={classes.textInfo}>
-                  <h3 className={classes.subheading}>
-                    Executive Members
-                  </h3>
-                </div>
-              </div>
-            </Link>
-          ) : ""
-      }
-      {
-        !window.location.href.includes("/coreMembers") ?
-          (
-            <Link to="/coreMembers">
-              <div className={classes.handles}>
-                <div className={classes.imageBox}>
-                  <img src={coreMemberIcon} alt="Core Members" className={classes.image} />
-                </div>
-                <div className={classes.textInfo}>
-                  <h3 className={classes.subheading}>
-                    Core Members
-                  </h3>
-                </div>
-              </div>
-            </Link>
-          ) : ""
-      }
+      <Link to="/technicalMembers">
+        <div className={classes.handles}>
+          <div className={classes.imageBox}>
+            <img src={technicalMemberIcon} alt="Technical Members" className={classes.image} />
+          </div>
+          <div className={classes.textInfo}>
+            <h3 className={classes.subheading}>
+              Technical Members
+            </h3>
+          </div>
+        </div>
+      </Link>
+
+      <Link to="/executiveMembers">
+        <div className={classes.handles}>
+          <div className={classes.imageBox}>
+            <img src={executiveMemberIcon} alt="Executive Members" className={classes.image} />
+          </div>
+          <div className={classes.textInfo}>
+            <h3 className={classes.subheading}>
+              Executive Members
+            </h3>
+          </div>
+        </div>
+      </Link>
+
+      <Link to="/coreMembers">
+        <div className={classes.handles}>
+          <div className={classes.imageBox}>
+            <img src={coreMemberIcon} alt="Core Members" className={classes.image} />
+          </div>
+          <div className={classes.textInfo}>
+            <h3 className={classes.subheading}>
+              Core Members
+            </h3>
+          </div>
+        </div>
+      </Link>
     </Card>
   );
 }

@@ -1,13 +1,31 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import Select from "react-select";
+
+const options = [
+  { value: 3, label: "2021-22" },
+  { value: 2, label: "2020-21" },
+  { value: 1, label: "2019-20" },
+  { value: 0, label: "2018-19" }
+]
+
+const customStyles = {
+  control: base => ({
+    ...base,
+    height: 50,
+    borderRadius: 16,
+    fontFamily: 'Open Sans',
+    fontSize: 16,
+    color: '#303030',
+  })
+};
 
 const useStyles = makeStyles((theme) => ({
   cardTitle: {
     fontSize: "18px",
+    paddingLeft: "5px",
+    marginBottom: "5px",
     color: theme.palette.primary.dark,
     fontFamily: "Open Sans",
     fontWeight: "600",
@@ -17,15 +35,6 @@ const useStyles = makeStyles((theme) => ({
     ['@media (min-width:1600px)']: {
       fontSize: "20px",
     },
-  },
-  formControl: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: "16px",
-    border: "3px #B1B1B1 solid",
-    overflow: "hidden",
-    paddingLeft: "15px",
-    paddingRight: "15px",
-    color: "#303030",
   },
   pdfCard: {
     padding: "15px",
@@ -59,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 export default function MiddleSection() {
 
   const handleChange = (e) => {
-    setIndex(e.target.value)
+    setIndex(e.value)
   }
 
   const classes = useStyles();
@@ -74,28 +83,20 @@ export default function MiddleSection() {
 
   return (
     <>
-      <h3 className={classes.cardTitle} style={{ marginBottom: 15 }}>Executive Members</h3>
-      <FormControl variant="standard" className={classes.formControl} fullWidth>
+      <h3 className={classes.cardTitle} >Executive Members</h3>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={index}
+          styles={customStyles}
+          options={options}
           onChange={handleChange}
           label="batch"
-          style={{padding: 5, fontSize: 20}}
-          disableUnderline
-        >
-          <MenuItem value={0} style={{fontSize: 18}}>2018-19</MenuItem>
-          <MenuItem value={1} style={{fontSize: 18}}>2019-20</MenuItem>
-          <MenuItem value={2} style={{fontSize: 18}}>2020-21</MenuItem>
-          <MenuItem value={3} style={{fontSize: 18}}>2021-22</MenuItem>
-        </Select>
-      </FormControl>
+          defaultValue={options[0]}
+        />
+
       <Card className={classes.pdfCard}>
         {
           links[index] == "" ?
             <div className={classes.replacementHandler}>
-                Updated Soon
+              Updated Soon
             </div>
           :
             <iframe src={links[index]} width="100%" allow="autoplay" className={classes.pdfEmbed}></iframe>

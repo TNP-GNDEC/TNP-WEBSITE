@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 import Card from '@material-ui/core/Card';
 
-import technicalMemberIcon from '../../../../images/technicalMemberIcon.svg';
-import executiveMemberIcon from '../../../../images/executiveMemberIcon.svg';
-import coreMemberIcon from '../../../../images/coreMemberIcon.svg';
+import technicalMemberIcon from '../../../../../images/technicalMemberIcon.svg';
+import executiveMemberIcon from '../../../../../images/executiveMemberIcon.svg';
+import coreMemberIcon from '../../../../../images/coreMemberIcon.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,9 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     width: "18px",
-    height: "18px",
     ['@media (min-width:1600px)']: {
-      height: "22px",
       width: "22px",
     },
   },
