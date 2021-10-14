@@ -15,6 +15,8 @@ import coreMembers from './Pages/coreMembers/coreMembers';
 import login from "./Auth/Login";
 import { AdminRoute, StudentRoute } from "./Auth/PrivateRoute";
 
+import NotFound from "./Pages/NotFound/NotFound";
+
 import Email from "./EmailVer";
 import Verify from "./RedirectPages/Student/Verify";
 
@@ -60,6 +62,9 @@ function App() {
 
                     {/* Auth */}
                     <Route path="/login" exact component={login} />
+
+                    {/* Error 404: not found */}
+                    <Route path="/*" component={NotFound} />
 
                     {/* Create Routes */}
                     <Route path="/addConnect" exact component={createConnect} />
