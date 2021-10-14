@@ -17,13 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/coreMembers', function ()
-{
+Route::get('/coreMembers', function () {
     return view('welcome');
 });
 
-Route::get('/addPosts', function ()
-{
+Route::get('/addPosts', function () {
     return view('welcome');
 });
 Route::get('/addConnect', function () {
@@ -40,6 +38,10 @@ Route::get('/addLinks', function () {
 });
 
 Route::get('/technicalMembers', function () {
+    return view('welcome');
+});
+
+Route::get('/placementRecords', function () {
     return view('welcome');
 });
 
