@@ -1,11 +1,25 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-
 import Card from "@material-ui/core/Card";
+import Select from "react-select";
+
+const options = [
+    { value: 3, label: "2021-22" },
+    { value: 2, label: "2020-21" },
+    { value: 1, label: "2019-20" },
+    { value: 0, label: "2018-19" }
+  ]
+  
+  const customStyles = {
+    control: base => ({
+      ...base,
+      height: 50,
+      borderRadius: 16,
+      fontFamily: 'Open Sans',
+      fontSize: 16,
+      color: '#303030',
+    })
+  };
 
 const useStyles = makeStyles(theme => ({
     body: {
@@ -33,18 +47,8 @@ const useStyles = makeStyles(theme => ({
             fontSize: "20px"
         }
     },
-    formControl: {
-        backgroundColor: "#FFFFFF",
-        borderRadius: "12px",
-        border: "1px #B1B1B1 solid",
-        overflow: "hidden",
-        userSelect: "none",
-        outline: "none",
-        color: "#303030",
-        padding: "5px 15px"
-    },
     pdfEmbedContainer: {
-        borderRadius: "10px",
+        borderRadius: "16px",
         marginTop: "20px",
         border: "none",
         outline: "none",
@@ -57,6 +61,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: "0px 15px 30px #8a959e33"
     },
     pdfEmbed: {
+        borderRadius: "16px",
         border: "none",
         outline: "none"
     }
@@ -64,46 +69,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function MiddleSection() {
     const classes = useStyles();
-    const [index, setIndex] = useState(2);
-    const links = ["", "", "/documents/Tnp-Team/Core-Team.pdf"];
+    const links = ["", "", "", "/documents/Tnp-Team/Core-Team.pdf"];
+    const [index, setIndex] = useState(links.length - 1);
 
-    const handleChange = e => {
-        setIndex(e.target.value);
+    const handleChange = (e) => {
+        setIndex(e.value);
     };
 
     return (
         <>
             <h3 className={classes.cardTitle}>Core Members</h3>
-            <FormControl
-                variant="standard"
-                className={classes.formControl}
-                fullWidth
-            >
                 <Select
-                    MenuProps={{
-                        anchorOrigin: {
-                            vertical: "top",
-                            horizontal: "left"
-                        },
-                        transformOrigin: {
-                            vertical: "top",
-                            horizontal: "left"
-                        },
-                        getContentAnchorEl: null
-                    }}
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={index}
-                    className={classes.selectDropdown}
+                    styles={customStyles}
+                    options={options}
                     onChange={handleChange}
-                    label="batch"
-                    disableUnderline
-                >
-                    <MenuItem value={0}>2019-20</MenuItem>
-                    <MenuItem value={1}>2020-21</MenuItem>
-                    <MenuItem value={2}>2021-22</MenuItem>
-                </Select>
-            </FormControl>
+                    defaultValue={options[0]}
+                />
+                
             <Card className={classes.pdfEmbedContainer}>
                 {links[index] == "" ? (
                     <h2 className={classes.cardTitle}>Updated Soon!</h2>
