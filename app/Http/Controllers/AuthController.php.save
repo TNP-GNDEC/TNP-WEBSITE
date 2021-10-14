@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -19,9 +20,10 @@ use JWTAuth;
 class AuthController extends Controller
 {
     public function registerStudent(Request $request)
-    {	
+    {	$count=0;
         $users= $request->data;
         $data=0;
+	$gyt=0;
         foreach($users["data"] as $user){
             $user['uuid']=(string) Str::uuid();
             $user['role_id']=1;
@@ -34,6 +36,7 @@ class AuthController extends Controller
 				->where('username', $user['username'])->exists();
 
 	if($is_user){
+	$gyt++;
 	//$update=DB::table('users')
           //    ->where('username', $user['username'])
             //  ->update(['password' => $user['password']]);
@@ -51,7 +54,8 @@ class AuthController extends Controller
               ->update(['crn' => $user['crn']]);
     }
             else{ 
-		$newUser = User::create($user);$count++;
+		$newUser = User::create($user);
+		$count++;
                 $form_user= formStatus::create([
                 'user_id' => $newUser->id,
 		'form_step' => 0
@@ -130,70 +134,72 @@ class AuthController extends Controller
                     }
 
                //else return response()->json(["message"=>"Data couldn't be added", "success"=>0 ]);
-                }
+            }
         
-        return response()->json(["message"=>"Data added successfully","success"=>1,"data"=>$users["data"]]);
+        return response()->json(["update"=>$rd"message"=>"Data added successfully","success"=>1,"data"=>$users["data"], "count"=>$count]);
     }
 
+    public function registerAdmin(Request $request){
 
-    public function registerAdmin(Request $request)
-    {
-
-        $user = $request->data;
-        $newAdmin = User::create(['role_id' => 2, 'username' => $request->username, 'password' => bcrypt($request->password) , 'email' => $request->email, 'uuid' => (String)Str::uuid() ]);
-        return response()
-            ->json(["message" => "admin added successfully"]);
+        $user=$request->data;
+        $newAdmin=User::create([
+            'role_id'=> 2,
+            'username'=> $request->username,
+            'password' => bcrypt($request->password),
+            'email' => $request->email,
+            'uuid' => (String) Str::uuid()
+        ]);
+        return response()->json(["message"=>"admin added successfully"]);
     }
 
-    public function login(Request $request)
-    {
-        $request->validate(['username' => 'required', 'password' => 'required']);
-        $token = JWTAuth::attempt(['username' => $request->username, 'password' => $request->password]);
+    public function login(Request $request){
+    $request->validate([
+        'username' => 'required',
+        'password' => 'required'
+    ]);
+    $token = JWTAuth::attempt(['username'=>$request->username, 'password'=>$request->password]);
 
-        if (!$token)
-        {
-            return response()->json(['alert' => 'invalid credentials']);
-        }
-
-        $currentUser = Auth::user();
-
-        return $this->respondWithToken($token, $currentUser);
-
-    }
-    public function logout()
-    {
-        auth()->logout();
-
-        return response()
-            ->json(['message' => 'Successfully logged out']);
-    }
-    protected function respondWithToken($token, $currentUser)
-    {
-        return response()->json(['access_token' => $token, 'token_type' => 'bearer', 'expires_in' => auth('api')->factory()
-            ->getTTL() * 2, 'current_user' => $currentUser]);
-    }
-    public function user()
-    {
-        $data = auth()->user();
-        $user = DB::table('users')->where('id', $data->id)
-            ->first();
-        return response()
-            ->json(['user' => $user]);
-    }
-    public function status(Request $request)
-    {
-        $data = auth()->user();
-        $form = DB::table('form_statuses')->where('user_id', $data->id)
-            ->first();
-        return response()
-            ->json(['step' => $form]);
+    if (! $token ) {
+        return response()->json(['alert' => 'invalid credentials']);
     }
 
-    public function refresh()
-    {
-        return $this->respondWithToken(Auth::guard('api')
-            ->refresh());
-    }
+    $currentUser = Auth::user();
+
+    return $this->respondWithToken($token,$currentUser);
 
 }
+public function logout()
+{
+    auth()->logout();
 
+    return response()->json(['message' => 'Successfully logged out']);
+}
+protected function respondWithToken($token, $currentUser)
+{
+    return response()->json([
+        'access_token' => $token,
+        'token_type' => 'bearer',
+        'expires_in' => auth('api')->factory()->getTTL() * 2,
+        'current_user' => $currentUser
+    ]);
+}
+public function user(){
+    $data = auth()->user();
+    $user = DB::table('users')
+       ->where('id', $data->id)
+       ->first();
+    return response()->json(['user' => $user]);
+}
+public function status(Request $request){
+    $data= auth()->user();
+    $form = DB::table('form_statuses')
+      ->where('user_id', $data->id)
+      ->first();
+    return response()->json(['step'=>$form]);
+}
+
+public function refresh() {
+    return $this->respondWithToken(Auth::guard('api')->refresh());
+}
+
+}

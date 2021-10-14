@@ -6,6 +6,7 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Genconians from "./Pages/Genconians/Genconians";
 import Certificates from "./Pages/Certificates/Certificate";
+import PlacementRecord from "./Pages/PlacementRecords/PlacementRecord"
 
 import ExecutiveMembers from "./Pages/ExecutiveMembers/ExecutiveMembers";
 import TechnicalMembers from "./Pages/TechnicalMembers/TechnicalMembers";
@@ -39,17 +40,17 @@ import ShowPost from "./HardCoded/view/ShowPost";
 
 
 
-function App(){ 
-    
-    return(
-        
-            
+function App() {
+
+    return (
+
+
         <Router>
             <>
                 <Switch>
-                    <Route path="/" exact component={Home}/>
-                    <Route path="/about" exact component={About}/>
-                    <Route path="/genconians" exact component={Genconians}/>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/about" exact component={About} />
+                    <Route path="/genconians" exact component={Genconians} />
                     <Route path="/certificate/:id" exact component={Certificates}></Route>
 
                     {/* Members */}
@@ -58,14 +59,14 @@ function App(){
                     <Route path="/executiveMembers" exact component={ExecutiveMembers}></Route>
 
                     {/* Auth */}
-                    <Route path="/login" exact component={login}/>
+                    <Route path="/login" exact component={login} />
 
                     {/* Create Routes */}
                     <Route path="/addConnect" exact component={createConnect} />
                     <Route path="/addExplore" exact component={createExplore} />
                     <Route path="/addDownloads" exact component={createDownloads} />
                     <Route path="/addLinks" exact component={createLinks} />
-                    
+
                     {/* Edit Routes */}
                     <Route path="/edit/:id" exact component={EditPosts} />
                     <Route path="/editConnect/:id" exact component={EditConnect} />
@@ -80,7 +81,7 @@ function App(){
 
                     {/*Redirect Routes*/}
                     <StudentRoute path="/forms" exact component={Email} />
-                    <StudentRoute path="/verify" exact component={Verify}/>
+                    <StudentRoute path="/verify" exact component={Verify} />
 
                     {/* Reset Password */}
                     <Route path="/forgetPassword" exact component={ForgetPass} />
@@ -88,12 +89,14 @@ function App(){
 
                     {/* viewing Post after Read more */}
                     <Route path="/showPost/:id" exact component={ShowPost}></Route>
-                    
+
+                    {/* Public Placement Records */}
+                    <Route path="/placementRecords" exact component={PlacementRecord}></Route>
                 </Switch>
             </>
-            
+
         </Router>
-        
+
     );
 }
 

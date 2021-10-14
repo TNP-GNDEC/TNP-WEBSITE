@@ -58,7 +58,56 @@ class TwelfthdiplomaController extends Controller
                     ->update(['form_step' => 4]);
             }
 
+<<<<<<< HEAD
+    $diploma_details = Diploma::updateOrCreate(
+      ['user_id' => $user->id],
+      [ 
+      'user_id' => $user->id,
+      'urn' => $user->username,
+      'pincode' => $request->pincode_diploma,
+      'city' => $request->city_diploma,
+      'state' => $request->state_diploma,
+      //'marks_type' => $request->marks_type_diploma,
+      'maximum_marks' => $request->maximum_marks_diploma,
+      'obtained_marks' => $request->obtained_marks_diploma,
+      'percentage' => ($request->obtained_marks_diploma)*100/($request->maximum_marks_diploma),
+      'institution_name' => $request->institution_name_diploma,
+      'branch' => $request->branch_diploma,
+      'year_of_passing' => $request->year_of_passing_diploma,
+      'year_gap' => 2016-$matriculation_year,
+      //'file' => '/documents/diploma/'.$diploma_file_url
+      ]
+    );
+    
+    if($current_step <5){
+      $form_step_change= DB::table('form_statuses')
+      ->where('user_id', $user->id)
+      ->update(['form_step' => 4]);
+    }
+    }
+    if($request->category=="diploma"){
+      $twe = DB::table('twelfth')->where('user_id', $user->id);
+      $user= $twe->first();
+      if($user !== null){
+        if(file_exists($user->file))
+        unlink($user->file);
+      $twe->delete();
+      }
+    }
+    
+    if($request->category=="XII"){
+    
+      $dip = DB::table('diploma')->where('user_id', $user->id);
+      $user=$dip->first();
+      if($user !== null){
+        if (file_exists($user->file))
+      unlink($user->file);
+      $dip->delete();
+      }
+    }
+=======
         }
+>>>>>>> 9782948a2aaf9d3ba90696a62093075ad25f3342
 
         if ($request->category == "diploma" || $request->category == "both")
         {
