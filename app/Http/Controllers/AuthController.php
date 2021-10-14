@@ -19,11 +19,9 @@ use JWTAuth;
 class AuthController extends Controller
 {
     public function registerStudent(Request $request)
-<<<<<<< HEAD
-    {	$count=0;
+    {	
         $users= $request->data;
         $data=0;
-$updt=0;
         foreach($users["data"] as $user){
             $user['uuid']=(string) Str::uuid();
             $user['role_id']=1;
@@ -34,25 +32,8 @@ $updt=0;
             
             $is_user= DB::table('users')
 				->where('username', $user['username'])->exists();
-=======
-    {
-        $users = $request->data;
-        $data = 0;
-        foreach ($users["data"] as $user)
-        {
-            $user['uuid'] = (string)Str::uuid();
-            $user['role_id'] = 1;
-            $user['is_verified'] = 0;
-            $user['username'] = $user['urn'];
-            $user['password'] = bcrypt($user['crn']);
 
-            $newUser = User::updateOrCreate($user);
-            if ($newUser)
-            {
-                $form_user = formStatus::updateOrCreate(['user_id' => $newUser->id
->>>>>>> 9782948a2aaf9d3ba90696a62093075ad25f3342
-
-	if($is_user){$updt++;
+	if($is_user){
 	//$update=DB::table('users')
           //    ->where('username', $user['username'])
             //  ->update(['password' => $user['password']]);
@@ -75,7 +56,6 @@ $updt=0;
                 'user_id' => $newUser->id,
 		'form_step' => 0
                 ]);
-<<<<<<< HEAD
                 $form_step_two = PersonalDetails::create([
                     'user_id' => $newUser->id,
                     'urn' => $user['urn'],
@@ -100,28 +80,6 @@ $updt=0;
                     // 'percentage' => $user['percentage_10'],
                     // 'marks_type' => 1,
                     // 'year_of_passing' => $user['yop_10']
-=======
-                $form_step_two = PersonalDetails::updateOrCreate(['user_id' => $newUser->id, 'urn' => $user['urn'],
-                // 'crn' => $user['crn'],
-                // 'first_name' => $user['first_name'],
-                // 'last_name' => $user['last_name'],
-                // 'gender' => $user['gender'],
-                // 'father_name' => $user['father_name'],
-                // 'mother_name' => $user['mother_name'],
-                // 'category' => $user['category'], //course on frontend is btech mtech and category is course
-                // 'stream' => $user['stream'],
-                // 'shift' => $user['shift'],
-                // 'leet' => $user['leet'],
-                ]);
-                // if($user['maximum_marks_10']==10){
-                $form_step_three = Matriculation::updateOrCreate(['user_id' => $newUser->id, 'urn' => $user['urn'],
-                // 'crn' => $user['crn'],
-                // 'maximum_marks' => $user['maximum_marks_10'],
-                // 'obtained_marks' => $user['obtained_marks_10'],
-                // 'percentage' => $user['percentage_10'],
-                // 'marks_type' => 1,
-                // 'year_of_passing' => $user['yop_10']
->>>>>>> 9782948a2aaf9d3ba90696a62093075ad25f3342
                 ]);
                 // }
                 // else{
@@ -137,7 +95,6 @@ $updt=0;
                 //     ]);
                 // }
                 // if($user['leet']==0){
-<<<<<<< HEAD
                     // $form_step_four = Twelfth::updateOrCreate([
                     //     'user_id' => $newUser->id,
                     //     'urn' => $user['urn'],
@@ -173,67 +130,12 @@ $updt=0;
                     }
 
                //else return response()->json(["message"=>"Data couldn't be added", "success"=>0 ]);
-            }
+                }
         
-        return response()->json(["udpt"=>$updt,"message"=>"Data added successfully","success"=>1,"data"=>$users["data"], "count"=>$count]);
-    }
-=======
-                // $form_step_four = Twelfth::updateOrCreate([
-                //     'user_id' => $newUser->id,
-                //     'urn' => $user['urn'],
-                // 'crn' => $user['crn'],
-                // 'maximum_marks' => $user['maximum_marks_12'],
-                // 'obtained_marks' => $user['obtained_marks_12'],
-                // 'percentage' => $user['percentage_12'],
-                // 'year_of_passing' => $user['yop_12']
-                // ]);
-                // $category = TwelfthDiplomaCategory::updateOrCreate(
-                //     ['user_id' => $newUser->id,
-                //     'urn' => $user['urn'],
-                //   'category' => 'XII'
-                //   ]);
-                // }
-                // else{
-                //     $form_step_four = Diploma::create([
-                //         'user_id' => $newUser->id,
-                //         'urn' => $user['urn'],
-                //         'crn' => $user['crn'],
-                //         'maximum_marks' => $user['maximum_marks_12'],
-                //         'obtained_marks' => $user['obtained_marks_12'],
-                //         'percentage' => $user['percentage_12'],
-                //         'year_of_passing' => $user['yop_12']
-                //     ]);
-                //     $category = TwelfthDiplomaCategory::create([
-                //         'user_id' => $newUser->id,
-                //         'urn' => $user['urn'],
-                //         'category' => 'Diploma'
-                //       ]);
-                //     }
-                
-            }
->>>>>>> 9782948a2aaf9d3ba90696a62093075ad25f3342
-
-            else return response()->json(["message" => "Data couldn't be added", "success" => 0]);
-        }
-
-        return response()
-            ->json(["message" => "Data added successfully", "success" => 1, "data" => $users["data"]]);
+        return response()->json(["message"=>"Data added successfully","success"=>1,"data"=>$users["data"]]);
     }
 
-<<<<<<< HEAD
-    public function login(Request $request){
-    $request->validate([
-        'username' => 'required',
-        'password' => 'required'
-    ]);
 
-    //allow only admin to login 
-    if($request->username == 'admin'){
-    	$token = JWTAuth::attempt(['username'=>$request->username, 'password'=>$request->password]);
-    }
-    if (! $token ) {
-        return response()->json(['alert' => 'invalid credentials']);
-=======
     public function registerAdmin(Request $request)
     {
 
@@ -241,7 +143,6 @@ $updt=0;
         $newAdmin = User::create(['role_id' => 2, 'username' => $request->username, 'password' => bcrypt($request->password) , 'email' => $request->email, 'uuid' => (String)Str::uuid() ]);
         return response()
             ->json(["message" => "admin added successfully"]);
->>>>>>> 9782948a2aaf9d3ba90696a62093075ad25f3342
     }
 
     public function login(Request $request)
@@ -296,7 +197,3 @@ $updt=0;
 
 }
 
-<<<<<<< HEAD
-}
-=======
->>>>>>> 9782948a2aaf9d3ba90696a62093075ad25f3342
