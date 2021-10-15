@@ -1,6 +1,5 @@
 import React from "react";
 import Axios from "axios";
-import LinksData from "./LeftBarData/LinksData";
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
@@ -12,6 +11,9 @@ import naukriIcon from '../../../../images/naukri-com.png';
 import bixIcon from '../../../../images/indiabix.jpg';
 import indeedIcon from '../../../../images/indeed.jpg';
 import internshalaIcon from '../../../../images/internshala.jpg';
+import prepinstaIcon from '../../../../images/prepinsta_logo.jpg';
+import faceprepIcon from '../../../../images/faceprep_logo.jpg';
+import placementseasonIcon from '../../../../images/placementseason_logo.png';
 
 const useStyles = theme => ({
     title:{
@@ -157,6 +159,55 @@ class Links extends React.Component {
                     </div>
                 </div>
             </Card>
+
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={prepinstaIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            PrepInsta
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://prepinsta.com" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={faceprepIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            FacePrep
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://faceprep.com" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={placementseasonIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            PlacementSeason
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://placementseason.com" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+
             </>
         )
     }

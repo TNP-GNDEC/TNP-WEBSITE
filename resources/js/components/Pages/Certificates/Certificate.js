@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.light,
     margin: "0px",
     minHeight: "100vh",
+    overflow: "hidden"
   },
   root: {
     flexGrow: 1,
@@ -112,7 +113,7 @@ export default function Certificate() {
       });
   }
 
-  useEffect(() => { // it is similar to componentDidMount
+  useEffect(() => { 
     fetchCert(); 
   }, []);
 
