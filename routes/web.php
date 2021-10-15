@@ -17,10 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/{path?}', function () {
-    return view('welcome');
-});
-
 Route::get('/coreMembers', function () {
     return view('welcome');
 });
@@ -153,3 +149,7 @@ Route::get('/certificate/{id}', function () {
 })->name('example');
 
 Route::post('/certData', 'CertificateController@GetCert');
+
+Route::get('/{path?}', function () {
+    return view('welcome');
+});
