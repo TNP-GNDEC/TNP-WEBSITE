@@ -1,6 +1,5 @@
 import React from "react";
 import Axios from "axios";
-import LinksData from "./LeftBarData/LinksData";
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';

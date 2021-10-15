@@ -66,8 +66,8 @@ export default function NotFound(){
                 <h1 className={classes.heading}>OOPS! PAGE NOT FOUND</h1>
                 <p className={classes.subtitle}>The page you’re looking for cannot be found!</p>
                 <NavLink to='/'>
-            <Button hover="false" className={classes.homeButton}>Back To Home</Button>
-            </NavLink>
+                    <Button hover="false" className={classes.homeButton}>Back To Home</Button>
+                </NavLink>
             </div>
         </>
     );
