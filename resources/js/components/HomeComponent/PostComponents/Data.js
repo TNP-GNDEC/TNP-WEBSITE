@@ -8,13 +8,16 @@ import LocalOffer from '@material-ui/icons/LocalOffer';
 import Facebook from '@material-ui/icons/Facebook';
 import Linkedin from '@material-ui/icons/LinkedIn';
 import Twitter from '@material-ui/icons/Twitter';
-import Share from '@material-ui/icons/ShareTwoTone';
+import Share1 from '@material-ui/icons/ShareTwoTone';
 import Calender from '@material-ui/icons/EventAvailable';
 import Flag from '@material-ui/icons/Flag';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import logo from "../../../../images/logo.png";
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
+import Share from "../../HardCoded/view/Share";
+import { BottomSheet } from "react-spring-bottom-sheet";
+import "react-spring-bottom-sheet/dist/style.css";
 
 const useStyles = theme => ({
     root: {
@@ -97,8 +100,16 @@ const useStyles = theme => ({
         justifyContent: "space-between",
         alignItems: "flex-start",
         ['@media (max-width:600px)']: {
-            width: "20%",
+            display: "none"
         },
+    },
+    subheader4: {
+        ['@media (max-width:600px)']: {
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0px 5px 0px 0px",
+        },
+        display: "none"
     },
     subheading: {
         fontSize: "12px",
@@ -107,11 +118,17 @@ const useStyles = theme => ({
         paddingLeft: "5px",
         color: theme.palette.primary.dark,
         ['@media (max-width:960px)']: {
-            fontSize: "10px",
+            fontSize: "11px",
         },
         ['@media (min-width:1600px)']: {
             fontSize: "16px",
         },
+    },
+    share:{
+        fontSize: "11px",
+        fontFamily: "Open Sans",
+        fontWeight: "600",
+        color: theme.palette.primary.main
     },
     icon: {
         fontSize: "18px"
@@ -262,6 +279,16 @@ class Data extends React.Component {
         alert("Are You Want To Delete This Post");
         this.props.deletePost(id);
     }
+    state = {
+        sheet: false
+    }
+    
+    handleSheet = () => {
+        this.setState({sheet: true});
+    }
+    handleClose = () => {
+        this.setState({sheet: false});
+    }
     render() {
         const { posts } = this.props;
         // const {data} = this.props;
@@ -319,6 +346,7 @@ class Data extends React.Component {
             )
         }     
         return (
+            <>
             <Card className={classes.root}>
                 <div className={classes.type}>
                     {posts.type}
@@ -333,6 +361,11 @@ class Data extends React.Component {
                                 <img src={logo} className={classes.image} />
                                 <Typography variant="h5" component="h2" className={classes.subheading}>
                                     {moment(posts.updated_at).format('LLL')}
+                                </Typography>
+                            </div>
+                            <div className={classes.subheader4}>
+                                <Typography variant="h5" component="h2" className={classes.share} onClick={this.handleSheet} >
+                                    Share
                                 </Typography>
                             </div>
                             <div className={classes.subheader3}>
@@ -363,6 +396,14 @@ class Data extends React.Component {
                     </div>
                 </div>
             </Card>
+            <BottomSheet
+            open={this.state.sheet}
+            onDismiss={this.handleClose}
+            snapPoints={({ maxHeight }) => [0.30 * maxHeight, 0.83 * maxHeight]}
+            >
+            <Share id={posts.id} title={posts.title}/>
+            </BottomSheet>
+        </>
         )
     }
 }
