@@ -399,7 +399,7 @@ class Data extends React.Component {
             <BottomSheet
             open={this.state.sheet}
             onDismiss={this.handleClose}
-            snapPoints={({ maxHeight }) => [0.30 * maxHeight, 0.83 * maxHeight]}
+            snapPoints={({ maxHeight }) => [0.38 * maxHeight, 0.83 * maxHeight]}
             >
             <Share id={posts.id} title={posts.title}/>
             </BottomSheet>

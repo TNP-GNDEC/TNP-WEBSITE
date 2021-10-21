@@ -19,8 +19,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "16px",
     boxShadow: "0px 15px 30px #8a959e33",
     ['@media (min-width:1600px)']: {
-      paddingTop: "20px"
-  },
+      paddingTop: "20px",
+    },
+    ['@media (max-width:600px)']: {
+      boxShadow: "none",
+    },
   },
   heading:{
     fontSize: "18px",
