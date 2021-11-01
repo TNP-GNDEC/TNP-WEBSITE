@@ -60,8 +60,10 @@
         "react-router-dom": "^5.2.0",
         "react-select": "^5.1.0",
         "react-share": "^4.4.0",
+        "react-slick": "^0.28.1",
         "react-spring-bottom-sheet": "^3.4.0",
         "react-swipeable-views": "^0.13.9",
-        "react-tagsinput": "^3.19.0"
+        "react-tagsinput": "^3.19.0",
+        "slick-carousel": "^1.8.1"
     }
 }

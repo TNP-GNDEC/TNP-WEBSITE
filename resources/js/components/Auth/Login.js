@@ -14,6 +14,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {  InputAdornment, IconButton } from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Slider from "react-slick";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import { useHistory } from 'react-router-dom';
 
@@ -29,7 +33,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(0)
   },
   container:{
-    width: "100%"
+    width: "100%",
+    borderRadius: "20px",
   },
   loginCard:{
     width: "75%",
@@ -37,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     marginTop: "45px",
     marginBottom: "55px",
-    borderRadius: "10px",
+    // borderRadius: "20px",
     boxShadow: "0px 15px 25px #00000033",
     background: theme.palette.secondary.main,
     display: "flex",
@@ -48,9 +53,12 @@ const useStyles = makeStyles((theme) => ({
   },
   },
   hero:{
-    width: "50%",
+    width: "60%",
+    height: "100%",
     marginTop: "20px",
     marginBottom: "20px",
+    background: "rgb(22,135,217)",
+    background: "linear-gradient(45deg, rgba(22,135,217,1) 0%, rgba(10,59,204,1) 100%)",
     ['@media (max-width:960px)']: {
       display: "none",
   },
@@ -265,6 +273,15 @@ const handleFormSubmit= async (event)=>{
        </div>
        </div>)
   }
+  var settings = {
+    dots: true,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 1000,
+    draggable: false,
+    infinite: true,
+  };
+
   return (
     <div className={classes.root}>
     <Header />
@@ -380,9 +397,24 @@ const handleFormSubmit= async (event)=>{
           <span >Developed with ❤️ by Genconians, ©️ 2021 GNDEC,ldh</span>
         </p>
       </Box>
-        <div className={classes.hero}>
-          <img src={intro} className={classes.pic} />
-        </div>
+      <div className={classes.hero}>
+        {/* <img src={intro} className={classes.pic} /> */}
+        {/* React Carousal Goes Here... */}
+        <Slider {...settings}>
+          <div>
+            <h1>slide 1</h1>
+          </div>
+          <div>
+          <h1>slide 2</h1>
+          </div>
+          <div>
+            <h1>slide 3</h1>
+          </div>
+          <div>
+            <h1>slide 4</h1>
+          </div>
+        </Slider>
+      </div>
       </div>
     </div>
     </div>
