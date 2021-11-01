@@ -92,6 +92,14 @@ p[style] {
   color: #606060;
 }
 
+.slick-dots li button:before {
+  background-color: transparent !important;
+  font-size: 1px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
 @media only screen and (max-width: 800px) {
   p[style], span[style]{
     font-size: 14px !important;
