@@ -18,6 +18,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { useHistory } from 'react-router-dom';
 
 import intro from '../../../images/2.jpg';
+import logo from "../../../images/logo.png";
 
 const useStyles = makeStyles((theme) => ({
   root:{
@@ -32,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
   loginCard:{
     width: "75%",
+    height: "75vh",
     margin: "auto",
     marginTop: "45px",
     marginBottom: "55px",
@@ -39,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0px 15px 25px #00000033",
     background: theme.palette.secondary.main,
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
     ['@media (max-height:585px)']: {
       marginTop: "25px"
@@ -59,10 +61,12 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     width: "40%",
+    height: "100%",
     boxShadow: "none",
-    marginTop: theme.spacing(4),
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'start',
+    padding: theme.spacing(2),
     alignItems: 'center',
     backgroundColor: theme.palette.secondary.main,
     ['@media (max-width:960px)']: {
@@ -81,9 +85,10 @@ const useStyles = makeStyles((theme) => ({
   },
   heading:{
     color: "#193b68",
+    fontWeight: "600",
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '90%', // Fix IE 11 issue.
     margin: theme.spacing(0),
     padding: theme.spacing(1),
   },
@@ -95,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     height: "50px",
-    borderRadius: "5px",
+    borderRadius: "20px",
     boxShadow: "0px 15px 25px #038ed433",
     color: theme.palette.secondary.main,
     '&:hover': {
@@ -103,6 +108,19 @@ const useStyles = makeStyles((theme) => ({
     },
     backgroundColor: theme.palette.primary.main,
     
+  },
+  image:{
+    borderRadius:"50%",
+    marginBottom: "30px",
+  },
+  mainHead: {
+    width: "90%",
+    display: "flex",
+    alignItems: "start",
+    justifyContent: "center",
+    flexDirection: "column",
+    padding: theme.spacing(1),
+    marginBottom: theme.spacing(2),
   },
   notchedOutline: {
     borderColor: "#757575",
@@ -113,6 +131,22 @@ const useStyles = makeStyles((theme) => ({
   
   link: {
     color: theme.palette.primary.main,
+    display: "flex",
+    alignSelf: "flex-end",
+  },
+  input: {
+    borderRadius: "20px",
+  },
+  footText: {
+    width: "90%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "flex-end",
+    padding: theme.spacing(1),
+    // marginTop: "40px",
+    // marginBottom: "10px"
+
   }
 }));
 
@@ -238,17 +272,27 @@ const handleFormSubmit= async (event)=>{
     <div className={classes.container}>
       <CssBaseline />
       <div className={classes.loginCard}>
-        <div className={classes.hero}>
-          <img src={intro} className={classes.pic} />
-        </div>
       <Box boxShadow={2} className={classes.paper}>
-        <Typography component="h2" variant="h4" className={classes.heading}>
-          Sign In
-        </Typography>
+        <div className={classes.mainHead}>
+        <div className={classes.brand}>
+            <div>
+                <Link to ="/">
+                    <img src={logo} width="75px" height="75px" className={classes.image}/>
+                </Link>
+            </div>
+        </div>
+          <Typography component="h2" variant="h4" className={classes.heading}>
+            Login
+          </Typography>
+          <span>
+            Welcome Back!!
+          </span>
+        </div>     
         <form onSubmit={(event) => handleFormSubmit(event)} className={classes.form}>
           <Notisfication notify={notify} setNotify={setNotify} />
           <TextField    
             variant="outlined"
+            sx={{borderRadius: "20px"}}
             className={classes.input}
             InputProps={{
               classes: {
@@ -328,15 +372,20 @@ const handleFormSubmit= async (event)=>{
             variant="contained"
             className={classes.submit}
           >
-            Sign In
+            Login
           </Button>
           )}
         </form>
+        <p className={classes.footText}>
+          <span >Developed with ❤️ by Genconians, ©️ 2021 GNDEC,ldh</span>
+        </p>
       </Box>
+        <div className={classes.hero}>
+          <img src={intro} className={classes.pic} />
+        </div>
       </div>
     </div>
     </div>
-     <Footer />
     </div>
 
   );
