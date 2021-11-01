@@ -30,6 +30,14 @@ const useStyles = makeStyles(theme => ({
         margin: "0px",
         top: "0"
     },
+    backColor: {
+        background: theme.palette.primary.main,
+        width: "100%",
+        position: "fixed",
+        margin: "0px",
+        top: "0",
+        zIndex: 0
+    },
     grow: {
         flexGrow: 1,
         boxShadow: "none"
@@ -135,7 +143,13 @@ const useStyles = makeStyles(theme => ({
         "&:hover": {
             textDecoration: "none",
             color: "#303030"
-        }
+        },
+        width: "100%",
+        paddingLeft: "30px",
+        fontSize: "18px",
+        paddingTop: "5px",
+        paddingBottom: "5px",
+        fontWeight: "500"
     }
 }));
 
@@ -163,6 +177,13 @@ export default function PrimarySearchAppBar() {
     const handleMobileMenuOpen = event => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
+
+    let body;
+    if (isMobileMenuOpen) {
+        body = classes.backColor;
+    } else {
+        body = classes.grow;
+    }
 
     const menuId = "primary-search-account-menu";
     const renderMenu = (
@@ -212,33 +233,27 @@ export default function PrimarySearchAppBar() {
             snapPoints={({ maxHeight }) => [0.45 * maxHeight, 0.83 * maxHeight]}
         >
             <MenuItem>
-                <IconButton>
-                    <Link to="/login" className={classes.nav_links}>
-                        Login
-                    </Link>
-                </IconButton>
+                <Link to="/login" className={classes.nav_links}>
+                    Login
+                </Link>
             </MenuItem>
 
             <MenuItem>
-                <IconButton>
-                    <Link to="/about" className={classes.nav_links}>
-                        About
-                    </Link>
-                </IconButton>
+                <Link to="/about" className={classes.nav_links}>
+                    About
+                </Link>
             </MenuItem>
             <MenuItem>
-                <IconButton>
-                    <Link to="/technicalMembers" className={classes.nav_links}>
-                        Genconians
-                    </Link>
-                </IconButton>
+                <Link to="/technicalMembers" className={classes.nav_links}>
+                    Genconians
+                </Link>
             </MenuItem>
         </BottomSheet>
     );
 
     return (
-        <div className={classes.grow}>
-            <AppBar position="static" className={classes.customColor}>
+        <div className={body}>
+            <AppBar className={classes.customColor}>
                 <Toolbar>
                     <IconButton
                         edge="start"
