@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
         minHeight: "100vh"
     },
     box: {
-        marginTop: theme.spacing(0)
+        // marginTop: theme.spacing(0)
     },
     container: {
         width: "100%",
@@ -41,10 +41,10 @@ const useStyles = makeStyles(theme => ({
     },
     loginCard: {
         width: "75%",
-        height: "90vh",
+        height: "80vh",
         margin: "auto",
         marginTop: "45px",
-        marginBottom: "55px",
+        marginBottom: "40px",
         // borderRadius: "20px",
         boxShadow: "0px 15px 25px #00000033",
         background: theme.palette.secondary.main,
@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
         background: "rgb(22,135,217)",
         background:
             "linear-gradient(45deg, rgba(22,135,217,1) 0%, rgba(10,59,204,1) 100%)",
-        ["@media (max-width:960px)"]: {
+        ["@media (max-width:1000px)"]: {
             display: "none"
         }
     },
@@ -82,7 +82,7 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: "5px",
         alignItems: "center",
         backgroundColor: theme.palette.secondary.main,
-        ["@media (max-width:960px)"]: {
+        ["@media (max-width:1000px)"]: {
             width: "100%"
         }
     },
@@ -154,15 +154,19 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
         alignItems: "center",
         alignContent: "flex-end",
-        padding: theme.spacing(1)
-        // marginTop: "40px",
+        padding: theme.spacing(1),
+        marginTop: "40px",
         // marginBottom: "10px"
+        ["@media (max-width:1000px)"]: {
+            marginTop: "30px",
+        }
     },
     slideWrapper: {
         flex: 1,
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        // height: "100%",
     },
     slideImage: {
         height: "280px",
@@ -188,7 +192,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: "22px",
         paddingRight: "100px",
         paddingLeft: "100px"
-    }
+    },
 }));
 
 const SignIn = () => {
@@ -322,8 +326,8 @@ const SignIn = () => {
         dots: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 3000,
-        draggable: true,
+        autoplaySpeed: 5000,
+        draggable: false,
         infinite: true
     };
 
@@ -463,7 +467,7 @@ const SignIn = () => {
                             <p className={classes.footText}>
                                 <span>
                                     Developed with ❤️ by Genconians, ©️ 2021
-                                    GNDEC,ldh
+                                    GNDEC, Ldh
                                 </span>
                             </p>
                         </Box>
