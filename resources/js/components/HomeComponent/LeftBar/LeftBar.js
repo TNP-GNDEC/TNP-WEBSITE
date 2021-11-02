@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Connect from "./Connect";
 import Records from "./Records"
-import Explore from "./Explore";
 import Downloads from "./Downloads";
 import UsefulLinks from "./Links";
 import WebNotify from "./WebNotify";
@@ -69,11 +68,11 @@ export default function LeftBar() {
             <p className={classes.greeting2}>Welcome to the T&P Cell</p>
             <h3 className={classes.cardTitle}>Connect</h3>
             <Connect />
-            <h3 className={classes.cardTitle}>Records</h3>
-            <Records />
-            <h3 className={classes.cardTitle}>Explore</h3>
+            <h3 className={classes.cardTitle}>Alumni</h3>
             <Assistance />
-            <h3 className={classes.cardTitle}>Members</h3>
+            <h3 className={classes.cardTitle}>Explore</h3>
+            <Records />
+            <h3 className={classes.cardTitle}>T&P Members</h3>
             <MemberLinks />
             <h3 className={classes.cardTitle}>Downloads</h3>
             <Downloads />
