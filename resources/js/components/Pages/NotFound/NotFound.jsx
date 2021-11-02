@@ -6,12 +6,15 @@ import Button from "@material-ui/core/Button";
 
 import Navbar from '../../HomeComponent/SideComponents/Navbar';
 import Error from '../../../../images/error.png';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        backgroundColor: '#E9F3FD',
+        height: '100vh'
     },
     image: {
         width: '45%',
@@ -63,8 +66,8 @@ export default function NotFound(){
             <Navbar />
             <div className={classes.container}>
                 <img className={classes.image} src={Error} />
-                <h1 className={classes.heading}>OOPS! PAGE NOT FOUND</h1>
-                <p className={classes.subtitle}>The page you’re looking for cannot be found!</p>
+                <Typography className={classes.heading} variant="h1">OOPS! PAGE NOT FOUND</Typography>
+                <Typography className={classes.subtitle}>The page you’re looking for cannot be found!</Typography>
                 <NavLink to='/'>
                     <Button hover="false" className={classes.homeButton}>Back To Home</Button>
                 </NavLink>

@@ -1,16 +1,12 @@
 import React from "react";
-import Axios from "axios";
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/icons/Link';
-import { Icon } from "@material-ui/core";
-import gneLogo from '../../../../images/gndec.png';
 import linkIcon from '../../../../images/Link.png';
-import naukriIcon from '../../../../images/naukri-com.png';
-import bixIcon from '../../../../images/indiabix.jpg';
-import indeedIcon from '../../../../images/indeed.jpg';
-import internshalaIcon from '../../../../images/internshala.jpg';
+import prepinstaIcon from '../../../../images/prepinsta_logo.jpg';
+import faceprepIcon from '../../../../images/faceprep_logo.jpg';
+import placementseasonIcon from '../../../../images/placementseason_logo.png';
+import { GpsFixed } from "@material-ui/icons";
 
 const useStyles = theme => ({
     title:{
@@ -71,22 +67,22 @@ const useStyles = theme => ({
     }
 });
 
-class Links extends React.Component {
+class PlacementLinks extends React.Component {
 
     render(){
         const {classes} = this.props;
         return(
-            <>
+            <div class={classes.box}>
             <Card className={classes.card}>
                 <div className={classes.outerContainer}>
                     <div className={classes.container}>
-                        <img className={classes.icon} src={gneLogo}></img>
+                        <img className={classes.icon} src={prepinstaIcon}></img>
                         <Typography className={classes.cardTitle}>
-                            GNDEC
+                            PrepInsta
                         </Typography>
                     </div>
                     <div className={classes.link}>
-                        <a href="https://gndec.ac.in" target="_blank" rel="noreferrer noopener">
+                        <a href="https://prepinsta.com" target="_blank" rel="noreferrer noopener">
                             <img className={classes.linkIcon} src={linkIcon}></img>
                         </a>
                     </div>
@@ -96,13 +92,13 @@ class Links extends React.Component {
             <Card className={classes.card}>
                 <div className={classes.outerContainer}>
                     <div className={classes.container}>
-                        <img className={classes.icon} src={naukriIcon}></img>
+                        <img className={classes.icon} src={faceprepIcon}></img>
                         <Typography className={classes.cardTitle}>
-                            Naukri.com
+                            FacePrep
                         </Typography>
                     </div>
                     <div className={classes.link}>
-                        <a href="https://naukri.com" target="_blank" rel="noreferrer noopener">
+                        <a href="https://faceprep.in" target="_blank" rel="noreferrer noopener">
                             <img className={classes.linkIcon} src={linkIcon}></img>
                         </a>
                     </div>
@@ -112,53 +108,21 @@ class Links extends React.Component {
             <Card className={classes.card}>
                 <div className={classes.outerContainer}>
                     <div className={classes.container}>
-                        <img className={classes.icon} src={bixIcon}></img>
+                        <img className={classes.icon} src={placementseasonIcon}></img>
                         <Typography className={classes.cardTitle}>
-                            IndiaBix
+                            PlacementSeason
                         </Typography>
                     </div>
                     <div className={classes.link}>
-                        <a href="https://indiabix.com" target="_blank" rel="noreferrer noopener">
+                        <a href="https://placementseason.com" target="_blank" rel="noreferrer noopener">
                             <img className={classes.linkIcon} src={linkIcon}></img>
                         </a>
                     </div>
                 </div>
             </Card>
-
-            <Card className={classes.card}>
-                <div className={classes.outerContainer}>
-                    <div className={classes.container}>
-                        <img className={classes.icon} src={indeedIcon}></img>
-                        <Typography className={classes.cardTitle}>
-                            Indeed
-                        </Typography>
-                    </div>
-                    <div className={classes.link}>
-                        <a href="https://indeed.com" target="_blank" rel="noreferrer noopener">
-                            <img className={classes.linkIcon} src={linkIcon}></img>
-                        </a>
-                    </div>
-                </div>
-            </Card>
-
-            <Card className={classes.card}>
-                <div className={classes.outerContainer}>
-                    <div className={classes.container}>
-                        <img className={classes.icon} src={internshalaIcon}></img>
-                        <Typography className={classes.cardTitle}>
-                            Internshala
-                        </Typography>
-                    </div>
-                    <div className={classes.link}>
-                        <a href="https://internshala.com" target="_blank" rel="noreferrer noopener">
-                            <img className={classes.linkIcon} src={linkIcon}></img>
-                        </a>
-                    </div>
-                </div>
-            </Card>
-            </>
+            </div>
         )
     }
 }
 
-export default withStyles(useStyles)(Links);
+export default withStyles(useStyles)(PlacementLinks);
