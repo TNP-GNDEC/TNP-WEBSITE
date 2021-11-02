@@ -30,7 +30,7 @@ import slide3 from "../../../images/slide3.png";
 const useStyles = makeStyles(theme => ({
     root: {
         background: theme.palette.primary.light,
-        minHeight: "100vh"
+        // minHeight: "100vh"
     },
     box: {
         marginTop: theme.spacing(0)
@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     },
     loginCard: {
         width: "75%",
-        height: "90vh",
+        height: "100vh",
         margin: "auto",
         marginTop: "45px",
         marginBottom: "55px",
@@ -58,8 +58,8 @@ const useStyles = makeStyles(theme => ({
     hero: {
         width: "60%",
         height: "100%",
-        marginTop: "20px",
-        marginBottom: "20px",
+        marginTop: "auto",
+        marginBottom: "auto",
         background: "rgb(22,135,217)",
         background:
             "linear-gradient(45deg, rgba(22,135,217,1) 0%, rgba(10,59,204,1) 100%)",
@@ -162,13 +162,13 @@ const useStyles = makeStyles(theme => ({
         flex: 1,
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
     },
     slideImage: {
-        height: "280px",
+        height: "17rem",
         marginRight: "auto",
         marginLeft: "auto",
-        marginTop: "4rem",
+        marginTop: "3rem",
         marginBottom: "2rem"
     },
     textWrapper: {
@@ -176,7 +176,7 @@ const useStyles = makeStyles(theme => ({
     },
     slideHeading: {
         textAlign: "center",
-        fontSize: "30px",
+        fontSize: "2rem",
         fontWeight: "600",
         fontFamily: "Open Sans",
         color: "white"
@@ -185,7 +185,7 @@ const useStyles = makeStyles(theme => ({
         textAlign: "center",
         fontFamily: "Open Sans",
         color: "white",
-        fontSize: "22px",
+        fontSize: "1.5rem",
         paddingRight: "100px",
         paddingLeft: "100px"
     }
