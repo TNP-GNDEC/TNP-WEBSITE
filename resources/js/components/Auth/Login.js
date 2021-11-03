@@ -37,16 +37,17 @@ const useStyles = makeStyles(theme => ({
     },
     container: {
         width: "100%",
-        borderRadius: "20px"
+        height: "100%",
+        // borderRadius: "20px"
     },
     loginCard: {
-        width: "75%",
-        height: "80vh",
-        margin: "auto",
-        marginTop: "45px",
-        marginBottom: "40px",
+        width: "100%",
+        height: "100vh",
+        // margin: "auto",
+        // marginTop: "45px",
+        // marginBottom: "40px",
         // borderRadius: "20px",
-        boxShadow: "0px 15px 25px #00000033",
+        // boxShadow: "0px 15px 25px #00000033",
         background: theme.palette.secondary.main,
         display: "flex",
         justifyContent: "space-between",
@@ -58,8 +59,8 @@ const useStyles = makeStyles(theme => ({
     hero: {
         width: "60%",
         height: "100%",
-        marginTop: "20px",
-        marginBottom: "20px",
+        // marginTop: "50px",
+        // marginBottom: "20px",
         background: "rgb(22,135,217)",
         background:
             "linear-gradient(45deg, rgba(22,135,217,1) 0%, rgba(10,59,204,1) 100%)",
@@ -111,7 +112,8 @@ const useStyles = makeStyles(theme => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
-        height: "50px",
+        height: "60px",
+        fontSize: "22px",
         borderRadius: "20px",
         boxShadow: "0px 15px 25px #038ed433",
         color: theme.palette.secondary.main,
@@ -122,7 +124,7 @@ const useStyles = makeStyles(theme => ({
     },
     image: {
         borderRadius: "50%",
-        marginBottom: "30px"
+        marginBottom: "50px"
     },
     mainHead: {
         width: "90%",
@@ -131,7 +133,10 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
         flexDirection: "column",
         padding: theme.spacing(1),
-        marginBottom: theme.spacing(2)
+        marginBottom: theme.spacing(3)
+    },
+    headSecondary: {
+        fontSize: "14px"
     },
     notchedOutline: {
         borderColor: "#757575"
@@ -155,10 +160,10 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         alignContent: "flex-end",
         padding: theme.spacing(1),
-        marginTop: "40px",
+        marginTop: "120px",
         // marginBottom: "10px"
         ["@media (max-width:1000px)"]: {
-            marginTop: "30px",
+            marginTop: "50px",
         }
     },
     slideWrapper: {
@@ -166,10 +171,11 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        marginTop: "30px",
         // height: "100%",
     },
     slideImage: {
-        height: "280px",
+        height: "380px",
         marginRight: "auto",
         marginLeft: "auto",
         marginTop: "4rem",
@@ -333,10 +339,8 @@ const SignIn = () => {
 
     return (
         <div className={classes.root}>
-            <Header />
             <div className={classes.card}>
                 <div className={classes.container}>
-                    <CssBaseline />
                     <div className={classes.loginCard}>
                         <Box boxShadow={2} className={classes.paper}>
                             <div className={classes.mainHead}>
@@ -354,12 +358,12 @@ const SignIn = () => {
                                 </div>
                                 <Typography
                                     component="h2"
-                                    variant="h4"
+                                    variant="h3"
                                     className={classes.heading}
                                 >
                                     Login
                                 </Typography>
-                                <span>Welcome Back!!</span>
+                                <span className={classes.headSecondary}>Welcome Back!!</span>
                             </div>
                             <form
                                 onSubmit={event => handleFormSubmit(event)}
