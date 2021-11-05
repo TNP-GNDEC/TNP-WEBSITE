@@ -58,7 +58,6 @@ export default function MiddleSection() {
       <h3 className={classes.cardTitle} >Major Recruiters</h3>
       <Card className={classes.pdfCard}>
             <div className={classes.imageHandler}>
-              {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsm88bY00GyypZSvFBvBUGMSl_KPu-aVAdCA&usqp=CAU" alt="Our Major Recruiters" height="100%" width="100%" className={classes.imageTag} /> */}
               <img src="/documents/recruiters/major_recruiters.png" alt="Updated Soon" height="100%" width="100%" className={classes.imageTag} />
             </div>
       </Card>
