@@ -152,7 +152,7 @@ class AuthController extends Controller
 
         if (!$token)
         {
-            return response()->json(['alert' => 'invalid credentials']);
+            return response()->json(['alert' => 'Invalid credentials']);
         }
 
         $currentUser = Auth::user();

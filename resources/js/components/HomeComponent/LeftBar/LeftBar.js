@@ -8,6 +8,7 @@ import UsefulLinks from "./Links";
 import WebNotify from "./WebNotify";
 import Assistance from "./Assistance";
 import MemberLinks from "./MemberLinks";
+import PlacementLinks from "./PlacementLinks";
 
 const useStyles = makeStyles(theme => ({
     cardTitle: {
@@ -78,8 +79,8 @@ export default function LeftBar() {
             <Downloads />
             <h3 className={classes.cardTitle}>Notifications</h3>
             <WebNotify />
-            <h3 className={classes.cardTitle}>Useful Links</h3>
-            <UsefulLinks />
+            <h3 className={classes.cardTitle}>Placement Resources</h3>
+            <PlacementLinks />
         </div>
     );
 }

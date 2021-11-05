@@ -1,15 +1,18 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
+import Typography from "@material-ui/core/Typography";
+import Business from "@material-ui/icons/Business";
+import Email from "@material-ui/icons/Email";
+import Phone from "@material-ui/icons/Phone";
 import records from "../../../../images/Records.png";
-import Button from "@material-ui/core/Button";
+import Avatar from "../../../../images/recruiter.png";
 
 const useStyles = makeStyles(theme => ({
     root: {
         width: "100%",
         paddingTop: "15px",
         marginBottom: "34px",
-        textAlign: "center",
         borderRadius: "16px",
         boxShadow: "0px 15px 30px #8a959e33",
         ["@media (min-width:1600px)"]: {
@@ -19,13 +22,41 @@ const useStyles = makeStyles(theme => ({
     media: {
         textAlign: "center"
     },
-    imageBox: {
+    icon: {
+        backgroundColor: theme.palette.primary.dark,
+        color: theme.palette.secondary.main,
+        borderRadius: "5px",
+        boxShadow: "0px 5px 15px #193b6833",
+        marginRight: "10px",
+        height: "30px",
+        width: "30px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    Icon: {
+        fontSize: "18px"
+    },
+    title: {
+        color: theme.palette.primary.dark,
+        fontSize: "22px"
+    },
+    handles: {
+        width: "90%",
+        marginBottom: "15px",
         marginLeft: "auto",
         marginRight: "auto",
-        width: "50px",
-        height: "50px",
+        height: "30%",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
+    imageBox: {
+        marginLeft: "10px",
+        width: "60px",
+        height: "60px",
         borderRadius: "50%",
-        backgroundColor: theme.palette.primary.accent,
+        backgroundColor: "#e5e5e5",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -34,13 +65,37 @@ const useStyles = makeStyles(theme => ({
             width: "70px"
         }
     },
-    image: {
-        height: "30px",
+    imageBox2: {
+        width: "40px",
+        height: "40px",
         ["@media (min-width:1600px)"]: {
-            height: "40px"
+            height: "40px",
+            width: "40px"
         }
     },
+    image: {
+        width: "32px",
+        height: "32px",
+        ["@media (min-width:1600px)"]: {
+            height: "40px",
+            width: "40px"
+        }
+    },
+    image2: {
+        width: "28px",
+        height: "32px",
+        ["@media (min-width:1600px)"]: {
+            height: "36px",
+            width: "40px"
+        }
+    },
+    textInfo: {
+        width: "60%",
+        paddingRight: "10px"
+    },
     heading: {
+        marginBottom: "10px",
+        paddingLeft: "10px",
         fontSize: "18px",
         fontFamily: "Open Sans",
         fontWeight: "600",
@@ -52,51 +107,46 @@ const useStyles = makeStyles(theme => ({
         }
     },
     subheading: {
-        fontSize: "13px",
+        textAlign: "left",
+        padding: "10px 0px 0px 5px",
+        fontSize: "15px",
         fontFamily: "Open Sans",
         fontWeight: "600",
         color: theme.palette.primary.text,
         ["@media (min-width:1600px)"]: {
-            fontSize: "16px"
+            fontSize: "18px"
         }
     },
-    read: {
-        borderRadius: "5px",
+    button: {
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginBottom: "10px",
+        marginTop: "10px",
         width: "100%",
-        margin: "25px auto",
         height: "40px",
+        cursor: "pointer",
+        borderRadius: "8px",
+        border: "2px solid #1687d9",
         display: "flex",
-        justifyContent: "center",
         alignItems: "center",
-        padding: "15px 0px 10px 0px"
-    },
-    readLink: {
-        width: "75%",
-        textDecoration: "none"
-    },
-    readButton: {
-        backgroundColor: theme.palette.primary.main,
-        padding: "10px 0px",
-        margin: "30px 0px",
-        fontSize: "16px",
-        borderRadius: "16px",
-        fontFamily: "Open Sans",
-        fontWeight: "400",
-        textTransform: "capitalize",
-        boxShadow: "0px 10px 25px #1687d933",
-        color: theme.palette.secondary.main,
-        textDecoration: "none",
+        justifyContent: "center",
         "&:hover": {
-            backgroundColor: theme.palette.primary.main
+            boxShadow: "0 5px 12px #1687d933"
         },
         "&:focus": {
             outline: "none"
         },
-        ["@media (max-width:960px)"]: {
-            fontSize: "14px"
-        },
         ["@media (min-width:1600px)"]: {
-            fontSize: "18px"
+            height: "50px"
+        }
+    },
+    subheading2: {
+        fontSize: "14px",
+        fontFamily: "Open Sans",
+        fontWeight: "600",
+        color: theme.palette.primary.main,
+        ["@media (min-width:1600px)"]: {
+            fontSize: "16px"
         }
     }
 }));
@@ -105,28 +155,54 @@ const Records = () => {
     const classes = useStyles();
     return (
         <Card className={classes.root}>
-            <div className={classes.media}>
+            <div className={classes.handles}>
                 <div className={classes.imageBox}>
                     <img src={records} className={classes.image} />
                 </div>
-            </div>
-            <h1 className={classes.heading}>Placement Records</h1>
-            <h3 className={classes.subheading}>of all branches.</h3>
-            <div className={classes.read}>
-                <a
-                    href="/placementRecords"
-                    target="_blank"
-                    style={{ textDecoration: "none" }}
-                    className={classes.readLink}
-                >
-                    <Button
-                        hover="false"
-                        className={classes.readButton}
-                        fullWidth
+                <div className={classes.textInfo}>
+                    <h3 className={classes.subheading}>Placement Records</h3>
+                    <a
+                        href="/placementRecords"
+                        target="_blank"
+                        rel="noopener"
+                        style={{ textDecoration: "none" }}
                     >
-                        View
-                    </Button>
-                </a>
+                        <div className={classes.button}>
+                            <Typography
+                                variant="h6"
+                                component="h2"
+                                className={classes.subheading2}
+                            >
+                                View
+                            </Typography>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div className={classes.handles}>
+                <div className={classes.imageBox}>
+                    <img src={Avatar} className={classes.image2} />
+                </div>
+                <div className={classes.textInfo}>
+                    <h3 className={classes.subheading}>Major Recruiters</h3>
+                    <a
+                        href="/majorRecruiters"
+                        target="_blank"
+                        rel="noopener"
+                        style={{ textDecoration: "none" }}
+                    >
+                        <div className={classes.button}>
+                            <Typography
+                                variant="h6"
+                                component="h2"
+                                className={classes.subheading2}
+                            >
+                                View
+                            </Typography>
+                        </div>
+                    </a>
+                </div>
             </div>
         </Card>
     );

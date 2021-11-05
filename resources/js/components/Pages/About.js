@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme) => ({
       margin: "0px",
       display: "flex",
       justifyContent: "space-between",
-      backgroundColor: theme.palette.primary.main
+      backgroundColor: theme.palette.primary.main,
+      display: "none"
   },
   titleBox:{
       width: "400px",
