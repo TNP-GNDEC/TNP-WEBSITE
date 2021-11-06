@@ -37,12 +37,7 @@ const useStyles = makeStyles((theme) => ({
     textContent: "center",
     width: "100%",
     textAlign: "center",
-    fontSize: "40px",
-    maxHeight: "900px",
-    ['@media (max-width:550px)']: {
-      paddingTop: "200px",
-      height: "500px"
-    },
+    fontSize: "40px"
   },
   imageTag: {
     borderRadius: "10px"
