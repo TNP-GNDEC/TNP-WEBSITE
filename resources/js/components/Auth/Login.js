@@ -14,8 +14,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import SlickCarousel from "./SlickCarousel";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 
 import { useHistory } from "react-router-dom";
 
@@ -183,40 +182,7 @@ const useStyles = makeStyles(theme => ({
         ["@media (max-width:600px)"]: {
             width: "90%"
         }
-    },
-    slideWrapper: {
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "30px",
-        height: "100%",
-    },
-    slideImage: {
-        height: "320px",
-        marginRight: "auto",
-        marginLeft: "auto",
-        marginTop: "2rem",
-        marginBottom: "4rem"
-    },
-    textWrapper: {
-        //
-    },
-    slideHeading: {
-        textAlign: "center",
-        fontSize: "22px",
-        fontWeight: "600",
-        fontFamily: "Open Sans",
-        color: theme.palette.secondary.main
-    },
-    slideSubtitle: {
-        textAlign: "center",
-        fontFamily: "Open Sans",
-        color: theme.palette.secondary.main,
-        fontSize: "16px",
-        paddingRight: "180px",
-        paddingLeft: "180px"
-    },
+    }
 }));
 
 const SignIn = () => {
