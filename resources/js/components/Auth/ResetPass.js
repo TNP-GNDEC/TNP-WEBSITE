@@ -14,6 +14,10 @@ import Box from "@material-ui/core/Box";
 
 import intro from "../../../images/1.jpg";
 
+import SlickCarousel from "./SlickCarousel";
+
+import logo from "../../../images/logo.png";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         background: theme.palette.primary.light,
@@ -183,6 +187,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ResetPass() {
+    var dt=new Date();
+    var year = dt.getFullYear();
     const classes = useStyles();
     let { token } = useParams();
     const [errors, setErrors] = useState({});
