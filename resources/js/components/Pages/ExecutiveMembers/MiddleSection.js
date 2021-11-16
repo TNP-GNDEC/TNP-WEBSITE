@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Select from "react-select";
-
-const options = [
-  { value: 3, label: "2021-22" },
-  { value: 2, label: "2020-21" },
-  { value: 1, label: "2019-20" },
-  { value: 0, label: "2018-19" }
-]
+import PdfCard from "./pdfCard";
 
 const customStyles = {
   control: base => ({
@@ -41,44 +35,28 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "16px",
     marginTop: "20px",
     boxShadow: "0px 10px 25px rgba(48, 48, 48, 0.2)",
-  },
-  pdfEmbed: {
-    borderRadius: "16px",
-    border: "none",
-    height: "150vw",
-    maxHeight: "800px",
-    ['@media (max-width:550px)']: {
-      maxHeight: "500px"
-    },
-  },
-  replacementHandler:{
-    textContent: "center",
-    width: "100%",
-    textAlign: "center",
-    fontSize: "40px",
-    paddingTop: "300px",
-    height: "700px",
-    ['@media (max-width:550px)']: {
-      paddingTop: "200px",
-      height: "500px"
-    },
   }
 }));
 
 export default function MiddleSection() {
 
+  const classes = useStyles();
+  
   const handleChange = (e) => {
     setIndex(e.value)
   }
 
-  const classes = useStyles();
+  const options = [
+    { value: 1, label: "2021-22" },
+    { value: 0, label: "2020-21" },
+  ]
+
   // links should be in order with last one being the latest one
   const links = [
-    "",
-    "",
-    "",
+    "/documents/Tnp-Team/Executive-members-20-21.pdf",
     "/documents/Tnp-Team/Executive-Members.pdf",
   ];
+
   const [index, setIndex] = useState(links.length - 1);
 
   return (
@@ -91,16 +69,8 @@ export default function MiddleSection() {
           label="batch"
           defaultValue={options[0]}
         />
-
       <Card className={classes.pdfCard}>
-        {
-          links[index] == "" ?
-            <div className={classes.replacementHandler}>
-              Updated Soon
-            </div>
-          :
-            <iframe src={links[index]} width="100%" allow="autoplay" className={classes.pdfEmbed}></iframe>
-        }
+        <PdfCard source={links[index]} />
       </Card>
     </>
   );

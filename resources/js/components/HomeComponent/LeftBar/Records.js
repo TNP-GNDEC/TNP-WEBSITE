@@ -6,7 +6,7 @@ import Business from "@material-ui/icons/Business";
 import Email from "@material-ui/icons/Email";
 import Phone from "@material-ui/icons/Phone";
 import records from "../../../../images/Records.png";
-import Avatar from "../../../../images/avatar.png";
+import Avatar from "../../../../images/recruiter.png";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -81,6 +81,14 @@ const useStyles = makeStyles(theme => ({
             width: "40px"
         }
     },
+    image2: {
+        width: "28px",
+        height: "32px",
+        ["@media (min-width:1600px)"]: {
+            height: "36px",
+            width: "40px"
+        }
+    },
     textInfo: {
         width: "60%",
         paddingRight: "10px"
@@ -100,7 +108,7 @@ const useStyles = makeStyles(theme => ({
     },
     subheading: {
         textAlign: "left",
-        padding: "10px 0px 0px 10px",
+        padding: "10px 0px 0px 5px",
         fontSize: "15px",
         fontFamily: "Open Sans",
         fontWeight: "600",
@@ -174,7 +182,7 @@ const Records = () => {
 
             <div className={classes.handles}>
                 <div className={classes.imageBox}>
-                    <img src={Avatar} className={classes.imageBox2} />
+                    <img src={Avatar} className={classes.image2} />
                 </div>
                 <div className={classes.textInfo}>
                     <h3 className={classes.subheading}>Major Recruiters</h3>
