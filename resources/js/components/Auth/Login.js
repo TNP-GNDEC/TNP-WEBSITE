@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Header from "./Header";
-import Footer from "../HomeComponent/SideComponents/Footer";
 import Notisfication from "./Notisfication";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -14,18 +11,15 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { InputAdornment, IconButton } from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import Slider from "react-slick";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import SlickCarousel from "./SlickCarousel";
+
+
 
 import { useHistory } from "react-router-dom";
 
-import intro from "../../../images/2.jpg";
 import logo from "../../../images/logo.png";
-import slide1 from "../../../images/slide1.png";
-import slide2 from "../../../images/slide2.png";
-import slide3 from "../../../images/slide3.png";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -188,40 +182,7 @@ const useStyles = makeStyles(theme => ({
         ["@media (max-width:600px)"]: {
             width: "90%"
         }
-    },
-    slideWrapper: {
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "30px",
-        height: "100%",
-    },
-    slideImage: {
-        height: "320px",
-        marginRight: "auto",
-        marginLeft: "auto",
-        marginTop: "2rem",
-        marginBottom: "4rem"
-    },
-    textWrapper: {
-        //
-    },
-    slideHeading: {
-        textAlign: "center",
-        fontSize: "22px",
-        fontWeight: "600",
-        fontFamily: "Open Sans",
-        color: theme.palette.secondary.main
-    },
-    slideSubtitle: {
-        textAlign: "center",
-        fontFamily: "Open Sans",
-        color: theme.palette.secondary.main,
-        fontSize: "16px",
-        paddingRight: "180px",
-        paddingLeft: "180px"
-    },
+    }
 }));
 
 const SignIn = () => {
@@ -498,57 +459,7 @@ const SignIn = () => {
                             </pre>
                         </Box>
                         <div className={classes.hero}>
-                            <Slider {...settings}>
-                                <div className={classes.slideWrapper}>
-                                    <img
-                                        className={classes.slideImage}
-                                        src={slide1}
-                                        alt="Regular Updates"
-                                    />
-                                    <div className={classes.textWrapper}>
-                                        <p className={classes.slideHeading}>
-                                            Regular Updates
-                                        </p>
-                                        <p className={classes.slideSubtitle}>
-                                            Get information and news about new
-                                            opportunities and recruitments.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className={classes.slideWrapper}>
-                                    <img
-                                        className={classes.slideImage}
-                                        src={slide2}
-                                        alt="Get Notified"
-                                    />
-                                    <div className={classes.textWrapper}>
-                                        <p className={classes.slideHeading}>
-                                            Get Notified
-                                        </p>
-                                        <p className={classes.slideSubtitle}>
-                                            Subscribe by clicking on bell prompt
-                                            or CTA for latest news and updates.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className={classes.slideWrapper}>
-                                    <img
-                                        className={classes.slideImage}
-                                        src={slide3}
-                                        alt="Stay Connected"
-                                    />
-                                    <div className={classes.textWrapper}>
-                                        <p className={classes.slideHeading}>
-                                            Stay Connected
-                                        </p>
-                                        <p className={classes.slideSubtitle}>
-                                            Follow & connect with us on linkedin
-                                            and other social handles for new
-                                            updates.
-                                        </p>
-                                    </div>
-                                </div>
-                            </Slider>
+                           <SlickCarousel />
                         </div>
                     </div>
                 </div>
