@@ -57,106 +57,70 @@ class TwelfthdiplomaController extends Controller
                 $form_step_change = DB::table('form_statuses')->where('user_id', $user->id)
                     ->update(['form_step' => 4]);
             }
-
-    $diploma_details = Diploma::updateOrCreate(
-      ['user_id' => $user->id],
-      [ 
-      'user_id' => $user->id,
-      'urn' => $user->username,
-      'pincode' => $request->pincode_diploma,
-      'city' => $request->city_diploma,
-      'state' => $request->state_diploma,
-      //'marks_type' => $request->marks_type_diploma,
-      'maximum_marks' => $request->maximum_marks_diploma,
-      'obtained_marks' => $request->obtained_marks_diploma,
-      'percentage' => ($request->obtained_marks_diploma)*100/($request->maximum_marks_diploma),
-      'institution_name' => $request->institution_name_diploma,
-      'branch' => $request->branch_diploma,
-      'year_of_passing' => $request->year_of_passing_diploma,
-      'year_gap' => 2016-$matriculation_year,
-      //'file' => '/documents/diploma/'.$diploma_file_url
-      ]
-    );
-    
-    if($current_step <5){
-      $form_step_change= DB::table('form_statuses')
-      ->where('user_id', $user->id)
-      ->update(['form_step' => 4]);
-    }
-    }
-    if($request->category=="diploma"){
-      $twe = DB::table('twelfth')->where('user_id', $user->id);
-      $user= $twe->first();
-      if($user !== null){
-        if(file_exists($user->file))
-        unlink($user->file);
-      $twe->delete();
-      }
-    }
-    
-    if($request->category=="XII"){
-    
-      $dip = DB::table('diploma')->where('user_id', $user->id);
-      $user=$dip->first();
-      if($user !== null){
-        if (file_exists($user->file))
-      unlink($user->file);
-      $dip->delete();
-      }
-    }
-
-        if ($request->category == "diploma" || $request->category == "both")
-        {
+        }
+        if($request->category=="diploma" || $request->category=="both"){
             $diploma_file = $request->file('file_diploma');
-            if ($diploma_file)
-            {
-                $diploma_filename = $diploma_file->getClientOriginalName();
-                $diploma_extension = $diploma_file->getClientOriginalExtension();
-                $diploma_file_url = $user->username . '_diploma.' . $diploma_extension;
-                $diploma_path = public_path('documents/diploma');
-                $diploma_file->move(public_path('documents/diploma') , $diploma_file_url);
-                $diploma_details = Diploma::updateOrCreate(['user_id' => $user->id], ['user_id' => $user->id, 'file' => '/documents/diploma/' . $diploma_file_url]);
+            if($diploma_file){
+            $diploma_filename  = $diploma_file->getClientOriginalName();
+            $diploma_extension = $diploma_file->getClientOriginalExtension();
+            $diploma_file_url   = $user->username.'_diploma.'.$diploma_extension;
+            $diploma_path = public_path('documents/diploma');
+            $diploma_file->move(public_path('documents/diploma'), $diploma_file_url);
+            $diploma_details = Diploma::updateOrCreate(
+                ['user_id' => $user->id],
+                [ 
+                'user_id' => $user->id,
+                'file' => '/documents/diploma/'.$diploma_file_url
+                ]);
             }
-
-            $diploma_details = Diploma::updateOrCreate(['user_id' => $user->id], ['user_id' => $user->id, 'urn' => $user->username, 'pincode' => $request->pincode_diploma, 'city' => $request->city_diploma, 'state' => $request->state_diploma,
-            //'marks_type' => $request->marks_type_diploma,
-            'maximum_marks' => $request->maximum_marks_diploma, 'obtained_marks' => $request->obtained_marks_diploma, 'percentage' => ($request->obtained_marks_diploma) * 100 / ($request->maximum_marks_diploma) , 'institution_name' => $request->institution_name_diploma, 'branch' => $request->branch_diploma, 'year_of_passing' => $request->year_of_passing_diploma, 'year_gap' => 2018 - $matriculation_year,
-            //'file' => '/documents/diploma/'.$diploma_file_url
-            ]);
-
-            if ($current_step < 5)
-            {
-                $form_step_change = DB::table('form_statuses')->where('user_id', $user->id)
-                    ->update(['form_step' => 4]);
-            }
+        $diploma_details = Diploma::updateOrCreate(
+        ['user_id' => $user->id],
+        [ 
+        'user_id' => $user->id,
+        'urn' => $user->username,
+        'pincode' => $request->pincode_diploma,
+        'city' => $request->city_diploma,
+        'state' => $request->state_diploma,
+        //'marks_type' => $request->marks_type_diploma,
+        'maximum_marks' => $request->maximum_marks_diploma,
+        'obtained_marks' => $request->obtained_marks_diploma,
+        'percentage' => ($request->obtained_marks_diploma)*100/($request->maximum_marks_diploma),
+        'institution_name' => $request->institution_name_diploma,
+        'branch' => $request->branch_diploma,
+        'year_of_passing' => $request->year_of_passing_diploma,
+        'year_gap' => 2016-$matriculation_year,
+        //'file' => '/documents/diploma/'.$diploma_file_url
+        ]
+        );
+        
+        if($current_step <5){
+        $form_step_change= DB::table('form_statuses')
+        ->where('user_id', $user->id)
+        ->update(['form_step' => 4]);
         }
-        if ($request->category == "diploma")
-        {
-            $twe = DB::table('twelfth')->where('user_id', $user->id);
-            $user = $twe->first();
-            if ($user !== null)
-            {
-                if (file_exists($user->file)) unlink($user->file);
-                $twe->delete();
-            }
         }
-
-        if ($request->category == "XII")
-        {
-
-            $dip = DB::table('diploma')->where('user_id', $user->id);
-            $user = $dip->first();
-            if ($user !== null)
-            {
-                if (file_exists($user->file)) unlink($user->file);
-                $dip->delete();
-            }
+        if($request->category=="diploma"){
+        $twe = DB::table('twelfth')->where('user_id', $user->id);
+        $user= $twe->first();
+        if($user !== null){
+            if(file_exists($user->file))
+            unlink($user->file);
+        $twe->delete();
         }
-
-        return response()
-            ->json(["message" => "stepcomplete"]);
+        }
+        
+        if($request->category=="XII"){
+        
+        $dip = DB::table('diploma')->where('user_id', $user->id);
+        $user=$dip->first();
+        if($user !== null){
+            if (file_exists($user->file))
+        unlink($user->file);
+        $dip->delete();
+        }
+        }
+        return response()->json(["message" => "stepcomplete"]);
     }
-
     public function receiveFormData(Request $request)
     {
         $user = auth()->user();
