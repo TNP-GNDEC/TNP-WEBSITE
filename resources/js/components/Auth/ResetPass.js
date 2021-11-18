@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
         height: "100vh",
         minWidth: "100%",
         padding: "0",
+        overflow: "hidden",
     },
     box: {
         // marginTop: theme.spacing(0)
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         height: "100vh",
         padding: "0",
+        overflow: "hidden",
         // margin: "auto",
         // marginTop: "45px",
         // marginBottom: "40px",
@@ -57,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
         // marginTop: "50px",
         // marginBottom: "20px",
-        background: "linear-gradient(-45deg, #0A3BCC, #1687d9)",
+        background: "linear-gradient(-45deg, #082C99, #1687d9)",
         ["@media (max-width:1000px)"]: {
             display: "none",
         },
@@ -96,6 +98,13 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.primary.dark,
         fontWeight: "600",
         fontSize: "30px",
+        ['@media (max-width:600px)']: {
+            marginTop: "10px"
+        },
+        ['@media (min-width:1600px)']: {
+            marginTop: "20px",
+            fontSize: "34px"
+        },
     },
     form: {
         width: "80%", // Fix IE 11 issue.
@@ -104,6 +113,9 @@ const useStyles = makeStyles((theme) => ({
         ["@media (max-width:600px)"]: {
             width: "90%",
             marginTop: "20px",
+        },
+        ['@media (min-width:1600px)']: {
+            marginTop: "20px"
         },
     },
     loader: {
@@ -124,10 +136,19 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: theme.palette.primary.main,
         },
         backgroundColor: theme.palette.primary.main,
+        ['@media (min-width:1600px)']: {
+            fontSize: "20px"
+        },
     },
     image: {
         borderRadius: "50%",
         marginBottom: "50px",
+        width: "60px",
+        height: "60px",
+        ['@media (min-width:1600px)']: {
+            width: "80px",
+            height: "80px"
+        },
     },
     mainHead: {
         width: "80%",
@@ -145,6 +166,9 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "13px",
         fontFamily: "Open Sans",
         color: theme.palette.primary.text,
+        ['@media (min-width:1600px)']: {
+            fontSize: "15px",
+        },
     },
     notchedOutline: {
         borderColor: "#757575",
@@ -172,7 +196,7 @@ const useStyles = makeStyles((theme) => ({
         width: "80%",
         fontFamily: "Open Sans",
         fontSize: "15px",
-        wordBreak: "break-all",
+        wordBreak: "keep-all",
         color: theme.palette.primary.text,
         display: "flex",
         justifyContent: "flex-start",
@@ -182,6 +206,9 @@ const useStyles = makeStyles((theme) => ({
         // marginBottom: "10px"
         ["@media (max-width:600px)"]: {
             width: "90%",
+        },
+        ['@media (min-width:1600px)']: {
+            fontSize: "17px",
         },
     },
 }));
@@ -295,8 +322,6 @@ export default function ResetPass() {
                                         <Link to="/">
                                             <img
                                                 src={logo}
-                                                width="60px"
-                                                height="60px"
                                                 className={classes.image}
                                             />
                                         </Link>
@@ -365,18 +390,20 @@ export default function ResetPass() {
                                         helperText: errors.confirmPassword,
                                     })}
                                 />
-                                <Button
+                                <button
                                     type="submit"
                                     fullWidth
                                     variant="contained"
                                     className={classes.submit}
                                 >
                                     Submit
-                                </Button>
+                                </button>
                             </form>
-                            <pre className={classes.footText}>
+                            <div className={classes.footText}>
+                                <p>
                                 Developed with ❤️ by <a className={classes.anchor} href="/technicalMembers">Genconians</a> | ©️ {year} <a className={classes.anchor} href="https://gndec.ac.in">GNDEC</a>, Ldh.
-                            </pre>
+                                </p>
+                            </div>
                         </Box>
                         <div className={classes.hero}>
                             <SlickCarousel />

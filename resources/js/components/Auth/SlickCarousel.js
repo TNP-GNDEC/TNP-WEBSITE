@@ -189,6 +189,9 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: "auto",
         marginTop: "2rem",
         marginBottom: "4rem",
+        ['@media (min-width:1600px)']: {
+            height: "380px"
+        },
     },
     textWrapper: {
         //
@@ -199,6 +202,9 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: "600",
         fontFamily: "Open Sans",
         color: theme.palette.secondary.main,
+        ['@media (min-width:1600px)']: {
+            fontSize: "26px",
+        },
     },
     slideSubtitle: {
         textAlign: "center",
@@ -207,6 +213,9 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "16px",
         paddingRight: "180px",
         paddingLeft: "180px",
+        ['@media (min-width:1600px)']: {
+            fontSize: "20px",
+        },
     },
 }));
 

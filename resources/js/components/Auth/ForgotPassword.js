@@ -8,6 +8,7 @@ import LockOutlinedIcon from "@material-ui/icons/AccountCircle";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Box from "@material-ui/core/Box";
 
 import intro from "../../../images/3.jpg";
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
         height: "100vh",
         minWidth: "100%",
         padding: "0",
+        overflow: "hidden",
     },
     box: {
         // marginTop: theme.spacing(0)
@@ -37,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         height: "100vh",
         padding: "0",
+        overflow: "hidden",
         // margin: "auto",
         // marginTop: "45px",
         // marginBottom: "40px",
@@ -55,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
         // marginTop: "50px",
         // marginBottom: "20px",
-        background: "linear-gradient(-45deg, #0A3BCC, #1687d9)",
+        background: "linear-gradient(-45deg, #082C99, #1687d9)",
         ["@media (max-width:1000px)"]: {
             display: "none",
         },
@@ -94,14 +97,26 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.primary.dark,
         fontWeight: "600",
         fontSize: "30px",
+        marginTop: "20px",
+        ['@media (max-width:600px)']: {
+            marginTop: "30px"
+        },
+        ['@media (min-width:1600px)']: {
+            marginTop: "30px",
+            fontSize: "34px"
+        },
     },
     form: {
         width: "80%", // Fix IE 11 issue.
         margin: theme.spacing(0),
         padding: theme.spacing(1),
+        marginTop: "10px",
         ["@media (max-width:600px)"]: {
             width: "90%",
-            marginTop: "20px",
+            marginTop: "30px",
+        },
+        ['@media (min-width:1600px)']: {
+            marginTop: "30px"
         },
     },
     loader: {
@@ -115,6 +130,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "25px",
         height: "55px",
         fontSize: "18px",
+        fontFamily: "Open Sans",
         borderRadius: "10px",
         boxShadow: "0px 15px 25px #1687d933",
         color: theme.palette.secondary.main,
@@ -122,10 +138,19 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: theme.palette.primary.main,
         },
         backgroundColor: theme.palette.primary.main,
+        ['@media (min-width:1600px)']: {
+            fontSize: "20px"
+        },
     },
     image: {
         borderRadius: "50%",
         marginBottom: "50px",
+        width: "60px",
+        height: "60px",
+        ['@media (min-width:1600px)']: {
+            width: "80px",
+            height: "80px"
+        },
     },
     mainHead: {
         width: "80%",
@@ -143,6 +168,9 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "13px",
         fontFamily: "Open Sans",
         color: theme.palette.primary.text,
+        ['@media (min-width:1600px)']: {
+            fontSize: "15px",
+        },
     },
     notchedOutline: {
         borderColor: "#757575",
@@ -170,7 +198,7 @@ const useStyles = makeStyles((theme) => ({
         width: "80%",
         fontFamily: "Open Sans",
         fontSize: "15px",
-        wordBreak: "break-all",
+        wordBreak: "keep-all",
         color: theme.palette.primary.text,
         display: "flex",
         justifyContent: "flex-start",
@@ -181,6 +209,9 @@ const useStyles = makeStyles((theme) => ({
         ["@media (max-width:600px)"]: {
             width: "90%",
         },
+        ['@media (min-width:1600px)']: {
+            fontSize: "17px",
+        },
     },
 }));
 
@@ -188,6 +219,7 @@ export default function Email() {
     var dt=new Date();
     var year = dt.getFullYear();
     const classes = useStyles();
+    const [loading, setLoading] = useState(false);
     const [state, setState] = useState({
         email: "",
     });
@@ -220,30 +252,32 @@ export default function Email() {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         if (validate()) {
-        }
-        axios
-            .post("/forget-password", {
-                email: state.email,
-            })
-            .then((response) => {
-                if (response.data.alert) {
-                    setNotify({
-                        isOpen: true,
-                        message: response.data.alert,
-                        type: "error",
-                    });
-                }
-                if (response.data.msg) {
-                    setNotify({
-                        isOpen: true,
-                        message: response.data.msg,
-                        type: "success",
-                    });
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+            setLoading(true);
+            axios
+                .post("/forget-password", {
+                    email: state.email,
+                })
+                .then((response) => {
+                    setLoading(false);
+                    if (response.data.alert) {
+                        setNotify({
+                            isOpen: true,
+                            message: response.data.alert,
+                            type: "error",
+                        });
+                    }
+                    if (response.data.msg) {
+                        setNotify({
+                            isOpen: true,
+                            message: response.data.msg,
+                            type: "success",
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
     };
     return (
         <div className={classes.root}>
@@ -257,8 +291,6 @@ export default function Email() {
                                         <Link to="/">
                                             <img
                                                 src={logo}
-                                                width="60px"
-                                                height="60px"
                                                 className={classes.image}
                                             />
                                         </Link>
@@ -271,7 +303,7 @@ export default function Email() {
                                 >
                                     Forget Password
                                 </Typography>
-                                <span className={classes.headSecondary}>Enter the registored email</span>
+                                <span className={classes.headSecondary}>Enter the registered email</span>
                             </div>
                             <form
                                 onSubmit={(event) => handleFormSubmit(event)}
@@ -301,18 +333,26 @@ export default function Email() {
                                         helperText: errors.email,
                                     })}
                                 />
-                                <Button
+                                {loading ? (
+                                        <div className={classes.loader}>
+                                            <CircularProgress />
+                                        </div>
+                                    ) : (
+                                <button
                                     type="submit"
                                     fullWidth
                                     variant="contained"
                                     className={classes.submit}
                                 >
                                     Submit
-                                </Button>
+                                </button>
+                                )}
                             </form>
-                            <pre className={classes.footText}>
+                            <div className={classes.footText}>
+                                <p>
                                 Developed with ❤️ by <a className={classes.anchor} href="/technicalMembers">Genconians</a> | ©️ {year} <a className={classes.anchor} href="https://gndec.ac.in">GNDEC</a>, Ldh.
-                            </pre>
+                                </p>
+                            </div>
                         </Box>
                         <div className={classes.hero}>
                             <SlickCarousel />
