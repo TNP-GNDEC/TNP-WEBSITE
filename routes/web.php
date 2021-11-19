@@ -130,6 +130,8 @@ Route::resource('/addLinksItems', "LinksController");
 
 Route::post('getposts', 'postController@getposts');
 
+Route::get("lastThreePosts", "postController@lastThreePosts");
+
 Route::post('/forget-password', 'ForgotPasswordController@postEmail');
 
 Route::get('/resetPassword/{token}', function () {
