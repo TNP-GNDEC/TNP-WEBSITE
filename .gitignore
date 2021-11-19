@@ -15,3 +15,5 @@ yarn-error.log
 public/js/app.js
 public/js/app.js
 public/js/app.js
+package-lock.json
+yarn.lock

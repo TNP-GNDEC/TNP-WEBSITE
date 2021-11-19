@@ -77,6 +77,14 @@ Route::get('/executiveMembers', function () {
     return view('welcome');
 })->name('example');
 
+Route::get('/contactDetails', function () {
+    return view('welcome');
+})->name('example');
+
+Route::get('/more', function () {
+    return view('welcome');
+})->name('example');
+
 Route::get('/coordinator', function () {
 
     return view('welcome');
