@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
         position: "fixed",
         margin: "0px",
         top: "0",
-        zIndex: 0
+        zIndex: 2
     },
     grow: {
         flexGrow: 1,
@@ -246,6 +246,16 @@ export default function PrimarySearchAppBar() {
             <MenuItem>
                 <Link to="/technicalMembers" className={classes.nav_links}>
                     Genconians
+                </Link>
+            </MenuItem>
+            <MenuItem>
+                <Link to="/contactDetails" className={classes.nav_links}>
+                    Contact Details
+                </Link>
+            </MenuItem>
+            <MenuItem>
+                <Link to="/more" className={classes.nav_links}>
+                    More
                 </Link>
             </MenuItem>
         </BottomSheet>
