@@ -1,44 +1,45 @@
 import React from "react";
 import Footer from "./Footer";
 import Navbar from "./CoordinatorNav";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import MainContent from "./MainContent";
-import Sidebar from './Sidebar';
+import Sidebar from "./Sidebar";
+import RecentPosts from "./RecentPosts";
 
 const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
         backgroundColor: theme.palette.primary.light,
-        minHeight: "100vh",
+        height: "auto",
+        minHeight: "100vh"
     },
 
     toolbar: {
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
-        padding: theme.spacing(0, 1),
-        marginTop:"10px",
+        justifyContent: "start"
+        // paddingTop: "5px"
+        // padding: theme.spacing(0, 1),
+        // marginTop: "10px",
         // necessary for content to be below app bar
-        ...theme.mixins.toolbar
+        // ...theme.mixins.toolbar
     },
     content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
+        flexGrow: 1
+        // padding: theme.spacing(3),
     },
-    
-    mainContent:{
-        marginTop:"20px",
-        paddingTop:"200px"
+
+    mainContent: {
+        // backgroundColor: "red"
     },
 
     foot: {
         position: "fixed",
         bottom: "3px",
         width: "100%",
-        textAlign: "center",
+        textAlign: "center"
     }
-
 }));
 
 export default function Coordinator() {
@@ -55,25 +56,36 @@ export default function Coordinator() {
         setOpen(false);
     };
 
-    const changeActiveId = (id) =>{
+    const changeActiveId = id => {
         setId(id);
-    }
+    };
 
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <Navbar isOpen={open} handleOpen={handleDrawerOpen} />
-            <Sidebar isOpen={open} handleClose={handleDrawerClose} changeMainContent={changeActiveId} />
+            <Sidebar isOpen={open} changeMainContent={changeActiveId} />
 
             <main className={classes.content}>
-                <div className={classes.toolbar} />               
-                <MainContent activeId={activeContentID} className={classes.mainContent} />
-                <div className={classes.foot}>
-                <Footer />
+                <div className={classes.toolbar} />
+                {/* <Navbar
+                    handleClose={handleDrawerClose}
+                    isOpen={open}
+                    handleOpen={handleDrawerOpen}
+                /> */}
+                <div className="d-flex justify-content-between">
+                    <MainContent
+                        handleClose={handleDrawerClose}
+                        isOpen={open}
+                        handleOpen={handleDrawerOpen}
+                        activeId={activeContentID}
+                        className={classes.mainContent}
+                    />
+                    {/* <div className={classes.foot}>
+                    <Footer />
+                </div> */}
+                    <RecentPosts />
                 </div>
             </main>
         </div>
     );
 }
-
-
