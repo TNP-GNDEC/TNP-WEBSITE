@@ -30,7 +30,10 @@ import ResetPass from "./Auth/ResetPass";
 
 import ShowPost from "./HardCoded/view/ShowPost";
 
+import MajorRecruiters from "./Pages/MajorRecruiters/MajorRecruiters";
 
+import ContactDetails from "./Pages/ContactDetails";
+import MoreInfoPage from "./Pages/MoreInfoPage"
 
 function App() {
 
@@ -43,6 +46,9 @@ function App() {
                     <Route path="/" exact component={Home} />
                     <Route path="/about" exact component={About} />
                     <Route path="/certificate/:id" exact component={Certificates}></Route>
+                    <Route path="/majorRecruiters" exact component={MajorRecruiters}></Route>
+                    <Route path="/contactDetails" exact component={ContactDetails}></Route>
+                    <Route path="/more" exact component={MoreInfoPage}></Route>
 
                     {/* Members */}
                     <Route path="/coreMembers" exact component={coreMembers} />

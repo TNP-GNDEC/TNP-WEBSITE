@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Header from "./Header";
-import Footer from "../HomeComponent/SideComponents/Footer";
 import Notisfication from "./Notisfication";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -14,39 +11,39 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { InputAdornment, IconButton } from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import Slider from "react-slick";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import SlickCarousel from "./SlickCarousel";
+
+
 
 import { useHistory } from "react-router-dom";
 
-import intro from "../../../images/2.jpg";
 import logo from "../../../images/logo.png";
-import slide1 from "../../../images/slide1.png";
-import slide2 from "../../../images/slide2.png";
-import slide3 from "../../../images/slide3.png";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
         background: theme.palette.primary.light,
-        minHeight: "100vh"
+        height: "100vh",
+        overflow: "hidden"
     },
     box: {
         // marginTop: theme.spacing(0)
     },
     container: {
         width: "100%",
-        borderRadius: "20px"
+        height: "100%",
+        // borderRadius: "20px"
     },
     loginCard: {
-        width: "75%",
-        height: "80vh",
-        margin: "auto",
-        marginTop: "45px",
-        marginBottom: "40px",
+        width: "100%",
+        height: "100vh",
+        overflow: "hidden",
+        // margin: "auto",
+        // marginTop: "45px",
+        // marginBottom: "40px",
         // borderRadius: "20px",
-        boxShadow: "0px 15px 25px #00000033",
+        // boxShadow: "0px 15px 25px #00000033",
         background: theme.palette.secondary.main,
         display: "flex",
         justifyContent: "space-between",
@@ -58,11 +55,10 @@ const useStyles = makeStyles(theme => ({
     hero: {
         width: "60%",
         height: "100%",
-        marginTop: "20px",
-        marginBottom: "20px",
-        background: "rgb(22,135,217)",
+        // marginTop: "50px",
+        // marginBottom: "20px",
         background:
-            "linear-gradient(45deg, rgba(22,135,217,1) 0%, rgba(10,59,204,1) 100%)",
+            "linear-gradient(-45deg, #082C99, #1687d9)",
         ["@media (max-width:1000px)"]: {
             display: "none"
         }
@@ -72,6 +68,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: "3%"
     },
     paper: {
+        position: "relative",
         width: "40%",
         height: "100%",
         boxShadow: "none",
@@ -97,41 +94,80 @@ const useStyles = makeStyles(theme => ({
         fontSize: "90px"
     },
     heading: {
-        color: "#193b68",
-        fontWeight: "600"
+        color: theme.palette.primary.dark,
+        fontWeight: "600",
+        fontSize: "30px",
+        ['@media (max-width:600px)']: {
+            marginTop: "10px"
+        },
+        ['@media (min-width:1600px)']: {
+            marginTop: "20px",
+            fontSize: "34px"
+        },
     },
     form: {
-        width: "90%", // Fix IE 11 issue.
+        width: "80%", // Fix IE 11 issue.
         margin: theme.spacing(0),
-        padding: theme.spacing(1)
+        padding: theme.spacing(1),
+        ['@media (max-width:600px)']: {
+            width: "90%",
+            marginTop: "20px"
+        },
+        ['@media (min-width:1600px)']: {
+            marginTop: "20px"
+        },
     },
     loader: {
         width: "100%",
-        textAlign: "center"
+        textAlign: "center",
+        marginTop: "25px"
     },
     submit: {
-        margin: theme.spacing(3, 0, 2),
-        height: "50px",
-        borderRadius: "20px",
-        boxShadow: "0px 15px 25px #038ed433",
+        width: "100%",
+        border: "none",
+        marginTop: "25px",
+        height: "55px",
+        fontSize: "18px",
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #1687d933",
         color: theme.palette.secondary.main,
         "&:hover": {
             backgroundColor: theme.palette.primary.main
         },
-        backgroundColor: theme.palette.primary.main
+        backgroundColor: theme.palette.primary.main,
+        ['@media (min-width:1600px)']: {
+            fontSize: "20px"
+        },
     },
     image: {
         borderRadius: "50%",
-        marginBottom: "30px"
+        marginBottom: "50px",
+        width: "60px",
+        height: "60px",
+        ['@media (min-width:1600px)']: {
+            width: "80px",
+            height: "80px"
+        },
     },
     mainHead: {
-        width: "90%",
+        width: "80%",
         display: "flex",
         alignItems: "start",
         justifyContent: "center",
         flexDirection: "column",
         padding: theme.spacing(1),
-        marginBottom: theme.spacing(2)
+        marginBottom: theme.spacing(3),
+        ['@media (max-width:600px)']: {
+            width: "90%",
+        },
+    },
+    headSecondary: {
+        fontSize: "13px",
+        fontFamily: "Open Sans",
+        color: theme.palette.primary.text,
+        ['@media (min-width:1600px)']: {
+            fontSize: "15px",
+        },
     },
     notchedOutline: {
         borderColor: "#757575"
@@ -143,61 +179,44 @@ const useStyles = makeStyles(theme => ({
     link: {
         color: theme.palette.primary.main,
         display: "flex",
-        alignSelf: "flex-end"
+        alignSelf: "flex-end",
+        fontFamily: "Open Sans"
+    },
+    anchor:{
+        color: theme.palette.primary.text,
+        textDecoration: "underline",
     },
     input: {
         borderRadius: "20px"
     },
     footText: {
-        width: "90%",
+        position: "absolute",
+        bottom: "0",
+        width: "80%",
+        fontFamily: "Open Sans",
+        fontSize: "15px",
+        wordBreak: "keep-all",
+        color: theme.palette.primary.text,
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
         alignContent: "flex-end",
-        padding: theme.spacing(1),
-        marginTop: "40px",
+        paddingLeft: theme.spacing(3),
         // marginBottom: "10px"
-        ["@media (max-width:1000px)"]: {
-            marginTop: "30px",
-        }
-    },
-    slideWrapper: {
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        // height: "100%",
-    },
-    slideImage: {
-        height: "280px",
-        marginRight: "auto",
-        marginLeft: "auto",
-        marginTop: "4rem",
-        marginBottom: "2rem"
-    },
-    textWrapper: {
-        //
-    },
-    slideHeading: {
-        textAlign: "center",
-        fontSize: "30px",
-        fontWeight: "600",
-        fontFamily: "Open Sans",
-        color: "white"
-    },
-    slideSubtitle: {
-        textAlign: "center",
-        fontFamily: "Open Sans",
-        color: "white",
-        fontSize: "22px",
-        paddingRight: "100px",
-        paddingLeft: "100px"
-    },
+        ["@media (max-width:600px)"]: {
+            width: "90%"
+        },
+        ['@media (min-width:1600px)']: {
+            fontSize: "17px",
+        },
+    }
 }));
 
 const SignIn = () => {
     const history = useHistory();
     const classes = useStyles();
+    var dt=new Date();
+    var year = dt.getFullYear();
     const [state, setState] = useState({
         username: "",
         password: ""
@@ -326,17 +345,15 @@ const SignIn = () => {
         dots: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 5000,
+        autoplaySpeed: 3000,
         draggable: false,
         infinite: true
     };
 
     return (
         <div className={classes.root}>
-            <Header />
             <div className={classes.card}>
                 <div className={classes.container}>
-                    <CssBaseline />
                     <div className={classes.loginCard}>
                         <Box boxShadow={2} className={classes.paper}>
                             <div className={classes.mainHead}>
@@ -345,8 +362,6 @@ const SignIn = () => {
                                         <Link to="/">
                                             <img
                                                 src={logo}
-                                                width="75px"
-                                                height="75px"
                                                 className={classes.image}
                                             />
                                         </Link>
@@ -354,12 +369,12 @@ const SignIn = () => {
                                 </div>
                                 <Typography
                                     component="h2"
-                                    variant="h4"
+                                    variant="h3"
                                     className={classes.heading}
                                 >
                                     Login
                                 </Typography>
-                                <span>Welcome Back!!</span>
+                                <span className={classes.headSecondary}>Welcome Back!!</span>
                             </div>
                             <form
                                 onSubmit={event => handleFormSubmit(event)}
@@ -371,7 +386,7 @@ const SignIn = () => {
                                 />
                                 <TextField
                                     variant="outlined"
-                                    sx={{ borderRadius: "20px" }}
+                                    sx={{ borderRadius: "40px" }}
                                     className={classes.input}
                                     InputProps={{
                                         classes: {
@@ -453,76 +468,25 @@ const SignIn = () => {
                                             <CircularProgress />
                                         </div>
                                     ) : (
-                                        <Button
+                                        <button
                                             type="submit"
                                             fullWidth
                                             variant="contained"
                                             className={classes.submit}
                                         >
                                             Login
-                                        </Button>
+                                        </button>
                                     )}
                                 </Grid>
                             </form>
-                            <p className={classes.footText}>
-                                <span>
-                                    Developed with ❤️ by Genconians, ©️ 2021
-                                    GNDEC, Ldh
-                                </span>
-                            </p>
+                            <div className={classes.footText}>
+                                <p>
+                                Developed with ❤️ by <a className={classes.anchor} href="/technicalMembers">Genconians</a> | ©️ {year} <a className={classes.anchor} href="https://gndec.ac.in">GNDEC</a>, Ldh.
+                                </p>
+                            </div>
                         </Box>
                         <div className={classes.hero}>
-                            <Slider {...settings}>
-                                <div className={classes.slideWrapper}>
-                                    <img
-                                        className={classes.slideImage}
-                                        src={slide1}
-                                        alt="Regular Updates"
-                                    />
-                                    <div className={classes.textWrapper}>
-                                        <p className={classes.slideHeading}>
-                                            Regular Updates
-                                        </p>
-                                        <p className={classes.slideSubtitle}>
-                                            Get information and news about new
-                                            opportunities and recruitments.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className={classes.slideWrapper}>
-                                    <img
-                                        className={classes.slideImage}
-                                        src={slide2}
-                                        alt="Get Notified"
-                                    />
-                                    <div className={classes.textWrapper}>
-                                        <p className={classes.slideHeading}>
-                                            Get Notified
-                                        </p>
-                                        <p className={classes.slideSubtitle}>
-                                            Subscribe by clicking on bell prompt
-                                            or CTA for latest news and updates.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className={classes.slideWrapper}>
-                                    <img
-                                        className={classes.slideImage}
-                                        src={slide3}
-                                        alt="Stay Connected"
-                                    />
-                                    <div className={classes.textWrapper}>
-                                        <p className={classes.slideHeading}>
-                                            Stay Connected
-                                        </p>
-                                        <p className={classes.slideSubtitle}>
-                                            Follow & connect with us on linkedin
-                                            and other social handles for new
-                                            updates.
-                                        </p>
-                                    </div>
-                                </div>
-                            </Slider>
+                           <SlickCarousel />
                         </div>
                     </div>
                 </div>

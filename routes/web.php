@@ -69,8 +69,19 @@ Route::get('/login', function () {
 })
     ->name('example');
 
+Route::get('/majorRecruiters', function () {
+    return view('welcome');
+})->name('example');
 
 Route::get('/executiveMembers', function () {
+    return view('welcome');
+})->name('example');
+
+Route::get('/contactDetails', function () {
+    return view('welcome');
+})->name('example');
+
+Route::get('/more', function () {
     return view('welcome');
 })->name('example');
 

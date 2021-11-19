@@ -17,19 +17,38 @@ const useStyles = makeStyles(theme => ({
         height: '100vh'
     },
     image: {
-        width: '45%',
-        height: '45%',
-        marginTop: '80px'
+        width: '600px',
+        marginTop: '40px',
+        ['@media (max-width:960px)']: {
+            width: "450px",
+            marginTop: "100px",
+        },
+        ['@media (max-width:600px)']: {
+            width: "340px",
+            
+        },
     },
     heading: {
-        marginTop: '30px',
-        fontSize: '3rem',
-        fontWeight: '600',
-        textAlign: 'center'
+        marginTop: "10px",
+        fontSize: '32px',
+        fontFamily: "Open Sans",
+        fontWeight: '700',
+        textAlign: 'center',
+        color: theme.palette.primary.dark,
+        ['@media (max-width:960px)']: {
+            fontSize:"24px",
+            marginTop: "40px",
+        },
     },
     subtitle: {
-        fontSize: '25px',
-        textAlign: 'center'
+        fontSize: '18px',
+        textAlign: 'center',
+        fontFamily: "Open Sans",
+        fontWeight: '400',
+        color: theme.palette.primary.text,
+        ['@media (max-width:960px)']: {
+            fontSize: "14px",
+        },
     },
     homeButton: {
         backgroundColor: theme.palette.primary.main,
@@ -39,6 +58,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: "16px",
         fontFamily: "Open Sans",
         fontWeight: "400",
+        textDecoration: "none",
         textTransform: "capitalize",
         boxShadow: "0px 10px 25px #1687d933",
         marginTop: '30px',
@@ -51,7 +71,8 @@ const useStyles = makeStyles(theme => ({
             outline: "none"
         },
         ["@media (max-width:960px)"]: {
-            fontSize: "14px"
+            fontSize: "14px",
+            marginTop: "50px"
         },
         ["@media (min-width:1600px)"]: {
             fontSize: "18px"
