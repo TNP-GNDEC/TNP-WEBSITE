@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { Link } from "react-router-dom"; 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -109,9 +110,33 @@ const useStyles = makeStyles(theme => ({
     },
     buttonFontSize: {
         fontFamily: "Nunito",
-        fontWeight: "400",
-        paddingTop: "10px",
-        paddingBottom: "10px"
+        fontWeight: "400"
+    },
+    box: {
+        paddingLeft: "8px"
+    },
+    TnP: {
+        paddingLeft: "8px"
+    },
+    TnPlink: {
+        textDecoration: "none",
+        color: "white",
+        "&:hover, &:focus": {
+            textDecoration: "none",
+            color: "white"
+        }
+    },
+    linksContainer: {
+        marginTop: "20px",
+    },
+    listItemContainer: {
+        paddingTop: "12px",
+        paddingBottom: "12px"
+    },
+    listItemContainerActive: {
+        paddingTop: "12px",
+        paddingBottom: "12px",
+        borderLeft: "6px solid white"
     }
 }));
 
@@ -151,6 +176,7 @@ function Sidebar(props) {
                 <ListItem
                     key={item.id}
                     button
+                    className={active==item.name?classes.listItemContainerActive:classes.listItemContainer}
                     onClick={() => {
                         props.changeMainContent(item.id);
                         setActive(item.name);
@@ -208,19 +234,21 @@ function Sidebar(props) {
                         </div>
                     </div>
                 </div> */}
-
-                <ListItem key={10} button>
-                    <Avatar
-                        alt="avatar"
-                        src={logo2}
-                        className={classes.large}
-                    />
-                    <ListItemText
-                        className={classes.active}
-                        primary="T&P Cell"
-                    />
-                </ListItem>
-                <List>{renderListItem()}</List>
+                <Link to="/" className={classes.TnPlink}>
+                    <ListItem key={10} className={classes.box} button>
+                        <Avatar
+                            alt="avatar"
+                            src={logo2}
+                            className={classes.large}
+                        />
+                        <ListItemText
+                            className={classes.active}
+                            className={classes.TnP}
+                            primary="T&P Cell"
+                        />
+                    </ListItem>
+                </Link>
+                <List className={classes.linksContainer}>{renderListItem()}</List>
             </Drawer>
         </>
     );
