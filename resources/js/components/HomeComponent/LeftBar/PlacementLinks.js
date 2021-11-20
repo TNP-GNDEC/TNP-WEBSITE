@@ -64,6 +64,9 @@ const useStyles = theme => ({
     link: {
         marginTop: "auto",
         marginBottom: "auto"
+    },
+    box:{
+        marginBottom: "28px"
     }
 });
 
