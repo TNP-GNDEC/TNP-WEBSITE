@@ -8,7 +8,7 @@ import Phone from "@material-ui/icons/Phone";
 import Language from "@material-ui/icons/Language";
 import Explore from "@material-ui/icons/Explore";
 
-import map from "../../../../images/map.png";
+import map from "../../../../images/gndecMap.png";
 
 const useStyles = makeStyles(theme => ({
     root: {

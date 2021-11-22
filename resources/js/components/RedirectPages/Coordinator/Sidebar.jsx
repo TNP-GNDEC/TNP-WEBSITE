@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { Link } from "react-router-dom"; 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -14,11 +15,11 @@ import DescriptionIcon from "@material-ui/icons/Description";
 import Work from "@material-ui/icons/Work";
 import User from "@material-ui/icons/People";
 import Post from "@material-ui/icons/NoteAdd";
-import avatar from "../../../../images/avatar11.jpeg";
+import logo2 from "../../../../images/logo2.png";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import ClearIcon from "@material-ui/icons/Clear";
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from "@material-ui/icons/Add";
 
 const drawerWidth = 240;
 
@@ -31,7 +32,9 @@ const useStyles = makeStyles(theme => ({
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
-        whiteSpace: "nowrap"
+        whiteSpace: "nowrap",
+        color: "#CCD9E6",
+        backgroundColor: "#1687D9"
     },
     drawerOpen: {
         width: drawerWidth,
@@ -51,43 +54,50 @@ const useStyles = makeStyles(theme => ({
             width: theme.spacing(9) + 1
         }
     },
-    active:{
-        color: theme.palette.primary.main
+    active: {
+        color: "white"
+    },
+    inActive: {
+        color: "#CCD9E6"
+    },
+    iconIcon: {
+        // marginRight: "auto",
+        // marginLeft: "auto",
+        marginLeft: "5px"
     },
     toolbar: {
         display: "flex",
-        alignItems: "center",
         justifyContent: "center",
         padding: theme.spacing(0, 1),
         // necessary for content to be below app bar
         ...theme.mixins.toolbar
     },
-    close:{
+    close: {
         color: "#cc0000"
     },
-    admin:{
+    admin: {
         color: theme.palette.primary.dark,
         fontFamily: "Nunito",
-       fontWeight: "400",
+        fontWeight: "400"
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3)
+        padding: theme.spacing(3),
+        backgroundColor: "#1687D9"
     },
     sidebarProfileGrids: {
+        marginBottom: "30px",
+        marginTop: "20px",
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        paddingTop: "15px"
+        justifyContent: "start"
     },
 
     large: {
+        marginRigth: "5px",
         width: theme.spacing(7),
         height: theme.spacing(7),
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+        justifyContent: "start"
     },
 
     avatar: {
@@ -95,45 +105,105 @@ const useStyles = makeStyles(theme => ({
     },
     drawerCloseButton: {
         display: "flex",
-        justifyContent: "end"
+        justifyContent: "center",
+        alignItems: "center"
     },
-    buttonFontSize:{
+    buttonFontSize: {
         fontFamily: "Nunito",
-       fontWeight: "400",
+        fontWeight: "400"
+    },
+    box: {
+        paddingLeft: "8px"
+    },
+    TnP: {
+        paddingLeft: "8px"
+    },
+    TnPlink: {
+        textDecoration: "none",
+        color: "white",
+        "&:hover, &:focus": {
+            textDecoration: "none",
+            color: "white"
+        }
+    },
+    linksContainer: {
+        marginTop: "20px",
+    },
+    listItemContainer: {
+        paddingTop: "12px",
+        paddingBottom: "12px"
+    },
+    listItemContainerActive: {
+        paddingTop: "12px",
+        paddingBottom: "12px",
+        borderLeft: "6px solid white"
     }
 }));
 
-const listItems = [
-    { id: 1, name: "Home", iconName: <HomeIcon />  , onCLickAction:""},
-    { id: 2, name: "Data Using Excel", iconName: <DescriptionIcon /> },
-    { id: 3, name: "Placement Record", iconName: <Work /> },
-    { id: 4, name: "Users", iconName: <User /> },
-    { id: 5, name: "Posts", iconName: <Post /> },
-    { id: 6, name: "Notice Maker", iconName: <PostAddIcon /> },
-    { id: 7, name: "Upload CSV", iconName: <AddIcon /> },
-];
-
-
 function Sidebar(props) {
     const classes = useStyles();
+    const listItems = [
+        {
+            id: 1,
+            name: "Home",
+            iconName: <HomeIcon className={classes.iconIcon} />,
+            onCLickAction: ""
+        },
+        {
+            id: 5,
+            name: "Posts",
+            iconName: <Post className={classes.iconIcon} />
+        },
+        {
+            id: 4,
+            name: "Users",
+            iconName: <User className={classes.iconIcon} />
+        },
+        {
+            id: 7,
+            name: "Upload CSV",
+            iconName: <AddIcon className={classes.iconIcon} />
+        }
+        // { id: 2, name: "Data Using Excel", iconName: <DescriptionIcon /> },
+        // { id: 3, name: "Placement Record", iconName: <Work /> },
+        // { id: 6, name: "Notice Maker", iconName: <PostAddIcon /> },
+    ];
     const [active, setActive] = React.useState("Home");
     const theme = useTheme();
     const renderListItem = () => {
-		return listItems.map((item) => {
-			return (
-				<>
-					<ListItem key={item.id} button onClick={ () => { props.changeMainContent(item.id);setActive(item.name); } } >
-						<ListItemIcon className={active === item.name? classes.active : ""}>{item.iconName}</ListItemIcon>
-						<ListItemText
-                            className={active === item.name? classes.active : classes.buttonFontSize}
-							primary={item.name}
-						/>
-					</ListItem>
-				</>
-			);
-		});
+        return listItems.map(item => {
+            return (
+                <ListItem
+                    key={item.id}
+                    button
+                    className={active==item.name?classes.listItemContainerActive:classes.listItemContainer}
+                    onClick={() => {
+                        props.changeMainContent(item.id);
+                        setActive(item.name);
+                    }}
+                >
+                    <ListItemIcon
+                        className={
+                            active === item.name
+                                ? classes.active
+                                : classes.inActive
+                        }
+                    >
+                        {item.iconName}
+                    </ListItemIcon>
+                    <ListItemText
+                        className={
+                            active === item.name
+                                ? classes.active
+                                : classes.buttonFontSize
+                        }
+                        primary={item.name}
+                    />
+                </ListItem>
+            );
+        });
     };
-    
+
     return (
         <>
             <Drawer
@@ -143,64 +213,42 @@ function Sidebar(props) {
                     [classes.drawerClose]: !props.isOpen
                 })}
                 classes={{
-                    paper: clsx({
+                    paper: clsx(classes.drawer, {
                         [classes.drawerOpen]: props.isOpen,
                         [classes.drawerClose]: !props.isOpen
                     })
                 }}
             >
-                <div className={classes.toolbar}>
-                    <Grid container spacing={0} className={classes.draw}>
-                        <Grid
-                            item
-                            xs={12}
-                            className={classes.drawerCloseButton}
-                        >
-                            <IconButton onClick={props.handleClose}>
-                                <ClearIcon className={classes.close} />
-                            </IconButton>
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <Grid container spacing={0}>
-                            <Grid
-                                    item
-                                    className={classes.sidebarProfileGrids}
-                                    xs={12}
-                                    style={{ padding: 20 }}
+                {/* <div className={classes.toolbar}>
+                    <div container spacing={0} className={classes.draw}>
+                        <div>
+                            <div className={classes.sidebarProfileGrids}>
+                                <Avatar
+                                    alt="avatar"
+                                    src={logo2}
+                                    className={classes.large}
+                                    style={{ borderRadius: "50%" }}
                                 />
-                                <Grid
-                                    item
-                                    className={classes.sidebarProfileGrids}
-                                    xs={12}
-                                >
-                                    <Avatar
-                                        alt="avatar"
-                                        src={avatar}
-                                        className={classes.large}
-                                        style={{ borderRadius: "50%" }}
-                                    />
-                                </Grid>
-                                <Grid
-                                    className={classes.sidebarProfileGrids}
-                                    item
-                                    xs={12}
-                                >
-                                    <h5 className={classes.admin}>Admin</h5>
-                                    
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <div>
+                                <h1>GNDEC LOGO</h1>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <Divider />
-                <div>
-            </div>
-                <List>
-                    {renderListItem()}
-                </List>
+                </div> */}
+                <Link to="/" className={classes.TnPlink}>
+                    <ListItem key={10} className={classes.box} button>
+                        <Avatar
+                            alt="avatar"
+                            src={logo2}
+                            className={classes.large}
+                        />
+                        <ListItemText
+                            className={classes.active}
+                            className={classes.TnP}
+                            primary="T&P Cell"
+                        />
+                    </ListItem>
+                </Link>
+                <List className={classes.linksContainer}>{renderListItem()}</List>
             </Drawer>
         </>
     );

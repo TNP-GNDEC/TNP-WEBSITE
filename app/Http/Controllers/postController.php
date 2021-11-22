@@ -28,6 +28,13 @@ class postController extends Controller
         return response()
             ->json(['status' => 200, 'page' => $page, 'posts' => $posts]);
     }
+    
+    public function lastThreePosts(Request $request)
+    {
+        $posts = Post::orderBy('updated_at', 'DESC')->take(3)->get();
+        return response()
+            ->json(['status' => 200, 'posts' => $posts]);
+    }
 
     public function index()
     {

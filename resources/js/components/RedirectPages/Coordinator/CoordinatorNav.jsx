@@ -9,8 +9,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Menu from "./Menu";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
+import ClearIcon from "@material-ui/icons/Clear";
 import Logo from "../../../../images/logo.png";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "space-between"
     },
-    title:{
+    title: {
         fontFamily: "Lato",
         fontWeight: "400",
         fontSize: "22px"
@@ -52,7 +53,7 @@ const useStyles = makeStyles(theme => ({
         })
     },
     menuButton: {
-        marginRight: 36
+        marginLeft: 36
     },
     hide: {
         display: "none"
@@ -77,17 +78,13 @@ export default function MiniDrawer(props) {
     return (
         <>
             <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={
-                    (classes.inlinea,
-                    clsx(classes.appBar, {
-                        [classes.appBarShift]: props.isOpen
-                    }))
-                }
-            >
-                <div className={classes.inlinea}>
-                    <Toolbar>
+            <div className={classes.inlinea}>
+                <Toolbar>
+                    {props.isOpen ? (
+                        <IconButton onClick={props.handleClose}>
+                            <ClearIcon className={classes.close} />
+                        </IconButton>
+                    ) : (
                         <IconButton
                             color="inherit"
                             aria-label="open drawer"
@@ -99,19 +96,19 @@ export default function MiniDrawer(props) {
                         >
                             <MenuIcon />
                         </IconButton>
-                            <Link to ="/">
-                            <img className={classes.imgl}  src={Logo} alt="logo" />
-                            </Link>
-                        <Typography variant="h6" noWrap className={classes.title}>
-                            Training and Placement Cell
-                        </Typography>
-                    </Toolbar>
-                    <div className={classes.inlinea}>
-                        <Menu />
-                    </div>
-                </div>
-            </AppBar>
+                    )}
 
+                    <Link to="/">
+                        <img className={classes.imgl} src={Logo} alt="logo" />
+                    </Link>
+                    <Typography variant="h6" noWrap className={classes.title}>
+                        Training and Placement Cell
+                    </Typography>
+                </Toolbar>
+                <div className={classes.inlinea}>
+                    <Menu />
+                </div>
+            </div>
         </>
     );
 }
