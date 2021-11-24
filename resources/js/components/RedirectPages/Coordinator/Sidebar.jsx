@@ -136,7 +136,7 @@ const useStyles = makeStyles(theme => ({
     listItemContainerActive: {
         paddingTop: "12px",
         paddingBottom: "12px",
-        borderLeft: "6px solid white"
+        borderLeft: "5px solid white",
     }
 }));
 

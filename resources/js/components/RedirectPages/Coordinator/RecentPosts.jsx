@@ -1,12 +1,116 @@
 import React, { useEffect, useState } from "react";
 import logoutIcon from "../../../../images/logoutIcon.svg";
-import adminOnlineIcon from "../../../../images/adminOnlineIcon.svg";
+import adminOnlineIcon from "../../../../images/avatar3.png";
 import recentPostIcon from "../../../../images/recentPostIcon.svg";
 import axios from "axios";
 import moment from "moment";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import Badge from '@material-ui/core/Badge';
+
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+      backgroundColor: '#44b700',
+      color: '#44b700',
+      width: "15px",
+      height: "15px",
+      borderRadius: "50%",
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      '&::after': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        animation: '$ripple 1.2s infinite ease-in-out',
+        border: '1px solid currentColor',
+        content: '""',
+      },
+    },
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0,
+      },
+    },
+  }))(Badge);
+
+const useStyles = makeStyles(theme => ({
+    root:{
+        width: "50%",
+        background: theme.palette.secondary.main,
+        height: "100vh",
+        position: "sticky",
+        top: "0px"
+    },
+    logoutLink:{
+        width: "100%",
+        height: "50px",
+        display: "flex",
+        justifyContent: "right",
+        alignItems: "center"
+    },
+    LgtLink:{
+        textDecoration: "none !important"
+    },
+    logout:{
+        fontFamily: "Open Sans",
+        fontSize: "18px",
+        color: theme.palette.primary.main
+    },
+    avatarDiv:{
+        width: "100%",
+        height: "180px",
+        marginTop: "5%",
+        textAlign: "center"
+    },
+    Admin:{
+        fontWeight: "600",
+        fontSize: "20px",
+        paddingTop: "10px",
+        fontFamily: "Open Sans",
+        color: theme.palette.primary.dark
+    },
+    Activity:{
+        marginTop: "5%",
+        fontWeight: "600",
+        fontSize: "16px",
+        fontFamily: "Open Sans",
+        color: theme.palette.primary.dark
+    },
+    ActivityInfo:{
+        fontWeight: "600",
+        fontSize: "14px",
+        fontFamily: "Open Sans",
+        color: theme.palette.primary.dark
+    },
+    Activities:{
+        fontWeight: "400",
+        fontSize: "14px",
+        fontFamily: "Open Sans",
+        color: theme.palette.primary.dark
+    },
+    ActivityTime:{
+        fontWeight: "400",
+        fontSize: "12px",
+        fontFamily: "Open Sans",
+        color: theme.palette.primary.text
+    },
+    footer:{
+        width: "100%",
+        height: "80px",
+        position: "fixed",
+        bottom: "0px"
+    },
+}));
 
 const RecentPosts = () => {
+    const classes = useStyles();
     const handleLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("userid");
@@ -29,37 +133,43 @@ const RecentPosts = () => {
     }, []);
     const [posts, setPosts] = React.useState([]);
     return (
-        <div className="d-flex flex-column min-vh-100 mw-50 w-auto bg-white pt-3">
+        <div className={classes.root}>
             <div className="px-3">
+                <div className={classes.logoutLink}>
                 <Link
                     onClick={handleLogout}
-                    className="d-flex justify-content-end align-items-center"
+                    className={classes.LgtLink}
                 >
-                    <img className="display-4" src={logoutIcon} alt="logout" />
-                    <h4 className="mt-2 ml-1">Logout</h4>
+                    {/* <img className="display-4" src={logoutIcon} alt="logout" /> */}
+                    <h4 className={classes.logout}>Logout</h4>
                 </Link>
-                <div className="my-5 d-flex flex-column justify-content-center align-items-center">
+                </div>
+                <div className={classes.avatarDiv}>
+                <StyledBadge
+                    overlap="circular"
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    variant="dot"
+                >
                     <img src={adminOnlineIcon} alt="Admin" />
-                    <h4 className="mt-3">Admin</h4>
+                </StyledBadge>
+                    <h4 className={classes.Admin}>Admin</h4>
                 </div>
                 <div>
-                    <h5 className="font-weight-bold">Recent Activities</h5>
-                    <div className="d-flex flex-column my-4 align-items-center">
+                    <h5 className={classes.Activity}>Recent Activities</h5>
+                    <div className="d-flex flex-column my-3 align-items-center">
                         {posts.map(post => (
                             <div className="w-100 d-flex justify-content-between align-items-start">
                                 <div className="d-flex">
-                                    <Link to={"/showPost/" + post.id}>
                                         <img src={recentPostIcon} alt="Admin" />
-                                    </Link>
-                                    <div className="ml-4 mt-2 w-auto">
-                                        <h6 className="font-weight-bold">
+                                    <div className="ml-4 mt-3 w-auto">
+                                        <h6 className={classes.ActivityInfo}>
                                             Added a new post
                                         </h6>
-                                        <p>"{post.title.substring(1, 15)}"</p>
+                                        <p className={classes.Activities}>"{post.title.substring(0, 28)}"</p>
                                     </div>
                                 </div>
-                                <div>
-                                    <p className="mt-2">
+                                <div className="mt-3">
+                                    <p className={classes.ActivityTime}>
                                         {moment(post.created_at).fromNow()}
                                     </p>
                                 </div>
@@ -68,9 +178,9 @@ const RecentPosts = () => {
                     </div>
                 </div>
             </div>
-            <footer className="w-100 mt-auto">
+            <footer className={classes.footer}>
                 <hr />
-                <p className="px-5">
+                <p className="px-3">
                     Developed with ❤️ by Genconians, ©️ 2021 GNDEC,ldh
                 </p>
             </footer>

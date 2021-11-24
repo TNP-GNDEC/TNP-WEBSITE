@@ -39,21 +39,27 @@ const useStyles = makeStyles(theme => ({
     },
     head: {
         marginBottom: "0px",
-        paddingTop: "15px",
-        paddingBottom: "15px",
-        fontFamily: "Nunito",
-        fontWeight: "800",
-        color: "black"
+        paddingTop: "0px",
+        // paddingTop: "15px",
+        // paddingBottom: "15px",
+        fontFamily: "Open Sans",
+        fontWeight: "600",
+        color: theme.palette.primary.dark,
+        fontSize: "22px",
     },
     menuButton: {
         // marginLeft: "10px"
         fontSize: "100px"
     },
     close: {
-        color: "#1687D9"
+        color: "#1687D9",
+        fontSize: "30px",
+        paddingTop: "2px"
     },
     open: {
-        color: "#1687D9"
+        color: "#1687D9",
+        fontSize: "30px",
+        paddingTop: "2px"
     }
 }));
 
@@ -69,7 +75,6 @@ export default function FullWidthTabs(props) {
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
                                     <ClearIcon
-                                        fontSize="large"
                                         className={classes.close}
                                     />
                                 </IconButton>
@@ -83,7 +88,6 @@ export default function FullWidthTabs(props) {
                                     })}
                                 >
                                     <MenuIcon
-                                        fontSize="large"
                                         className={classes.open}
                                     />
                                 </IconButton>
@@ -101,7 +105,6 @@ export default function FullWidthTabs(props) {
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
                                     <ClearIcon
-                                        fontSize="large"
                                         className={classes.close}
                                     />
                                 </IconButton>
@@ -116,7 +119,6 @@ export default function FullWidthTabs(props) {
                                     })}
                                 >
                                     <MenuIcon
-                                        fontSize="large"
                                         className={classes.open}
                                     />
                                 </IconButton>
@@ -135,7 +137,6 @@ export default function FullWidthTabs(props) {
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
                                     <ClearIcon
-                                        fontSize="large"
                                         className={classes.close}
                                     />
                                 </IconButton>
@@ -150,7 +151,6 @@ export default function FullWidthTabs(props) {
                                     })}
                                 >
                                     <MenuIcon
-                                        fontSize="large"
                                         className={classes.open}
                                     />
                                 </IconButton>
@@ -169,7 +169,6 @@ export default function FullWidthTabs(props) {
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
                                     <ClearIcon
-                                        fontSize="large"
                                         className={classes.close}
                                     />
                                 </IconButton>
@@ -184,7 +183,6 @@ export default function FullWidthTabs(props) {
                                     })}
                                 >
                                     <MenuIcon
-                                        fontSize="large"
                                         className={classes.open}
                                     />
                                 </IconButton>
@@ -203,7 +201,6 @@ export default function FullWidthTabs(props) {
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
                                     <ClearIcon
-                                        fontSize="large"
                                         className={classes.close}
                                     />
                                 </IconButton>
@@ -218,7 +215,6 @@ export default function FullWidthTabs(props) {
                                     })}
                                 >
                                     <MenuIcon
-                                        fontSize="large"
                                         className={classes.open}
                                     />
                                 </IconButton>
@@ -247,7 +243,6 @@ export default function FullWidthTabs(props) {
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
                                     <ClearIcon
-                                        fontSize="large"
                                         className={classes.close}
                                     />
                                 </IconButton>
@@ -262,7 +257,6 @@ export default function FullWidthTabs(props) {
                                     })}
                                 >
                                     <MenuIcon
-                                        fontSize="large"
                                         className={classes.open}
                                     />
                                 </IconButton>
