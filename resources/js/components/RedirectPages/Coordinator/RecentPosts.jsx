@@ -134,7 +134,7 @@ const RecentPosts = () => {
     const [posts, setPosts] = React.useState([]);
     return (
         <div className={classes.root}>
-            <div className="px-3">
+            <div className="px-4">
                 <div className={classes.logoutLink}>
                 <Link
                     onClick={handleLogout}
@@ -180,7 +180,7 @@ const RecentPosts = () => {
             </div>
             <footer className={classes.footer}>
                 <hr />
-                <p className="px-3">
+                <p className="px-4">
                     Developed with ❤️ by Genconians, ©️ 2021 GNDEC,ldh
                 </p>
             </footer>

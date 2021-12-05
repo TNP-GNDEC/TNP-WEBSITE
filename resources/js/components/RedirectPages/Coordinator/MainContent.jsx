@@ -15,6 +15,7 @@ import { Clear as ClearIcon, Menu as MenuIcon } from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
 import Postmaker from "./Postmaker";
 import PlacementRecord from "./PlacementRecord";
+import Dashboard from "./Dashboard/Dashboard";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -95,6 +96,7 @@ export default function FullWidthTabs(props) {
                         </div>
                         <h1 className={classes.head}>Dashboard</h1>
                     </div>
+                    <Dashboard />
                 </>
             );
         } else if (props.activeId === 2) {
