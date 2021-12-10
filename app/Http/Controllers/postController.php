@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Carbon\Carbon;
 
 class postController extends Controller
 {
@@ -34,6 +35,31 @@ class postController extends Controller
         $posts = Post::orderBy('updated_at', 'DESC')->take(3)->get();
         return response()
             ->json(['status' => 200, 'posts' => $posts]);
+    }
+
+    public function counter(Request $request)
+    {
+        $count = Post::count();
+        $monthly = Post::whereMonth('updated_at', date('m'))->count();
+        return response()
+            ->json(['status' => 200, 'count' => $count, 'monthly' => $monthly]);
+    }
+    public function postChartData(Request $request)
+    {
+        $mon6 = Post::whereMonth('updated_at', date('m'))->count();
+        $mon5 = Post::whereMonth('updated_at', Carbon::now()->submonth()->month)->count();
+        $mon4 = Post::whereMonth('updated_at', Carbon::now()->submonth(2)->month)->count();
+        $mon3 = Post::whereMonth('updated_at', Carbon::now()->submonth(3)->month)->count();
+        $mon2 = Post::whereMonth('updated_at', Carbon::now()->submonth(4)->month)->count();
+        $mon1 = Post::whereMonth('updated_at', Carbon::now()->submonth(5)->month)->count();
+        return response()
+            ->json(['status' => 200, 
+                    'mon6' => $mon6, 
+                    'mon5' => $mon5,
+                    'mon4' => $mon4,
+                    'mon3' => $mon3,
+                    'mon2' => $mon2,
+                    'mon1' => $mon1,]);
     }
 
     public function index()

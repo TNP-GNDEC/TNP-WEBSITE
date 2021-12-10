@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
         background: theme.palette.secondary.main,
         height: "100vh",
         position: "sticky",
-        top: "0px"
+        top: "0px",
     },
     logoutLink:{
         width: "100%",
@@ -75,6 +75,9 @@ const useStyles = makeStyles(theme => ({
         paddingTop: "10px",
         fontFamily: "Open Sans",
         color: theme.palette.primary.dark
+    },
+    ActDiv:{
+        
     },
     Activity:{
         marginTop: "5%",
@@ -154,7 +157,7 @@ const RecentPosts = () => {
                 </StyledBadge>
                     <h4 className={classes.Admin}>Admin</h4>
                 </div>
-                <div>
+                <div className={classes.ActDiv}>
                     <h5 className={classes.Activity}>Recent Activities</h5>
                     <div className="d-flex flex-column my-3 align-items-center">
                         {posts.map(post => (

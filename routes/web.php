@@ -132,6 +132,10 @@ Route::post('getposts', 'postController@getposts');
 
 Route::get("lastThreePosts", "postController@lastThreePosts");
 
+Route::get("/postCounts", "postController@counter");
+
+Route::get("/postChartData", "postController@postChartData");
+
 Route::post('/forget-password', 'ForgotPasswordController@postEmail');
 
 Route::get('/resetPassword/{token}', function () {
