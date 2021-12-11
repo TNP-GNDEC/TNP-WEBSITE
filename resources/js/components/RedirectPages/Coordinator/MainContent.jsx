@@ -232,7 +232,6 @@ export default function FullWidthTabs(props) {
                 <>
                     <Card className={classes.notices}>
                         <h1>Notice Maker</h1>
-
                         <Notice />
                     </Card>
                 </>
