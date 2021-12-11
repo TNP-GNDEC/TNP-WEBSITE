@@ -42,11 +42,15 @@ const StyledBadge = withStyles((theme) => ({
 
 const useStyles = makeStyles(theme => ({
     root:{
-        width: "50%",
+        minWidth: "30%",
         background: theme.palette.secondary.main,
         height: "100vh",
+        position: "-webkit-sticky",
         position: "sticky",
         top: "0px",
+        ['@media (max-width:1080px)']: {
+            display: "none"
+        }
     },
     logoutLink:{
         width: "100%",
@@ -77,7 +81,6 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.primary.dark
     },
     ActDiv:{
-        
     },
     Activity:{
         marginTop: "5%",

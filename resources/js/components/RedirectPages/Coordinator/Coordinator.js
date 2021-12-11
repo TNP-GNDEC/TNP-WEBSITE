@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         backgroundColor: theme.palette.primary.light,
         height: "auto",
-        minHeight: "100vh"
+        minHeight: "100vh",
     },
 
     toolbar: {
@@ -26,8 +26,8 @@ const useStyles = makeStyles(theme => ({
         // ...theme.mixins.toolbar
     },
     content: {
-        flexGrow: 1
-        // padding: theme.spacing(3),
+        flexGrow: 1,
+        overflowX: "hidden"
     },
 
     mainContent: {
@@ -72,7 +72,7 @@ export default function Coordinator() {
                     isOpen={open}
                     handleOpen={handleDrawerOpen}
                 /> */}
-                <div className="d-flex justify-content-between">
+                <div>
                     <MainContent
                         handleClose={handleDrawerClose}
                         isOpen={open}
@@ -83,9 +83,9 @@ export default function Coordinator() {
                     {/* <div className={classes.foot}>
                     <Footer />
                 </div> */}
-                    <RecentPosts />
                 </div>
             </main>
+            <RecentPosts />
         </div>
     );
 }

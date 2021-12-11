@@ -73,7 +73,7 @@ const PlacementChart = () => {
     const [series, setSeries] = useState(
       [{
         name: 'PlacedStudentCount',
-        data: [283,476,449,242,422,945,267]
+        data: [283,476,449,242,422,445,357]
       }],
     );
 
