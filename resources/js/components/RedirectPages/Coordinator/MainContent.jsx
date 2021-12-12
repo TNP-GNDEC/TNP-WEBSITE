@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
         fontFamily: "Open Sans",
         fontWeight: "600",
         color: theme.palette.primary.dark,
-        fontSize: "22px",
+        fontSize: "22px"
     },
     menuButton: {
         // marginLeft: "10px"
@@ -75,9 +75,7 @@ export default function FullWidthTabs(props) {
                         <div>
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
-                                    <ClearIcon
-                                        className={classes.close}
-                                    />
+                                    <ClearIcon className={classes.close} />
                                 </IconButton>
                             ) : (
                                 <IconButton
@@ -88,9 +86,7 @@ export default function FullWidthTabs(props) {
                                         [classes.hide]: props.isOpen
                                     })}
                                 >
-                                    <MenuIcon
-                                        className={classes.open}
-                                    />
+                                    <MenuIcon className={classes.open} />
                                 </IconButton>
                             )}
                         </div>
@@ -106,9 +102,7 @@ export default function FullWidthTabs(props) {
                         <div>
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
-                                    <ClearIcon
-                                        className={classes.close}
-                                    />
+                                    <ClearIcon className={classes.close} />
                                 </IconButton>
                             ) : (
                                 <IconButton
@@ -120,9 +114,7 @@ export default function FullWidthTabs(props) {
                                         [classes.hide]: props.isOpen
                                     })}
                                 >
-                                    <MenuIcon
-                                        className={classes.open}
-                                    />
+                                    <MenuIcon className={classes.open} />
                                 </IconButton>
                             )}
                         </div>
@@ -138,9 +130,7 @@ export default function FullWidthTabs(props) {
                         <div>
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
-                                    <ClearIcon
-                                        className={classes.close}
-                                    />
+                                    <ClearIcon className={classes.close} />
                                 </IconButton>
                             ) : (
                                 <IconButton
@@ -152,9 +142,7 @@ export default function FullWidthTabs(props) {
                                         [classes.hide]: props.isOpen
                                     })}
                                 >
-                                    <MenuIcon
-                                        className={classes.open}
-                                    />
+                                    <MenuIcon className={classes.open} />
                                 </IconButton>
                             )}
                         </div>
@@ -170,9 +158,7 @@ export default function FullWidthTabs(props) {
                         <div>
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
-                                    <ClearIcon
-                                        className={classes.close}
-                                    />
+                                    <ClearIcon className={classes.close} />
                                 </IconButton>
                             ) : (
                                 <IconButton
@@ -184,9 +170,7 @@ export default function FullWidthTabs(props) {
                                         [classes.hide]: props.isOpen
                                     })}
                                 >
-                                    <MenuIcon
-                                        className={classes.open}
-                                    />
+                                    <MenuIcon className={classes.open} />
                                 </IconButton>
                             )}
                         </div>
@@ -202,9 +186,7 @@ export default function FullWidthTabs(props) {
                         <div>
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
-                                    <ClearIcon
-                                        className={classes.close}
-                                    />
+                                    <ClearIcon className={classes.close} />
                                 </IconButton>
                             ) : (
                                 <IconButton
@@ -216,9 +198,7 @@ export default function FullWidthTabs(props) {
                                         [classes.hide]: props.isOpen
                                     })}
                                 >
-                                    <MenuIcon
-                                        className={classes.open}
-                                    />
+                                    <MenuIcon className={classes.open} />
                                 </IconButton>
                             )}
                         </div>
@@ -244,9 +224,7 @@ export default function FullWidthTabs(props) {
                         <div>
                             {props.isOpen ? (
                                 <IconButton onClick={props.handleClose}>
-                                    <ClearIcon
-                                        className={classes.close}
-                                    />
+                                    <ClearIcon className={classes.close} />
                                 </IconButton>
                             ) : (
                                 <IconButton
@@ -258,9 +236,7 @@ export default function FullWidthTabs(props) {
                                         [classes.hide]: props.isOpen
                                     })}
                                 >
-                                    <MenuIcon
-                                        className={classes.open}
-                                    />
+                                    <MenuIcon className={classes.open} />
                                 </IconButton>
                             )}
                         </div>
