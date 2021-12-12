@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\FormStatus;
 use App\Models\PersonalDetails;
 use App\Models\Matriculation;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 // use App\Models\Diploma;
 // use App\Models\Twelfth;
@@ -133,6 +134,87 @@ class AuthController extends Controller
                 }
         
         return response()->json(["message"=>"Data added successfully","success"=>1,"data"=>$users["data"]]);
+    }
+
+
+    public function registerUser(Request $request){
+        $newUser['uuid'] = (string) Str::uuid();
+        $newUser['urn'] = (string)($request->username);
+        $newUser['crn'] = (string)($request->password);
+        $newUser['username'] = (string)($request->username);
+        $newUser['password'] = bcrypt($request->password);
+        $newUser['role_id'] = 1;
+        $newUser['is_verified'] = 0;
+        // error_log("=================================================================");
+        // error_log($newUser['username']);
+        // error_log($newUser['password']);
+        // error_log("=================================================================");
+    
+        $existingUser= DB::table('users')
+				->where('username', $newUser['username'])->exists();
+
+        if($existingUser){
+            // This part executes when a user with the current username exists in the database
+
+            // error_log("user match found");
+
+            // $update=DB::table('users')
+            //     ->where('username', $newUser['username'])
+            //     ->update(['password' => $newUser['password']]);
+
+            $update2 = DB::table('personaldetails')     // For updating the user in form status table
+                ->where('urn', $newUser['username'])
+                ->update(['crn' => $newUser['crn']]);
+
+            $update3 = DB::table('matriculation')       // For updating the user in matriculation table
+                ->where('urn', $newUser['username'])
+                ->update(['crn' => $newUser['crn']]);
+
+            $update4 = DB::table('twelfth')             // For updating the user in twelfth table
+                ->where('urn', $newUser['username'])
+                ->update(['crn' => $newUser['crn']]);
+
+            $update5 = DB::table('diploma')             // For updating the user in diploma table
+                ->where('urn', $newUser['username'])
+                ->update(['crn' => $newUser['crn']]);
+
+        }else{
+            // This part executes when no user with the current username exists in the database
+
+            // error_log("user match not found");
+            try{
+                $new_user = User::create([              // For registering the new user
+                    "username" => $newUser['username'],
+                    "password" => $newUser['password'],
+                    "role_id" => 1,
+                    "uuid" => $newUser['uuid'],
+                    "email" => ""
+                ]);
+
+                $form_user= formStatus::create([        // For adding the user in form status table
+                    'user_id' => $new_user->id,
+                    'form_step' => 0
+                ]);
+                
+                $form_step_two = PersonalDetails::create([      // For adding the user in form status table
+                    'user_id' => $new_user->id,
+                    'urn' => $newUser['urn'],
+                    'crn' => $newUser['crn']
+                ]);
+                
+                $form_step_three = Matriculation::create([      // For adding the user in matriculation table
+                    'user_id' => $new_user->id,
+                    'urn' => $newUser['urn'],
+                    'crn' => $newUser['crn']
+                ]);
+            }
+            catch(Exception $e) {
+                // Error response incase something goes wrong in the server
+                return response()->json(["message"=>"Something went wrong","success"=>0]);
+            }
+        }
+        // Success response when data is updated in the database
+        return response()->json(["message"=>"Data added successfully","success"=>1]);
     }
 
 
