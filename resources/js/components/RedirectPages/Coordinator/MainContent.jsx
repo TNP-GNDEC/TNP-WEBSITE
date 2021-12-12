@@ -16,6 +16,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Postmaker from "./Postmaker";
 import PlacementRecord from "./PlacementRecord";
 import Dashboard from "./Dashboard/Dashboard";
+import RegisterUser from "./RegisterUser";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -267,6 +268,38 @@ export default function FullWidthTabs(props) {
                         <h1 className={classes.head}>Upload CSV</h1>
                     </div>
                     <Uploadcsv />
+                </>
+            );
+        }else if(props.activeId === 8){
+            return (
+                <>
+                    <div className="d-flex justify-content-start align-items-center">
+                        <div>
+                            {props.isOpen ? (
+                                <IconButton onClick={props.handleClose}>
+                                    <ClearIcon
+                                        className={classes.close}
+                                    />
+                                </IconButton>
+                            ) : (
+                                <IconButton
+                                    color="inherit"
+                                    aria-label="open drawer"
+                                    onClick={props.handleOpen}
+                                    edge="start"
+                                    className={clsx(classes.menuButton, {
+                                        [classes.hide]: props.isOpen
+                                    })}
+                                >
+                                    <MenuIcon
+                                        className={classes.open}
+                                    />
+                                </IconButton>
+                            )}
+                        </div>
+                        <h1 className={classes.head}>Register User</h1>
+                    </div>
+                    <RegisterUser/>
                 </>
             );
         }
