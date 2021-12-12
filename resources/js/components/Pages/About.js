@@ -10,6 +10,12 @@ import Training from '@material-ui/icons/AccountBalanceOutlined';
 import Placement from '@material-ui/icons/AssessmentOutlined';
 import Activity from '@material-ui/icons/ColorLensOutlined';
 
+import mobileComponent from "../../../images/mobileComponent.png";
+import wipro from "../../../images/wipro.png";
+import infosys from "../../../images/infosys.png";
+import capegemini from "../../../images/capegemini.png";
+import hcl from "../../../images/hcl.png";
+import tcs from "../../../images/tcs.png";
 import logo from "../../../images/logo.png";
 import logo2 from "../../../images/logo2.png";
 import intro from "../../../images/sodhi.jpg";
@@ -20,7 +26,7 @@ import image3 from "../../../images/image3.jpg";
 import office from "../../../images/office1.jpg";
 import cummins from "../../../images/cummins.png";
 import accenture from "../../../images/accenture.png";
-import infosys from "../../../images/infosys.png";
+import Navbar from "../HomeComponent/SideComponents/Navbar";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -164,7 +170,7 @@ icon:{
   },
   section2_1:{
       width: "100%",
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: "#E9F3FD",
       display: "flex",
       justifyContent: "space-evenly",
       ['@media (max-width:1020px)']: {
@@ -172,6 +178,7 @@ icon:{
       }
   },
   section3_1:{
+    backgroundColor: theme.palette.secondary.main,
       width: "100%",
       display: "flex",
       justifyContent: "space-evenly",
@@ -180,15 +187,14 @@ icon:{
     }
   },
   box:{
-      width: "330px",
-      height: "380px",
+      width: "341px",
+      height: "521px",
       backgroundColor: theme.palette.secondary.main,
-      border: "2px solid #038ed4",
       borderRadius: "10px",
-      boxShadow: "0px 15px 25px #038ed466",
+      boxShadow: "4px 3px 25px #606060a3",
       margin: "60px 0 40px 0",
-      textAlign: "center",
-      padding: "20px 15px",
+      textAlign: "justify",
+      padding: "20px 30px",
       ['@media (max-width:1020px)']: {
           width: "60%",
           height: "auto",
@@ -203,7 +209,7 @@ icon:{
     borderRadius: "10px",
     boxShadow: "0px 15px 25px #00000066",
     margin: "40px 0 40px 0",
-    textAlign: "center",
+    textAlign: "justify",
     padding: "20px 15px",
     ['@media (max-width:1120px)']: {
         width: "75%",
@@ -267,15 +273,19 @@ box5:{
   },
   subheading4:{
       color: theme.palette.primary.dark,
-      padding: "10px",      
+      paddingLeft: "0",
+      padding: "10px",
+      fontSize:"22px",
+      fontWeight: "500"      
   },
   subheading5:{
-      fontSize: "18px",
-      color: "#000000a6",
+      fontSize: "20px",
+      color: "#606060",
+      lineHeight: "151.7%"
   },
   section3_0:{
       width: "100%",
-      backgroundColor: theme.palette.primary.light,
+      backgroundColor: theme.palette.secondary.main,
       padding: "40px"
   },
   subheader:{
@@ -312,20 +322,17 @@ box5:{
   },
   image3:{
       borderRadius: "50%",
-      width: "150px",
-      height: "150px"
+      width: "100px",
+      height: "100px"
   },
   imagecap:{
-      width: "160px",
-      height: "160px",
+      width: "120px",
+      height: "120px",
       borderRadius: "50%",
-      backgroundColor: theme.palette.primary.main,
-      boxShadow: "0px 15px 25px #038ed466",
+      border: "solid #038ed4",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      marginLeft: "auto",
-      marginRight: "auto"
   },
   image4:{
       width: "200px",
@@ -348,11 +355,204 @@ box5:{
     width: "100%",
     padding: "10px",
     textAlign: "center",
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.secondary.main,
+    fontSize: "20px",
+    fontWeight: "500"
   },
   tag:{
-      color: theme.palette.secondary.main
-  }
+      color: "inherit",
+      fontWeight: "700"
+  },
+  firstbox:{
+    backgroundColor: "#E9F3FD",
+    paddingTop: "150px",
+    padding: "100px",
+    paddingBottom: "100px",
+    display: "flex",
+    justifyContent: "space-between"
+  },
+  headingFlex1:{
+      fontSize: "28px",
+      fontWeight: "500",
+      display: "inline",
+  },
+  trophy: {
+      fontSize: "28px"
+  },
+  mainheadingFlex1: {
+      fontSize: "50px",
+      fontWeight: "700",
+      marginBottom: "60px",
+      lineHeight: "125%"
+  },
+  flex1:{
+      width:"40%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center"
+  },
+  subtitleFlex1: {
+      fontSize: "28px"
+  },
+  flexHeading: {
+      marginBottom: "60px"
+  },
+  secondbox: {
+      display: "flex",
+      justifyContent: "center",
+      paddingTop: "40px",
+      padding: "100px",
+      backgroundColor: theme.palette.secondary.main,
+  },
+  aboutTnP: {
+      fontSize: "36px",
+      fontWeight: "500",
+      textAlign: "center",
+      marginBottom: "35px"
+  },
+  secondpara: {
+      fontSize: "26px",
+      fontWeight: "500",
+      textAlign: "center",
+      marginBottom: "5px"
+  },
+  secondsubpara: {
+      fontSize: "22px",
+      textAlign: "center",
+      color: "#606060",
+      marginBottom: "100px"
+  },
+  innerBox: {
+      width: "63%"
+  },
+  companyVisitingHeading: {
+      fontSize: "22px",
+      color: "#606060",
+      textAlign: "center",
+      fontWeight: "500"
+  },
+  infosys: {
+      width: "110px",
+      height: "101.54px"
+  },
+  companyImages: {
+      display: "flex",
+      justifyContent: "space-around"
+  },
+  coreDetails: {
+      fontSize: "36px",
+      fontWeight: "500",
+      textAlign: "center",
+  },
+  coreHeading: {
+      paddingTop: "40px",
+    backgroundColor: "#E9F3FD"
+  },
+  careerHeading: {
+    paddingTop: "40px",
+    backgroundColor: theme.palette.secondary.main,
+  },
+  career: {
+    fontSize: "36px",
+    fontWeight: "500",
+    textAlign: "center",
+  },
+  sectionCareer: {
+    width: "100%",
+    backgroundColor: theme.palette.secondary.main,
+    display: "flex",
+    justifyContent: "space-evenly",
+    ['@media (max-width:1020px)']: {
+      display: "block",
+    },
+    box22: {
+        width: "341px",
+      height: "518px",
+      backgroundColor: theme.palette.secondary.main,
+      borderRadius: "10px",
+      boxShadow: "4px 3px 25px #606060a3",
+      margin: "60px 0 40px 0",
+      textAlign: "justify",
+      padding: "20px 18px",
+      ['@media (max-width:1020px)']: {
+          width: "60%",
+          height: "auto",
+          marginRight: "auto",
+          marginLeft: "auto",
+      }
+    },
+  },
+words: {
+    backgroundColor: theme.palette.secondary.main,
+},
+wordDetails: {
+    fontSize: "36px",
+    fontWeight: "500",
+    textAlign: "center",
+},
+tnpQuotes: {
+    paddingLeft: "249px",
+    paddingRight: "249px",
+    backgroundColor: "#E9F3FD",
+    paddingTop: "40px"
+},
+quotes: {
+    color: theme.palette.primary.main,
+    fontSize: "42px",
+    display: "inline"
+},
+wordTnp: {
+    display: "inline",
+    fontSize: "24px",
+    fontWeight: "500",
+    fontStyle: "italic",
+    lineHeight: "200%",
+    textAlign: "justify"
+},
+sodhisir: {
+    display: "flex",
+    paddingTop: "50px",
+    backgroundColor: "#E9F3FD",
+    justifyContent: "flex-start",
+    paddingLeft: "249px",
+    paddingBottom: "50px"
+},
+prof: {
+    fontSize: "30px",
+    fontWeight: "500"
+},
+tpo: {
+    fontSize: "22px",
+    fontWeight: "500",
+    color: "#606060"
+},
+profTpo: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    paddingLeft: "30px"
+},
+box31: {
+    width: "261px",
+    height: "389px",
+    backgroundColor: theme.palette.secondary.main,
+    borderRadius: "10px",
+    boxShadow: "0px 15px 25px #00000066",
+    margin: "40px 0 40px 0",
+    textAlign: "justify",
+    padding: "20px 15px",
+    ['@media (max-width:1120px)']: {
+        width: "75%",
+        height: "auto",
+        marginRight: "auto",
+        marginLeft: "auto",
+    }
+},
+num: {
+    fontSize: "28px",
+    fontWeight: "500",
+    color: theme.palette.primary.main,
+}
 }));
 
 export default function Home() {
@@ -361,84 +561,42 @@ export default function Home() {
   var year = dt.getFullYear();
 
   return (
-    <div className={classes.body}>
-        <div className={classes.navbar}>
-            <div className={classes.brand}>
-                <Link to ="/">
-                <div>
-                    <img src={logo2} width="50px" height="50px" />
-                </div>
-                </Link>
-                <div className={classes.titleBox}>
-                    <Typography variant="h5" component="h2" className={classes.title}>
-                        Training and Placement Cell
-                    </Typography>
-                </div>
+    <div>
+    <div>
+        <Navbar />
+    </div>
+    <div className={classes.firstbox}>
+        <div className={classes.flex1}>
+            <div className={classes.flexHeading}>
+            <span className={classes.trophy}>🏆</span>
+            <Typography variant="h3" className={classes.headingFlex1}> Academic Achievements & Quality</Typography>
             </div>
-            <div className={classes.navItems}>
-                <Link to="/">
-                <div className={classes.back}>
-                    <Back className={classes.icon}/>
-                    <Typography variant="h5" component="h2" className={classes.subheading6}>
-                        Back
-                    </Typography>
-                </div>
-                </Link>
-                <div className={classes.back}>
-                    <Typography variant="h5" component="h2" className={classes.subheading6}>
-                        More
-                    </Typography>
-                    <More className={classes.icon}/>
-                </div>
-              
-            
+            <Typography variant="h1" className={classes.mainheadingFlex1}>Informative platform for GNDEC students, staff & more.</Typography>
+            <Typography className={classes.subtitleFlex1}>Welcome to Training & Placement Cell,<br></br>A family that takes initiatives.</Typography>
+        </div>
+        <div>
+            <img src={mobileComponent}></img>
+        </div>
+    </div>
+    
+    <div className={classes.secondbox}>
+        <div className={classes.innerBox}>
+            <Typography className={classes.aboutTnP}>About T&P</Typography>
+            <Typography className={classes.secondpara}>" The goal of Training & Placement Cell is to provide students with a platform for using their potential to gain valuable experience by working in industry. "</Typography>
+            <Typography className={classes.secondsubpara}>It also acts as the interface between various companies seeking talented young graduates and post graduates in various disciplines. The Cell is well equipped with ample infrastructure in Terms of Testing halls, Consultancy Hall, Conference room, for Pre Placement Talk, Presentations etc and Computer labs for online tests also the cell has video conference facility available for the students.</Typography>
+            <Typography className={classes.companyVisitingHeading}>Top Companies Visiting Our Campus</Typography>
+            <div className={classes.companyImages}>
+                <img className={classes.wipro} src={wipro}></img>
+                <img className={classes.infosys} src={infosys}></img>
+                <img src={capegemini}></img>
+                <img src={hcl}></img>
+                <img src={tcs}></img>
             </div>
         </div>
-        <div className={classes.root}>
-            <Grid container md={12}>
-            <Grid item md={6} className={classes.landing1}>
-                <div className={classes.intro}>
-                    <Typography variant="h5" component="h2" className={classes.subheading2}>
-                        Welcome to
-                    </Typography>
-                    <Typography variant="h5" component="h2" className={classes.heading}>
-                        Training and
-                    </Typography>
-                    <Typography variant="h5" component="h2" className={classes.heading}>
-                        Placement Cell
-                    </Typography>
-                    <Typography variant="h5" component="h2" className={classes.subheading3}>
-                        A family that takes initiatives.
-                    </Typography>
-                </div>
-            </Grid>
-            <Grid item md={6} className={classes.landing2}>
-                <div className={classes.introbox}>
-                    <img src={intro} className={classes.hero}/>
-                </div>
-            </Grid>
-            </Grid>
-            <Grid container md={12}>
-                <Grid item md={6} className={classes.section1}>
-                    <img src={logo2} className={classes.image} />
-                </Grid>
-                <Grid item md={6} className={classes.section2}>
-                    <Typography variant="h5" component="h2" className={classes.heading2}>
-                        About
-                    </Typography>
-                    <Typography variant="h5" component="h2" className={classes.subheading3}>
-                    The goal of Training & Placement Cell is to provide students with a platform 
-                    for using their potential to gain valuable experience by working in industry ,
-                    it also acts as the interface between various companies seeking talented young
-                     graduates and post graduates in various disciplines. The Cell is well equipped
-                      with ample infrastructure in Terms of Testing halls, Consultancy Hall,
-                      Conference room, for Pre Placement Talk, Presentations etc and Computer
-                       labs for online tests also the cell has video conference facility available
-                        for the students.
-                    </Typography>
-                </Grid>
-            </Grid>
-            <Grid container md={12}>
+    </div>
+
+    <div className={classes.coreHeading}><Typography className={classes.coreDetails}>Core Details</Typography></div>
+    <Grid container md={12}>
                 <div className={classes.section2_1}>
                     <div className={classes.box}>
                         <Training className={classes.icon2}/>
@@ -479,9 +637,10 @@ export default function Home() {
                     </div>
                 </div>
             </Grid>
+
             <Grid container md={12} className={classes.section3_0}>
                 <div className={classes.subheader}>
-                <Typography variant="h5" component="h2" className={classes.heading2}>
+                <Typography variant="h5" component="h2" className={classes.coreDetails}>
                     Career Development
                 </Typography>
                 </div>
@@ -515,85 +674,63 @@ export default function Home() {
                     </div>
                 </div>
             </Grid>
-            <Grid container md={12}>
-            <div className={classes.subheader}>
-                <Typography variant="h5" component="h2" className={classes.heading2}>
-                    News and Highlights
+
+            <div className={classes.coreHeading}><Typography className={classes.coreDetails}>Words from T&P Officer</Typography></div>
+            <div className={classes.tnpQuotes}>
+                <span className={classes.quotes}>“</span>
+                <Typography className={classes.wordTnp}>
+                The Training and Placement Cell, GNDEC apart from giving an outstanding placement record provides the platform for students to gain most from the personality development and marketing experience program. We focus on not just creating engineers but pioneers and leaders for the future development of our nation. The Training & Placement Cell looks after the interests of the students and the recruiting organizations by acting as a channel of communication between them.
                 </Typography>
+                <span className={classes.quotes}>”</span>
+            </div>
+            <div className={classes.sodhisir}>
+                <div className={classes.imagecap}>
+                    <img src={office} className={classes.image3} />
                 </div>
-                <div className={classes.section2_1}>
-                    <div className={classes.box3}>
-                        <img src={logo} width="150px" height="150px" />
-                        <Typography variant="h5" component="h2" className={classes.subheading4}>
-                            Announcement
-                        </Typography>
-                        <Typography variant="h5" component="h2" className={classes.subheading2}>
-                            Registrations for ANA Technical Consulting
-                        </Typography>
-                    </div>
-                    <div className={classes.box3}>
-                        <img src={logo} width="150px" height="150px"/>
-                        <Typography variant="h5" component="h2" className={classes.subheading4}>
-                            Placement
-                        </Typography>
-                        <Typography variant="h5" component="h2" className={classes.subheading2}>
-                            Infosys Selected in Phase-1
-                        </Typography>
-                    </div>
-                    <div className={classes.box3}>
-                        <img src={logo} width="150px" height="150px"/>
-                        <Typography variant="h5" component="h2" className={classes.subheading4}>
-                            Announcements
-                        </Typography>
-                        <Typography variant="h5" component="h2" className={classes.subheading2}>
-                            VARDHMAN Group - Update
-                        </Typography>
-                    </div>
+                <div className={classes.profTpo}>
+                    <Typography className={classes.prof}>Prof. G.S. Sodhi</Typography>
+                    <Typography className={classes.tpo}>Training & Placement Officer</Typography>
                 </div>
-            </Grid>
-            <Grid container md={12} className={classes.section3_0}>
+            </div>
+    
+            <Grid container md={16} className={classes.section3_0}>
                 <div className={classes.subheader}>
-                <Typography variant="h5" component="h2" className={classes.heading2}>
+                <Typography variant="h5" component="h2" className={classes.coreDetails}>
                     How T&P Cell Works?
                 </Typography>
                 </div>
-                <div className={classes.subsection1}>
-                    <div className={classes.box4}>
-                        <div className={classes.subbox}>1</div>
+                <div className={classes.section3_1}>
+                <div className={classes.box31}>
+                    <Typography className={classes.num}>01</Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading4}>
                             Database Formation
                         </Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
-                        Collects the record of students of particular year and forms database 
-                        that MNCs demand as a record from the institution.
+                        Collects the record of students of particular year and forms database that MNCs demand as a record from the institution.
                         </Typography>
                     </div>
-                    <div className={classes.box4}>
-                    <div className={classes.subbox}>2</div>
+                    <div className={classes.box31}>
+                    <Typography className={classes.num}>02</Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading4}>
                             Finding Contacts
                         </Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
-                        Fetches contacts of Human Resource Managers of different Companies to get 
-                        information regarding job offering for students by their organisations.
+                        Fetches contacts of Human Resource Managers of different Companies to get information regarding job offering for students by their organisations.
                         </Typography>
                     </div>
-                </div>
-                <div className={classes.subsection1}>
-                    <div className={classes.box4}>
-                    <div className={classes.subbox}>3</div>
+                    <div className={classes.box31}>
+                    <Typography className={classes.num}>03</Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading4}>
                             Getting Confirmations
                         </Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
-                        Training and Placement cell gets confirmation from HRs for conducting placement 
-                        drive on particular dates as per directed and arranging hospitality services and venue.
+                        Training and Placement cell gets confirmation from HRs for conducting placement drive on particular dates as per directed and arranging hospitality services and venue.
                         </Typography>
                     </div>
-                    <div className={classes.box4}>
-                    <div className={classes.subbox}>4</div>
+                    <div className={classes.box31}>
+                    <Typography className={classes.num}>04</Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading4}>
-                             Placement Drives
+                            Placement Drives
                         </Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
                         Smoothly conducts placement drive for the students by different MNCs.
@@ -601,51 +738,9 @@ export default function Home() {
                     </div>
                 </div>
             </Grid>
-            <Grid container md={12}>
-                <div className={classes.subheader}>
-                <Typography variant="h5" component="h2" className={classes.heading2}>
-                    Words From Training And Placement Officer
-                </Typography>
-                </div>
-                <div className={classes.subsection1}>
-                    <div className={classes.box5}>
-                        <div className={classes.imagecap}>
-                           <img src={office} className={classes.image3} />
-                        </div>
-                        <Typography variant="h5" component="h2" className={classes.subheading4}>
-                            Prof G.S.Sodhi
-                        </Typography>
-                        <Typography variant="h5" component="h2" className={classes.subheading2}>
-                            Training and Placement Officer
-                        </Typography>
-                        <Typography variant="h5" component="h2" className={classes.subheading5}>
-                        "The Training and Placement Cell, GNDEC apart from giving an outstanding 
-                        placement record provides the platform for students to gain most from the 
-                        personality development and marketing experience program. We focus on not 
-                        just creating engineers but pioneers and leaders for the future development 
-                        of our nation. The Training & Placement Cell looks after the interests of 
-                        the students and the recruiting organizations by acting as a channel of 
-                        communication between them."
-                        </Typography>
-                    </div>
-                </div>
-            </Grid>
-            <Grid container md={12} className={classes.section3_0}>
-                <div className={classes.subheader}>
-                <Typography variant="h5" component="h2" className={classes.heading2}>
-                    Top Companies Visiting Our Campus
-                </Typography>
-                </div>
-                <div className={classes.subsection1}>
-                    <img src={cummins} className={classes.image4}/>
-                    <img src={accenture} className={classes.image4}/>
-                    <img src={infosys} className={classes.image4}/>
-                </div>
-            </Grid>
             <div className={classes.footer}>
             <p> Developed with ❤️ by <a className={classes.tag} href="https://tnpgndec.com/genconians">Genconians </a> | ©️ {year} <a className={classes.tag} href="https://gndec.ac.in/"> GNDEC,ldh</a></p>
             </div>
-        </div>
     </div>
   );
 }
