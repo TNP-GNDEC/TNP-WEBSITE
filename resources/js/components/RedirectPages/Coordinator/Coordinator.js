@@ -7,6 +7,8 @@ import MainContent from "./MainContent";
 import Sidebar from "./Sidebar";
 import RecentPosts from "./RecentPosts";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import FullscreenIcon from "@material-ui/icons/Fullscreen";
+import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -48,14 +50,15 @@ const useStyles = makeStyles(theme => ({
 
     screen: {
         position: "absolute",
-        top: "12px",
+        top: "15px",
         right: "5px",
         backgroundColor: theme.palette.primary.light,
         border: "none"
     },
 
     icon: {
-        width: "20px"
+        width: "60px",
+        border: "none"
     }
 }));
 
@@ -85,10 +88,17 @@ export default function Coordinator() {
     };
 
     if (Screen === true) {
-        image = "../../../../images/fullscreen.png";
+        image = (
+            <FullscreenIcon onClick={ChangeHandler} className={classes.icon} />
+        );
         handler = handle.enter;
     } else {
-        image = "../../../../images/exitscreen.png";
+        image = (
+            <FullscreenExitIcon
+                onClick={ChangeHandler}
+                className={classes.icon}
+            />
+        );
         handler = handle.exit;
     }
 
@@ -107,12 +117,7 @@ export default function Coordinator() {
                 /> */}
                     <div className={classes.ScreenContent}>
                         <button onClick={handler} className={classes.screen}>
-                            <img
-                                onClick={ChangeHandler}
-                                className={classes.icon}
-                                src={image}
-                                alt="Fullscreen"
-                            />
+                            {image}
                         </button>
                         <MainContent
                             handleClose={handleDrawerClose}
