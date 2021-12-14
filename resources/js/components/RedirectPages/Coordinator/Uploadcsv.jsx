@@ -6,6 +6,8 @@ import Notification from '../../Auth/Notisfication';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import toast, { Toaster } from "react-hot-toast";
+
 const useStyles = makeStyles((theme) => ({
   button: {
       margin: "20px 6%",
@@ -83,14 +85,18 @@ const Uploadcsv = () => {
       .then((response) => {
         setLoader(false);
         if(response.data.success === 0){
-          setNotify({ isOpen: true, message: response.data.message, type: "error" });
+          // setNotify({ isOpen: true, message: response.data.message, type: "error" });
+          toast.error(response.data.message);
         }
         else{
-          setNotify({ isOpen: true, message: response.data.message, type: "success" });
+          // setNotify({ isOpen: true, message: response.data.message, type: "success" });
+          toast.success(response.data.message);
         }
       })
       .catch((error) => {
-          console.log(error);
+        setLoader(false);
+        toast.error("An unexpected error occured");
+        console.log(error);
       });
         }
       });
@@ -98,6 +104,7 @@ const Uploadcsv = () => {
     }
     return (
       <>
+      <Toaster />
       <h2 className={classes.title}>Upload data through CSV</h2>
       <div className={classes.container}>
       <div className={classes.alert}><Notification notify={notify} setNotify={setNotify} className={classes.alert} /></div>
