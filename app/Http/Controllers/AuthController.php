@@ -20,7 +20,10 @@ use JWTAuth;
 class AuthController extends Controller
 {
     public function registerStudent(Request $request)
-    {	
+    {
+
+        error_log("----------------------------------------------------");
+        error_log($request);
         $users= $request->data;
         $data=0;
         foreach($users["data"] as $user){
@@ -29,8 +32,8 @@ class AuthController extends Controller
             $user['is_verified']=0;
             $user['username']=(string) $user['urn'];
             $user['password']=bcrypt($user['crn']);
-            
-            
+
+
             $is_user= DB::table('users')
 				->where('username', $user['username'])->exists();
 
@@ -43,7 +46,7 @@ class AuthController extends Controller
               ->update(['crn' => $user['crn']]);
   	$update3=DB::table('matriculation')
               ->where('urn', $user['username'])
-              ->update(['crn' => $user['crn']]);  
+              ->update(['crn' => $user['crn']]);
 	$update4=DB::table('twelfth')
               ->where('urn', $user['username'])
               ->update(['crn' => $user['crn']]);
@@ -51,7 +54,7 @@ class AuthController extends Controller
               ->where('urn', $user['username'])
               ->update(['crn' => $user['crn']]);
     }
-            else{ 
+            else{
 		$newUser = User::create($user);$count++;
                 $form_user= formStatus::create([
                 'user_id' => $newUser->id,
@@ -67,7 +70,7 @@ class AuthController extends Controller
                     // 'father_name' => $user['father_name'],
                     // 'mother_name' => $user['mother_name'],
                     // 'category' => $user['category'], //course on frontend is btech mtech and category is course
-                    // 'stream' => $user['stream'], 
+                    // 'stream' => $user['stream'],
                     // 'shift' => $user['shift'],
                     // 'leet' => $user['leet'],
                 ]);
@@ -109,7 +112,7 @@ class AuthController extends Controller
                     //     ['user_id' => $newUser->id,
                     //     'urn' => $user['urn'],
                         //   'category' => 'XII'
-                    //   ]);                
+                    //   ]);
                     // }
 
                     // else{
@@ -126,13 +129,13 @@ class AuthController extends Controller
                     //         'user_id' => $newUser->id,
                     //         'urn' => $user['urn'],
                     //         'category' => 'Diploma'
-                    //       ]);                
+                    //       ]);
                     //     }
                     }
 
                //else return response()->json(["message"=>"Data couldn't be added", "success"=>0 ]);
                 }
-        
+
         return response()->json(["message"=>"Data added successfully","success"=>1,"data"=>$users["data"]]);
     }
 
@@ -149,7 +152,7 @@ class AuthController extends Controller
         // error_log($newUser['username']);
         // error_log($newUser['password']);
         // error_log("=================================================================");
-    
+
         $existingUser= DB::table('users')
 				->where('username', $newUser['username'])->exists();
 
@@ -195,13 +198,13 @@ class AuthController extends Controller
                     'user_id' => $new_user->id,
                     'form_step' => 0
                 ]);
-                
+
                 $form_step_two = PersonalDetails::create([      // For adding the user in form status table
                     'user_id' => $new_user->id,
                     'urn' => $newUser['urn'],
                     'crn' => $newUser['crn']
                 ]);
-                
+
                 $form_step_three = Matriculation::create([      // For adding the user in matriculation table
                     'user_id' => $new_user->id,
                     'urn' => $newUser['urn'],
