@@ -2,10 +2,10 @@ import { ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Notifications } from 'react-push-notification';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import App from "./App";
 
-const theme = createMuiTheme({
+const theme = createTheme({
     palette: {
       primary: {
         light: '#e9f3fd',

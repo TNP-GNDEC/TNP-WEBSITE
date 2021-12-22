@@ -6,6 +6,7 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import Notification from "../../Auth/Notisfication";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import toast, { Toaster } from "react-hot-toast";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -48,6 +49,47 @@ const useStyles = makeStyles(theme => ({
         width: "90%",
         marginLeft: "60px",
         padding: "10px 0 20px"
+    },
+    button: {
+        margin: "20px 6%",
+        border: "none",
+        textDecoration: "none",
+        padding: "10px 35px",
+        color: theme.palette.secondary.main,
+        background: theme.palette.primary.main,
+        borderRadius: "10px",
+        boxShadow: "0px 15px 25px #038ed433",
+        "&:focus":{
+            outline: "none"
+        },
+        "&:hover":{
+            background: theme.palette.primary.main,
+            color: theme.palette.secondary.main,
+        },
+    },
+    container: {
+      width: "90%",
+      marginLeft: "auto",
+      marginRight: "auto",
+      marginTop: "30px",
+      paddingTop: "15px",
+      borderRadius: "15px",
+      backgroundColor: "#ffffff",
+      boxShadow: "0px 15px 25px #0000001a",
+    },
+    title:{
+      color: theme.palette.primary.dark,
+      marginLeft: "5.5%"
+    },
+    alert: {
+      marginTop: "10px",
+      margin: "auto",
+      width: "90%",
+    },
+    fileupload:{
+      width: "90%",
+      marginLeft: "60px",
+      padding: "10px 0 20px"
     }
 }));
 
@@ -148,89 +190,58 @@ const Uploadcsv = () => {
     };
 
     const handleClick = () => {
-        // const file = document.getElementById("file").files[0];
-        var data;
-        setLoader(true);
-        Papa.parse(file, {
-            header: true,
-            dynamicTyping: true,
-            skipEmptyLines: true,
-            complete: function(results) {
-                data = results;
-                axios
-                    .post("/api/registerstudent", {
-                        data: data
-                    })
-                    .then(response => {
-                        setLoader(false);
-                        if (response.data.success === 0) {
-                            setNotify({
-                                isOpen: true,
-                                message: response.data.message,
-                                type: "error"
-                            });
-                        } else {
-                            setNotify({
-                                isOpen: true,
-                                message: response.data.message,
-                                type: "success"
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            }
-        });
-    };
-    return (
-        <>
-            <h2 className={classes.title}>Upload data through CSV</h2>
-            <div className={classes.container}>
-                <div className={classes.alert}>
-                    <Notification
-                        notify={notify}
-                        setNotify={setNotify}
-                        className={classes.alert}
-                    />
-                </div>
-                {/* <input
-                    type="file"
-                    ref={hiddenFileInput}
-                    onChange={handleChange}
-                    className={classes.fileupload}
-                    id="file"
-                    required
-                /> */}
-                <section>
-                    <div {...getRootProps({ style })}>
-                        <input {...getInputProps()} />
-                        <p>
-                            Drag 'n' drop some files here, or click to select
-                            files
-                        </p>
-                    </div>
-                    <aside>
-                        <h4>Accepted files</h4>
-                        <ul>{acceptedFileItems}</ul>
-                        <h4>Rejected files</h4>
-                        <ul>{fileRejectionItems}</ul>
-                    </aside>
-                </section>
+      const file = document.getElementById('file').files[0];
+      var data;
+      setLoader(true);
+      Papa.parse(file, {
+        header: true,
+        dynamicTyping: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+          data = results;
+          axios.post('/api/registerstudent', {
+            data: data
+        })
+      .then((response) => {
+        setLoader(false);
+        if(response.data.success === 0){
+          // setNotify({ isOpen: true, message: response.data.message, type: "error" });
+          toast.error(response.data.message);
+        }
+        else{
+          // setNotify({ isOpen: true, message: response.data.message, type: "success" });
+          toast.success(response.data.message);
+        }
+      })
+      .catch((error) => {
+        setLoader(false);
+        toast.error("An unexpected error occured");
+        console.log(error);
+      });
+        }
+      });
 
-                {loader ? (
-                    <CircularProgress />
-                ) : (
-                    <button
-                        type="submit"
-                        onClick={handleClick}
-                        className={classes.button}
-                    >
-                        Upload
-                    </button>
-                )}
-            </div>
-        </>
+    }
+    return (
+      <>
+      <Toaster />
+      <h2 className={classes.title}>Upload data through CSV</h2>
+      <div className={classes.container}>
+      <div className={classes.alert}><Notification notify={notify} setNotify={setNotify} className={classes.alert} /></div>
+        <input type="file"
+               ref={hiddenFileInput}
+               onChange={handleChange}
+               className={classes.fileupload}
+               id="file"
+               required
+        />
+        {loader ? ( <CircularProgress /> ):(
+          <button type="submit" onClick={handleClick} className={classes.button}>
+              Upload
+          </button>
+        )}
+      </div>
+      </>
     );
 };
 export default Uploadcsv;
