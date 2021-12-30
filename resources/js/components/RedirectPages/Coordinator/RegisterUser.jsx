@@ -44,33 +44,51 @@ const useStyles = makeStyles(theme => ({
         fontSize: "20px",
         borderRadius: "10px",
         fontWeight: "400"
+    },
+    loader_div:{
+        marginTop: "20px",
+        display: "flex",
+        justifyContent: "center"
     }
 }));
 
 const RegisterUser = () => {
     const classes = useStyles();
     const [loader, setLoader] = useState(false);
-    // const [errorCheck, setErrorCheck] = useState(false);
     const [usernameData, setUsernameData] = useState("");
     const [passwordData, setPasswordData] = useState("");
 
     const handleInput = async e => {
         e.preventDefault();
         setLoader(true);
-        await axios
-            .post("/api/registeruser", {
-                username: usernameData,
-                password: passwordData
-            })
-            .then(res => {
-                console.log(res);
+        if(usernameData.trim() == "" || passwordData.trim() == ""){
+            setLoader(false);
+            toast.error("Invalid Username or Password");
+        }else{
+            let check_pattern = /\D/i;
+            let username_validator = usernameData.search(check_pattern);    // Search for anything
+            let password_validator = passwordData.search(check_pattern);    // except numbers in string
+            if(username_validator == -1 && password_validator == -1){
+                await axios
+                    .post("/api/registeruser", {
+                        username: usernameData,
+                        password: passwordData
+                    })
+                    .then(res => {
+                        // console.log(res);
+                        setLoader(false);
+                        toast.success("User Registered Successfully");
+                    })
+                    .catch(error => {
+                        setLoader(false);
+                        toast.error("An unexpected error occured");
+                        console.log(error);
+                    });
+            }else{
                 setLoader(false);
-                toast.success("User Registered Successfully");
-            })
-            .catch(error => {
-                toast.error("An unexpected error occured");
-                console.log(error);
-            });
+                toast.error("Invalid Username or Password");
+            }
+        }
     };
     const handleUsername = e => {
         setUsernameData(e);
@@ -119,22 +137,26 @@ const RegisterUser = () => {
                         placeholder="CRN"
                         onChange={e => handlePassword(e.target.value)}
                     />
-
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        fullWidth
-                        className={classes.btn_class}
-                        type="submit"
-                        onClick={handleInput}
-                    >
-                        {loader ? (
-                            <CircularProgress color="secondary" />
+                    
+                    {
+                        loader ? (
+                            <div className = {classes.loader_div}>
+                                <CircularProgress size="60px"/>
+                            </div>
                         ) : (
-                            "Create User"
-                        )}
-                    </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                fullWidth
+                                className={classes.btn_class}
+                                type="submit"
+                                onClick={handleInput}
+                            >
+                                Create User
+                            </Button>
+                        )
+                    }
                 </form>
             </div>
         </>
