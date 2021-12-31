@@ -1,122 +1,158 @@
 import React from "react";
 import axios from "axios";
-import { withStyles } from '@material-ui/core/styles';
-import { EditorState, convertToRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import 'react-tagsinput/react-tagsinput.css'
-import '../../../../css/app.css';
-import TagsInput from 'react-tagsinput';
-import addNotification from 'react-push-notification';
+import { withStyles } from "@material-ui/core/styles";
+import { EditorState, convertToRaw } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "react-tagsinput/react-tagsinput.css";
+import "../../../../css/app.css";
+import TagsInput from "react-tagsinput";
+import addNotification from "react-push-notification";
+import toast, { Toaster } from "react-hot-toast";
 
 const useStyles = theme => ({
-    layout:{
-        width: "80%",
+    layout: {
+        width: "100%",
         marginLeft: "auto",
         marginRight: "auto",
-        backgroundColor: theme.palette.secondary.main,
-        padding: "20px 20px",
+        // backgroundColor: theme.palette.secondary.main,
+        // padding: "10px 10px",
         borderRadius: "12px"
     },
-    label:{
+    label: {
         color: theme.palette.primary.dark,
         fontWeight: "600"
     },
-    btn:{
+    btn: {
         border: "none",
         borderRadius: "16px",
         textDecoration: "none",
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.secondary.main,
         padding: "5px 30px",
-        marginTop:"15px",
-        boxShadow: "0px 15px 25px #038ed433",
+        marginTop: "15px",
+        boxShadow: "0px 15px 25px #038ed433"
     }
 });
 
 class CreatePosts extends React.Component {
     state = {
-        title: '',
-        type: '',
-        description: '',
+        title: "",
+        type: "",
+        description: "",
         editorState: EditorState.createEmpty(),
-        tags: [],
-    }
+        tags: []
+    };
     handleChange(tags) {
-        this.setState({tags})
-      }
-
-    handleInput = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
+        this.setState({ tags });
     }
-    onEditorStateChange = (editorState) => {
+
+    handleInput = e => {
         this.setState({
-          editorState,
+            [e.target.name]: e.target.value
+        });
+    };
+    onEditorStateChange = editorState => {
+        this.setState({
+            editorState
         });
         const html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
         this.saveEditorContent(html);
-      };
-    
-    saveEditorContent(data){
-        this.setState({description: data});
-    }
-    savePost = async (e) => {
-        e.preventDefault();
-        let payload = {...this.state}
-        delete payload.editorState;
-        const res = await axios.post("/addPost", payload);
-        if(res.data.status === 200){
-            alert("Added Successfully");
-            location.reload();
-        }
-    }
+    };
 
-    
-    render(){
+    saveEditorContent(data) {
+        this.setState({ description: data });
+    }
+    savePost = async e => {
+        try {
+            e.preventDefault();
+            let payload = { ...this.state };
+            delete payload.editorState;
+            const res = await axios.post("/addPost", payload);
+            if (res.data.status === 200) {
+                toast.success("Post Added Successfully");
+                this.setState({
+                    title: "",
+                    type: "",
+                    description: "",
+                    editorState: EditorState.createEmpty(),
+                    tags: []
+                });
+            } else {
+                toast.error("Error Adding Post");
+            }
+        } catch (err) {
+            toast.error("Error Adding Post. Please contact the admin");
+        }
+    };
+
+    render() {
         const { editorState } = this.state;
-        const {classes} = this.props;
-        return(
+        const { classes } = this.props;
+        return (
             <div className={classes.layout}>
                 <div className="actionDiv">
                     <div className={classes.Formdiv}>
                         <form onSubmit={this.savePost}>
                             <div className="form-group">
                                 <label className={classes.label}>Title:</label>
-                                <input type="text" name="title" className="form-control highlight" 
-                                value={this.state.title} onChange={this.handleInput}
-                                placeholder="Enter the Title" required/>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    className="form-control highlight"
+                                    value={this.state.title}
+                                    onChange={this.handleInput}
+                                    placeholder="Enter the Title"
+                                    required
+                                />
                             </div>
                             <div className="form-group">
+                                <Toaster />
                                 <label className={classes.label}>Type:</label>
-                                <select name="type" className="form-control highlight" 
-                                value={this.state.type} onChange={this.handleInput}
-                                required>
-                                    <option value="" selected>Select the Type</option>
-                                    <option value="Announcement">Announcement</option>
+                                <select
+                                    name="type"
+                                    className="form-control highlight"
+                                    value={this.state.type}
+                                    onChange={this.handleInput}
+                                    required
+                                >
+                                    <option value="" selected>
+                                        Select the Type
+                                    </option>
+                                    <option value="Announcement">
+                                        Announcement
+                                    </option>
                                     <option value="Selection">Selection</option>
                                     <option value="Placement">Placement</option>
                                     <option value="Training">Training</option>
-                                    <option value="Internship">Internship</option>
+                                    <option value="Internship">
+                                        Internship
+                                    </option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label className={classes.label}>Description:</label>
-                                <div className={classes.description} >
+                                <label className={classes.label}>
+                                    Description:
+                                </label>
+                                <div className={classes.description}>
                                     <Editor
                                         editorState={editorState}
                                         wrapperClassName="demo-wrapper"
                                         editorClassName="demo-editor"
-                                        onEditorStateChange={this.onEditorStateChange}
+                                        onEditorStateChange={
+                                            this.onEditorStateChange
+                                        }
                                     />
                                 </div>
                             </div>
                             <label className={classes.label}>Tags:</label>
-                            <TagsInput value={this.state.tags} onChange={tags => this.handleChange(tags)} />
+                            <TagsInput
+                                value={this.state.tags}
+                                onChange={tags => this.handleChange(tags)}
+                            />
                             <div className="form-group">
-                                <button type="submit" className={classes.btn} >
+                                <button type="submit" className={classes.btn}>
                                     Add Post
                                 </button>
                                 {/* <Button variant="contained" color="primary">
@@ -127,7 +163,7 @@ class CreatePosts extends React.Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 

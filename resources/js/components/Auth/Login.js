@@ -14,12 +14,12 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import SlickCarousel from "./SlickCarousel";
 
-
-
 import { useHistory } from "react-router-dom";
 
 import logo from "../../../images/logo.png";
 
+// Toast
+import toast, { Toaster } from "react-hot-toast";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     },
     container: {
         width: "100%",
-        height: "100%",
+        height: "100%"
         // borderRadius: "20px"
     },
     loginCard: {
@@ -57,8 +57,7 @@ const useStyles = makeStyles(theme => ({
         height: "100%",
         // marginTop: "50px",
         // marginBottom: "20px",
-        background:
-            "linear-gradient(-45deg, #082C99, #1687d9)",
+        background: "linear-gradient(-45deg, #082C99, #1687d9)",
         ["@media (max-width:1000px)"]: {
             display: "none"
         }
@@ -97,25 +96,25 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.primary.dark,
         fontWeight: "600",
         fontSize: "30px",
-        ['@media (max-width:600px)']: {
+        ["@media (max-width:600px)"]: {
             marginTop: "10px"
         },
-        ['@media (min-width:1600px)']: {
+        ["@media (min-width:1600px)"]: {
             marginTop: "20px",
             fontSize: "34px"
-        },
+        }
     },
     form: {
         width: "80%", // Fix IE 11 issue.
         margin: theme.spacing(0),
         padding: theme.spacing(1),
-        ['@media (max-width:600px)']: {
+        ["@media (max-width:600px)"]: {
             width: "90%",
             marginTop: "20px"
         },
-        ['@media (min-width:1600px)']: {
+        ["@media (min-width:1600px)"]: {
             marginTop: "20px"
-        },
+        }
     },
     loader: {
         width: "100%",
@@ -135,19 +134,19 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.primary.main
         },
         backgroundColor: theme.palette.primary.main,
-        ['@media (min-width:1600px)']: {
+        ["@media (min-width:1600px)"]: {
             fontSize: "20px"
-        },
+        }
     },
     image: {
         borderRadius: "50%",
         marginBottom: "50px",
         width: "60px",
         height: "60px",
-        ['@media (min-width:1600px)']: {
+        ["@media (min-width:1600px)"]: {
             width: "80px",
             height: "80px"
-        },
+        }
     },
     mainHead: {
         width: "80%",
@@ -157,17 +156,17 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "column",
         padding: theme.spacing(1),
         marginBottom: theme.spacing(3),
-        ['@media (max-width:600px)']: {
-            width: "90%",
-        },
+        ["@media (max-width:600px)"]: {
+            width: "90%"
+        }
     },
     headSecondary: {
         fontSize: "13px",
         fontFamily: "Open Sans",
         color: theme.palette.primary.text,
-        ['@media (min-width:1600px)']: {
-            fontSize: "15px",
-        },
+        ["@media (min-width:1600px)"]: {
+            fontSize: "15px"
+        }
     },
     notchedOutline: {
         borderColor: "#757575"
@@ -182,9 +181,9 @@ const useStyles = makeStyles(theme => ({
         alignSelf: "flex-end",
         fontFamily: "Open Sans"
     },
-    anchor:{
+    anchor: {
         color: theme.palette.primary.text,
-        textDecoration: "underline",
+        textDecoration: "underline"
     },
     input: {
         borderRadius: "20px"
@@ -206,16 +205,16 @@ const useStyles = makeStyles(theme => ({
         ["@media (max-width:600px)"]: {
             width: "90%"
         },
-        ['@media (min-width:1600px)']: {
-            fontSize: "17px",
-        },
+        ["@media (min-width:1600px)"]: {
+            fontSize: "17px"
+        }
     }
 }));
 
 const SignIn = () => {
     const history = useHistory();
     const classes = useStyles();
-    var dt=new Date();
+    var dt = new Date();
     var year = dt.getFullYear();
     const [state, setState] = useState({
         username: "",
@@ -300,27 +299,40 @@ const SignIn = () => {
                 })
                 .then(response => {
                     setLoading(false);
+                    console.log(response.data);
                     if (response.data.alert) {
-                        setNotify({
-                            isOpen: true,
-                            message: response.data.alert,
-                            type: "error"
-                        });
-                    }
-                    var user = response.data.current_user;
-                    var JWTtoken = response.data.access_token;
-                    localStorage.setItem("token", JWTtoken);
-                    localStorage.setItem("role", user.role_id);
-                    if (user.role_id === 1) {
-                        localStorage.setItem("student", user.role_id);
-                        fetchSteps(JWTtoken);
-                    }
-                    if (user.role_id === 2) {
-                        localStorage.setItem("admin", user.role_id);
-                        window.location.href = window.origin + "/coordinator";
+                        toast.error(response.data.alert);
+                    } else if (
+                        response.data.access_token &&
+                        response.data.current_user
+                    ) {
+                        // React hot toast for success
+                        toast.success("Login Successful");
+
+                        const user = response.data.current_user;
+                        const JWTtoken = response.data.access_token;
+                        localStorage.setItem("token", JWTtoken);
+                        localStorage.setItem("role", user.role_id);
+
+                        if (user.role_id === 1) {
+                            localStorage.setItem("student", user.role_id);
+                            fetchSteps(JWTtoken);
+                        }
+                        if (user.role_id === 2) {
+                            localStorage.setItem("admin", user.role_id);
+                            window.location.href =
+                                window.origin + "/coordinator";
+                        }
+                    } else {
+                        toast.error(
+                            "An unexpected error occured. Please try again later"
+                        );
                     }
                 })
                 .catch(error => {
+                    toast.error("Login failed, please try later.");
+                    setLoading(false);
+                    // To be commented out in the main branch
                     console.log(error);
                 });
         }
@@ -374,7 +386,9 @@ const SignIn = () => {
                                 >
                                     Login
                                 </Typography>
-                                <span className={classes.headSecondary}>Welcome Back!!</span>
+                                <span className={classes.headSecondary}>
+                                    Welcome Back!!
+                                </span>
                             </div>
                             <form
                                 onSubmit={event => handleFormSubmit(event)}
@@ -453,6 +467,7 @@ const SignIn = () => {
                                         )
                                     }}
                                 />
+                                <Toaster />
                                 <Grid container>
                                     <Grid item xs>
                                         <Link
@@ -481,12 +496,26 @@ const SignIn = () => {
                             </form>
                             <div className={classes.footText}>
                                 <p>
-                                Developed with ❤️ by <a className={classes.anchor} href="/technicalMembers">Genconians</a> | ©️ {year} <a className={classes.anchor} href="https://gndec.ac.in">GNDEC</a>, Ldh.
+                                    Developed with ❤️ by{" "}
+                                    <a
+                                        className={classes.anchor}
+                                        href="/technicalMembers"
+                                    >
+                                        Genconians
+                                    </a>{" "}
+                                    | ©️ {year}{" "}
+                                    <a
+                                        className={classes.anchor}
+                                        href="https://gndec.ac.in"
+                                    >
+                                        GNDEC
+                                    </a>
+                                    , Ldh.
                                 </p>
                             </div>
                         </Box>
                         <div className={classes.hero}>
-                           <SlickCarousel />
+                            <SlickCarousel />
                         </div>
                     </div>
                 </div>

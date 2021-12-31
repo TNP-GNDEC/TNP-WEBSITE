@@ -17,6 +17,7 @@ use App\Http\Controllers\VerificationController;
 */
 
 Route::post('registerstudent', [AuthController::class , 'registerStudent']);
+Route::post('registeruser', [AuthController::class , 'registerUser']);
 Route::post('registeradmin', [AuthController::class , 'registerAdmin']);
 Route::post('login', [AuthController::class , 'login'])->name('login');
 Route::post('logout', [AuthController::class , 'logout']);

@@ -20,6 +20,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import ClearIcon from "@material-ui/icons/Clear";
 import AddIcon from "@material-ui/icons/Add";
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 const drawerWidth = 240;
 
@@ -158,6 +159,11 @@ function Sidebar(props) {
             id: 4,
             name: "Users",
             iconName: <User className={classes.iconIcon} />
+        },
+        {
+            id: 8,
+            name: "Register User",
+            iconName: <PersonAddIcon className={classes.iconIcon} />
         },
         {
             id: 7,

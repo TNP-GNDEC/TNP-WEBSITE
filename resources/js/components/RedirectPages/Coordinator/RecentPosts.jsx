@@ -6,113 +6,113 @@ import axios from "axios";
 import moment from "moment";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import Badge from '@material-ui/core/Badge';
+import Badge from "@material-ui/core/Badge";
 
-const StyledBadge = withStyles((theme) => ({
+const StyledBadge = withStyles(theme => ({
     badge: {
-      backgroundColor: '#44b700',
-      color: '#44b700',
-      width: "15px",
-      height: "15px",
-      borderRadius: "50%",
-      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-      '&::after': {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        animation: '$ripple 1.2s infinite ease-in-out',
-        border: '1px solid currentColor',
-        content: '""',
-      },
+        backgroundColor: "#44b700",
+        color: "#44b700",
+        width: "15px",
+        height: "15px",
+        borderRadius: "50%",
+        boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+        "&::after": {
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            borderRadius: "50%",
+            animation: "$ripple 1.2s infinite ease-in-out",
+            border: "1px solid currentColor",
+            content: '""'
+        }
     },
-    '@keyframes ripple': {
-      '0%': {
-        transform: 'scale(.8)',
-        opacity: 1,
-      },
-      '100%': {
-        transform: 'scale(2.4)',
-        opacity: 0,
-      },
-    },
-  }))(Badge);
+    "@keyframes ripple": {
+        "0%": {
+            transform: "scale(.8)",
+            opacity: 1
+        },
+        "100%": {
+            transform: "scale(2.4)",
+            opacity: 0
+        }
+    }
+}))(Badge);
 
 const useStyles = makeStyles(theme => ({
-    root:{
+    root: {
         minWidth: "30%",
         background: theme.palette.secondary.main,
         height: "100vh",
         position: "-webkit-sticky",
         position: "sticky",
         top: "0px",
-        ['@media (max-width:1080px)']: {
+        ["@media (max-width:1080px)"]: {
             display: "none"
         }
     },
-    logoutLink:{
+    logoutLink: {
         width: "100%",
         height: "50px",
         display: "flex",
         justifyContent: "right",
         alignItems: "center"
     },
-    LgtLink:{
-        textDecoration: "none !important"
+    LgtLink: {
+        textDecoration: "none !important",
+        cursor: "pointer"
     },
-    logout:{
+    logout: {
         fontFamily: "Open Sans",
         fontSize: "18px",
         color: theme.palette.primary.main
     },
-    avatarDiv:{
+    avatarDiv: {
         width: "100%",
         height: "180px",
         marginTop: "5%",
         textAlign: "center"
     },
-    Admin:{
+    Admin: {
         fontWeight: "600",
         fontSize: "20px",
         paddingTop: "10px",
         fontFamily: "Open Sans",
         color: theme.palette.primary.dark
     },
-    ActDiv:{
-    },
-    Activity:{
+    ActDiv: {},
+    Activity: {
         marginTop: "5%",
         fontWeight: "600",
         fontSize: "16px",
         fontFamily: "Open Sans",
         color: theme.palette.primary.dark
     },
-    ActivityInfo:{
+    ActivityInfo: {
         fontWeight: "600",
         fontSize: "14px",
         fontFamily: "Open Sans",
         color: theme.palette.primary.dark
     },
-    Activities:{
+    Activities: {
         fontWeight: "400",
         fontSize: "14px",
         fontFamily: "Open Sans",
         color: theme.palette.primary.dark
     },
-    ActivityTime:{
+    ActivityTime: {
         fontWeight: "400",
         fontSize: "12px",
         fontFamily: "Open Sans",
         color: theme.palette.primary.text
     },
-    footer:{
+    footer: {
         width: "100%",
         height: "80px",
         position: "fixed",
         bottom: "0px"
-    },
+    }
 }));
 
 const RecentPosts = () => {
@@ -142,36 +142,41 @@ const RecentPosts = () => {
         <div className={classes.root}>
             <div className="px-4">
                 <div className={classes.logoutLink}>
-                <Link
-                    onClick={handleLogout}
-                    className={classes.LgtLink}
-                >
-                    {/* <img className="display-4" src={logoutIcon} alt="logout" /> */}
-                    <h4 className={classes.logout}>Logout</h4>
-                </Link>
+                    <span onClick={handleLogout} className={classes.LgtLink}>
+                        {/* <img className="display-4" src={logoutIcon} alt="logout" /> */}
+                        <h4 className={classes.logout}>Logout</h4>
+                    </span>
                 </div>
                 <div className={classes.avatarDiv}>
-                <StyledBadge
-                    overlap="circular"
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                    variant="dot"
-                >
-                    <img src={adminOnlineIcon} alt="Admin" />
-                </StyledBadge>
+                    <StyledBadge
+                        overlap="circular"
+                        anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "right"
+                        }}
+                        variant="dot"
+                    >
+                        <img src={adminOnlineIcon} alt="Admin" />
+                    </StyledBadge>
                     <h4 className={classes.Admin}>Admin</h4>
                 </div>
                 <div className={classes.ActDiv}>
                     <h5 className={classes.Activity}>Recent Activities</h5>
                     <div className="d-flex flex-column my-3 align-items-center">
-                        {posts.map(post => (
-                            <div className="w-100 d-flex justify-content-between align-items-start">
+                        {posts.map((post, key) => (
+                            <div
+                                key={key}
+                                className="w-100 d-flex justify-content-between align-items-start"
+                            >
                                 <div className="d-flex">
-                                        <img src={recentPostIcon} alt="Admin" />
+                                    <img src={recentPostIcon} alt="Admin" />
                                     <div className="ml-4 mt-3 w-auto">
                                         <h6 className={classes.ActivityInfo}>
                                             Added a new post
                                         </h6>
-                                        <p className={classes.Activities}>"{post.title.substring(0, 28)}"</p>
+                                        <p className={classes.Activities}>
+                                            "{post.title.substring(0, 28)}"
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="mt-3">
