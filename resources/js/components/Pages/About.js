@@ -3,9 +3,6 @@ import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Back from '@material-ui/icons/KeyboardBackspace';
-import Login from '@material-ui/icons/ExitToApp';
-import More from '@material-ui/icons/ExpandMore';
 import Training from '@material-ui/icons/AccountBalanceOutlined';
 import Placement from '@material-ui/icons/AssessmentOutlined';
 import Activity from '@material-ui/icons/ColorLensOutlined';
@@ -16,16 +13,10 @@ import infosys from "../../../images/infosys.png";
 import capegemini from "../../../images/capegemini.png";
 import hcl from "../../../images/hcl.png";
 import tcs from "../../../images/tcs.png";
-import logo from "../../../images/logo.png";
-import logo2 from "../../../images/logo2.png";
-import intro from "../../../images/sodhi.jpg";
-import pattern from "../../../images/pattern2.png";
 import image1 from "../../../images/image1.jpg";
 import image2 from "../../../images/image2.jpg";
 import image3 from "../../../images/image3.jpg";
 import office from "../../../images/office1.jpg";
-import cummins from "../../../images/cummins.png";
-import accenture from "../../../images/accenture.png";
 import Navbar from "../HomeComponent/SideComponents/Navbar";
 
 const useStyles = makeStyles((theme) => ({
@@ -369,12 +360,22 @@ box5:{
     padding: "100px",
     paddingBottom: "100px",
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    ['@media (max-width:1020px)']: {
+        flexDirection: "column",
+        width: "100%",
+        padding: "30px",
+        paddingTop: "100px"
+    }
   },
   headingFlex1:{
       fontSize: "28px",
       fontWeight: "500",
       display: "inline",
+      ['@media (max-width:1020px)']: {
+          fontSize: "18px",
+          justifyContent: "center"
+      }
   },
   trophy: {
       fontSize: "28px"
@@ -383,19 +384,36 @@ box5:{
       fontSize: "50px",
       fontWeight: "700",
       marginBottom: "60px",
-      lineHeight: "125%"
+      lineHeight: "125%",
+      ['@media (max-width:1020px)']: {
+          fontSize: "34px",
+          textAlign: "center"
+      }
   },
   flex1:{
       width:"40%",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center"
+      justifyContent: "center",
+      ['@media (max-width:1020px)']: {
+          width: "100%"
+      }
+      
   },
   subtitleFlex1: {
-      fontSize: "28px"
+      fontSize: "28px",
+      ['@media (max-width:1020px)']: {
+          fontSize: "18px",
+          textAlign: "center"
+      }
   },
   flexHeading: {
-      marginBottom: "60px"
+      marginBottom: "60px",
+      ['@media (max-width:1020px)']: {
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+      }
   },
   secondbox: {
       display: "flex",
@@ -403,6 +421,9 @@ box5:{
       paddingTop: "40px",
       padding: "100px",
       backgroundColor: theme.palette.secondary.main,
+      ['@media (max-width:1020px)']: {
+          padding: "30px"
+      }
   },
   aboutTnP: {
       fontSize: "36px",
@@ -433,11 +454,19 @@ box5:{
   },
   infosys: {
       width: "110px",
-      height: "101.54px"
+      height: "101.54px",
+      ['@media (max-width:1020px)']: {
+          width: "90px",
+          height: "81.54px"
+      }
   },
   companyImages: {
       display: "flex",
-      justifyContent: "space-around"
+      justifyContent: "space-around",
+      ['@media (max-width:1020px)']: {
+          paddingLeft: "40px",
+          paddingRight: "40px"
+      }
   },
   coreDetails: {
       fontSize: "36px",
@@ -466,7 +495,7 @@ box5:{
       display: "block",
     },
     box22: {
-        width: "341px",
+      width: "341px",
       height: "518px",
       backgroundColor: theme.palette.secondary.main,
       borderRadius: "10px",
@@ -494,7 +523,10 @@ tnpQuotes: {
     paddingLeft: "249px",
     paddingRight: "249px",
     backgroundColor: "#E9F3FD",
-    paddingTop: "40px"
+    paddingTop: "40px",
+    ['@media (max-width:1020px)']: {
+        padding: "30px"
+    }
 },
 quotes: {
     color: theme.palette.primary.main,
@@ -507,7 +539,12 @@ wordTnp: {
     fontWeight: "500",
     fontStyle: "italic",
     lineHeight: "200%",
-    textAlign: "justify"
+    textAlign: "justify",
+    ['@media (max-width:1020px)']: {
+        lineHeight: "200%",
+        fontSize: "24px",
+        textAlign: "justify"
+    }
 },
 sodhisir: {
     display: "flex",
@@ -515,7 +552,10 @@ sodhisir: {
     backgroundColor: "#E9F3FD",
     justifyContent: "flex-start",
     paddingLeft: "249px",
-    paddingBottom: "50px"
+    paddingBottom: "50px",
+    ['@media (max-width:1020px)']: {
+        padding: "30px"
+    }
 },
 prof: {
     fontSize: "30px",
@@ -530,7 +570,8 @@ profTpo: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    paddingLeft: "30px"
+    paddingLeft: "30px",
+    
 },
 box31: {
     width: "261px",
@@ -552,6 +593,12 @@ num: {
     fontSize: "28px",
     fontWeight: "500",
     color: theme.palette.primary.main,
+},
+outerBox: {
+    ['@media (max-width:1020px)']: {
+        width: "100vw",
+        position: "relative"
+    }
 }
 }));
 
@@ -561,7 +608,7 @@ export default function Home() {
   var year = dt.getFullYear();
 
   return (
-    <div>
+    <div className={classes.outerBox}>
     <div>
         <Navbar />
     </div>
@@ -619,7 +666,7 @@ export default function Home() {
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
                         All the reputed organizations including MNCs come to the College for campus 
                         recruitment. To achieve its goal, the Training & Placement Cell works towards
-                         recognizing the core competencies of students.
+                        recognizing the core competencies of students.
                         </Typography>
                     </div>
                     <div className={classes.box}>
@@ -651,7 +698,7 @@ export default function Home() {
                             Experience Professionalism
                         </Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
-                        T&P lets you draw upon its superlative treasure of experience.
+                            T&P lets you draw upon its superlative treasure of experience.
                         </Typography>
                     </div>
                     <div className={classes.box2}>
@@ -660,7 +707,7 @@ export default function Home() {
                             Knowledge Entry Level Hiring
                         </Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
-                        Stay ahead of the race by giving your career a kickstart with T&P.
+                            Stay ahead of the race by giving your career a kickstart with T&P.
                         </Typography>
                     </div>
                     <div className={classes.box2}>
@@ -669,7 +716,7 @@ export default function Home() {
                             Campus Communes
                         </Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
-                        'Campus Meets Corporate' via channels to engage with T&P.
+                            'Campus Meets Corporate' via channels to engage with T&P.
                         </Typography>
                     </div>
                 </div>
@@ -679,7 +726,7 @@ export default function Home() {
             <div className={classes.tnpQuotes}>
                 <span className={classes.quotes}>“</span>
                 <Typography className={classes.wordTnp}>
-                The Training and Placement Cell, GNDEC apart from giving an outstanding placement record provides the platform for students to gain most from the personality development and marketing experience program. We focus on not just creating engineers but pioneers and leaders for the future development of our nation. The Training & Placement Cell looks after the interests of the students and the recruiting organizations by acting as a channel of communication between them.
+                    The Training and Placement Cell, GNDEC apart from giving an outstanding placement record provides the platform for students to gain most from the personality development and marketing experience program. We focus on not just creating engineers but pioneers and leaders for the future development of our nation. The Training & Placement Cell looks after the interests of the students and the recruiting organizations by acting as a channel of communication between them.
                 </Typography>
                 <span className={classes.quotes}>”</span>
             </div>
@@ -706,7 +753,7 @@ export default function Home() {
                             Database Formation
                         </Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
-                        Collects the record of students of particular year and forms database that MNCs demand as a record from the institution.
+                            Collects the record of students of particular year and forms database that MNCs demand as a record from the institution.
                         </Typography>
                     </div>
                     <div className={classes.box31}>
@@ -715,7 +762,7 @@ export default function Home() {
                             Finding Contacts
                         </Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
-                        Fetches contacts of Human Resource Managers of different Companies to get information regarding job offering for students by their organisations.
+                            Fetches contacts of Human Resource Managers of different Companies to get information regarding job offering for students by their organisations.
                         </Typography>
                     </div>
                     <div className={classes.box31}>
@@ -724,7 +771,7 @@ export default function Home() {
                             Getting Confirmations
                         </Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
-                        Training and Placement cell gets confirmation from HRs for conducting placement drive on particular dates as per directed and arranging hospitality services and venue.
+                            Training and Placement cell gets confirmation from HRs for conducting placement drive on particular dates as per directed and arranging hospitality services and venue.
                         </Typography>
                     </div>
                     <div className={classes.box31}>
@@ -733,7 +780,7 @@ export default function Home() {
                             Placement Drives
                         </Typography>
                         <Typography variant="h5" component="h2" className={classes.subheading5}>
-                        Smoothly conducts placement drive for the students by different MNCs.
+                            Smoothly conducts placement drive for the students by different MNCs.
                         </Typography>
                     </div>
                 </div>
