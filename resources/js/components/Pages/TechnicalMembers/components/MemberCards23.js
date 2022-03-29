@@ -75,7 +75,7 @@ const memberData = [
     },
     {
         key: 6,
-        name: "Nimrat Kaler",
+        name: "Nimrat Kaur",
         designation: "UI/UX Designer",
         description:
             "She is a B.Tech student in Computer Science & Engineering of 2019-23 batch.",
