@@ -19,20 +19,6 @@ const memberData = [
     },
     {
         key: 2,
-        name: "Jaswant Singh",
-        designation: "Software Developer (Full Stack Developer)",
-        description:
-            "He is a B.Tech student in Computer Science & Engineering of 2019-23 batch.",
-        profilePic: "https://tnpgndec.com/images/jaswant.jpeg",
-        linkedIn: "https://www.linkedin.com/in/jaswant-singh009/",
-        instagram: "https://www.instagram.com/jaswantsingh.js/",
-        github: "https://github.com/Jaswantsinghh",
-        facebook: "",
-        mail: "mailto:jaswantsinghjsn@gmail.com",
-        twitter: ""
-    },
-    {
-        key: 3,
         name: "Gautam Jain",
         designation: "Software Developer (Full Stack Developer)",
         description:
@@ -43,6 +29,20 @@ const memberData = [
         github: "https://github.com/Astrogeek77",
         facebook: "",
         mail: "mailto:astrogeek77@outlook.com",
+        twitter: ""
+    },
+    {
+        key: 3,
+        name: "Jaswant Singh",
+        designation: "Software Developer (Full Stack Developer)",
+        description:
+            "He is a B.Tech student in Computer Science & Engineering of 2019-23 batch.",
+        profilePic: "https://tnpgndec.com/images/jaswant.jpeg",
+        linkedIn: "https://www.linkedin.com/in/jaswant-singh009/",
+        instagram: "https://www.instagram.com/jaswantsingh.js/",
+        github: "https://github.com/Jaswantsinghh",
+        facebook: "",
+        mail: "mailto:jaswantsinghjsn@gmail.com",
         twitter: ""
     },
     {
