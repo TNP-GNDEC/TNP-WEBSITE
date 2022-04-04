@@ -1,5 +1,5 @@
 # About
-TNP WEBSITE - [Website Link(https://www.tnpgndec.com/)
+TNP WEBSITE - [Website Link](https://www.tnpgndec.com/)
 
 # Installation
 
