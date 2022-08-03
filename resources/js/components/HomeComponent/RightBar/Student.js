@@ -6,7 +6,7 @@ import Business from '@material-ui/icons/Business';
 import Email from '@material-ui/icons/Email';
 import Phone from '@material-ui/icons/Phone';
 
-import office from "../../../../images/avatar2.png";
+import office from "../../../../images/fatehjot_student_cord.jpg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -145,7 +145,7 @@ export default function Office() {
         </div>
       </div>
       <h1 className={classes.heading}>
-        Mr. Prateek Khanna
+        Mr. Fatehjot Singh
       </h1>
       <h3 className={classes.subheading}>
         Student Coordinator
@@ -153,7 +153,7 @@ export default function Office() {
       <div className={classes.box}>
             <Phone className={classes.icon2}/>
             <Typography variant="h6" component="h2" className={classes.subheading2}>
-              +91-85638-05068
+              +91 77172-61254
             </Typography>
       </div>
       <div className={classes.box2}>

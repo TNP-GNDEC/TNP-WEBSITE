@@ -7,7 +7,7 @@ const memberData = [
     {
         key: 1,
         name: "Konark Lohat",
-        designation: "Software Developer (Full Stack Developer)",
+        designation: "Software Developer (Full Stack)",
         description:
             "He is a B.Tech student in Computer Science & Engineering of 2019-23 batch.",
         profilePic: "https://tnpgndec.com/images/konark.jpg",
@@ -20,7 +20,7 @@ const memberData = [
     {
         key: 2,
         name: "Gautam Jain",
-        designation: "Software Developer (Full Stack Developer)",
+        designation: "Software Developer (Full Stack)",
         description:
             "He is a B.Tech student in Computer Science & Engineering of 2019-23 batch.",
         profilePic: "https://tnpgndec.com/images/gautam.jpg",
@@ -34,7 +34,7 @@ const memberData = [
     {
         key: 3,
         name: "Jaswant Singh",
-        designation: "Software Developer (Full Stack Developer)",
+        designation: "Software Developer (Full Stack)",
         description:
             "He is a B.Tech student in Computer Science & Engineering of 2019-23 batch.",
         profilePic: "https://tnpgndec.com/images/jaswant.jpeg",
@@ -48,7 +48,7 @@ const memberData = [
     {
         key: 4,
         name: "Ekampreet Singh",
-        designation: "Software Developer (Full Stack Developer)",
+        designation: "Software Developer (Full Stack)",
         description:
             "He is a B.Tech student in Information Technology of 2019-23 batch.",
         profilePic: "https://tnpgndec.com/images/ekampreet.jpg",
@@ -62,7 +62,7 @@ const memberData = [
     {
         key: 5,
         name: "Avninder Preet Singh",
-        designation: "Software Developer (Full Stack Developer)",
+        designation: "Software Developer (Full Stack)",
         description:
             "He is a B.Tech student in Computer Science & Engineering of 2019-23 batch.",
         profilePic: "https://tnpgndec.com/images/avninder.jpeg",

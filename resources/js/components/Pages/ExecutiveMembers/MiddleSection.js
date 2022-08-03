@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import Select from "react-select";
 import PdfCard from "./pdfCard";
 
+
 const customStyles = {
   control: base => ({
     ...base,
@@ -47,14 +48,16 @@ export default function MiddleSection() {
   }
 
   const options = [
-    { value: 1, label: "2021-22" },
     { value: 0, label: "2020-21" },
+    { value: 1, label: "2021-22" },
+    { value: 2, label: "2022-23" },
   ]
 
   // links should be in order with last one being the latest one
   const links = [
     "/documents/Tnp-Team/Executive-members-20-21.pdf",
     "/documents/Tnp-Team/Executive-Members.pdf",
+    "/documents/Tnp-Team/Executives_2022-2023.pdf",
   ];
 
   const [index, setIndex] = useState(links.length - 1);
@@ -67,7 +70,7 @@ export default function MiddleSection() {
           options={options}
           onChange={handleChange}
           label="batch"
-          defaultValue={options[0]}
+          defaultValue={options[options.length - 1]}
         />
       <Card className={classes.pdfCard}>
         <PdfCard source={links[index]} />
