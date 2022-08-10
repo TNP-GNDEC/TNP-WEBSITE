@@ -22,6 +22,7 @@ const useStyles = theme => ({
         }
     },
     searchDiv: {
+        width: "100%",
         position: "relative",
         marginBottom: "45px"
     },
@@ -63,6 +64,32 @@ const useStyles = theme => ({
             height: "54px",
             fontSize: "20px"
         }
+    },
+    searchButton: {
+        display: "inline-flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "10px 20px",
+        outline: "none",
+        borderRadius: "12px",
+        borderTopLeftRadius: "0",
+        borderBottomLeftRadius: "0",
+        background: "#1687d9",
+        height: "46px",
+        border: "none",
+        textAlign: "center",
+        fontSize: "24px",
+        color: "white",
+        width: "150px",
+        position: "absolute",
+        top: "5px",
+        right: "-10px",
+        ["@media (min-width:1600px)"]: {
+            top: "20px"
+        },
+        ["@media (max-width:700px)"]: {
+            width: "100px"
+        }
     }
 });
 
@@ -71,15 +98,25 @@ class Posts extends React.Component {
         page: 6,
         searchText: "",
         posts: [],
-        loading: true
+        loading: true,
     };
 
     handleChange = e => {
         var search = e.target.value;
         this.setState({ searchText: search });
+    };
+
+    _handleKeyDown = e => {
+        if (e.key === "Enter") {
+            this.getSearchResults();
+        }
+    };
+
+    getSearchResults = () => {
+        this.state.loading = true;
         Axios.post(`/getposts`, {
             page: this.state.page,
-            searchText: search
+            searchText: this.state.searchText
         })
             .then(res => {
                 if (res.data.status === 200) {
@@ -99,6 +136,7 @@ class Posts extends React.Component {
                     this.setState({ posts: res.data.posts });
                     this.setState({ loading: false });
                     this.setState({ page: this.state.page + 6 });
+                    return;
                 }
             })
             .catch(error => {
@@ -126,7 +164,14 @@ class Posts extends React.Component {
                         className={classes.search}
                         onChange={this.handleChange}
                         placeholder="Search Posts..."
+                        onKeyDown={this._handleKeyDown}
                     />
+                    <button
+                        onClick={this.getSearchResults}
+                        className={classes.searchButton}
+                    >
+                        Search
+                    </button>
                 </div>
                 <h3 className={classes.cardTitle}>Latest Posts</h3>
                 {this.state.loading === false &&
