@@ -7,6 +7,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import SearchIcon from "@material-ui/icons/Search";
 import { withStyles } from "@material-ui/core/styles";
 
+import CloseIcon from '@material-ui/icons/Close';
+
 const useStyles = theme => ({
     cardTitle: {
         fontSize: "18px",
@@ -63,6 +65,57 @@ const useStyles = theme => ({
             height: "54px",
             fontSize: "20px"
         }
+    },
+    searchButton: {
+        display: "inline-flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "10px 20px",
+        outline: "none",
+        borderRadius: "12px",
+        borderTopLeftRadius: "0",
+        borderBottomLeftRadius: "0",
+        background: "#1687d9",
+        height: "46px",
+        border: "none",
+        textAlign: "center",
+        fontSize: "24px",
+        color: "white",
+        width: "150px",
+        position: "absolute",
+        top: "5px",
+        right: "0px",
+        ["@media (min-width:1600px)"]: {
+            top: "5px",
+            height: '54px'
+        },
+        ["@media (max-width:700px)"]: {
+            width: "100px"
+        }
+    },
+    cancelIconButton: {
+        display: "inline-flex",
+        justifyContent: "center",
+        alignItems: "center",
+        outline: "none",
+        // background: "#1687d9",
+        // height: "46px",
+        color: theme.palette.secondary,
+        backgroundColor: theme.palette.secondary,
+        textAlign: "center",
+        fontSize: "24px",
+        color: "white",
+        position: "absolute",
+        top: "16px",
+        left: "65%",
+        cursor: 'pointer',
+        ["@media (min-width:1600px)"]: {
+            top: "5px",
+            height: '54px'
+        },
+        ["@media (max-width:700px)"]: {
+            left: '50%',
+        }
     }
 });
 
@@ -73,6 +126,10 @@ class Posts extends React.Component {
         posts: [],
         loading: true
     };
+
+    openInNewTab = (url) => {
+        window.open(url, '_blank').focus();
+      }
 
     handleChange = e => {
         var search = e.target.value;
@@ -91,6 +148,13 @@ class Posts extends React.Component {
                 console.log(error);
             });
     };
+
+    emptyInputs = (e) => {
+        this.setState({
+            ...this.state,
+            searchText: "",
+        })
+    }
 
     fetchPosts = async () => {
         Axios.post(`/getposts`, this.state)
@@ -127,6 +191,15 @@ class Posts extends React.Component {
                         onChange={this.handleChange}
                         placeholder="Search Posts..."
                     />
+                    <cancelDiv className={classes.cancelIconButton} onClick={this.emptyInputs}>
+                        {(this.state.searchText != "") && <CloseIcon style={{ color: 'darkGray'}}/>}
+                    </cancelDiv>
+                    <button
+                        onClick={this.getSearchResults}
+                        className={classes.searchButton}
+                    >
+                        Search
+                    </button>
                 </div>
                 <h3 className={classes.cardTitle}>Latest Posts</h3>
                 {this.state.loading === false &&

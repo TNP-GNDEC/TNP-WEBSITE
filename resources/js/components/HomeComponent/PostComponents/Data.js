@@ -504,6 +504,7 @@ class Data extends React.Component {
                                 to={`/showPost/${posts.id}`}
                                 style={{ textDecoration: "none" }}
                                 className={classes.readLink}
+                                target="_blank"
                             >
                                 <Button
                                     hover="false"
