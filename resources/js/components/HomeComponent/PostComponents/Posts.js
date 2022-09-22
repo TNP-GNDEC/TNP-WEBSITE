@@ -24,6 +24,7 @@ const useStyles = theme => ({
         }
     },
     searchDiv: {
+        width: "100%",
         position: "relative",
         marginBottom: "45px"
     },
@@ -124,7 +125,7 @@ class Posts extends React.Component {
         page: 6,
         searchText: "",
         posts: [],
-        loading: true
+        loading: true,
     };
 
     openInNewTab = (url) => {
@@ -134,9 +135,19 @@ class Posts extends React.Component {
     handleChange = e => {
         var search = e.target.value;
         this.setState({ searchText: search });
+    };
+
+    _handleKeyDown = e => {
+        if (e.key === "Enter") {
+            this.getSearchResults();
+        }
+    };
+
+    getSearchResults = () => {
+        this.state.loading = true;
         Axios.post(`/getposts`, {
             page: this.state.page,
-            searchText: search
+            searchText: this.state.searchText
         })
             .then(res => {
                 if (res.data.status === 200) {
@@ -163,6 +174,7 @@ class Posts extends React.Component {
                     this.setState({ posts: res.data.posts });
                     this.setState({ loading: false });
                     this.setState({ page: this.state.page + 6 });
+                    return;
                 }
             })
             .catch(error => {
@@ -190,6 +202,7 @@ class Posts extends React.Component {
                         className={classes.search}
                         onChange={this.handleChange}
                         placeholder="Search Posts..."
+                        onKeyDown={this._handleKeyDown}
                     />
                     <cancelDiv className={classes.cancelIconButton} onClick={this.emptyInputs}>
                         {(this.state.searchText != "") && <CloseIcon style={{ color: 'darkGray'}}/>}

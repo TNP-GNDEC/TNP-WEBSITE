@@ -7,6 +7,12 @@ import prepinstaIcon from '../../../../images/prepinsta_logo.jpg';
 import faceprepIcon from '../../../../images/faceprep_logo.jpg';
 import placementseasonIcon from '../../../../images/placementseason_logo.png';
 import { GpsFixed } from "@material-ui/icons";
+import docsIcon from '../../../../images/Docs.png';
+import glassdoorIcon from '../../../../images/glassdoor.png';
+import gfgIcon from '../../../../images/gfg.png';
+import youtubeIcon from '../../../../images/youtube.png';
+import indiabixIcon from '../../../../images/indiabix.jpg';
+import mediumIcon from '../../../../images/medium.png';
 
 const useStyles = theme => ({
     title:{
@@ -118,6 +124,141 @@ class PlacementLinks extends React.Component {
                     </div>
                     <div className={classes.link}>
                         <a href="https://placementseason.com" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={docsIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            Interview Experiences
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://docs.google.com/spreadsheets/d/1oD11M4FwDxyq5SL1XDBAkB866mn7yFm3InQKUJEC-SQ/edit?usp=sharing" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={gfgIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            Interview Corner
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://www.geeksforgeeks.org/company-interview-corner/" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={gfgIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            GFG Interview Experiences 
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://www.geeksforgeeks.org/category/interview-experiences/" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={youtubeIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            Amazon Interview Experience
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://www.youtube.com/watch?v=SMgm_gpJyNU" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={youtubeIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            Preparation Strategies
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://www.youtube.com/watch?v=wTeebkKg-Cs" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={indiabixIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            Interview Questions
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://www.indiabix.com/hr-interview/questions-and-answers/" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={indiabixIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            Interview Questions
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://www.indiabix.com/interview/" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={mediumIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            Interview Experience
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://medium.com/inplace/interview-experiences-fdbf77452d06" target="_blank" rel="noreferrer noopener">
+                            <img className={classes.linkIcon} src={linkIcon}></img>
+                        </a>
+                    </div>
+                </div>
+            </Card>
+            <Card className={classes.card}>
+                <div className={classes.outerContainer}>
+                    <div className={classes.container}>
+                        <img className={classes.icon} src={glassdoorIcon}></img>
+                        <Typography className={classes.cardTitle}>
+                            Interview Questions
+                        </Typography>
+                    </div>
+                    <div className={classes.link}>
+                        <a href="https://www.glassdoor.co.in/Interview/Placement-Season-Interview-Questions-E1800015.htm" target="_blank" rel="noreferrer noopener">
                             <img className={classes.linkIcon} src={linkIcon}></img>
                         </a>
                     </div>

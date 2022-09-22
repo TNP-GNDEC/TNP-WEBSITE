@@ -8,9 +8,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import toast, { Toaster } from "react-hot-toast";
 
+import fileupload from '../../../../images/file_upload.png';
+
 const useStyles = makeStyles(theme => ({
     button: {
-        margin: "20px 6%",
+        // margin: "20px auto",
+        width: "100%",
         border: "none",
         textDecoration: "none",
         padding: "10px 35px",
@@ -49,47 +52,6 @@ const useStyles = makeStyles(theme => ({
         width: "90%",
         marginLeft: "60px",
         padding: "10px 0 20px"
-    },
-    button: {
-        margin: "20px 6%",
-        border: "none",
-        textDecoration: "none",
-        padding: "10px 35px",
-        color: theme.palette.secondary.main,
-        background: theme.palette.primary.main,
-        borderRadius: "10px",
-        boxShadow: "0px 15px 25px #038ed433",
-        "&:focus": {
-            outline: "none"
-        },
-        "&:hover": {
-            background: theme.palette.primary.main,
-            color: theme.palette.secondary.main,
-        },
-    },
-    container: {
-        width: "90%",
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: "30px",
-        paddingTop: "15px",
-        borderRadius: "15px",
-        backgroundColor: "#ffffff",
-        boxShadow: "0px 15px 25px #0000001a",
-    },
-    title: {
-        color: theme.palette.primary.dark,
-        marginLeft: "5.5%"
-    },
-    alert: {
-        marginTop: "10px",
-        margin: "auto",
-        width: "90%",
-    },
-    fileupload: {
-        width: "90%",
-        marginLeft: "60px",
-        padding: "10px 0 20px"
     }
 }));
 
@@ -97,11 +59,16 @@ const baseStyle = {
     flex: 1,
     display: "flex",
     flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
-    padding: "20px",
-    borderWidth: 2,
-    borderRadius: 2,
-    borderColor: "#eeeeee",
+    height: "300px",
+    width: "100%",
+    padding: "25px",
+    fontSize: "16px",
+    borderWidth: 3,
+    borderRadius: 10,
+    marginTop: "20px",
+    borderColor: "#cccccc",
     borderStyle: "dashed",
     backgroundColor: "#fafafa",
     color: "#bdbdbd",
@@ -110,7 +77,8 @@ const baseStyle = {
 };
 
 const activeStyle = {
-    borderColor: "#2196f3"
+    borderColor: "#2196f3",
+    borderStyle: "solid"
 };
 
 const acceptStyle = {
@@ -118,7 +86,7 @@ const acceptStyle = {
 };
 
 const rejectStyle = {
-    borderColor: "#000"
+    borderColor: "#ff1744"
 };
 
 const Uploadcsv = () => {
@@ -131,7 +99,9 @@ const Uploadcsv = () => {
         isDragActive,
         fileRejections,
         getRootProps,
-        getInputProps
+        getInputProps,
+        isDragAccept,
+        isDragReject
     } = useDropzone({
         accept: ".csv",
         maxFiles: 1,
@@ -141,27 +111,21 @@ const Uploadcsv = () => {
                 Object.assign(file, {
                     preview: URL.createObjectURL(file)
                 })
-            )
-            // console.log(mainFileRef.current)
+            );
         }
     });
 
     const style = useMemo(
         () => ({
             ...baseStyle,
-            ...(isDragActive ? activeStyle : { borderColor: "#2196f3" }),
-            ...(acceptedFiles ? acceptStyle : {}),
-            ...(fileRejections ? rejectStyle : {})
+            ...(isDragActive ? activeStyle : {}),
+            ...(isDragAccept ? acceptStyle : {}),
         }),
-        [isDragActive, fileRejections, acceptedFiles]
+        [isDragActive, isDragAccept]
     );
 
     const acceptedFileItems = acceptedFiles.map(file => {
-        return (
-            <li key={file.name}>
-                {file.name}
-            </li>
-        )
+        return <li key={file.name}>{file.name}</li>;
     });
 
     const fileRejectionItems = fileRejections.map(({ file, errors }) => {
@@ -184,50 +148,54 @@ const Uploadcsv = () => {
             header: true,
             dynamicTyping: true,
             skipEmptyLines: true,
-            complete: function (results) {
+            complete: function(results) {
                 let data = results;
-                axios.post('/api/registerstudent', {
-                    data: data
-                })
-                .then((res) => {
-                    setLoader(false);
-                    if (res.data.success === 0) {
-                        toast.error(res.data.message);
-                    }
-                    else {
-                        toast.success(res.data.message);
-                    }
-                })
-                .catch((error) => {
-                    setLoader(false);
-                    toast.error("An unexpected error occured");
-                    console.log(error);
-                });
+                axios
+                    .post("/api/registerstudent", {
+                        data: data
+                    })
+                    .then(res => {
+                        setLoader(false);
+                        if (res.data.success === 0) {
+                            toast.error(res.data.message);
+                        } else {
+                            toast.success(res.data.message);
+                        }
+                    })
+                    .catch(error => {
+                        setLoader(false);
+                        toast.error("An unexpected error occured");
+                        console.log(error);
+                    });
             }
         });
-    }
+    };
     return (
         <>
             <Toaster />
-            <h2 className={classes.title}>Upload data through CSV</h2>
+            {/* <h2 className={classes.title}>Upload data through CSV</h2> */}
             <section className="container">
-                <div {...getRootProps({ className: 'dropzone' })}>
+                <div {...getRootProps({ style })}>
                     <input {...getInputProps()} />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
-                    <em>(Only *.jpeg and *.png images will be accepted)</em>
+                    <img style={{width: 100, aspectRatio: 1, marginBottom: 10}} src={fileupload} alt="file upload" />
+                    <p>
+                        Drag 'n' drop some files here, or click to select files
+                    </p>
+                    <em>(Only .csv files will be accepted)</em>
                 </div>
-                <aside>
-                    <h4>Accepted files</h4>
+                <aside style={{ display: 'flex', flexDirection: 'column', justifyContent: 'between', padding: 20}}>
+                    <h4 style={{ color: "#2196f3", fontSize: 30}}>Accepted files</h4>
                     <ul>{acceptedFileItems}</ul>
-                    <h4>Rejected files</h4>
+                    <h4 style={{ color: "#2196f3", fontSize: 30}}>Rejected files</h4>
                     <ul>{fileRejectionItems}</ul>
                 </aside>
                 <button
                     type="submit"
+                    style={{ fontSize: 24 }}
                     onClick={handleClick}
                     className={classes.button}
                 >
-                    Upload
+                    Upload File
                 </button>
             </section>
         </>
