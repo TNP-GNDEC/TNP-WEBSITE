@@ -145,11 +145,12 @@ class Posts extends React.Component {
         }
     };
 
-    getSearchResults = () => {
+    getSearchResults = (sText) => {
+        if(sText !== "") sText = this.state.searchText;
         this.state.loading = true;
         Axios.post(`/getposts`, {
             page: this.state.page,
-            searchText: this.state.searchText
+            searchText: sText
         })
             .then(res => {
                 if (res.data.status === 200) {
@@ -166,7 +167,8 @@ class Posts extends React.Component {
 
     emptyInputs = () => {
         this.inputRef.current.value = ''
-        this.setState({ searchText: '' })
+        this.setState({searchText: '' })
+        this.getSearchResults("");
     }
 
     
