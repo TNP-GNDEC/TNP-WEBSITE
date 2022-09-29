@@ -33,6 +33,20 @@ const memberData = [
     },
     {
         key: 3,
+        name: "Avninder Preet Singh",
+        designation: "Software Developer (Full Stack)",
+        description:
+            "He is a B.Tech student in Computer Science & Engineering of 2019-23 batch.",
+        profilePic: "https://tnpgndec.com/images/avninder.jpeg",
+        linkedIn: "https://in.linkedin.com/in/avninder-preet-singh-2119501b7",
+        instagram: "",
+        github: "https://github.com/Avninder99",
+        facebook: "",
+        mail: "mailto:avninderpreet99@gmail.com",
+        twitter: ""
+    },
+    {
+        key: 4,
         name: "Jaswant Singh",
         designation: "Software Developer (Full Stack)",
         description:
@@ -46,7 +60,7 @@ const memberData = [
         twitter: ""
     },
     {
-        key: 4,
+        key: 5,
         name: "Ekampreet Singh",
         designation: "Software Developer (Full Stack)",
         description:
@@ -57,20 +71,6 @@ const memberData = [
         github: "https://github.com/Ekam-Preet-Singh",
         facebook: "",
         mail: "mailto:Ekampreet.singh6862@gmail.com",
-        twitter: ""
-    },
-    {
-        key: 5,
-        name: "Avninder Preet Singh",
-        designation: "Software Developer (Full Stack)",
-        description:
-            "He is a B.Tech student in Computer Science & Engineering of 2019-23 batch.",
-        profilePic: "https://tnpgndec.com/images/avninder.jpeg",
-        linkedIn: "https://in.linkedin.com/in/avninder-preet-singh-2119501b7",
-        instagram: "",
-        github: "https://github.com/Avninder99",
-        facebook: "",
-        mail: "mailto:avninderpreet99@gmail.com",
         twitter: ""
     },
     {

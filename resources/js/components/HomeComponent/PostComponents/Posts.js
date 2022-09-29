@@ -171,8 +171,6 @@ class Posts extends React.Component {
         this.getSearchResults("");
     }
 
-    
-
 
     fetchPosts = async () => {
         Axios.post(`/getposts`, this.state)
@@ -208,7 +206,7 @@ class Posts extends React.Component {
                     <input
                         className={classes.search}
                         onChange={this.handleChange}
-                        placeholder="Search Posts..."
+                        placeholder="Press ENTER to Search..."
                         onKeyDown={this._handleKeyDown}
                         ref={this.inputRef}
                     />
