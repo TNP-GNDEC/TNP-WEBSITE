@@ -167,7 +167,8 @@ class Posts extends React.Component {
 
     emptyInputs = () => {
         this.inputRef.current.value = ''
-        this.setState({searchText: '' })
+        this.setState({ searchText: '' })
+        this.setState({ loading: true })
         this.getSearchResults("");
     }
 
