@@ -108,14 +108,14 @@ const useStyles = theme => ({
         color: "white",
         position: "absolute",
         top: "16px",
-        left: "65%",
+        right: "170px",
         cursor: 'pointer',
         ["@media (min-width:1600px)"]: {
             top: "5px",
             height: '54px'
         },
         ["@media (max-width:700px)"]: {
-            left: '50%',
+           right: "120px",
         }
     }
 });
@@ -127,6 +127,8 @@ class Posts extends React.Component {
         posts: [],
         loading: true,
     };
+
+    inputRef = React.createRef();
 
     openInNewTab = (url) => {
         window.open(url, '_blank').focus();
@@ -160,12 +162,15 @@ class Posts extends React.Component {
             });
     };
 
-    emptyInputs = (e) => {
-        this.setState({
-            ...this.state,
-            searchText: "",
-        })
+    // 1. state update 2. input empty 3. post change 4. style fix
+
+    emptyInputs = () => {
+        this.inputRef.current.value = ''
+        this.setState({ searchText: '' })
     }
+
+    
+
 
     fetchPosts = async () => {
         Axios.post(`/getposts`, this.state)
@@ -203,6 +208,7 @@ class Posts extends React.Component {
                         onChange={this.handleChange}
                         placeholder="Search Posts..."
                         onKeyDown={this._handleKeyDown}
+                        ref={this.inputRef}
                     />
                     <cancelDiv className={classes.cancelIconButton} onClick={this.emptyInputs}>
                         {(this.state.searchText != "") && <CloseIcon style={{ color: 'darkGray'}}/>}
