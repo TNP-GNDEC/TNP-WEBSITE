@@ -7,6 +7,7 @@ import Twitter from '@material-ui/icons/Twitter';
 import Facebook from '@material-ui/icons/Facebook';
 import Mail from '@material-ui/icons/Mail';
 import GitHub from '@material-ui/icons/GitHub';
+import Website from '@material-ui/icons/Language';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -150,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MemberCard({ name, designation, description, profilePic, linkedIn, instagram, github, facebook, mail, twitter }) {
+export default function MemberCard({ name, designation, description, profilePic, linkedIn, website, instagram, github, facebook, mail, twitter }) {
   const classes = useStyles();
 
   return (
@@ -203,6 +204,17 @@ export default function MemberCard({ name, designation, description, profilePic,
                 href={linkedIn}
               >
                 <Linkedin />
+              </a>
+            </li>
+          ) : ""}
+          {website ? (
+            <li className="list-inline-item mx-1">
+              <a
+                className="social-icon"
+                target="_blank"
+                href={website}
+              >
+                <Website />
               </a>
             </li>
           ) : ""}
