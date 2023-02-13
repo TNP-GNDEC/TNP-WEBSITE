@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Connect from "./Connect";
 import Records from "./Records"
 import Downloads from "./Downloads";
-import UsefulLinks from "./Links";
 import WebNotify from "./WebNotify";
 import Assistance from "./Assistance";
 import MemberLinks from "./MemberLinks";

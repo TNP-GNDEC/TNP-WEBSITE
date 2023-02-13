@@ -4,26 +4,21 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
+import Typography from "@material-ui/core/Typography"; 
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import MoreIcon from "@material-ui/icons/MoreVert";
 import About from "@material-ui/icons/Info";
 import Login from "@material-ui/icons/ExitToApp";
-import { BottomSheet } from "react-spring-bottom-sheet";
 import "react-spring-bottom-sheet/dist/style.css";
-
 import Logo from "../../../../images/logo.png";
+import MenuIcon from '@material-ui/icons/Menu';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import Container from '@material-ui/core/Container'
 
 const useStyles = makeStyles(theme => ({
-    customColor: {
+    customColor: {  
         background: theme.palette.primary.main,
         width: "100%",
         position: "fixed",
@@ -51,9 +46,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up("sm")]: {
             display: "block"
         },
-        ["@media (min-width:1600px)"]: {
-            fontSize: "26px"
-        }
+         
     },
     imageLogo: {
         width: "50px",
@@ -136,7 +129,7 @@ const useStyles = makeStyles(theme => ({
         "&:hover": {
             textDecoration: "none",
             color: theme.palette.secondary.main
-        }
+        },
     },
     nav_links: {
         color: "#303030",
@@ -149,8 +142,13 @@ const useStyles = makeStyles(theme => ({
         fontSize: "18px",
         paddingTop: "5px",
         paddingBottom: "5px",
-        fontWeight: "500"
+        fontWeight: "500",
+    },
+    slider: {
+        backgroundColor: "#e9f3fd",
+        height: "100%"
     }
+    
 }));
 
 export default function PrimarySearchAppBar() {
@@ -201,65 +199,59 @@ export default function PrimarySearchAppBar() {
         </Menu>
     );
 
-    const mobileMenuId = "primary-search-account-menu-mobile";
-    const renderMobileMenu = (
-        // <Menu
-        //     anchorEl={mobileMoreAnchorEl}
-        //     anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        //     id={mobileMenuId}
-        //     keepMounted
-        //     transformOrigin={{ vertical: "top", horizontal: "right" }}
-        //     open={isMobileMenuOpen}
-        //     onClose={handleMobileMenuClose}
-        // >
-        //     <MenuItem>
-        //         <IconButton color="inherit">
-        //             <Badge badgeContent color="secondary">
-        //                 <Link to="/about">About</Link>
-        //             </Badge>
-        //         </IconButton>
-        //     </MenuItem>
-        //     <MenuItem>
-        //         <IconButton color="inherit">
-        //             <Badge color="secondary">
-        //                 <Link to="/login">Login</Link>
-        //             </Badge>
-        //         </IconButton>
-        //     </MenuItem>
-        // </Menu>
-        <BottomSheet
-            open={isMobileMenuOpen}
-            onDismiss={handleMobileMenuClose}
-            snapPoints={({ maxHeight }) => [0.45 * maxHeight, 0.83 * maxHeight]}
+    const [state, setState] = React.useState({
+        top: false,
+        left: false,
+        bottom: false,
+        right: false,
+      });
+    
+      const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+          return;
+        }
+    
+        setState({ ...state, [anchor]: open });
+      };
+    const list = (anchor) => (
+        <div
+          role="presentation"
+          onClick={toggleDrawer(anchor, false)}
+          onKeyDown={toggleDrawer(anchor, false)}
+          className={classes.slider}
         >
-            <MenuItem>
+          <MenuItem>
                 <Link to="/login" className={classes.nav_links}>
                     Login
                 </Link>
             </MenuItem>
-
+            <Divider/>
             <MenuItem>
                 <Link to="/about" className={classes.nav_links}>
                     About
                 </Link>
             </MenuItem>
+            <Divider/>
             <MenuItem>
                 <Link to="/technicalMembers" className={classes.nav_links}>
                     Genconians
                 </Link>
             </MenuItem>
+            <Divider/>
             <MenuItem>
                 <Link to="/contactDetails" className={classes.nav_links}>
                     Contact Details
                 </Link>
             </MenuItem>
+            <Divider/>
             <MenuItem>
                 <Link to="/more" className={classes.nav_links}>
                     More
                 </Link>
             </MenuItem>
-        </BottomSheet>
-    );
+        </div>
+      );
+    
 
     return (
         <div className={body}>
@@ -314,43 +306,17 @@ export default function PrimarySearchAppBar() {
                                 </div>
                             </Link>
                         </IconButton>
-                        {/* <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton> */}
-
-                        {/* <ul className="nav justify-content-end navUl">
-            <ul className="navbar-nav mr-auto"></ul>
-                <li class="nav-item active">
-                     <a class="nav-link" href="#" >About</a>
-                </li>
-                <li class="nav-item active">
-                <a class="nav-link" href="#" >Login</a>
-                </li>
-            </ul> */}
                     </div>
                     <div className={classes.sectionMobile}>
-                        <IconButton
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
+                    <Button onClick={toggleDrawer('right', true)}><MenuIcon style={{color: 'white'}}/></Button>
                     </div>
                 </Toolbar>
             </AppBar>
-
-            {renderMobileMenu}
-            {renderMenu}
+            <Drawer anchor='right' open={state['right']} onClose={toggleDrawer('right', false)}>
+            {list('right')}
+          </Drawer>
+            
+            {renderMenu} 
         </div>
     );
 }

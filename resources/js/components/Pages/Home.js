@@ -8,7 +8,6 @@ import Posts from "../HomeComponent/PostComponents/Posts";
 import RightBar from "../HomeComponent/RightBar/RightBar";
 import RightBarSticky from "../HomeComponent/RightBar/RightBarSticky";
 import LeftBar from "../HomeComponent/LeftBar/LeftBar";
-import LeftBarSticky from "../HomeComponent/LeftBar/LeftBarSticky";
 import Scroll from "../HomeComponent/SideComponents/scroll";
 import SearchArea from "../HomeComponent/SideComponents/SearchArea";
 
@@ -90,9 +89,6 @@ export default function Home() {
           <Grid item md={3} className={classes.left}>
             <Paper className={classes.paper}>
               <LeftBar />
-            </Paper>
-            <Paper className={classes.paper2}>
-              <LeftBarSticky />
             </Paper>
           </Grid>
           <Grid item md={6} className={classes.center}>
