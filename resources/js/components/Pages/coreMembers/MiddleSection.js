@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Select from "react-select";
-import PdfCard from "../ExecutiveMembers/pdfCard";      // Component exists in Executive Members folder
+import PdfCard from "../ExecutiveMembers/pdfCard"; // Component exists in Executive Members folder
 
 const customStyles = {
     control: base => ({
         ...base,
         height: 50,
         borderRadius: 16,
-        fontFamily: 'Open Sans',
+        fontFamily: "Open Sans",
         fontSize: 16,
-        color: '#303030',
+        color: "#303030"
     })
 };
 
@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
         padding: "15px",
         borderRadius: "16px",
         marginTop: "20px",
-        boxShadow: "0px 10px 25px rgba(48, 48, 48, 0.2)",
+        boxShadow: "0px 10px 25px rgba(48, 48, 48, 0.2)"
     }
 }));
 
@@ -57,28 +57,29 @@ export default function MiddleSection() {
         "/documents/Tnp-Team/Core-Team-20-21.pdf",
         "/documents/Tnp-Team/Core-Team.pdf",
         "/documents/Tnp-Team/Core-Team_2022-2023.pdf",
-
+        "/documents/Tnp-Team/Core-Team_2023-2024.pdf"
     ];
     const options = [
         { value: 0, label: "2020-21" },
         { value: 1, label: "2021-22" },
         { value: 2, label: "2022-23" },
-    ]
+        { value: 3, label: "2023-24" }
+    ];
     const [index, setIndex] = useState(links.length - 1);
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         setIndex(e.value);
     };
-    
+
     return (
         <>
             <h3 className={classes.cardTitle}>Core Members</h3>
-                <Select
-                    styles={customStyles}
-                    options={options}
-                    onChange={handleChange}
-                    defaultValue={options[options.length - 1]}
-                />
+            <Select
+                styles={customStyles}
+                options={options}
+                onChange={handleChange}
+                defaultValue={options[options.length - 1]}
+            />
             <Card className={classes.pdfCard}>
                 <PdfCard source={links[index]} />
             </Card>
