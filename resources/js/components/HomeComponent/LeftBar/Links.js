@@ -11,7 +11,6 @@ import naukriIcon from "../../../../images/naukri-com.png";
 import bixIcon from "../../../../images/indiabix.jpg";
 import indeedIcon from "../../../../images/indeed.jpg";
 import internshalaIcon from "../../../../images/internshala.jpg";
-import masterquizIcon from "../../../../images/masterquiz.png";
 
 const useStyles = theme => ({
     title: {
@@ -189,31 +188,6 @@ class Links extends React.Component {
                         <div className={classes.link}>
                             <a
                                 href="https://internshala.com"
-                                target="_blank"
-                                rel="noreferrer noopener"
-                            >
-                                <img
-                                    className={classes.linkIcon}
-                                    src={linkIcon}
-                                ></img>
-                            </a>
-                        </div>
-                    </div>
-                </Card>
-                <Card className={classes.card}>
-                    <div className={classes.outerContainer}>
-                        <div className={classes.container}>
-                            <img
-                                className={classes.icon}
-                                src={masterquizIcon}
-                            ></img>
-                            <Typography className={classes.cardTitle}>
-                                MasterQuiz
-                            </Typography>
-                        </div>
-                        <div className={classes.link}>
-                            <a
-                                href="https://masterquiz.in"
                                 target="_blank"
                                 rel="noreferrer noopener"
                             >
