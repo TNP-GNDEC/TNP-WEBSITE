@@ -1,24 +1,25 @@
 import React from "react";
 import Axios from "axios";
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/icons/Link';
+import { withStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/icons/Link";
 import { Icon } from "@material-ui/core";
-import gneLogo from '../../../../images/gndec.png';
-import linkIcon from '../../../../images/Link.png';
-import naukriIcon from '../../../../images/naukri-com.png';
-import bixIcon from '../../../../images/indiabix.jpg';
-import indeedIcon from '../../../../images/indeed.jpg';
-import internshalaIcon from '../../../../images/internshala.jpg';
+import gneLogo from "../../../../images/gndec.png";
+import linkIcon from "../../../../images/Link.png";
+import naukriIcon from "../../../../images/naukri-com.png";
+import bixIcon from "../../../../images/indiabix.jpg";
+import indeedIcon from "../../../../images/indeed.jpg";
+import internshalaIcon from "../../../../images/internshala.jpg";
+import masterquizIcon from "../../../../images/masterquiz.png";
 
 const useStyles = theme => ({
-    title:{
+    title: {
         color: theme.palette.primary.dark,
         fontSize: "20px",
         fontWeight: "500"
     },
-    card:{
+    card: {
         width: "100%",
         height: "56px",
         padding: "8px",
@@ -30,7 +31,7 @@ const useStyles = theme => ({
             padding: "12px"
         }
     },
-    cardTitle:{
+    cardTitle: {
         fontSize: "16px",
         fontWeight: "600",
         fontFamily: "Open Sans",
@@ -43,14 +44,14 @@ const useStyles = theme => ({
             marginLeft: "30px"
         }
     },
-    container:{
+    container: {
         display: "flex"
     },
-    icon:{
+    icon: {
         width: "40px",
         height: "40px"
     },
-    linkIcon:{
+    linkIcon: {
         width: "20px",
         height: "20px",
         marginTop: "auto",
@@ -63,7 +64,7 @@ const useStyles = theme => ({
     },
     outerContainer: {
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "space-between"
     },
     link: {
         marginTop: "auto",
@@ -72,92 +73,160 @@ const useStyles = theme => ({
 });
 
 class Links extends React.Component {
-
-    render(){
-        const {classes} = this.props;
-        return(
+    render() {
+        const { classes } = this.props;
+        return (
             <>
-            <Card className={classes.card}>
-                <div className={classes.outerContainer}>
-                    <div className={classes.container}>
-                        <img className={classes.icon} src={gneLogo}></img>
-                        <Typography className={classes.cardTitle}>
-                            GNDEC
-                        </Typography>
+                <Card className={classes.card}>
+                    <div className={classes.outerContainer}>
+                        <div className={classes.container}>
+                            <img className={classes.icon} src={gneLogo}></img>
+                            <Typography className={classes.cardTitle}>
+                                GNDEC
+                            </Typography>
+                        </div>
+                        <div className={classes.link}>
+                            <a
+                                href="https://gndec.ac.in"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                            >
+                                <img
+                                    className={classes.linkIcon}
+                                    src={linkIcon}
+                                ></img>
+                            </a>
+                        </div>
                     </div>
-                    <div className={classes.link}>
-                        <a href="https://gndec.ac.in" target="_blank" rel="noreferrer noopener">
-                            <img className={classes.linkIcon} src={linkIcon}></img>
-                        </a>
-                    </div>
-                </div>
-            </Card>
+                </Card>
 
-            <Card className={classes.card}>
-                <div className={classes.outerContainer}>
-                    <div className={classes.container}>
-                        <img className={classes.icon} src={naukriIcon}></img>
-                        <Typography className={classes.cardTitle}>
-                            Naukri.com
-                        </Typography>
+                <Card className={classes.card}>
+                    <div className={classes.outerContainer}>
+                        <div className={classes.container}>
+                            <img
+                                className={classes.icon}
+                                src={naukriIcon}
+                            ></img>
+                            <Typography className={classes.cardTitle}>
+                                Naukri.com
+                            </Typography>
+                        </div>
+                        <div className={classes.link}>
+                            <a
+                                href="https://naukri.com"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                            >
+                                <img
+                                    className={classes.linkIcon}
+                                    src={linkIcon}
+                                ></img>
+                            </a>
+                        </div>
                     </div>
-                    <div className={classes.link}>
-                        <a href="https://naukri.com" target="_blank" rel="noreferrer noopener">
-                            <img className={classes.linkIcon} src={linkIcon}></img>
-                        </a>
-                    </div>
-                </div>
-            </Card>
+                </Card>
 
-            <Card className={classes.card}>
-                <div className={classes.outerContainer}>
-                    <div className={classes.container}>
-                        <img className={classes.icon} src={bixIcon}></img>
-                        <Typography className={classes.cardTitle}>
-                            IndiaBix
-                        </Typography>
+                <Card className={classes.card}>
+                    <div className={classes.outerContainer}>
+                        <div className={classes.container}>
+                            <img className={classes.icon} src={bixIcon}></img>
+                            <Typography className={classes.cardTitle}>
+                                IndiaBix
+                            </Typography>
+                        </div>
+                        <div className={classes.link}>
+                            <a
+                                href="https://indiabix.com"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                            >
+                                <img
+                                    className={classes.linkIcon}
+                                    src={linkIcon}
+                                ></img>
+                            </a>
+                        </div>
                     </div>
-                    <div className={classes.link}>
-                        <a href="https://indiabix.com" target="_blank" rel="noreferrer noopener">
-                            <img className={classes.linkIcon} src={linkIcon}></img>
-                        </a>
-                    </div>
-                </div>
-            </Card>
+                </Card>
 
-            <Card className={classes.card}>
-                <div className={classes.outerContainer}>
-                    <div className={classes.container}>
-                        <img className={classes.icon} src={indeedIcon}></img>
-                        <Typography className={classes.cardTitle}>
-                            Indeed
-                        </Typography>
+                <Card className={classes.card}>
+                    <div className={classes.outerContainer}>
+                        <div className={classes.container}>
+                            <img
+                                className={classes.icon}
+                                src={indeedIcon}
+                            ></img>
+                            <Typography className={classes.cardTitle}>
+                                Indeed
+                            </Typography>
+                        </div>
+                        <div className={classes.link}>
+                            <a
+                                href="https://indeed.com"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                            >
+                                <img
+                                    className={classes.linkIcon}
+                                    src={linkIcon}
+                                ></img>
+                            </a>
+                        </div>
                     </div>
-                    <div className={classes.link}>
-                        <a href="https://indeed.com" target="_blank" rel="noreferrer noopener">
-                            <img className={classes.linkIcon} src={linkIcon}></img>
-                        </a>
-                    </div>
-                </div>
-            </Card>
+                </Card>
 
-            <Card className={classes.card}>
-                <div className={classes.outerContainer}>
-                    <div className={classes.container}>
-                        <img className={classes.icon} src={internshalaIcon}></img>
-                        <Typography className={classes.cardTitle}>
-                            Internshala
-                        </Typography>
+                <Card className={classes.card}>
+                    <div className={classes.outerContainer}>
+                        <div className={classes.container}>
+                            <img
+                                className={classes.icon}
+                                src={internshalaIcon}
+                            ></img>
+                            <Typography className={classes.cardTitle}>
+                                Internshala
+                            </Typography>
+                        </div>
+                        <div className={classes.link}>
+                            <a
+                                href="https://internshala.com"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                            >
+                                <img
+                                    className={classes.linkIcon}
+                                    src={linkIcon}
+                                ></img>
+                            </a>
+                        </div>
                     </div>
-                    <div className={classes.link}>
-                        <a href="https://internshala.com" target="_blank" rel="noreferrer noopener">
-                            <img className={classes.linkIcon} src={linkIcon}></img>
-                        </a>
+                </Card>
+                <Card className={classes.card}>
+                    <div className={classes.outerContainer}>
+                        <div className={classes.container}>
+                            <img
+                                className={classes.icon}
+                                src={masterquizIcon}
+                            ></img>
+                            <Typography className={classes.cardTitle}>
+                                MasterQuiz
+                            </Typography>
+                        </div>
+                        <div className={classes.link}>
+                            <a
+                                href="https://masterquiz.in"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                            >
+                                <img
+                                    className={classes.linkIcon}
+                                    src={linkIcon}
+                                ></img>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </Card>
+                </Card>
             </>
-        )
+        );
     }
 }
 
