@@ -2,6 +2,7 @@ import React from "react";
 import MemberCard from "./MemberCard";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import office from "../../../../../images/technical_25/rajveer.jpg";
 
 const memberData = [
     {

@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
     width: "106px",
     height: "106px",
     borderRadius: "50%",
+    objectFit: 'cover',
     boxShadow: "0px 10px 20px #1687d933",
     ['@media (min-width:1600px)']: {
       height: "120px",
