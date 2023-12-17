@@ -22,7 +22,7 @@ Run the following commands inorder to install all the dependencies :
 
 ```
 composer install
-npm install
+npm install (if giving error then do npm install -force)
 ```
 
 Generate the php application key :

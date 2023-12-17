@@ -1,8 +1,6 @@
 {
     "private": true,
     "scripts": {
-        "start": "set SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
-        "build": "set SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",

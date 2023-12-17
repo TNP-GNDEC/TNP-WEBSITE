@@ -3,6 +3,7 @@ import MemberCard from "./MemberCard";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import rajveer from "../../../../../images/technical_25/rajveer.jpg";
+import chandanbir from "../../../../../images/technical_25/chandanbir.jpg"
 import harnoor from "../../../../../images/technical_25/harnoor.jpg";
 import vansh from "../../../../../images/technical_25/vansh.jpg";
 import inderpreet from "../../../../../images/technical_25/inderpreet.jpg";
@@ -25,32 +26,6 @@ const memberData = [
     },
     {
         key: 2,
-        name: "Chandanbir Singh",
-        designation: "Software Developer (Full Stack)",
-        description:
-            "He is a B.Tech student in Computer Science & Engineering of 2021-25 batch.",
-        profilePic: "https://tnpgndec.com/images/chandanbir.jpg",
-        linkedIn: "https://www.linkedin.com/in/chandanbir-singh/",
-        instagram: "https://www.instagram.com/singh_chandanbir/",
-        github: "https://github.com/singh-chandanbir",
-        mail: "mailto:chandanbirsingh1@gmail.com",
-        twitter: ""
-    },
-    {
-        key: 3,
-        name: "Inderpreet Singh",
-        designation: "Developer, UI/UX Designer",
-        description:
-            "He is a B.Tech student in Computer Science & Engineering of 2021-25 batch.",
-        profilePic: inderpreet,
-        linkedIn: "https://www.linkedin.com/in/inderpreet-singh13",
-        instagram: "https://www.instagram.com/_.inderpreet_singh._/",
-        github: "https://github.com/inder-singh001",
-        mail: "mailto:singhinderpreet238@gmail.com",
-        twitter: ""
-    },
-    {
-        key: 4,
         name: "Vansh Kumar",
         designation: "Software Developer (Full Stack)",
         description:
@@ -63,6 +38,33 @@ const memberData = [
         twitter: ""
 
     },
+    {
+        key: 3,
+        name: "Chandanbir Singh",
+        designation: "Software Developer (Full Stack)",
+        description:
+            "He is a B.Tech student in Computer Science & Engineering of 2021-25 batch.",
+        profilePic: chandanbir,
+        linkedIn: "https://www.linkedin.com/in/chandanbir-singh/",
+        instagram: "https://www.instagram.com/singh_chandanbir/",
+        github: "https://github.com/singh-chandanbir",
+        mail: "mailto:chandanbirsingh1@gmail.com",
+        twitter: ""
+    },
+    {
+        key: 4,
+        name: "Inderpreet Singh",
+        designation: "Developer, UI/UX Designer",
+        description:
+            "He is a B.Tech student in Computer Science & Engineering of 2021-25 batch.",
+        profilePic: inderpreet,
+        linkedIn: "https://www.linkedin.com/in/inderpreet-singh13",
+        instagram: "https://www.instagram.com/_.inderpreet_singh._/",
+        github: "https://github.com/inder-singh001",
+        mail: "mailto:singhinderpreet238@gmail.com",
+        twitter: ""
+    },
+   
     {
         key: 5,
         name: "Harnoor Birdi",
