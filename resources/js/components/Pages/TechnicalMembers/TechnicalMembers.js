@@ -151,11 +151,6 @@ export default function TechnicalMembers() {
                                 ) : (
                                     ""
                                 )}
-                                {/* {!selectValue || selectValue === "24" ? (
-                                    <MemberCards24 />
-                                ) : (
-                                    ""
-                                )} */}
                                 {selectValue === "24" ? <MemberCards24 /> : ""}
                                 {selectValue === "23" ? <MemberCards23 /> : ""}
                                 {selectValue === "22" ? <MemberCards22 /> : ""}

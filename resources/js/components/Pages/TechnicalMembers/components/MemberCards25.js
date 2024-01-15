@@ -2,22 +2,15 @@ import React from "react";
 import MemberCard from "./MemberCard";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import inderpreet from "../../../../../images/technical_25/inderpreet.jpg";
-import rajveer from "../../../../../images/technical_25/rajveer.jpg";
-import vansh from "../../../../../images/technical_25/vansh.jpg";
-import chandanbir from "../../../../../images/technical_25/chandanbir.jpg";
-import harnoor from "../../../../../images/technical_25/harnoor.jpg";
-import ayush from "../../../../../images/technical_25/ayush.jpg";
-import deepak from "../../../../../images/technical_25/deepak.jpg";
 
 const memberData = [
     {
         key: 1,
-        name: "Rajveer Singh Singh",
+        name: "Rajveer Singh",
         designation: "Software Developer (Full Stack)",
         description:
             "He is a B.Tech student in Computer Science & Engineering of 2021-25 batch.",
-        profilePic: rajveer,
+        profilePic: "https://tnpgndec.com/images/rajveer.jpg",
         linkedIn: "https://www.linkedin.com/in/rajveer810214/",
         instagram: "https://www.instagram.com/rajveer810214",
         github: "https://github.com/Rajveer810214",
@@ -30,7 +23,7 @@ const memberData = [
         designation: "Software Developer (Full Stack)",
         description:
             "He is a B.Tech student in Computer Science & Engineering of 2021-25 batch.",
-        profilePic: chandanbir,
+        profilePic: "https://tnpgndec.com/images/chandanbir.jpg",
         linkedIn: "https://www.linkedin.com/in/chandanbir-singh/",
         instagram: "https://www.instagram.com/singh_chandanbir/",
         github: "https://github.com/singh-chandanbir",
@@ -43,7 +36,7 @@ const memberData = [
         designation: "Developer, UI/UX Designer",
         description:
             "He is a B.Tech student in Computer Science & Engineering of 2021-25 batch.",
-        profilePic: inderpreet,
+        profilePic: "https://tnpgndec.com/images/inderpreet.jpg",
         linkedIn: "https://www.linkedin.com/in/inderpreet-singh13",
         instagram: "https://www.instagram.com/_.inderpreet_singh._/",
         github: "https://github.com/inder-singh001",
@@ -56,7 +49,7 @@ const memberData = [
         designation: "Software Developer (Full Stack)",
         description:
             "He is a B.Tech student in  & Engineering of 2021-25 batch.",
-        profilePic: vansh,
+        profilePic: "https://tnpgndec.com/images/vansh.jpg",
         linkedIn: "https://www.linkedin.com/in/vansh1190/",
         instagram: "https://www.instagram.com/vansh1190/",
         github: "https://github.com/vansh1190",
@@ -70,7 +63,7 @@ const memberData = [
         designation: "Software Developer (Full Stack)",
         description:
             "He is a B.Tech student in Computer Science & Engineering of 2021-25 batch.",
-        profilePic: harnoor,
+        profilePic: "https://tnpgndec.com/images/harnoor.jpg",
         linkedIn: "https://www.linkedin.com/in/harnoorbirdi/",
         instagram: "https://www.instagram.com/harnoor.29/",
         github: "https://github.com/Harnoor007",
@@ -83,7 +76,7 @@ const memberData = [
         designation: "Jr Penstester W-Pt (Bug hunter)",
         description:
             "He is a BCA(Cyber Security ) student in Computer Application of 2023-26 batch.",
-        profilePic: deepak,
+        profilePic: "https://tnpgndec.com/images/deepak.jpg",
         linkedIn: "https://www.linkedin.com/in/deepakparkash/",
         instagram: "https://www.instagram.com/de_fuxk/?igshid=NzZlODBkYWE4Ng%3D%3D",
         github: "https://github.com/FancybearIN",
@@ -96,7 +89,7 @@ const memberData = [
         designation: "Full Stack Developer , UI/UX Designer",
         description:
             "He is a B.Tech student in Information Technology of 2021-25 batch.",
-        profilePic: ayush,
+        profilePic: "https://tnpgndec.com/images/ayush.jpg",
         linkedIn: "https://www.linkedin.com/in/ayush-singh-3222a226a/",
         instagram: "",
         github: "https://github.com/AYUSH56789",
