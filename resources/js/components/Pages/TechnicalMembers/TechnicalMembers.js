@@ -7,6 +7,7 @@ import Navbar from "../../HomeComponent/SideComponents/Navbar";
 import RightBar from "./components/RightBar";
 import LeftBar from "./components/LeftBar";
 import Scroll from "../../HomeComponent/SideComponents/scroll";
+import MemberCards25 from "./components/MemberCards25";
 import MemberCards24 from "./components/MemberCards24";
 import MemberCards23 from "./components/MemberCards23";
 import MemberCards22 from "./components/MemberCards22";
@@ -17,6 +18,7 @@ import MemberCards19 from "./components/MemberCards19";
 import Select from "react-select";
 
 const options = [
+    { value: "25", label: "2024-25" },
     { value: "24", label: "2023-24" },
     { value: "23", label: "2022-23" },
     { value: "22", label: "2021-22" },
@@ -144,11 +146,12 @@ export default function TechnicalMembers() {
                                 spacing={2}
                                 className={classes.MemCards}
                             >
-                                {!selectValue || selectValue === "24" ? (
-                                    <MemberCards24 />
+                                {!selectValue || selectValue === "25" ? (
+                                    <MemberCards25 />
                                 ) : (
                                     ""
                                 )}
+                                {selectValue === "24" ? <MemberCards24 /> : ""}
                                 {selectValue === "23" ? <MemberCards23 /> : ""}
                                 {selectValue === "22" ? <MemberCards22 /> : ""}
                                 {selectValue === "21" ? <MemberCards21 /> : ""}
