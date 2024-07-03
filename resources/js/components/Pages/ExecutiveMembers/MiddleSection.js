@@ -49,7 +49,8 @@ export default function MiddleSection() {
         { value: 0, label: "2020-21" },
         { value: 1, label: "2021-22" },
         { value: 2, label: "2022-23" },
-        { value: 3, label: "2023-24" }
+        { value: 3, label: "2023-24" },
+        { value: 4, label: "2024-25" }
     ];
 
     // links should be in order with last one being the latest one
@@ -57,7 +58,8 @@ export default function MiddleSection() {
         "/documents/Tnp-Team/Executive-members-20-21.pdf",
         "/documents/Tnp-Team/Executive-Members.pdf",
         "/documents/Tnp-Team/Executives_2022-2023.pdf",
-        "/documents/Tnp-Team/Executives_2023-2024.pdf"
+        "/documents/Tnp-Team/Executives_2023-2024.pdf",
+        "/Executive_team_2024-25.pdf"
     ];
 
     const [index, setIndex] = useState(links.length - 1);
