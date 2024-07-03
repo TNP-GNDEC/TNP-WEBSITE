@@ -57,13 +57,15 @@ export default function MiddleSection() {
         "/documents/Tnp-Team/Core-Team-20-21.pdf",
         "/documents/Tnp-Team/Core-Team.pdf",
         "/documents/Tnp-Team/Core-Team_2022-2023.pdf",
-        "/documents/Tnp-Team/Core-Team_2023-2024.pdf"
+        "/documents/Tnp-Team/Core-Team_2023-2024.pdf",
+        "/core_24-25.pdf"
     ];
     const options = [
         { value: 0, label: "2020-21" },
         { value: 1, label: "2021-22" },
         { value: 2, label: "2022-23" },
-        { value: 3, label: "2023-24" }
+        { value: 3, label: "2023-24" },
+        { value: 4, label: "2024-25" }
     ];
     const [index, setIndex] = useState(links.length - 1);
 
