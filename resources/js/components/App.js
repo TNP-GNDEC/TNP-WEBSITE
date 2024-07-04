@@ -34,6 +34,7 @@ import MajorRecruiters from "./Pages/MajorRecruiters/MajorRecruiters";
 
 import ContactDetails from "./Pages/ContactDetails";
 import MoreInfoPage from "./Pages/MoreInfoPage"
+import departmentHeads from "./Pages/DepartmentHeads/departmentHeads";
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
                     <Route path="/coreMembers" exact component={coreMembers} />
                     <Route path="/technicalMembers" exact component={TechnicalMembers}></Route>
                     <Route path="/executiveMembers" exact component={ExecutiveMembers}></Route>
+                    <Route path="/departmentHeads" exact component={departmentHeads}></Route>
 
                     {/* Auth */}
                     <Route path="/login" exact component={login} />
