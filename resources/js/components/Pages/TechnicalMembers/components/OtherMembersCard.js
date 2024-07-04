@@ -202,6 +202,23 @@ export default function Office() {
             </Link>
           ) : ""
       }
+      {
+        !window.location.href.includes("/departmentHeads") ?
+          (
+            <Link to="/departmentHeads">
+              <div className={classes.handles}>
+                <div className={classes.imageBox}>
+                  <img src={coreMemberIcon} alt="Department Heads" className={classes.image} />
+                </div>
+                <div className={classes.textInfo}>
+                  <h3 className={classes.subheading}>
+                    Department Heads
+                  </h3>
+                </div>
+              </div>
+            </Link>
+          ) : ""
+      }
     </Card>
   );
 }
