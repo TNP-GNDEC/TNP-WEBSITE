@@ -148,7 +148,7 @@ export default function Office() {
         Sr. Narinder Singh
       </h1>
       <h3 className={classes.subheading}>
-        Junior Superintendent
+        Senior Assistant
       </h3>
       <div className={classes.box}>
             <Phone className={classes.icon2}/>
