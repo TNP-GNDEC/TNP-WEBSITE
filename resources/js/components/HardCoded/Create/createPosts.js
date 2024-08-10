@@ -98,7 +98,7 @@ class CreatePosts extends React.Component {
                     }
                 }
         );
-            if (res.status === 200) {
+            if (res.status === 201) {
                 toast.success("Company Added Successfully");
                 this.setState({
                     AddCompanyExpanded: false
