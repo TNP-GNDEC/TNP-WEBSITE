@@ -10,6 +10,8 @@ import "../../../../css/app.css";
 import TagsInput from "react-tagsinput";
 import addNotification from "react-push-notification";
 import toast, { Toaster } from "react-hot-toast";
+import { Accordion, AccordionDetails, AccordionSummary, Chip, Input, Menu, MenuItem, Select, Typography } from "@material-ui/core";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = theme => ({
     layout: {
@@ -42,11 +44,28 @@ class CreatePosts extends React.Component {
         type: "",
         description: "",
         editorState: EditorState.createEmpty(),
-        tags: []
+        tags: [],
+        companyDetails: {
+            companyName: "",
+            branches: []
+        }
     };
+
     handleChange(tags) {
         this.setState({ tags });
     }
+
+    setCompanyDetails = (name) => {
+        console.log(name.target.name)
+        console.log(name.target.value)
+
+        this.setState({
+            companyDetails: {
+                ...this.state.companyDetails,
+                [name.target.name]: name.target.value
+            }
+        });
+    };
 
     handleInput = e => {
         this.setState({
@@ -64,6 +83,36 @@ class CreatePosts extends React.Component {
     saveEditorContent(data) {
         this.setState({ description: data });
     }
+    AddCompany = async e => {
+        try {
+            e.preventDefault();
+            let payload = { ...this.state.companyDetails };
+            console.log(payload)
+            const res = await axios.post("https://tnp-vault.vercel.app/company",
+                {
+                    "name": payload.companyName,
+                    "email": payload.companyEmail,
+                    "phone": payload.companyPhone,
+                    "branches": payload.branches,
+                    "status": "Awaiting Confirmation"
+                },
+                {
+                    headers: {
+                        "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRucHN1cGVyYWRtaW4iLCJyb2xlIjoic3VwZXJhZG1pbiIsImlhdCI6MTcyMzMwNjMyNn0.Pj5V_xfT3lnRnIMbIUpbWmHribCpJJmv9pR1CYmYBns"
+                    }
+                }
+        );
+            if (res.data.status === 200) {
+                toast.success("Company Added Successfully");
+            } else {
+                toast.error("Error Adding Company");
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
     savePost = async e => {
         try {
             e.preventDefault();
@@ -86,6 +135,16 @@ class CreatePosts extends React.Component {
             toast.error("Error Adding Post. Please contact the admin");
         }
     };
+    handleClose = () => {
+        console.log("handleClose")
+        this.setState({ open: true });
+    };
+    
+    handleOpen = () => {
+        console.log("handleOpen")
+        this.setState({ open: false });
+    };
+    
 
     render() {
         const { editorState } = this.state;
@@ -93,6 +152,91 @@ class CreatePosts extends React.Component {
         return (
             <div className={classes.layout}>
                 <div className="actionDiv">
+                    <Accordion style={{marginBottom: "10px"}}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography className={classes.heading}>Add New Company</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails >
+                        <div style={{width: "100%"}}>
+                            <form onSubmit={this.AddCompany}>
+                                <div className="form-group">
+                                    <label className={classes.label}>Company Name:</label>
+                                    <input
+                                        type="text"
+                                        name="companyName"
+                                        className="form-control highlight"
+                                        value={this.state.companyDetails.companyName}
+                                        onChange={this.setCompanyDetails}
+                                        placeholder="Enter the Company Name"
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className={classes.label}>Company Email:</label>
+                                    <input
+                                        type="text"
+                                        name="companyEmail"
+                                        className="form-control highlight"
+                                        value={this.state.companyDetails.companyEmail}
+                                        onChange={this.setCompanyDetails}
+                                        placeholder="Enter the Company Email"
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className={classes.label}>Company Phone:</label>
+                                    <input
+                                        type="text"
+                                        name="companyPhone"
+                                        className="form-control highlight"
+                                        value={this.state.companyDetails.companyPhone}
+                                        onChange={this.setCompanyDetails}
+                                        placeholder="Enter the Company Phone"
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className={classes.label}>Branches:</label>
+                                    <Select
+                                        labelId="demo-mutiple-chip-label"
+                                        id="demo-mutiple-chip"
+                                        multiple
+                                        name="branches"
+                                        className="form-control highlight"
+                                        onClose={this.handleClose}
+                                        onOpen={this.handleOpen}
+                                        open={this.state.open}
+                                        value={this.state.companyDetails.branches}
+                                        onChange={this.setCompanyDetails}
+                                        input={<Input id="select-multiple-chip" />}
+                                        renderValue={(selected) => (
+                                            <div className={classes.chips}>
+                                                {selected.map((value) => (
+                                                    <Chip key={value} label={value} className={classes.chip} />
+                                                ))}
+                                            </div>
+                                        )}
+                                        // MenuProps={MenuProps}
+                                    >
+                                        {["CSE", "ECE", "EEE", "MECH", "CIVIL", "IT", "AI&ML"].map((name) => (
+                                                <MenuItem key={name} value={name}>
+                                                    {name}
+                                                </MenuItem>
+                                        ))}
+                                    </Select>
+                                </div>
+
+                                <button type="submit" className={classes.btn}>
+                                    Add Company
+                                </button>
+                            </form>
+                            </div>
+                        </AccordionDetails>
+                    </Accordion>
                     <div className={classes.Formdiv}>
                         <form onSubmit={this.savePost}>
                             <div className="form-group">
