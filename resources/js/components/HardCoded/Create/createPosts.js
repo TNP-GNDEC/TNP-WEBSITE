@@ -56,9 +56,6 @@ class CreatePosts extends React.Component {
     }
 
     setCompanyDetails = (name) => {
-        console.log(name.target.name)
-        console.log(name.target.value)
-
         this.setState({
             companyDetails: {
                 ...this.state.companyDetails,
@@ -87,7 +84,6 @@ class CreatePosts extends React.Component {
         try {
             e.preventDefault();
             let payload = { ...this.state.companyDetails };
-            console.log(payload)
             const res = await axios.post("https://tnp-vault.vercel.app/company",
                 {
                     "name": payload.companyName,
@@ -102,14 +98,25 @@ class CreatePosts extends React.Component {
                     }
                 }
         );
-            if (res.data.status === 200) {
+            if (res.status === 200) {
                 toast.success("Company Added Successfully");
+                this.setState({
+                    AddCompanyExpanded: false
+                })
             } else {
                 toast.error("Error Adding Company");
+                console.log(res)
+                this.setState({
+                    AddCompanyExpanded: false
+                })
             }
         }
         catch (err) {
             console.log(err)
+            this.setState({
+                AddCompanyExpanded: false
+            })
+            toast.error("Error Adding Company");
         }
     }
 
@@ -130,18 +137,17 @@ class CreatePosts extends React.Component {
                 });
             } else {
                 toast.error("Error Adding Post");
+
             }
         } catch (err) {
             toast.error("Error Adding Post. Please contact the admin");
         }
     };
     handleClose = () => {
-        console.log("handleClose")
         this.setState({ open: true });
     };
     
     handleOpen = () => {
-        console.log("handleOpen")
         this.setState({ open: false });
     };
     
@@ -152,7 +158,7 @@ class CreatePosts extends React.Component {
         return (
             <div className={classes.layout}>
                 <div className="actionDiv">
-                    <Accordion style={{marginBottom: "10px"}}>
+                    <Accordion expanded={this.state.AddCompanyExpanded} style={{marginBottom: "10px"}}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
@@ -160,7 +166,7 @@ class CreatePosts extends React.Component {
                         >
                             <Typography className={classes.heading}>Add New Company</Typography>
                         </AccordionSummary>
-                        <AccordionDetails >
+                        <AccordionDetails  >
                         <div style={{width: "100%"}}>
                             <form onSubmit={this.AddCompany}>
                                 <div className="form-group">
