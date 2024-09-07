@@ -255,7 +255,6 @@ class CreatePosts extends React.Component {
                                                     </div>
                                                 )
                                         }}
-                                        // MenuProps={MenuProps}
                                     >
                                         {this.COURSES.map((item) => (
                                             // <div>
