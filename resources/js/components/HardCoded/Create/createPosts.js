@@ -10,10 +10,13 @@ import "../../../../css/app.css";
 import TagsInput from "react-tagsinput";
 import addNotification from "react-push-notification";
 import toast, { Toaster } from "react-hot-toast";
-import { Accordion, AccordionDetails, AccordionSummary, Chip, Input, Menu, MenuItem, Select, Typography } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Chip, Input, ListSubheader, Menu, MenuItem, Select, Typography } from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = theme => ({
+    chips: {
+        margin: "5px 0px"
+    },
     layout: {
         width: "100%",
         marginLeft: "auto",
@@ -40,6 +43,7 @@ const useStyles = theme => ({
 
 class CreatePosts extends React.Component {
     state = {
+        AddCompanyExpanded: true,
         title: "",
         type: "",
         description: "",
@@ -56,12 +60,14 @@ class CreatePosts extends React.Component {
     }
 
     setCompanyDetails = (name) => {
+        // console.log(name, "Company Details")
         this.setState({
             companyDetails: {
                 ...this.state.companyDetails,
                 [name.target.name]: name.target.value
             }
         });
+        // console.log(this.state.companyDetails, "Company Details")
     };
 
     handleInput = e => {
@@ -105,7 +111,7 @@ class CreatePosts extends React.Component {
                 })
             } else {
                 toast.error("Error Adding Company");
-                console.log(res)
+                // console.log(res)
                 this.setState({
                     AddCompanyExpanded: false
                 })
@@ -151,9 +157,30 @@ class CreatePosts extends React.Component {
         this.setState({ open: false });
     };
     
-
+    COURSES = [
+        "CSE",     // Computer Science and Engineering
+        "IT",      // Information Technology
+        "CE",      // Civil Engineering
+        "EE",      // Electrical Engineering
+        "ECE",     // Electronics and Communication Engineering
+        "ME",      // Mechanical Engineering
+        "PE",      // Production Engineering
+        "EnvE",    // Environmental Engineering
+        "IndE",    // Industrial Engineering
+        "PowerE",  // Power Engineering
+        "SE",      // Structural Engineering
+        "VLSI",    // VLSI Design
+        "MBA",     // Masters in Business Administration
+        "MCA",     // Masters in Computer Application
+        "BCA",     // Bachelor of Computer Applications
+        "InteriorD",// Interior Design
+        "BBA",     // Bachelor of Business Administration
+        "B.Arch."  // Bachelor of Architecture
+      ];
+      
     render() {
         const { editorState } = this.state;
+        // console.log(this.state.AddCompanyExpanded, editorState, "Printed");
         const { classes } = this.props;
         return (
             <div className={classes.layout}>
@@ -219,19 +246,25 @@ class CreatePosts extends React.Component {
                                         value={this.state.companyDetails.branches}
                                         onChange={this.setCompanyDetails}
                                         input={<Input id="select-multiple-chip" />}
-                                        renderValue={(selected) => (
-                                            <div className={classes.chips}>
-                                                {selected.map((value) => (
-                                                    <Chip key={value} label={value} className={classes.chip} />
-                                                ))}
-                                            </div>
-                                        )}
-                                        // MenuProps={MenuProps}
+                                        renderValue={(selected) => {
+                                                return (
+                                                    <div className={classes.chips}>
+                                                    {selected.map((value) => (
+                                                        <Chip key={value} label={value} className={classes.chips} />
+                                                    ))}
+                                                    </div>
+                                                )
+                                        }}
                                     >
-                                        {["CSE", "ECE", "EEE", "MECH", "CIVIL", "IT", "AI&ML"].map((name) => (
-                                                <MenuItem key={name} value={name}>
-                                                    {name}
-                                                </MenuItem>
+                                        {this.COURSES.map((item) => (
+                                            // <div>
+                                            //     <ListSubheader>{item.header}</ListSubheader>
+                                            //     {item.items.map((branch) => (
+                                                    <MenuItem key={item} value={item}>
+                                                        {item}
+                                                    </MenuItem>
+                                                // ))}
+                                            // </div>
                                         ))}
                                     </Select>
                                 </div>
