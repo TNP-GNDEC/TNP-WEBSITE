@@ -67,7 +67,7 @@ export default function Office() {
 
   return (
     <Card className={classes.root}>
-      <a href="/documents/Downloads/PlacementBroucher.pdf" download="PlacementBroucher.pdf" >
+      <a href="/Placement_Brochure_2025.pdf" download="Placement Brochure 2025.pdf" >
         <div className={classes.down1}>
           <div className={classes.innerDown}>
             <h3 className={classes.heading}>Placement Broucher</h3>
