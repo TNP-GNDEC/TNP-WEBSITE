@@ -129,6 +129,7 @@ Route::resource('/addDownloadsItems', "DownloadsController");
 Route::resource('/addLinksItems', "LinksController");
 
 Route::post('getposts', 'postController@getposts');
+Route::post('addCompany', 'postController@addCompany');
 
 Route::get("lastThreePosts", "postController@lastThreePosts");
 

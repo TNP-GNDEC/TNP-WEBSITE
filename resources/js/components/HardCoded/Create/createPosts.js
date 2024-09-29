@@ -90,30 +90,26 @@ class CreatePosts extends React.Component {
         try {
             e.preventDefault();
             let payload = { ...this.state.companyDetails };
-            const res = await axios.post("https://tnp-vault.vercel.app/company",
+            const res = await axios.post("/addCompany",
                 {
                     "name": payload.companyName,
                     "email": payload.companyEmail,
                     "phone": payload.companyPhone,
                     "branches": payload.branches,
                     "status": "Awaiting Confirmation"
-                },
-                {
-                    headers: {
-                        "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRucC1zdXBlcmFkbWluIiwicm9sZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE3Mjc0NTY2ODB9.lKYpfUwZqNttwLbYGy7t0neW-Hhr-x8289RDJPEYUSc"
-                    }
                 }
-        );
-            if (res.status === 201) {
+            );
+            console.log(res.data.status)
+            if (res.data.status === 201) {
                 toast.success("Company Added Successfully");
                 this.setState({
-                    AddCompanyExpanded: false
+                    // AddCompanyExpanded: false
                 })
             } else {
                 toast.error("Error Adding Company");
                 // console.log(res)
                 this.setState({
-                    AddCompanyExpanded: false
+                    // AddCompanyExpanded: false
                 })
             }
         }
