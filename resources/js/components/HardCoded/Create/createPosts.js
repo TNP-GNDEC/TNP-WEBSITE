@@ -100,7 +100,7 @@ class CreatePosts extends React.Component {
                 },
                 {
                     headers: {
-                        "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRucHN1cGVyYWRtaW4iLCJyb2xlIjoic3VwZXJhZG1pbiIsImlhdCI6MTcyMzMwNjMyNn0.Pj5V_xfT3lnRnIMbIUpbWmHribCpJJmv9pR1CYmYBns"
+                        "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRucC1zdXBlcmFkbWluIiwicm9sZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE3Mjc0NTY2ODB9.lKYpfUwZqNttwLbYGy7t0neW-Hhr-x8289RDJPEYUSc"
                     }
                 }
         );

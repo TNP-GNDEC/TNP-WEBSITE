@@ -6,8 +6,8 @@ import Business from '@material-ui/icons/Business';
 import Email from '@material-ui/icons/Email';
 import Phone from '@material-ui/icons/Phone';
 
-import office from "../../../../images/avatar2.png";
-import sachin_bagga from "../../../../../public/images/sachin_bagga.png";
+// import office from "../../../../images/avatar2.png";
+import sachin_bagga from "../../../../../resources/images/sachin_bagga.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
