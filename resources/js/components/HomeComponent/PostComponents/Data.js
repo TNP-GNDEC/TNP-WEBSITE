@@ -24,8 +24,8 @@ import { BottomSheet } from "react-spring-bottom-sheet";
 import "react-spring-bottom-sheet/dist/style.css";
 
 import trashCan from "../../../../images/trashCan.svg";
-import WhatsappIcon from "../../../../images/whatsapp.png";
 import pencil from "../../../../images/pencil.svg";
+
 
 const useStyles = theme => ({
     root: {
@@ -426,9 +426,7 @@ class Data extends React.Component {
                                             }}
                                         >
                                             {/* <img
-                                                src={WhatsappIcon}
-                                                style={{
-                                                    marginRight: "5px",
+                                                //5px",
                                                     marginLeft: "20px"x
                                                 }}
                                                 alt="delete"
