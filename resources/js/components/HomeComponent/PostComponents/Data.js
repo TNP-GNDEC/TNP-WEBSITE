@@ -115,7 +115,7 @@ const useStyles = theme => ({
         display: "flex",
         padding: "0px",
         width: "20%",
-        marginRight: "1.5rem",
+        marginRight: "6.5rem",
         justifyContent: "space-between",
         alignItems: "flex-start",
         // ["@media (max-width:600px)"]: {
@@ -382,7 +382,6 @@ class Data extends React.Component {
                                             />
                                             Edit
                                         </Link>
-
                                         <span
                                             onClick={() =>
                                                 this.delPost(posts.id)
@@ -422,17 +421,18 @@ class Data extends React.Component {
                                                 textDecoration: "none",
                                                 display: "flex",
                                                 color: "#683838",
-                                                cursor: "pointer"
+                                                cursor: "pointer",
+                                                paddingInline: "16px"
                                             }}
                                         >
-                                            <img
+                                            {/* <img
                                                 src={WhatsappIcon}
                                                 style={{
                                                     marginRight: "5px",
                                                     marginLeft: "20px"
                                                 }}
                                                 alt="delete"
-                                            />
+                                            /> */}
                                             Share
                                         </span>
                                         
