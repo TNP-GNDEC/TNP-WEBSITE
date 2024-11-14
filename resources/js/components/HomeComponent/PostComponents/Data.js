@@ -115,7 +115,7 @@ const useStyles = theme => ({
         display: "flex",
         padding: "0px",
         width: "20%",
-        marginRight: "6.5rem",
+        marginRight: "1.5rem",
         justifyContent: "space-between",
         alignItems: "flex-start",
         // ["@media (max-width:600px)"]: {
@@ -403,36 +403,7 @@ class Data extends React.Component {
                                             />
                                             Delete
                                         </span>
-                                        <span
-                                            onClick={() => {
-                                                if (navigator.share) {
-                                                    navigator.share({
-                                                        title: 'Post Title',
-                                                        text: 'Check out this post!',
-                                                        url: window.location.href,
-                                                    }).then(() => {
-                                                        console.log('Thanks for sharing!');
-                                                    }).catch(console.error);
-                                                } else {
-                                                    console.log('Share not supported on this browser, do it the old way.');
-                                                }
-                                            }}
-                                            style={{
-                                                textDecoration: "none",
-                                                display: "flex",
-                                                color: "#683838",
-                                                cursor: "pointer",
-                                                paddingInline: "16px",
-                                            }}
-                                        >
-                                            {/* <img
-                                                //5px",
-                                                    marginLeft: "20px"x
-                                                }}
-                                                alt="delete"
-                                            /> */}
-                                            Share
-                                        </span>
+                                     
                                         
                                         {/* <Share className={classes.Icons}/> */}
                                     </div>
