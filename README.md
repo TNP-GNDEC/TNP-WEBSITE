@@ -45,3 +45,5 @@ Now you are Ready to launch the web application :
 php artisan serve
 npm run watch
 ```
+
+

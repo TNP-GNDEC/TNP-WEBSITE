@@ -345,7 +345,7 @@ class Data extends React.Component {
                                             )}
                                         </Typography>
                                     </div>
-                                    <div className={classes.subheader4}>
+                                    <div className={classes.subheader2}>
                                         <Button
                                             variant="h5"
                                             component="h2"
