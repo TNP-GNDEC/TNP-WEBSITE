@@ -10,7 +10,7 @@ import "../../../../css/app.css";
 import TagsInput from "react-tagsinput";
 import addNotification from "react-push-notification";
 import toast, { Toaster } from "react-hot-toast";
-import { Accordion, AccordionDetails, AccordionSummary, Chip, Input, ListSubheader, Menu, MenuItem, Select, Typography } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Button, Chip, Input, ListSubheader, Menu, MenuItem, Select, Typography } from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = theme => ({
@@ -35,6 +35,17 @@ const useStyles = theme => ({
         textDecoration: "none",
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.secondary.main,
+        padding: "5px 30px",
+        marginTop: "15px",
+        boxShadow: "0px 15px 25px #038ed433"
+    },
+    btn2: {
+        border: "none",
+        borderRadius: "16px",
+        textDecoration: "none",
+        outline: "2px solid #038ed4",
+        // backgroundColor: theme.palette.primary.main,
+        // color: theme.palette.secondary.main,
         padding: "5px 30px",
         marginTop: "15px",
         boxShadow: "0px 15px 25px #038ed433"
@@ -331,9 +342,24 @@ class CreatePosts extends React.Component {
                                 onChange={tags => this.handleChange(tags)}
                             />
                             <div className="form-group">
-                                <button type="submit" className={classes.btn}>
+                                <Button type="submit" className={classes.btn}>
                                     Add Post
-                                </button>
+                                </Button>
+                                {/* <Button type="Button" variant="outlined" style={{marginLeft: "10px"}} className={classes.btn2} onClick={() => {
+                                    if (navigator.share) {
+                                        navigator.share({
+                                            title: 'Post Title',
+                                            text: 'Check out this post!',
+                                            url: window.location.href,
+                                        }).then(() => {
+                                            console.log('Thanks for sharing!');
+                                        }).catch(console.error);
+                                    } else {
+                                        console.log('Share not supported on this browser, do it the old way.');
+                                    }
+                                }}>
+                                    Share
+                                </Button> */}
                                 {/* <Button variant="contained" color="primary">
                                   Add Post
                                 </Button> */}
