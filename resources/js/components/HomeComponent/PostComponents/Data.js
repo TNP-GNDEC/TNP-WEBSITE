@@ -26,6 +26,7 @@ import "react-spring-bottom-sheet/dist/style.css";
 import trashCan from "../../../../images/trashCan.svg";
 import pencil from "../../../../images/pencil.svg";
 
+
 const useStyles = theme => ({
     root: {
         width: "100%",
