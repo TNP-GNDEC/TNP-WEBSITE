@@ -24,6 +24,7 @@ import { BottomSheet } from "react-spring-bottom-sheet";
 import "react-spring-bottom-sheet/dist/style.css";
 
 import trashCan from "../../../../images/trashCan.svg";
+import WhatsappIcon from "../../../../images/whatsapp.png";
 import pencil from "../../../../images/pencil.svg";
 
 const useStyles = theme => ({
@@ -345,14 +346,25 @@ class Data extends React.Component {
                                         </Typography>
                                     </div>
                                     <div className={classes.subheader4}>
-                                        <Typography
+                                        <Button
                                             variant="h5"
                                             component="h2"
-                                            className={classes.share}
-                                            onClick={this.handleSheet}
+                                            onClick={() => {
+                                                if (navigator.share) {
+                                                    navigator.share({
+                                                        title: 'Post Title',
+                                                        text: 'Check out this post!',
+                                                        url: `https://www.tnpgndec.com/showPost/${posts.id}`,
+                                                    }).then(() => {
+                                                        console.log('Thanks for sharing!');
+                                                    }).catch(console.error);
+                                                } else {
+                                                    console.log('Share not supported on this browser, do it the old way.');
+                                                }
+                                            }}
                                         >
                                             Share
-                                        </Typography>
+                                        </Button>
                                     </div>
                                     <div className={classes.adminSubheader3}>
                                         <Link
@@ -370,6 +382,7 @@ class Data extends React.Component {
                                             />
                                             Edit
                                         </Link>
+
                                         <span
                                             onClick={() =>
                                                 this.delPost(posts.id)
@@ -391,6 +404,38 @@ class Data extends React.Component {
                                             />
                                             Delete
                                         </span>
+                                        <span
+                                            onClick={() => {
+                                                if (navigator.share) {
+                                                    navigator.share({
+                                                        title: 'Post Title',
+                                                        text: 'Check out this post!',
+                                                        url: window.location.href,
+                                                    }).then(() => {
+                                                        console.log('Thanks for sharing!');
+                                                    }).catch(console.error);
+                                                } else {
+                                                    console.log('Share not supported on this browser, do it the old way.');
+                                                }
+                                            }}
+                                            style={{
+                                                textDecoration: "none",
+                                                display: "flex",
+                                                color: "#683838",
+                                                cursor: "pointer"
+                                            }}
+                                        >
+                                            <img
+                                                src={WhatsappIcon}
+                                                style={{
+                                                    marginRight: "5px",
+                                                    marginLeft: "20px"
+                                                }}
+                                                alt="delete"
+                                            />
+                                            Share
+                                        </span>
+                                        
                                         {/* <Share className={classes.Icons}/> */}
                                     </div>
                                 </div>
