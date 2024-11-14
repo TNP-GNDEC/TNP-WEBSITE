@@ -422,14 +422,14 @@ class Data extends React.Component {
                                                 display: "flex",
                                                 color: "#683838",
                                                 cursor: "pointer",
-                                                paddingInline: "16px"
+                                                paddingInline: "16px",
                                             }}
                                         >
                                             {/* <img
                                                 src={WhatsappIcon}
                                                 style={{
                                                     marginRight: "5px",
-                                                    marginLeft: "20px"
+                                                    marginLeft: "20px"x
                                                 }}
                                                 alt="delete"
                                             /> */}
