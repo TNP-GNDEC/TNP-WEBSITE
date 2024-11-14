@@ -128,7 +128,7 @@ const useStyles = theme => ({
             justifyContent: "space-between",
             padding: "0px 5px 0px 0px"
         },
-        display: "none"
+        // display: "none"
     },
     subheading: {
         fontSize: "12px",
@@ -501,7 +501,7 @@ class Data extends React.Component {
                                         {moment(posts.updated_at).format("LLL")}
                                     </Typography>
                                 </div>
-                                <div className={classes.subheader4}>
+                                <div className={classes.subheader2}>
                                     <Typography
                                         variant="h5"
                                         component="h2"
