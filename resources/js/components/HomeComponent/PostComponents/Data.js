@@ -107,9 +107,9 @@ const useStyles = theme => ({
         width: "10%",
         justifyContent: "space-between",
         alignItems: "flex-start",
-        ["@media (max-width:600px)"]: {
-            display: "none"
-        }
+        // ["@media (max-width:600px)"]: {
+        //     display: "none"
+        // }
     },
     adminSubheader3: {
         display: "flex",
@@ -118,9 +118,9 @@ const useStyles = theme => ({
         marginRight: "1.5rem",
         justifyContent: "space-between",
         alignItems: "flex-start",
-        ["@media (max-width:600px)"]: {
-            display: "none"
-        }
+        // ["@media (max-width:600px)"]: {
+        //     display: "none"
+        // }
     },
     subheader4: {
         ["@media (max-width:600px)"]: {
