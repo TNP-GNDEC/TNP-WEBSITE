@@ -160,7 +160,7 @@ export default function Office() {
       <div className={classes.box2}>
             <Email className={classes.icon2}/>
             <Typography variant="h6" component="h2" className={classes.subheading2}>
-              sachinbagga@gndec.ac.in
+            tpo@gndec.ac.in
             </Typography>
         </div>   
     </Card>

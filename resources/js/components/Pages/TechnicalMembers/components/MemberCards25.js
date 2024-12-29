@@ -20,7 +20,7 @@ const memberData = [
     {
         key: 2,
         name: "Vansh Kumar",
-        designation: "Chief Technology Officer (CTO)",
+        designation: "Technical Lead",
         description:
             "He is a B.Tech student in Computer Science & Engineering of 2021-25 batch.",
         profilePic: "https://tnpgndec.com/images/vansh.jpg",
