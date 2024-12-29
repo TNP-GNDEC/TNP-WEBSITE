@@ -107,7 +107,8 @@ class CreatePosts extends React.Component {
                     "email": payload.companyEmail,
                     "phone": payload.companyPhone,
                     "branches": payload.branches,
-                    "status": "Awaiting Confirmation"
+                    "status": "Awaiting Confirmation",
+                    "hospitality": payload.hospitality
                 }
             );
             console.log(res.data.status)
@@ -236,6 +237,18 @@ class CreatePosts extends React.Component {
                                         value={this.state.companyDetails.companyPhone}
                                         onChange={this.setCompanyDetails}
                                         placeholder="Enter the Company Phone"
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className={classes.label}>Hospitality:</label>
+                                    <input
+                                        type="text"
+                                        name="hospitality"
+                                        className="form-control highlight"
+                                        value={this.state.companyDetails.hospitality}
+                                        onChange={this.setCompanyDetails}
+                                        placeholder="Enter the Hospitality Information"
                                         required
                                     />
                                 </div>

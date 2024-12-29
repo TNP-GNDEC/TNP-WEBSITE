@@ -14,6 +14,7 @@ import youtubeIcon from "../../../../images/youtube.png";
 import indiabixIcon from "../../../../images/indiabix.jpg";
 import mediumIcon from "../../../../images/medium.png";
 import masterquizIcon from "../../../../images/masterquiz.png";
+import CodeIcon from '@material-ui/icons/Code';
 
 const useStyles = theme => ({
     title: {
@@ -82,6 +83,78 @@ class PlacementLinks extends React.Component {
         const { classes } = this.props;
         return (
             <div class={classes.box}>
+                <Card className={classes.card}>
+                    <div className={classes.outerContainer}>
+                        <div className={classes.container}>
+                            <img className={classes.icon} src="https://static.takeuforward.org/content/favicon-yBC0qDmm" alt="" />
+                            <Typography className={classes.cardTitle}>
+                            Strivers A2Z DSA
+                            </Typography>
+                        </div>
+                        <div className={classes.link}>
+                            <a
+                                href="https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                            >
+                                <img
+                                    className={classes.linkIcon}
+                                    src={linkIcon}
+                                ></img>
+                            </a>
+                        </div>
+                    </div>
+                </Card>
+                <Card className={classes.card}>
+                    <div className={classes.outerContainer}>
+                        <div className={classes.container}>
+                            <img
+                                className={classes.icon}
+                                src={"https://leetcode.com/static/images/LeetCode_logo_rvs.png"}
+                            ></img>
+                            <Typography className={classes.cardTitle}>
+                                LeetCode Contests
+                            </Typography>
+                        </div>
+                        <div className={classes.link}>
+                            <a
+                                href="https://leetcode.com/contest/"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                            >
+                                <img
+                                    className={classes.linkIcon}
+                                    src={linkIcon}
+                                ></img>
+                            </a>
+                        </div>
+                    </div>
+                </Card>
+                <Card className={classes.card}>
+                    <div className={classes.outerContainer}>
+                        <div className={classes.container}>
+                            <img
+                                className={classes.icon}
+                                src={"https://www.codechef.com/favicon.ico"}
+                            ></img>
+                            <Typography className={classes.cardTitle}>
+                                CodeChef Contests
+                            </Typography>
+                        </div>
+                        <div className={classes.link}>
+                            <a
+                                href="https://www.codechef.com/contests"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                            >
+                                <img
+                                    className={classes.linkIcon}
+                                    src={linkIcon}
+                                ></img>
+                            </a>
+                        </div>
+                    </div>
+                </Card>
                 <Card className={classes.card}>
                     <div className={classes.outerContainer}>
                         <div className={classes.container}>
