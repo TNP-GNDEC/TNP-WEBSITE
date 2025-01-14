@@ -68,7 +68,7 @@ const RegisterUser = () => {
             let check_pattern = /\D/i;
             let username_validator = usernameData.search(check_pattern);    // Search for anything
             let password_validator = passwordData.search(check_pattern);    // except numbers in string
-            if(username_validator == -1 && password_validator == -1){
+            if(username_validator == -1 && password_validator){
                 await axios
                     .post("/api/registeruser", {
                         username: usernameData,
