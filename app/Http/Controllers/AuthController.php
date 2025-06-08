@@ -242,7 +242,6 @@ class AuthController extends Controller
 
     public function registerAdmin(Request $request)
     {
-
         $user = $request->data;
         $newAdmin = User::create(['role_id' => 2, 'username' => $request->username, 'password' => bcrypt($request->password) , 'email' => $request->email, 'uuid' => (String)Str::uuid() ]);
         return response()

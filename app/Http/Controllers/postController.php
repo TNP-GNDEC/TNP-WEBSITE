@@ -29,7 +29,32 @@ class postController extends Controller
         return response()
             ->json(['status' => 200, 'page' => $page, 'posts' => $posts]);
     }
+
+    public function addCompany(Request $request)
+    {
+        $company = json_encode($request->all());
+
+        $client = new \GuzzleHttp\Client();
+        $response = $client->post('https://tnp-vault.vercel.app/company', [
+            'json' => json_decode($company, true),
+            'headers' => [
+                'authorization' => env('ADD_COMPANY_ADMIN_TOKEN')
+            ]
+        ]);
+
+        $responseBody = json_decode($response->getBody(), true);
+        try {
+            return response()
+                ->json(['status' => 201, 'company' => $responseBody]);
+        } catch (\Exception $e) {
+            return response()
+                ->json(['status' => 500, 'error' => 'An error occurred while adding the company.']);
+        }
+        
+    }
     
+    
+
     public function lastThreePosts(Request $request)
     {
         $posts = Post::orderBy('updated_at', 'DESC')->take(3)->get();

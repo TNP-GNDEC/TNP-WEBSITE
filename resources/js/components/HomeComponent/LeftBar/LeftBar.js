@@ -9,6 +9,7 @@ import WebNotify from "./WebNotify";
 import Assistance from "./Assistance";
 import MemberLinks from "./MemberLinks";
 import PlacementLinks from "./PlacementLinks";
+import CompanyInvite from "./CompanyInvite";
 
 const useStyles = makeStyles(theme => ({
     cardTitle: {
@@ -69,16 +70,18 @@ export default function LeftBar() {
             <p className={classes.greeting2}>Welcome to the T&P Cell</p>
             <h3 className={classes.cardTitle}>Connect</h3>
             <Connect />
+            <h3 className={classes.cardTitle}>Company Invite</h3>
+            <CompanyInvite />
             <h3 className={classes.cardTitle}>Alumni</h3>
             <Assistance />
-            <h3 className={classes.cardTitle}>Explore</h3>
-            <Records />
+            {/* <h3 className={classes.cardTitle}>Explore</h3>
+            <Records /> */}
             <h3 className={classes.cardTitle}>T&P Members</h3>
             <MemberLinks />
             <h3 className={classes.cardTitle}>Downloads</h3>
             <Downloads />
-            <h3 className={classes.cardTitle}>Notifications</h3>
-            <WebNotify />
+            {/* <h3 className={classes.cardTitle}>Notifications</h3>
+            <WebNotify /> */}
             <h3 className={classes.cardTitle}>Placement Resources</h3>
             <PlacementLinks />
         </div>

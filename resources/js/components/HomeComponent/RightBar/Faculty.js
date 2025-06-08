@@ -6,7 +6,8 @@ import Business from '@material-ui/icons/Business';
 import Email from '@material-ui/icons/Email';
 import Phone from '@material-ui/icons/Phone';
 
-import office from "../../../../images/avatar2.png";
+// import office from "../../../../images/avatar2.png";
+import sachin_bagga from "../../../../../resources/images/sachin_bagga.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -141,11 +142,11 @@ export default function Office() {
     <Card className={classes.root}>
       <div className={classes.media}>
         <div className={classes.imageBox}>
-            <img src={office} className={classes.image}/>
+            <img src={sachin_bagga} className={classes.image}/>
         </div>
       </div>
       <h1 className={classes.heading}>
-        Prof. Sachin Bagga
+        Dr. Sachin Bagga
       </h1>
       <h3 className={classes.subheading}>
         Faculty Co-Coordinator
@@ -159,7 +160,7 @@ export default function Office() {
       <div className={classes.box2}>
             <Email className={classes.icon2}/>
             <Typography variant="h6" component="h2" className={classes.subheading2}>
-              sachinbagga@gndec.ac.in
+            tpo@gndec.ac.in
             </Typography>
         </div>   
     </Card>

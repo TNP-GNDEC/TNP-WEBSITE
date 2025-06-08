@@ -26,6 +26,7 @@ import "react-spring-bottom-sheet/dist/style.css";
 import trashCan from "../../../../images/trashCan.svg";
 import pencil from "../../../../images/pencil.svg";
 
+
 const useStyles = theme => ({
     root: {
         width: "100%",
@@ -106,9 +107,9 @@ const useStyles = theme => ({
         width: "10%",
         justifyContent: "space-between",
         alignItems: "flex-start",
-        ["@media (max-width:600px)"]: {
-            display: "none"
-        }
+        // ["@media (max-width:600px)"]: {
+        //     display: "none"
+        // }
     },
     adminSubheader3: {
         display: "flex",
@@ -117,9 +118,9 @@ const useStyles = theme => ({
         marginRight: "1.5rem",
         justifyContent: "space-between",
         alignItems: "flex-start",
-        ["@media (max-width:600px)"]: {
-            display: "none"
-        }
+        // ["@media (max-width:600px)"]: {
+        //     display: "none"
+        // }
     },
     subheader4: {
         ["@media (max-width:600px)"]: {
@@ -127,7 +128,7 @@ const useStyles = theme => ({
             justifyContent: "space-between",
             padding: "0px 5px 0px 0px"
         },
-        display: "none"
+        // display: "none"
     },
     subheading: {
         fontSize: "12px",
@@ -344,15 +345,26 @@ class Data extends React.Component {
                                             )}
                                         </Typography>
                                     </div>
-                                    <div className={classes.subheader4}>
-                                        <Typography
+                                    <div className={classes.subheader2}>
+                                        <Button
                                             variant="h5"
                                             component="h2"
-                                            className={classes.share}
-                                            onClick={this.handleSheet}
+                                            onClick={() => {
+                                                if (navigator.share) {
+                                                    navigator.share({
+                                                        title: 'Post Title',
+                                                        text: 'Check out this post!',
+                                                        url: `https://www.tnpgndec.com/showPost/${posts.id}`,
+                                                    }).then(() => {
+                                                        console.log('Thanks for sharing!');
+                                                    }).catch(console.error);
+                                                } else {
+                                                    console.log('Share not supported on this browser, do it the old way.');
+                                                }
+                                            }}
                                         >
                                             Share
-                                        </Typography>
+                                        </Button>
                                     </div>
                                     <div className={classes.adminSubheader3}>
                                         <Link
@@ -391,6 +403,8 @@ class Data extends React.Component {
                                             />
                                             Delete
                                         </span>
+                                     
+                                        
                                         {/* <Share className={classes.Icons}/> */}
                                     </div>
                                 </div>
@@ -456,7 +470,7 @@ class Data extends React.Component {
                                         {moment(posts.updated_at).format("LLL")}
                                     </Typography>
                                 </div>
-                                <div className={classes.subheader4}>
+                                <div className={classes.subheader2}>
                                     <Typography
                                         variant="h5"
                                         component="h2"

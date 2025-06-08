@@ -10,10 +10,13 @@ import "../../../../css/app.css";
 import TagsInput from "react-tagsinput";
 import addNotification from "react-push-notification";
 import toast, { Toaster } from "react-hot-toast";
-import { Accordion, AccordionDetails, AccordionSummary, Chip, Input, Menu, MenuItem, Select, Typography } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Button, Chip, Input, ListSubheader, Menu, MenuItem, Select, Typography } from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = theme => ({
+    chips: {
+        margin: "5px 0px"
+    },
     layout: {
         width: "100%",
         marginLeft: "auto",
@@ -35,11 +38,23 @@ const useStyles = theme => ({
         padding: "5px 30px",
         marginTop: "15px",
         boxShadow: "0px 15px 25px #038ed433"
+    },
+    btn2: {
+        border: "none",
+        borderRadius: "16px",
+        textDecoration: "none",
+        outline: "2px solid #038ed4",
+        // backgroundColor: theme.palette.primary.main,
+        // color: theme.palette.secondary.main,
+        padding: "5px 30px",
+        marginTop: "15px",
+        boxShadow: "0px 15px 25px #038ed433"
     }
 });
 
 class CreatePosts extends React.Component {
     state = {
+        AddCompanyExpanded: true,
         title: "",
         type: "",
         description: "",
@@ -56,12 +71,14 @@ class CreatePosts extends React.Component {
     }
 
     setCompanyDetails = (name) => {
+        // console.log(name, "Company Details")
         this.setState({
             companyDetails: {
                 ...this.state.companyDetails,
                 [name.target.name]: name.target.value
             }
         });
+        // console.log(this.state.companyDetails, "Company Details")
     };
 
     handleInput = e => {
@@ -84,28 +101,25 @@ class CreatePosts extends React.Component {
         try {
             e.preventDefault();
             let payload = { ...this.state.companyDetails };
-            const res = await axios.post("https://tnp-vault.vercel.app/company",
+            const res = await axios.post("/addCompany",
                 {
                     "name": payload.companyName,
                     "email": payload.companyEmail,
                     "phone": payload.companyPhone,
                     "branches": payload.branches,
-                    "status": "Awaiting Confirmation"
-                },
-                {
-                    headers: {
-                        "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRucHN1cGVyYWRtaW4iLCJyb2xlIjoic3VwZXJhZG1pbiIsImlhdCI6MTcyMzMwNjMyNn0.Pj5V_xfT3lnRnIMbIUpbWmHribCpJJmv9pR1CYmYBns"
-                    }
+                    "status": "Awaiting Confirmation",
+                    "hospitality": payload.hospitality
                 }
-        );
-            if (res.status === 201) {
+            );
+            console.log(res.data.status)
+            if (res.data.status === 201) {
                 toast.success("Company Added Successfully");
                 this.setState({
                     AddCompanyExpanded: false
                 })
             } else {
                 toast.error("Error Adding Company");
-                console.log(res)
+                // console.log(res)
                 this.setState({
                     AddCompanyExpanded: false
                 })
@@ -151,9 +165,30 @@ class CreatePosts extends React.Component {
         this.setState({ open: false });
     };
     
-
+    COURSES = [
+        "CSE",     // Computer Science and Engineering
+        "IT",      // Information Technology
+        "CE",      // Civil Engineering
+        "EE",      // Electrical Engineering
+        "ECE",     // Electronics and Communication Engineering
+        "ME",      // Mechanical Engineering
+        "PE",      // Production Engineering
+        "EnvE",    // Environmental Engineering
+        "IndE",    // Industrial Engineering
+        "PowerE",  // Power Engineering
+        "SE",      // Structural Engineering
+        "VLSI",    // VLSI Design
+        "MBA",     // Masters in Business Administration
+        "MCA",     // Masters in Computer Application
+        "BCA",     // Bachelor of Computer Applications
+        "InteriorD",// Interior Design
+        "BBA",     // Bachelor of Business Administration
+        "B.Arch."  // Bachelor of Architecture
+      ];
+      
     render() {
         const { editorState } = this.state;
+        // console.log(this.state.AddCompanyExpanded, editorState, "Printed");
         const { classes } = this.props;
         return (
             <div className={classes.layout}>
@@ -206,6 +241,18 @@ class CreatePosts extends React.Component {
                                     />
                                 </div>
                                 <div className="form-group">
+                                    <label className={classes.label}>Hospitality:</label>
+                                    <input
+                                        type="text"
+                                        name="hospitality"
+                                        className="form-control highlight"
+                                        value={this.state.companyDetails.hospitality}
+                                        onChange={this.setCompanyDetails}
+                                        placeholder="Enter the Hospitality Information"
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group">
                                     <label className={classes.label}>Branches:</label>
                                     <Select
                                         labelId="demo-mutiple-chip-label"
@@ -219,19 +266,25 @@ class CreatePosts extends React.Component {
                                         value={this.state.companyDetails.branches}
                                         onChange={this.setCompanyDetails}
                                         input={<Input id="select-multiple-chip" />}
-                                        renderValue={(selected) => (
-                                            <div className={classes.chips}>
-                                                {selected.map((value) => (
-                                                    <Chip key={value} label={value} className={classes.chip} />
-                                                ))}
-                                            </div>
-                                        )}
-                                        // MenuProps={MenuProps}
+                                        renderValue={(selected) => {
+                                                return (
+                                                    <div className={classes.chips}>
+                                                    {selected.map((value) => (
+                                                        <Chip key={value} label={value} className={classes.chips} />
+                                                    ))}
+                                                    </div>
+                                                )
+                                        }}
                                     >
-                                        {["CSE", "ECE", "EEE", "MECH", "CIVIL", "IT", "AI&ML"].map((name) => (
-                                                <MenuItem key={name} value={name}>
-                                                    {name}
-                                                </MenuItem>
+                                        {this.COURSES.map((item) => (
+                                            // <div>
+                                            //     <ListSubheader>{item.header}</ListSubheader>
+                                            //     {item.items.map((branch) => (
+                                                    <MenuItem key={item} value={item}>
+                                                        {item}
+                                                    </MenuItem>
+                                                // ))}
+                                            // </div>
                                         ))}
                                     </Select>
                                 </div>
@@ -302,9 +355,24 @@ class CreatePosts extends React.Component {
                                 onChange={tags => this.handleChange(tags)}
                             />
                             <div className="form-group">
-                                <button type="submit" className={classes.btn}>
+                                <Button type="submit" className={classes.btn}>
                                     Add Post
-                                </button>
+                                </Button>
+                                {/* <Button type="Button" variant="outlined" style={{marginLeft: "10px"}} className={classes.btn2} onClick={() => {
+                                    if (navigator.share) {
+                                        navigator.share({
+                                            title: 'Post Title',
+                                            text: 'Check out this post!',
+                                            url: window.location.href,
+                                        }).then(() => {
+                                            console.log('Thanks for sharing!');
+                                        }).catch(console.error);
+                                    } else {
+                                        console.log('Share not supported on this browser, do it the old way.');
+                                    }
+                                }}>
+                                    Share
+                                </Button> */}
                                 {/* <Button variant="contained" color="primary">
                                   Add Post
                                 </Button> */}
